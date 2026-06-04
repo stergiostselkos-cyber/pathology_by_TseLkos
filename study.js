@@ -1,35 +1,17 @@
-﻿// Study Portal State
-let socraticQuestions = [];
+// Study Portal State
 let flashcardQuestions = [];
 let summaryTables = [];
 let tableAnalyses = [];
-let currentRecallIndex = 0;
-let currentStepIndex = 0;
-let isGameCompleted = false;
 let currentQuickIndex = 0;
-let activeSocraticChapter = "Όλα";
 let activeQuickChapter = "Όλα";
 let activeTableChapter = "Όλα";
 let activeTableId = null;
 
 // DOM Elements
 const studyDashboard = document.getElementById('study-dashboard');
-const recallView = document.getElementById('recall-view');
 const tablesView = document.getElementById('tables-view') || document.createElement('div');
 const quickRecallView = document.getElementById('quick-recall-view');
 const tableAnalysisView = document.getElementById('table-analysis-view');
-
-// Active Recall & Socratic Game Elements
-const recallProgress = document.getElementById('recall-progress');
-const recallCategory = document.getElementById('recall-category');
-const recallQuestion = document.getElementById('recall-question');
-const revealedBlock = document.getElementById('revealed-block');
-const correctAnswerText = document.getElementById('correct-answer-text');
-const mnemonicText = document.getElementById('mnemonic-text');
-const recallExplanationContent = document.getElementById('recall-explanation-content');
-const recallPrevBtn = document.getElementById('recall-prev-btn');
-const recallNextBtn = document.getElementById('recall-next-btn');
-const recallRandomBtn = document.getElementById('recall-random-btn');
 
 // Quick Recall Elements
 const quickRecallProgress = document.getElementById('quick-recall-progress');
@@ -45,22 +27,9 @@ const quickRecallPrevBtn = document.getElementById('quick-recall-prev-btn');
 const quickRecallNextBtn = document.getElementById('quick-recall-next-btn');
 const quickRecallRandomBtn = document.getElementById('quick-recall-random-btn');
 const quickPillsContainer = document.getElementById('quick-questions-overlay');
-const socraticPillsContainer = document.getElementById('socratic-pills-container');
 
 // Chapter Filter Containers
-const socraticChaptersContainer = document.getElementById('socratic-chapters-container');
 const quickChaptersContainer = document.getElementById('quick-chapters-overlay');
-
-// Socratic Panels
-const socraticPanel = document.getElementById('socratic-panel');
-const socraticStepText = document.getElementById('socratic-step-text');
-const socraticProgressFill = document.getElementById('socratic-progress-fill');
-const socraticSubQuestion = document.getElementById('socratic-sub-question');
-const socraticOptionsContainer = document.getElementById('socratic-options-container');
-const socraticFeedback = document.getElementById('socratic-feedback');
-const socraticSubmitBtn = document.getElementById('socratic-submit-btn');
-const socraticNextStepBtn = document.getElementById('socratic-next-step-btn');
-const socraticRestartBtn = document.getElementById('socratic-restart-btn');
 
 // Tables Elements
 const printTableBtn = document.getElementById('print-table-btn');
@@ -114,9 +83,6 @@ function toggleTheme() {
  * Load split databases from data/ folder
  */
 function loadQuestions() {
-    if (typeof socraticQuestionsData !== 'undefined') {
-        socraticQuestions = Array.isArray(socraticQuestionsData) ? socraticQuestionsData : [socraticQuestionsData];
-    }
     if (typeof flashcardQuestionsData !== 'undefined') {
         flashcardQuestions = Array.isArray(flashcardQuestionsData) ? flashcardQuestionsData : [flashcardQuestionsData];
     }
@@ -127,7 +93,6 @@ function loadQuestions() {
         tableAnalyses = Array.isArray(tableAnalysesData) ? tableAnalysesData : [tableAnalysesData];
     }
 
-    populateTopicSelector();
     populateQuickTopicSelector();
     renderSummaryTables();
 }
@@ -155,12 +120,13 @@ function getQuestionChapter(q) {
     // Normalize and strip outer brackets
     let ch = rawCh.replace(/^\[/, "").replace(/\]$/, "").trim();
     
-    // Normalize raw chapter text to standard rich names
-    const match = ch.match(/^(\d+)/);
+    // Normalize raw chapter text to standard rich names (allowing optional prefix like ΚΕΦΑΛΑΙΟ)
+    const match = ch.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
     if (match) {
         const num = parseInt(match[1], 10);
         if (num === 1) return "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ";
         if (num === 2) return "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ";
+        if (num === 3) return "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ";
     }
     return ch;
 }
@@ -172,8 +138,8 @@ function isChapterMatch(questionCh, activeCh) {
     if (activeCh === "Όλα") return true;
     if (questionCh === activeCh) return true;
     
-    const m1 = questionCh.match(/^(\d+)/);
-    const m2 = activeCh.match(/^(\d+)/);
+    const m1 = questionCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
+    const m2 = activeCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
     if (m1 && m2 && m1[1] === m2[1]) {
         return true;
     }
@@ -194,7 +160,8 @@ function getChapterList(questions) {
 
     const ordered = [
         "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ",
-        "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ"
+        "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ",
+        "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ"
     ];
     
     const list = [];
@@ -235,75 +202,39 @@ function getChapterList(questions) {
 /**
  * Toggles a beautiful empty state panel when a chapter has no questions.
  */
-function toggleRecallEmptyState(hasQuestions, viewType) {
-    if (viewType === 'socratic') {
-        const titleHeader = document.querySelector('#recall-view .topic-title-header');
-        const cardContainer = document.querySelector('#recall-view .recall-card-container');
-        const navFooter = document.querySelector('#recall-view .quiz-navigation');
-        const pillsContainer = document.getElementById('socratic-pills-container');
-        
-        let emptyState = document.getElementById('socratic-empty-state');
-        if (!emptyState) {
-            emptyState = document.createElement('div');
-            emptyState.id = 'socratic-empty-state';
-            emptyState.className = 'empty-state-card';
-            emptyState.innerHTML = `
-                <div class="empty-state-icon">📭</div>
-                <h3>Δεν υπάρχουν ερωτήσεις</h3>
-                <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
-            `;
-            if (navFooter) {
-                navFooter.parentNode.insertBefore(emptyState, navFooter);
-            }
+function toggleRecallEmptyState(hasQuestions) {
+    const titleHeader = document.querySelector('#quick-recall-view .topic-title-header');
+    const cardContainer = document.querySelector('#quick-recall-view .recall-card-container');
+    const navFooter = document.querySelector('#quick-recall-view .quiz-navigation');
+    const pillsContainer = document.getElementById('quick-pills-container');
+    
+    let emptyState = document.getElementById('quick-empty-state');
+    if (!emptyState) {
+        emptyState = document.createElement('div');
+        emptyState.id = 'quick-empty-state';
+        emptyState.className = 'empty-state-card';
+        emptyState.innerHTML = `
+            <div class="empty-state-icon" style="color: #d946ef; background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
+            <h3 style="color: #d946ef;">Δεν υπάρχουν ερωτήσεις</h3>
+            <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
+        `;
+        if (navFooter) {
+            navFooter.parentNode.insertBefore(emptyState, navFooter);
         }
+    }
 
-        if (hasQuestions) {
-            if (titleHeader) titleHeader.classList.remove('hidden');
-            if (cardContainer) cardContainer.classList.remove('hidden');
-            if (navFooter) navFooter.classList.remove('hidden');
-            if (pillsContainer) pillsContainer.classList.remove('hidden');
-            if (emptyState) emptyState.classList.add('hidden');
-        } else {
-            if (titleHeader) titleHeader.classList.add('hidden');
-            if (cardContainer) cardContainer.classList.add('hidden');
-            if (navFooter) navFooter.classList.add('hidden');
-            if (pillsContainer) pillsContainer.classList.add('hidden');
-            if (emptyState) emptyState.classList.remove('hidden');
-        }
-    } else if (viewType === 'quick') {
-        const titleHeader = document.querySelector('#quick-recall-view .topic-title-header');
-        const cardContainer = document.querySelector('#quick-recall-view .recall-card-container');
-        const navFooter = document.querySelector('#quick-recall-view .quiz-navigation');
-        const pillsContainer = document.getElementById('quick-pills-container');
-        
-        let emptyState = document.getElementById('quick-empty-state');
-        if (!emptyState) {
-            emptyState = document.createElement('div');
-            emptyState.id = 'quick-empty-state';
-            emptyState.className = 'empty-state-card';
-            emptyState.innerHTML = `
-                <div class="empty-state-icon" style="color: #d946ef; background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
-                <h3 style="color: #d946ef;">Δεν υπάρχουν ερωτήσεις</h3>
-                <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
-            `;
-            if (navFooter) {
-                navFooter.parentNode.insertBefore(emptyState, navFooter);
-            }
-        }
-
-        if (hasQuestions) {
-            if (titleHeader) titleHeader.classList.remove('hidden');
-            if (cardContainer) cardContainer.classList.remove('hidden');
-            if (navFooter) navFooter.classList.remove('hidden');
-            if (pillsContainer) pillsContainer.classList.remove('hidden');
-            if (emptyState) emptyState.classList.add('hidden');
-        } else {
-            if (titleHeader) titleHeader.classList.add('hidden');
-            if (cardContainer) cardContainer.classList.add('hidden');
-            if (navFooter) navFooter.classList.add('hidden');
-            if (pillsContainer) pillsContainer.classList.add('hidden');
-            if (emptyState) emptyState.classList.remove('hidden');
-        }
+    if (hasQuestions) {
+        if (titleHeader) titleHeader.classList.remove('hidden');
+        if (cardContainer) cardContainer.classList.remove('hidden');
+        if (navFooter) navFooter.classList.remove('hidden');
+        if (pillsContainer) pillsContainer.classList.remove('hidden');
+        if (emptyState) emptyState.classList.add('hidden');
+    } else {
+        if (titleHeader) titleHeader.classList.add('hidden');
+        if (cardContainer) cardContainer.classList.add('hidden');
+        if (navFooter) navFooter.classList.add('hidden');
+        if (pillsContainer) pillsContainer.classList.add('hidden');
+        if (emptyState) emptyState.classList.remove('hidden');
     }
 }
 
@@ -334,73 +265,7 @@ function renderChapterFilters(container, questions, activeChapter, onSelect) {
             const matchedChapter = chapterList.find(ch => isChapterMatch(ch, activeChapter)) || activeChapter;
             valueDisplay.textContent = matchedChapter;
         }
-        return;
     }
-
-    const btn = document.createElement('button');
-    btn.className = 'custom-dropdown-btn';
-    
-    const matchedChapter = chapterList.find(ch => isChapterMatch(ch, activeChapter)) || activeChapter;
-    btn.innerHTML = `
-        <span class="selected-value">${matchedChapter}</span>
-        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    `;
-
-    const isQuickRecall = (container.id === 'quick-chapters-container');
-
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openChapterModal(chapterList, activeChapter, onSelect, isQuickRecall);
-    });
-
-    container.appendChild(btn);
-}
-
-function openChapterModal(chapterList, activeChapter, onSelect, isQuickRecall) {
-    const modal = document.getElementById('chapter-modal');
-    const grid = document.getElementById('modal-chapters-grid');
-    if (!modal || !grid) return;
-
-    if (isQuickRecall) {
-        modal.className = 'modal-overlay quick-theme';
-    } else {
-        modal.className = 'modal-overlay socratic-theme';
-    }
-
-    grid.innerHTML = '';
-
-    chapterList.forEach(chapter => {
-        const item = document.createElement('button');
-        const isActive = isChapterMatch(chapter, activeChapter);
-        item.className = `modal-chapter-item ${isActive ? 'active' : ''}`;
-        item.textContent = chapter;
-
-        item.addEventListener('click', () => {
-            onSelect(chapter);
-            closeChapterModal();
-        });
-        grid.appendChild(item);
-    });
-
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeChapterModal() {
-    const modal = document.getElementById('chapter-modal');
-    if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-    }
-}
-
-function handleSocraticChapterSelect(selectedChapter) {
-    activeSocraticChapter = selectedChapter;
-    renderChapterFilters(socraticChaptersContainer, socraticQuestions, activeSocraticChapter, handleSocraticChapterSelect);
-    populateTopicSelector();
-    loadFirstMatchingSocraticQuestion();
 }
 
 function handleQuickChapterSelect(selectedChapter) {
@@ -408,23 +273,6 @@ function handleQuickChapterSelect(selectedChapter) {
     renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
-}
-
-function loadFirstMatchingSocraticQuestion() {
-    let targetIndex = -1;
-    for (let i = 0; i < socraticQuestions.length; i++) {
-        const ch = getQuestionChapter(socraticQuestions[i]);
-        if (isChapterMatch(ch, activeSocraticChapter)) {
-            targetIndex = i;
-            break;
-        }
-    }
-    if (targetIndex !== -1) {
-        toggleRecallEmptyState(true, 'socratic');
-        loadRecallQuestion(targetIndex);
-    } else {
-        toggleRecallEmptyState(false, 'socratic');
-    }
 }
 
 function loadFirstMatchingQuickQuestion() {
@@ -437,37 +285,15 @@ function loadFirstMatchingQuickQuestion() {
         }
     }
     if (targetIndex !== -1) {
-        toggleRecallEmptyState(true, 'quick');
+        toggleRecallEmptyState(true);
         loadQuickRecallQuestion(targetIndex);
     } else {
-        toggleRecallEmptyState(false, 'quick');
+        toggleRecallEmptyState(false);
     }
 }
 
-/**
- * Populate topic selector pills dynamically (Socratic mode)
- */
-function populateTopicSelector() {
-    if (!socraticPillsContainer) return;
-    
-    socraticPillsContainer.innerHTML = '';
-    let relativeIndex = 1;
-    socraticQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (!isChapterMatch(ch, activeSocraticChapter)) {
-            return;
-        }
 
-        const pill = document.createElement('button');
-        pill.className = 'topic-pill number-pill';
-        pill.setAttribute('data-index', idx);
-        pill.textContent = `Ερ. ${relativeIndex++}`;
-        pill.addEventListener('click', () => {
-            loadRecallQuestion(idx);
-        });
-        socraticPillsContainer.appendChild(pill);
-    });
-}
+
 
 /**
  * Populate topic selector pills dynamically (Flashcard mode)
@@ -657,10 +483,7 @@ function setupEventListeners() {
         });
     });
 
-    // Active Recall / Navigation controls (Socratic)
-    if (recallPrevBtn) recallPrevBtn.addEventListener('click', () => navigateRecall(-1));
-    if (recallNextBtn) recallNextBtn.addEventListener('click', () => navigateRecall(1));
-    if (recallRandomBtn) recallRandomBtn.addEventListener('click', loadRandomQuestion);
+
 
     // Quick Recall Controls (Flashcards)
     if (quickRevealBtn) quickRevealBtn.addEventListener('click', revealQuickAnswer);
@@ -735,31 +558,10 @@ function setupEventListeners() {
         }
     });
 
-    // Socratic Game controls
-    if (socraticSubmitBtn) socraticSubmitBtn.addEventListener('click', evaluateSocraticStep);
-    if (socraticNextStepBtn) socraticNextStepBtn.addEventListener('click', nextSocraticStep);
-    if (socraticRestartBtn) socraticRestartBtn.addEventListener('click', restartSocraticGame);
-
     // Print table button
     if (printTableBtn) {
         printTableBtn.addEventListener('click', () => {
             window.print();
-        });
-    }
-
-    // Chapter selection modal close button
-    const closeModalBtn = document.getElementById('close-chapter-modal');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeChapterModal);
-    }
-
-    // Chapter selection modal click outside content to close
-    const modalOverlay = document.getElementById('chapter-modal');
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeChapterModal();
-            }
         });
     }
 }
@@ -769,7 +571,6 @@ function setupEventListeners() {
  */
 function showView(view) {
     if (studyDashboard) studyDashboard.classList.add('hidden');
-    if (recallView) recallView.classList.add('hidden');
     if (tablesView) tablesView.classList.add('hidden');
     if (quickRecallView) quickRecallView.classList.add('hidden');
     if (tableAnalysisView) tableAnalysisView.classList.add('hidden');
@@ -783,14 +584,7 @@ function showView(view) {
     const tablesDropdownOverlay = document.getElementById('tables-dropdown-overlay');
     if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
 
-    if (view === 'recall') {
-        if (recallView) {
-            recallView.classList.remove('hidden');
-            renderChapterFilters(socraticChaptersContainer, socraticQuestions, activeSocraticChapter, handleSocraticChapterSelect);
-            populateTopicSelector();
-            loadFirstMatchingSocraticQuestion();
-        }
-    } else if (view === 'quick-recall') {
+    if (view === 'quick-recall') {
         if (quickRecallView) {
             quickRecallView.classList.remove('hidden');
             renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
@@ -807,294 +601,6 @@ function showView(view) {
     } else {
         if (studyDashboard) studyDashboard.classList.remove('hidden');
     }
-}
-
-/**
- * Load Socratic question at index
- */
-function loadRecallQuestion(index) {
-    if (socraticQuestions.length === 0) return;
-
-    updateActivePill(socraticPillsContainer, index);
-
-    currentRecallIndex = index;
-    currentStepIndex = 0;
-    isGameCompleted = false;
-
-    const question = socraticQuestions[index];
-
-    recallCategory.textContent = question.category || "Παθολογία";
-    recallQuestion.textContent = question.question;
-
-    // Filter index for status label
-    const matchingIndices = [];
-    socraticQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeSocraticChapter)) {
-            matchingIndices.push(idx);
-        }
-    });
-    const currentIndexInMatch = matchingIndices.indexOf(index);
-    recallProgress.textContent = `Θέμα ${currentIndexInMatch + 1} από ${matchingIndices.length}`;
-
-    revealedBlock.classList.add('collapsed');
-    socraticPanel.classList.remove('hidden');
-
-    loadSocraticStep();
-
-    recallPrevBtn.disabled = (currentIndexInMatch === 0 || currentIndexInMatch === -1);
-    if (currentIndexInMatch === matchingIndices.length - 1) {
-        recallNextBtn.querySelector('span').textContent = "Επανεκκίνηση";
-    } else {
-        recallNextBtn.querySelector('span').textContent = "Επόμενο";
-    }
-}
-
-/**
- * Load current active Socratic Step details
- */
-function loadSocraticStep() {
-    const question = socraticQuestions[currentRecallIndex];
-    const step = question.steps[currentStepIndex];
-
-    socraticStepText.textContent = `Βήμα ${currentStepIndex + 1} από ${question.steps.length}`;
-    socraticProgressFill.style.width = `${((currentStepIndex + 1) / question.steps.length) * 100}%`;
-    socraticSubQuestion.textContent = step.question || step.subQuestion;
-
-    socraticOptionsContainer.innerHTML = '';
-    step.options.forEach((opt, idx) => {
-        const optionLabel = document.createElement('label');
-        optionLabel.className = 'checkbox-container';
-        optionLabel.innerHTML = `
-            <input type="checkbox" data-index="${idx}">
-            <span>${opt}</span>
-        `;
-        
-        const checkbox = optionLabel.querySelector('input[type="checkbox"]');
-        if (checkbox) {
-            checkbox.addEventListener('change', () => {
-                socraticFeedback.classList.add('hidden');
-                socraticFeedback.innerHTML = '';
-            });
-        }
-        socraticOptionsContainer.appendChild(optionLabel);
-    });
-
-    socraticFeedback.innerHTML = '';
-    socraticFeedback.classList.add('hidden');
-    socraticSubmitBtn.classList.remove('hidden');
-    socraticNextStepBtn.classList.add('hidden');
-    socraticRestartBtn.classList.add('hidden');
-}
-
-/**
- * Evaluate checkbox selections for current step
- */
-function evaluateSocraticStep() {
-    const question = socraticQuestions[currentRecallIndex];
-    const step = question.steps[currentStepIndex];
-
-    const checkedInputs = socraticOptionsContainer.querySelectorAll('input[type="checkbox"]:checked');
-    const checkedIndices = Array.from(checkedInputs).map(input => parseInt(input.getAttribute('data-index'), 10));
-
-    checkedIndices.sort((a, b) => a - b);
-    
-    const correctAnswers = Array.isArray(step.correctAnswerIndex) ? step.correctAnswerIndex : [step.correctAnswerIndex];
-    const correctIndices = [...correctAnswers].sort((a, b) => a - b);
-
-    const isCorrect = checkedIndices.length === correctIndices.length && 
-                      checkedIndices.every((val, index) => val === correctIndices[index]);
-
-    const optionContainers = socraticOptionsContainer.querySelectorAll('.checkbox-container');
-    optionContainers.forEach(container => {
-        const checkbox = container.querySelector('input[type="checkbox"]');
-        const idx = parseInt(checkbox.getAttribute('data-index'), 10);
-        const isChecked = checkbox.checked;
-        const isCorrectChoice = correctAnswers.includes(idx);
-        
-        checkbox.disabled = true;
-        
-        if (isCorrectChoice) {
-            container.classList.add('choice-correct');
-        } else if (isChecked) {
-            container.classList.add('choice-incorrect');
-        }
-    });
-
-    socraticFeedback.classList.remove('hidden');
-
-    if (isCorrect) {
-        socraticFeedback.innerHTML = `
-            <div style="background: var(--success-bg); border: 1px solid var(--success-border); border-left: 4px solid var(--success-color); padding: 16px; border-radius: 8px; color: var(--text-primary); font-weight: 500; font-size: 0.95rem;">
-                <span style="color: var(--success-color); font-weight: 700; display: block; margin-bottom: 4px;">🟢 Σωστή Απάντηση!</span>
-                Εξαιρετικά! Απαντήσατε σωστά σε όλα τα ζητούμενα του βήματος.
-            </div>
-        `;
-        socraticSubmitBtn.classList.add('hidden');
-        socraticNextStepBtn.classList.remove('hidden');
-
-        if (currentStepIndex === question.steps.length - 1) {
-            socraticNextStepBtn.innerHTML = `
-                <span>Αποκάλυψη Θεωρίας &amp; Σύνοψης</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 6px;">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            `;
-        } else {
-            socraticNextStepBtn.innerHTML = `
-                <span>Επόμενο Βήμα</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 6px;">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            `;
-        }
-    } else {
-        const tips = step.tips || [step.explanation];
-        const randomTip = tips[Math.floor(Math.random() * tips.length)];
-        const banter = step.banter || "Προσέξτε ξανά τις επιλογές σας.";
-
-        socraticFeedback.innerHTML = `
-            <div style="background: var(--error-bg); border: 1px solid var(--error-border); border-left: 4px solid var(--error-color); padding: 16px; border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
-                <span style="color: var(--error-color); font-weight: 700; display: block; margin-bottom: 6px;">🔴 Λάθος επιλογή!</span>
-                <p style="margin: 0 0 8px 0; font-weight: 500; color: var(--text-primary);">${banter}</p>
-                <div style="background: rgba(0, 0, 0, 0.05); padding: 10px; border-radius: 6px; border: 1px dashed var(--error-border); color: var(--text-primary);">
-                    <strong style="color: var(--error-color);">💡 Στοιχείο (Tip):</strong> ${randomTip}
-                </div>
-            </div>
-        `;
-        socraticSubmitBtn.classList.add('hidden');
-        socraticNextStepBtn.classList.add('hidden');
-        
-        socraticRestartBtn.classList.remove('hidden');
-        if (currentStepIndex === 0) {
-            socraticRestartBtn.innerHTML = `<span>🔄 Προσπάθησε Ξανά</span>`;
-        } else {
-            socraticRestartBtn.innerHTML = `<span>🔄 Επανεκκίνηση από Βήμα 1</span>`;
-        }
-    }
-}
-
-/**
- * Handle Next Step button action
- */
-function nextSocraticStep() {
-    const question = socraticQuestions[currentRecallIndex];
-
-    if (currentStepIndex === question.steps.length - 1) {
-        revealFinalTheoryPresentation();
-    } else {
-        currentStepIndex++;
-        loadSocraticStep();
-    }
-}
-
-/**
- * Restart back to step 1
- */
-function restartSocraticGame() {
-    currentStepIndex = 0;
-    loadSocraticStep();
-}
-
-/**
- * Render Socratic theory explanation
- */
-function revealFinalTheoryPresentation() {
-    isGameCompleted = true;
-    const question = socraticQuestions[currentRecallIndex];
-
-    socraticPanel.classList.add('hidden');
-
-    let successBanner = `
-        <div style="background: var(--success-bg); border: 1px solid var(--success-border); border-left: 4px solid var(--success-color); padding: 18px; border-radius: 8px; margin-bottom: 24px; color: var(--text-primary); line-height: 1.5;">
-            <h4 style="margin: 0 0 6px 0; color: var(--success-color); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                🎉 Συγχαρητήρια!
-            </h4>
-            Απαντήσατε επιτυχώς σε όλα τα βήματα του Σωκρατικού διαλόγου. Παρακάτω ακολουθεί η πλήρης παρουσίαση της νόσου/κατάστασης.
-        </div>
-    `;
-
-    correctAnswerText.innerHTML = `${successBanner}${parseMarkdown(question.correctAnswer)}`;
-    mnemonicText.textContent = question.mnemonic || "Μελετήστε την ανάλυση της ερώτησης για να δείτε τα βασικά σημεία.";
-
-    let explanationHtml = parseMarkdown(question.explanation);
-
-    if (question.table) {
-        let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
-        tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
-        tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
-        tableHtml += `</div>`;
-        tableHtml += `<div class="table-responsive"><table class="med-table">`;
-        tableHtml += `<thead><tr>`;
-        question.table.headers.forEach(h => {
-            tableHtml += `<th>${h}</th>`;
-        });
-        tableHtml += `</tr></thead><tbody>`;
-        question.table.rows.forEach(row => {
-            tableHtml += `<tr>`;
-            row.forEach(cell => {
-                tableHtml += `<td>${cell}</td>`;
-            });
-            tableHtml += `</tr>`;
-        });
-        tableHtml += `</tbody></table></div></div>`;
-        explanationHtml += tableHtml;
-    }
-
-    recallExplanationContent.innerHTML = explanationHtml;
-    revealedBlock.classList.remove('collapsed');
-
-    setTimeout(() => {
-        revealedBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 150);
-}
-
-/**
- * Cycle through Socratic topics (respecting chapter filter)
- */
-function navigateRecall(direction) {
-    const matchingIndices = [];
-    socraticQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeSocraticChapter)) {
-            matchingIndices.push(idx);
-        }
-    });
-
-    if (matchingIndices.length === 0) return;
-
-    let currentIndexInMatch = matchingIndices.indexOf(currentRecallIndex);
-    if (currentIndexInMatch === -1) {
-        loadRecallQuestion(matchingIndices[0]);
-        return;
-    }
-
-    let nextIndexInMatch = currentIndexInMatch + direction;
-    if (nextIndexInMatch >= matchingIndices.length) {
-        nextIndexInMatch = 0;
-    }
-    if (nextIndexInMatch < 0) {
-        nextIndexInMatch = matchingIndices.length - 1;
-    }
-
-    loadRecallQuestion(matchingIndices[nextIndexInMatch]);
-}
-
-/**
- * Load Socratic random topic (respecting chapter filter)
- */
-function loadRandomQuestion() {
-    const matchingIndices = [];
-    socraticQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeSocraticChapter)) {
-            matchingIndices.push(idx);
-        }
-    });
-    if (matchingIndices.length === 0) return;
-    const randomIndex = matchingIndices[Math.floor(Math.random() * matchingIndices.length)];
-    loadRecallQuestion(randomIndex);
 }
 
 /**
@@ -1243,7 +749,12 @@ function loadQuickRandomQuestion() {
 function parseMarkdown(text) {
     if (!text) return "";
     
-    const lines = text.split('\n');
+    // Normalize different escaped newline variations and strip stray backslashes
+    let normalized = text.replace(/\\n/g, '\n');
+    normalized = normalized.replace(/\\\n/g, '\n');
+    normalized = normalized.replace(/\\/g, '');
+    
+    const lines = normalized.split('\n');
     let html = "";
     let inList = false;
     let inOrderedList = false;
@@ -1757,6 +1268,279 @@ function renderSelectedTable() {
         return;
     }
 
+    if (table.tableId === 7) {
+        subtitleEl.textContent = "Συνήθεις ερεθιστικοί παράγοντες (αριστερά) και αλλεργιογόνα (δεξιά) με τις παθοφυσιολογικές τους λεπτομέρειες.";
+        subtitleEl.style.display = 'block';
+
+        // Render custom dark header (high tonal contrast)
+        const thead = document.getElementById('table-analysis-thead');
+        thead.innerHTML = `
+            <tr style="background-color: #0f172a !important; color: #ffffff !important;">
+                <th class="table7-th" style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 50%;">Ερεθιστικοί παράγοντες</th>
+                <th class="table7-th" style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 50%;">Αλλεργιογόνα</th>
+            </tr>
+        `;
+
+        const tbody = document.getElementById('table-analysis-tbody');
+        tbody.innerHTML = "";
+
+        const tr = document.createElement('tr');
+        tr.style.backgroundColor = '#f8fafc'; // Subtle light background for body
+
+        // Column 1 (Irritants)
+        const tdMain = document.createElement('td');
+        tdMain.className = "table7-td";
+        tdMain.style.verticalAlign = 'top';
+        tdMain.style.padding = '18px';
+        tdMain.style.border = '1px solid var(--card-border)';
+        tdMain.style.backgroundColor = '#f8fafc'; // light background
+        
+        const ulMain = document.createElement('ul');
+        ulMain.style.listStyleType = 'disc';
+        ulMain.style.margin = '0';
+        ulMain.style.paddingLeft = '20px';
+        tdMain.appendChild(ulMain);
+
+        // Column 2 (Allergens)
+        const tdSecondary = document.createElement('td');
+        tdSecondary.className = "table7-td";
+        tdSecondary.style.verticalAlign = 'top';
+        tdSecondary.style.padding = '18px';
+        tdSecondary.style.border = '1px solid var(--card-border)';
+        tdSecondary.style.backgroundColor = '#f8fafc'; // light background
+        
+        const ulSecondary = document.createElement('ul');
+        ulSecondary.style.margin = '0';
+        ulSecondary.style.paddingLeft = '20px';
+        tdSecondary.appendChild(ulSecondary);
+
+        // Position helper
+        const positionTooltipAt = (clientX, clientY) => {
+            let left = clientX + 15;
+            let top = clientY + 15;
+            
+            const tooltipWidth = 320;
+            globalTooltip.style.width = tooltipWidth + 'px';
+            const tooltipHeight = globalTooltip.offsetHeight || 200;
+            
+            if (left + tooltipWidth > window.innerWidth) {
+                left = clientX - tooltipWidth - 15;
+            }
+            if (left < 10) left = 10;
+            
+            if (top + tooltipHeight > window.innerHeight) {
+                top = clientY - tooltipHeight - 15;
+            }
+            if (top < 10) top = 10;
+            
+            globalTooltip.style.left = left + 'px';
+            globalTooltip.style.top = top + 'px';
+            globalTooltip.style.opacity = '1';
+            globalTooltip.style.visibility = 'visible';
+        };
+
+        const showTooltip = (title, text, clientX, clientY) => {
+            globalTooltip.innerHTML = `
+                <div class="cell-tooltip-header" style="font-weight: 700; color: #0d9488; margin-bottom: 8px;">📌 ${title}</div>
+                <div style="font-size: 0.88rem; line-height: 1.4; color: var(--text-primary);">
+                    ${parseMarkdown(text || "")}
+                </div>
+            `;
+            globalTooltip.style.display = 'block';
+            positionTooltipAt(clientX, clientY);
+            
+            // Check selection to update bottom details box dynamically
+            const hasSelection = document.querySelector('.interactive-li-t7.active-cell-selected') !== null;
+            if (!hasSelection) {
+                const detailsContainer = document.getElementById('table-cell-details-box');
+                if (detailsContainer) {
+                    detailsContainer.style.display = 'block';
+                    detailsContainer.style.borderColor = '#0f766e';
+                    detailsContainer.innerHTML = `
+                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span>📌 ${title}</span>
+                        </div>
+                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                            ${parseMarkdown(text || "")}
+                        </div>
+                    `;
+                }
+            }
+        };
+
+        const hideTooltip = () => {
+            globalTooltip.style.display = 'none';
+            globalTooltip.style.opacity = '0';
+            globalTooltip.style.visibility = 'hidden';
+        };
+
+        const toggleLockT7 = (e, element, title, text) => {
+            e.stopPropagation();
+            const isSelected = element.classList.contains('active-cell-selected');
+
+            document.querySelectorAll('.interactive-li, .interactive-cell, .interactive-li-t7').forEach(el => {
+                el.classList.remove('active-cell-selected');
+            });
+
+            const detailsContainer = document.getElementById('table-cell-details-box');
+            if (isSelected) {
+                if (detailsContainer) detailsContainer.style.display = 'none';
+            } else {
+                element.classList.add('active-cell-selected');
+                if (detailsContainer) {
+                    detailsContainer.style.display = 'block';
+                    detailsContainer.style.borderColor = '#0f766e';
+                    detailsContainer.innerHTML = `
+                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span>📌 ${title}</span>
+                        </div>
+                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                            ${parseMarkdown(text || "")}
+                        </div>
+                    `;
+                }
+            }
+        };
+
+        // Populate Irritants
+        table.rows.forEach(row => {
+            const col = row["Στήλη"];
+            if (col === "Ερεθιστικοί παράγοντες") {
+                const elementText = row["Στοιχείο"];
+                const mechText = row["Γενική_Πληροφορία_και_Μηχανισμός"];
+
+                const li = document.createElement('li');
+                li.style.marginBottom = '10px';
+                li.style.lineHeight = '1.6';
+                li.className = 'interactive-li-t7';
+                li.style.cursor = 'pointer';
+                li.style.listStyleType = 'disc';
+
+                const span = document.createElement('span');
+                span.className = 'hover-trigger';
+                span.style.borderBottom = '1px dashed var(--primary-color)';
+                span.style.fontWeight = '500';
+                span.style.color = '#000000';
+                span.textContent = elementText;
+                li.appendChild(span);
+
+                li.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
+                li.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
+                li.addEventListener('mouseleave', hideTooltip);
+                li.addEventListener('click', (e) => toggleLockT7(e, li, elementText, mechText));
+
+                ulMain.appendChild(li);
+            }
+        });
+
+        // Group allergens by category
+        const allergenGroups = {};
+        const categoryOrder = [];
+        table.rows.forEach(row => {
+            const col = row["Στήλη"];
+            if (col === "Αλλεργιογόνα") {
+                const cat = row["Κατηγορία"];
+                if (!allergenGroups[cat]) {
+                    allergenGroups[cat] = [];
+                    categoryOrder.push(cat);
+                }
+                allergenGroups[cat].push(row);
+            }
+        });
+
+        // Populate Allergens
+        categoryOrder.forEach(category => {
+            const items = allergenGroups[category];
+            if (category === "Τοπικά κορτικοστεροειδή" || (items.length === 1 && items[0]["Στοιχείο"] === category)) {
+                const rowObj = items[0];
+                const elementText = rowObj["Στοιχείο"];
+                const mechText = rowObj["Γενική_Πληροφορία_και_Μηχανισμός"];
+
+                const li = document.createElement('li');
+                li.className = 'interactive-li-t7';
+                li.style.marginBottom = '10px';
+                li.style.lineHeight = '1.6';
+                li.style.cursor = 'pointer';
+                li.style.listStyleType = 'disc';
+
+                const span = document.createElement('span');
+                span.className = 'hover-trigger';
+                span.style.borderBottom = '1px dashed var(--primary-color)';
+                span.style.fontWeight = '700';
+                span.style.color = '#000000';
+                span.textContent = elementText;
+                li.appendChild(span);
+
+                li.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
+                li.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
+                li.addEventListener('mouseleave', hideTooltip);
+                li.addEventListener('click', (e) => toggleLockT7(e, li, elementText, mechText));
+
+                ulSecondary.appendChild(li);
+            } else {
+                const categoryLi = document.createElement('li');
+                categoryLi.style.marginBottom = '12px';
+                categoryLi.style.lineHeight = '1.6';
+                categoryLi.style.fontWeight = '700';
+                categoryLi.style.color = '#000000';
+                categoryLi.style.listStyleType = 'disc';
+                categoryLi.textContent = category;
+
+                const subUl = document.createElement('ul');
+                subUl.style.listStyleType = 'none';
+                subUl.style.paddingLeft = '18px';
+                subUl.style.marginTop = '6px';
+
+                items.forEach(rowObj => {
+                    const elementText = rowObj["Στοιχείο"];
+                    const mechText = rowObj["Γενική_Πληροφορία_και_Μηχανισμός"];
+
+                    const subLi = document.createElement('li');
+                    subLi.className = 'interactive-li-t7';
+                    subLi.style.marginBottom = '6px';
+                    subLi.style.lineHeight = '1.5';
+                    subLi.style.cursor = 'pointer';
+                    subLi.style.fontWeight = 'normal';
+
+                    const dashSpan = document.createElement('span');
+                    dashSpan.style.marginRight = '8px';
+                    dashSpan.style.color = '#000000';
+                    dashSpan.textContent = '—';
+                    subLi.appendChild(dashSpan);
+
+                    const span = document.createElement('span');
+                    span.className = 'hover-trigger';
+                    span.style.borderBottom = '1px dashed var(--primary-color)';
+                    span.style.fontWeight = '500';
+                    span.style.color = '#000000';
+                    span.textContent = elementText;
+                    subLi.appendChild(span);
+
+                    subLi.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
+                    subLi.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
+                    subLi.addEventListener('mouseleave', hideTooltip);
+                    subLi.addEventListener('click', (e) => toggleLockT7(e, subLi, elementText, mechText));
+
+                    subUl.appendChild(subLi);
+                });
+
+                categoryLi.appendChild(subUl);
+                ulSecondary.appendChild(categoryLi);
+            }
+        });
+
+        tr.appendChild(tdMain);
+        tr.appendChild(tdSecondary);
+        tbody.appendChild(tr);
+
+        // Render Detailed Analysis
+        const analysisBox = document.getElementById('table-analysis-detailed-content');
+        if (analysisBox) {
+            analysisBox.innerHTML = parseMarkdown(table.detailedAnalysis || "");
+        }
+        return;
+    }
+
     subtitleEl.style.display = 'none';
 
     // Render Headers
@@ -1860,6 +1644,127 @@ function renderSelectedTable() {
 
             if (!cell) {
                 td.textContent = "";
+                tr.appendChild(td);
+                return;
+            }
+
+            if (cell.subItems && Array.isArray(cell.subItems)) {
+                td.className = "";
+                td.style.padding = "8px 12px";
+                td.style.border = "1px solid var(--card-border)";
+                
+                const ul = document.createElement('ul');
+                ul.style.margin = "0";
+                ul.style.paddingLeft = "20px";
+                ul.style.listStyleType = "disc";
+                
+                cell.subItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = "interactive-cell";
+                    li.style.cursor = "pointer";
+                    li.style.marginBottom = "6px";
+                    li.style.lineHeight = "1.4";
+                    
+                    const span = document.createElement('span');
+                    span.className = "hover-trigger";
+                    span.style.borderBottom = "1px dashed var(--primary-color)";
+                    span.style.fontWeight = "500";
+                    span.style.color = "var(--text-primary)";
+                    span.textContent = item.text;
+                    li.appendChild(span);
+                    
+                    const itemText = item.text;
+                    const itemHover = item.hoverText;
+                    
+                    li.addEventListener('mouseenter', () => {
+                        const cleanHeader = itemText ? itemText.split('(')[0].trim() : "";
+                        globalTooltip.innerHTML = `
+                            <div class="cell-tooltip-header">📌 ${cleanHeader}</div>
+                            ${parseMarkdown(itemHover || "")}
+                        `;
+                        globalTooltip.style.display = 'block';
+                        
+                        // Check if another element is locked
+                        const hasSelection = document.querySelector('.interactive-cell.active-cell-selected, .interactive-li.active-cell-selected, .interactive-li-t7.active-cell-selected') !== null;
+                        if (!hasSelection) {
+                            const detailsContainer = document.getElementById('table-cell-details-box');
+                            if (detailsContainer) {
+                                detailsContainer.style.display = 'block';
+                                detailsContainer.style.borderColor = '#0f766e';
+                                detailsContainer.innerHTML = `
+                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <span>📌 ${itemText}</span>
+                                    </div>
+                                    <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                                        ${parseMarkdown(itemHover || "")}
+                                    </div>
+                                `;
+                            }
+                        }
+                    });
+                    
+                    li.addEventListener('mousemove', (e) => {
+                        let left = e.clientX + 15;
+                        let top = e.clientY + 15;
+                        
+                        const tooltipWidth = 320;
+                        globalTooltip.style.width = tooltipWidth + 'px';
+                        const tooltipHeight = globalTooltip.offsetHeight || 200;
+                        
+                        if (left + tooltipWidth > window.innerWidth) {
+                            left = e.clientX - tooltipWidth - 15;
+                        }
+                        if (left < 10) left = 10;
+                        
+                        if (top + tooltipHeight > window.innerHeight) {
+                            top = e.clientY - tooltipHeight - 15;
+                        }
+                        if (top < 10) top = 10;
+                        
+                        globalTooltip.style.left = left + 'px';
+                        globalTooltip.style.top = top + 'px';
+                        globalTooltip.style.opacity = '1';
+                        globalTooltip.style.visibility = 'visible';
+                    });
+                    
+                    li.addEventListener('mouseleave', () => {
+                        globalTooltip.style.display = 'none';
+                        globalTooltip.style.opacity = '0';
+                        globalTooltip.style.visibility = 'hidden';
+                    });
+                    
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isSelected = li.classList.contains('active-cell-selected');
+                        
+                        document.querySelectorAll('.interactive-cell, .interactive-li, .interactive-li-t7').forEach(el => {
+                            el.classList.remove('active-cell-selected');
+                        });
+                        
+                        const detailsContainer = document.getElementById('table-cell-details-box');
+                        if (isSelected) {
+                            if (detailsContainer) detailsContainer.style.display = 'none';
+                        } else {
+                            li.classList.add('active-cell-selected');
+                            if (detailsContainer) {
+                                detailsContainer.style.display = 'block';
+                                detailsContainer.style.borderColor = '#0f766e';
+                                detailsContainer.innerHTML = `
+                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <span>📌 ${itemText}</span>
+                                    </div>
+                                    <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                                        ${parseMarkdown(itemHover || "")}
+                                    </div>
+                                `;
+                            }
+                        }
+                    });
+                    
+                    ul.appendChild(li);
+                });
+                
+                td.appendChild(ul);
                 tr.appendChild(td);
                 return;
             }
@@ -1974,7 +1879,7 @@ function renderSelectedTable() {
 
 // Global click handler to close selections on tapping anywhere else
 document.addEventListener('click', () => {
-    document.querySelectorAll('.interactive-cell, .interactive-li').forEach(c => c.classList.remove('active-cell-selected'));
+    document.querySelectorAll('.interactive-cell, .interactive-li, .interactive-li-t7').forEach(c => c.classList.remove('active-cell-selected'));
     const detailsContainer = document.getElementById('table-cell-details-box');
     if (detailsContainer) {
         detailsContainer.style.display = 'none';

@@ -1,4 +1,4 @@
-﻿// Application State
+// Application State
 let questions = [];
 let filteredQuestions = [];
 let activeChapter = "Όλα";
@@ -501,7 +501,12 @@ function revealExplanation(explanationText) {
 function parseMarkdown(text) {
     if (!text) return "";
     
-    const lines = text.split('\n');
+    // Normalize different escaped newline variations and strip stray backslashes
+    let normalized = text.replace(/\\n/g, '\n');
+    normalized = normalized.replace(/\\\n/g, '\n');
+    normalized = normalized.replace(/\\/g, '');
+    
+    const lines = normalized.split('\n');
     let html = "";
     let inList = false;
     let inOrderedList = false;

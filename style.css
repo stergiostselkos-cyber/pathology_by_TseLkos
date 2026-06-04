@@ -1291,69 +1291,7 @@ body.light-theme .topic-selector-container {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* SOCRATIC DIALOGUE GAME STYLES */
-.socratic-panel {
-    animation: fadeIn 0.4s ease;
-}
 
-.socratic-options-grid {
-    animation: fadeIn 0.4s ease;
-}
-
-.progress-bar-container {
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.progress-bar-fill {
-    box-shadow: 0 0 8px rgba(217, 70, 239, 0.5);
-}
-
-/* Socrates Avatar Animation */
-@keyframes pulseAvatar {
-    0% { transform: scale(1); box-shadow: 0 0 12px rgba(217, 70, 239, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 20px rgba(217, 70, 239, 0.4); }
-    100% { transform: scale(1); box-shadow: 0 0 12px rgba(217, 70, 239, 0.2); }
-}
-
-.socratic-avatar {
-    background: var(--card-bg) !important;
-    border: 2px solid var(--primary-color) !important;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 12px rgba(217, 70, 239, 0.2);
-    animation: pulseAvatar 3s infinite ease-in-out;
-}
-
-/* Socratic Speech Bubble Question Box */
-.socratic-question-box {
-    background: var(--option-bg) !important;
-    border-left: 4px solid var(--primary-color) !important;
-    border: 1px solid var(--option-border);
-    border-left-width: 4px !important;
-    border-radius: var(--border-radius);
-    padding: 18px 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-/* Socratic Speech Bubble Pointer */
-.speech-pointer {
-    position: absolute;
-    left: -10px;
-    top: 22px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid var(--option-bg);
-}
-
-body.light-theme .speech-pointer {
-    border-right-color: var(--option-bg);
-}
 
 /* Custom Styled Checkboxes (Premium card list) */
 .checkbox-container {
@@ -1769,13 +1707,7 @@ body.light-theme .topic-pills-container {
     transform: translateY(-1px);
 }
 
-/* Socratic active pill (Violet) */
-#recall-view .topic-pill.active {
-    color: white !important;
-    background: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    box-shadow: 0 4px 12px var(--primary-glow);
-}
+
 
 /* Quick recall active pill (Orange) */
 #quick-recall-view .topic-pill.active {
@@ -1948,12 +1880,7 @@ body.light-theme .topic-pills-container {
 }
 
 /* Modal Active Chapter states based on page theme */
-.socratic-theme .modal-chapter-item.active {
-    background: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    color: white !important;
-    box-shadow: 0 4px 12px var(--primary-glow);
-}
+
 
 .quick-theme .modal-chapter-item.active {
     background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%) !important;
@@ -1999,18 +1926,11 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 .correct-answer-box p, 
 .explanation-wrapper p, 
 .explanation-wrapper li, 
-.socratic-question-box, 
-.socratic-question-box p, 
-.socratic-question-box li, 
 .checkbox-container, 
 .overlay-question-item,
 #mnemonic-text, 
-#recall-explanation-content p, 
-#recall-explanation-content li, 
 #quick-recall-explanation-content p, 
 #quick-recall-explanation-content li,
-.socratic-feedback p,
-.socratic-feedback li,
 .quick-recall-question-box p,
 .quick-recall-question-box li {
     text-align: justify !important;
@@ -2389,4 +2309,73 @@ body.light-theme .cell-tooltip {
 .interactive-cell:hover .cell-tooltip.tooltip-bottom.tooltip-left-align,
 .interactive-cell.active-hover .cell-tooltip.tooltip-bottom.tooltip-left-align {
     transform: translateY(0) scale(1);
+}
+
+/* Table 2.7 Specific Styles */
+.table7-th {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    border: 1px solid var(--card-border) !important;
+    text-shadow: none !important;
+}
+
+.table7-td {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    font-size: 0.9rem !important;
+    font-weight: normal !important;
+    line-height: 1.6 !important;
+    border: 1px solid var(--card-border) !important;
+    padding: 18px !important;
+}
+
+body.light-theme .table7-td {
+    background: #ffffff !important;
+    color: #0f172a !important;
+}
+
+.interactive-li-t7 {
+    font-weight: normal !important;
+    font-size: 0.9rem !important;
+    color: #1e293b !important;
+    transition: all 0.2s ease;
+}
+
+.interactive-li-t7:hover {
+    color: #0f766e !important;
+}
+
+.interactive-li-t7:hover span.hover-trigger {
+    color: #0d9488 !important;
+    border-bottom-color: #0d9488 !important;
+}
+
+.interactive-li-t7.active-cell-selected {
+    background-color: #cbd5e1 !important;
+    border-radius: 6px;
+    padding-left: 6px;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+}
+
+.interactive-li-t7.active-cell-selected span.hover-trigger {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border-bottom-style: solid !important;
+}
+
+/* Float styling for Tooltip in Medical Theme */
+#global-table-cell-tooltip.cell-tooltip {
+    max-width: 340px;
+    border: 2px solid #0d9488 !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(13, 148, 136, 0.3) !important;
+}
+
+body.light-theme #global-table-cell-tooltip.cell-tooltip {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 15px rgba(13, 148, 136, 0.1) !important;
 }
