@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Θέματα Ανάπτυξης &amp; Μελέτη - pathologia TseLkos</title>
+<title>Ερωτήσεις Ανάπτυξης Νέου Βιβλίου - pathologia TseLkos</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -16,15 +16,15 @@
     @keyframes tselkosGlow {
       0% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(234, 88, 12, 0.8);
       }
       50% {
         transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
+        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(234, 88, 12, 0.9);
       }
       100% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(234, 88, 12, 0.8);
       }
     }
     .author-tag {
@@ -160,7 +160,7 @@
     }
 
     #quick-recall-view .explanation-wrapper h4 {
-      color: var(--primary-hover) !important;
+      color: var(--primary-color) !important;
       font-weight: 900 !important;
       border-bottom: 2px solid rgba(var(--primary-rgb), 0.25) !important;
       padding-bottom: 10px !important;
@@ -194,26 +194,6 @@
       color: var(--primary-color) !important;
       font-weight: 800 !important;
     }
-      font-weight: 400 !important;
-      font-size: 0.98rem !important;
-      line-height: 1.65 !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content p, 
-    #quick-recall-view #quick-recall-explanation-content li {
-      color: var(--text-primary) !important;
-      font-weight: 400 !important;
-      text-align: justify !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content strong {
-      color: var(--primary-color) !important;
-      font-weight: 850 !important;
-    }
-
-    /* Field 8: Navigation bar styles adaptation */
-    #quick-recall-view .quiz-navigation .btn-secondary {
-      background: #ffffff !important;
-      border: 1px solid #fbcfe8 !important;
-      color: var(--primary-color) !important;
       font-weight: 700 !important;
     }
     #quick-recall-view .quiz-navigation .btn-primary {
@@ -328,10 +308,10 @@
 
 <style id="dynamic-theme">
 :root {
-  --primary-color: #10b981;
-  --primary-rgb: 16, 185, 129;
-  --primary-hover: #059669;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #064e3b 0%, #111827 80%);
+  --primary-color: #f59e0b;
+  --primary-rgb: 245, 158, 11;
+  --primary-hover: #d97706;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #78350f 0%, #111827 80%);
   --bg-color: #111827;
 }
 </style></head>
@@ -344,7 +324,7 @@
 <svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
-<h1>Pathologia<span>Study</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+<h1>Pathologia<span>Νέο Βιβλίο</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
 </div>
 <div class="header-controls">
 <a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
@@ -372,17 +352,30 @@
 <main class="app-main">
 <!-- 2b. Quick Recall Flashcards View -->
 <section class="view-panel" id="quick-recall-view">
-<!-- Chapter Selector Filters -->
+<!-- Chapter Filter Dropdown -->
 <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px">
-<button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
+<button class="large-dropdown-select-btn" id="quick-main-chapters-dropdown-btn">
 <span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Κεφάλαιο</span>
+<span class="dropdown-value" id="quick-main-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="chapters-vertical-list-overlay hidden" id="quick-main-chapters-overlay">
+<!-- Dynamic Chapters -->
+</div>
+</div>
+<!-- Subchapter Filter Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Υποκεφάλαιο / Θεματική Ενότητα</span>
 <span class="dropdown-value" id="quick-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
 <svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
 <div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
-<!-- Dynamic Chapters -->
+<!-- Dynamic Subchapters -->
 </div>
 </div>
 <!-- Topic Selector Dropdown and Overlay -->
@@ -533,8 +526,7 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="data/flashcard_questions.js"></script>
-<script charset="UTF-8" src="data/table_analyses.js"></script>
-<script charset="UTF-8" src="study.js"></script>
+<script charset="UTF-8" src="data/new_book_questions.js?v=1784846041"></script>
+<script charset="UTF-8" src="study_new_book.js?v=1784553770"></script>
 </body>
 </html>

@@ -95,6 +95,9 @@ function getCorrectAnswerIndices(question) {
     if (Array.isArray(question.correctAnswerIndices)) {
         return question.correctAnswerIndices.map(x => parseInt(x, 10));
     }
+    if (typeof question.correctAnswerIndices !== 'undefined' && question.correctAnswerIndices !== null) {
+        return [parseInt(question.correctAnswerIndices, 10)];
+    }
     if (typeof question.correctAnswerIndex !== 'undefined' && question.correctAnswerIndex !== null) {
         return [parseInt(question.correctAnswerIndex, 10)];
     }
@@ -483,6 +486,11 @@ function handleRevealAnswer() {
  * Reveal explanation panel and parse markdown
  */
 function revealExplanation(explanationText) {
+    if (!explanationText || !explanationText.trim()) {
+        explanationPanel.classList.remove('expanded');
+        return;
+    }
+    
     const parsedHtml = parseMarkdown(explanationText);
     explanationContent.innerHTML = parsedHtml;
     explanationPanel.classList.add('expanded');
@@ -522,13 +530,15 @@ function parseMarkdown(text) {
                 html += "</ol>";
                 inOrderedList = false;
             }
+            html += "<br/>";
             continue;
         }
         
         // Parse bold: **text** -> <strong>text</strong>
         line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Parse images: ![alt](url) -> html block
+        line = line.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
         
-        // Heading ###
         if (line.startsWith("###")) {
             if (inList) {
                 html += "</ul>";
@@ -539,35 +549,40 @@ function parseMarkdown(text) {
                 inOrderedList = false;
             }
             const headerText = line.substring(3).trim();
-            html += `<h3>${headerText}</h3>`;
+            html += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color); margin-top: 24px; margin-bottom: 12px;">${headerText}</h3>`;
         }
-        // Unordered list items
         else if (line.startsWith("-") || line.startsWith("*") || line.startsWith("•") || line.startsWith("\u2022")) {
             if (inOrderedList) {
                 html += "</ol>";
                 inOrderedList = false;
             }
             if (!inList) {
-                html += "<ul>";
+                html += "<ul style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: disc;'>";
                 inList = true;
             }
             const liText = line.replace(/^[-*•\u2022]\s*/, '').trim();
-            html += `<li>${liText}</li>`;
+            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
         }
-        // Ordered list items
-        else if (/^\d+\.\s+/.test(line)) {
+        else if (/^([a-zA-Z]|\d+)[\.\)]\s+/.test(line)) {
             if (inList) {
                 html += "</ul>";
                 inList = false;
             }
+            let listStyle = 'decimal';
+            const markerMatch = line.match(/^([a-zA-Z]|\d+)[\.\)]\s+/);
+            if (markerMatch) {
+                const marker = markerMatch[1];
+                if (/[a-zA-Z]/.test(marker)) {
+                    listStyle = marker === marker.toLowerCase() ? 'lower-alpha' : 'upper-alpha';
+                }
+            }
             if (!inOrderedList) {
-                html += "<ol>";
+                html += `<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: ${listStyle};'>`;
                 inOrderedList = true;
             }
-            const liText = line.replace(/^\d+\.\s+/, '').trim();
-            html += `<li>${liText}</li>`;
+            const liText = line.replace(/^([a-zA-Z]|\d+)[\.\)]\s+/, '').trim();
+            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
         }
-        // Standard Paragraphs
         else {
             if (inList) {
                 html += "</ul>";
@@ -577,7 +592,7 @@ function parseMarkdown(text) {
                 html += "</ol>";
                 inOrderedList = false;
             }
-            html += `<p>${line}</p>`;
+            html += `<p style='line-height: 1.6; margin-bottom: 14px; color: var(--text-primary);'>${line}</p>`;
         }
     }
     

@@ -4,6 +4,7 @@ let summaryTables = [];
 let tableAnalyses = [];
 let currentQuickIndex = 0;
 let activeQuickChapter = "Όλα";
+let activeQuickSubchapter = "Όλα";
 let activeTableChapter = "Όλα";
 let activeTableId = null;
 
@@ -79,130 +80,47 @@ function toggleTheme() {
     }
 }
 
-/**
- * Load split databases from data/ folder
- */
 function loadQuestions() {
-    if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
-        flashcardQuestions = flashcardQuestionsData;
-    } else if (typeof newBookQuestionsData !== 'undefined' && Array.isArray(newBookQuestionsData) && newBookQuestionsData.length > 0) {
+    if (typeof newBookQuestionsData !== 'undefined' && Array.isArray(newBookQuestionsData) && newBookQuestionsData.length > 0) {
         flashcardQuestions = newBookQuestionsData;
+    } else if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
+        flashcardQuestions = flashcardQuestionsData;
     }
-    if (typeof summaryTablesData !== 'undefined') {
-        summaryTables = Array.isArray(summaryTablesData) ? summaryTablesData : [summaryTablesData];
-    }
-    if (typeof tableAnalysesData !== 'undefined') {
-        tableAnalyses = Array.isArray(tableAnalysesData) ? tableAnalysesData : [tableAnalysesData];
-    }
+    summaryTables = [];
+    tableAnalyses = [];
 
+    renderMainChapterFilters();
+    renderSubchapterFilters();
     populateQuickTopicSelector();
-    renderSummaryTables();
-
-    if (typeof renderMainChapterFilters === 'function') renderMainChapterFilters();
-    if (typeof renderSubchapterFilters === 'function') renderSubchapterFilters();
-    if (typeof loadFirstMatchingQuickQuestion === 'function') loadFirstMatchingQuickQuestion();
+    loadFirstMatchingQuickQuestion();
 }
 
 /**
- * Helper to extract Chapter from Category (string after /)
- */
-function getChapterFromCategory(category) {
-    if (!category) return "Γενικά";
-    if (category.includes("/")) {
-        return category.split("/")[0].trim();
-    }
-    return category.trim();
-}
-
-/**
- * Helper to get the chapter of a question object
+ * Helper to get the main chapter of a question
  */
 function getQuestionChapter(q) {
-    let rawCh = q.chapter || "";
-    if (!rawCh) {
-        rawCh = getChapterFromCategory(q.category);
-    }
-    
-    // Normalize and strip outer brackets
-    let ch = rawCh.replace(/^\[/, "").replace(/\]$/, "").trim();
-    
-    // Normalize raw chapter text to standard rich names (allowing optional prefix like ΚΕΦΑΛΑΙΟ)
-    const match = ch.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    if (match) {
-        const num = parseInt(match[1], 10);
-        if (num === 1) return "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ";
-        if (num === 2) return "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ";
-        if (num === 3) return "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ";
-    }
-    return ch;
+    return q.chapter || "Γενικά";
 }
 
 /**
- * Helper to check if a question's chapter matches the selected chapter.
+ * Helper to get the subchapter of a question
  */
-function isChapterMatch(questionCh, activeCh) {
-    if (activeCh === "Όλα") return true;
-    if (questionCh === activeCh) return true;
-    
-    const m1 = questionCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    const m2 = activeCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    if (m1 && m2 && m1[1] === m2[1]) {
-        return true;
+function getQuestionSubchapter(q) {
+    if (q.category && q.category.includes(" / ")) {
+        return q.category.substring(q.category.indexOf(" / ") + 3).trim();
     }
-    return false;
+    return "Γενικά";
 }
 
 /**
- * Dynamically builds the ordered list of chapters.
+ * Helper to check if a question matches both selected chapter and subchapter
  */
-function getChapterList(questions) {
-    const presentChapters = new Set();
-    questions.forEach(q => {
-        const ch = getQuestionChapter(q);
-        if (ch) {
-            presentChapters.add(ch);
-        }
-    });
-
-    const ordered = [
-        "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ",
-        "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ",
-        "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ"
-    ];
-    
-    const list = [];
-    ordered.forEach(ch => {
-        const numMatch = ch.match(/^(\d+)/);
-        if (numMatch) {
-            const num = numMatch[1];
-            presentChapters.forEach(pCh => {
-                const pNumMatch = pCh.match(/^(\d+)/);
-                if (pNumMatch && pNumMatch[1] === num) {
-                    list.push(pCh);
-                }
-            });
-        }
-    });
-
-    presentChapters.forEach(ch => {
-        const hasPref = ordered.some(o => {
-            const m1 = ch.match(/^(\d+)/);
-            const m2 = o.match(/^(\d+)/);
-            return m1 && m2 && m1[1] === m2[1];
-        });
-        if (!hasPref) {
-            list.push(ch);
-        }
-    });
-
-    const uniqueList = [];
-    list.forEach(ch => {
-        if (!uniqueList.includes(ch)) {
-            uniqueList.push(ch);
-        }
-    });
-
-    return ["Όλα", ...uniqueList];
+function isQuestionMatch(q, activeCh, activeSub) {
+    const qCh = getQuestionChapter(q);
+    const qSub = getQuestionSubchapter(q);
+    const matchesCh = (activeCh === "Όλα" || qCh === activeCh);
+    const matchesSub = (activeSub === "Όλα" || qSub === activeSub);
+    return matchesCh && matchesSub;
 }
 
 /**
@@ -245,38 +163,89 @@ function toggleRecallEmptyState(hasQuestions) {
 }
 
 /**
- * Render Chapter Filters Dynamically
+ * Dynamically builds the dropdown items for Chapters
  */
-function renderChapterFilters(container, questions, activeChapter, onSelect) {
+function renderMainChapterFilters() {
+    const container = document.getElementById('quick-main-chapters-overlay');
     if (!container) return;
     container.innerHTML = '';
 
-    const chapterList = getChapterList(questions);
+    const chapters = new Set();
+    flashcardQuestions.forEach(q => {
+        chapters.add(getQuestionChapter(q));
+    });
 
-    if (container.id === 'quick-chapters-overlay') {
-        chapterList.forEach(chapter => {
-            const item = document.createElement('button');
-            const isActive = isChapterMatch(chapter, activeChapter);
-            item.className = `overlay-chapter-item ${isActive ? 'active' : ''}`;
-            item.textContent = chapter;
-            item.addEventListener('click', () => {
-                onSelect(chapter);
-                container.classList.add('hidden');
-            });
-            container.appendChild(item);
+    const sortedChapters = Array.from(chapters).sort();
+    const chapterList = ["Όλα", ...sortedChapters];
+
+    chapterList.forEach(chapter => {
+        const item = document.createElement('button');
+        const isActive = (chapter === activeQuickChapter);
+        item.className = `overlay-chapter-item ${isActive ? 'active' : ''}`;
+        item.textContent = chapter;
+        item.addEventListener('click', () => {
+            handleQuickMainChapterSelect(chapter);
+            container.classList.add('hidden');
         });
+        container.appendChild(item);
+    });
 
-        const valueDisplay = document.getElementById('quick-chapters-dropdown-value');
-        if (valueDisplay) {
-            const matchedChapter = chapterList.find(ch => isChapterMatch(ch, activeChapter)) || activeChapter;
-            valueDisplay.textContent = matchedChapter;
-        }
+    const valueDisplay = document.getElementById('quick-main-chapters-dropdown-value');
+    if (valueDisplay) {
+        valueDisplay.textContent = activeQuickChapter;
     }
 }
 
-function handleQuickChapterSelect(selectedChapter) {
-    activeQuickChapter = selectedChapter;
-    renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
+/**
+ * Dynamically builds the dropdown items for Subchapters
+ */
+function renderSubchapterFilters() {
+    const container = document.getElementById('quick-chapters-overlay');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const subchapters = new Set();
+    flashcardQuestions.forEach(q => {
+        if (activeQuickChapter === "Όλα" || getQuestionChapter(q) === activeQuickChapter) {
+            subchapters.add(getQuestionSubchapter(q));
+        }
+    });
+
+    const sortedSubs = Array.from(subchapters).sort();
+    const subList = ["Ό開", ...sortedSubs];
+    // Fix: "Όλα" instead of "Ό開" due to typo
+    subList[0] = "Όλα";
+
+    subList.forEach(sub => {
+        const item = document.createElement('button');
+        const isActive = (sub === activeQuickSubchapter);
+        item.className = `overlay-chapter-item ${isActive ? 'active' : ''}`;
+        item.textContent = sub;
+        item.addEventListener('click', () => {
+            handleQuickSubchapterSelect(sub);
+            container.classList.add('hidden');
+        });
+        container.appendChild(item);
+    });
+
+    const valueDisplay = document.getElementById('quick-chapters-dropdown-value');
+    if (valueDisplay) {
+        valueDisplay.textContent = activeQuickSubchapter;
+    }
+}
+
+function handleQuickMainChapterSelect(chapter) {
+    activeQuickChapter = chapter;
+    activeQuickSubchapter = "Όλα";
+    renderMainChapterFilters();
+    renderSubchapterFilters();
+    populateQuickTopicSelector();
+    loadFirstMatchingQuickQuestion();
+}
+
+function handleQuickSubchapterSelect(subchapter) {
+    activeQuickSubchapter = subchapter;
+    renderSubchapterFilters();
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
 }
@@ -284,8 +253,7 @@ function handleQuickChapterSelect(selectedChapter) {
 function loadFirstMatchingQuickQuestion() {
     let targetIndex = -1;
     for (let i = 0; i < flashcardQuestions.length; i++) {
-        const ch = getQuestionChapter(flashcardQuestions[i]);
-        if (isChapterMatch(ch, activeQuickChapter)) {
+        if (isQuestionMatch(flashcardQuestions[i], activeQuickChapter, activeQuickSubchapter)) {
             targetIndex = i;
             break;
         }
@@ -298,9 +266,6 @@ function loadFirstMatchingQuickQuestion() {
     }
 }
 
-
-
-
 /**
  * Populate topic selector pills dynamically (Flashcard mode)
  */
@@ -312,8 +277,7 @@ function populateQuickTopicSelector() {
     
     let relativeIndex = 1;
     flashcardQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (!isChapterMatch(ch, activeQuickChapter)) {
+        if (!isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
             return;
         }
 
@@ -367,9 +331,9 @@ function updateActivePill(container, activeIndex) {
         // Also update the large button text showing active question
         const qDisplay = document.getElementById('quick-questions-dropdown-value');
         if (qDisplay) {
-            const strongText = activeItem.querySelector('strong').textContent;
-            const spanText = activeItem.querySelector('span').textContent;
-            qDisplay.textContent = `${strongText} ${spanText}`;
+            const strongText = activeItem.querySelector('strong').innerHTML;
+            const spanText = activeItem.querySelector('span').innerHTML;
+            qDisplay.innerHTML = `${strongText} ${spanText}`;
         }
     }
 }
@@ -498,6 +462,8 @@ function setupEventListeners() {
     if (quickRecallRandomBtn) quickRecallRandomBtn.addEventListener('click', loadQuickRandomQuestion);
 
     // Quick List & Chapters Dropdowns toggle overlay
+    const quickMainChaptersDropdownBtn = document.getElementById('quick-main-chapters-dropdown-btn');
+    const quickMainChaptersOverlay = document.getElementById('quick-main-chapters-overlay');
     const quickChaptersDropdownBtn = document.getElementById('quick-chapters-dropdown-btn');
     const quickChaptersOverlay = document.getElementById('quick-chapters-overlay');
     const quickQuestionsDropdownBtn = document.getElementById('quick-questions-dropdown-btn');
@@ -508,9 +474,21 @@ function setupEventListeners() {
     const tablesDropdownBtn = document.getElementById('tables-dropdown-btn');
     const tablesDropdownOverlay = document.getElementById('tables-dropdown-overlay');
 
+    if (quickMainChaptersDropdownBtn && quickMainChaptersOverlay) {
+        quickMainChaptersDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
+            if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
+            if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
+            if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
+            quickMainChaptersOverlay.classList.toggle('hidden');
+        });
+    }
+
     if (quickChaptersDropdownBtn && quickChaptersOverlay) {
         quickChaptersDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
             if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
@@ -521,6 +499,7 @@ function setupEventListeners() {
     if (quickQuestionsDropdownBtn && quickQuestionsOverlay) {
         quickQuestionsDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
             if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
@@ -531,6 +510,7 @@ function setupEventListeners() {
     if (tableChaptersDropdownBtn && tableChaptersOverlay) {
         tableChaptersDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
             if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
             if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
@@ -541,6 +521,7 @@ function setupEventListeners() {
     if (tablesDropdownBtn && tablesDropdownOverlay) {
         tablesDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
             if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
             if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
@@ -550,6 +531,9 @@ function setupEventListeners() {
 
     // Hide overlays if clicked outside
     document.addEventListener('click', (e) => {
+        if (quickMainChaptersOverlay && !quickMainChaptersOverlay.contains(e.target) && e.target !== quickMainChaptersDropdownBtn && !quickMainChaptersDropdownBtn.contains(e.target)) {
+            quickMainChaptersOverlay.classList.add('hidden');
+        }
         if (quickChaptersOverlay && !quickChaptersOverlay.contains(e.target) && e.target !== quickChaptersDropdownBtn && !quickChaptersDropdownBtn.contains(e.target)) {
             quickChaptersOverlay.classList.add('hidden');
         }
@@ -593,7 +577,8 @@ function showView(view) {
     if (view === 'quick-recall') {
         if (quickRecallView) {
             quickRecallView.classList.remove('hidden');
-            renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
+            renderMainChapterFilters();
+            renderSubchapterFilters();
             populateQuickTopicSelector();
             loadFirstMatchingQuickQuestion();
         }
@@ -625,8 +610,7 @@ function loadQuickRecallQuestion(index) {
 
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeQuickChapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
             matchingIndices.push(idx);
         }
     });
@@ -655,11 +639,27 @@ function revealQuickAnswer() {
 
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.add('hidden');
 
-    if (quickCorrectAnswerText) {
-        quickCorrectAnswerText.innerHTML = parseMarkdown(question.correctAnswer);
+    let ansHtml = "";
+    let expHtml = "";
+
+    if (question.content) {
+        if (question.content.includes("<!-- SPLIT -->")) {
+            let parts = question.content.split("<!-- SPLIT -->");
+            ansHtml = parts[0] || "";
+            expHtml = parts[1] || "";
+        } else {
+            ansHtml = question.content;
+            expHtml = "";
+        }
+    } else {
+        ansHtml = question.correctAnswer ? parseMarkdown(question.correctAnswer) : (question.answer ? parseMarkdown(question.answer) : "");
+        expHtml = question.explanation ? parseMarkdown(question.explanation) : "";
     }
 
-    // Mnemonic Tip Box - hide if empty or missing
+    if (quickCorrectAnswerText) {
+        quickCorrectAnswerText.innerHTML = ansHtml;
+    }
+
     const mnemonicBox = document.getElementById('quick-mnemonic-box');
     if (mnemonicBox) {
         if (question.mnemonic && question.mnemonic.trim()) {
@@ -672,96 +672,62 @@ function revealQuickAnswer() {
         }
     }
 
-    // Explanation Wrapper - hide if empty or redundant (matches answer text)
     const explanationWrapper = document.querySelector('#quick-recall-view .explanation-wrapper');
     if (explanationWrapper) {
-        let rawExp = (question.explanation || "").trim();
-        let rawAns = (question.correctAnswer || question.answer || "").trim();
-
-        if (rawExp && rawExp !== rawAns) {
+        if (expHtml) {
             explanationWrapper.style.display = "block";
-            let html = "";
-
-            const isSharedGuide = flashcardQuestions.filter(q => (q.explanation || "").trim() === rawExp).length > 1;
-
-            if (isSharedGuide) {
-                html += `<div style="font-size: 0.88rem; font-weight: 700; color: #a855f7; margin-bottom: 12px; padding: 6px 12px; border-radius: 8px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); display: inline-block;">📘 Γενικό Πλαίσιο &amp; Ανακεφαλαίωση Ενότητας</div>`;
-            }
-
-            html += parseMarkdown(rawExp);
-
-            if (question.table) {
-                let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
-                tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
-                tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
-                tableHtml += `</div>`;
-                tableHtml += `<div class="table-responsive"><table class="med-table">`;
-                tableHtml += `<thead><tr>`;
-                question.table.headers.forEach(h => {
-                    tableHtml += `<th>${h}</th>`;
-                });
-                tableHtml += `</tr></thead><tbody>`;
-                question.table.rows.forEach(row => {
-                    tableHtml += `<tr>`;
-                    row.forEach(cell => {
-                        tableHtml += `<td>${cell}</td>`;
-                    });
-                    tableHtml += `</tr>`;
-                });
-                tableHtml += `</tbody></table></div></div>`;
-                html += tableHtml;
-            }
-
             if (quickRecallExplanationContent) {
-                quickRecallExplanationContent.innerHTML = html;
-            }
-        } else if (question.table) {
-            explanationWrapper.style.display = "block";
-            let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
-            tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
-            tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
-            tableHtml += `</div>`;
-            tableHtml += `<div class="table-responsive"><table class="med-table">`;
-            tableHtml += `<thead><tr>`;
-            question.table.headers.forEach(h => {
-                tableHtml += `<th>${h}</th>`;
-            });
-            tableHtml += `</tr></thead><tbody>`;
-            question.table.rows.forEach(row => {
-                tableHtml += `<tr>`;
-                row.forEach(cell => {
-                    tableHtml += `<td>${cell}</td>`;
-                });
-                tableHtml += `</tr>`;
-            });
-            tableHtml += `</tbody></table></div></div>`;
-            if (quickRecallExplanationContent) {
-                quickRecallExplanationContent.innerHTML = tableHtml;
+                quickRecallExplanationContent.innerHTML = expHtml;
             }
         } else {
             explanationWrapper.style.display = "none";
         }
     }
 
-    if (quickRevealedBlock) {
-        quickRevealedBlock.classList.remove('collapsed');
-    }
+    if (quickRevealedBlock) quickRevealedBlock.classList.remove('collapsed');
 
+    // --- LIGHTBOX LOGIC ---
     setTimeout(() => {
-        if (quickRevealedBlock) {
-            quickRevealedBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        let lightbox = document.getElementById('image-lightbox');
+        if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'image-lightbox';
+            lightbox.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; cursor:zoom-out; align-items:center; justify-content:center; padding: 20px;';
+            lightbox.innerHTML = '<img id="lightbox-img" style="max-width:95vw; max-height:95vh; object-fit:contain; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.5); transition:transform 0.3s ease;" />';
+            document.body.appendChild(lightbox);
+            
+            lightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+            });
         }
-    }, 150);
-}
+        
+        document.querySelectorAll('#quick-revealed-block img').forEach(img => {
+            if (img.id === 'lightbox-img') return;
+            img.style.cursor = 'zoom-in';
+            img.style.transition = 'transform 0.2s';
+            
+            // Avoid adding multiple listeners if reveal is clicked multiple times
+            if (!img.hasAttribute('data-lightbox-bound')) {
+                img.addEventListener('mouseover', () => img.style.transform = 'scale(1.02)');
+                img.addEventListener('mouseout', () => img.style.transform = 'scale(1)');
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lightboxImg = document.getElementById('lightbox-img');
+                    lightboxImg.src = this.src;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+                img.setAttribute('data-lightbox-bound', 'true');
+            }
+        });
+    }, 100);
 
-/**
- * Cycle through quick recall topics (respecting chapter filter)
- */
+}
 function navigateQuickRecall(direction) {
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeQuickChapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
             matchingIndices.push(idx);
         }
     });
@@ -786,13 +752,12 @@ function navigateQuickRecall(direction) {
 }
 
 /**
- * Load random quick recall topic (respecting chapter filter)
+ * Load random quick recall topic (respecting chapter and subchapter filters)
  */
 function loadQuickRandomQuestion() {
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        const ch = getQuestionChapter(q);
-        if (isChapterMatch(ch, activeQuickChapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
             matchingIndices.push(idx);
         }
     });
