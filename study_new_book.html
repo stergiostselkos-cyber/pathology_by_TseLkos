@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ερωτήσεις Ανάπτυξης Νέου Βιβλίου - pathologia TseLkos</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ερωτήσεις Ανάπτυξης Νέου Βιβλίου - pathologia TseLkos</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- CSS Stylesheet -->
+<link href="style.css" rel="stylesheet"/>
+<style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
       0% {
@@ -32,17 +33,18 @@
     }
 
     /* Quick Recall Section styling overrides */
-    border: 1px solid var(--card-border) !important;
+    /* Quick Recall Section styling overrides */
+    border: 2px solid var(--primary-hover) !important;
       padding: 24px !important;
       border-radius: 20px !important;
-      box-shadow: var(--shadow-main) !important;
+      box-shadow: 0 10px 40px rgba(112, 26, 117, 0.3) !important;
     }
 
     /* Subfields inside container */
     #quick-recall-view .large-dropdown-select-btn {
-      background: rgba(var(--primary-rgb), 0.08) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.25) !important;
-      color: var(--text-primary) !important;
+      background: #fdf2f8 !important;
+      border: 2px solid #fbcfe8 !important;
+      color: #000000 !important;
       border-radius: 12px !important;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
     }
@@ -54,8 +56,8 @@
       letter-spacing: 0.5px !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-value {
-      color: var(--text-primary) !important;
-      font-weight: 700 !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
       font-size: 1.05rem !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-arrow {
@@ -64,8 +66,8 @@
 
     /* Question display box */
     #quick-recall-view .topic-title-header {
-      background: rgba(var(--primary-rgb), 0.06) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.2) !important;
+      background: #fdf2f8 !important;
+      border: 2px solid #fbcfe8 !important;
       border-left: 6px solid var(--primary-color) !important;
       border-radius: 14px !important;
       padding: 20px !important;
@@ -87,8 +89,8 @@
       box-shadow: none !important;
     }
     #quick-recall-view #quick-recall-question {
-      color: var(--text-primary) !important;
-      font-weight: 700 !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
       font-size: 1.15rem !important;
       line-height: 1.65 !important;
       margin: 0 !important;
@@ -98,18 +100,18 @@
 
     /* Active Card Container customized */
     #quick-recall-view .recall-card-container {
-      background: rgba(255, 255, 255, 0.02) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      background: #fdf2f8 !important;
+      border: 2px solid #fbcfe8 !important;
       border-radius: 16px !important;
       padding: 24px !important;
-      box-shadow: var(--shadow-main) !important;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05) !important;
     }
 
     /* Correct Answer Box */
     #quick-recall-view .correct-answer-box {
-      background: rgba(var(--primary-rgb), 0.06) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.25) !important;
-      color: var(--text-primary) !important;
+      background: #ffffff !important;
+      border: 2px solid #fbcfe8 !important;
+      color: #000000 !important;
       border-radius: 12px !important;
       padding: 16px 20px !important;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
@@ -121,52 +123,46 @@
       margin-bottom: 6px !important;
     }
     #quick-recall-view #quick-correct-answer-text {
-      color: var(--text-primary) !important;
-      font-weight: 400 !important;
+      color: #000000 !important;
+      font-weight: 600 !important;
       font-size: 1.05rem !important;
       line-height: 1.6 !important;
     }
 
     /* Mnemonic Box */
     #quick-recall-view .mnemonic-box {
-      background: rgba(234, 179, 8, 0.06) !important;
-      border: 1px solid rgba(234, 179, 8, 0.2) !important;
+      background: rgba(var(--primary-rgb), 0.05) !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.3) !important;
       border-radius: 12px !important;
       padding: 16px 20px !important;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
     }
     #quick-recall-view .mnemonic-header h5 {
-      color: #ca8a04 !important;
+      color: var(--primary-hover) !important;
       font-weight: 900 !important;
     }
     #quick-recall-view #quick-mnemonic-text {
-      color: var(--text-primary) !important;
+      color: #000000 !important;
       font-weight: 750 !important;
       font-style: italic !important;
     }
 
-    /* Explanation Wrapper - Dedicated Distinct Card Frame */
+    /* Explanation Wrapper */
     #quick-recall-view .explanation-wrapper {
       margin-top: 24px !important;
       padding: 22px 26px !important;
       border-radius: 16px !important;
-      background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
+      background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08) 0%, rgba(var(--primary-rgb), 0.15) 100%) !important;
       border: 1.5px solid rgba(var(--primary-rgb), 0.3) !important;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
       position: relative !important;
       transition: all 0.3s ease !important;
     }
 
-    body.light-theme #quick-recall-view .explanation-wrapper {
-      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%) !important;
-      border: 1.5px solid rgba(var(--primary-rgb), 0.25) !important;
-      box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.08) !important;
-    }
-
     #quick-recall-view .explanation-wrapper h4 {
       color: var(--primary-color) !important;
-      font-weight: 800 !important;
-      border-bottom: 1.5px solid rgba(var(--primary-rgb), 0.25) !important;
+      font-weight: 900 !important;
+      border-bottom: 2px solid rgba(var(--primary-rgb), 0.25) !important;
       padding-bottom: 10px !important;
       margin-bottom: 14px !important;
       font-size: 1.15rem !important;
@@ -175,27 +171,29 @@
       gap: 8px !important;
     }
     #quick-recall-view #quick-recall-explanation-content {
-      color: var(--text-primary) !important;
-      font-weight: 400 !important;
-      font-size: 0.98rem !important;
+      color: #000000 !important;
+      font-weight: 500 !important;
+      font-size: 1.02rem !important;
       line-height: 1.65 !important;
     }
     #quick-recall-view #quick-recall-explanation-content p, 
     #quick-recall-view #quick-recall-explanation-content li {
-      color: var(--text-primary) !important;
-      font-weight: 400 !important;
+      color: #000000 !important;
+      font-weight: 500 !important;
       text-align: justify !important;
     }
     #quick-recall-view #quick-recall-explanation-content strong {
-      color: var(--primary-color) !important;
-      font-weight: 850 !important;
+      color: #7e22ce !important;
+      font-weight: 900 !important;
     }
 
-    /* Field 8: Navigation bar styles adaptation */
+    /* Navigation bar styles adaptation */
     #quick-recall-view .quiz-navigation .btn-secondary {
       background: #ffffff !important;
-      border: 1px solid #fbcfe8 !important;
+      border: 2px solid #fbcfe8 !important;
       color: var(--primary-color) !important;
+      font-weight: 800 !important;
+    }
       font-weight: 700 !important;
     }
     #quick-recall-view .quiz-navigation .btn-primary {
@@ -206,22 +204,22 @@
 
     /* Table Analysis Section styling overrides */
     #table-analysis-view {
-      background: #0f766e !important;
-      border: 2px solid #0d9488 !important;
+      background: var(--primary-color) !important;
+      border: 2px solid var(--primary-hover) !important;
       padding: 24px !important;
       border-radius: 20px !important;
-      box-shadow: 0 10px 40px rgba(15, 118, 110, 0.35) !important;
+      box-shadow: 0 10px 40px rgba(var(--primary-rgb), 0.35) !important;
     }
 
     #table-analysis-view .large-dropdown-select-btn {
       background: #ffffff !important;
-      border: 2px solid #0d9488 !important;
+      border: 2px solid var(--primary-hover) !important;
       color: #000000 !important;
       border-radius: 12px !important;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
     }
     #table-analysis-view .large-dropdown-select-btn .dropdown-label {
-      color: #0f766e !important;
+      color: var(--primary-color) !important;
       font-weight: 900 !important;
       opacity: 1 !important;
       font-size: 0.85rem !important;
@@ -233,20 +231,20 @@
       font-size: 1.05rem !important;
     }
     #table-analysis-view .large-dropdown-select-btn .dropdown-arrow {
-      color: #0f766e !important;
+      color: var(--primary-color) !important;
     }
 
     #table-analysis-view .topic-title-header {
       background: #ffffff !important;
-      border: 2px solid #0d9488 !important;
-      border-left: 6px solid #0f766e !important;
+      border: 2px solid var(--primary-hover) !important;
+      border-left: 6px solid var(--primary-color) !important;
       border-radius: 14px !important;
       padding: 20px !important;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
       margin: 16px 0 !important;
     }
     #table-analysis-view .topic-title-header h2 {
-      color: #0f766e !important;
+      color: var(--primary-color) !important;
       font-weight: 900 !important;
       font-size: 1.25rem !important;
       margin: 0 !important;
@@ -258,8 +256,8 @@
     }
     #table-analysis-view .recall-header .back-to-menu-btn {
       background: #ffffff !important;
-      border: 1px solid #0d9488 !important;
-      color: #0f766e !important;
+      border: 1px solid var(--primary-hover) !important;
+      color: var(--primary-color) !important;
       font-weight: 700 !important;
     }
     #table-analysis-view #table-analysis-progress {
@@ -268,290 +266,267 @@
 
     /* Table visual formatting inside container */
     #table-analysis-view .table-analysis-container {
-      background: #f0fdfa !important;
-      border: 2px solid #0d9488 !important;
+      background: rgba(var(--primary-rgb), 0.05) !important;
+      border: 2px solid var(--primary-hover) !important;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
     }
     #table-analysis-view .interactive-med-table {
-      background: #f0fdfa !important;
+      background: rgba(var(--primary-rgb), 0.05) !important;
     }
     #table-analysis-view .interactive-med-table th {
-      background: #0d9488 !important;
+      background: var(--primary-hover) !important;
       color: #ffffff !important;
       font-size: 0.85rem !important;
       font-weight: 800 !important;
       padding: 10px 14px !important;
-      border: 1px solid rgba(15, 118, 110, 0.3) !important;
-      border-bottom: 2px solid #0f766e !important;
+      border: 1px solid rgba(var(--primary-rgb), 0.3) !important;
+      border-bottom: 2px solid var(--primary-color) !important;
     }
     #table-analysis-view .interactive-med-table td {
-      background: #f0fdfa !important;
+      background: rgba(var(--primary-rgb), 0.05) !important;
       color: #000000 !important;
       font-size: 0.8rem !important;
       font-weight: 800 !important;
       padding: 10px 14px !important;
-      border: 1px solid rgba(15, 118, 110, 0.25) !important;
+      border: 1px solid rgba(var(--primary-rgb), 0.25) !important;
       line-height: 1.45 !important;
     }
     #table-analysis-view .interactive-med-table tr:hover td {
-      background: #e0f2fe !important;
+      background: rgba(var(--primary-rgb), 0.15) !important;
     }
     #table-analysis-view .interactive-cell:hover, 
     #table-analysis-view .interactive-cell.active-hover {
-      background: #ccfbf1 !important;
-      color: #0f766e !important;
+      background: rgba(var(--primary-rgb), 0.15) !important;
+      color: var(--primary-color) !important;
     }
     #table-analysis-view .active-cell-selected {
-      background: #99f6e4 !important;
-      border: 2.5px solid #0f766e !important;
-      color: #0f766e !important;
+      background: rgba(var(--primary-rgb), 0.3) !important;
+      border: 2.5px solid var(--primary-color) !important;
+      color: var(--primary-color) !important;
     }
 </style>
+
 <style id="dynamic-theme">
 :root {
-  --primary-color: #ef4444;
-  --primary-rgb: 239, 68, 68;
-  --primary-hover: #dc2626;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #7f1d1d 0%, #0b0f19 80%);
+  --primary-color: #f59e0b;
+  --primary-rgb: 245, 158, 11;
+  --primary-hover: #d97706;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #78350f 0%, #111827 80%);
+  --bg-color: #111827;
 }
-</style>
-</head>
+</style></head>
 <body class="dark-theme">
-    <div class="app-container">
-        <!-- Header Section -->
-        <header class="app-header">
-            <div class="header-main">
-                <div class="app-logo">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <h1>Pathologia<span>Νέο Βιβλίο</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color); text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(234, 88, 12, 0.8); margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle;">By TseLkos</span></h1>
-                </div>
-                <div class="header-controls">
-                    <a href="index.html" class="btn btn-secondary btn-icon" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Αρχική</span>
-                    </a>
-                    <button id="theme-toggle" class="icon-button" aria-label="Toggle Theme">
-                        <!-- Sun/Moon Icons -->
-                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Workspace -->
-        <main class="app-main">
-
-
-            <!-- 2b. Quick Recall Flashcards View -->
-            <section id="quick-recall-view" class="view-panel">
-
-                <!-- Chapter Filter Dropdown -->
-                <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px;">
-                    <button id="quick-main-chapters-dropdown-btn" class="large-dropdown-select-btn" style="border-color: rgba(var(--primary-rgb), 0.25);">
-                        <span class="dropdown-label" style="color: var(--primary-color); opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px;">Κεφάλαιο</span>
-                        <span id="quick-main-chapters-dropdown-value" class="dropdown-value" style="font-weight: 600; font-size: 1rem; color: var(--text-primary); text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px;">Όλα</span>
-                        <svg class="dropdown-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: 20px; top: calc(50% - 10px); color: var(--primary-color);">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div id="quick-main-chapters-overlay" class="chapters-vertical-list-overlay hidden">
-                        <!-- Dynamic Chapters -->
-                    </div>
-                </div>
-
-                <!-- Subchapter Filter Dropdown -->
-                <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
-                    <button id="quick-chapters-dropdown-btn" class="large-dropdown-select-btn" style="border-color: rgba(var(--primary-rgb), 0.25);">
-                        <span class="dropdown-label" style="color: var(--primary-color); opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px;">Υποκεφάλαιο / Θεματική Ενότητα</span>
-                        <span id="quick-chapters-dropdown-value" class="dropdown-value" style="font-weight: 600; font-size: 1rem; color: var(--text-primary); text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px;">Όλα</span>
-                        <svg class="dropdown-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: 20px; top: calc(50% - 10px); color: var(--primary-color);">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div id="quick-chapters-overlay" class="chapters-vertical-list-overlay hidden">
-                        <!-- Dynamic Subchapters -->
-                    </div>
-                </div>
-
-                <!-- Topic Selector Dropdown and Overlay -->
-                <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
-                    <button id="quick-questions-dropdown-btn" class="large-dropdown-select-btn" style="border-color: rgba(var(--primary-rgb), 0.25);">
-                        <span class="dropdown-label" style="color: var(--primary-color); opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px;">Ερώτηση</span>
-                        <span id="quick-questions-dropdown-value" class="dropdown-value" style="font-weight: 600; font-size: 1.05rem; color: var(--text-primary); text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px;">Φόρτωση ερώτησης...</span>
-                        <svg class="dropdown-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: 20px; top: calc(50% - 10px); color: var(--primary-color);">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div id="quick-questions-overlay" class="questions-vertical-list-overlay hidden">
-                        <!-- Dynamic Questions -->
-                    </div>
-                </div>
-
-                <!-- Topic Title Header -->
-                <div class="topic-title-header">
-                    <span class="question-label-span">Ερώτηση:</span>
-                    <div class="question-inner-card">
-                        <h2 id="quick-recall-question">Φόρτωση ερώτησης...</h2>
-                    </div>
-                </div>
-
-                <!-- Active Card Container -->
-                <div class="recall-card-container" style="border-color: rgba(var(--primary-rgb), 0.15);">
-                    <div id="quick-reveal-btn-container" class="reveal-action-container">
-                        <button id="quick-reveal-btn" class="btn btn-primary" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%); box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.35); padding: 16px 36px; font-size: 1.1rem; border-radius: 12px; font-weight: 700;">
-                            <span>👀 Εμφάνιση Απάντησης</span>
-                        </button>
-                    </div>
-
-                    <div id="quick-revealed-block" class="revealed-block collapsed">
-                        <div class="correct-answer-box" style="border-color: rgba(var(--primary-rgb), 0.25); background: rgba(var(--primary-rgb), 0.05); color: var(--primary-color);">
-                            <h4 style="color: var(--primary-color); opacity: 0.9;">Σύντομη Απάντηση:</h4>
-                            <p id="quick-correct-answer-text" style="color: var(--text-primary);">Φόρτωση σύντομης απάντησης...</p>
-                        </div>
-
-                        <div id="quick-mnemonic-box" class="mnemonic-box">
-                            <div class="mnemonic-header">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: #eab308;">
-                                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <h5>Μνημονικό Tip / Σημείο-Κλειδί</h5>
-                            </div>
-                            <p id="quick-mnemonic-text">Φόρτωση tip...</p>
-                        </div>
-
-                        <div class="explanation-wrapper">
-                            <div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; background: rgba(var(--primary-rgb), 0.12); border: 1px solid rgba(var(--primary-rgb), 0.25); color: var(--primary-color); font-size: 0.8rem; font-weight: 700; margin-bottom: 12px;">
-                                <span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
-                            </div>
-                            <h4 style="color: var(--primary-color); border-color: rgba(var(--primary-rgb), 0.25);">💡 Επιπλέον Υλικό για Μελέτη</h4>
-                            <div id="quick-recall-explanation-content" class="explanation-content"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer Navigation -->
-                <div class="quiz-navigation">
-                    <button id="quick-recall-prev-btn" class="btn btn-secondary btn-icon" disabled>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Προηγούμενο</span>
-                    </button>
-                    <button id="quick-recall-random-btn" class="btn btn-secondary btn-icon" style="padding: 10px 14px;">
-                        <span>🎲 Τυχαίο</span>
-                    </button>
-                    <button id="quick-recall-next-btn" class="btn btn-primary btn-icon" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%); box-shadow: 0 4px 14px rgba(var(--primary-rgb), 0.35); border: none;">
-                        <span>Επόμενο</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </section>
-
-            <!-- 3. Table Analysis View (Hidden by default) -->
-            <section id="table-analysis-view" class="view-panel hidden">
-                <div class="recall-header" style="border-color: rgba(45, 212, 191, 0.25);">
-                    <button class="back-to-menu-btn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
-                            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+<div class="app-container">
+<!-- Header Section -->
+<header class="app-header">
+<div class="header-main">
+<div class="app-logo">
+<svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1>Pathologia<span>Νέο Βιβλίο</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+</div>
+<div class="header-controls">
+<a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
+<svg fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M9 22V12H15V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Αρχική</span>
+</a>
+<button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
+<!-- Sun/Moon Icons -->
+<svg class="sun-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 2V4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 20V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<svg class="moon-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- 2b. Quick Recall Flashcards View -->
+<section class="view-panel" id="quick-recall-view">
+<!-- Chapter Filter Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-main-chapters-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Κεφάλαιο</span>
+<span class="dropdown-value" id="quick-main-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="chapters-vertical-list-overlay hidden" id="quick-main-chapters-overlay">
+<!-- Dynamic Chapters -->
+</div>
+</div>
+<!-- Subchapter Filter Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Υποκεφάλαιο / Θεματική Ενότητα</span>
+<span class="dropdown-value" id="quick-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
+<!-- Dynamic Subchapters -->
+</div>
+</div>
+<!-- Topic Selector Dropdown and Overlay -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-questions-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Ερώτηση</span>
+<span class="dropdown-value" id="quick-questions-dropdown-value" style="font-weight: 600; font-size: 1.05rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Φόρτωση ερώτησης...</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="questions-vertical-list-overlay hidden" id="quick-questions-overlay">
+<!-- Dynamic Questions -->
+</div>
+</div>
+<!-- Topic Title Header -->
+<div class="topic-title-header">
+<span class="question-label-span">Ερώτηση:</span>
+<div class="question-inner-card">
+<h2 id="quick-recall-question">Φόρτωση ερώτησης...</h2>
+</div>
+</div>
+<!-- Active Card Container -->
+<div class="recall-card-container">
+<div class="reveal-action-container" id="quick-reveal-btn-container">
+<button class="btn btn-primary" id="quick-reveal-btn" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 12px; font-weight: 700">
+<span>👀 Εμφάνιση Απάντησης</span>
+</button>
+</div>
+<div class="revealed-block collapsed" id="quick-revealed-block">
+<div class="correct-answer-box">
+<h4 style="opacity: 0.9">Σύντομη Απάντηση:</h4>
+<p id="quick-correct-answer-text">Φόρτωση σύντομης απάντησης...</p>
+</div>
+<div class="mnemonic-box" id="quick-mnemonic-box">
+<div class="mnemonic-header">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h5>Μνημονικό Tip / Σημείο-Κλειδί</h5>
+</div>
+<p id="quick-mnemonic-text">Φόρτωση tip...</p>
+</div>
+<div class="explanation-wrapper">
+<div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px">
+<span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
+</div>
+<h4>💡 Επιπλέον Υλικό για Μελέτη</h4>
+<div class="explanation-content" id="quick-recall-explanation-content"></div>
+</div>
+</div>
+</div>
+<!-- Footer Navigation -->
+<div class="quiz-navigation">
+<button class="btn btn-secondary btn-icon" disabled="" id="quick-recall-prev-btn">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Προηγούμενο</span>
+</button>
+<button class="btn btn-secondary btn-icon" id="quick-recall-random-btn" style="padding: 10px 14px">
+<span>🎲 Τυχαίο</span>
+</button>
+<button class="btn btn-primary btn-icon" id="quick-recall-next-btn" style="border: none">
+<span>Επόμενο</span>
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</section>
+<!-- 3. Table Analysis View (Hidden by default) -->
+<section class="view-panel hidden" id="table-analysis-view">
+<div class="recall-header">
+<button class="back-to-menu-btn">
+<svg fill="none" height="18" style="vertical-align: middle; margin-right: 4px" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
                         Μενού Μελέτης
                     </button>
-                    <span id="table-analysis-progress" style="color: #2dd4bf; font-weight: 600; font-size: 0.9rem;">Πίνακας 0 από 0</span>
-                </div>
-
-                <!-- Chapter Selector Dropdown -->
-                <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px;">
-                    <button id="table-chapters-dropdown-btn" class="large-dropdown-select-btn" style="border-color: rgba(45, 212, 191, 0.25);">
-                        <span class="dropdown-label" style="color: #2dd4bf; opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px;">Κεφάλαιο</span>
-                        <span id="table-chapters-dropdown-value" class="dropdown-value" style="font-weight: 600; font-size: 1rem; color: var(--text-primary); text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px;">Όλα</span>
-                        <svg class="dropdown-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: 20px; top: calc(50% - 10px); color: #2dd4bf;">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div id="table-chapters-overlay" class="chapters-vertical-list-overlay hidden">
-                        <!-- Dynamic Chapters populated by study.js -->
-                    </div>
-                </div>
-
-                <!-- Table Selector Dropdown -->
-                <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
-                    <button id="tables-dropdown-btn" class="large-dropdown-select-btn" style="border-color: rgba(45, 212, 191, 0.25);">
-                        <span class="dropdown-label" style="color: #2dd4bf; opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px;">Πίνακας</span>
-                        <span id="tables-dropdown-value" class="dropdown-value" style="font-weight: 600; font-size: 1.05rem; color: var(--text-primary); text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px;">Επιλέξτε Πίνακα...</span>
-                        <svg class="dropdown-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: 20px; top: calc(50% - 10px); color: #2dd4bf;">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div id="tables-dropdown-overlay" class="questions-vertical-list-overlay hidden">
-                        <!-- Dynamic Tables populated by study.js -->
-                    </div>
-                </div>
-
-                <!-- Table Title Container -->
-                <div class="topic-title-header" style="margin-top: 20px;">
-                    <h2 id="table-analysis-title">Φόρτωση πίνακα...</h2>
-                </div>
-
-                <!-- Interactive Table Container -->
-                <div class="table-analysis-container" style="position: relative; overflow-x: auto; background: var(--card-bg); border: 2px solid rgba(45, 212, 191, 0.3) !important; border-radius: var(--border-radius); box-shadow: var(--shadow-main); margin-bottom: 24px; max-width: 100%;">
-                    <table class="interactive-med-table" style="width: 100%; border-collapse: collapse; min-width: 600px;">
-                        <thead id="table-analysis-thead">
-                            <!-- Populated dynamically -->
-                        </thead>
-                        <tbody id="table-analysis-tbody">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Dedicated Cell Details Box (Prevents cropped text and works beautifully on hover/click) -->
-                <div id="table-cell-details-box" style="display: none; background: var(--card-bg); border: 2px solid var(--primary-color) !important; border-radius: var(--border-radius); padding: 20px; margin-bottom: 24px; box-shadow: var(--shadow-main); transition: all 0.3s ease;">
-                    <!-- Populated dynamically on cell hover or click -->
-                </div>
-
-                <!-- Detailed Analysis Block -->
-                <div class="explanation-wrapper" style="border: 2px solid rgba(45, 212, 191, 0.3) !important; background: var(--card-bg); border-radius: var(--border-radius); padding: 24px; box-shadow: var(--shadow-main);">
-                    <h4 style="color: #2dd4bf; font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(45, 212, 191, 0.15); padding-bottom: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+<span id="table-analysis-progress" style="font-weight: 600; font-size: 0.9rem">Πίνακας 0 από 0</span>
+</div>
+<!-- Chapter Selector Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="table-chapters-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Κεφάλαιο</span>
+<span class="dropdown-value" id="table-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="chapters-vertical-list-overlay hidden" id="table-chapters-overlay">
+<!-- Dynamic Chapters populated by study.js -->
+</div>
+</div>
+<!-- Table Selector Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="tables-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Πίνακας</span>
+<span class="dropdown-value" id="tables-dropdown-value" style="font-weight: 600; font-size: 1.05rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Επιλέξτε Πίνακα...</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="questions-vertical-list-overlay hidden" id="tables-dropdown-overlay">
+<!-- Dynamic Tables populated by study.js -->
+</div>
+</div>
+<!-- Table Title Container -->
+<div class="topic-title-header" style="margin-top: 20px">
+<h2 id="table-analysis-title">Φόρτωση πίνακα...</h2>
+</div>
+<!-- Interactive Table Container -->
+<div class="table-analysis-container" style="position: relative; overflow-x: auto; border-radius: var(--border-radius); margin-bottom: 24px; max-width: 100%">
+<table class="interactive-med-table" style="width: 100%; border-collapse: collapse; min-width: 600px">
+<thead id="table-analysis-thead">
+<!-- Populated dynamically -->
+</thead>
+<tbody id="table-analysis-tbody">
+<!-- Populated dynamically -->
+</tbody>
+</table>
+</div>
+<!-- Dedicated Cell Details Box (Prevents cropped text and works beautifully on hover/click) -->
+<div id="table-cell-details-box" style="display: none; border-radius: var(--border-radius); padding: 20px; margin-bottom: 24px; transition: all 0.3s ease">
+<!-- Populated dynamically on cell hover or click -->
+</div>
+<!-- Detailed Analysis Block -->
+<div class="explanation-wrapper" style="border-radius: var(--border-radius); padding: 24px">
+<h4 style="font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(45, 212, 191, 0.15); padding-bottom: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px">
+<svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
                         Ανάλυση &amp; Μεθοδολογία Μελέτης
                     </h4>
-                    <div id="table-analysis-detailed-content" class="explanation-content" style="color: var(--text-primary); line-height: 1.7; font-size: 1rem;">
-                        <!-- Populated dynamically -->
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer Info -->
-        <footer class="app-footer">
-            <p>Σχεδιασμένο για ιατρική εκπαίδευση & εμπέδωση θεωρίας</p>
-            <div class="study-feedback-footer" style="margin-top: 16px; padding: 12px 10px; border-top: 1px dashed var(--card-border); text-align: center; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">
-                💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="color: var(--primary-color); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease;">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
+<div class="explanation-content" id="table-analysis-detailed-content" style="line-height: 1.7; font-size: 1rem">
+<!-- Populated dynamically -->
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Info -->
+<footer class="app-footer">
+<p>Σχεδιασμένο για ιατρική εκπαίδευση &amp; εμπέδωση θεωρίας</p>
+<div class="study-feedback-footer" style="margin-top: 16px; padding: 12px 10px; border-top: 1px dashed var(--card-border); text-align: center; font-size: 0.95rem; line-height: 1.5">
+                💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
             </div>
-        </footer>
-    </div>
-
-
-
-    <!-- App Logic Scripts -->
-    <script charset="UTF-8" src="data/new_book_questions.js"></script>
-    
-    <script charset="UTF-8" src="study_new_book.js"></script>
+</footer>
+</div>
+<!-- App Logic Scripts -->
+<script charset="UTF-8" src="data/new_book_questions.js?v=1784846041"></script>
+<script charset="UTF-8" src="study_new_book.js?v=1784553770"></script>
 </body>
 </html>

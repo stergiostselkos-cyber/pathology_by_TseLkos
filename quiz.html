@@ -4,27 +4,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Παιδιατρικός Προσομοιωτής Quiz</title>
+<title>Προσομοιωτής Quiz Παθολογίας</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=2.0" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
       0% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(59, 130, 246, 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
       }
       50% {
         transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(59, 130, 246, 1), 0 0 8px rgba(59, 130, 246, 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
+        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
       }
       100% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(59, 130, 246, 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
       }
     }
     .author-tag {
@@ -32,14 +32,15 @@
       animation: tselkosGlow 2s infinite ease-in-out !important;
     }
 
-    /* Quiz Panel Outer Background */
-    border: 1px solid var(--card-border) !important;
+    /* Quiz Panel Outer Background (Solid Thalassi Blue) */
+    /* solid thalassi blue */
+      border: 2px solid var(--primary-hover) !important;
       padding: 24px !important;
       border-radius: 20px !important;
-      box-shadow: var(--shadow-main) !important;
+      box-shadow: 0 10px 40px rgba(var(--primary-rgb), 0.3) !important;
     }
 
-    /* Subfields inside container */
+    /* Subfields inside outer container have very soft blue background */
     #quiz-view .large-dropdown-select-btn {
       background: rgba(var(--primary-rgb), 0.08) !important;
       border: 1px solid rgba(var(--primary-rgb), 0.25) !important;
@@ -48,7 +49,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
     }
     #quiz-view .large-dropdown-select-btn .dropdown-label {
-      color: var(--primary-color) !important;
+      color: var(--text-primary) !important;
       font-weight: 900 !important;
       opacity: 1 !important;
       font-size: 0.85rem !important;
@@ -60,46 +61,14 @@
       font-size: 1.05rem !important;
     }
     #quiz-view .large-dropdown-select-btn .dropdown-arrow {
-      color: var(--primary-color) !important;
+      color: var(--text-primary) !important;
     }
 
     #quiz-view .category-tag-wrapper .badge {
       background: rgba(var(--primary-rgb), 0.1) !important;
       border: 1px solid rgba(var(--primary-rgb), 0.3) !important;
-      color: var(--primary-color) !important;
+      color: var(--text-primary) !important;
       font-weight: 800 !important;
-    }
-
-    #quiz-view .large-dropdown-select-btn:hover {
-      border-color: rgba(var(--primary-rgb), 0.3) !important;
-      background: rgba(var(--primary-rgb), 0.12) !important;
-      box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.2) !important;
-    }
-    #quiz-view .chapters-vertical-list-overlay,
-    #quiz-view .questions-vertical-list-overlay {
-      border-color: rgba(var(--primary-rgb), 0.3) !important;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 15px rgba(var(--primary-rgb), 0.1) !important;
-      background: var(--card-bg) !important;
-    }
-    #quiz-view .overlay-chapter-item:hover,
-    #quiz-view .overlay-question-item:hover {
-      background: var(--option-hover) !important;
-      border-color: rgba(var(--primary-rgb), 0.4) !important;
-    }
-    #quiz-view .overlay-chapter-item.active,
-    #quiz-view .overlay-question-item.active {
-      background: rgba(var(--primary-rgb), 0.1) !important;
-      border-color: rgba(var(--primary-rgb), 0.3) !important;
-      color: var(--primary-color) !important;
-    }
-    #quiz-view .overlay-question-item strong {
-      color: var(--primary-color) !important;
-    }
-
-    /* Stats text styling */
-    .progress-stats, #progress-text, #score-text {
-      color: var(--primary-color) !important;
-      font-weight: 700 !important;
     }
 
     /* Question box background */
@@ -113,7 +82,6 @@
       margin: 16px 0 !important;
       color: var(--text-primary) !important;
       font-weight: 700 !important;
-      font-size: 1.15rem !important;
       line-height: 1.65 !important;
     }
 
@@ -123,29 +91,22 @@
       border: 1.5px solid var(--card-border) !important;
       color: var(--text-primary) !important;
       font-weight: 600 !important;
-      font-size: 1.05rem !important;
-      padding: 14px 18px !important;
-      border-radius: 12px !important;
       transition: all 0.2s ease !important;
     }
     #quiz-view .option-btn:hover:not(:disabled) {
       background: rgba(var(--primary-rgb), 0.15) !important;
-      border-color: rgba(var(--primary-rgb), 0.3) !important;
+      border-color: var(--text-primary) !important;
       color: var(--text-primary) !important;
       transform: translateY(-2px) !important;
     }
     #quiz-view .option-btn .option-badge {
-      background: rgba(var(--primary-rgb), 0.15) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.3) !important;
-      color: var(--primary-color) !important;
-      font-weight: 800 !important;
-    }
-      border-color: #dbeafe !important;
-      color: var(--primary-hover) !important;
+      background: rgba(var(--primary-rgb), 0.2) !important;
+      border-color: rgba(var(--primary-rgb), 0.2) !important;
+      color: var(--text-primary) !important;
     }
     #quiz-view .option-btn:hover:not(:disabled) .option-badge {
       background: #ffffff !important;
-      color: var(--primary-hover) !important;
+      color: var(--text-primary) !important;
     }
 
     /* Keep correct/incorrect states */
@@ -171,14 +132,14 @@
 
     /* Explanation panel styling */
     #quiz-view .explanation-panel {
-      background: #eff6ff !important;
-      border: 2px solid #dbeafe !important;
+      background: #f0f9ff !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
     }
     #quiz-view .explanation-panel-inner {
       color: #000000 !important;
     }
     #quiz-view .explanation-header {
-      border-bottom-color: #dbeafe !important;
+      border-bottom-color: rgba(var(--primary-rgb), 0.2) !important;
     }
     #quiz-view .explanation-content p,
     #quiz-view .explanation-content li {
@@ -188,25 +149,25 @@
     /* Bottom navigation adjustments */
     #quiz-view .quiz-navigation .btn-secondary {
       background: #ffffff !important;
-      border: 1px solid #dbeafe !important;
-      color: var(--primary-hover) !important;
+      border: 1px solid rgba(var(--primary-rgb), 0.2) !important;
+      color: var(--text-primary) !important;
       font-weight: 700 !important;
     }
     #quiz-view .quiz-navigation .btn-primary {
       background: var(--primary-color) !important;
-      color: #ffffff !important;
+      color: #000000 !important;
       font-weight: 700 !important;
       box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
     }
-    </style>
+</style>
 
 <style id="dynamic-theme">
 :root {
-  --primary-color: #fbbf24;
-  --primary-rgb: 251, 191, 36;
-  --primary-hover: #f59e0b;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #78350f 0%, #0f172a 80%);
-  --bg-color: #0f172a;
+  --primary-color: #0ea5e9;
+  --primary-rgb: 14, 165, 233;
+  --primary-hover: #0284c7;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #0c4a6e 0%, #111827 80%);
+  --bg-color: #111827;
 }
 </style></head>
 <body class="dark-theme">
@@ -220,7 +181,7 @@
 <path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 <path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
-<h1>Pediatric<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
 </div>
 <div class="header-controls">
 <a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
@@ -248,8 +209,6 @@
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
-</div>
-</div>
 <!-- Progress Bar Tracker -->
 <div class="progress-container">
 <div class="progress-bar-wrapper">
@@ -260,53 +219,39 @@
 <span id="score-text">Σκορ: 0%</span>
 </div>
 </div>
-</header>
+</div></div></header>
 <!-- Main Content Area -->
 <main class="app-main">
 <!-- Active Quiz View -->
 <section class="view-panel" id="quiz-view" style="border-radius: var(--border-radius); padding: 24px">
-<!-- Quick Navigation Jump List -->
-<div class="quick-nav-container" style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding: 10px 14px; border-radius: 12px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none">
-<span style="font-size: 0.85rem; font-weight: 700; margin-right: 4px; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0">
-<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="14">
-<polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-</svg>
-                         Μετάβαση:
-                     </span>
-<div id="quick-nav-pills" style="display: flex; gap: 6px">
-<!-- Dynamic buttons like 1, 50, 100... -->
-</div>
-</div>
-<!-- Chapter Selector Dropdown -->
-<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px">
-<button class="large-dropdown-select-btn" id="quiz-chapters-dropdown-btn">
+<!-- Chapter Selector Filters -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
 <span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Κεφάλαιο</span>
-<span class="dropdown-value" id="quiz-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<span class="dropdown-value" id="quick-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
 <svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
-<!-- Vertical Chapters List Overlay -->
-<div class="chapters-vertical-list-overlay hidden" id="quiz-chapters-overlay">
-<!-- Populated dynamically -->
+<div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
+<!-- Dynamic Chapters -->
 </div>
 </div>
-<!-- Question Selector Dropdown -->
-<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px">
-<button class="large-dropdown-select-btn" id="quiz-questions-dropdown-btn">
+<!-- Topic Selector Dropdown and Overlay -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-questions-dropdown-btn">
 <span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Ερώτηση</span>
-<span class="dropdown-value" id="quiz-questions-dropdown-value" style="font-weight: 600; font-size: 1.05rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Φόρτωση ερώτησης...</span>
+<span class="dropdown-value" id="quick-questions-dropdown-value" style="font-weight: 600; font-size: 1.05rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Φόρτωση ερώτησης...</span>
 <svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
-<!-- Vertical Questions List Overlay -->
-<div class="questions-vertical-list-overlay hidden" id="quiz-questions-overlay">
-<!-- Populated dynamically -->
+<div class="questions-vertical-list-overlay hidden" id="quick-questions-overlay">
+<!-- Dynamic Questions -->
 </div>
 </div>
 <div class="category-tag-wrapper">
-<span class="badge" id="category-badge">Παιδιατρική</span>
+<span class="badge" id="category-badge">Παθολογική Ανατομική</span>
 </div>
 <!-- Question Text -->
 <div class="question-container">
@@ -384,7 +329,7 @@
 </svg>
 </div>
 <h2>Συγχαρητήρια!</h2>
-<p>Ολοκληρώσατε τον Παιδιατρικό Προσομοιωτή</p>
+<p>Ολοκληρώσατε τον Προσομοιωτή Παθολογίας</p>
 </div>
 <div class="results-stats-grid">
 <div class="stat-card">
@@ -401,9 +346,7 @@
 </div>
 </div>
 <!-- Performance Rating Banner -->
-<div class="performance-rating" id="performance-rating">
-<!-- Dynamic text: e.g. "Εξαιρετική επίδοση!" -->
-</div>
+<div class="performance-rating" id="performance-rating"></div>
 <button class="btn btn-secondary btn-icon" id="restart-button" style="font-weight: 700 !important">
 <svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l.73-1.19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -422,8 +365,7 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script src="questions.js?v=2.0"></script>
-<script src="app.js?v=2.0"></script>
+<script charset="UTF-8" src="questions.js?v=1784846041"></script>
 <script charset="UTF-8" src="app.js"></script>
 </body>
 </html>
