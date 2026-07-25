@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Θέματα Ανάπτυξης &amp; Μελέτη - pathologia TseLkos</title>
+<title>Θέματα Ανάπτυξης &amp; Μελέτη - pediatriki TseLkos</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -16,15 +16,15 @@
     @keyframes tselkosGlow {
       0% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(220, 38, 38, 0.8);
       }
       50% {
         transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
+        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(220, 38, 38, 0.9);
       }
       100% {
         transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
+        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(220, 38, 38, 0.8);
       }
     }
     .author-tag {
@@ -37,13 +37,13 @@
     border: 2px solid var(--primary-hover) !important;
       padding: 24px !important;
       border-radius: 20px !important;
-      box-shadow: 0 10px 40px rgba(112, 26, 117, 0.3) !important;
+      box-shadow: 0 10px 40px rgba(30, 58, 138, 0.3) !important;
     }
 
     /* Subfields inside container */
     #quick-recall-view .large-dropdown-select-btn {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
+      background: rgba(var(--primary-rgb), 0.08) !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
       color: #000000 !important;
       border-radius: 12px !important;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
@@ -66,8 +66,8 @@
 
     /* Question display box */
     #quick-recall-view .topic-title-header {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
+      background: rgba(var(--primary-rgb), 0.08) !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
       border-left: 6px solid var(--primary-color) !important;
       border-radius: 14px !important;
       padding: 20px !important;
@@ -90,7 +90,7 @@
     }
     #quick-recall-view #quick-recall-question {
       color: #000000 !important;
-      font-weight: 800 !important;
+      font-weight: 850 !important;
       font-size: 1.15rem !important;
       line-height: 1.65 !important;
       margin: 0 !important;
@@ -100,8 +100,8 @@
 
     /* Active Card Container customized */
     #quick-recall-view .recall-card-container {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
+      background: rgba(var(--primary-rgb), 0.08) !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
       border-radius: 16px !important;
       padding: 24px !important;
       box-shadow: 0 8px 24px rgba(0,0,0,0.05) !important;
@@ -110,7 +110,7 @@
     /* Correct Answer Box */
     #quick-recall-view .correct-answer-box {
       background: #ffffff !important;
-      border: 2px solid #fbcfe8 !important;
+      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
       color: #000000 !important;
       border-radius: 12px !important;
       padding: 16px 20px !important;
@@ -122,7 +122,8 @@
       font-size: 0.95rem !important;
       margin-bottom: 6px !important;
     }
-    #quick-recall-view #quick-correct-answer-text {
+    #quick-recall-view #quick-correct-answer-text,
+    #quick-recall-view .correct-answer-box p {
       color: #000000 !important;
       font-weight: 600 !important;
       font-size: 1.05rem !important;
@@ -141,7 +142,8 @@
       color: var(--primary-hover) !important;
       font-weight: 900 !important;
     }
-    #quick-recall-view #quick-mnemonic-text {
+    #quick-recall-view #quick-mnemonic-text,
+    #quick-recall-view .mnemonic-box p {
       color: #000000 !important;
       font-weight: 750 !important;
       font-style: italic !important;
@@ -160,7 +162,7 @@
     }
 
     #quick-recall-view .explanation-wrapper h4 {
-      color: var(--primary-hover) !important;
+      color: var(--primary-color) !important;
       font-weight: 900 !important;
       border-bottom: 2px solid rgba(var(--primary-rgb), 0.25) !important;
       padding-bottom: 10px !important;
@@ -183,17 +185,11 @@
       text-align: justify !important;
     }
     #quick-recall-view #quick-recall-explanation-content strong {
-      color: #7e22ce !important;
+      color: var(--primary-hover) !important;
       font-weight: 900 !important;
     }
-
-    /* Navigation bar styles adaptation */
-    #quick-recall-view .quiz-navigation .btn-secondary {
-      background: #ffffff !important;
-      border: 2px solid #fbcfe8 !important;
-      color: var(--primary-color) !important;
-      font-weight: 800 !important;
-    }
+    #quick-recall-view #quick-recall-explanation-content {
+      color: var(--text-primary) !important;
       font-weight: 400 !important;
       font-size: 0.98rem !important;
       line-height: 1.65 !important;
@@ -212,7 +208,7 @@
     /* Field 8: Navigation bar styles adaptation */
     #quick-recall-view .quiz-navigation .btn-secondary {
       background: #ffffff !important;
-      border: 1px solid #fbcfe8 !important;
+      border: 1px solid rgba(var(--primary-rgb), 0.4) !important;
       color: var(--primary-color) !important;
       font-weight: 700 !important;
     }
@@ -324,15 +320,15 @@
       border: 2.5px solid var(--primary-color) !important;
       color: var(--primary-color) !important;
     }
-</style>
+    </style>
 
 <style id="dynamic-theme">
 :root {
-  --primary-color: #10b981;
-  --primary-rgb: 16, 185, 129;
-  --primary-hover: #059669;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #064e3b 0%, #111827 80%);
-  --bg-color: #111827;
+  --primary-color: #ec4899;
+  --primary-rgb: 236, 72, 153;
+  --primary-hover: #db2777;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #831843 0%, #0f172a 80%);
+  --bg-color: #0f172a;
 }
 </style></head>
 <body class="dark-theme">
@@ -344,7 +340,7 @@
 <svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
-<h1>Pathologia<span>Study</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+<h1>Pediatric<span>Study</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
 </div>
 <div class="header-controls">
 <a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
@@ -381,8 +377,9 @@
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
+<!-- Vertical Chapters List Overlay -->
 <div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
-<!-- Dynamic Chapters -->
+<!-- Chapters populated dynamically in study.js -->
 </div>
 </div>
 <!-- Topic Selector Dropdown and Overlay -->
@@ -394,8 +391,9 @@
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
+<!-- Vertical List Overlay -->
 <div class="questions-vertical-list-overlay hidden" id="quick-questions-overlay">
-<!-- Dynamic Questions -->
+<!-- Questions populated dynamically in study.js -->
 </div>
 </div>
 <!-- Topic Title Header -->
@@ -407,16 +405,20 @@
 </div>
 <!-- Active Card Container -->
 <div class="recall-card-container">
+<!-- Reveal Action Button Container -->
 <div class="reveal-action-container" id="quick-reveal-btn-container">
-<button class="btn btn-primary" id="quick-reveal-btn" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 12px; font-weight: 700">
+<button class="btn btn-primary" id="quick-reveal-btn" style="padding: 16px 36px; font-size: 1.1rem; border-radius: 12px; font-weight: 700; border: none">
 <span>👀 Εμφάνιση Απάντησης</span>
 </button>
 </div>
+<!-- Revealed Answer Block (Hidden initially) -->
 <div class="revealed-block collapsed" id="quick-revealed-block">
+<!-- Correct Answer Box -->
 <div class="correct-answer-box">
 <h4 style="opacity: 0.9">Σύντομη Απάντηση:</h4>
-<p id="quick-correct-answer-text">Φόρτωση σύντομης απάντησης...</p>
+<p id="quick-correct-answer-text" style="font-weight: 500">Φόρτωση σύντομης απάντησης...</p>
 </div>
+<!-- Mnemonic Tip Box -->
 <div class="mnemonic-box" id="quick-mnemonic-box">
 <div class="mnemonic-header">
 <svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -424,8 +426,9 @@
 </svg>
 <h5>Μνημονικό Tip / Σημείο-Κλειδί</h5>
 </div>
-<p id="quick-mnemonic-text">Φόρτωση tip...</p>
+<div id="quick-mnemonic-text">Φόρτωση tip...</div>
 </div>
+<!-- Full Explanation Block -->
 <div class="explanation-wrapper">
 <div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px">
 <span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
@@ -456,6 +459,8 @@
 </section>
 <!-- 3. Table Analysis View (Hidden by default) -->
 <section class="view-panel hidden" id="table-analysis-view">
+<div class="recall-header">
+<button class="back-to-menu-btn">
 <div class="recall-header">
 <button class="back-to-menu-btn">
 <svg fill="none" height="18" style="vertical-align: middle; margin-right: 4px" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -512,7 +517,7 @@
 </div>
 <!-- Detailed Analysis Block -->
 <div class="explanation-wrapper" style="border-radius: var(--border-radius); padding: 24px">
-<h4 style="font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(45, 212, 191, 0.15); padding-bottom: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px">
+<h4 style="font-size: 1.25rem; font-weight: 700; border-bottom: 1px solid rgba(15, 118, 110, 0.15); padding-bottom: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px">
 <svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
@@ -532,9 +537,26 @@
             </div>
 </footer>
 </div>
+<!-- Chapter Selection Modal Overlay -->
+<div class="modal-overlay hidden" id="chapter-modal">
+<div class="modal-card">
+<div class="modal-header">
+<h3>Επιλογή Κεφαλαίου</h3>
+<button aria-label="Κλείσιμο" class="close-btn" id="close-chapter-modal">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="20">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="modal-chapters-grid" id="modal-chapters-grid">
+<!-- Dynamic Grid of Chapters -->
+</div>
+</div>
+</div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="data/flashcard_questions.js"></script>
-<script charset="UTF-8" src="data/table_analyses.js"></script>
-<script charset="UTF-8" src="study.js"></script>
+<script src="data/flashcard_questions.js"></script>
+<script src="data/table_analyses.js"></script>
+<script src="study.js"></script>
 </body>
 </html>

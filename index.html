@@ -4,26 +4,26 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pathologia Portal - pathologia TseLkos</title>
+<title>Pediatric Portal - pediatriki TseLkos</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css" rel="stylesheet"/>
+<link href="style.css?v=2.2" rel="stylesheet"/>
 <style id="dynamic-theme">
 :root {
-  --primary-color: #94a3b8;
-  --primary-rgb: 148, 163, 184;
-  --primary-hover: #64748b;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b 0%, #111827 80%);
-  --bg-color: #111827;
+  --primary-color: #cbd5e1;
+  --primary-rgb: 203, 213, 225;
+  --primary-hover: #94a3b8;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 80%);
+  --bg-color: #0f172a;
 }
 </style>
 
 </head>
-<body class="dark-theme">
-<div class="app-container" style="max-width: 1100px; transition: max-width 0.3s ease">
+<body class="light-theme">
+<div class="app-container">
 <!-- Header Section -->
 <header class="app-header">
 <div class="header-main">
@@ -31,9 +31,9 @@
 <svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 <path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width.5="2.5"></path>
+<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
-<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+<h1>Pediatric<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
 </div>
 <div class="header-controls">
 <button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
@@ -73,8 +73,8 @@
 </div>
 </div>
 <div class="profile-info">
-<h2>Pathologia TseLkos</h2>
-<p class="profile-sub">Προσομοιωτής Παθολογίας &amp; Μελέτη</p>
+<h2>Pediatriki TseLkos</h2>
+<p class="profile-sub">Παιδιατρικός Προσομοιωτής &amp; Μελέτη</p>
 <a class="profile-email-link" href="mailto:stergiostselkos@gmail.com">
 <svg fill="none" height="16" style="vertical-align: middle; margin-right: 6px" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -87,9 +87,9 @@
 </div>
 </section>
 <!-- Navigation Grid -->
-<section class="portal-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 1100px; margin: 0 auto; gap: 24px">
+<section class="portal-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 900px; margin: 0 auto; gap: 20px">
 <!-- Quiz Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #0ea5e9; --primary-hover: #0284c7; --primary-rgb: 14, 165, 233;">
+<div class="portal-card" style="--primary-color: #fbbf24; --primary-rgb: 251, 191, 36; --primary-color: #fbbf24; --primary-hover: #f59e0b; --primary-rgb: 251, 191, 36;">
 <div class="portal-card-header">
 <div class="portal-card-icon quiz-icon">
 <svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
@@ -97,26 +97,26 @@
 <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
-<h3>Θέματα Ερωτήσεων Πολλαπλής Επιλογής</h3>
+<h3>Ερωτήσεις Πολλαπλής Επιλογής</h3>
 </div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Δοκιμάστε τις γνώσεις σας σε ερωτήσεις πολλαπλής επιλογής Παθολογίας με try-until-correct λογική και αναλυτικές απαντήσεις.</p>
+<p class="portal-card-desc" style="padding: 12px; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; font-weight: 500">Δοκιμάστε τις γνώσεις σας σε ερωτήσεις πολλαπλής επιλογής Παιδιατρικής με try-until-correct λογική και αναλυτικές απαντήσεις.</p>
 <a class="portal-card-btn quiz-btn" href="quiz.html" style="font-weight: 700; border: none">Έναρξη Quiz</a>
 </div>
 <!-- Study Portal Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #10b981; --primary-hover: #059669; --primary-rgb: 16, 185, 129;">
+<div class="portal-card" style="--primary-color: #ec4899; --primary-rgb: 236, 72, 153; --primary-color: #ec4899; --primary-hover: #db2777; --primary-rgb: 236, 72, 153;">
 <div class="portal-card-header">
 <div class="portal-card-icon study-icon">
 <svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
-<h3>Ερωτήσεις Ανάπτυξης - Θέματα</h3>
+<h3>Ερωτήσεις Ανάπτυξης</h3>
 </div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μελετήστε τη θεωρία με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
+<p class="portal-card-desc" style="padding: 12px; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; font-weight: 500">Μελετήστε τη θεωρία με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
 <a class="portal-card-btn study-btn" href="study.html#quick-recall" style="font-weight: 700; border: none">Έναρξη Μελέτης</a>
 </div>
 <!-- Table Analysis Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #6366f1; --primary-hover: #4f46e5; --primary-rgb: 99, 102, 241;">
+<div class="portal-card" style="--primary-color: #34d399; --primary-rgb: 52, 211, 153; --primary-color: #34d399; --primary-hover: #10b981; --primary-rgb: 52, 211, 153;">
 <div class="portal-card-header">
 <div class="portal-card-icon tables-icon">
 <svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
@@ -125,34 +125,8 @@
 </div>
 <h3>Ανάλυση Πινάκων</h3>
 </div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη πινάκων με επεξήγηση κάθε πεδίου (μηχανισμοί, συσχετίσεις, SOS) κατά το πέρασμα του κέρσορα.</p>
+<p class="portal-card-desc" style="padding: 12px; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; font-weight: 500">Διαδραστική μελέτη πινάκων με επεξήγηση κάθε πεδίου (μηχανισμοί, συσχετίσεις, SOS) κατά το πέρασμα του κέρσορα.</p>
 <a class="portal-card-btn tables-btn" href="study.html#table-analysis" style="font-weight: 700; border: none">Έναρξη Πινάκων</a>
-</div>
-<!-- New Book Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #f59e0b; --primary-hover: #d97706; --primary-rgb: 245, 158, 11;">
-<div class="portal-card-header">
-<div class="portal-card-icon new-book-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Ερωτήσεις Ανάπτυξης Του Νεου Βιβλίου Της Παθολογίας</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μελετήστε τη θεωρία από το νέο βιβλίο Παθολογίας με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
-<a class="portal-card-btn new-book-btn" href="study_new_book.html#quick-recall" style="font-weight: 700; border: none">Έναρξη Νέου Βιβλίου</a>
-</div>
-<!-- Clinical Scenarios Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #e11d48; --primary-hover: #be123c; --primary-rgb: 225, 29, 72;">
-<div class="portal-card-header">
-<div class="portal-card-icon clinical-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Κλινικά Σενάρια Παθολογίας</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη κλινικών περιστατικών Παθολογίας (η δομή και ο τρόπος λειτουργίας θα καθοριστούν σε επόμενο χρόνο).</p>
-<button class="portal-card-btn clinical-btn" onclick="showScenariosModal()" style="font-weight: 700; border: none; cursor: pointer; width: 100%; text-align: center; border-radius: 8px; padding: 12px">Έναρξη Σεναρίων</button>
 </div>
 </section>
 </main>
@@ -164,30 +138,8 @@
             </div>
 </footer>
 </div>
-<!-- Modal Backdrop -->
-<div id="scenarios-modal" style="display: none; position: fixed; inset: 0; backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; transition: all 0.3s ease">
-<div style="border-radius: 20px; padding: 32px; max-width: 500px; width: 100%; text-align: center; position: relative">
-<div style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-</div>
-<h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px">Κλινικά Σενάρια Παθολογίας</h3>
-<p style="line-height: 1.6; margin-bottom: 24px; font-size: 1rem">Η ενότητα αυτή έχει προετοιμαστεί και η δομή της μαζί με τα κλινικά σενάρια θα υλοποιηθούν σε επόμενο χρόνο!</p>
-<button class="portal-card-btn clinical-btn" onclick="closeScenariosModal()" style="font-weight: 700; border: none; cursor: pointer; padding: 12px 24px; border-radius: 12px">Κλείσιμο</button>
-</div>
-</div>
 <!-- Theme switch logic -->
 <script>
-        function showScenariosModal() {
-            document.getElementById('scenarios-modal').style.display = 'flex';
-        }
-        function closeScenariosModal() {
-            document.getElementById('scenarios-modal').style.display = 'none';
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             if (savedTheme === 'light') {

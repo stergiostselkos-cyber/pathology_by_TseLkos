@@ -1,17 +1,35 @@
 // Study Portal State
+let socraticQuestions = [];
 let flashcardQuestions = [];
 let summaryTables = [];
 let tableAnalyses = [];
+let currentRecallIndex = 0;
+let currentStepIndex = 0;
+let isGameCompleted = false;
 let currentQuickIndex = 0;
+let activeSocraticChapter = "Όλα";
 let activeQuickChapter = "Όλα";
 let activeTableChapter = "Όλα";
 let activeTableId = null;
 
 // DOM Elements
 const studyDashboard = document.getElementById('study-dashboard');
+const recallView = document.getElementById('recall-view');
 const tablesView = document.getElementById('tables-view') || document.createElement('div');
 const quickRecallView = document.getElementById('quick-recall-view');
 const tableAnalysisView = document.getElementById('table-analysis-view');
+
+// Active Recall & Socratic Game Elements
+const recallProgress = document.getElementById('recall-progress');
+const recallCategory = document.getElementById('recall-category');
+const recallQuestion = document.getElementById('recall-question');
+const revealedBlock = document.getElementById('revealed-block');
+const correctAnswerText = document.getElementById('correct-answer-text');
+const mnemonicText = document.getElementById('mnemonic-text');
+const recallExplanationContent = document.getElementById('recall-explanation-content');
+const recallPrevBtn = document.getElementById('recall-prev-btn');
+const recallNextBtn = document.getElementById('recall-next-btn');
+const recallRandomBtn = document.getElementById('recall-random-btn');
 
 // Quick Recall Elements
 const quickRecallProgress = document.getElementById('quick-recall-progress');
@@ -27,9 +45,22 @@ const quickRecallPrevBtn = document.getElementById('quick-recall-prev-btn');
 const quickRecallNextBtn = document.getElementById('quick-recall-next-btn');
 const quickRecallRandomBtn = document.getElementById('quick-recall-random-btn');
 const quickPillsContainer = document.getElementById('quick-questions-overlay');
+const socraticPillsContainer = document.getElementById('socratic-pills-container');
 
 // Chapter Filter Containers
+const socraticChaptersContainer = document.getElementById('socratic-chapters-container');
 const quickChaptersContainer = document.getElementById('quick-chapters-overlay');
+
+// Socratic Panels
+const socraticPanel = document.getElementById('socratic-panel');
+const socraticStepText = document.getElementById('socratic-step-text');
+const socraticProgressFill = document.getElementById('socratic-progress-fill');
+const socraticSubQuestion = document.getElementById('socratic-sub-question');
+const socraticOptionsContainer = document.getElementById('socratic-options-container');
+const socraticFeedback = document.getElementById('socratic-feedback');
+const socraticSubmitBtn = document.getElementById('socratic-submit-btn');
+const socraticNextStepBtn = document.getElementById('socratic-next-step-btn');
+const socraticRestartBtn = document.getElementById('socratic-restart-btn');
 
 // Tables Elements
 const printTableBtn = document.getElementById('print-table-btn');
@@ -83,6 +114,9 @@ function toggleTheme() {
  * Load split databases from data/ folder
  */
 function loadQuestions() {
+    if (typeof socraticQuestionsData !== 'undefined') {
+        socraticQuestions = Array.isArray(socraticQuestionsData) ? socraticQuestionsData : [socraticQuestionsData];
+    }
     if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
         flashcardQuestions = flashcardQuestionsData;
     } else if (typeof newBookQuestionsData !== 'undefined' && Array.isArray(newBookQuestionsData) && newBookQuestionsData.length > 0) {
@@ -95,6 +129,7 @@ function loadQuestions() {
         tableAnalyses = Array.isArray(tableAnalysesData) ? tableAnalysesData : [tableAnalysesData];
     }
 
+    populateTopicSelector();
     populateQuickTopicSelector();
     renderSummaryTables();
 
@@ -109,52 +144,71 @@ function loadQuestions() {
 function getChapterFromCategory(category) {
     if (!category) return "Γενικά";
     if (category.includes("/")) {
-        return category.split("/")[0].trim();
+        return category.split("/")[1].trim();
     }
     return category.trim();
 }
 
-/**
- * Helper to get the chapter of a question object
- */
 function getQuestionChapter(q) {
-    let rawCh = q.chapter || "";
-    if (!rawCh) {
-        rawCh = getChapterFromCategory(q.category);
+    if (q.chapter) {
+        return q.chapter;
+    }
+    const cat = (q.category || "").toLowerCase();
+    const ch = (q.chapter || "").toLowerCase();
+    const text = ((q.question || "") + " " + (q.explanation || "")).toLowerCase();
+    const searchStr = cat + " " + ch + " " + text;
+
+    if (searchStr.includes("1ο") || searchStr.includes("ιστορικό") || searchStr.includes("ιστορικο") || searchStr.includes("κλινική εξέταση") || searchStr.includes("κλινικη εξεταση") || searchStr.includes("λήψη ιστορικού") || searchStr.includes("ληψη ιστορικου")) {
+        return "1ο, ΙΣΤΟΡΙΚΟ - ΚΛΙΝΙΚΗ ΕΞΕΤΑΣΗ";
+    }
+    if (searchStr.includes("2ο") || searchStr.includes("ανάπτυξη") || searchStr.includes("αναπτυξ") || searchStr.includes("αύξηση") || searchStr.includes("αυξηση") || searchStr.includes("διατροφή") || searchStr.includes("διατροφη") || searchStr.includes("θρέψη") || searchStr.includes("θρεψη") || searchStr.includes("θηλασμός") || searchStr.includes("θηλασμος") || searchStr.includes("βρεφική") || searchStr.includes("βρεφικη")) {
+        return "2ο, ΑΝΑΠΤΥΞΗ ΚΑΙ ΔΙΑΤΡΟΦΗ";
+    }
+    if (searchStr.includes("4ο") || searchStr.includes("γενετική") || searchStr.includes("γενετικη") || searchStr.includes("σύνδρομο") || searchStr.includes("συνδρομο") || searchStr.includes("down") || searchStr.includes("turner") || searchStr.includes("klinefelter") || searchStr.includes("μεταβολικά") || searchStr.includes("μεταβολικα") || searchStr.includes("mcad") || searchStr.includes("g6pd") || searchStr.includes("gaucher") || searchStr.includes("pompe") || searchStr.includes("zellweger") || searchStr.includes("niemann") || searchStr.includes("menkes") || searchStr.includes("tay-sachs") || searchStr.includes("τυροσιναιμία") || searchStr.includes("tyrosinemia") || searchStr.includes("hurler") || searchStr.includes("fabry") || searchStr.includes("krabbe")) {
+        return "4ο, ΓΕΝΕΤΙΚΗ ΚΑΙ ΜΕΤΑΒΟΛΙΚΑ ΝΟΣΗΜΑΤΑ";
+    }
+    if (searchStr.includes("5ο") || searchStr.includes("ανοσ") || searchStr.includes("ρευματ") || searchStr.includes("αρθρίτ") || searchStr.includes("αρθριτ") || searchStr.includes("λύκος") || searchStr.includes("λυκος") || searchStr.includes("σελ") || searchStr.includes("kawasaki") || searchStr.includes("αγγειίτ") || searchStr.includes("αγγειιτ") || searchStr.includes("henoch") || searchStr.includes("sjorgren") || searchStr.includes("crohn") || searchStr.includes("κρον") || searchStr.includes("νια")) {
+        return "5ο, ΑΝΟΣΟΛΟΓΙΑ ΚΑΙ ΡΕΥΜΑΤΟΛΟΓΙΑ";
+    }
+    if (searchStr.includes("6ο") || searchStr.includes("νεογν") || searchStr.includes("νεογνολ") || searchStr.includes("αναζωογόνηση νεογνού") || searchStr.includes("αναζωογονηση νεογνου")) {
+        return "6ο, ΝΕΟΓΝΟΛΟΓΙΑ";
+    }
+    if (searchStr.includes("8ο") || searchStr.includes("επείγοντα") || searchStr.includes("επειγοντα") || searchStr.includes("επείγουσα") || searchStr.includes("επειγουσα") || searchStr.includes("shock") || searchStr.includes("καταπληξία") || searchStr.includes("καταπληξια") || searchStr.includes("υγρ") || searchStr.includes("ηλεκτρολ")) {
+        return "8ο, ΠΑΙΔΙΑΤΡΙΚΑ ΕΠΕΙΓΟΝΤΑ";
     }
     
-    // Normalize and strip outer brackets
-    let ch = rawCh.replace(/^\[/, "").replace(/\]$/, "").trim();
-    
-    // Normalize raw chapter text to standard rich names (allowing optional prefix like ΚΕΦΑΛΑΙΟ)
-    const match = ch.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    if (match) {
-        const num = parseInt(match[1], 10);
-        if (num === 1) return "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ";
-        if (num === 2) return "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ";
-        if (num === 3) return "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ";
+    // Default fallbacks
+    if (searchStr.includes("λοιμ") || searchStr.includes("εμβολ")) {
+        return "6ο, ΝΕΟΓΝΟΛΟΓΙΑ";
     }
-    return ch;
+    if (searchStr.includes("καρδιο") || searchStr.includes("κυκλοφορ")) {
+        return "8ο, ΠΑΙΔΙΑΤΡΙΚΑ ΕΠΕΙΓΟΝΤΑ";
+    }
+    if (searchStr.includes("γαστρ") || searchStr.includes("ηπατ") || searchStr.includes("εντερ") || searchStr.includes("πυλωρ")) {
+        return "2ο, ΑΝΑΠΤΥΞΗ ΚΑΙ ΔΙΑΤΡΟΦΗ";
+    }
+    if (searchStr.includes("νευρο")) {
+        return "2ο, ΑΝΑΠΤΥΞΗ ΚΑΙ ΔΙΑΤΡΟΦΗ";
+    }
+    if (searchStr.includes("ορθοπ") || searchStr.includes("μυοσκελ")) {
+        return "1ο, ΙΣΤΟΡΙΚΟ - ΚΛΙΝΙΚΗ ΕΞΕΤΑΣΗ";
+    }
+
+    return "1ο, ΙΣΤΟΡΙΚΟ - ΚΛΙΝΙΚΗ ΕΞΕΤΑΣΗ";
 }
 
-/**
- * Helper to check if a question's chapter matches the selected chapter.
- */
+
 function isChapterMatch(questionCh, activeCh) {
     if (activeCh === "Όλα") return true;
-    if (questionCh === activeCh) return true;
-    
-    const m1 = questionCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    const m2 = activeCh.match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
-    if (m1 && m2 && m1[1] === m2[1]) {
-        return true;
-    }
-    return false;
+    return questionCh === activeCh;
 }
 
-/**
- * Dynamically builds the ordered list of chapters.
- */
+function getChapterNumber(chapterStr) {
+    if (!chapterStr) return 999;
+    const match = chapterStr.match(/\d+/);
+    return match ? parseInt(match[0], 10) : 999;
+}
+
 function getChapterList(questions) {
     const presentChapters = new Set();
     questions.forEach(q => {
@@ -164,84 +218,115 @@ function getChapterList(questions) {
         }
     });
 
-    const ordered = [
-        "1ο, ΓΕΝΙΚΗ ΠΑΘΟΛΟΓΙΑ",
-        "2ο, ΣΥΣΤΗΜΑΤΙΚΗ ΠΑΘΟΛΟΓΙΑ",
-        "3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ"
-    ];
-    
-    const list = [];
-    ordered.forEach(ch => {
-        const numMatch = ch.match(/^(\d+)/);
-        if (numMatch) {
-            const num = numMatch[1];
-            presentChapters.forEach(pCh => {
-                const pNumMatch = pCh.match(/^(\d+)/);
-                if (pNumMatch && pNumMatch[1] === num) {
-                    list.push(pCh);
-                }
-            });
+    const uniqueList = Array.from(presentChapters).sort((a, b) => {
+        const numA = getChapterNumber(a);
+        const numB = getChapterNumber(b);
+        if (numA !== numB) {
+            return numA - numB;
         }
+        return a.localeCompare(b, 'el');
     });
-
-    presentChapters.forEach(ch => {
-        const hasPref = ordered.some(o => {
-            const m1 = ch.match(/^(\d+)/);
-            const m2 = o.match(/^(\d+)/);
-            return m1 && m2 && m1[1] === m2[1];
-        });
-        if (!hasPref) {
-            list.push(ch);
-        }
-    });
-
-    const uniqueList = [];
-    list.forEach(ch => {
-        if (!uniqueList.includes(ch)) {
-            uniqueList.push(ch);
-        }
-    });
-
     return ["Όλα", ...uniqueList];
 }
 
 /**
  * Toggles a beautiful empty state panel when a chapter has no questions.
  */
-function toggleRecallEmptyState(hasQuestions) {
-    const titleHeader = document.querySelector('#quick-recall-view .topic-title-header');
-    const cardContainer = document.querySelector('#quick-recall-view .recall-card-container');
-    const navFooter = document.querySelector('#quick-recall-view .quiz-navigation');
-    const pillsContainer = document.getElementById('quick-pills-container');
-    
-    let emptyState = document.getElementById('quick-empty-state');
-    if (!emptyState) {
-        emptyState = document.createElement('div');
-        emptyState.id = 'quick-empty-state';
-        emptyState.className = 'empty-state-card';
-        emptyState.innerHTML = `
-            <div class="empty-state-icon" style="color: #d946ef; background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
-            <h3 style="color: #d946ef;">Δεν υπάρχουν ερωτήσεις</h3>
-            <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
-        `;
-        if (navFooter) {
-            navFooter.parentNode.insertBefore(emptyState, navFooter);
+function toggleRecallEmptyState(hasQuestions, viewType) {
+    if (viewType === 'socratic') {
+        const titleHeader = document.querySelector('#recall-view .topic-title-header');
+        const cardContainer = document.querySelector('#recall-view .recall-card-container');
+        const navFooter = document.querySelector('#recall-view .quiz-navigation');
+        const pillsContainer = document.getElementById('socratic-pills-container');
+        
+        let emptyState = document.getElementById('socratic-empty-state');
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.id = 'socratic-empty-state';
+            emptyState.className = 'empty-state-card';
+            emptyState.innerHTML = `
+                <div class="empty-state-icon">📭</div>
+                <h3>Δεν υπάρχουν ερωτήσεις</h3>
+                <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο στο αρχείο <code>socratic_questions.docx</code>.</p>
+            `;
+            if (navFooter) {
+                navFooter.parentNode.insertBefore(emptyState, navFooter);
+            }
+        }
+
+        if (hasQuestions) {
+            if (titleHeader) titleHeader.classList.remove('hidden');
+            if (cardContainer) cardContainer.classList.remove('hidden');
+            if (navFooter) navFooter.classList.remove('hidden');
+            if (pillsContainer) pillsContainer.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+        } else {
+            if (titleHeader) titleHeader.classList.add('hidden');
+            if (cardContainer) cardContainer.classList.add('hidden');
+            if (navFooter) navFooter.classList.add('hidden');
+            if (pillsContainer) pillsContainer.classList.add('hidden');
+            if (emptyState) emptyState.classList.remove('hidden');
+        }
+    } else if (viewType === 'quick') {
+        const titleHeader = document.querySelector('#quick-recall-view .topic-title-header');
+        const cardContainer = document.querySelector('#quick-recall-view .recall-card-container');
+        const navFooter = document.querySelector('#quick-recall-view .quiz-navigation');
+        const pillsContainer = document.getElementById('quick-pills-container');
+        
+        let emptyState = document.getElementById('quick-empty-state');
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.id = 'quick-empty-state';
+            emptyState.className = 'empty-state-card';
+            emptyState.innerHTML = `
+                <div class="empty-state-icon" style="color: #ff7300; background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.2);">📭</div>
+                <h3 style="color: #ff7300;">Δεν υπάρχουν ερωτήσεις</h3>
+                <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο στο αρχείο <code>flashcard_questions.docx</code>.</p>
+            `;
+            if (navFooter) {
+                navFooter.parentNode.insertBefore(emptyState, navFooter);
+            }
+        }
+
+        if (hasQuestions) {
+            if (titleHeader) titleHeader.classList.remove('hidden');
+            if (cardContainer) cardContainer.classList.remove('hidden');
+            if (navFooter) navFooter.classList.remove('hidden');
+            if (pillsContainer) pillsContainer.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+        } else {
+            if (titleHeader) titleHeader.classList.add('hidden');
+            if (cardContainer) cardContainer.classList.add('hidden');
+            if (navFooter) navFooter.classList.add('hidden');
+            if (pillsContainer) pillsContainer.classList.add('hidden');
+            if (emptyState) emptyState.classList.remove('hidden');
         }
     }
+}
 
-    if (hasQuestions) {
-        if (titleHeader) titleHeader.classList.remove('hidden');
-        if (cardContainer) cardContainer.classList.remove('hidden');
-        if (navFooter) navFooter.classList.remove('hidden');
-        if (pillsContainer) pillsContainer.classList.remove('hidden');
-        if (emptyState) emptyState.classList.add('hidden');
-    } else {
-        if (titleHeader) titleHeader.classList.add('hidden');
-        if (cardContainer) cardContainer.classList.add('hidden');
-        if (navFooter) navFooter.classList.add('hidden');
-        if (pillsContainer) pillsContainer.classList.add('hidden');
-        if (emptyState) emptyState.classList.remove('hidden');
+/**
+ * Helper to get short topic name dynamically
+ */
+function getShortTopicName(q, idx) {
+    if (q.question) {
+        const title = q.question.toLowerCase();
+        if (title.includes("apgar")) return "APGAR";
+        if (title.includes("εξανθήματα") || title.includes("εξάνθημα")) return "Εξανθήματα";
+        if (title.includes("άσθμα") || title.includes("ασθματικό")) return "Άσθμα";
+        if (title.includes("ανεμευλογιά") || title.includes("varicella")) return "Ανεμευλογιά";
+        if (title.includes("abcde")) return "ABCDE";
+        if (title.includes("αναζωογόνηση") || title.includes("καρπα")) return "Αναζωογόνηση (ΚΑΡΠΑ)";
+        if (title.includes("καθυστέρηση ανάπτυξης")) return "Καθυστέρηση Ανάπτυξης";
+        if (title.includes("πολυκυστικοί νεφροί") || title.includes("πολυκυστική")) return "Πολυκυστικοί Νεφροί";
+        if (title.includes("αύξηση") && title.includes("ανάπτυξη")) return "Αύξηση vs Ανάπτυξη";
+        if (title.includes("πυλωρική")) return "Πυλωρική Στένωση";
     }
+    
+    // Fallback: truncate title
+    if (q.question && q.question.length > 22) {
+        return q.question.substring(0, 20) + "...";
+    }
+    return q.question || `Θέμα ${idx + 1}`;
 }
 
 /**
@@ -254,6 +339,7 @@ function renderChapterFilters(container, questions, activeChapter, onSelect) {
     const chapterList = getChapterList(questions);
 
     if (container.id === 'quick-chapters-overlay') {
+        // Populate vertical chapters list overlay
         chapterList.forEach(chapter => {
             const item = document.createElement('button');
             const isActive = isChapterMatch(chapter, activeChapter);
@@ -266,12 +352,82 @@ function renderChapterFilters(container, questions, activeChapter, onSelect) {
             container.appendChild(item);
         });
 
+        // Update value shown on the large button
         const valueDisplay = document.getElementById('quick-chapters-dropdown-value');
         if (valueDisplay) {
             const matchedChapter = chapterList.find(ch => isChapterMatch(ch, activeChapter)) || activeChapter;
             valueDisplay.textContent = matchedChapter;
         }
+        return;
     }
+
+    // Create Button Trigger
+    const btn = document.createElement('button');
+    btn.className = 'custom-dropdown-btn';
+    
+    // Find dynamic matched chapter to display in button label
+    const matchedChapter = chapterList.find(ch => isChapterMatch(ch, activeChapter)) || activeChapter;
+    btn.innerHTML = `
+        <span class="selected-value">${matchedChapter}</span>
+        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    `;
+
+    const isQuickRecall = (container.id === 'quick-chapters-container');
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openChapterModal(chapterList, activeChapter, onSelect, isQuickRecall);
+    });
+
+    container.appendChild(btn);
+}
+
+function openChapterModal(chapterList, activeChapter, onSelect, isQuickRecall) {
+    const modal = document.getElementById('chapter-modal');
+    const grid = document.getElementById('modal-chapters-grid');
+    if (!modal || !grid) return;
+
+    if (isQuickRecall) {
+        modal.className = 'modal-overlay quick-theme';
+    } else {
+        modal.className = 'modal-overlay socratic-theme';
+    }
+
+    grid.innerHTML = '';
+
+    chapterList.forEach(chapter => {
+        const item = document.createElement('button');
+        const isActive = isChapterMatch(chapter, activeChapter);
+        item.className = `modal-chapter-item ${isActive ? 'active' : ''}`;
+        item.textContent = chapter;
+
+        item.addEventListener('click', () => {
+            onSelect(chapter);
+            closeChapterModal();
+        });
+        grid.appendChild(item);
+    });
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeChapterModal() {
+    const modal = document.getElementById('chapter-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+}
+
+
+function handleSocraticChapterSelect(selectedChapter) {
+    activeSocraticChapter = selectedChapter;
+    renderChapterFilters(socraticChaptersContainer, socraticQuestions, activeSocraticChapter, handleSocraticChapterSelect);
+    populateTopicSelector();
+    loadFirstMatchingSocraticQuestion();
 }
 
 function handleQuickChapterSelect(selectedChapter) {
@@ -279,6 +435,23 @@ function handleQuickChapterSelect(selectedChapter) {
     renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
+}
+
+function loadFirstMatchingSocraticQuestion() {
+    let targetIndex = -1;
+    for (let i = 0; i < socraticQuestions.length; i++) {
+        const ch = getQuestionChapter(socraticQuestions[i]);
+        if (isChapterMatch(ch, activeSocraticChapter)) {
+            targetIndex = i;
+            break;
+        }
+    }
+    if (targetIndex !== -1) {
+        toggleRecallEmptyState(true, 'socratic');
+        loadRecallQuestion(targetIndex);
+    } else {
+        toggleRecallEmptyState(false, 'socratic');
+    }
 }
 
 function loadFirstMatchingQuickQuestion() {
@@ -291,15 +464,37 @@ function loadFirstMatchingQuickQuestion() {
         }
     }
     if (targetIndex !== -1) {
-        toggleRecallEmptyState(true);
+        toggleRecallEmptyState(true, 'quick');
         loadQuickRecallQuestion(targetIndex);
     } else {
-        toggleRecallEmptyState(false);
+        toggleRecallEmptyState(false, 'quick');
     }
 }
 
+/**
+ * Populate topic selector pills dynamically (Socratic mode)
+ */
+function populateTopicSelector() {
+    if (!socraticPillsContainer) return;
+    
+    socraticPillsContainer.innerHTML = '';
+    let relativeIndex = 1;
+    socraticQuestions.forEach((q, idx) => {
+        const ch = getQuestionChapter(q);
+        if (!isChapterMatch(ch, activeSocraticChapter)) {
+            return;
+        }
 
-
+        const pill = document.createElement('button');
+        pill.className = 'topic-pill number-pill';
+        pill.setAttribute('data-index', idx);
+        pill.textContent = `Ερ. ${relativeIndex++}`;
+        pill.addEventListener('click', () => {
+            loadRecallQuestion(idx);
+        });
+        socraticPillsContainer.appendChild(pill);
+    });
+}
 
 /**
  * Populate topic selector pills dynamically (Flashcard mode)
@@ -326,7 +521,7 @@ function populateQuickTopicSelector() {
         overlayItem.setAttribute('data-index', idx);
         overlayItem.style.width = '100%';
         overlayItem.innerHTML = `
-            <strong style="color: #d946ef; flex-shrink: 0; margin-right: 4px;">Ερ. ${currentRelative}:</strong>
+            <strong style="color: #ff7300; flex-shrink: 0; margin-right: 4px;">Ερ. ${currentRelative}:</strong>
             <span style="flex-grow: 1; text-align: left;">${cleanQuestion}</span>
         `;
         overlayItem.addEventListener('click', () => {
@@ -489,7 +684,10 @@ function setupEventListeners() {
         });
     });
 
-
+    // Active Recall / Navigation controls (Socratic)
+    if (recallPrevBtn) recallPrevBtn.addEventListener('click', () => navigateRecall(-1));
+    if (recallNextBtn) recallNextBtn.addEventListener('click', () => navigateRecall(1));
+    if (recallRandomBtn) recallRandomBtn.addEventListener('click', loadRandomQuestion);
 
     // Quick Recall Controls (Flashcards)
     if (quickRevealBtn) quickRevealBtn.addEventListener('click', revealQuickAnswer);
@@ -564,10 +762,31 @@ function setupEventListeners() {
         }
     });
 
+    // Socratic Game controls
+    if (socraticSubmitBtn) socraticSubmitBtn.addEventListener('click', evaluateSocraticStep);
+    if (socraticNextStepBtn) socraticNextStepBtn.addEventListener('click', nextSocraticStep);
+    if (socraticRestartBtn) socraticRestartBtn.addEventListener('click', restartSocraticGame);
+
     // Print table button
     if (printTableBtn) {
         printTableBtn.addEventListener('click', () => {
             window.print();
+        });
+    }
+
+    // Chapter selection modal close button
+    const closeModalBtn = document.getElementById('close-chapter-modal');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeChapterModal);
+    }
+
+    // Chapter selection modal click outside content to close
+    const modalOverlay = document.getElementById('chapter-modal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeChapterModal();
+            }
         });
     }
 }
@@ -577,6 +796,7 @@ function setupEventListeners() {
  */
 function showView(view) {
     if (studyDashboard) studyDashboard.classList.add('hidden');
+    if (recallView) recallView.classList.add('hidden');
     if (tablesView) tablesView.classList.add('hidden');
     if (quickRecallView) quickRecallView.classList.add('hidden');
     if (tableAnalysisView) tableAnalysisView.classList.add('hidden');
@@ -590,7 +810,14 @@ function showView(view) {
     const tablesDropdownOverlay = document.getElementById('tables-dropdown-overlay');
     if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
 
-    if (view === 'quick-recall') {
+    if (view === 'recall') {
+        if (recallView) {
+            recallView.classList.remove('hidden');
+            renderChapterFilters(socraticChaptersContainer, socraticQuestions, activeSocraticChapter, handleSocraticChapterSelect);
+            populateTopicSelector();
+            loadFirstMatchingSocraticQuestion();
+        }
+    } else if (view === 'quick-recall') {
         if (quickRecallView) {
             quickRecallView.classList.remove('hidden');
             renderChapterFilters(quickChaptersContainer, flashcardQuestions, activeQuickChapter, handleQuickChapterSelect);
@@ -610,6 +837,290 @@ function showView(view) {
 }
 
 /**
+ * Load Socratic question at index
+ */
+function loadRecallQuestion(index) {
+    if (socraticQuestions.length === 0) return;
+
+    updateActivePill(socraticPillsContainer, index);
+
+    currentRecallIndex = index;
+    currentStepIndex = 0;
+    isGameCompleted = false;
+
+    const question = socraticQuestions[index];
+
+    recallCategory.textContent = question.category || "Παιδιατρική";
+    recallQuestion.textContent = question.question;
+
+    // Filter index for status label
+    const matchingIndices = [];
+    socraticQuestions.forEach((q, idx) => {
+        const ch = getQuestionChapter(q);
+        if (isChapterMatch(ch, activeSocraticChapter)) {
+            matchingIndices.push(idx);
+        }
+    });
+    const currentIndexInMatch = matchingIndices.indexOf(index);
+    recallProgress.textContent = `Θέμα ${currentIndexInMatch + 1} από ${matchingIndices.length}`;
+
+    revealedBlock.classList.add('collapsed');
+    socraticPanel.classList.remove('hidden');
+
+    loadSocraticStep();
+
+    recallPrevBtn.disabled = (currentIndexInMatch === 0 || currentIndexInMatch === -1);
+    if (currentIndexInMatch === matchingIndices.length - 1) {
+        recallNextBtn.querySelector('span').textContent = "Επανεκκίνηση";
+    } else {
+        recallNextBtn.querySelector('span').textContent = "Επόμενο";
+    }
+}
+
+/**
+ * Load current active Socratic Step details
+ */
+function loadSocraticStep() {
+    const question = socraticQuestions[currentRecallIndex];
+    const step = question.steps[currentStepIndex];
+
+    socraticStepText.textContent = `Βήμα ${currentStepIndex + 1} από ${question.steps.length}`;
+    socraticProgressFill.style.width = `${((currentStepIndex + 1) / question.steps.length) * 100}%`;
+    socraticSubQuestion.textContent = step.question;
+
+    socraticOptionsContainer.innerHTML = '';
+    step.options.forEach((opt, idx) => {
+        const optionLabel = document.createElement('label');
+        optionLabel.className = 'checkbox-container';
+        optionLabel.innerHTML = `
+            <input type="checkbox" data-index="${idx}">
+            <span>${opt}</span>
+        `;
+        
+        const checkbox = optionLabel.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+            checkbox.addEventListener('change', () => {
+                socraticFeedback.classList.add('hidden');
+                socraticFeedback.innerHTML = '';
+            });
+        }
+        socraticOptionsContainer.appendChild(optionLabel);
+    });
+
+    socraticFeedback.innerHTML = '';
+    socraticFeedback.classList.add('hidden');
+    socraticSubmitBtn.classList.remove('hidden');
+    socraticNextStepBtn.classList.add('hidden');
+    socraticRestartBtn.classList.add('hidden');
+}
+
+/**
+ * Evaluate checkbox selections for current step
+ */
+function evaluateSocraticStep() {
+    const question = socraticQuestions[currentRecallIndex];
+    const step = question.steps[currentStepIndex];
+
+    const checkedInputs = socraticOptionsContainer.querySelectorAll('input[type="checkbox"]:checked');
+    const checkedIndices = Array.from(checkedInputs).map(input => parseInt(input.getAttribute('data-index'), 10));
+
+    checkedIndices.sort((a, b) => a - b);
+    const correctIndices = [...step.correctIndices].sort((a, b) => a - b);
+
+    const isCorrect = checkedIndices.length === correctIndices.length && 
+                      checkedIndices.every((val, index) => val === correctIndices[index]);
+
+    const optionContainers = socraticOptionsContainer.querySelectorAll('.checkbox-container');
+    optionContainers.forEach(container => {
+        const checkbox = container.querySelector('input[type="checkbox"]');
+        const idx = parseInt(checkbox.getAttribute('data-index'), 10);
+        const isChecked = checkbox.checked;
+        const isCorrectChoice = step.correctIndices.includes(idx);
+        
+        checkbox.disabled = true;
+        
+        if (isCorrectChoice) {
+            container.classList.add('choice-correct');
+        } else if (isChecked) {
+            container.classList.add('choice-incorrect');
+        }
+    });
+
+    socraticFeedback.classList.remove('hidden');
+
+    if (isCorrect) {
+        socraticFeedback.innerHTML = `
+            <div style="background: var(--success-bg); border: 1px solid var(--success-border); border-left: 4px solid var(--success-color); padding: 16px; border-radius: 8px; color: var(--text-primary); font-weight: 500; font-size: 0.95rem;">
+                <span style="color: var(--success-color); font-weight: 700; display: block; margin-bottom: 4px;">🟢 Σωστή Απάντηση!</span>
+                Εξαιρετικά! Απαντήσατε σωστά σε όλα τα ζητούμενα του βήματος.
+            </div>
+        `;
+        socraticSubmitBtn.classList.add('hidden');
+        socraticNextStepBtn.classList.remove('hidden');
+
+        if (currentStepIndex === question.steps.length - 1) {
+            socraticNextStepBtn.innerHTML = `
+                <span>Αποκάλυψη Θεωρίας &amp; Σύνοψης</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 6px;">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        } else {
+            socraticNextStepBtn.innerHTML = `
+                <span>Επόμενο Βήμα</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 6px;">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        }
+    } else {
+        const randomTip = step.tips[Math.floor(Math.random() * step.tips.length)];
+
+        socraticFeedback.innerHTML = `
+            <div style="background: var(--error-bg); border: 1px solid var(--error-border); border-left: 4px solid var(--error-color); padding: 16px; border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
+                <span style="color: var(--error-color); font-weight: 700; display: block; margin-bottom: 6px;">🔴 Λάθος επιλογή!</span>
+                <p style="margin: 0 0 8px 0; font-weight: 500; color: var(--text-primary);">${step.banter}</p>
+                <div style="background: rgba(0, 0, 0, 0.05); padding: 10px; border-radius: 6px; border: 1px dashed var(--error-border); color: var(--text-primary);">
+                    <strong style="color: var(--error-color);">💡 Στοιχείο (Tip):</strong> ${randomTip}
+                </div>
+            </div>
+        `;
+        socraticSubmitBtn.classList.add('hidden');
+        socraticNextStepBtn.classList.add('hidden');
+        
+        socraticRestartBtn.classList.remove('hidden');
+        if (currentStepIndex === 0) {
+            socraticRestartBtn.innerHTML = `<span>🔄 Προσπάθησε Ξανά</span>`;
+        } else {
+            socraticRestartBtn.innerHTML = `<span>🔄 Επανεκκίνηση από Βήμα 1</span>`;
+        }
+    }
+}
+
+/**
+ * Handle Next Step button action
+ */
+function nextSocraticStep() {
+    const question = socraticQuestions[currentRecallIndex];
+
+    if (currentStepIndex === question.steps.length - 1) {
+        revealFinalTheoryPresentation();
+    } else {
+        currentStepIndex++;
+        loadSocraticStep();
+    }
+}
+
+/**
+ * Restart back to step 1
+ */
+function restartSocraticGame() {
+    currentStepIndex = 0;
+    loadSocraticStep();
+}
+
+/**
+ * Render Socratic theory explanation
+ */
+function revealFinalTheoryPresentation() {
+    isGameCompleted = true;
+    const question = socraticQuestions[currentRecallIndex];
+
+    socraticPanel.classList.add('hidden');
+
+    let successBanner = `
+        <div style="background: var(--success-bg); border: 1px solid var(--success-border); border-left: 4px solid var(--success-color); padding: 18px; border-radius: 8px; margin-bottom: 24px; color: var(--text-primary); line-height: 1.5;">
+            <h4 style="margin: 0 0 6px 0; color: var(--success-color); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                🎉 Συγχαρητήρια!
+            </h4>
+            Απαντήσατε επιτυχώς σε όλα τα βήματα του Σωκρατικού διαλόγου. Παρακάτω ακολουθεί η πλήρης παρουσίαση της νόσου/κατάστασης.
+        </div>
+    `;
+
+    correctAnswerText.innerHTML = `${successBanner}${parseMarkdown(question.correctAnswer)}`;
+    mnemonicText.innerHTML = parseMarkdown(question.mnemonic) || "Μελετήστε την ανάλυση της ερώτησης για να δείτε τα βασικά σημεία.";
+
+    let explanationHtml = parseMarkdown(question.explanation);
+
+    if (question.table) {
+        let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
+        tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
+        tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
+        tableHtml += `</div>`;
+        tableHtml += `<div class="table-responsive"><table class="med-table">`;
+        tableHtml += `<thead><tr>`;
+        question.table.headers.forEach(h => {
+            tableHtml += `<th>${h}</th>`;
+        });
+        tableHtml += `</tr></thead><tbody>`;
+        question.table.rows.forEach(row => {
+            tableHtml += `<tr>`;
+            row.forEach(cell => {
+                tableHtml += `<td>${cell}</td>`;
+            });
+            tableHtml += `</tr>`;
+        });
+        tableHtml += `</tbody></table></div></div>`;
+        explanationHtml += tableHtml;
+    }
+
+    recallExplanationContent.innerHTML = explanationHtml;
+    revealedBlock.classList.remove('collapsed');
+
+    setTimeout(() => {
+        revealedBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 150);
+}
+
+/**
+ * Cycle through Socratic topics (respecting chapter filter)
+ */
+function navigateRecall(direction) {
+    const matchingIndices = [];
+    socraticQuestions.forEach((q, idx) => {
+        const ch = getQuestionChapter(q);
+        if (isChapterMatch(ch, activeSocraticChapter)) {
+            matchingIndices.push(idx);
+        }
+    });
+
+    if (matchingIndices.length === 0) return;
+
+    let currentIndexInMatch = matchingIndices.indexOf(currentRecallIndex);
+    if (currentIndexInMatch === -1) {
+        loadRecallQuestion(matchingIndices[0]);
+        return;
+    }
+
+    let nextIndexInMatch = currentIndexInMatch + direction;
+    if (nextIndexInMatch >= matchingIndices.length) {
+        nextIndexInMatch = 0;
+    }
+    if (nextIndexInMatch < 0) {
+        nextIndexInMatch = matchingIndices.length - 1;
+    }
+
+    loadRecallQuestion(matchingIndices[nextIndexInMatch]);
+}
+
+/**
+ * Load Socratic random topic (respecting chapter filter)
+ */
+function loadRandomQuestion() {
+    const matchingIndices = [];
+    socraticQuestions.forEach((q, idx) => {
+        const ch = getQuestionChapter(q);
+        if (isChapterMatch(ch, activeSocraticChapter)) {
+            matchingIndices.push(idx);
+        }
+    });
+    if (matchingIndices.length === 0) return;
+    const randomIndex = matchingIndices[Math.floor(Math.random() * matchingIndices.length)];
+    loadRecallQuestion(randomIndex);
+}
+
+/**
  * Load Quick Recall question at index (Flashcards)
  */
 function loadQuickRecallQuestion(index) {
@@ -620,7 +1131,7 @@ function loadQuickRecallQuestion(index) {
 
     const question = flashcardQuestions[index];
 
-    if (quickRecallCategory) quickRecallCategory.textContent = question.category || "Παθολογία";
+    if (quickRecallCategory) quickRecallCategory.textContent = question.category || "Παιδιατρική";
     if (quickRecallQuestion) quickRecallQuestion.innerHTML = parseMarkdown(question.question);
 
     const matchingIndices = [];
@@ -656,23 +1167,21 @@ function revealQuickAnswer() {
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.add('hidden');
 
     if (quickCorrectAnswerText) {
-        quickCorrectAnswerText.innerHTML = parseMarkdown(question.correctAnswer);
+        quickCorrectAnswerText.innerHTML = parseMarkdown(question.correctAnswer || question.answer || "");
     }
 
-    // Mnemonic Tip Box - hide if empty or missing
     const mnemonicBox = document.getElementById('quick-mnemonic-box');
     if (mnemonicBox) {
         if (question.mnemonic && question.mnemonic.trim()) {
             mnemonicBox.style.display = "block";
             if (quickMnemonicText) {
-                quickMnemonicText.textContent = question.mnemonic;
+                quickMnemonicText.innerHTML = parseMarkdown(question.mnemonic);
             }
         } else {
             mnemonicBox.style.display = "none";
         }
     }
 
-    // Explanation Wrapper - hide if empty or redundant (matches answer text)
     const explanationWrapper = document.querySelector('#quick-recall-view .explanation-wrapper');
     if (explanationWrapper) {
         let rawExp = (question.explanation || "").trim();
@@ -682,6 +1191,7 @@ function revealQuickAnswer() {
             explanationWrapper.style.display = "block";
             let html = "";
 
+            // Check if this explanation is shared across multiple questions in this topic
             const isSharedGuide = flashcardQuestions.filter(q => (q.explanation || "").trim() === rawExp).length > 1;
 
             if (isSharedGuide) {
@@ -807,15 +1317,66 @@ function loadQuickRandomQuestion() {
 function parseMarkdown(text) {
     if (!text) return "";
     
+    let processedText = convertListTablesToHTML(text);
+    
+    // Extract HTML tables (case-insensitive, matching across multiple lines)
+    const htmlTablePlaceholders = [];
+    
+    processedText = processedText.replace(/<table[\s\S]*?<\/table>/gi, (match) => {
+        let tableWithClass = match;
+        if (!/class=["'][^"']*med-table[^"']*["']/i.test(tableWithClass)) {
+            tableWithClass = tableWithClass.replace(/<table/i, '<table class="med-table"');
+        }
+        tableWithClass = `<div class="table-responsive">${tableWithClass}</div>`;
+        const placeholder = `__HTML_TABLE_PLACEHOLDER_${htmlTablePlaceholders.length}__`;
+        htmlTablePlaceholders.push(tableWithClass);
+        return placeholder;
+    });
+    
     // Normalize different escaped newline variations and strip stray backslashes
-    let normalized = text.replace(/\\n/g, '\n');
+    let normalized = processedText.replace(/\\n/g, '\n');
     normalized = normalized.replace(/\\\n/g, '\n');
     normalized = normalized.replace(/\\/g, '');
     
-    const lines = normalized.split('\n');
+    // Extract Markdown tables
+    const mdTablePlaceholders = [];
+    const linesForTableCheck = normalized.split('\n');
+    let newLines = [];
+    let currentTableLines = null;
+    
+    for (let i = 0; i < linesForTableCheck.length; i++) {
+        let line = linesForTableCheck[i].trim();
+        if (line.startsWith('|')) {
+            if (currentTableLines === null) {
+                currentTableLines = [];
+            }
+            currentTableLines.push(line);
+        } else {
+            if (currentTableLines !== null) {
+                const htmlTable = parseMarkdownTable(currentTableLines);
+                const placeholder = `__MD_TABLE_PLACEHOLDER_${mdTablePlaceholders.length}__`;
+                mdTablePlaceholders.push(htmlTable);
+                newLines.push(placeholder);
+                currentTableLines = null;
+            }
+            newLines.push(linesForTableCheck[i]);
+        }
+    }
+    if (currentTableLines !== null) {
+        const htmlTable = parseMarkdownTable(currentTableLines);
+        const placeholder = `__MD_TABLE_PLACEHOLDER_${mdTablePlaceholders.length}__`;
+        mdTablePlaceholders.push(htmlTable);
+        newLines.push(placeholder);
+    }
+    
+    const lines = newLines;
     let html = "";
     let inList = false;
     let inOrderedList = false;
+    
+    // Regex for list matching (ASCII-safe unicode escapes for Greek characters)
+    const orderedListRegex = /^(?:(?:\*\*(\d+|\w|[\u0370-\u03ff])\.\*\*)|(?:(\d+|\w|[\u0370-\u03ff])\.))\s+/;
+    const unorderedListRegex = /^(?:[-*\u2022]|\*\*(?:[-*\u2022])\*\*)\s+/;
     
     for (let line of lines) {
         line = line.trim();
@@ -828,15 +1389,24 @@ function parseMarkdown(text) {
                 html += "</ol>";
                 inOrderedList = false;
             }
-            html += "<br/>";
             continue;
         }
         
-        // Parse bold: **text** -> <strong>text</strong>
-        line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // Parse images: ![alt](url) -> html block
-        line = line.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
+        // Check if line is a placeholder
+        if (line.startsWith("__HTML_TABLE_PLACEHOLDER_") || line.startsWith("__MD_TABLE_PLACEHOLDER_")) {
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+            if (inOrderedList) {
+                html += "</ol>";
+                inOrderedList = false;
+            }
+            html += line + "\n";
+            continue;
+        }
         
+        // Heading ###
         if (line.startsWith("###")) {
             if (inList) {
                 html += "</ul>";
@@ -847,9 +1417,10 @@ function parseMarkdown(text) {
                 inOrderedList = false;
             }
             const headerText = line.substring(3).trim();
-            html += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color); margin-top: 24px; margin-bottom: 12px;">${headerText}</h3>`;
+            html += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color); margin-top: 24px; margin-bottom: 12px;">${parseInlineMarkdown(headerText)}</h3>`;
         }
-        else if (line.startsWith("-") || line.startsWith("*") || line.startsWith("•") || line.startsWith("\u2022")) {
+        // Unordered lists
+        else if (unorderedListRegex.test(line)) {
             if (inOrderedList) {
                 html += "</ol>";
                 inOrderedList = false;
@@ -858,29 +1429,23 @@ function parseMarkdown(text) {
                 html += "<ul style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: disc;'>";
                 inList = true;
             }
-            const liText = line.replace(/^[-*•\u2022]\s*/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
+            const liText = line.replace(unorderedListRegex, '').trim();
+            html += `<li style='margin-bottom: 8px;'>${parseInlineMarkdown(liText)}</li>`;
         }
-        else if (/^([a-zA-Z]|\d+)[\.\)]\s+/.test(line)) {
+        // Ordered lists
+        else if (orderedListRegex.test(line)) {
             if (inList) {
                 html += "</ul>";
                 inList = false;
             }
-            let listStyle = 'decimal';
-            const markerMatch = line.match(/^([a-zA-Z]|\d+)[\.\)]\s+/);
-            if (markerMatch) {
-                const marker = markerMatch[1];
-                if (/[a-zA-Z]/.test(marker)) {
-                    listStyle = marker === marker.toLowerCase() ? 'lower-alpha' : 'upper-alpha';
-                }
-            }
             if (!inOrderedList) {
-                html += `<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: ${listStyle};'>`;
+                html += "<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6;'>";
                 inOrderedList = true;
             }
-            const liText = line.replace(/^([a-zA-Z]|\d+)[\.\)]\s+/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
+            const liText = line.replace(orderedListRegex, '').trim();
+            html += `<li style='margin-bottom: 8px;'>${parseInlineMarkdown(liText)}</li>`;
         }
+        // Standard paragraphs
         else {
             if (inList) {
                 html += "</ul>";
@@ -890,7 +1455,7 @@ function parseMarkdown(text) {
                 html += "</ol>";
                 inOrderedList = false;
             }
-            html += `<p style='line-height: 1.6; margin-bottom: 14px; color: var(--text-primary);'>${line}</p>`;
+            html += `<p style='line-height: 1.6; margin-bottom: 14px;'>${parseInlineMarkdown(line)}</p>`;
         }
     }
     
@@ -901,7 +1466,67 @@ function parseMarkdown(text) {
         html += "</ol>";
     }
     
+    // Restore placeholders
+    for (let j = 0; j < htmlTablePlaceholders.length; j++) {
+        const placeholder = `__HTML_TABLE_PLACEHOLDER_${j}__`;
+        html = html.replace(placeholder, htmlTablePlaceholders[j]);
+    }
+    for (let j = 0; j < mdTablePlaceholders.length; j++) {
+        const placeholder = `__MD_TABLE_PLACEHOLDER_${j}__`;
+        html = html.replace(placeholder, mdTablePlaceholders[j]);
+    }
+    
     return html;
+}
+
+function parseMarkdownTable(tableLines) {
+    if (tableLines.length === 0) return "";
+    
+    let html = '<div class="table-responsive"><table class="med-table"><thead>';
+    let hasHeader = false;
+    let inBody = false;
+    
+    for (let i = 0; i < tableLines.length; i++) {
+        const line = tableLines[i].trim();
+        let cleanLine = line;
+        if (cleanLine.startsWith('|')) cleanLine = cleanLine.substring(1);
+        if (cleanLine.endsWith('|')) cleanLine = cleanLine.substring(0, cleanLine.length - 1);
+        
+        const cells = cleanLine.split('|').map(c => c.trim());
+        const isSeparator = cells.every(cell => /^:?-+:?$/.test(cell));
+        if (isSeparator) {
+            continue;
+        }
+        
+        if (!hasHeader) {
+            html += '<tr>';
+            for (const cell of cells) {
+                html += `<th>${parseInlineMarkdown(cell)}</th>`;
+            }
+            html += '</tr></thead><tbody>';
+            hasHeader = true;
+            inBody = true;
+        } else {
+            html += '<tr>';
+            for (const cell of cells) {
+                html += `<td>${parseInlineMarkdown(cell)}</td>`;
+            }
+            html += '</tr>';
+        }
+    }
+    
+    if (inBody) {
+        html += '</tbody>';
+    }
+    html += '</table></div>';
+    return html;
+}
+
+function parseInlineMarkdown(text) {
+    if (!text) return "";
+    let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    formatted = formatted.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
+    return formatted;
 }
 
 // Close all custom dropdown panels when clicking outside
@@ -989,7 +1614,7 @@ function renderTablesDropdown() {
         item.className = `overlay-question-item ${activeTableId === t.tableId ? 'active' : ''}`;
         item.style.width = '100%';
         item.innerHTML = `
-            <strong style="color: #d946ef; flex-shrink: 0; margin-right: 4px;">Πίν. ${t.tableId}:</strong>
+            <strong style="color: var(--primary-color); flex-shrink: 0; margin-right: 4px;">Πίν. ${t.tableId}:</strong>
             <span style="flex-grow: 1; text-align: left;">${cleanTitle}</span>
         `;
         item.addEventListener('click', () => {
@@ -1002,7 +1627,7 @@ function renderTablesDropdown() {
     });
 
     // Update active label display
-        const label = document.getElementById('tables-dropdown-value');
+    const label = document.getElementById('tables-dropdown-value');
     const currentTable = tableAnalyses.find(t => t.tableId === activeTableId);
     if (currentTable) {
         label.textContent = `Πίν. ${currentTable.tableId}: ${currentTable.title}`;
@@ -1031,109 +1656,12 @@ function loadFirstMatchingTable() {
     }
 }
 
-function getT26NotebookLMPrompt(criterionName) {
-    const name = criterionName.toLowerCase().trim();
-    if (name.includes("κνησμός") && !name.includes("εφίδρωση")) {
-        return "Αναζήτησε στις πηγές πληροφορίες για το κύριο κριτήριο 'Κνησμός'. Εξήγησε σύντομα γιατί είναι βασικό χαρακτηριστικό της ατοπικής δερματίτιδας σύμφωνα με τα κριτήρια Hanifin και Rajka.";
-    }
-    if (name.includes("μορφολογία")) {
-        return "Αναζήτησε στις πηγές τον ορισμό της 'Τυπικής μορφολογίας και κατανομής' στην ατοπική δερματίτιδα (κριτήρια Hanifin-Rajka). Δώσε σύντομη περιγραφή του πώς εμφανίζονται συνήθως οι βλάβες.";
-    }
-    if (name.includes("υποτροπιάζουσα")) {
-        return "Βρες στις πηγές πληροφορίες για το κριτήριο 'Χρόνια υποτροπιάζουσα δερματίτιδα' και εξήγησε σύντομα τι σημαίνει για την πορεία της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("ιστορικό")) {
-        return "Αναζήτησε στις πηγές τη σημασία του 'Ατομικού ή οικογενειακού ιστορικού ατοπίας' ως κύριο κριτήριο διάγνωσης της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("ξηρότητα")) {
-        return "Αναζήτησε στις πηγές γιατί η 'Ξηρότητα' αποτελεί δευτερεύον κριτήριο της ατοπικής δερματίτιδας και πώς σχετίζεται με τον δερματικό φραγμό.";
-    }
-    if (name.includes("ιχθύαση")) {
-        return "Βρες στις πηγές πληροφορίες για το πώς η 'Ιχθύαση' συνδέεται με την ατοπική δερματίτιδα ως δευτερεύον κριτήριο διάγνωσης.";
-    }
-    if (name.includes("τύπου 1")) {
-        return "Αναζήτησε στις πηγές την παρουσία 'Τύπου 1 αλλεργικής αντίδρασης' στο πλαίσιο των δευτερευόντων κριτηρίων Hanifin και Rajka για την ατοπική δερματίτιδα.";
-    }
-    if (name.includes("ige")) {
-        return "Εξήγησε με βάση τις πηγές γιατί η 'Αυξημένη IgE σφαιρίνη στον ορό' καταγράφεται ως δευτερεύον κριτήριο στην ατοπική δερματίτιδα.";
-    }
-    if (name.includes("πρώιμη")) {
-        return "Αναζήτησε στις πηγές τον όρο 'Πρώιμη έναρξη' σε σχέση με την ατοπική δερματίτιδα (κριτήρια Hanifin-Rajka) και δώσε ένα σύντομο κλινικό στοιχείο.";
-    }
-    if (name.includes("λοιμώξεις")) {
-        return "Αναζήτησε στις πηγές γιατί η προδιάθεση για 'Λοιμώξεις δέρματος' αποτελεί δευτερεύον κριτήριο της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("άκρων")) {
-        return "Βρες στις πηγές πληροφορίες για τη 'Δερματίτιδα άκρων' ως δευτερεύον κριτήριο Hanifin και Rajka.";
-    }
-    if (name.includes("χειλίτιδα")) {
-        return "Αναζήτησε στις πηγές την εμφάνιση 'Χειλίτιδας' ως δευτερεύον κριτήριο διάγνωσης της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("επιπεφυκίτιδα")) {
-        return "Βρες στις πηγές τη σύνδεση της 'Επιπεφυκίτιδας' με την ατοπική δερματίτιδα σύμφωνα με τα δευτερεύοντα κριτήρια διάγνωσης.";
-    }
-    if (name.includes("dennie")) {
-        return "Αναζήτησε στις πηγές τον ορισμό για τις 'Πτυχές Dennie-Morgan' και τον ρόλο τους στα δευτερεύοντα κριτήρια της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("κερατόκωνος")) {
-        return "Αναζήτησε στις πηγές τη σχέση του 'Κερατόκωνου' με την ατοπική δερματίτιδα στα κριτήρια Hanifin-Rajka.";
-    }
-    if (name.includes("λευκή πιτυρίαση") || name.includes("pityriasis")) {
-        return "Βρες στις πηγές τον ορισμό της 'Διάγνωσης Λευκής πιτυρίασης' (Λευκή Πιτυρίαση (Pityriasis alba)) και πώς προσμετράται ως δευτερεύον κριτήριο.";
-    }
-    if (name.includes("ωχρότητα")) {
-        return "Αναζήτησε στις πηγές πληροφορίες για την 'Ωχρότητα προσώπου / Ερύθημα' στο πλαίσιο των δευτερευόντων κριτηρίων της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("πτυχώσεις") || name.includes("τραχήλου")) {
-        return "Βρες στις πηγές τον κλινικό ρόλο που έχουν οι 'Πτυχώσεις τραχήλου' στα δευτερεύοντα κριτήρια Hanifin και Rajka.";
-    }
-    if (name.includes("αυλακώσεων") || name.includes("υπεργραμμικότητα")) {
-        return "Αναζήτησε στις πηγές την κλινική εικόνα 'Αύξηση των αυλακώσεων των παλαμών-πελμάτων' (υπεργραμμικότητα παλαμών) και εξήγησε γιατί είναι δευτερεύον κριτήριο.";
-    }
-    if (name.includes("εφίδρωση") || name.includes("ιδρώτα")) {
-        return "Εξήγησε μέσω των πηγών τον μηχανισμό ή την κλινική σημασία για τον 'Κνησμό στην εφίδρωση' στην ατοπική δερματίτιδα.";
-    }
-    if (name.includes("μάλλινα") || name.includes("μαλλί")) {
-        return "Αναζήτησε στις πηγές τη 'Δυσανεξία σε μάλλινα, σαπούνια' ως δευτερεύον κριτήριο ερεθισμού του δερματικού φραγμού.";
-    }
-    if (name.includes("θυλακική") || name.includes("περιθυλακική")) {
-        return "Βρες στις πηγές τι σημαίνει 'Θυλακική υπερκεράτωση' (περιθυλακική έμφαση) και πώς περιλαμβάνεται στα δευτερεύοντα κριτήρια της ατοπικής δερματίτιδας.";
-    }
-    if (name.includes("τροφές") || name.includes("τροφική")) {
-        return "Αναζήτησε στις πηγές τη σχέση ανάμεσα στη 'Δυσανεξία σε τροφές' (τροφική δυσανεξία) και τα κριτήρια Hanifin-Rajka.";
-    }
-    if (name.includes("περιβαλλοντικούς") || name.includes("συγκινησιακούς") || name.includes("επιβάρυνση") || name.includes("επιδείνωση")) {
-        return "Εξήγησε μέσω των πηγών γιατί η 'Επιβάρυνση από περιβαλλοντικούς και συγκινησιακούς παράγοντες' αναγνωρίζεται ως δευτερεύον κριτήριο.";
-    }
-    if (name.includes("δερμογραφισμός")) {
-        return "Αναζήτησε στις πηγές τον ορισμό για τον 'Λευκό δερμογραφισμό' και πώς αξιολογείται στην ατοπική δερματίτιδα.";
-    }
-    if (name.includes("θήλης") || name.includes("θηλών") || name.includes("μαστού")) {
-        return "Βρες στις πηγές κλινικές πληροφορίες για το 'Έκζεμα της θηλής του μαστού' ως ειδικό δευτερεύον κριτήριο της ατοπικής δερματίτιδας.";
-    }
-    return "Αναζήτηση πληροφοριών στο NotebookLM για το κριτήριο " + criterionName;
-}
-
 function renderSelectedTable() {
     const table = tableAnalyses.find(t => t.tableId === activeTableId);
     if (!table) return;
 
     // Update title
     document.getElementById('table-analysis-title').textContent = table.title;
-
-    // Subtitle management
-    let subtitleEl = document.getElementById('table-analysis-subtitle');
-    if (!subtitleEl) {
-        subtitleEl = document.createElement('p');
-        subtitleEl.id = 'table-analysis-subtitle';
-        subtitleEl.style.fontSize = '1.05rem';
-        subtitleEl.style.color = 'var(--text-secondary)';
-        subtitleEl.style.marginTop = '6px';
-        subtitleEl.style.marginBottom = '20px';
-        subtitleEl.style.fontWeight = '500';
-        const titleEl = document.getElementById('table-analysis-title');
-        titleEl.parentNode.insertBefore(subtitleEl, titleEl.nextSibling);
-    }
 
     // Update progress indicator
     const filtered = tableAnalyses.filter(t => {
@@ -1142,475 +1670,6 @@ function renderSelectedTable() {
     });
     const currentIndex = filtered.findIndex(t => t.tableId === activeTableId);
     document.getElementById('table-analysis-progress').textContent = `Πίνακας ${currentIndex + 1} από ${filtered.length}`;
-
-    // Create viewport-relative global tooltip container if not present
-    let globalTooltip = document.getElementById('global-table-cell-tooltip');
-    if (!globalTooltip) {
-        globalTooltip = document.createElement('div');
-        globalTooltip.id = 'global-table-cell-tooltip';
-        globalTooltip.className = 'cell-tooltip';
-        globalTooltip.style.position = 'fixed';
-        globalTooltip.style.zIndex = '10000';
-        globalTooltip.style.display = 'none';
-        globalTooltip.style.pointerEvents = 'none';
-        globalTooltip.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
-        document.body.appendChild(globalTooltip);
-    }
-
-    if (table.tableId === 6) {
-        subtitleEl.textContent = "Για να τεθεί η διάγνωση, πρέπει να πληρούνται τρία κύρια και τρία από τα δευτερεύοντα κριτήρια";
-        subtitleEl.style.display = 'block';
-
-        // Render custom dark blue medical headers
-        const thead = document.getElementById('table-analysis-thead');
-        thead.innerHTML = `
-            <tr style="background-color: #1e3a8a !important; color: #ffffff !important;">
-                <th style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 40%;">Κύρια κριτήρια</th>
-                <th style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 60%;">Δευτερεύοντα κριτήρια</th>
-            </tr>
-        `;
-
-        const tbody = document.getElementById('table-analysis-tbody');
-        tbody.innerHTML = "";
-
-        const tr = document.createElement('tr');
-
-        // Column 1 (Main)
-        const tdMain = document.createElement('td');
-        tdMain.style.verticalAlign = 'top';
-        tdMain.style.padding = '18px';
-        tdMain.style.border = '1px solid var(--card-border)';
-        const ulMain = document.createElement('ul');
-        ulMain.className = 'criteria-list main-criteria-ul';
-        ulMain.style.listStyleType = 'disc';
-        ulMain.style.margin = '0';
-        ulMain.style.paddingLeft = '20px';
-        tdMain.appendChild(ulMain);
-
-        // Column 2 (Secondary)
-        const tdSecondary = document.createElement('td');
-        tdSecondary.style.verticalAlign = 'top';
-        tdSecondary.style.padding = '18px';
-        tdSecondary.style.border = '1px solid var(--card-border)';
-        const ulSecondary = document.createElement('ul');
-        ulSecondary.className = 'criteria-list secondary-criteria-ul';
-        ulSecondary.style.listStyleType = 'disc';
-        ulSecondary.style.margin = '0';
-        ulSecondary.style.paddingLeft = '20px';
-        ulSecondary.style.columnCount = '2';
-        ulSecondary.style.columnGap = '24px';
-        tdSecondary.appendChild(ulSecondary);
-
-        table.rows.forEach(row => {
-            const cat = row.category ? (row.category.value !== undefined ? row.category.value : row.category) : "";
-            const crit = row.criterion ? (row.criterion.value !== undefined ? row.criterion.value : row.criterion) : "";
-            const mech = row.mechanism ? (row.mechanism.value !== undefined ? row.mechanism.value : row.mechanism) : "";
-
-            const li = document.createElement('li');
-            li.style.marginBottom = '10px';
-            li.style.lineHeight = '1.5';
-            li.className = 'interactive-li';
-            li.style.cursor = 'pointer';
-
-            const prompt = getT26NotebookLMPrompt(crit);
-
-            const span = document.createElement('span');
-            span.className = 'hover-trigger';
-            span.setAttribute('data-prompt', prompt);
-            span.textContent = crit;
-            span.style.borderBottom = '1px dashed var(--primary-color)';
-            span.style.fontWeight = '500';
-            li.appendChild(span);
-
-            // Bind tooltip events
-            const showTooltip = () => {
-                globalTooltip.innerHTML = `
-                    <div class="cell-tooltip-header" style="font-weight: 700; color: #3b82f6; margin-bottom: 8px;">📌 ${crit}</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px; font-style: italic; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
-                        <strong>Εντολή NotebookLM:</strong><br>${prompt}
-                    </div>
-                    <div style="font-size: 0.88rem; line-height: 1.4;">
-                        <strong>Ανάλυση / Μηχανισμός:</strong><br>${parseMarkdown(mech || "")}
-                    </div>
-                `;
-                globalTooltip.style.display = 'block';
-
-                const rect = span.getBoundingClientRect();
-                let left = rect.left + rect.width / 2 - 140;
-                let top = rect.bottom + 8;
-
-                if (left < 10) left = 10;
-                if (left + 290 > window.innerWidth) {
-                    left = window.innerWidth - 290;
-                }
-
-                const tooltipHeight = globalTooltip.offsetHeight || 220;
-                if (top + tooltipHeight > window.innerHeight) {
-                    top = rect.top - tooltipHeight - 8;
-                }
-                if (top < 10) top = 10;
-
-                globalTooltip.style.left = left + 'px';
-                globalTooltip.style.top = top + 'px';
-                globalTooltip.style.opacity = '1';
-                globalTooltip.style.visibility = 'visible';
-
-                // Bottom details box
-                const hasSelection = document.querySelector('.interactive-li.active-cell-selected') !== null;
-                if (!hasSelection) {
-                    const detailsContainer = document.getElementById('table-cell-details-box');
-                    if (detailsContainer) {
-                        detailsContainer.style.display = 'block';
-                        detailsContainer.style.borderColor = '#1e3a8a';
-                        detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
-                                <span>📌 ${crit}</span>
-                                <span style="font-size: 0.88rem; font-weight: 400; color: var(--text-secondary); font-style: italic;">
-                                    <b>Εντολή NotebookLM:</b> ${prompt}
-                                </span>
-                            </div>
-                            <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                ${parseMarkdown(mech || "")}
-                            </div>
-                        `;
-                    }
-                }
-            };
-
-            const hideTooltip = () => {
-                globalTooltip.style.display = 'none';
-                globalTooltip.style.opacity = '0';
-                globalTooltip.style.visibility = 'hidden';
-            };
-
-            const toggleLock = (e) => {
-                e.stopPropagation();
-                const isSelected = li.classList.contains('active-cell-selected');
-
-                document.querySelectorAll('.interactive-li, .interactive-cell').forEach(el => {
-                    el.classList.remove('active-cell-selected');
-                });
-
-                const detailsContainer = document.getElementById('table-cell-details-box');
-                if (isSelected) {
-                    if (detailsContainer) detailsContainer.style.display = 'none';
-                } else {
-                    li.classList.add('active-cell-selected');
-                    if (detailsContainer) {
-                        detailsContainer.style.display = 'block';
-                        detailsContainer.style.borderColor = '#1e3a8a';
-                        detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
-                                <span>📌 ${crit}</span>
-                                <span style="font-size: 0.88rem; font-weight: 400; color: var(--text-secondary); font-style: italic;">
-                                    <b>Εντολή NotebookLM:</b> ${prompt}
-                                </span>
-                            </div>
-                            <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                ${parseMarkdown(mech || "")}
-                            </div>
-                        `;
-                    }
-                }
-            };
-
-            li.addEventListener('mouseenter', showTooltip);
-            li.addEventListener('mouseleave', hideTooltip);
-            li.addEventListener('click', toggleLock);
-
-            if (cat.includes("Κύρια")) {
-                ulMain.appendChild(li);
-            } else {
-                ulSecondary.appendChild(li);
-            }
-        });
-
-        tr.appendChild(tdMain);
-        tr.appendChild(tdSecondary);
-        tbody.appendChild(tr);
-
-        // Render Detailed Analysis
-        const analysisBox = document.getElementById('table-analysis-detailed-content');
-        if (analysisBox) {
-            analysisBox.innerHTML = parseMarkdown(table.detailedAnalysis || "");
-        }
-        return;
-    }
-
-    if (table.tableId === 7) {
-        subtitleEl.textContent = "Συνήθεις ερεθιστικοί παράγοντες (αριστερά) και αλλεργιογόνα (δεξιά) με τις παθοφυσιολογικές τους λεπτομέρειες.";
-        subtitleEl.style.display = 'block';
-
-        // Render custom dark header (high tonal contrast)
-        const thead = document.getElementById('table-analysis-thead');
-        thead.innerHTML = `
-            <tr style="background-color: #0f172a !important; color: #ffffff !important;">
-                <th class="table7-th" style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 50%;">Ερεθιστικοί παράγοντες</th>
-                <th class="table7-th" style="padding: 14px 18px; text-align: left; font-weight: 700; border: 1px solid var(--card-border); color: #ffffff !important; width: 50%;">Αλλεργιογόνα</th>
-            </tr>
-        `;
-
-        const tbody = document.getElementById('table-analysis-tbody');
-        tbody.innerHTML = "";
-
-        const tr = document.createElement('tr');
-        tr.style.backgroundColor = '#f8fafc'; // Subtle light background for body
-
-        // Column 1 (Irritants)
-        const tdMain = document.createElement('td');
-        tdMain.className = "table7-td";
-        tdMain.style.verticalAlign = 'top';
-        tdMain.style.padding = '18px';
-        tdMain.style.border = '1px solid var(--card-border)';
-        tdMain.style.backgroundColor = '#f8fafc'; // light background
-        
-        const ulMain = document.createElement('ul');
-        ulMain.style.listStyleType = 'disc';
-        ulMain.style.margin = '0';
-        ulMain.style.paddingLeft = '20px';
-        tdMain.appendChild(ulMain);
-
-        // Column 2 (Allergens)
-        const tdSecondary = document.createElement('td');
-        tdSecondary.className = "table7-td";
-        tdSecondary.style.verticalAlign = 'top';
-        tdSecondary.style.padding = '18px';
-        tdSecondary.style.border = '1px solid var(--card-border)';
-        tdSecondary.style.backgroundColor = '#f8fafc'; // light background
-        
-        const ulSecondary = document.createElement('ul');
-        ulSecondary.style.margin = '0';
-        ulSecondary.style.paddingLeft = '20px';
-        tdSecondary.appendChild(ulSecondary);
-
-        // Position helper
-        const positionTooltipAt = (clientX, clientY) => {
-            let left = clientX + 15;
-            let top = clientY + 15;
-            
-            const tooltipWidth = 320;
-            globalTooltip.style.width = tooltipWidth + 'px';
-            const tooltipHeight = globalTooltip.offsetHeight || 200;
-            
-            if (left + tooltipWidth > window.innerWidth) {
-                left = clientX - tooltipWidth - 15;
-            }
-            if (left < 10) left = 10;
-            
-            if (top + tooltipHeight > window.innerHeight) {
-                top = clientY - tooltipHeight - 15;
-            }
-            if (top < 10) top = 10;
-            
-            globalTooltip.style.left = left + 'px';
-            globalTooltip.style.top = top + 'px';
-            globalTooltip.style.opacity = '1';
-            globalTooltip.style.visibility = 'visible';
-        };
-
-        const showTooltip = (title, text, clientX, clientY) => {
-            globalTooltip.innerHTML = `
-                <div class="cell-tooltip-header" style="font-weight: 700; color: #0d9488; margin-bottom: 8px;">📌 ${title}</div>
-                <div style="font-size: 0.88rem; line-height: 1.4; color: var(--text-primary);">
-                    ${parseMarkdown(text || "")}
-                </div>
-            `;
-            globalTooltip.style.display = 'block';
-            positionTooltipAt(clientX, clientY);
-            
-            // Check selection to update bottom details box dynamically
-            const hasSelection = document.querySelector('.interactive-li-t7.active-cell-selected') !== null;
-            if (!hasSelection) {
-                const detailsContainer = document.getElementById('table-cell-details-box');
-                if (detailsContainer) {
-                    detailsContainer.style.display = 'block';
-                    detailsContainer.style.borderColor = '#0f766e';
-                    detailsContainer.innerHTML = `
-                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                            <span>📌 ${title}</span>
-                        </div>
-                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                            ${parseMarkdown(text || "")}
-                        </div>
-                    `;
-                }
-            }
-        };
-
-        const hideTooltip = () => {
-            globalTooltip.style.display = 'none';
-            globalTooltip.style.opacity = '0';
-            globalTooltip.style.visibility = 'hidden';
-        };
-
-        const toggleLockT7 = (e, element, title, text) => {
-            e.stopPropagation();
-            const isSelected = element.classList.contains('active-cell-selected');
-
-            document.querySelectorAll('.interactive-li, .interactive-cell, .interactive-li-t7').forEach(el => {
-                el.classList.remove('active-cell-selected');
-            });
-
-            const detailsContainer = document.getElementById('table-cell-details-box');
-            if (isSelected) {
-                if (detailsContainer) detailsContainer.style.display = 'none';
-            } else {
-                element.classList.add('active-cell-selected');
-                if (detailsContainer) {
-                    detailsContainer.style.display = 'block';
-                    detailsContainer.style.borderColor = '#0f766e';
-                    detailsContainer.innerHTML = `
-                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                            <span>📌 ${title}</span>
-                        </div>
-                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                            ${parseMarkdown(text || "")}
-                        </div>
-                    `;
-                }
-            }
-        };
-
-        // Populate Irritants
-        table.rows.forEach(row => {
-            const col = row["Στήλη"];
-            if (col === "Ερεθιστικοί παράγοντες") {
-                const elementText = row["Στοιχείο"];
-                const mechText = row["Γενική_Πληροφορία_και_Μηχανισμός"];
-
-                const li = document.createElement('li');
-                li.style.marginBottom = '10px';
-                li.style.lineHeight = '1.6';
-                li.className = 'interactive-li-t7';
-                li.style.cursor = 'pointer';
-                li.style.listStyleType = 'disc';
-
-                const span = document.createElement('span');
-                span.className = 'hover-trigger';
-                span.style.borderBottom = '1px dashed var(--primary-color)';
-                span.style.fontWeight = '500';
-                span.style.color = '#000000';
-                span.textContent = elementText;
-                li.appendChild(span);
-
-                li.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
-                li.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
-                li.addEventListener('mouseleave', hideTooltip);
-                li.addEventListener('click', (e) => toggleLockT7(e, li, elementText, mechText));
-
-                ulMain.appendChild(li);
-            }
-        });
-
-        // Group allergens by category
-        const allergenGroups = {};
-        const categoryOrder = [];
-        table.rows.forEach(row => {
-            const col = row["Στήλη"];
-            if (col === "Αλλεργιογόνα") {
-                const cat = row["Κατηγορία"];
-                if (!allergenGroups[cat]) {
-                    allergenGroups[cat] = [];
-                    categoryOrder.push(cat);
-                }
-                allergenGroups[cat].push(row);
-            }
-        });
-
-        // Populate Allergens
-        categoryOrder.forEach(category => {
-            const items = allergenGroups[category];
-            if (category === "Τοπικά κορτικοστεροειδή" || (items.length === 1 && items[0]["Στοιχείο"] === category)) {
-                const rowObj = items[0];
-                const elementText = rowObj["Στοιχείο"];
-                const mechText = rowObj["Γενική_Πληροφορία_και_Μηχανισμός"];
-
-                const li = document.createElement('li');
-                li.className = 'interactive-li-t7';
-                li.style.marginBottom = '10px';
-                li.style.lineHeight = '1.6';
-                li.style.cursor = 'pointer';
-                li.style.listStyleType = 'disc';
-
-                const span = document.createElement('span');
-                span.className = 'hover-trigger';
-                span.style.borderBottom = '1px dashed var(--primary-color)';
-                span.style.fontWeight = '700';
-                span.style.color = '#000000';
-                span.textContent = elementText;
-                li.appendChild(span);
-
-                li.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
-                li.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
-                li.addEventListener('mouseleave', hideTooltip);
-                li.addEventListener('click', (e) => toggleLockT7(e, li, elementText, mechText));
-
-                ulSecondary.appendChild(li);
-            } else {
-                const categoryLi = document.createElement('li');
-                categoryLi.style.marginBottom = '12px';
-                categoryLi.style.lineHeight = '1.6';
-                categoryLi.style.fontWeight = '700';
-                categoryLi.style.color = '#000000';
-                categoryLi.style.listStyleType = 'disc';
-                categoryLi.textContent = category;
-
-                const subUl = document.createElement('ul');
-                subUl.style.listStyleType = 'none';
-                subUl.style.paddingLeft = '18px';
-                subUl.style.marginTop = '6px';
-
-                items.forEach(rowObj => {
-                    const elementText = rowObj["Στοιχείο"];
-                    const mechText = rowObj["Γενική_Πληροφορία_και_Μηχανισμός"];
-
-                    const subLi = document.createElement('li');
-                    subLi.className = 'interactive-li-t7';
-                    subLi.style.marginBottom = '6px';
-                    subLi.style.lineHeight = '1.5';
-                    subLi.style.cursor = 'pointer';
-                    subLi.style.fontWeight = 'normal';
-
-                    const dashSpan = document.createElement('span');
-                    dashSpan.style.marginRight = '8px';
-                    dashSpan.style.color = '#000000';
-                    dashSpan.textContent = '—';
-                    subLi.appendChild(dashSpan);
-
-                    const span = document.createElement('span');
-                    span.className = 'hover-trigger';
-                    span.style.borderBottom = '1px dashed var(--primary-color)';
-                    span.style.fontWeight = '500';
-                    span.style.color = '#000000';
-                    span.textContent = elementText;
-                    subLi.appendChild(span);
-
-                    subLi.addEventListener('mouseenter', (e) => showTooltip(elementText, mechText, e.clientX, e.clientY));
-                    subLi.addEventListener('mousemove', (e) => positionTooltipAt(e.clientX, e.clientY));
-                    subLi.addEventListener('mouseleave', hideTooltip);
-                    subLi.addEventListener('click', (e) => toggleLockT7(e, subLi, elementText, mechText));
-
-                    subUl.appendChild(subLi);
-                });
-
-                categoryLi.appendChild(subUl);
-                ulSecondary.appendChild(categoryLi);
-            }
-        });
-
-        tr.appendChild(tdMain);
-        tr.appendChild(tdSecondary);
-        tbody.appendChild(tr);
-
-        // Render Detailed Analysis
-        const analysisBox = document.getElementById('table-analysis-detailed-content');
-        if (analysisBox) {
-            analysisBox.innerHTML = parseMarkdown(table.detailedAnalysis || "");
-        }
-        return;
-    }
-
-    subtitleEl.style.display = 'none';
 
     // Render Headers
     const thead = document.getElementById('table-analysis-thead');
@@ -1627,7 +1686,7 @@ function renderSelectedTable() {
     tbody.innerHTML = "";
     
     // Create viewport-relative global tooltip container if not present
-    globalTooltip = document.getElementById('global-table-cell-tooltip');
+    let globalTooltip = document.getElementById('global-table-cell-tooltip');
     if (!globalTooltip) {
         globalTooltip = document.createElement('div');
         globalTooltip.id = 'global-table-cell-tooltip';
@@ -1653,30 +1712,18 @@ function renderSelectedTable() {
         let prevText = "";
         let currText = "";
         
-        if (prevRow) {
-            if (Array.isArray(prevRow)) {
-                if (prevRow[0]) {
-                    prevText = prevRow[0].value !== undefined ? prevRow[0].value : prevRow[0].text;
-                }
-            } else {
-                const firstHeaderId = (table.headers[0] && typeof table.headers[0] === 'object') ? table.headers[0].id : table.headers[0];
-                if (prevRow[firstHeaderId]) {
-                    prevText = prevRow[firstHeaderId].value !== undefined ? prevRow[firstHeaderId].value : prevRow[firstHeaderId].text;
-                }
-            }
+        if (Array.isArray(prevRow)) {
+            prevText = prevRow[0] ? (prevRow[0].value !== undefined ? prevRow[0].value : prevRow[0].text) : "";
+        } else {
+            const firstHeaderId = (table.headers[0] && typeof table.headers[0] === 'object') ? table.headers[0].id : table.headers[0];
+            prevText = prevRow[firstHeaderId] ? (prevRow[firstHeaderId].value !== undefined ? prevRow[firstHeaderId].value : prevRow[firstHeaderId].text) : "";
         }
         
-        if (currRow) {
-            if (Array.isArray(currRow)) {
-                if (currRow[0]) {
-                    currText = currRow[0].value !== undefined ? currRow[0].value : currRow[0].text;
-                }
-            } else {
-                const firstHeaderId = (table.headers[0] && typeof table.headers[0] === 'object') ? table.headers[0].id : table.headers[0];
-                if (currRow[firstHeaderId]) {
-                    currText = currRow[firstHeaderId].value !== undefined ? currRow[firstHeaderId].value : currRow[firstHeaderId].text;
-                }
-            }
+        if (Array.isArray(currRow)) {
+            currText = currRow[0] ? (currRow[0].value !== undefined ? currRow[0].value : currRow[0].text) : "";
+        } else {
+            const firstHeaderId = (table.headers[0] && typeof table.headers[0] === 'object') ? table.headers[0].id : table.headers[0];
+            currText = currRow[firstHeaderId] ? (currRow[firstHeaderId].value !== undefined ? currRow[firstHeaderId].value : currRow[firstHeaderId].text) : "";
         }
         
         if (prevText && currText && prevText.trim() === currText.trim()) {
@@ -1716,127 +1763,6 @@ function renderSelectedTable() {
                 tr.appendChild(td);
                 return;
             }
-
-            if (cell.subItems && Array.isArray(cell.subItems)) {
-                td.className = "";
-                td.style.padding = "8px 12px";
-                td.style.border = "1px solid var(--card-border)";
-                
-                const ul = document.createElement('ul');
-                ul.style.margin = "0";
-                ul.style.paddingLeft = "20px";
-                ul.style.listStyleType = "disc";
-                
-                cell.subItems.forEach(item => {
-                    const li = document.createElement('li');
-                    li.className = "interactive-cell";
-                    li.style.cursor = "pointer";
-                    li.style.marginBottom = "6px";
-                    li.style.lineHeight = "1.4";
-                    
-                    const span = document.createElement('span');
-                    span.className = "hover-trigger";
-                    span.style.borderBottom = "1px dashed var(--primary-color)";
-                    span.style.fontWeight = "500";
-                    span.style.color = "var(--text-primary)";
-                    span.textContent = item.text;
-                    li.appendChild(span);
-                    
-                    const itemText = item.text;
-                    const itemHover = item.hoverText;
-                    
-                    li.addEventListener('mouseenter', () => {
-                        const cleanHeader = itemText ? itemText.split('(')[0].trim() : "";
-                        globalTooltip.innerHTML = `
-                            <div class="cell-tooltip-header">📌 ${cleanHeader}</div>
-                            ${parseMarkdown(itemHover || "")}
-                        `;
-                        globalTooltip.style.display = 'block';
-                        
-                        // Check if another element is locked
-                        const hasSelection = document.querySelector('.interactive-cell.active-cell-selected, .interactive-li.active-cell-selected, .interactive-li-t7.active-cell-selected') !== null;
-                        if (!hasSelection) {
-                            const detailsContainer = document.getElementById('table-cell-details-box');
-                            if (detailsContainer) {
-                                detailsContainer.style.display = 'block';
-                                detailsContainer.style.borderColor = '#0f766e';
-                                detailsContainer.innerHTML = `
-                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                                        <span>📌 ${itemText}</span>
-                                    </div>
-                                    <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                        ${parseMarkdown(itemHover || "")}
-                                    </div>
-                                `;
-                            }
-                        }
-                    });
-                    
-                    li.addEventListener('mousemove', (e) => {
-                        let left = e.clientX + 15;
-                        let top = e.clientY + 15;
-                        
-                        const tooltipWidth = 320;
-                        globalTooltip.style.width = tooltipWidth + 'px';
-                        const tooltipHeight = globalTooltip.offsetHeight || 200;
-                        
-                        if (left + tooltipWidth > window.innerWidth) {
-                            left = e.clientX - tooltipWidth - 15;
-                        }
-                        if (left < 10) left = 10;
-                        
-                        if (top + tooltipHeight > window.innerHeight) {
-                            top = e.clientY - tooltipHeight - 15;
-                        }
-                        if (top < 10) top = 10;
-                        
-                        globalTooltip.style.left = left + 'px';
-                        globalTooltip.style.top = top + 'px';
-                        globalTooltip.style.opacity = '1';
-                        globalTooltip.style.visibility = 'visible';
-                    });
-                    
-                    li.addEventListener('mouseleave', () => {
-                        globalTooltip.style.display = 'none';
-                        globalTooltip.style.opacity = '0';
-                        globalTooltip.style.visibility = 'hidden';
-                    });
-                    
-                    li.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const isSelected = li.classList.contains('active-cell-selected');
-                        
-                        document.querySelectorAll('.interactive-cell, .interactive-li, .interactive-li-t7').forEach(el => {
-                            el.classList.remove('active-cell-selected');
-                        });
-                        
-                        const detailsContainer = document.getElementById('table-cell-details-box');
-                        if (isSelected) {
-                            if (detailsContainer) detailsContainer.style.display = 'none';
-                        } else {
-                            li.classList.add('active-cell-selected');
-                            if (detailsContainer) {
-                                detailsContainer.style.display = 'block';
-                                detailsContainer.style.borderColor = '#0f766e';
-                                detailsContainer.innerHTML = `
-                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                                        <span>📌 ${itemText}</span>
-                                    </div>
-                                    <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                        ${parseMarkdown(itemHover || "")}
-                                    </div>
-                                `;
-                            }
-                        }
-                    });
-                    
-                    ul.appendChild(li);
-                });
-                
-                td.appendChild(ul);
-                tr.appendChild(td);
-                return;
-            }
             
             const cellText = cell.value !== undefined ? cell.value : cell.text;
             td.textContent = cellText;
@@ -1873,22 +1799,19 @@ function renderSelectedTable() {
                 globalTooltip.style.opacity = '1';
                 globalTooltip.style.visibility = 'visible';
                 
-                // Update bottom details box dynamically on hover only if there is NO active locked selection!
-                const hasSelection = document.querySelector('.interactive-cell.active-cell-selected') !== null;
-                if (!hasSelection) {
-                    const detailsContainer = document.getElementById('table-cell-details-box');
-                    if (detailsContainer) {
-                        detailsContainer.style.display = 'block';
-                        detailsContainer.style.borderColor = '#0f766e';
-                        detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                                <span>π“ ${cellText}</span>
-                            </div>
-                            <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                ${parseMarkdown(cell.hoverText || "")}
-                            </div>
-                        `;
-                    }
+                // Update bottom details box dynamically on hover so users can read it easily
+                const detailsContainer = document.getElementById('table-cell-details-box');
+                if (detailsContainer) {
+                    detailsContainer.style.display = 'block';
+                    detailsContainer.style.borderColor = '#ef4444';
+                    detailsContainer.innerHTML = `
+                        <div style="font-size: 1.15rem; font-weight: 700; color: #ef4444; margin-bottom: 12px; border-bottom: 2px solid #ef4444; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span>📌 ${cellText}</span>
+                        </div>
+                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                            ${parseMarkdown(cell.hoverText || "")}
+                        </div>
+                    `;
                 }
             });
 
@@ -1903,34 +1826,24 @@ function renderSelectedTable() {
             td.addEventListener('click', (e) => {
                 e.stopPropagation();
                 
-                const isAlreadySelected = td.classList.contains('active-cell-selected');
-                
                 document.querySelectorAll('.interactive-cell').forEach(c => {
                     c.classList.remove('active-cell-selected');
                 });
-                
+                td.classList.add('active-cell-selected');
+
                 const detailsContainer = document.getElementById('table-cell-details-box');
-                
-                if (isAlreadySelected) {
-                    // Toggle deselect
-                    if (detailsContainer) {
-                        detailsContainer.style.display = 'none';
-                    }
-                } else {
-                    // Lock selection
-                    td.classList.add('active-cell-selected');
-                    if (detailsContainer) {
-                        detailsContainer.style.display = 'block';
-                        detailsContainer.style.borderColor = '#0f766e';
-                        detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                                <span>π“ ${cellText}</span>
-                            </div>
-                            <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
-                                ${parseMarkdown(cell.hoverText || "")}
-                            </div>
-                        `;
-                    }
+                if (detailsContainer) {
+                    detailsContainer.style.display = 'block';
+                    detailsContainer.style.borderColor = '#ef4444';
+                    detailsContainer.innerHTML = `
+                        <div style="font-size: 1.15rem; font-weight: 700; color: #ef4444; margin-bottom: 12px; border-bottom: 2px solid #ef4444; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <span>📌 ${cellText}</span>
+                        </div>
+                        <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
+                            ${parseMarkdown(cell.hoverText || "")}
+                        </div>
+                    `;
+                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
 
@@ -1948,17 +1861,97 @@ function renderSelectedTable() {
 
 // Global click handler to close selections on tapping anywhere else
 document.addEventListener('click', () => {
-    document.querySelectorAll('.interactive-cell, .interactive-li, .interactive-li-t7').forEach(c => c.classList.remove('active-cell-selected'));
-    const detailsContainer = document.getElementById('table-cell-details-box');
-    if (detailsContainer) {
-        detailsContainer.style.display = 'none';
-    }
+    document.querySelectorAll('.interactive-cell').forEach(c => c.classList.remove('active-cell-selected'));
 });
 
-// Prevent deselecting when clicking inside the details box
-const detailsBox = document.getElementById('table-cell-details-box');
-if (detailsBox) {
-    detailsBox.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+
+
+function convertListTablesToHTML(text) {
+    if (!text) return "";
+    
+    let lines = text.split('\n');
+    let outputLines = [];
+    let inTable = false;
+    let tableLines = [];
+    let tableHeader = "";
+    
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        
+        // Check if line indicates start of a table
+        let isTableHeaderLine = /📋|Πίνακας/i.test(line) && line.endsWith(':');
+        
+        if (isTableHeaderLine) {
+            if (inTable) {
+                outputLines.push(renderCustomTable(tableHeader, tableLines));
+                tableLines = [];
+            }
+            inTable = true;
+            tableHeader = line;
+            continue;
+        }
+        
+        if (inTable) {
+            let isRow = /^(?:[-*\u2022]|\*\*(?:[-*\u2022])\*\*)\s+/.test(line) && (line.includes('→') || line.includes('\u2192') || line.includes(':'));
+            let isSectionHeader = line.startsWith('**') && line.endsWith(':**');
+            
+            if (isRow || isSectionHeader || line === "" || line === "---") {
+                if (line !== "" && line !== "---") {
+                    tableLines.push(line);
+                }
+            } else {
+                outputLines.push(renderCustomTable(tableHeader, tableLines));
+                inTable = false;
+                tableLines = [];
+                outputLines.push(lines[i]);
+            }
+        } else {
+            outputLines.push(lines[i]);
+        }
+    }
+    
+    if (inTable) {
+        outputLines.push(renderCustomTable(tableHeader, tableLines));
+    }
+    
+    return outputLines.join('\n');
 }
+
+function renderCustomTable(header, lines) {
+    if (lines.length === 0) {
+        return header;
+    }
+    
+    let cleanHeader = header.replace(/^[📋\s*]+/, '').replace(/\*\*+/g, '').replace(/:$/, '').trim();
+    let html = `<div class="table-title">📋 ${cleanHeader}</div>`;
+    html += `<div class="table-responsive"><table class="med-table"><tbody>`;
+    
+    for (let line of lines) {
+        let trimmed = line.trim();
+        if (trimmed.startsWith('**') && trimmed.endsWith(':**')) {
+            let secTitle = trimmed.replace(/\*\*+/g, '').replace(/:$/, '').trim();
+            html += `<tr class="table-section-row"><td colspan="3" style="font-weight: bold; background: rgba(99, 102, 241, 0.04) !important; color: var(--primary-color) !important;">${secTitle}</td></tr>`;
+        } else {
+            let cleanLine = trimmed.replace(/^(?:[-*\u2022]|\*\*(?:[-*\u2022])\*\*)\s+/, '').trim();
+            let parts = cleanLine.split(/\u2192|→/);
+            if (parts.length >= 2) {
+                let col1 = parts[0].trim();
+                let col2 = parts.slice(1).join('→').trim();
+                
+                let col1Parts = col1.split(':');
+                if (col1Parts.length >= 2 && !col1.includes('(') && col1Parts[0].trim().length < 30) {
+                    let key = col1Parts[0].trim();
+                    let val1 = col1Parts.slice(1).join(':').trim();
+                    html += `<tr><td style="font-weight: bold; width: 25%;">${parseInlineMarkdown(key)}</td><td style="width: 35%;">${parseInlineMarkdown(val1)}</td><td style="width: 40%;">${parseInlineMarkdown(col2)}</td></tr>`;
+                } else {
+                    html += `<tr><td style="font-weight: bold; width: 40%;">${parseInlineMarkdown(col1)}</td><td colspan="2">${parseInlineMarkdown(col2)}</td></tr>`;
+                }
+            } else {
+                html += `<tr><td colspan="3">${parseInlineMarkdown(cleanLine)}</td></tr>`;
+            }
+        }
+    }
+    html += `</tbody></table></div>`;
+    return html;
+}
+

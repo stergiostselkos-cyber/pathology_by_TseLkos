@@ -107,7 +107,7 @@ function getQuestionChapter(q) {
  */
 function getQuestionSubchapter(q) {
     if (q.category && q.category.includes(" / ")) {
-        return q.category.substring(q.category.indexOf(" / ") + 3).trim();
+        return q.category.split(" / ")[1].trim();
     }
     return "Γενικά";
 }
@@ -639,27 +639,11 @@ function revealQuickAnswer() {
 
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.add('hidden');
 
-    let ansHtml = "";
-    let expHtml = "";
-
-    if (question.content) {
-        if (question.content.includes("<!-- SPLIT -->")) {
-            let parts = question.content.split("<!-- SPLIT -->");
-            ansHtml = parts[0] || "";
-            expHtml = parts[1] || "";
-        } else {
-            ansHtml = question.content;
-            expHtml = "";
-        }
-    } else {
-        ansHtml = question.correctAnswer ? parseMarkdown(question.correctAnswer) : (question.answer ? parseMarkdown(question.answer) : "");
-        expHtml = question.explanation ? parseMarkdown(question.explanation) : "";
-    }
-
     if (quickCorrectAnswerText) {
-        quickCorrectAnswerText.innerHTML = ansHtml;
+        quickCorrectAnswerText.innerHTML = parseMarkdown(question.correctAnswer);
     }
 
+    // Mnemonic Tip Box - hide if empty or missing
     const mnemonicBox = document.getElementById('quick-mnemonic-box');
     if (mnemonicBox) {
         if (question.mnemonic && question.mnemonic.trim()) {
@@ -674,56 +658,88 @@ function revealQuickAnswer() {
 
     const explanationWrapper = document.querySelector('#quick-recall-view .explanation-wrapper');
     if (explanationWrapper) {
-        if (expHtml) {
+        let rawExp = (question.explanation || "").trim();
+        let rawAns = (question.correctAnswer || question.answer || "").trim();
+
+        if (rawExp && rawExp !== rawAns) {
             explanationWrapper.style.display = "block";
+            let html = "";
+
+            const isSharedGuide = flashcardQuestions.filter(q => (q.explanation || "").trim() === rawExp).length > 1;
+
+            if (isSharedGuide) {
+                html += `<div style="font-size: 0.88rem; font-weight: 700; color: #a855f7; margin-bottom: 12px; padding: 6px 12px; border-radius: 8px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); display: inline-block;">📘 Γενικό Πλαίσιο &amp; Ανακεφαλαίωση Ενότητας</div>`;
+            }
+
+            html += parseMarkdown(rawExp);
+
+            if (question.table) {
+                let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
+                tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
+                tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
+                tableHtml += `</div>`;
+                tableHtml += `<div class="table-responsive"><table class="med-table">`;
+                tableHtml += `<thead><tr>`;
+                question.table.headers.forEach(h => {
+                    tableHtml += `<th>${h}</th>`;
+                });
+                tableHtml += `</tr></thead><tbody>`;
+                question.table.rows.forEach(row => {
+                    tableHtml += `<tr>`;
+                    row.forEach(cell => {
+                        tableHtml += `<td>${cell}</td>`;
+                    });
+                    tableHtml += `</tr>`;
+                });
+                tableHtml += `</tbody></table></div></div>`;
+                html += tableHtml;
+            }
+
             if (quickRecallExplanationContent) {
-                quickRecallExplanationContent.innerHTML = expHtml;
+                quickRecallExplanationContent.innerHTML = html;
+            }
+        } else if (question.table) {
+            explanationWrapper.style.display = "block";
+            let tableHtml = `<div class="table-pane active" style="margin-top: 24px; background: transparent; padding: 0; border: none; box-shadow: none;">`;
+            tableHtml += `<div class="table-pane-header" style="margin-bottom: 12px;">`;
+            tableHtml += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color);">${question.table.title}</h3>`;
+            tableHtml += `</div>`;
+            tableHtml += `<div class="table-responsive"><table class="med-table">`;
+            tableHtml += `<thead><tr>`;
+            question.table.headers.forEach(h => {
+                tableHtml += `<th>${h}</th>`;
+            });
+            tableHtml += `</tr></thead><tbody>`;
+            question.table.rows.forEach(row => {
+                tableHtml += `<tr>`;
+                row.forEach(cell => {
+                    tableHtml += `<td>${cell}</td>`;
+                });
+                tableHtml += `</tr>`;
+            });
+            tableHtml += `</tbody></table></div></div>`;
+            if (quickRecallExplanationContent) {
+                quickRecallExplanationContent.innerHTML = tableHtml;
             }
         } else {
             explanationWrapper.style.display = "none";
         }
     }
 
-    if (quickRevealedBlock) quickRevealedBlock.classList.remove('collapsed');
+    if (quickRevealedBlock) {
+        quickRevealedBlock.classList.remove('collapsed');
+    }
 
-    // --- LIGHTBOX LOGIC ---
     setTimeout(() => {
-        let lightbox = document.getElementById('image-lightbox');
-        if (!lightbox) {
-            lightbox = document.createElement('div');
-            lightbox.id = 'image-lightbox';
-            lightbox.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; cursor:zoom-out; align-items:center; justify-content:center; padding: 20px;';
-            lightbox.innerHTML = '<img id="lightbox-img" style="max-width:95vw; max-height:95vh; object-fit:contain; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.5); transition:transform 0.3s ease;" />';
-            document.body.appendChild(lightbox);
-            
-            lightbox.addEventListener('click', () => {
-                lightbox.style.display = 'none';
-                document.body.style.overflow = '';
-            });
+        if (quickRevealedBlock) {
+            quickRevealedBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        
-        document.querySelectorAll('#quick-revealed-block img').forEach(img => {
-            if (img.id === 'lightbox-img') return;
-            img.style.cursor = 'zoom-in';
-            img.style.transition = 'transform 0.2s';
-            
-            // Avoid adding multiple listeners if reveal is clicked multiple times
-            if (!img.hasAttribute('data-lightbox-bound')) {
-                img.addEventListener('mouseover', () => img.style.transform = 'scale(1.02)');
-                img.addEventListener('mouseout', () => img.style.transform = 'scale(1)');
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const lightboxImg = document.getElementById('lightbox-img');
-                    lightboxImg.src = this.src;
-                    lightbox.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                });
-                img.setAttribute('data-lightbox-bound', 'true');
-            }
-        });
-    }, 100);
-
+    }, 150);
 }
+
+/**
+ * Cycle through quick recall topics (respecting chapter and subchapter filters)
+ */
 function navigateQuickRecall(direction) {
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
@@ -793,12 +809,13 @@ function parseMarkdown(text) {
                 html += "</ol>";
                 inOrderedList = false;
             }
-            html += "<br/>";
             continue;
         }
         
         // Parse bold: **text** -> <strong>text</strong>
         line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Parse italic: *text* -> <em>text</em>
+        line = line.replace(/(^|[^\*])\*([^\*]+?)\*([^\*]|$)/g, '$1<em>$2</em>$3');
         // Parse images: ![alt](url) -> html block
         line = line.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
         
@@ -826,25 +843,28 @@ function parseMarkdown(text) {
             const liText = line.replace(/^[-*•\u2022]\s*/, '').trim();
             html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
         }
-        else if (/^([a-zA-Z]|\d+)[\.\)]\s+/.test(line)) {
+        else if (/^\d+\.\s+/.test(line)) {
             if (inList) {
                 html += "</ul>";
                 inList = false;
             }
-            let listStyle = 'decimal';
-            const markerMatch = line.match(/^([a-zA-Z]|\d+)[\.\)]\s+/);
-            if (markerMatch) {
-                const marker = markerMatch[1];
-                if (/[a-zA-Z]/.test(marker)) {
-                    listStyle = marker === marker.toLowerCase() ? 'lower-alpha' : 'upper-alpha';
-                }
-            }
             if (!inOrderedList) {
-                html += `<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: ${listStyle};'>`;
+                html += "<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6;'>";
                 inOrderedList = true;
             }
-            const liText = line.replace(/^([a-zA-Z]|\d+)[\.\)]\s+/, '').trim();
+            const liText = line.replace(/^\d+\.\s+/, '').trim();
             html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
+        }
+        else if (line.startsWith("<") && (line.startsWith("<div") || line.startsWith("<table") || line.startsWith("<tr") || line.startsWith("<th") || line.startsWith("<td") || line.startsWith("<thead") || line.startsWith("<tbody") || line.startsWith("</table") || line.startsWith("</div"))) {
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+            if (inOrderedList) {
+                html += "</ol>";
+                inOrderedList = false;
+            }
+            html += line;
         }
         else {
             if (inList) {
