@@ -1,4 +1,4 @@
-/* Core Styling - Glassmorphism Design System */
+﻿/* Core Styling - Glassmorphism Design System */
 :root {
     --transition-speed: 0.3s;
     --border-radius: 16px;
@@ -2095,6 +2095,9 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
     gap: 8px;
     align-items: center;
     flex-direction: column;
+
+    text-align: left !important;
+    align-items: flex-start !important;
 }
 
 .overlay-question-item:hover {
@@ -2565,4 +2568,186 @@ u, ins, .underlined-text {
 }
 .explanation-content strong, .correct-answer-text strong, #quick-recall-explanation-content strong, #quick-correct-answer-text strong {
     font-weight: 700 !important;
+}
+
+
+/* --- USER OVERRIDES --- */
+#progress-text {
+    color: #ff69b4 !important; /* Pink */
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+}
+
+#quiz-view .question-container,
+#quiz-view #question-text,
+#quiz-view .question-container * {
+    text-align: left !important;
+}
+
+#question-text {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: var(--text-primary) !important;
+}
+
+/* --- FIX FOR QUESTION OVERLAY ALIGNMENT --- */
+.overlay-question-item {
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+.overlay-question-item span {
+    text-align: left !important;
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+
+.explanation-panel .explanation-header {
+    display: none !important; /* Hide the default "Επεξήγηση" header if we want a cleaner look, or style it */
+}
+
+.explanation-content {
+    background: rgba(var(--primary-rgb), 0.04) !important;
+    border: 1px solid rgba(var(--primary-rgb), 0.15) !important;
+    border-left: 5px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    padding: 24px !important;
+    margin-top: 15px !important;
+}
+
+body.light-theme .explanation-content {
+    background: rgba(var(--primary-rgb), 0.02) !important;
+}
+
+.explanation-content h3, 
+.explanation-content h3:first-of-type,
+.explanation-content h3:nth-of-type(2) {
+    color: var(--primary-color) !important;
+    font-weight: 700 !important;
+}
+
+.explanation-content p, 
+.explanation-content li {
+    line-height: 1.7 !important;
+    color: var(--text-primary) !important;
+    font-size: 1.05rem !important; 
+}
+
+/* =========================================================================
+   PREMIUM UI OVERRIDES: STRICT ANSWERS & SWEET THEORY CARDS
+   ========================================================================= */
+
+/* Make the default multiple-choice panel wrapper invisible */
+.explanation-panel.expanded {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+.explanation-panel .explanation-header {
+    display: none !important;
+}
+.explanation-content {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-top: 15px !important;
+}
+
+/* 1. STRICT & CLEAN ANSWER CARD */
+.mcq-strict-answer,
+.correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid rgba(var(--primary-rgb), 0.15) !important;
+    border-left: 6px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
+    color: var(--text-primary) !important;
+}
+body.dark-theme .mcq-strict-answer,
+body.dark-theme .correct-answer-box {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-left: 6px solid var(--primary-color) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+.mcq-strict-answer h3, 
+.correct-answer-box h3 {
+    color: var(--primary-color) !important;
+    font-weight: 800 !important;
+    font-size: 1.15rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.1) !important;
+    padding-bottom: 10px !important;
+}
+.mcq-strict-answer p, .mcq-strict-answer li,
+.correct-answer-box p, .correct-answer-box li {
+    font-size: 1.05rem !important;
+    line-height: 1.65 !important;
+    color: var(--text-primary) !important;
+}
+
+/* 2. SWEET & SOFT THEORY CARD */
+.mcq-sweet-theory,
+.explanation-wrapper {
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.08) 0%, rgba(var(--primary-rgb), 0.02) 100%) !important;
+    border: 1px solid rgba(var(--primary-rgb), 0.15) !important;
+    border-radius: 16px !important;
+    box-shadow: inset 0 2px 20px rgba(255, 255, 255, 0.6), 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+    padding: 30px 32px !important;
+    margin-top: 24px !important;
+    border-left: none !important; 
+    position: relative;
+}
+body.dark-theme .mcq-sweet-theory,
+body.dark-theme .explanation-wrapper {
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(var(--primary-rgb), 0.05) 100%) !important;
+    box-shadow: inset 0 2px 20px rgba(255, 255, 255, 0.03), 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    border-color: rgba(var(--primary-rgb), 0.3) !important;
+}
+/* Theory Header with Icon */
+.theory-icon-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px dashed rgba(var(--primary-rgb), 0.2);
+}
+.mcq-sweet-theory h3, .mcq-sweet-theory h4,
+.explanation-wrapper h2, .explanation-wrapper h3, .explanation-wrapper h4 {
+    color: var(--primary-color) !important;
+    font-weight: 800 !important;
+    font-size: 1.15rem !important;
+    letter-spacing: -0.01em !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+}
+.mcq-sweet-theory h3:first-of-type,
+.explanation-wrapper h3:first-of-type,
+.explanation-wrapper h2:first-of-type {
+    margin-top: 0 !important;
+}
+.mcq-sweet-theory p, .mcq-sweet-theory li,
+.explanation-wrapper p, .explanation-wrapper li {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+}
+/* Table overriding inside Theory */
+.mcq-sweet-theory th, .explanation-wrapper th {
+    background-color: var(--primary-color) !important;
 }

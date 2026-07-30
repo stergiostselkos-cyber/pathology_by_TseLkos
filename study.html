@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -10,7 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css" rel="stylesheet"/>
+<link href="style.css?v=1785416129" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -335,7 +335,7 @@
   --bg-color: #111827;
 }
 </style></head>
-<body class="dark-theme">
+<body class="light-theme">
 <div class="app-container">
 <!-- Header Section -->
 <header class="app-header">
@@ -354,17 +354,7 @@
 </svg>
 <span>Αρχική</span>
 </a>
-<button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
-<!-- Sun/Moon Icons -->
-<svg class="sun-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 2V4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 20V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<svg class="moon-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
+
 </div>
 </div>
 </header>
@@ -535,6 +525,7 @@
 <!-- App Logic Scripts -->
 <script charset="UTF-8" src="data/flashcard_questions.js"></script>
 <script charset="UTF-8" src="data/table_analyses.js"></script>
+<script src="marked.min.js"></script>
 <script charset="UTF-8" src="study.js"></script>
 </body>
 </html>

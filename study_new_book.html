@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -10,7 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css" rel="stylesheet"/>
+<link href="style.css?v=1785416129" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -315,7 +315,7 @@
   --bg-color: #111827;
 }
 </style></head>
-<body class="dark-theme">
+<body class="light-theme">
 <div class="app-container">
 <!-- Header Section -->
 <header class="app-header">
@@ -334,17 +334,7 @@
 </svg>
 <span>Αρχική</span>
 </a>
-<button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
-<!-- Sun/Moon Icons -->
-<svg class="sun-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 2V4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 20V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<svg class="moon-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
+
 </div>
 </div>
 </header>
@@ -368,7 +358,7 @@
 <!-- Subchapter Filter Dropdown -->
 <div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
 <button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
-<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Υποκεφάλαιο / Θεματική Ενότητα</span>
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Υποκεφάλαιο</span>
 <span class="dropdown-value" id="quick-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
 <svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
@@ -376,6 +366,20 @@
 </button>
 <div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
 <!-- Dynamic Subchapters -->
+</div>
+</div>
+
+<!-- Thematic Unit Filter Dropdown -->
+<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
+<button class="large-dropdown-select-btn" id="quick-thematic-dropdown-btn">
+<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">ΘΕΜΑΤΙΚΗ ΕΝΟΤΗΤΑ/ΝΟΣΟΣ</span>
+<span class="dropdown-value" id="quick-thematic-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
+<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div class="chapters-vertical-list-overlay hidden" id="quick-thematic-overlay">
+<!-- Dynamic Thematic Units -->
 </div>
 </div>
 <!-- Topic Selector Dropdown and Overlay -->
@@ -527,6 +531,7 @@
 </div>
 <!-- App Logic Scripts -->
 <script charset="UTF-8" src="data/new_book_questions.js?v=1785071215"></script>
-<script charset="UTF-8" src="study_new_book.js?v=1784553770"></script>
+<script src="marked.min.js"></script>
+<script charset="UTF-8" src="study_new_book.js?v=1785414596"></script>
 </body>
 </html>

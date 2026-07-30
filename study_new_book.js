@@ -1,10 +1,11 @@
-// Study Portal State
+﻿// Study Portal State
 let flashcardQuestions = [];
 let summaryTables = [];
 let tableAnalyses = [];
 let currentQuickIndex = 0;
 let activeQuickChapter = "Όλα";
 let activeQuickSubchapter = "Όλα";
+let activeQuickThematicUnit = "Όλα";
 let activeTableChapter = "Όλα";
 let activeTableId = null;
 
@@ -31,6 +32,7 @@ const quickPillsContainer = document.getElementById('quick-questions-overlay');
 
 // Chapter Filter Containers
 const quickChaptersContainer = document.getElementById('quick-chapters-overlay');
+const quickThematicContainer = document.getElementById('quick-thematic-overlay');
 
 // Tables Elements
 const printTableBtn = document.getElementById('print-table-btn');
@@ -91,6 +93,7 @@ function loadQuestions() {
 
     renderMainChapterFilters();
     renderSubchapterFilters();
+    renderThematicUnitFilters();
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
 }
@@ -107,20 +110,38 @@ function getQuestionChapter(q) {
  */
 function getQuestionSubchapter(q) {
     if (q.category && q.category.includes(" / ")) {
-        return q.category.substring(q.category.indexOf(" / ") + 3).trim();
+        const parts = q.category.split(" / ");
+        if (parts.length > 2) {
+            return parts.slice(2).join(" / ").trim();
+        } else if (parts.length > 1) {
+            return parts[1].trim(); // Fallback if no second slash
+        }
     }
     return "Γενικά";
+}
+
+function getQuestionThematicUnit(q) {
+    if (q.category && q.category.includes(" / ")) {
+        const parts = q.category.split(" / ");
+        if (parts.length > 1) {
+            return parts[1].trim();
+        }
+    }
+    return "Όλα";
 }
 
 /**
  * Helper to check if a question matches both selected chapter and subchapter
  */
-function isQuestionMatch(q, activeCh, activeSub) {
+function isQuestionMatch(q, activeCh, activeSub, activeThem) {
+    if (activeThem === undefined) activeThem = "Όλα";
     const qCh = getQuestionChapter(q);
     const qSub = getQuestionSubchapter(q);
+    const qThem = getQuestionThematicUnit(q);
     const matchesCh = (activeCh === "Όλα" || qCh === activeCh);
     const matchesSub = (activeSub === "Όλα" || qSub === activeSub);
-    return matchesCh && matchesSub;
+    const matchesThem = (activeThem === "Όλα" || qThem === activeThem);
+    return matchesCh && matchesSub && matchesThem;
 }
 
 /**
@@ -138,8 +159,8 @@ function toggleRecallEmptyState(hasQuestions) {
         emptyState.id = 'quick-empty-state';
         emptyState.className = 'empty-state-card';
         emptyState.innerHTML = `
-            <div class="empty-state-icon" style="color: #d946ef; background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
-            <h3 style="color: #d946ef;">Δεν υπάρχουν ερωτήσεις</h3>
+            <div class="empty-state-icon" style="color: var(--primary-color); background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
+            <h3 style="color: var(--primary-color);">Δεν υπάρχουν ερωτήσεις</h3>
             <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
         `;
         if (navFooter) {
@@ -234,18 +255,73 @@ function renderSubchapterFilters() {
     }
 }
 
+
+function renderThematicUnitFilters() {
+    const container = document.getElementById('quick-thematic-overlay');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const thematics = new Set();
+    flashcardQuestions.forEach(q => {
+        if ((activeQuickChapter === "Όλα" || getQuestionChapter(q) === activeQuickChapter) &&
+            (activeQuickSubchapter === "Όλα" || getQuestionSubchapter(q) === activeQuickSubchapter)) {
+            const them = getQuestionThematicUnit(q);
+            if (them) {
+                thematics.add(them);
+            }
+        }
+    });
+
+    const sortedThematics = Array.from(thematics).sort();
+    const themList = ["Όλα", ...sortedThematics];
+    if(themList[0] !== "Όλα") {
+        const idx = themList.indexOf("Όλα");
+        if(idx !== -1) themList.splice(idx, 1);
+        themList.unshift("Όλα");
+    }
+
+    themList.forEach(them => {
+        const item = document.createElement('button');
+        const isActive = (them === activeQuickThematicUnit);
+        item.className = `overlay-chapter-item ${isActive ? 'active' : ''}`;
+        item.textContent = them;
+        item.addEventListener('click', () => {
+            handleQuickThematicUnitSelect(them);
+            container.classList.add('hidden');
+        });
+        container.appendChild(item);
+    });
+
+    const valueDisplay = document.getElementById('quick-thematic-dropdown-value');
+    if (valueDisplay) {
+        valueDisplay.textContent = activeQuickThematicUnit;
+    }
+}
+
 function handleQuickMainChapterSelect(chapter) {
     activeQuickChapter = chapter;
     activeQuickSubchapter = "Όλα";
+    activeQuickThematicUnit = "Όλα";
     renderMainChapterFilters();
     renderSubchapterFilters();
+    renderThematicUnitFilters();
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
 }
 
 function handleQuickSubchapterSelect(subchapter) {
     activeQuickSubchapter = subchapter;
+    activeQuickThematicUnit = "Όλα";
     renderSubchapterFilters();
+    renderThematicUnitFilters();
+    populateQuickTopicSelector();
+    loadFirstMatchingQuickQuestion();
+}
+
+
+function handleQuickThematicUnitSelect(thematic) {
+    activeQuickThematicUnit = thematic;
+    renderThematicUnitFilters();
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
 }
@@ -253,7 +329,7 @@ function handleQuickSubchapterSelect(subchapter) {
 function loadFirstMatchingQuickQuestion() {
     let targetIndex = -1;
     for (let i = 0; i < flashcardQuestions.length; i++) {
-        if (isQuestionMatch(flashcardQuestions[i], activeQuickChapter, activeQuickSubchapter)) {
+        if (isQuestionMatch(flashcardQuestions[i], activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
             targetIndex = i;
             break;
         }
@@ -277,7 +353,7 @@ function populateQuickTopicSelector() {
     
     let relativeIndex = 1;
     flashcardQuestions.forEach((q, idx) => {
-        if (!isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
+        if (!isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
             return;
         }
 
@@ -290,7 +366,7 @@ function populateQuickTopicSelector() {
         overlayItem.setAttribute('data-index', idx);
         overlayItem.style.width = '100%';
         overlayItem.innerHTML = `
-            <strong style="color: #d946ef; flex-shrink: 0; margin-right: 4px;">Ερ. ${currentRelative}:</strong>
+            <strong style="color: var(--primary-color); flex-shrink: 0; margin-right: 4px;">Ερ. ${currentRelative}:</strong>
             <span style="flex-grow: 1; text-align: left;">${cleanQuestion}</span>
         `;
         overlayItem.addEventListener('click', () => {
@@ -350,7 +426,7 @@ function renderSummaryTables() {
     panesContainer.innerHTML = '';
 
     if (summaryTables.length === 0) {
-        panesContainer.innerHTML = '<p style="padding: 30px; text-align: center; color: var(--text-secondary); font-weight: 500;">Δεν υπάρχουν διαθέσιμοι πίνακες.</p>';
+        panesContainer.innerHTML = '<p style="padding: 30px; text-align: left; color: var(--text-secondary); font-weight: 500;">Δεν υπάρχουν διαθέσιμοι πίνακες.</p>';
         return;
     }
 
@@ -461,11 +537,12 @@ function setupEventListeners() {
     if (quickRecallNextBtn) quickRecallNextBtn.addEventListener('click', () => navigateQuickRecall(1));
     if (quickRecallRandomBtn) quickRecallRandomBtn.addEventListener('click', loadQuickRandomQuestion);
 
-    // Quick List & Chapters Dropdowns toggle overlay
     const quickMainChaptersDropdownBtn = document.getElementById('quick-main-chapters-dropdown-btn');
     const quickMainChaptersOverlay = document.getElementById('quick-main-chapters-overlay');
     const quickChaptersDropdownBtn = document.getElementById('quick-chapters-dropdown-btn');
     const quickChaptersOverlay = document.getElementById('quick-chapters-overlay');
+    const quickThematicDropdownBtn = document.getElementById('quick-thematic-dropdown-btn');
+    const quickThematicOverlay = document.getElementById('quick-thematic-overlay');
     const quickQuestionsDropdownBtn = document.getElementById('quick-questions-dropdown-btn');
     const quickQuestionsOverlay = document.getElementById('quick-questions-overlay');
 
@@ -478,6 +555,7 @@ function setupEventListeners() {
         quickMainChaptersDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
+            if (quickThematicOverlay) quickThematicOverlay.classList.add('hidden');
             if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
@@ -489,10 +567,23 @@ function setupEventListeners() {
         quickChaptersDropdownBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
+            if (quickThematicOverlay) quickThematicOverlay.classList.add('hidden');
             if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
             quickChaptersOverlay.classList.toggle('hidden');
+        });
+    }
+
+    if (quickThematicDropdownBtn && quickThematicOverlay) {
+        quickThematicDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
+            if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
+            if (quickQuestionsOverlay) quickQuestionsOverlay.classList.add('hidden');
+            if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
+            if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
+            quickThematicOverlay.classList.toggle('hidden');
         });
     }
 
@@ -501,6 +592,7 @@ function setupEventListeners() {
             e.stopPropagation();
             if (quickMainChaptersOverlay) quickMainChaptersOverlay.classList.add('hidden');
             if (quickChaptersOverlay) quickChaptersOverlay.classList.add('hidden');
+            if (quickThematicOverlay) quickThematicOverlay.classList.add('hidden');
             if (tableChaptersOverlay) tableChaptersOverlay.classList.add('hidden');
             if (tablesDropdownOverlay) tablesDropdownOverlay.classList.add('hidden');
             quickQuestionsOverlay.classList.toggle('hidden');
@@ -610,7 +702,7 @@ function loadQuickRecallQuestion(index) {
 
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
             matchingIndices.push(idx);
         }
     });
@@ -727,7 +819,7 @@ function revealQuickAnswer() {
 function navigateQuickRecall(direction) {
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
             matchingIndices.push(idx);
         }
     });
@@ -757,7 +849,7 @@ function navigateQuickRecall(direction) {
 function loadQuickRandomQuestion() {
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
-        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter)) {
+        if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
             matchingIndices.push(idx);
         }
     });
@@ -777,96 +869,14 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/\\\n/g, '\n');
     normalized = normalized.replace(/\\/g, '');
     
-    const lines = normalized.split('\n');
-    let html = "";
-    let inList = false;
-    let inOrderedList = false;
+    // Pre-process our custom image syntax
+    normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="" alt="" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption"></span></div>');
     
-    for (let line of lines) {
-        line = line.trim();
-        if (!line) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            html += "<br/>";
-            continue;
-        }
-        
-        // Parse bold: **text** -> <strong>text</strong>
-        line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // Parse images: ![alt](url) -> html block
-        line = line.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
-        
-        if (line.startsWith("###")) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            const headerText = line.substring(3).trim();
-            html += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color); margin-top: 24px; margin-bottom: 12px;">${headerText}</h3>`;
-        }
-        else if (line.startsWith("-") || line.startsWith("*") || line.startsWith("•") || line.startsWith("\u2022")) {
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            if (!inList) {
-                html += "<ul style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: disc;'>";
-                inList = true;
-            }
-            const liText = line.replace(/^[-*•\u2022]\s*/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
-        }
-        else if (/^([a-zA-Z]|\d+)[\.\)]\s+/.test(line)) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            let listStyle = 'decimal';
-            const markerMatch = line.match(/^([a-zA-Z]|\d+)[\.\)]\s+/);
-            if (markerMatch) {
-                const marker = markerMatch[1];
-                if (/[a-zA-Z]/.test(marker)) {
-                    listStyle = marker === marker.toLowerCase() ? 'lower-alpha' : 'upper-alpha';
-                }
-            }
-            if (!inOrderedList) {
-                html += `<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: ${listStyle};'>`;
-                inOrderedList = true;
-            }
-            const liText = line.replace(/^([a-zA-Z]|\d+)[\.\)]\s+/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
-        }
-        else {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            html += `<p style='line-height: 1.6; margin-bottom: 14px; color: var(--text-primary);'>${line}</p>`;
-        }
+    if (typeof marked !== 'undefined') {
+        return marked.parse(normalized);
     }
     
-    if (inList) {
-        html += "</ul>";
-    }
-    if (inOrderedList) {
-        html += "</ol>";
-    }
-    
-    return html;
+    return normalized.replace(/\n/g, '<br/>');
 }
 
 // Close all custom dropdown panels when clicking outside
@@ -954,7 +964,7 @@ function renderTablesDropdown() {
         item.className = `overlay-question-item ${activeTableId === t.tableId ? 'active' : ''}`;
         item.style.width = '100%';
         item.innerHTML = `
-            <strong style="color: #d946ef; flex-shrink: 0; margin-right: 4px;">Πίν. ${t.tableId}:</strong>
+            <strong style="color: var(--primary-color); flex-shrink: 0; margin-right: 4px;">Πίν. ${t.tableId}:</strong>
             <span style="flex-grow: 1; text-align: left;">${cleanTitle}</span>
         `;
         item.addEventListener('click', () => {
@@ -1190,7 +1200,7 @@ function renderSelectedTable() {
             // Bind tooltip events
             const showTooltip = () => {
                 globalTooltip.innerHTML = `
-                    <div class="cell-tooltip-header" style="font-weight: 700; color: #3b82f6; margin-bottom: 8px;">📌 ${crit}</div>
+                    <div class="cell-tooltip-header" style="font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">📌 ${crit}</div>
                     <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px; font-style: italic; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
                         <strong>Εντολή NotebookLM:</strong><br>${prompt}
                     </div>
@@ -1228,7 +1238,7 @@ function renderSelectedTable() {
                         detailsContainer.style.display = 'block';
                         detailsContainer.style.borderColor = '#1e3a8a';
                         detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
                                 <span>📌 ${crit}</span>
                                 <span style="font-size: 0.88rem; font-weight: 400; color: var(--text-secondary); font-style: italic;">
                                     <b>Εντολή NotebookLM:</b> ${prompt}
@@ -1265,7 +1275,7 @@ function renderSelectedTable() {
                         detailsContainer.style.display = 'block';
                         detailsContainer.style.borderColor = '#1e3a8a';
                         detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; flex-direction: column; gap: 4px;">
                                 <span>📌 ${crit}</span>
                                 <span style="font-size: 0.88rem; font-weight: 400; color: var(--text-secondary); font-style: italic;">
                                     <b>Εντολή NotebookLM:</b> ${prompt}
@@ -1375,7 +1385,7 @@ function renderSelectedTable() {
 
         const showTooltip = (title, text, clientX, clientY) => {
             globalTooltip.innerHTML = `
-                <div class="cell-tooltip-header" style="font-weight: 700; color: #0d9488; margin-bottom: 8px;">📌 ${title}</div>
+                <div class="cell-tooltip-header" style="font-weight: 700; color: var(--primary-color); margin-bottom: 8px;">📌 ${title}</div>
                 <div style="font-size: 0.88rem; line-height: 1.4; color: var(--text-primary);">
                     ${parseMarkdown(text || "")}
                 </div>
@@ -1391,7 +1401,7 @@ function renderSelectedTable() {
                     detailsContainer.style.display = 'block';
                     detailsContainer.style.borderColor = '#0f766e';
                     detailsContainer.innerHTML = `
-                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                        <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                             <span>📌 ${title}</span>
                         </div>
                         <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
@@ -1425,7 +1435,7 @@ function renderSelectedTable() {
                     detailsContainer.style.display = 'block';
                     detailsContainer.style.borderColor = '#0f766e';
                     detailsContainer.innerHTML = `
-                        <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                        <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                             <span>📌 ${title}</span>
                         </div>
                         <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
@@ -1726,7 +1736,7 @@ function renderSelectedTable() {
                                 detailsContainer.style.display = 'block';
                                 detailsContainer.style.borderColor = '#0f766e';
                                 detailsContainer.innerHTML = `
-                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                    <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                                         <span>📌 ${itemText}</span>
                                     </div>
                                     <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
@@ -1784,7 +1794,7 @@ function renderSelectedTable() {
                                 detailsContainer.style.display = 'block';
                                 detailsContainer.style.borderColor = '#0f766e';
                                 detailsContainer.innerHTML = `
-                                    <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                    <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                                         <span>📌 ${itemText}</span>
                                     </div>
                                     <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
@@ -1846,7 +1856,7 @@ function renderSelectedTable() {
                         detailsContainer.style.display = 'block';
                         detailsContainer.style.borderColor = '#0f766e';
                         detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                                 <span>π“ ${cellText}</span>
                             </div>
                             <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">
@@ -1888,7 +1898,7 @@ function renderSelectedTable() {
                         detailsContainer.style.display = 'block';
                         detailsContainer.style.borderColor = '#0f766e';
                         detailsContainer.innerHTML = `
-                            <div style="font-size: 1.15rem; font-weight: 700; color: #0f766e; margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <div style="font-size: 1.15rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid #0f766e; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                                 <span>π“ ${cellText}</span>
                             </div>
                             <div class="cell-details-body" style="font-size: 0.98rem; line-height: 1.6; color: var(--text-primary);">

@@ -1,4 +1,4 @@
-// Application State
+﻿// Application State
 let questions = [];
 let filteredQuestions = [];
 let activeChapter = "Όλα";
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', handleNextQuestion);
     prevButton.addEventListener('click', handlePrevQuestion);
     restartButton.addEventListener('click', restartQuiz);
-    themeToggleBtn.addEventListener('click', toggleTheme);
+    // themeToggleBtn listener removed
     if (revealAnswerBtn) {
         revealAnswerBtn.addEventListener('click', handleRevealAnswer);
     }
@@ -63,29 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Theme Management
  */
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    if (savedTheme === 'light') {
-        document.body.classList.remove('dark-theme');
-        document.body.classList.add('light-theme');
-    } else {
-        document.body.classList.remove('light-theme');
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-    }
-}
+function initTheme() { document.body.classList.remove('dark-theme'); document.body.classList.add('light-theme'); localStorage.setItem('theme', 'light'); }
 
-function toggleTheme() {
-    if (document.body.classList.contains('dark-theme')) {
-        document.body.classList.remove('dark-theme');
-        document.body.classList.add('light-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.body.classList.remove('light-theme');
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-    }
-}
+function toggleTheme() {}
 
 /**
  * Helper to get the correct answer index from a question object.
@@ -192,7 +172,7 @@ function populateQuestionSelector() {
         overlayItem.setAttribute('data-index', idx);
         overlayItem.style.width = '100%';
         overlayItem.innerHTML = `
-            <strong style="color: #d946ef; flex-shrink: 0; margin-right: 4px;">Ερ. ${idx + 1}:</strong>
+            <strong style="color: var(--primary-color); flex-shrink: 0; margin-right: 4px;">Ερ. ${idx + 1}:</strong>
             <span style="flex-grow: 1; text-align: left;">${shortQ}</span>
         `;
         overlayItem.addEventListener('click', () => {
@@ -491,8 +471,28 @@ function revealExplanation(explanationText) {
         return;
     }
     
-    const parsedHtml = parseMarkdown(explanationText);
-    explanationContent.innerHTML = parsedHtml;
+    let mainExp = explanationText;
+    let detailedTheory = "";
+    
+    if (explanationText.includes("### Αναλυτική Απάντηση")) {
+        const parts = explanationText.split("### Αναλυτική Απάντηση");
+        mainExp = parts[0];
+        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
+    } else if (explanationText.includes("### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ")) {
+        const parts = explanationText.split("### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ");
+        mainExp = parts[0];
+        detailedTheory = "### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ" + parts[1];
+    }
+    
+    let finalHtml = '<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>';
+    if (detailedTheory) {
+        finalHtml += '<div class="mcq-sweet-theory">' +
+            '<div class="theory-icon-header">📖 Έξτρα Υλικό Μελέτης</div>' +
+            '<div class="theory-content">' + parseMarkdown(detailedTheory) + '</div>' +
+        '</div>';
+    }
+    
+    explanationContent.innerHTML = finalHtml;
     explanationPanel.classList.add('expanded');
     
     // Smooth scroll down to explanation panel if mobile
@@ -514,96 +514,14 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/\\\n/g, '\n');
     normalized = normalized.replace(/\\/g, '');
     
-    const lines = normalized.split('\n');
-    let html = "";
-    let inList = false;
-    let inOrderedList = false;
+    // Pre-process our custom image syntax
+    normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="" alt="" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption"></span></div>');
     
-    for (let line of lines) {
-        line = line.trim();
-        if (!line) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            html += "<br/>";
-            continue;
-        }
-        
-        // Parse bold: **text** -> <strong>text</strong>
-        line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        // Parse images: ![alt](url) -> html block
-        line = line.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption">$1</span></div>');
-        
-        if (line.startsWith("###")) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            const headerText = line.substring(3).trim();
-            html += `<h3 style="font-size: 1.15rem; font-weight: 600; color: var(--accent-color); margin-top: 24px; margin-bottom: 12px;">${headerText}</h3>`;
-        }
-        else if (line.startsWith("-") || line.startsWith("*") || line.startsWith("•") || line.startsWith("\u2022")) {
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            if (!inList) {
-                html += "<ul style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: disc;'>";
-                inList = true;
-            }
-            const liText = line.replace(/^[-*•\u2022]\s*/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
-        }
-        else if (/^([a-zA-Z]|\d+)[\.\)]\s+/.test(line)) {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            let listStyle = 'decimal';
-            const markerMatch = line.match(/^([a-zA-Z]|\d+)[\.\)]\s+/);
-            if (markerMatch) {
-                const marker = markerMatch[1];
-                if (/[a-zA-Z]/.test(marker)) {
-                    listStyle = marker === marker.toLowerCase() ? 'lower-alpha' : 'upper-alpha';
-                }
-            }
-            if (!inOrderedList) {
-                html += `<ol style='margin-left: 20px; margin-bottom: 16px; line-height: 1.6; list-style-type: ${listStyle};'>`;
-                inOrderedList = true;
-            }
-            const liText = line.replace(/^([a-zA-Z]|\d+)[\.\)]\s+/, '').trim();
-            html += `<li style='margin-bottom: 8px; color: var(--text-primary);'>${liText}</li>`;
-        }
-        else {
-            if (inList) {
-                html += "</ul>";
-                inList = false;
-            }
-            if (inOrderedList) {
-                html += "</ol>";
-                inOrderedList = false;
-            }
-            html += `<p style='line-height: 1.6; margin-bottom: 14px; color: var(--text-primary);'>${line}</p>`;
-        }
+    if (typeof marked !== 'undefined') {
+        return marked.parse(normalized);
     }
     
-    if (inList) {
-        html += "</ul>";
-    }
-    if (inOrderedList) {
-        html += "</ol>";
-    }
-    
-    return html;
+    return normalized.replace(/\n/g, '<br/>');
 }
 
 /**

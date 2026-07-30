@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -10,7 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css" rel="stylesheet"/>
+<link href="style.css?v=1785416129" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -159,7 +159,12 @@
       font-weight: 700 !important;
       box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
     }
-</style>
+
+    /* Fix alignment and pink color for question number */
+    #progress-text { color: #ff69b4 !important; font-weight: 800 !important; font-size: 1.05rem !important; }
+    #quiz-view .question-container { text-align: left !important; }
+    #question-text { text-align: left !important; display: block !important; opacity: 1 !important; visibility: visible !important; }
+  </style>
 
 <style id="dynamic-theme">
 :root {
@@ -170,7 +175,7 @@
   --bg-color: #111827;
 }
 </style></head>
-<body class="dark-theme">
+<body class="light-theme">
 <div class="app-container">
 <!-- Header Section -->
 <header class="app-header">
@@ -191,24 +196,7 @@
 </svg>
 <span>Αρχική</span>
 </a>
-<button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
-<!-- Sun Icon -->
-<svg class="sun-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 2V4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 20V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12H4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M20 12H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<!-- Moon Icon -->
-<svg class="moon-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
+
 <!-- Progress Bar Tracker -->
 <div class="progress-container">
 <div class="progress-bar-wrapper">
@@ -365,7 +353,8 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="questions.js?v=1784846041"></script>
+<script charset="UTF-8" src="questions.js?v=1785414596"></script>
+<script src="marked.min.js"></script>
 <script charset="UTF-8" src="app.js"></script>
 </body>
 </html>
