@@ -2751,3 +2751,132 @@ body.dark-theme .explanation-wrapper {
 .mcq-sweet-theory th, .explanation-wrapper th {
     background-color: var(--primary-color) !important;
 }
+
+
+/* Fixes for HTML questions */
+.question-text img, .answer-text img, .question img, .answer img, .question-card img, #question-text img, #answer-text img { max-width: 100% !important; height: auto !important; }
+.question-text table, .answer-text table, .question table, .answer table, .question-card table, #question-text table, #answer-text table { max-width: 100% !important; overflow-x: auto !important; display: block !important; border-collapse: collapse; width: 100%; margin-bottom: 15px; word-break: break-word; }
+.question-text table td, .question-text table th, .answer-text table td, .answer-text table th, .question table td, .question table th, .answer table td, .answer table th, .question-card table td, .question-card table th, #question-text table td, #question-text table th, #answer-text table td, #answer-text table th { border: 1px solid #ccc; padding: 5px; }
+table p { margin: 0; padding: 0; }
+
+
+/* --- PREMIUM FIXES FOR WORD EXTRACTION (SPACING, TABLES, IMAGES) --- */
+
+.markdown-body p {
+    margin-bottom: 1.25rem !important;
+    line-height: 1.6;
+}
+
+.markdown-body table {
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.markdown-body th, .markdown-body td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+.markdown-body th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #1e293b;
+    border-bottom: 2px solid #cbd5e1;
+}
+
+.markdown-body tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+.markdown-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border-radius: 8px;
+    border: 3px solid #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- PREMIUM FIXES FOR WORD EXTRACTION (SPACING, TABLES, IMAGES) --- */
+#quick-recall-question p, #quick-correct-answer-text p, #quick-recall-explanation-content p {
+    margin-bottom: 1.25rem !important;
+    line-height: 1.6;
+}
+#quick-recall-question table, #quick-correct-answer-text table, #quick-recall-explanation-content table {
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+#quick-recall-question th, #quick-recall-question td,
+#quick-correct-answer-text th, #quick-correct-answer-text td,
+#quick-recall-explanation-content th, #quick-recall-explanation-content td {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #e2e8f0;
+}
+#quick-recall-question th, #quick-correct-answer-text th, #quick-recall-explanation-content th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #1e293b;
+    border-bottom: 2px solid #cbd5e1;
+}
+#quick-recall-question tr:nth-child(even), #quick-correct-answer-text tr:nth-child(even), #quick-recall-explanation-content tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+#quick-recall-question img, #quick-correct-answer-text img, #quick-recall-explanation-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border-radius: 8px;
+    border: 3px solid #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* --- FIX FOR LIST INDENTATION & BULLETS --- */
+#quick-recall-question ul, #quick-correct-answer-text ul, #quick-recall-explanation-content ul {
+    padding-left: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    list-style-type: disc !important;
+}
+
+#quick-recall-question ol, #quick-correct-answer-text ol, #quick-recall-explanation-content ol {
+    padding-left: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    list-style-type: decimal !important;
+}
+
+#quick-recall-question li, #quick-correct-answer-text li, #quick-recall-explanation-content li {
+    margin-bottom: 0.75rem !important;
+    line-height: 1.6;
+}
+
+/* Fix for nested lists */
+#quick-recall-question ul ul, #quick-correct-answer-text ul ul, #quick-recall-explanation-content ul ul,
+#quick-recall-question ol ol, #quick-correct-answer-text ol ol, #quick-recall-explanation-content ol ol {
+    padding-left: 2rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Add a visual left border/indent for blockquotes in case they used them */
+#quick-recall-question blockquote, #quick-correct-answer-text blockquote, #quick-recall-explanation-content blockquote {
+    border-left: 4px solid var(--primary-color) !important;
+    padding-left: 1.5rem !important;
+    margin-left: 1rem !important;
+    color: #4b5563 !important;
+}

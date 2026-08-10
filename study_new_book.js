@@ -1937,3 +1937,4 @@ if (detailsBox) {
         e.stopPropagation();
     });
 }
+
