@@ -115,19 +115,7 @@
 <p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μελετήστε τη θεωρία με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
 <a class="portal-card-btn study-btn" href="study.html#quick-recall" style="font-weight: 700; border: none">Έναρξη Μελέτης</a>
 </div>
-<!-- Table Analysis Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #6366f1; --primary-hover: #4f46e5; --primary-rgb: 99, 102, 241;">
-<div class="portal-card-header">
-<div class="portal-card-icon tables-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 3h18v18H3V3z M3 9h18 M3 15h18 M9 3v18 M15 3v18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Ανάλυση Πινάκων</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη πινάκων με επεξήγηση κάθε πεδίου (μηχανισμοί, συσχετίσεις, SOS) κατά το πέρασμα του κέρσορα.</p>
-<a class="portal-card-btn tables-btn" href="study.html#table-analysis" style="font-weight: 700; border: none">Έναρξη Πινάκων</a>
-</div>
+
 <!-- New Book Card -->
 <div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #f59e0b; --primary-hover: #d97706; --primary-rgb: 245, 158, 11;">
 <div class="portal-card-header">
@@ -151,8 +139,8 @@
 </div>
 <h3>Κλινικά Σενάρια Παθολογίας</h3>
 </div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη κλινικών περιστατικών Παθολογίας (η δομή και ο τρόπος λειτουργίας θα καθοριστούν σε επόμενο χρόνο).</p>
-<button class="portal-card-btn clinical-btn" onclick="showScenariosModal()" style="font-weight: 700; border: none; cursor: pointer; width: 100%; text-align: center; border-radius: 8px; padding: 12px">Έναρξη Σεναρίων</button>
+<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη κλινικών περιστατικών Παθολογίας. Μελετήστε τα βήμα-βήμα, αξιολογήστε ευρήματα και απαντήστε στις ερωτήσεις.</p>
+<a class="portal-card-btn clinical-btn" href="cases.html" style="font-weight: 700; border: none; cursor: pointer; display: block; text-decoration: none; width: 100%; text-align: center; border-radius: 8px; padding: 12px; box-sizing: border-box">Έναρξη Σεναρίων</a>
 </div>
 </section>
 </main>
@@ -164,22 +152,7 @@
             </div>
 </footer>
 </div>
-<!-- Modal Backdrop -->
-<div id="scenarios-modal" style="display: none; position: fixed; inset: 0; backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; transition: all 0.3s ease">
-<div style="border-radius: 20px; padding: 32px; max-width: 500px; width: 100%; text-align: center; position: relative">
-<div style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-</div>
-<h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px">Κλινικά Σενάρια Παθολογίας</h3>
-<p style="line-height: 1.6; margin-bottom: 24px; font-size: 1rem">Η ενότητα αυτή έχει προετοιμαστεί και η δομή της μαζί με τα κλινικά σενάρια θα υλοποιηθούν σε επόμενο χρόνο!</p>
-<button class="portal-card-btn clinical-btn" onclick="closeScenariosModal()" style="font-weight: 700; border: none; cursor: pointer; padding: 12px 24px; border-radius: 12px">Κλείσιμο</button>
-</div>
-</div>
-<!-- Theme switch logic -->
+
 <script>
         function showScenariosModal() {
             document.getElementById('scenarios-modal').style.display = 'flex';

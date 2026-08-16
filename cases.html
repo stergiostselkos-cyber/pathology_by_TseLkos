@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Κλινικά Σενάρια | Παθολογία</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="cases-extra.css" rel="stylesheet"/>
+<style id="dynamic-theme">
+:root {
+  --primary-color: #ef4444;
+  --primary-rgb: 239, 68, 68;
+  --primary-hover: #dc2626;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #450a0a 0%, #111827 80%);
+  --bg-color: #111827;
+}
+}
+.cases-layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.cases-vertical-list::-webkit-scrollbar {
+    width: 6px;
+}
+.cases-vertical-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+.case-card-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    color: #e2e8f0;
+}
+.case-card-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.1);
+}
+.case-card-btn.active {
+    background: rgba(var(--primary-rgb), 0.15);
+    border-color: var(--primary-color);
+}
+.case-card-btn.completed {
+    border-left: 4px solid var(--primary-color);
+    background: linear-gradient(90deg, rgba(var(--primary-rgb),0.1) 0%, rgba(255,255,255,0.02) 100%);
+}
+.case-card-btn .case-title-txt {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.case-card-btn .case-subtitle-txt {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+.mark-completed-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+.mark-completed-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+.mark-completed-btn.is-completed {
+    background: #059669; /* Green when completed */
+}
+</style>
+</head>
+<body class="light-theme">
+<div class="app-container" style="max-width: 1100px; margin: 0 auto; transition: max-width 0.3s ease">
+<!-- Header Section -->
+<header class="app-header">
+<div class="header-main">
+<div class="app-logo">
+<svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1>Pathologia<span>Study</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
+</div>
+<div class="header-controls">
+<a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
+<svg fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M9 22V12H15V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Αρχική</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="app-main">
+    <section class="view-panel" id="cases-view" style="padding: 24px; gap: 24px; display: flex; flex-direction: column;">
+    
+    <!-- Top Horizontal Filter/Selector -->
+    <div class="cases-top-nav">
+        <div class="top-nav-container" style="justify-content: center; gap: 16px;">
+            <div class="nav-brand">
+                <span style="font-size: 1.2rem;">📚</span>
+                <select id="book-select" class="premium-select">
+                    <!-- Populated dynamically -->
+                </select>
+            </div>
+            <div class="nav-brand" id="case-select-wrapper" style="display: none;">
+                <span style="font-size: 1.2rem;">👤</span>
+                <select id="case-select" class="premium-select">
+                    <!-- Cases populated here -->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <section class="cases-layout-grid">
+        <div class="cases-right-pane" style="width: 100%;">
+            <!-- Default Welcome Screen -->
+        <div id="cases-welcome-screen" class="premium-welcome-card">
+            <div class="welcome-icon-wrapper">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <h2>Κλινικά Σενάρια</h2>
+            <p>Επιλέξτε ένα περιστατικό από το επάνω μενού για να ξεκινήσετε τη διαδραστική μελέτη.</p>
+        </div>
+
+        <!-- Active Case View -->
+        <div id="active-case-container" class="active-case-view" style="display: none;">
+            
+            <!-- Patient Hero Card -->
+            <div class="patient-hero-card">
+                <div class="hero-backdrop"></div>
+                <div class="hero-content">
+                    <div class="patient-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="patient-info">
+                        <span class="patient-badge" id="case-book-badge">Book</span>
+                        <h2 id="case-title">Τίτλος Περιστατικού</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Grid (History & Exam) -->
+            <div class="clinical-data-grid">
+                <div class="clinical-box history-glass">
+                    <div class="box-header">
+                        <span class="box-icon">📝</span>
+                        <h3>Ιστορικό</h3>
+                    </div>
+                    <div id="case-history" class="box-content"></div>
+                </div>
+                <div class="clinical-box exam-glass">
+                    <div class="box-header">
+                        <span class="box-icon">🩺</span>
+                        <h3>Κλινική Εξέταση</h3>
+                    </div>
+                    <div id="case-exam" class="box-content"></div>
+                </div>
+            </div>
+
+            <!-- Vertical Timeline -->
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+                <div id="stages-container" class="stages-timeline-container">
+                    <!-- Dynamic Stages Go Here -->
+                </div>
+            </div>
+
+            <!-- Keypoints -->
+            <div class="keypoints-glass" id="case-keypoints-container" style="display: none;">
+                <div class="keypoints-header">
+                    <span class="kp-icon">💡</span>
+                    <h3>Σημεία - Κλειδιά (Key Points)</h3>
+                </div>
+                <ul id="case-keypoints-list"></ul>
+            </div>
+
+            <button id="mark-completed-btn" class="mark-completed-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+                <span id="mark-completed-text">Σήμανση ως Ολοκληρωμένο</span>
+            </button>
+
+        </div>
+        </div>
+    </section>
+    </section>
+</main>
+<!-- Footer Info -->
+<footer class="app-footer">
+<p>Σχεδιασμένο για ιατρική εκπαίδευση &amp; εμπέδωση θεωρίας</p>
+<div class="study-feedback-footer" style="margin-top: 16px; padding: 12px 10px; border-top: 1px dashed var(--card-border); text-align: center; font-size: 0.95rem; line-height: 1.5">
+                💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
+            </div>
+</footer>
+</div>
+<!-- App Logic Scripts -->
+<script charset="UTF-8" src="data/cases_klinika_100.js"></script>
+<script charset="UTF-8" src="cases.js"></script>
+
+</body>
+</html>
