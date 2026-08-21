@@ -196,7 +196,16 @@ function renderMainChapterFilters() {
         chapters.add(getQuestionChapter(q));
     });
 
-    const sortedChapters = Array.from(chapters).sort();
+    // Sort by the chapter's leading number so 10ο lands after 9ο, not before 1ο
+    const chapterNumber = (name) => {
+        const m = String(name).match(/^\s*(\d+)/);
+        return m ? parseInt(m[1], 10) : Number.MAX_SAFE_INTEGER;
+    };
+    const sortedChapters = Array.from(chapters).sort((a, b) => {
+        const na = chapterNumber(a), nb = chapterNumber(b);
+        if (na !== nb) return na - nb;
+        return String(a).localeCompare(String(b), 'el');
+    });
     const chapterList = ["Όλα", ...sortedChapters];
 
     chapterList.forEach(chapter => {

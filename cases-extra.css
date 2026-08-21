@@ -404,3 +404,113 @@ body.light-theme .cases-progress-badge{
   .figviewer{ animation: none; }
   .fv-stage img{ transition: none; }
 }
+
+/* ========================================================================
+   ΕΡΩΤΗΣΕΙΣ ΠΟΛΛΑΠΛΗΣ ΕΠΙΛΟΓΗΣ
+   Χρησιμοποιούνται από το βιβλίο Επείγουσας Ιατρικής, όπου κάθε ερώτημα
+   είναι ξεχωριστό στάδιο με επιλογές α–ε.
+   ======================================================================== */
+
+ol.mcq-options{
+  margin: 10px 0 0; padding-left: 26px;
+  list-style: lower-greek;            /* α, β, γ, δ, ε */
+}
+ol.mcq-options li{
+  padding: 5px 0 5px 4px; line-height: 1.55; font-weight: 400;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+body.light-theme ol.mcq-options li{ border-top-color: rgba(0,0,0,.05); }
+ol.mcq-options li:first-child{ border-top: 0; }
+ol.mcq-options li::marker{ font-weight: 700; color: var(--primary-color); }
+
+/* το πλαίσιο της σωστής απάντησης, στην κορυφή της αιτιολόγησης */
+.mcq-correct{
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 12px 16px; margin: 0 0 14px;
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.4);
+  border-left: 4px solid #10b981;
+  border-radius: 10px;
+}
+.mcq-correct span{
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 700; color: #10b981;
+}
+.mcq-correct strong{ font-size: 1rem; line-height: 1.4; }
+
+/* ========================================================================
+   ΠΙΝΑΚΕΣ ΕΡΓΑΣΤΗΡΙΑΚΩΝ ΚΑΙ ΠΙΝΑΚΕΣ ΤΟΥ ΒΙΒΛΙΟΥ
+   Τα εργαστηριακά που στο κείμενο ήταν σε μία σειρά («Hb 129, WCC 15,34, …»)
+   αποδίδονται ως πίνακας δύο στηλών, για να διαβάζονται με μια ματιά.
+   ======================================================================== */
+
+table.lab-panel{
+  width: 100%; border-collapse: collapse; margin: 10px 0 16px;
+  font-size: .9rem; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+}
+body.light-theme table.lab-panel{ border-color: rgba(0,0,0,.10); }
+
+table.lab-panel th{
+  text-align: left; padding: 9px 14px; font-size: .72rem;
+  letter-spacing: .09em; text-transform: uppercase; font-weight: 700;
+  background: rgba(255,255,255,.05); opacity: .75;
+}
+body.light-theme table.lab-panel th{ background: rgba(0,0,0,.04); }
+
+table.lab-panel td{
+  padding: 8px 14px; vertical-align: top;
+  border-top: 1px solid rgba(255,255,255,.055);
+}
+body.light-theme table.lab-panel td{ border-top-color: rgba(0,0,0,.05); }
+table.lab-panel tbody tr:first-child td{ border-top: 0; }
+table.lab-panel tbody tr:nth-child(even){ background: rgba(255,255,255,.02); }
+body.light-theme table.lab-panel tbody tr:nth-child(even){ background: rgba(0,0,0,.02); }
+
+table.lab-panel td:first-child{ font-weight: 500; }
+table.lab-panel td.lab-num{
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  text-align: right; font-size: .87rem;
+}
+
+@media (max-width: 640px){
+  table.lab-panel{ font-size: .84rem; }
+  table.lab-panel td{ padding: 7px 10px; }
+}
+
+/* ========================================================================
+   ΖΩΤΙΚΑ ΣΗΜΕΙΑ — απλό πινακάκι
+   Μία γραμματοσειρά, ένα μέγεθος, άνετες αποστάσεις. Τη διάκριση την κάνει
+   το χρώμα: πράσινο μέσα στα όρια, κόκκινο εκτός. Εύρη από τα παραρτήματα
+   του βιβλίου.
+   ======================================================================== */
+
+table.vitals-mini{
+  width: 100%; border-collapse: separate; border-spacing: 0 6px;
+  margin: 14px 0 4px; font-size: .92rem; font-family: inherit;
+}
+table.vitals-mini td{
+  padding: 10px 14px; background: rgba(127,127,127,.07);
+  border-top: 1px solid transparent; border-bottom: 1px solid transparent;
+}
+table.vitals-mini td:first-child{
+  border-radius: 10px 0 0 10px; font-weight: 500; width: 42%;
+}
+table.vitals-mini td.v{
+  text-align: right; font-weight: 700; white-space: nowrap;
+  font-variant-numeric: tabular-nums; color: #10b981;
+}
+table.vitals-mini td.r{
+  border-radius: 0 10px 10px 0; text-align: right;
+  opacity: .5; white-space: nowrap; width: 30%;
+}
+table.vitals-mini tr.out td{ background: rgba(220,38,38,.10); }
+table.vitals-mini tr.out td.v{ color: #dc2626; }
+
+@media (max-width: 640px){
+  table.vitals-mini{ font-size: .88rem; }
+  table.vitals-mini td{ padding: 9px 10px; }
+  table.vitals-mini td.r{ display: none; }   /* στο κινητό μένουν ονομασία και τιμή */
+  table.vitals-mini td.v{ border-radius: 0 10px 10px 0; }
+}
