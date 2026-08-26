@@ -1,4 +1,112 @@
-﻿// Study Portal State
+
+// --- SOS Logic ---
+function getSOSQuestions() {
+    const sos = localStorage.getItem('new_book_sos');
+    return sos ? JSON.parse(sos) : [];
+}
+
+function toggleSOSQuestion(questionText) {
+    let sos = getSOSQuestions();
+    if (sos.includes(questionText)) {
+        sos = sos.filter(q => q !== questionText);
+    } else {
+        sos.push(questionText);
+    }
+    localStorage.setItem('new_book_sos', JSON.stringify(sos));
+    return sos.includes(questionText);
+}
+// -----------------
+
+
+// --- Advanced Search Logic ---
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
+
+window.navigateToQuestionFromSearch = function(idx) {
+    activeQuickChapter = "Όλα";
+    activeQuickSubchapter = "Όλα";
+    activeQuickThematicUnit = "Όλα";
+    if (typeof showView === 'function') showView('quick-recall');
+    if (typeof renderMainChapterFilters === 'function') renderMainChapterFilters();
+    if (typeof renderSubchapterFilters === 'function') renderSubchapterFilters();
+    if (typeof renderThematicUnitFilters === 'function') renderThematicUnitFilters();
+    if (typeof populateQuickTopicSelector === 'function') populateQuickTopicSelector();
+    if (typeof loadQuickRecallQuestion === 'function') loadQuickRecallQuestion(idx);
+    
+    // Επίσης φροντίζουμε να σκρολάρουμε ψηλά!
+    window.scrollTo({top: 0, behavior: 'smooth'});
+};
+
+window.openSearchModal = function() {
+    window.open('search.html', 'AdvancedSearch', 'width=700,height=700,left=200,top=100,resizable=yes,scrollbars=yes');
+};
+
+window.closeSearchModal = function() {
+    document.getElementById('search-modal').style.display = 'none';
+};
+
+function initSearchModal() {
+    const searchInputs = document.querySelectorAll('.adv-search-input');
+    const resultsContainer = document.getElementById('search-results-container');
+    
+    function performSearch() {
+        const terms = Array.from(searchInputs)
+            .map(input => removeAccents(input.value.trim()))
+            .filter(val => val.length > 0);
+            
+        if (terms.length === 0) {
+            resultsContainer.innerHTML = '<p style="text-align:center; opacity:0.7;">Πληκτρολογήστε όρους για αναζήτηση...</p>';
+            return;
+        }
+        
+        const results = flashcardQuestions.filter(q => {
+            const ansText = removeAccents((q.correctAnswer || q.answer || q.content || "").replace(/<[^>]*>?/gm, ' '));
+            return terms.every(term => ansText.includes(term));
+        });
+        
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p style="text-align:center; opacity:0.7; color:#f87171;">Δεν βρέθηκαν αποτελέσματα.</p>';
+            return;
+        }
+        
+        resultsContainer.innerHTML = `<p style="margin-bottom:10px; font-weight:bold; color:var(--primary-color);">Βρέθηκαν ${results.length} ερωτήσεις:</p>`;
+        
+        results.forEach((res) => {
+            const div = document.createElement('div');
+            div.className = 'search-result-item';
+            
+            const isSOS = getSOSQuestions().includes(res.question);
+            const star = isSOS ? '<span style="color:#fbbf24">⭐</span>' : '';
+            
+            div.innerHTML = `<strong>${res.category || 'Γενικά'}</strong> ${star}<br><span style="font-size:0.9rem; line-height:1.4; display:block; margin-top:5px;">${res.question}</span>`;
+            div.addEventListener('click', () => {
+                const idx = flashcardQuestions.indexOf(res);
+                closeSearchModal();
+                
+                // Reset filters to show all so the question is in context
+                activeQuickChapter = "Όλα";
+                activeQuickSubchapter = "Όλα";
+                activeQuickThematicUnit = "Όλα";
+                renderMainChapterFilters();
+                renderSubchapterFilters();
+                renderThematicUnitFilters();
+                populateQuickTopicSelector();
+                
+                loadQuickRecallQuestion(idx);
+            });
+            resultsContainer.appendChild(div);
+        });
+    }
+    
+    searchInputs.forEach(input => {
+        input.addEventListener('input', performSearch);
+    });
+}
+// -----------------------------
+
+// Study Portal State
 let flashcardQuestions = [];
 let summaryTables = [];
 let tableAnalyses = [];
@@ -60,15 +168,29 @@ document.addEventListener('DOMContentLoaded', () => {
  * Theme Management
  */
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = 'light';
     if (savedTheme === 'light') {
         document.body.classList.remove('dark-theme');
         document.body.classList.add('light-theme');
     } else {
         document.body.classList.remove('light-theme');
-        document.body.classList.add('dark-theme');
+        document.body.classList.remove('dark-theme');
     }
 }
+
+
+window.handleSOSClick = function(el, questionText) {
+    const isNowSOS = toggleSOSQuestion(questionText);
+    if (isNowSOS) {
+        el.textContent = '⭐';
+        el.style.color = '#fbbf24';
+        el.classList.add('active');
+    } else {
+        el.textContent = '☆';
+        el.style.color = '#64748b';
+        el.classList.remove('active');
+    }
+};
 
 function toggleTheme() {
     if (document.body.classList.contains('dark-theme')) {
@@ -77,7 +199,7 @@ function toggleTheme() {
         localStorage.setItem('theme', 'light');
     } else {
         document.body.classList.remove('light-theme');
-        document.body.classList.add('dark-theme');
+        document.body.classList.remove('dark-theme');
         localStorage.setItem('theme', 'dark');
     }
 }
@@ -138,6 +260,10 @@ function isQuestionMatch(q, activeCh, activeSub, activeThem) {
     const qCh = getQuestionChapter(q);
     const qSub = getQuestionSubchapter(q);
     const qThem = getQuestionThematicUnit(q);
+    if (activeCh === "⭐ Αγαπημένα / SOS") {
+        const sos = getSOSQuestions();
+        return sos.includes(q.question);
+    }
     const matchesCh = (activeCh === "Όλα" || qCh === activeCh);
     const matchesSub = (activeSub === "Όλα" || qSub === activeSub);
     const matchesThem = (activeThem === "Όλα" || qThem === activeThem);
@@ -206,7 +332,7 @@ function renderMainChapterFilters() {
         if (na !== nb) return na - nb;
         return String(a).localeCompare(String(b), 'el');
     });
-    const chapterList = ["Όλα", ...sortedChapters];
+    const chapterList = ["Όλα", "⭐ Αγαπημένα / SOS", ...sortedChapters];
 
     chapterList.forEach(chapter => {
         const item = document.createElement('button');
@@ -707,7 +833,12 @@ function loadQuickRecallQuestion(index) {
     const question = flashcardQuestions[index];
 
     if (quickRecallCategory) quickRecallCategory.textContent = question.category || "Παθολογία";
-    if (quickRecallQuestion) quickRecallQuestion.innerHTML = parseMarkdown(question.question);
+    if (quickRecallQuestion) {
+        const isSOS = getSOSQuestions().includes(question.question);
+        const safeQText = question.question.replace(/'/g, "\\\'").replace(/\n/g, '\\n');
+        const starHtml = `<span class="sos-star ${isSOS ? 'active' : ''}" style="cursor: pointer; color: ${isSOS ? '#fbbf24' : '#64748b'}; margin-right: 8px; font-size: 1.2em; vertical-align: middle; display: inline-block; user-select: none;" onclick="event.stopPropagation(); handleSOSClick(this, '${safeQText}')">${isSOS ? '⭐' : '☆'}</span>`;
+        quickRecallQuestion.innerHTML = starHtml + parseMarkdown(question.question);
+    }
 
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
@@ -759,6 +890,13 @@ function revealQuickAnswer() {
 
     if (quickCorrectAnswerText) {
         quickCorrectAnswerText.innerHTML = ansHtml;
+        if (typeof highlightSearchTerms === 'function') {
+            highlightSearchTerms(quickCorrectAnswerText);
+            const qEl = document.getElementById('question-text');
+            if (qEl) highlightSearchTerms(qEl);
+            const chapEl = document.getElementById('chapter-title');
+            if (chapEl) highlightSearchTerms(chapEl);
+        }
     }
 
     const mnemonicBox = document.getElementById('quick-mnemonic-box');
@@ -1947,3 +2085,95 @@ if (detailsBox) {
     });
 }
 
+
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'search_target_index' && e.newValue !== null) {
+        const idx = parseInt(e.newValue);
+        if (!isNaN(idx)) {
+            activeQuickChapter = "Όλα";
+            activeQuickSubchapter = "Όλα";
+            activeQuickThematicUnit = "Όλα";
+            if (typeof showView === 'function') showView('quick-recall');
+            if (typeof renderMainChapterFilters === 'function') renderMainChapterFilters();
+            if (typeof renderSubchapterFilters === 'function') renderSubchapterFilters();
+            if (typeof renderThematicUnitFilters === 'function') renderThematicUnitFilters();
+            if (typeof populateQuickTopicSelector === 'function') populateQuickTopicSelector();
+            
+            let terms = localStorage.getItem('search_target_terms');
+            if (terms) {
+                try { window.currentSearchTerms = JSON.parse(terms); } catch(e) {}
+            }
+            
+            if (typeof loadQuickRecallQuestion === 'function') loadQuickRecallQuestion(idx);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            localStorage.removeItem('search_target_index'); // Καθαρισμός
+            localStorage.removeItem('search_target_terms');
+        }
+    }
+});
+
+
+window.currentSearchTerms = [];
+
+function highlightSearchTerms(element) {
+    if (!window.currentSearchTerms || window.currentSearchTerms.length === 0) return;
+    const terms = window.currentSearchTerms;
+    
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    const nodesToReplace = [];
+    let node;
+    while (node = walker.nextNode()) {
+        if (node.nodeValue.trim() !== '') {
+            nodesToReplace.push(node);
+        }
+    }
+    
+    const removeAcc = str => str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    
+    const escapeHTML = str => {
+        let span = document.createElement('span');
+        span.textContent = str;
+        return span.innerHTML;
+    };
+    
+    nodesToReplace.forEach(node => {
+        let text = node.nodeValue;
+        let textUnacc = removeAcc(text);
+        
+        let matches = [];
+        terms.forEach(term => {
+            let idx = 0;
+            while ((idx = textUnacc.indexOf(term, idx)) !== -1) {
+                matches.push({ start: idx, end: idx + term.length });
+                idx += term.length;
+            }
+        });
+        
+        if (matches.length > 0) {
+            matches.sort((a, b) => a.start - b.start);
+            let merged = [];
+            for (let m of matches) {
+                if (merged.length === 0) merged.push(m);
+                else {
+                    let last = merged[merged.length - 1];
+                    if (m.start <= last.end) last.end = Math.max(last.end, m.end);
+                    else merged.push(m);
+                }
+            }
+            
+            let newHtml = "";
+            let lastIdx = 0;
+            for (let m of merged) {
+                newHtml += escapeHTML(text.substring(lastIdx, m.start));
+                newHtml += `<span style="border: 2px solid #f97316; background: rgba(249, 115, 22, 0.2); border-radius: 4px; padding: 0 2px;">${escapeHTML(text.substring(m.start, m.end))}</span>`;
+                lastIdx = m.end;
+            }
+            newHtml += escapeHTML(text.substring(lastIdx));
+            
+            let span = document.createElement('span');
+            span.innerHTML = newHtml;
+            node.parentNode.replaceChild(span, node);
+        }
+    });
+}

@@ -22,7 +22,7 @@
 </style>
 
 </head>
-<body class="dark-theme">
+<body >
 <div class="app-container" style="max-width: 1100px; transition: max-width 0.3s ease">
 <!-- Header Section -->
 <header class="app-header">
@@ -36,24 +36,7 @@
 <h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
 </div>
 <div class="header-controls">
-<button aria-label="Toggle Theme" class="icon-button" id="theme-toggle">
-<!-- Sun Icon -->
-<svg class="sun-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 2V4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 20V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12H4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M20 12H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<!-- Moon Icon -->
-<svg class="moon-icon" fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
+
 </div>
 </div>
 </header>
@@ -162,7 +145,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const savedTheme = 'light';
             if (savedTheme === 'light') {
                 document.body.classList.remove('dark-theme');
                 document.body.classList.add('light-theme');
@@ -174,7 +157,7 @@
                     localStorage.setItem('theme', 'light');
                 } else {
                     document.body.classList.remove('light-theme');
-                    document.body.classList.add('dark-theme');
+                    document.body.classList.remove('dark-theme');
                     localStorage.setItem('theme', 'dark');
                 }
             });

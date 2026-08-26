@@ -335,6 +335,11 @@
 <span>Αρχική</span>
 </a>
 
+<button class="search-btn" onclick="openSearchModal()" style="margin-left: 20px; background: #f97316; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3); transition: all 0.2s;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    Σύνθετη Αναζήτηση
+</button>
+
 </div>
 </div>
 </header>
@@ -533,5 +538,32 @@
 <script charset="UTF-8" src="data/new_book_questions.js?v=20260803143957"></script>
 <script src="marked.min.js"></script>
 <script charset="UTF-8" src="study_new_book.js?v=202608031423"></script>
+
+    <!-- Advanced Search Modal -->
+    <div id="search-modal">
+        <div id="search-modal-content">
+            <div class="search-modal-header">
+                <h2 style="margin:0; display:flex; align-items:center; gap:10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Σύνθετη Αναζήτηση
+                </h2>
+                <button onclick="closeSearchModal()" style="background:none; border:none; color:var(--text-secondary); font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <div class="search-modal-body">
+                <p style="font-size:0.9rem; opacity:0.8; margin-top:0;">Συμπληρώστε λέξεις/φράσεις για να βρείτε ερωτήσεις όπου <strong>οι απαντήσεις</strong> τους περιέχουν <strong>ΟΛΕΣ</strong> τις λέξεις που γράψατε. (Δεν παίζουν ρόλο οι τόνοι και τα κεφαλαία).</p>
+                <div class="search-input-group">
+                    <input type="text" class="adv-search-input" id="adv-search-1" placeholder="1η λέξη ή φράση (π.χ. πυρετος)">
+                    <input type="text" class="adv-search-input" id="adv-search-2" placeholder="2η λέξη ή φράση (π.χ. εξανθημα)">
+                    <input type="text" class="adv-search-input" id="adv-search-3" placeholder="3η λέξη ή φράση (προαιρετικά)">
+                    <input type="text" class="adv-search-input" id="adv-search-4" placeholder="4η λέξη ή φράση (προαιρετικά)">
+                    <input type="text" class="adv-search-input" id="adv-search-5" placeholder="5η λέξη ή φράση (προαιρετικά)">
+                </div>
+                <div id="search-results-container" class="search-results">
+                    <p style="text-align:center; opacity:0.7;">Πληκτρολογήστε όρους για αναζήτηση...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
