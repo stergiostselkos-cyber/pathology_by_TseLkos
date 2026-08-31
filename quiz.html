@@ -353,7 +353,24 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="questions_v3.js"></script>
+
+<script>
+    // Dynamically load the requested MCQ bank
+    const urlParams = new URLSearchParams(window.location.search);
+    const bank = urlParams.get('bank') || 'old_book';
+    
+    const script = document.createElement('script');
+    script.charset = "UTF-8";
+    if (bank === 'bank_1') {
+        script.src = "questions_bank_1.js?v=" + new Date().getTime();
+    } else {
+        script.src = "questions_v3.js?v=" + new Date().getTime();
+    }
+    
+    // We must ensure the data is loaded before app.js runs.
+    document.write('<script charset="UTF-8" src="' + script.src + '"><\/script>');
+</script>
+
 <script src="marked.min.js"></script>
 <script charset="UTF-8" src="app.js?v=202608031423"></script>
 </body>
