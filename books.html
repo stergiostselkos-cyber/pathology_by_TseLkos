@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pathologia Quiz</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- CSS Stylesheet -->
+<link href="style.css?v=1788464784" rel="stylesheet"/>
+<style>
+/* PDF Viewer Container */
+.pdf-viewer-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 75vh;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 2px solid rgba(217, 70, 239, 0.3);
+    box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15);
+    background: var(--card-bg);
+}
+.pdf-viewer-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.dropdown-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.dropdown-select {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(217, 70, 239, 0.05);
+    color: var(--text-primary);
+    border: 2px solid rgba(217, 70, 239, 0.2);
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.dropdown-select option {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+.dropdown-select:hover:not(:disabled) {
+    border-color: rgba(217, 70, 239, 0.5);
+    background: rgba(217, 70, 239, 0.1);
+}
+.dropdown-select:focus {
+    border-color: #d946ef;
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+}
+.dropdown-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--option-bg);
+    border-color: var(--card-border);
+}
+</style>
+<link rel="stylesheet" href="modern-theme.css?v=1788464784" />
+</head>
+<body class="dark-theme" style="--c1: #4A235A; --c2: #9B59B6; --c3: #D2B4DE; --c4: #8E44AD;">
+<div class="modern-shape modern-shape-1"></div>
+<div class="modern-shape modern-shape-2"></div>
+<div class="modern-shape modern-shape-3"></div>
+
+<div class="app-container" style="max-width: 1000px">
+<!-- Header Section -->
+<header class="app-header">
+    <div class="header-main">
+        <div class="app-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1>Pathologia<span>Books</span> <span class="author-tag">By TseLkos</span></h1>
+    </div>
+    <div class="header-controls">
+        <a href="index.html" class="btn btn-secondary btn-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Πίσω</span>
+        </a>
+    </div>
+</header>
+
+
+
+<main class="view-panel" style="padding: 24px; border: 1px solid rgba(217, 70, 239, 0.2);">
+    <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 1.05rem;">Επιλέξτε βιβλίο και κεφάλαιο/κομμάτι για να εμφανιστεί το αντίστοιχο αρχείο PDF.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Book Selector Dropdown -->
+        <div class="dropdown-section">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">1. Διάλεξε Βιβλίο</span>
+            <select id="book-select" class="dropdown-select">
+                <option value="">-- Επιλέξτε Βιβλίο --</option>
+            </select>
+        </div>
+
+        <!-- Part/Chapter Selector Dropdown -->
+        <div class="dropdown-section">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">2. Διάλεξε Κεφάλαιο</span>
+            <select id="part-select" class="dropdown-select" disabled>
+                <option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>
+            </select>
+        </div>
+
+        <!-- Subpart Selector Dropdown (Hidden by default) -->
+        <div class="dropdown-section" id="subpart-section" style="display: none;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">3. Διάλεξε Υποκεφάλαιο</span>
+            <select id="subpart-select" class="dropdown-select">
+                <option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- PDF Viewer -->
+    <div class="pdf-viewer-container" id="pdf-container" style="display: none;">
+        <iframe id="pdf-iframe" src=""></iframe>
+    </div>
+    
+    <div id="pdf-placeholder" style="margin-top: 20px; padding: 60px 20px; text-align: center; border: 2px dashed var(--card-border); border-radius: 16px; color: var(--text-secondary);">
+        <svg fill="none" height="48" viewBox="0 0 24 24" width="48" style="margin-bottom: 16px; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg><br>
+        Επιλέξτε ένα κομμάτι βιβλίου για να εμφανιστεί εδώ το PDF.
+    </div>
+</main>
+</div>
+<script src="books.js"></script>
+</body>
+</html>

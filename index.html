@@ -1,199 +1,776 @@
 <!DOCTYPE html>
-
 <html lang="el">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pathologia Portal - pathologia TseLkos</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- CSS Stylesheet -->
-<link href="style.css" rel="stylesheet"/>
-<style id="dynamic-theme">
-:root {
-  --primary-color: #94a3b8;
-  --primary-rgb: 148, 163, 184;
-  --primary-hover: #64748b;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b 0%, #111827 80%);
-  --bg-color: #111827;
-}
-</style>
-
-</head>
-<body >
-<div class="app-container" style="max-width: 1100px; transition: max-width 0.3s ease">
-<!-- Header Section -->
-<header class="app-header">
-<div class="header-main">
-<div class="app-logo">
-<svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width.5="2.5"></path>
-</svg>
-<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
-</div>
-<div class="header-controls">
-
-</div>
-</div>
-</header>
-<!-- Main Portal Content -->
-<main class="app-main">
-<!-- Profile Card -->
-<section class="profile-card-panel">
-<div class="profile-header">
-<div class="profile-avatar-container">
-<div class="profile-avatar">
-<svg fill="none" height="40" viewbox="0 0 24 24" width="40" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<circle cx="9" cy="7" r="4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
-<path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-</div>
-<div class="profile-info">
-<h2>Pathologia TseLkos</h2>
-<p class="profile-sub">Προσομοιωτής Παθολογίας &amp; Μελέτη</p>
-<a class="profile-email-link" href="mailto:stergiostselkos@gmail.com">
-<svg fill="none" height="16" style="vertical-align: middle; margin-right: 6px" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-                            stergiostselkos@gmail.com
-                        </a>
-<p style="font-size: 0.85rem; margin-top: 6px; line-height: 1.4">💡 Αν εντοπίσετε κάποια λάθη στις απαντήσεις, καλό θα ήταν να μου στείλετε μήνυμα να τα διορθώσουμε!</p>
-</div>
-</div>
-</section>
-<!-- Navigation Grid -->
-<section class="portal-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 1100px; margin: 0 auto; gap: 24px">
-<!-- Quiz Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #0ea5e9; --primary-hover: #0284c7; --primary-rgb: 14, 165, 233;">
-<div class="portal-card-header">
-<div class="portal-card-icon quiz-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 11l3 3L22 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Θέματα Ερωτήσεων Πολλαπλής Επιλογής</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Δοκιμάστε τις γνώσεις σας σε ερωτήσεις πολλαπλής επιλογής Παθολογίας με try-until-correct λογική και αναλυτικές απαντήσεις.</p>
-
-<div style="display: flex; gap: 10px;">
-    <select id="mcq-selector" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #ffffff; color: #334155; font-size: 0.95rem; font-weight: bold; cursor: pointer; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <option value="old_book">Παλαιό Βιβλίο</option>
-        <option value="bank_1">Τράπεζα Θεμάτων 1</option>
-    </select>
-    <a class="portal-card-btn quiz-btn" id="mcq-start-btn" href="#" onclick="startMCQ(event)" style="font-weight: 700; border: none; padding: 12px 20px; text-align: center; white-space: nowrap;">📚 Έναρξη</a>
-</div>
-</div>
-<!-- Study Portal Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #10b981; --primary-hover: #059669; --primary-rgb: 16, 185, 129;">
-<div class="portal-card-header">
-<div class="portal-card-icon study-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Ερωτήσεις Ανάπτυξης - Θέματα</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μελετήστε τη θεωρία με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
-<a class="portal-card-btn study-btn" href="study.html#quick-recall" style="font-weight: 700; border: none">Έναρξη Μελέτης</a>
-</div>
-
-<!-- New Book Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #f59e0b; --primary-hover: #d97706; --primary-rgb: 245, 158, 11;">
-<div class="portal-card-header">
-<div class="portal-card-icon new-book-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 19.5c0 .5.5 1 1 1h15M4 19.5c0-.5.5-1 1-1h15M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v17H5.5a1.5 1.5 0 0 1-1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Ερωτήσεις Ανάπτυξης Του Νεου Βιβλίου Της Παθολογίας</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μελετήστε τη θεωρία από το νέο βιβλίο Παθολογίας με flashcards γρήγορης ανάκλησης με σύντομες και αναλυτικές απαντήσεις.</p>
-<a class="portal-card-btn new-book-btn" href="study_new_book.html#quick-recall" style="font-weight: 700; border: none">Έναρξη Νέου Βιβλίου</a>
-</div>
-<!-- Clinical Scenarios Card -->
-<div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #e11d48; --primary-hover: #be123c; --primary-rgb: 225, 29, 72;">
-<div class="portal-card-header">
-<div class="portal-card-icon clinical-icon">
-<svg fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h3>Κλινικά Σενάρια Παθολογίας</h3>
-</div>
-<p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Διαδραστική μελέτη κλινικών περιστατικών Παθολογίας. Μελετήστε τα βήμα-βήμα, αξιολογήστε ευρήματα και απαντήστε στις ερωτήσεις.</p>
-<a class="portal-card-btn clinical-btn" href="cases.html" style="font-weight: 700; border: none; cursor: pointer; display: block; text-decoration: none; width: 100%; text-align: center; border-radius: 8px; padding: 12px; box-sizing: border-box">Έναρξη Σεναρίων</a>
-</div>
-
-  <!-- Useful Links Card -->
-  <div class="portal-card" style="min-height: 280px; display: flex; flex-direction: column; --primary-color: #8b5cf6; --primary-hover: #7c3aed; --primary-rgb: 139, 92, 246;">
-  <div class="portal-card-header">
-  <div class="portal-card-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-radius: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
-  <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-  </svg>
-  </div>
-  <h3>Χρήσιμα Links & Υλικό</h3>
-  </div>
-  <p class="portal-card-desc" style="padding: 16px; border-radius: 12px; font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px; flex-grow: 1">Μια συλλογή από σημαντικούς συνδέσμους, κατευθυντήριες οδηγίες (guidelines), ιατρικά αρχεία και μαθήματα για γρήγορη πρόσβαση.</p>
-  <a class="portal-card-btn" href="links.html" style="font-weight: 700; border: none; cursor: pointer; display: block; text-decoration: none; width: 100%; text-align: center; border-radius: 8px; padding: 12px; box-sizing: border-box; background: var(--primary-color); color: white;">📚 Μετάβαση στο Υλικό</a>
-  </div>
-  </section>
-</main>
-<!-- Footer Info -->
-<footer class="app-footer">
-<p>Σχεδιασμένο για ιατρική εκπαίδευση &amp; εμπέδωση θεωρίας</p>
-<div class="study-feedback-footer" style="margin-top: 16px; padding: 12px 10px; border-top: 1px dashed var(--card-border); text-align: center; font-size: 0.95rem; line-height: 1.5">
-                💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
-            </div>
-</footer>
-</div>
-
-<script>
-        function showScenariosModal() {
-            document.getElementById('scenarios-modal').style.display = 'flex';
-        }
-        function closeScenariosModal() {
-            document.getElementById('scenarios-modal').style.display = 'none';
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathologia Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS RESET & BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #FF9A9E, #FECFEF, #A1C4FD, #C2E9FB);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #2D3748;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = 'light';
-            if (savedTheme === 'light') {
-                document.body.classList.remove('dark-theme');
-                document.body.classList.add('light-theme');
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FLOATING BACKGROUND SHAPES */
+        .shape {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -1;
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        .shape-1 { width: 300px; height: 300px; background: rgba(255, 107, 107, 0.4); top: 10%; left: 10%; }
+        .shape-2 { width: 400px; height: 400px; background: rgba(72, 198, 239, 0.4); bottom: 10%; right: 5%; animation-delay: -5s; }
+        .shape-3 { width: 250px; height: 250px; background: rgba(246, 211, 101, 0.4); top: 40%; left: 45%; animation-delay: -2s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        
+
+
+        /* Responsive design to prevent letters overlapping on mobile */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.8rem !important;
+                line-height: 1.2 !important;
+                word-wrap: break-word !important;
             }
-            document.getElementById('theme-toggle').addEventListener('click', () => {
-                if (document.body.classList.contains('dark-theme')) {
-                    document.body.classList.remove('dark-theme');
-                    document.body.classList.add('light-theme');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.body.classList.remove('light-theme');
-                    document.body.classList.remove('dark-theme');
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
-        });
-    </script>
+            .glow-name {
+                font-size: 1.3rem !important;
+                display: block !important;
+                margin-left: 0 !important;
+                margin-top: 10px !important;
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT - CARDS GRID */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px 60px;
+            position: relative;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* THE CARDS */
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--card-color);
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2D3748;
+            margin-bottom: 10px;
+        }
+        .card .version-tag {
+            display: inline-block;
+            background: var(--card-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--card-color);
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        /* Specific Card Colors */
+        .card.essay { --card-color: #2ECC71; }
+        .card.mcq { --card-color: #0EA5E9; }
+        .card.new-book { --card-color: #F39C12; }
+        .card.scenarios { --card-color: #E74C3C; }
+        .card.books { --card-color: #9B59B6; }
+        .card.links { --card-color: #F1C40F; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        footer a { color: #fff; font-weight: 700; text-decoration: none; }
+        
+        /* Select Dropdown inside MCQ */
+        select.fancy-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid #4ECDC4;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #2D3748;
+            outline: none;
+        }
+    
+        @keyframes rainbowGlow {
+            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
+        }
+        
+        .main-title {
+    font-size: 4.5rem !important;
+    font-weight: 900 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: -1px !important;
+    
+    /* A bright base gradient */
+    background: linear-gradient(to right, #ff0040, #ffea00, #00ffaa, #00aaff, #aa00ff) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    
+    /* Bulletproof rainbow animation */
+    animation: rainbowHue 8s linear infinite !important;
+}
+
+.main-title span.quiz {
+    background: linear-gradient(to right, #aa00ff, #00aaff, #00ffaa, #ffea00, #ff0040) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    animation: rainbowHue 8s linear infinite reverse !important;
+}
+
+
+
+
+.glow-name {
+    font-size: 1.8rem !important;
+    font-weight: 900 !important;
+    margin-left: 10px !important;
+    display: inline-block !important;
+    vertical-align: middle;
+    
+    background: linear-gradient(to right, #ff0040, #ffea00, #00ffaa, #00aaff, #aa00ff) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    
+    /* Massive halo requested by user */
+    animation: smoothRainbow 5s linear infinite, authorPulseIndex 2s ease-in-out infinite alternate !important;
+}
+
+@keyframes smoothRainbow {
+    to { background-position: 200% center; }
+}
+
+@keyframes authorPulseIndex {
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px #ff0040) drop-shadow(0 0 25px #aa00ff); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00ffaa) drop-shadow(0 0 35px #ffea00); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 15px #00aaff) drop-shadow(0 0 25px #ff0040); }
+}
+
+@media (max-width: 768px) {
+    .glow-name { display: block !important; margin-left: 0 !important; font-size: 1.4rem !important; margin-top: 5px !important; }
+}
+
+        
+        /* Responsive design to prevent letters overlapping on mobile */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.8rem !important;
+                line-height: 1.2 !important;
+                word-wrap: break-word !important;
+            }
+            .glow-name {
+                font-size: 1.3rem !important;
+                display: block !important;
+                margin-left: 0 !important;
+                margin-top: 10px !important;
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT - CARDS GRID */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px 60px;
+            position: relative;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* THE CARDS */
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--card-color);
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2D3748;
+            margin-bottom: 10px;
+        }
+        .card .version-tag {
+            display: inline-block;
+            background: var(--card-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--card-color);
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        /* Specific Card Colors */
+        .card.essay { --card-color: #2ECC71; }
+        .card.mcq { --card-color: #0EA5E9; }
+        .card.new-book { --card-color: #F39C12; }
+        .card.scenarios { --card-color: #E74C3C; }
+        .card.books { --card-color: #9B59B6; }
+        .card.links { --card-color: #F1C40F; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        footer a { color: #fff; font-weight: 700; text-decoration: none; }
+        
+        /* Select Dropdown inside MCQ */
+        select.fancy-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid #4ECDC4;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #2D3748;
+            outline: none;
+        }
+    
+        @keyframes rainbowGlow {
+            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
+        }
+        
+        .main-title {
+        font-size: 2.8rem !important;
+        line-height: 1.2 !important;
+        word-wrap: break-word !important;
+    }
+    
+.glow-name {
+    font-size: 1.8rem !important;
+    font-weight: 900 !important;
+    margin-left: 10px !important;
+    display: inline-block !important;
+    vertical-align: middle;
+    
+    background: linear-gradient(to right, #ff0040, #ffea00, #00ffaa, #00aaff, #aa00ff) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    
+    /* Massive halo requested by user */
+    animation: smoothRainbow 5s linear infinite, authorPulseIndex 2s ease-in-out infinite alternate !important;
+}
+
+@keyframes smoothRainbow {
+    to { background-position: 200% center; }
+}
+
+@keyframes authorPulseIndex {
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px #ff0040) drop-shadow(0 0 25px #aa00ff); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00ffaa) drop-shadow(0 0 35px #ffea00); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 15px #00aaff) drop-shadow(0 0 25px #ff0040); }
+}
+
+@media (max-width: 768px) {
+    .glow-name { display: block !important; margin-left: 0 !important; font-size: 1.4rem !important; margin-top: 5px !important; }
+}
+
+        
+        /* Responsive design to prevent letters overlapping on mobile */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.8rem !important;
+                line-height: 1.2 !important;
+                word-wrap: break-word !important;
+            }
+            .glow-name {
+                font-size: 1.3rem !important;
+                display: block !important;
+                margin-left: 0 !important;
+                margin-top: 10px !important;
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT - CARDS GRID */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px 60px;
+            position: relative;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* THE CARDS */
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--card-color);
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2D3748;
+            margin-bottom: 10px;
+        }
+        .card .version-tag {
+            display: inline-block;
+            background: var(--card-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--card-color);
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        /* Specific Card Colors */
+        .card.essay { --card-color: #2ECC71; }
+        .card.mcq { --card-color: #0EA5E9; }
+        .card.new-book { --card-color: #F39C12; }
+        .card.scenarios { --card-color: #E74C3C; }
+        .card.books { --card-color: #9B59B6; }
+        .card.links { --card-color: #F1C40F; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        footer a { color: #fff; font-weight: 700; text-decoration: none; }
+        
+        /* Select Dropdown inside MCQ */
+        select.fancy-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid #4ECDC4;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #2D3748;
+            outline: none;
+        }
+    
+        @keyframes rainbowGlow {
+            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
+        }
+        
+        .main-title {
+            font-size: 4.5rem !important;
+            font-weight: 900 !important;
+            background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowGlow 5s linear infinite;
+        }
+
+        .main-title span.quiz {
+            background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowGlow 5s linear infinite reverse;
+        }
+
+        
+
+        @keyframes intenseRainbowGlow {
+            0% { filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #ff7f00); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 20px #00ff00) drop-shadow(0 0 40px #0000ff); transform: scale(1.08); }
+            100% { filter: drop-shadow(0 0 10px #8b00ff) drop-shadow(0 0 20px #ff0000); transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- Animated Shapes -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <header>
+        <h1 class="main-title">Pathologia<span class="quiz">Quiz</span> <span class="glow-name">By TseLkos</span> </h1>
+        <p class="subtitle">Η απόλυτη πλατφόρμα μελέτης και εξάσκησης</p>
+    </header>
+
+    <main>
+        <div class="grid">
+            
+            <!-- 1. Ερωτήσεις Ανάπτυξης -->
+            <div class="card essay">
+                <div class="card-icon">✍️</div>
+                <h2>Ερωτήσεις Ανάπτυξης</h2>
+                <div><span class="version-tag">ΕΚΔΟΣΗ 2017</span></div>
+                <p>Μελετήστε δομημένα τις ερωτήσεις ανάπτυξης του βιβλίου, με έμφαση στα κρίσιμα σημεία. Δοκιμάστε τις γνώσεις σας βήμα-βήμα.</p>
+                <a href="study.html" class="btn">📚 Ξεκίνα Μελέτη</a>
+            </div>
+
+            <!-- 2. Ερωτήσεις Επιλογής -->
+            <div class="card mcq">
+                <div class="card-icon">🎯</div>
+                <h2>Πολλαπλής Επιλογής</h2>
+                <div><span class="version-tag">ΕΚΔΟΣΗ 2017</span></div>
+                <p>Τεστ αυτοαξιολόγησης με ερωτήσεις πολλαπλής επιλογής. Επίλεξε το κεφάλαιο που θέλεις και ξεκίνα αμέσως την εξάσκηση!</p>
+                <form onsubmit="startMCQ(event)" style="width: 100%;">
+                    <select id="mcq-selector" class="fancy-select" required>
+                        
+                        
+                        <option value="">Επίλεξε Τράπεζα Ερωτήσεων...</option>
+                        <option value="old_book">Ερωτήσεις - Έκδοση 3</option>
+                        <option value="bank_1">Ερωτήσεις - Τράπεζα 1</option>
+</select>
+                    <button type="submit" class="btn">🚀 Έναρξη Quiz</button>
+                </form>
+            </div>
+
+            <!-- 3. Νέο Βιβλίο -->
+            <div class="card new-book">
+                <div class="card-icon">✨</div>
+                <h2>Νέο Βιβλίο Παθολογίας</h2>
+                <div><span class="version-tag" style="background: #F39C12;">ΕΚΔΟΣΗ 2026</span></div>
+                <p>Το ολοκαίνουργιο βιβλίο Παθολογίας με τη μορφή flashcards. Φρέσκια γνώση, σύγχρονες προσεγγίσεις και νέα δεδομένα.</p>
+                <a href="study_new_book.html" class="btn">📖 Άνοιγμα Flashcards</a>
+            </div>
+
+            <!-- 4. Κλινικά Σενάρια -->
+            <div class="card scenarios">
+                <div class="card-icon">🩺</div>
+                <h2>Κλινικά Σενάρια</h2>
+                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
+                <p>Εκπαιδεύσου πάνω σε πραγματικά περιστατικά. Εξάσκησε την κλινική σου σκέψη και τη διαγνωστική σου ικανότητα στην πράξη.</p>
+                <a href="cases.html" class="btn">🔬 Προβολή Περιστατικών</a>
+            </div>
+
+            <!-- 5. Χρήσιμα Βιβλία -->
+            <div class="card books">
+                <div class="card-icon">📚</div>
+                <h2>Χρήσιμα Βιβλία</h2>
+                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
+                <p>Βιβλιοθήκη με ολόκληρα τα βιβλία, τις κατευθυντήριες οδηγίες και όλες τις παραγράφους, έτοιμα για άμεση ανάγνωση (PDF).</p>
+                <a href="books.html" class="btn">📑 Άνοιγμα Βιβλιοθήκης</a>
+            </div>
+
+            <!-- 6. Links & Υλικό -->
+            <div class="card links">
+                <div class="card-icon">🔗</div>
+                <h2>Links & Υλικό</h2>
+                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
+                <p>Πρόσβαση σε εξωτερικές πηγές, κατευθυντήριες οδηγίες διεθνών οργανισμών και επιπλέον υποστηρικτικό υλικό.</p>
+                <a href="links.html" class="btn">🌐 Δείτε το Υλικό</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Σχεδιασμένο με 🎨 δημιουργικότητα & αγάπη! | Επικοινωνία: <a href="mailto:stergiostselkos@gmail.com">stergiostselkos@gmail.com</a></p>
+    </footer>
 
     <script>
         function startMCQ(e) {
             e.preventDefault();
             const selector = document.getElementById('mcq-selector');
             const book = selector.value;
-            window.location.href = 'quiz.html?bank=' + book;
+            if(book) {
+                window.location.href = 'quiz.html?bank=' + book;
+            }
         }
     </script>
-</body>
 
+
+
+</body>
 </html>

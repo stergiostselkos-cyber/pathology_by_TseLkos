@@ -180,7 +180,7 @@ function toggleRecallEmptyState(hasQuestions) {
         emptyState.id = 'quick-empty-state';
         emptyState.className = 'empty-state-card';
         emptyState.innerHTML = `
-            <div class="empty-state-icon" style="color: var(--primary-color); background: rgba(217, 70, 239, 0.1); border-color: rgba(217, 70, 239, 0.2);">📭</div>
+            <div class="empty-state-icon" style="color: var(--primary-color); background: rgba(241, 196, 15, 0.1); border-color: rgba(241, 196, 15, 0.25);">📭</div>
             <h3 style="color: var(--primary-color);">Δεν υπάρχουν ερωτήσεις</h3>
             <p>Δεν έχουν προστεθεί ακόμη ερωτήσεις για αυτό το κεφάλαιο.</p>
         `;
@@ -497,7 +497,7 @@ function revealQuickAnswer() {
             const isSharedGuide = flashcardQuestions.filter(q => (q.explanation || "").trim() === rawExp).length > 1;
 
             if (isSharedGuide) {
-                html += `<div style="font-size: 0.88rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; padding: 6px 12px; border-radius: 8px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.25); display: inline-block;">📘 Γενικό Πλαίσιο &amp; Ανακεφαλαίωση Ενότητας</div>`;
+                html += `<div style="font-size: 0.88rem; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; padding: 6px 12px; border-radius: 8px; background: rgba(243, 156, 18, 0.15); border: 1px solid rgba(243, 156, 18, 0.3); display: inline-block;">📘 Γενικό Πλαίσιο &amp; Ανακεφαλαίωση Ενότητας</div>`;
             }
 
             html += parseMarkdown(rawExp);

@@ -1,0 +1,212 @@
+/* ========================================================
+   MODERN THEME - PATHOLOGIA QUIZ
+   Profound Redesign - Glassmorphism & Animated Gradients
+======================================================== */
+
+/* 1. Global Reset & Body */
+body {
+    /* Dynamic Theme Colors injected via HTML body style */
+    background: linear-gradient(-45deg, var(--c1), var(--c2), var(--c3), var(--c1)) !important;
+    background-size: 400% 400% !important;
+    animation: universalBgFlow 12s ease infinite !important;
+    color: #1e293b !important; /* Dark text for readability */
+    font-family: 'Inter', sans-serif !important;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    z-index: 0;
+    overflow-x: hidden;
+}
+
+@keyframes universalBgFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. Floating Blobs (Background) */
+.modern-shape {
+    position: fixed;
+    filter: blur(80px);
+    z-index: -1;
+    border-radius: 50%;
+    animation: floatBlob 10s infinite ease-in-out alternate;
+    opacity: 0.6;
+}
+.modern-shape-1 { width: 450px; height: 450px; background: var(--c2); top: 5%; left: 5%; }
+.modern-shape-2 { width: 400px; height: 400px; background: var(--c1); bottom: 10%; right: 10%; animation-delay: -5s; }
+.modern-shape-3 { width: 550px; height: 550px; background: var(--c3); top: 30%; left: 35%; animation-delay: -2s; opacity: 0.8; }
+
+@keyframes floatBlob {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-50px) scale(1.15); }
+}
+
+/* 3. Main Application Container (Glassmorphism) */
+.app-container {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+    padding: 30px !important;
+    max-width: 800px !important;
+    margin: 40px auto !important;
+}
+
+/* 4. Headers and Titles */
+.app-header {
+    border-bottom: 2px solid rgba(0,0,0,0.05) !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 30px !important;
+}
+
+.app-header h1 {
+    font-size: 2.2rem !important;
+    font-weight: 900 !important;
+    margin-top: 15px !important;
+    
+    /* Themed Gradient Text */
+    background: linear-gradient(to right, var(--c1), var(--c4), var(--c3), var(--c4), var(--c1)) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    animation: textColorsMove 3s linear infinite !important;
+}
+
+.app-header h1 span.author-tag {
+    font-size: 1.2rem !important;
+    display: inline-block !important;
+    margin-left: 10px !important;
+    
+    background: linear-gradient(to right, var(--c1), var(--c4), var(--c3)) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    
+    animation: textColorsMove 3s linear infinite, authorPulse 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes textColorsMove {
+    to { background-position: -200% center; }
+}
+@keyframes authorPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--c1)) drop-shadow(0 0 20px var(--c2)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--c3)) drop-shadow(0 0 35px var(--c4)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 15px var(--c2)) drop-shadow(0 0 20px var(--c1)); }
+}
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--c4)); }
+}
+
+/* 5. Clean Buttons */
+.btn {
+    border-radius: 12px !important;
+    font-weight: 800 !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--c4), var(--c1)) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+.btn-primary:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+}
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    color: var(--c1) !important;
+}
+
+/* 6. General Boxes (Flashcards, Questions, Explanations) */
+.topic-title-header, .recall-card-container, #question-display {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 7. MCQ Options (Bold, Clean, Distinct) */
+.option-btn {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+    transition: all 0.2s !important;
+}
+.option-btn .option-text {
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+    color: #1e293b !important;
+}
+.option-btn:hover:not(:disabled) {
+    background: rgba(255,255,255, 1) !important;
+    border-color: var(--c4) !important;
+    transform: translateX(5px) !important;
+}
+
+/* MCQ Correct/Incorrect States */
+.option-btn.correct, .option-container.correct, button.correct {
+    background: #e0f2fe !important; 
+    border-color: #38bdf8 !important; 
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3) !important;
+}
+.option-btn.correct .option-badge, .correct .option-badge {
+    background: #38bdf8 !important;
+    border-color: #38bdf8 !important;
+    color: #fff !important;
+}
+
+.option-btn.incorrect, .option-container.incorrect, button.incorrect {
+    background: #ffe4e6 !important; 
+    border-color: #fb7185 !important; 
+}
+.option-btn.incorrect .option-badge, .incorrect .option-badge {
+    background: #fb7185 !important;
+    border-color: #fb7185 !important;
+    color: #fff !important;
+}
+
+/* Explanation / Correct Answer Box */
+.correct-answer-box, .explanation-wrapper, .explanation-panel.expanded {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-left: 6px solid var(--c4) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+}
+.correct-answer-box h3, .correct-answer-box h4, .explanation-wrapper h4 {
+    color: var(--c1) !important;
+    font-weight: 900 !important;
+}
+
+/* Readability for text inside descriptions */
+.correct-answer-text, .explanation-content, #quick-recall-explanation-content {
+    color: #0f172a !important;
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+}
+.correct-answer-text strong, .explanation-content strong {
+    color: var(--c1) !important;
+    font-weight: 900 !important;
+}
+
+/* Dropdown styling */
+select {
+    background: rgba(255,255,255,0.9) !important;
+    border: 2px solid rgba(0,0,0,0.1) !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+}
+select:focus {
+    border-color: var(--c4) !important;
+    outline: none !important;
+}

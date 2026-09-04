@@ -2,7 +2,7 @@
 :root {
     --transition-speed: 0.3s;
     --border-radius: 16px;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family: 'Times New Roman', Calibri, 'Segoe UI', sans-serif;
     
     /* Dark Theme Variables (Default) */
     --bg-color: #0b0f19;
@@ -72,6 +72,10 @@ body.light-theme {
     padding: 0;
     box-box: border-box;
     box-sizing: border-box;
+}
+
+b, strong {
+    font-weight: 500 !important;
 }
 
 body {
@@ -2573,7 +2577,7 @@ u, ins, .underlined-text {
 
 /* --- USER OVERRIDES --- */
 #progress-text {
-    color: #ff69b4 !important; /* Pink */
+    color: #e6b800 !important; /* Ochre/Yellow */
     font-weight: 800 !important;
     font-size: 1.05rem !important;
 }
