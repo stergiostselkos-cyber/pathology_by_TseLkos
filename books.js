@@ -1314,6 +1314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfContainer = document.getElementById('pdf-container');
     const pdfIframe = document.getElementById('pdf-iframe');
     const pdfPlaceholder = document.getElementById('pdf-placeholder');
+const externalPdfBtn = document.getElementById('external-pdf-btn');
 
     if (!bookSelect) return;
 
@@ -1330,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfContainer.style.display = 'none';
         pdfPlaceholder.style.display = 'block';
         pdfIframe.src = '';
+    if(externalPdfBtn) externalPdfBtn.href = '#';
     }
 
     bookSelect.addEventListener('change', (e) => {
@@ -1380,7 +1382,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if(subpartSection) subpartSection.style.display = 'none';
             
-            pdfIframe.src = selectedPart.file; 
+            pdfIframe.src = selectedPart.file;
+        if(externalPdfBtn) externalPdfBtn.href = selectedPart.file; 
             pdfPlaceholder.style.display = 'none';
             pdfContainer.style.display = 'block';
         } else if (selectedVal.startsWith('chapter_')) {
@@ -1409,7 +1412,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const chapterName = chapterVal.substring(8);
                 const selectedSubchapter = currentSelectedBook.chapters[chapterName][parseInt(subpartIndex)];
                 
-                pdfIframe.src = selectedSubchapter.file; 
+                pdfIframe.src = selectedSubchapter.file;
+        if(externalPdfBtn) externalPdfBtn.href = selectedSubchapter.file; 
                 pdfPlaceholder.style.display = 'none';
                 pdfContainer.style.display = 'block';
             } else {
