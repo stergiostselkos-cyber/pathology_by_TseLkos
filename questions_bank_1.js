@@ -10,7 +10,7 @@
             "Δ) Η βιοψία μυός θα είναι παθολογική",
             "Ε) Μπορεί να εμφανίζεται πόνος κατά την μάσηση"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -25,7 +25,7 @@
             "Δ) Λεμφοπενία",
             "Ε) Μεγάλη αύξηση της CRP"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -40,7 +40,7 @@
             "Δ) Συνήθως είναι ανοσοσφαιρίνη IgA",
             "Ε) Δεν ανευρίσκεται ποτέ σε πλευριτικό ή περικαρδιακό υγρό"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -55,7 +55,7 @@
             "Δ) Οι μεγάλες αρθρώσεις δεν προσβάλλονται",
             "Ε) Τίποτα από τα παραπάνω"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -70,7 +70,7 @@
             "Δ) Η ποσότητα ινικής είναι σημαντική",
             "Ε) Τα περισσότερα κύτταρα είναι λεμφοκύτταρα"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -85,7 +85,7 @@
             "Δ) Διαβρωτικές βλάβες στις αρθρώσεις",
             "Ε) Προσβολή των άκρων χειρών"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -100,7 +100,7 @@
             "Δ) Η απουσία πυρετού αποκλείει τη διάγνωση της σηπτικής αρθρίτιδας",
             "Ε) Μια χρόνια μονοαρθρίτις μπορεί να οφείλεται σε μυκοβακτηρίδιο της φυματίωσης"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -115,7 +115,7 @@
             "Δ) Τα περισσότερα ουδετερόφιλα του ανθρώπινου οργανισμού κυκλοφορούν στο αίμα",
             "Ε) Τα φαγοκύτταρα αναλαμβάνουν την παρουσίαση του αντιγόνου στα Τ λεμφοκύτταρα"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -130,7 +130,7 @@
             "Δ) Λήπτης καρδιακού μοσχεύματος και κυτταρομεγαλοϊός",
             "Ε) Όλα τα παραπάνω"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -145,7 +145,7 @@
             "Δ) Τα ξανθώματα",
             "Ε) Η βαρειά λοίμωξη με συμμετοχή των βλεννογόνων από απλό έρπητα"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -160,7 +160,7 @@
             "Δ) Η τοξοπλάσμωση εκδηλώνεται με ευρήματα από το κεντρικό νευρικό σύστημα",
             "Ε) Η αμφιβληστροειδίτις από κυτταρομεγαλοϊό θεραπεύεται με ακυκλοβίρη"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -175,7 +175,7 @@
             "Δ) Γονείς υιοθετημένου παιδιού ξένης καταγωγής",
             "Ε) Υποτροπιάζουσα παραρρινοκολπίτις"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [1],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -190,7 +190,7 @@
             "Δ) Ψευδομεμβρανώδης κολίτις",
             "Ε) Το Α και Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -205,7 +205,7 @@
             "Δ) Listeria monocytogenes",
             "Ε) Το Β και Δ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -220,7 +220,7 @@
             "Δ) Όλα τα παραπάνω",
             "Ε) Το Β και Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -235,7 +235,7 @@
             "Δ) Όλα τα παραπάνω",
             "Ε) Το Α και Β"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -250,7 +250,7 @@
             "Δ) Συσχετίζεται με τον τύπο HLA-B8",
             "Ε) Το Α και Β"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -265,7 +265,7 @@
             "Δ) Όλα τα παραπάνω δεν είναι αιτίες χρόνιας ηπατoπάθειας",
             "Ε) Το Β και Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -280,7 +280,7 @@
             "Δ) Όλα τα παραπάνω",
             "Ε) Το Α και το Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -295,7 +295,7 @@
             "Δ) Κανένα από τα παραπάνω",
             "Ε) Το Α, Β και Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -310,7 +310,7 @@
             "Δ) Όλα τα παραπάνω",
             "Ε) Το Α και Β"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -325,7 +325,7 @@
             "Δ) Όλα τα παραπάνω",
             "Ε) Το Β και Γ"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -340,7 +340,7 @@
             "Δ) Καρκίνος του κάτω λοβού του δεξιού πνεύμονα",
             "Ε) Εστιακή οζώδης υπερπλασία του ήπατος"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -355,7 +355,7 @@
             "Δ) Διάχυτος οισοφαγικός σπασμός",
             "Ε) Αγγειοδυσπλασίες του βλεννογόνου του οισοφάγου"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -385,7 +385,7 @@
             "Δ) Δηλητηρίαση με αντιχολινεργικά",
             "Ε) Λήψη αντιψυχωτικών φαρμάκων"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -400,7 +400,7 @@
             "Δ) Οι εντερικές παρασιτώσεις",
             "Ε) Η χαμηλή πρόσληψη υγρών"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -415,7 +415,7 @@
             "Δ) Αιμολυτική αναιμία",
             "Ε) Απόφραξη χοληφόρων"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -430,7 +430,7 @@
             "Δ) Ουρολοίμωξη από ψευδομονάδα",
             "Ε) Βακτηριαιμία από Klebsiella"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -445,7 +445,7 @@
             "Δ) Ενδοκαρδίτιδα από εντερόκοκκο σε άτομο αλλεργικό στην πενικιλίνη",
             "Ε) Σηψαιμία από Candida"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -460,7 +460,7 @@
             "Δ) Προφύλαξη από κυτταρομεγαλοϊό σε μεταμοσχευμένους ασθενείς",
             "Ε) Σύνδρομο χρόνιας κόπωσης"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -475,7 +475,7 @@
             "Δ) Πνευμονία από αναπνευστικό συγκυτιακό ιό",
             "Ε) Ερυθρά"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -490,7 +490,7 @@
             "Δ) Η τριμεθοπρίμη-σουλφαμεθοξαζόλη προκαλεί συχνά ναυτία, που υποχωρεί με μείωση της δοσολογίας της, στη θεραπεία της πνευμονίας από πνευμοκύστη",
             "Ε) Είναι σημαντικό να προσδιορίζονται τα επίπεδα της ιτρακοναζόλης όταν χρησιμοποιείται για τη θεραπεία συστηματικών μυκητιάσεων"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -505,7 +505,7 @@
             "Δ) Η κατάσπαση του ST μπορεί να αποτελεί ένδειξη καρδιακής ισχαιμίας",
             "Ε) Υψηλό έπαρμα R στην απαγωγή V1 μπορεί να αποτελεί ένδειξη υπερτροφίας της δεξιάς κοιλίας"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -520,7 +520,7 @@
             "Δ) Σε ασθενείς με οξύ εγκεφαλικό επεισόδιο, μπορούμε να αποκλείσουμε την ενδοκαρδίτιδα ως πηγή του θρόμβου εάν ο ασθενής είναι απύρετος",
             "Ε) Κανένα από τα παραπάνω"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -535,7 +535,7 @@
             "Δ) Πρέπει να χορηγούμε σε κάθε ασθενή λιδοκαϊνη για να προλάβουμε τυχόν αρρυθμίες",
             "Ε) Η ρήξη του μεσοκοιλιακού διαφράγματος αποτελεί σπάνια αλλά σοβαρή επιπλοκή"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -550,7 +550,7 @@
             "Δ) Η ισθμική στένωση της αορτής δυνατόν να συνοδεύεται και από χρωμοσωμική ανωμαλία",
             "Ε) Οι αναστολείς του μετατρεπτικού ενζύμου της αγγειοτενσίνης αποτελούν τη θεραπεία εκλογής της δύσπνοιας που προκαλεί η στένωση της αορτής"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -565,7 +565,7 @@
             "Δ) Η επαναγγείωση ενδείκνυται σε ασθενείς μόνο κάτω των 60 ετών",
             "Ε) Η θεραπεία της δυσλιποπρωτεϊναιμίας δεν έχει αξία όταν ο ασθενής έχει εκδηλώσει πλέον στηθάγχη"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -580,7 +580,7 @@
             "Δ) Η δακτυλίτιδα είναι αποτελεσματική στην πρόληψη των παροξυσμών της κολπικής μαρμαρυγής",
             "Ε) Εάν το εύρος του συμπλέγματος QRS είναι μικρότερο από 3 τετραγωνάκια στο Ηκγ τότε η ταχυκαρδία είναι υπερκοιλιακή"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -595,7 +595,7 @@
             "Δ) Δεν πρέπει να χορηγήσουμε εισπνεόμενα βρογχοδιασταλτικά εάν οι σφύξεις του είναι πάνω από 100/λεπτό",
             "Ε) Κανένα από τα παραπάνω"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [4],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -610,7 +610,7 @@
             "Δ) Εθαμβουτόλη",
             "Ε) Ισονιαζίδη"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -625,7 +625,7 @@
             "Δ) Χρυσίζων σταφυλόκοκκος",
             "Ε) Legionella pneumophila"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -640,7 +640,7 @@
             "Δ) Aspergillus fumigatus",
             "Ε) Πνευμονιόκοκκος"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [2],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -655,7 +655,7 @@
             "Δ) Η προσβολή των τοπικών λεμφαδένων δεν επιβαρύνει την πρόγνωση της νόσου",
             "Ε) Η απόφραξη του εντέρου είναι επιπλοκή συχνότερα του καρκίνου του ανιόντος κόλου"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [1],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -685,7 +685,7 @@
             "Δ) Η ηπατίτιδα Ε μπορεί να μεταδοθεί με μολυσμένες βελόνες",
             "Ε) Ένα άτομο θετικό για IgG core αντίσωμα ηπατίτιδας Β μπορεί να μεταδόσει την νόσο"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -700,7 +700,7 @@
             "Δ) Χρόνια νεφρική ανεπάρκεια",
             "Ε) Θάνατος του εμβρύου σε έγκυο ασθενή"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -730,7 +730,7 @@
             "Δ) Σηψαιμία από Candida",
             "Ε) Υπογλυκαιμία"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -745,7 +745,7 @@
             "Δ) Η τοποθέτηση ουροκαθετήρα μας βοηθά να διαπιστώσουμε την ανταπόκριση στη θεραπεία",
             "Ε) Η εξέταση εκλογής για τη διαπίστωση υδρονέφρωσης είναι η ενδοφλέβια πυελογραφία"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [3],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
@@ -760,7 +760,7 @@
             "Δ) Η κρεατινίνη στο πλάσμα επηρρεάζεται κυρίως από τον ρυθμό σπειραματικής διήθησης και όχι από την ροή των ούρων",
             "Ε) Η συγκέντρωση της ουρίας των ούρων παρέχει πολύ χρήσιμες πληροφορίες κατά τη διερεύνηση πιθανής νεφρικής ανεπάρκειας"
         ],
-        "correctAnswerIndices": [],
+        "correctAnswerIndices": [0],
         "explanation": "<div class=\"explanation-box\" style=\"background-color: #fdf5e6; border: 1px solid #ffd700; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: justify;\"></div>",
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ"
     },
