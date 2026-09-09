@@ -1,4 +1,4 @@
-﻿// Application State
+// Application State
 let questions = [];
 let filteredQuestions = [];
 let activeChapter = "Όλα";
@@ -288,8 +288,8 @@ function showQuestion(index) {
         explanationContent.innerHTML = "";
         prevButton.disabled = true;
         nextButton.disabled = true;
-        progressText.textContent = "Ερώτηση 0 από 0";
-        progressFill.style.width = "0%";
+        if (progressText) progressText.textContent = "Ερώτηση 0 από 0";
+        if (progressFill) progressFill.style.width = "0%";
         if (quickQuestionsDropdownValue) {
             quickQuestionsDropdownValue.textContent = "Δεν υπάρχουν ερωτήσεις";
         }
@@ -532,8 +532,8 @@ function updateProgressBar() {
     const current = total > 0 ? currentQuestionIndex + 1 : 0;
     const percentage = total > 0 ? Math.round((currentQuestionIndex / total) * 100) : 0;
     
-    progressFill.style.width = `${percentage}%`;
-    progressText.textContent = `Ερώτηση ${current} από ${total}`;
+    if (progressFill) progressFill.style.width = `${percentage}%`;
+    if (progressText) progressText.textContent = `Ερώτηση ${current} από ${total}`;
     
     const answeredQuestions = filteredQuestions.filter(q => q.answeredCorrectly);
     const answeredCount = answeredQuestions.length;
@@ -541,7 +541,7 @@ function updateProgressBar() {
     const liveScorePercent = answeredCount > 0 
         ? Math.round((score / answeredCount) * 100) 
         : 0;
-    scoreText.textContent = `Σκορ: ${liveScorePercent}%`;
+    if (scoreText) scoreText.textContent = `Σκορ: ${liveScorePercent}%`;
 }
 
 /**
@@ -573,8 +573,8 @@ function showResults() {
     quizView.classList.add('hidden');
     resultsView.classList.remove('hidden');
     
-    progressFill.style.width = "100%";
-    progressText.textContent = `Ολοκληρώθηκε!`;
+    if (progressFill) progressFill.style.width = "100%";
+    if (progressText) progressText.textContent = `Ολοκληρώθηκε!`;
     
     const total = filteredQuestions.length;
     const finalPercent = total > 0 ? Math.round((score / total) * 100) : 0;

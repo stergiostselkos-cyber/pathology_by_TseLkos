@@ -682,7 +682,9 @@
 
 
 @keyframes flowWaterAnim {
-    0% { background-position: 0vw 50%; }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
     100% { background-position: -100vw 50%; }
 }
     100% { background-position: 100% 50%; }
@@ -711,8 +713,8 @@
             <!-- 1. Ερωτήσεις Ανάπτυξης -->
             <div class="card essay">
                 <div class="card-icon">✍️</div>
-                <h2>Ερωτήσεις Ανάπτυξης</h2>
-                <div><span class="version-tag">ΕΚΔΟΣΗ 2017</span></div>
+                <h2>Θέματα Ανάπτυξης</h2>
+                <div style="color: #2ECC71; font-weight: 800; font-size: 1.1rem; margin-top: -5px; margin-bottom: 15px;">2013 - 2023</div>
                 <p>Μελετήστε δομημένα τις ερωτήσεις ανάπτυξης του βιβλίου, με έμφαση στα κρίσιμα σημεία. Δοκιμάστε τις γνώσεις σας βήμα-βήμα.</p>
                 <a href="study.html" class="btn">📚 Ξεκίνα Μελέτη</a>
             </div>
@@ -720,17 +722,15 @@
             <!-- 2. Ερωτήσεις Επιλογής -->
             <div class="card mcq">
                 <div class="card-icon">🎯</div>
-                <h2>Πολλαπλής Επιλογής</h2>
-                <div><span class="version-tag">ΕΚΔΟΣΗ 2017</span></div>
+                <h2>Τράπεζες Ερωτήσεων Πολλαπλής Επιλογής</h2>
+                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
                 <p>Τεστ αυτοαξιολόγησης με ερωτήσεις πολλαπλής επιλογής. Επίλεξε το κεφάλαιο που θέλεις και ξεκίνα αμέσως την εξάσκηση!</p>
                 <form onsubmit="startMCQ(event)" style="width: 100%;">
                     <select id="mcq-selector" class="fancy-select" required>
-                        
-                        
-                        <option value="">Επίλεξε Τράπεζα Ερωτήσεων...</option>
-                        <option value="old_book">Ερωτήσεις - Έκδοση 3</option>
-                        <option value="bank_1">Ερωτήσεις - Τράπεζα 1</option>
-</select>
+                        <option value="" disabled selected>Επίλεξε Τράπεζα Ερωτήσεων...</option>
+                        <option value="old_book">Παλιά Θέματα Εξετάσεων</option>
+                        <option value="bank_1">Τράπεζα Θεμάτων 1</option>
+                    </select>
                     <button type="submit" class="btn">🚀 Έναρξη Quiz</button>
                 </form>
             </div>
