@@ -11,37 +11,32 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #FF9A9E, #FECFEF, #A1C4FD, #C2E9FB);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #fdfbfb;
             min-height: 100vh;
-            color: #2D3748;
+            color: #1e293b;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* FLOATING BACKGROUND SHAPES */
+        /* PREMIUM MESH BACKGROUND */
         .shape {
             position: absolute;
-            filter: blur(60px);
+            filter: blur(90px);
             z-index: -1;
             border-radius: 50%;
-            animation: float 10s infinite ease-in-out alternate;
+            animation: float 20s infinite ease-in-out alternate;
+            opacity: 0.5;
         }
-        .shape-1 { width: 300px; height: 300px; background: rgba(255, 107, 107, 0.4); top: 10%; left: 10%; }
-        .shape-2 { width: 400px; height: 400px; background: rgba(72, 198, 239, 0.4); bottom: 10%; right: 5%; animation-delay: -5s; }
-        .shape-3 { width: 250px; height: 250px; background: rgba(246, 211, 101, 0.4); top: 40%; left: 45%; animation-delay: -2s; }
+        .shape-1 { width: 500px; height: 500px; background: rgba(56, 189, 248, 0.3); top: -10%; left: -5%; }
+        .shape-2 { width: 600px; height: 600px; background: rgba(129, 140, 248, 0.25); bottom: -15%; right: -5%; animation-delay: -5s; }
+        .shape-3 { width: 450px; height: 450px; background: rgba(52, 211, 153, 0.2); top: 35%; left: 45%; animation-delay: -2s; }
 
         @keyframes float {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(-50px) scale(1.1); }
+            0% { transform: translate(0px, 0px) scale(1); }
+            50% { transform: translate(40px, -60px) scale(1.05); }
+            100% { transform: translate(-40px, 40px) scale(0.95); }
         }
 
         /* HEADER */
@@ -89,99 +84,122 @@
 
         /* THE CARDS */
         .card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 35px 30px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 0 0 1px rgba(255,255,255,0.5);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 6px;
+            top: 0; left: 0; width: 100%; height: 4px;
             background: var(--card-color);
+            opacity: 0.7;
+            transition: all 0.4s ease;
         }
         .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 10px 20px rgba(var(--card-rgb), 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .card:hover::before {
+            height: 6px;
+            opacity: 1;
+            box-shadow: 0 0 15px var(--card-color);
         }
 
         .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: transform 0.3s;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: rgba(var(--card-rgb), 0.1);
+            color: var(--card-color);
+            transition: all 0.4s ease;
+            margin-left: auto;
+            margin-right: auto;
         }
         .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg);
+            transform: scale(1.1) translateY(-5px);
+            background: var(--card-color);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(var(--card-rgb), 0.3);
         }
 
         .card h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            color: #2D3748;
-            margin-bottom: 10px;
+            color: #1e293b;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
         .card .version-tag {
             display: inline-block;
-            background: var(--card-color);
-            color: #fff;
-            padding: 4px 12px;
+            background: rgba(var(--card-rgb), 0.1);
+            color: var(--card-color);
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            letter-spacing: 1.5px;
         }
         .card p {
             font-size: 0.95rem;
-            color: #4A5568;
+            color: #475569;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             flex-grow: 1;
             font-weight: 500;
         }
 
         /* BUTTONS */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             text-decoration: none;
             color: #fff;
             background: var(--card-color);
             padding: 14px 24px;
-            border-radius: 14px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(var(--card-rgb), 0.3);
             border: none;
             cursor: pointer;
             width: 100%;
         }
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(var(--card-rgb), 0.4);
+            filter: brightness(1.05);
         }
 
-        /* Specific Card Colors */
-        .card.essay { --card-color: #2ECC71; }
-        .card.mcq { --card-color: #0EA5E9; }
-        .card.new-book { --card-color: #F39C12; }
-        .card.scenarios { --card-color: #E74C3C; }
-        .card.books { --card-color: #9B59B6; }
-        .card.links { --card-color: #F1C40F; }
+        /* Specific Card Colors and RGB Variables for Transparency */
+        .card.essay { --card-color: #10b981; --card-rgb: 16, 185, 129; }
+        .card.mcq { --card-color: #0ea5e9; --card-rgb: 14, 165, 233; }
+        .card.new-book { --card-color: #f59e0b; --card-rgb: 245, 158, 11; }
+        .card.scenarios { --card-color: #ef4444; --card-rgb: 239, 68, 68; }
+        .card.books { --card-color: #8b5cf6; --card-rgb: 139, 92, 246; }
+        .card.links { --card-color: #eab308; --card-rgb: 234, 179, 8; }
 
         /* FOOTER */
         footer {
@@ -411,286 +429,87 @@
             color: #2D3748;
             outline: none;
         }
-    
-        @keyframes rainbowGlow {
-            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
-
-        
-
-        
-            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
-        }
-        
-        
-    
-.glow-name {
-    font-size: 2.2rem !important;
-    font-weight: 900 !important;
-    margin-left: 10px !important;
-    display: inline-block !important;
-    vertical-align: middle;
-    
-    background: linear-gradient(to right, #FF0000 0%, #FF7F00 8.33%, #FFFF00 16.66%, #00FF00 25%, #0000FF 33.33%, #8B00FF 41.66%, #FF0000 50%, #FF7F00 58.33%, #FFFF00 66.66%, #00FF00 75%, #0000FF 83.33%, #8B00FF 91.66%, #FF0000 100%) !important;
-    background-size: 200vw auto !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-    
-    /* Thin outline for By TseLkos too */
-    -webkit-text-stroke: 1.5px #001f3f !important;
-    
-    animation: flowWaterAnim 4s linear infinite, authorPulseIndex 2s ease-in-out infinite alternate !important;
-}
-
-@keyframes smoothRainbow {
-    to { background-position: 200% center; }
-}
-
-@keyframes authorPulseIndex {
-    0% { transform: scale(1); filter: drop-shadow(0 0 15px #ff0040) drop-shadow(0 0 25px #aa00ff); }
-    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00ffaa) drop-shadow(0 0 35px #ffea00); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 15px #00aaff) drop-shadow(0 0 25px #ff0040); }
-}
-
-@media (max-width: 768px) {
-    .glow-name { display: block !important; margin-left: 0 !important; font-size: 1.4rem !important; margin-top: 5px !important; }
-}
-
-        
-        /* Responsive design to prevent letters overlapping on mobile */
-        @media (max-width: 768px) {
-            
-            .glow-name {
-                font-size: 1.3rem !important;
-                display: block !important;
-                margin-left: 0 !important;
-                margin-top: 10px !important;
-            }
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* MAIN CONTENT - CARDS GRID */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 20px 60px;
-            position: relative;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        /* THE CARDS */
-        .card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 6px;
-            background: var(--card-color);
-        }
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .card h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #2D3748;
-            margin-bottom: 10px;
-        }
-        .card .version-tag {
-            display: inline-block;
-            background: var(--card-color);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .card p {
-            font-size: 0.95rem;
-            color: #4A5568;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            font-weight: 500;
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            text-decoration: none;
-            color: #fff;
-            background: var(--card-color);
-            padding: 14px 24px;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: all 0.3s;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
-        }
-
-        /* Specific Card Colors */
-        .card.essay { --card-color: #2ECC71; }
-        .card.mcq { --card-color: #0EA5E9; }
-        .card.new-book { --card-color: #F39C12; }
-        .card.scenarios { --card-color: #E74C3C; }
-        .card.books { --card-color: #9B59B6; }
-        .card.links { --card-color: #F1C40F; }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: rgba(255,255,255,0.8);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        footer a { color: #fff; font-weight: 700; text-decoration: none; }
-        
-        /* Select Dropdown inside MCQ */
-        select.fancy-select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 2px solid #4ECDC4;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #2D3748;
-            outline: none;
-        }
-    
-        @keyframes rainbowGlow {
-            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
-
-        
-
-        
-            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
-        }
-        
-        
-
-        
-
-        
-
-        @keyframes intenseRainbowGlow {
-            0% { filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #ff7f00); transform: scale(1); }
-            50% { filter: drop-shadow(0 0 20px #00ff00) drop-shadow(0 0 40px #0000ff); transform: scale(1.08); }
-            100% { filter: drop-shadow(0 0 10px #8b00ff) drop-shadow(0 0 20px #ff0000); transform: scale(1); }
-        }
-
-    
+        /* Chic Elegant Title Styles */
         .main-title {
-            font-size: 4.5rem !important;
+            font-size: 4.8rem !important;
             font-weight: 900 !important;
-            margin-bottom: 10px !important;
-            letter-spacing: -1px !important;
-            
-            /* Intense full saturation colors repeating for seamless flow */
-            background: linear-gradient(to right, #FF0000 0%, #FF7F00 8.33%, #FFFF00 16.66%, #00FF00 25%, #0000FF 33.33%, #8B00FF 41.66%, #FF0000 50%, #FF7F00 58.33%, #FFFF00 66.66%, #00FF00 75%, #0000FF 83.33%, #8B00FF 91.66%, #FF0000 100%) !important;
-            background-size: 200vw auto !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-            
-            /* Thinner dark blue outline */
-            -webkit-text-stroke: 1.5px #001f3f !important;
-            
-            animation: flowWaterAnim 4s linear infinite !important;
+            margin-bottom: 15px !important;
+            letter-spacing: -1.5px !important;
+            color: #1a202c !important; /* Deep elegant navy/black */
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.1) !important;
+            position: relative;
+            z-index: 10;
+            background: none !important;
+            -webkit-text-fill-color: #1a202c !important;
+            -webkit-text-stroke: 0 !important;
         }
 
         .main-title span.quiz {
-            /* Intense full saturation colors repeating for seamless flow */
-            background: linear-gradient(to right, #FF0000 0%, #FF7F00 8.33%, #FFFF00 16.66%, #00FF00 25%, #0000FF 33.33%, #8B00FF 41.66%, #FF0000 50%, #FF7F00 58.33%, #FFFF00 66.66%, #00FF00 75%, #0000FF 83.33%, #8B00FF 91.66%, #FF0000 100%) !important;
-            background-size: 200vw auto !important;
+            background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%) !important;
             -webkit-background-clip: text !important;
             background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             color: transparent !important;
-            
-            /* Thinner dark blue outline */
-            -webkit-text-stroke: 1.5px #001f3f !important;
-            
-            animation: flowWaterAnim 4s linear infinite reverse !important;
+            -webkit-text-stroke: 0 !important;
+            /* Chic neon glow */
+            filter: drop-shadow(0px 0px 12px rgba(0, 198, 255, 0.5)) drop-shadow(0px 0px 30px rgba(0, 114, 255, 0.3)) !important;
+            animation: chicNeonPulse 3s ease-in-out infinite alternate !important;
         }
 
-        /* Responsive design to prevent letters overlapping on mobile */
+        @keyframes chicNeonPulse {
+            0% { filter: drop-shadow(0px 0px 8px rgba(0, 198, 255, 0.4)) drop-shadow(0px 0px 20px rgba(0, 114, 255, 0.2)) !important; }
+            100% { filter: drop-shadow(0px 0px 15px rgba(0, 198, 255, 0.8)) drop-shadow(0px 0px 40px rgba(0, 114, 255, 0.6)) !important; }
+        }
+
+        .glow-name {
+            font-size: 1.8rem !important;
+            font-weight: 700 !important;
+            font-style: italic !important;
+            margin-left: 15px !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
+            -webkit-text-stroke: 0 !important;
+            filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.15)) !important;
+            position: relative;
+            animation: roseGoldGlow 4s ease-in-out infinite alternate !important;
+        }
+        
+        .glow-name::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 3px;
+            background: #FF9A9E;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255, 154, 158, 0.8);
+        }
+
+        @keyframes roseGoldGlow {
+            0% { filter: drop-shadow(0px 0px 5px rgba(255, 154, 158, 0.4)) !important; }
+            100% { filter: drop-shadow(0px 0px 15px rgba(255, 154, 158, 0.8)) !important; }
+        }
+
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.8rem !important;
+            .main-title { 
+                font-size: 3.2rem !important; 
                 line-height: 1.2 !important;
                 word-wrap: break-word !important;
             }
+            .glow-name { 
+                display: block !important; 
+                margin-left: 0 !important; 
+                margin-top: 15px !important; 
+                font-size: 1.5rem !important; 
+            }
+            .glow-name::before { display: none !important; }
         }
-
-
-@keyframes flowWaterAnim {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-    100% { background-position: -100vw 50%; }
-}
-    100% { background-position: 100% 50%; }
-}
-    100% { background-position: 200% 50%; }
-}
 
 </style>
 </head>
@@ -712,16 +531,16 @@
             
             <!-- 1. Ερωτήσεις Ανάπτυξης -->
             <div class="card essay">
-                <div class="card-icon">✍️</div>
+                <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
                 <h2>Θέματα Ανάπτυξης</h2>
-                <div style="color: #2ECC71; font-weight: 800; font-size: 1.1rem; margin-top: -5px; margin-bottom: 15px;">2013 - 2023</div>
+                <div style="color: var(--card-color); font-weight: 800; font-size: 1.1rem; margin-top: -5px; margin-bottom: 15px;">2013 - 2023</div>
                 <p>Μελετήστε δομημένα τις ερωτήσεις ανάπτυξης του βιβλίου, με έμφαση στα κρίσιμα σημεία. Δοκιμάστε τις γνώσεις σας βήμα-βήμα.</p>
-                <a href="study.html" class="btn">📚 Ξεκίνα Μελέτη</a>
+                <a href="study.html" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</a>
             </div>
 
             <!-- 2. Ερωτήσεις Επιλογής -->
             <div class="card mcq">
-                <div class="card-icon">🎯</div>
+                <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
                 <h2>Τράπεζες Ερωτήσεων Πολλαπλής Επιλογής</h2>
                 <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
                 <p>Τεστ αυτοαξιολόγησης με ερωτήσεις πολλαπλής επιλογής. Επίλεξε το κεφάλαιο που θέλεις και ξεκίνα αμέσως την εξάσκηση!</p>
@@ -731,44 +550,44 @@
                         <option value="old_book">Παλιά Θέματα Εξετάσεων</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
                     </select>
-                    <button type="submit" class="btn">🚀 Έναρξη Quiz</button>
+                    <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
             </div>
 
             <!-- 3. Νέο Βιβλίο -->
             <div class="card new-book">
-                <div class="card-icon">✨</div>
+                <div class="card-icon"><i class="fa-solid fa-book-medical"></i></div>
                 <h2>Νέο Βιβλίο Παθολογίας</h2>
-                <div><span class="version-tag" style="background: #F39C12;">ΕΚΔΟΣΗ 2026</span></div>
+                <div><span class="version-tag">ΕΚΔΟΣΗ 2026</span></div>
                 <p>Το ολοκαίνουργιο βιβλίο Παθολογίας με τη μορφή flashcards. Φρέσκια γνώση, σύγχρονες προσεγγίσεις και νέα δεδομένα.</p>
-                <a href="study_new_book.html" class="btn">📖 Άνοιγμα Flashcards</a>
+                <a href="study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards</a>
             </div>
 
             <!-- 4. Κλινικά Σενάρια -->
             <div class="card scenarios">
-                <div class="card-icon">🩺</div>
+                <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
                 <h2>Κλινικά Σενάρια</h2>
                 <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
                 <p>Εκπαιδεύσου πάνω σε πραγματικά περιστατικά. Εξάσκησε την κλινική σου σκέψη και τη διαγνωστική σου ικανότητα στην πράξη.</p>
-                <a href="cases.html" class="btn">🔬 Προβολή Περιστατικών</a>
+                <a href="cases.html" class="btn"><i class="fa-solid fa-microscope"></i> Προβολή Περιστατικών</a>
             </div>
 
             <!-- 5. Χρήσιμα Βιβλία -->
             <div class="card books">
-                <div class="card-icon">📚</div>
+                <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
                 <h2>Χρήσιμα Βιβλία</h2>
                 <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
                 <p>Βιβλιοθήκη με ολόκληρα τα βιβλία, τις κατευθυντήριες οδηγίες και όλες τις παραγράφους, έτοιμα για άμεση ανάγνωση (PDF).</p>
-                <a href="books.html" class="btn">📑 Άνοιγμα Βιβλιοθήκης</a>
+                <a href="books.html" class="btn"><i class="fa-solid fa-folder-open"></i> Άνοιγμα Βιβλιοθήκης</a>
             </div>
 
             <!-- 6. Links & Υλικό -->
             <div class="card links">
-                <div class="card-icon">🔗</div>
+                <div class="card-icon"><i class="fa-solid fa-link"></i></div>
                 <h2>Links & Υλικό</h2>
                 <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
                 <p>Πρόσβαση σε εξωτερικές πηγές, κατευθυντήριες οδηγίες διεθνών οργανισμών και επιπλέον υποστηρικτικό υλικό.</p>
-                <a href="links.html" class="btn">🌐 Δείτε το Υλικό</a>
+                <a href="links.html" class="btn"><i class="fa-solid fa-globe"></i> Δείτε το Υλικό</a>
             </div>
 
         </div>
