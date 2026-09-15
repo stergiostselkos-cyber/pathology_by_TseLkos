@@ -517,6 +517,9 @@ function parseMarkdown(text) {
     // Pre-process our custom image syntax
     normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="" alt="" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption"></span></div>');
     
+    // Auto-format sources (Catch phrases with or without colons, brackets, case-insensitive)
+    normalized = normalized.replace(/^(.*(?:Από το αρχείο|Πηγ[ήές]).*)$/gmi, '<span class="source-ref">$1</span>');
+    
     if (typeof marked !== 'undefined') {
         return marked.parse(normalized);
     }
