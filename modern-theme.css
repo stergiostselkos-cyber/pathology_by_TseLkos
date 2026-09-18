@@ -1,4 +1,4 @@
-/* ========================================================
+Ôªø/* ========================================================
    MODERN THEME - PATHOLOGIA QUIZ
    Profound Redesign - Glassmorphism & Animated Gradients
 ======================================================== */
@@ -9,7 +9,7 @@ body {
     background: linear-gradient(-45deg, var(--c1), var(--c2), var(--c3), var(--c1)) !important;
     background-size: 400% 400% !important;
     animation: universalBgFlow 12s ease infinite !important;
-    color: #1e293b !important; /* Dark text for readability */
+    color: #1e293b; /* Dark text for readability */
     font-family: 'Inter', sans-serif !important;
     min-height: 100vh;
     margin: 0;
@@ -63,8 +63,8 @@ body {
 }
 
 .app-header h1 {
-    font-size: 2.2rem !important;
-    font-weight: 900 !important;
+    font-size: 2.2rem;
+    font-weight: 900;
     margin-top: 15px !important;
     
     /* Themed Gradient Text */
@@ -72,13 +72,13 @@ body {
     background-size: 200% auto !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     animation: textColorsMove 3s linear infinite !important;
 }
 
 .app-header h1 span.author-tag {
-    font-size: 1.2rem !important;
+    font-size: 1.2rem;
     display: inline-block !important;
     margin-left: 10px !important;
     
@@ -86,8 +86,8 @@ body {
     background-size: 200% auto !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     
     animation: textColorsMove 3s linear infinite, authorPulse 3s ease-in-out infinite alternate !important;
 }
@@ -106,13 +106,13 @@ body {
 /* 5. Clean Buttons */
 .btn {
     border-radius: 12px !important;
-    font-weight: 800 !important;
+    font-weight: 800;
     transition: all 0.3s ease !important;
     border: none !important;
 }
 .btn-primary {
     background: linear-gradient(135deg, var(--c4), var(--c1)) !important;
-    color: white !important;
+    color: white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
 }
 .btn-primary:hover {
@@ -122,7 +122,7 @@ body {
 .btn-secondary {
     background: rgba(255, 255, 255, 0.9) !important;
     border: 1px solid rgba(0,0,0,0.1) !important;
-    color: var(--c1) !important;
+    color: var(--c1);
 }
 
 /* 6. General Boxes (Flashcards, Questions, Explanations) */
@@ -141,36 +141,36 @@ body {
     transition: all 0.2s !important;
 }
 .option-btn .option-text {
-    font-weight: 800 !important;
-    font-size: 1.05rem !important;
-    color: #1e293b !important;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #1e293b;
 }
 .option-btn:hover:not(:disabled) {
     background: rgba(255,255,255, 1) !important;
-    border-color: var(--c4) !important;
+    border-color: var(--c4);
     transform: translateX(5px) !important;
 }
 
 /* MCQ Correct/Incorrect States */
 .option-btn.correct, .option-container.correct, button.correct {
     background: #e0f2fe !important; 
-    border-color: #38bdf8 !important; 
+    border-color: #38bdf8; 
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.3) !important;
 }
 .option-btn.correct .option-badge, .correct .option-badge {
     background: #38bdf8 !important;
-    border-color: #38bdf8 !important;
-    color: #fff !important;
+    border-color: #38bdf8;
+    color: #fff;
 }
 
 .option-btn.incorrect, .option-container.incorrect, button.incorrect {
     background: #ffe4e6 !important; 
-    border-color: #fb7185 !important; 
+    border-color: #fb7185; 
 }
 .option-btn.incorrect .option-badge, .incorrect .option-badge {
     background: #fb7185 !important;
-    border-color: #fb7185 !important;
-    color: #fff !important;
+    border-color: #fb7185;
+    color: #fff;
 }
 
 /* Explanation / Correct Answer Box */
@@ -182,32 +182,29 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
 }
 .correct-answer-box h3, .correct-answer-box h4, .explanation-wrapper h4 {
-    color: var(--c1) !important;
-    font-weight: 900 !important;
+    color: var(--c1);
+    font-weight: 900;
 }
 
 /* Readability for text inside descriptions */
 .correct-answer-text, .explanation-content, #quick-recall-explanation-content {
-    color: #0f172a !important;
-    font-size: 1.05rem !important;
-    font-weight: 500 !important;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 500;
     line-height: 1.7 !important;
 }
-.correct-answer-text strong, .explanation-content strong {
-    color: var(--c1) !important;
-    font-weight: 900 !important;
-}
+
 
 /* Dropdown styling */
 select {
     background: rgba(255,255,255,0.9) !important;
     border: 2px solid rgba(0,0,0,0.1) !important;
     border-radius: 12px !important;
-    font-weight: 700 !important;
-    color: #1e293b !important;
+    font-weight: 700;
+    color: #1e293b;
 }
 select:focus {
-    border-color: var(--c4) !important;
+    border-color: var(--c4);
     outline: none !important;
 }
 
@@ -259,405 +256,7 @@ ol ol ol { list-style-type: lower-roman !important; }
 #cases-view ul,
 #cases-view ol,
 #cases-view li {
-    color: #0f172a !important;
-    font-weight: 500 !important;
-}
-
-/* --- MCQ MARKDOWN RENDER STYLING (FORCE EXCELLENT TYPOGRAPHY) --- */
-.mcq-strict-answer {
-    background: #fdf5e6 !important;
-    border: 1px solid #ffd700 !important;
-    padding: 20px 25px !important;
-    border-radius: 12px !important;
-    margin-bottom: 20px !important;
-}
-
-.mcq-sweet-theory {
-    background: #e6f3ff !important;
-    border: 1px solid #4da6ff !important;
-    padding: 20px 25px !important;
-    border-radius: 12px !important;
-    margin-top: 20px !important;
-}
-
-.theory-icon-header {
-    font-size: 1.25rem !important;
-    font-weight: 800 !important;
-    color: #0055ff !important;
-    margin-bottom: 15px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    border-bottom: 2px solid rgba(0, 85, 255, 0.15) !important;
-    padding-bottom: 10px !important;
-}
-
-.explanation-content p {
-    font-size: 1.05rem !important;
-    line-height: 1.7 !important;
-    color: #1e293b !important;
-    margin-bottom: 12px !important;
-}
-
-.explanation-content h1, 
-.explanation-content h2, 
-.explanation-content h3, 
-.explanation-content h4 {
-    color: #0f172a !important;
-    font-weight: 800 !important;
-    margin-top: 1.2em !important;
-    margin-bottom: 0.6em !important;
-    line-height: 1.3 !important;
-}
-.explanation-content h1 { font-size: 1.4rem !important; }
-.explanation-content h2 { font-size: 1.3rem !important; }
-.explanation-content h3 { font-size: 1.2rem !important; }
-.explanation-content h4 { font-size: 1.1rem !important; }
-
-.explanation-content strong, 
-.explanation-content b {
-    font-weight: 800 !important;
-    color: #000 !important;
-}
-
-.explanation-content ul, 
-.explanation-content ol {
-    padding-left: 25px !important;
-    margin-bottom: 15px !important;
-    margin-top: 5px !important;
-}
-.explanation-content li {
-    font-size: 1.05rem !important;
-    line-height: 1.6 !important;
-    color: #1e293b !important;
-    margin-bottom: 8px !important;
-}
-
-.explanation-content ul { list-style-type: disc !important; }
-.explanation-content ul ul { list-style-type: circle !important; }
-.explanation-content ol { list-style-type: decimal !important; }
-.explanation-content ol ol { list-style-type: lower-alpha !important; }
-
-
-/* --- PARAGRAPH INDENTATION FIX --- */
-.explanation-content p {
-    text-indent: 0 !important;
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    text-align: left !important;
-}
-
-
-/* --- STRICT TYPOGRAPHY SIZING FOR HEADINGS & NESTED BULLETS --- */
-.explanation-content h1 { font-size: 1.35rem !important; line-height: 1.3 !important; }
-.explanation-content h2 { font-size: 1.25rem !important; line-height: 1.3 !important; }
-.explanation-content h3 { font-size: 1.15rem !important; line-height: 1.4 !important; }
-.explanation-content h4 { font-size: 1.05rem !important; line-height: 1.4 !important; }
-.explanation-content h5 { font-size: 1rem !important; line-height: 1.5 !important; }
-.explanation-content h6 { font-size: 0.95rem !important; line-height: 1.5 !important; }
-
-/* Level 1 Bullets */
-.explanation-content li {
-    font-size: 1.05rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 8px !important;
-    color: #1e293b !important;
-}
-
-/* Level 2 Nested Bullets */
-.explanation-content ul ul li,
-.explanation-content ol ol li,
-.explanation-content ul ol li,
-.explanation-content ol ul li {
-    font-size: 1rem !important;
-    margin-bottom: 6px !important;
-    color: #334155 !important;
-}
-
-/* Level 3 Deeply Nested Bullets */
-.explanation-content ul ul ul li,
-.explanation-content ol ol ol li,
-.explanation-content ul ol ul li,
-.explanation-content ol ul ol li,
-.explanation-content ul ul ol li,
-.explanation-content ol ol ul li {
-    font-size: 0.95rem !important;
-    margin-bottom: 5px !important;
-    color: #475569 !important;
-}
-
-
-/* --- FIX PARAGRAPH SPACING & NESTED BULLET INDENTATION --- */
-
-/* Clear separation between paragraphs */
-.explanation-content p {
-    margin-bottom: 22px !important;
-    line-height: 1.7 !important;
-}
-
-/* Ensure Level 1 Lists have proper margin */
-.explanation-content ul, 
-.explanation-content ol {
-    padding-left: 25px !important;
-    margin-top: 15px !important;
-    margin-bottom: 25px !important;
-}
-
-/* FORCE Level 2 Nested Lists to indent significantly */
-.explanation-content ul ul,
-.explanation-content ol ol,
-.explanation-content ul ol,
-.explanation-content ol ul,
-.explanation-content li > ul,
-.explanation-content li > ol {
-    margin-left: 25px !important; /* Pushes the whole block to the right */
-    padding-left: 20px !important;
-    margin-top: 8px !important;
-    margin-bottom: 8px !important;
-    border-left: 2px solid #cbd5e1 !important; /* Adds a subtle gray line on the left to highlight the nesting */
-}
-
-/* FORCE Level 3 Nested Lists to indent even further */
-.explanation-content ul ul ul,
-.explanation-content ol ol ol,
-.explanation-content ul ol ul,
-.explanation-content ol ul ol,
-.explanation-content li > ul > li > ul {
-    margin-left: 30px !important;
-    padding-left: 20px !important;
-    border-left: 2px solid #e2e8f0 !important;
-}
-
-
-/* --- EXTRA SPACING BETWEEN OPTIONS (LIST ITEMS) --- */
-
-/* Huge space between top-level list items (e.g. ≈ÈÎÔ„ﬁ ¡, ≈ÈÎÔ„ﬁ ¬) */
-.mcq-strict-answer li,
-.explanation-content ul > li,
-.explanation-content ol > li {
-    margin-bottom: 22px !important;
-}
-
-/* Keep nested (Level 2+) list items slightly more compact */
-.explanation-content ul ul > li,
-.explanation-content ol ol > li,
-.explanation-content li > ul > li,
-.explanation-content li > ol > li {
-    margin-bottom: 10px !important;
-}
-
-
-/* --- MORE BREATHING ROOM FOR NESTED BULLETS (LEVEL 2 & 3) --- */
-
-/* Level 2 List Items */
-.explanation-content ul ul > li,
-.explanation-content ol ol > li,
-.explanation-content li > ul > li,
-.explanation-content li > ol > li {
-    margin-bottom: 16px !important;
-    margin-top: 4px !important;
-}
-
-/* Level 3 List Items */
-.explanation-content ul ul ul > li,
-.explanation-content ol ol ol > li,
-.explanation-content li > ul > li > ul > li {
-    margin-bottom: 14px !important;
-}
-
-
-/* --- FURTHER REDUCE SIZE OF NESTED (SMALL) LETTERS --- */
-/* Level 2 Nested Bullets */
-.explanation-content ul ul li,
-.explanation-content ol ol li,
-.explanation-content ul ol li,
-.explanation-content ol ul li {
-    font-size: 0.95rem !important; /* Reduced from 1rem */
-}
-
-/* Level 3 Deeply Nested Bullets */
-.explanation-content ul ul ul li,
-.explanation-content ol ol ol li,
-.explanation-content ul ol ul li,
-.explanation-content ol ul ol li,
-.explanation-content ul ul ol li,
-.explanation-content ol ol ul li {
-    font-size: 0.88rem !important; /* Reduced from 0.95rem */
-}
-
-
-/* --- COMPREHENSIVE LIST STYLES (NUMBERS, LATIN, BULLETS) --- */
-
-/* Unordered Lists (Bullets) */
-.explanation-content ul { list-style-type: disc !important; } /* Level 1: ? */
-.explanation-content ul ul, 
-.explanation-content ol ul { list-style-type: circle !important; } /* Level 2: 0 */
-.explanation-content ul ul ul, 
-.explanation-content ol ul ul,
-.explanation-content ol ol ul { list-style-type: square !important; } /* Level 3: ¶ */
-
-/* Ordered Lists (Numbers/Letters) */
-.explanation-content ol { list-style-type: decimal !important; } /* Level 1: 1, 2, 3 */
-.explanation-content ol ol, 
-.explanation-content ul ol { list-style-type: lower-alpha !important; } /* Level 2: a, b, c */
-.explanation-content ol ol ol, 
-.explanation-content ul ol ol,
-.explanation-content ul ul ol { list-style-type: lower-roman !important; } /* Level 3: i, ii, iii */
-
-/* --- INCREASE HEADING SIZES --- */
-.explanation-content h1 { font-size: 1.55rem !important; font-weight: 900 !important; }
-.explanation-content h2 { font-size: 1.45rem !important; font-weight: 900 !important; }
-.explanation-content h3 { font-size: 1.35rem !important; font-weight: 800 !important; }
-.explanation-content h4 { font-size: 1.2rem !important; font-weight: 800 !important; }
-
-
-/* --- DRASTIC INDENTATION FOR NESTED BULLETS (LEVEL 2 & 3) --- */
-
-/* PUSH LEVEL 2 DEEP INWARD */
-.explanation-content ul ul,
-.explanation-content ol ol,
-.explanation-content ul ol,
-.explanation-content ol ul,
-.explanation-content li > ul,
-.explanation-content li > ol {
-    margin-left: 45px !important; /* Huge push to the right */
-    padding-left: 18px !important;
-    border-left: 3px solid #cbd5e1 !important; /* Thicker visual line */
-}
-
-/* PUSH LEVEL 3 EVEN DEEPER INWARD */
-.explanation-content ul ul ul,
-.explanation-content ol ol ol,
-.explanation-content ul ol ul,
-.explanation-content ol ul ol,
-.explanation-content li > ul > li > ul {
-    margin-left: 60px !important; /* Massive push to the right */
-    padding-left: 18px !important;
-    border-left: 3px solid #e2e8f0 !important;
-}
-
-
-/* --- FIX TINY NUMBERED HEADINGS --- */
-
-/* Make sure H5 and H6 are never smaller than regular text */
-.explanation-content h5 { font-size: 1.15rem !important; font-weight: 800 !important; color: #0f172a !important; }
-.explanation-content h6 { font-size: 1.1rem !important; font-weight: 800 !important; color: #0f172a !important; }
-
-/* If the AI uses bold numbers (e.g. "**1. ‘ﬂÙÎÔÚ**") at the start of a paragraph or list, make them larger */
-.explanation-content p > strong:first-child,
-.explanation-content li > strong:first-child,
-.explanation-content p > b:first-child,
-.explanation-content li > b:first-child {
-    font-size: 1.12rem !important;
-    color: #0f172a !important;
-}
-
-/* Ensure Level 1 ordered list items themselves are full size */
-.explanation-content ol > li {
-    font-size: 1.08rem !important;
-}
-
-
-/* --- RESTORE FULL JUSTIFICATION (–À«—«” ”‘œ…◊…”«) --- */
-.explanation-content p,
-.explanation-content li {
-    text-align: justify !important;
-}
-
-
-/* --- TABLE STYLING & LEFT ALIGNMENT --- */
-.explanation-content table {
-    width: 100% !important;
-    margin-bottom: 20px !important;
-    border-collapse: collapse !important;
-    text-align: left !important;
-}
-
-.explanation-content th,
-.explanation-content td {
-    text-align: left !important; /* Force left alignment for text inside tables (cancel justify) */
-    padding: 12px 15px !important;
-    border: 1px solid #cbd5e1 !important;
-    vertical-align: top !important;
-}
-
-.explanation-content th {
-    background-color: #e2e8f0 !important;
-    font-weight: 800 !important;
-    color: #0f172a !important;
-}
-
-
-/* --- SOURCES / ITALICS STYLING (SMALLER LETTERS) --- */
-
-/* Any text marked as italic (em, i) */
-.explanation-content em, 
-.explanation-content i {
-    font-style: italic !important;
-    font-size: 0.92rem !important; /* Make italics noticeably smaller */
-    color: #475569 !important; /* Slightly softer grey-blue to look like a reference */
-    line-height: 1.5 !important;
-}
-
-/* If the AI uses blockquotes ( > –Á„ﬁ: ) for sources */
-.explanation-content blockquote {
-    font-style: italic !important;
-    border-left: 4px solid #cbd5e1 !important;
-    padding-left: 15px !important;
-    margin-left: 0 !important;
-    margin-bottom: 20px !important;
-    background-color: rgba(255, 255, 255, 0.4) !important;
-    padding: 10px 15px !important;
-    border-radius: 0 8px 8px 0 !important;
-}
-
-.explanation-content blockquote p,
-.explanation-content blockquote em {
-    font-size: 0.92rem !important;
-    color: #475569 !important;
-    margin-bottom: 0 !important;
-}
-
-
-/* --- AUTO-FORMATTED SOURCES --- */
-.source-ref {
-    font-style: italic !important;
-    font-size: 0.92rem !important;
-    color: #475569 !important;
-    display: inline-block !important;
-    margin-bottom: 4px !important;
-}
-.source-ref * {
-    font-style: italic !important;
-    font-size: 0.92rem !important;
-    color: #475569 !important;
-}
-
-
-/* --- FORCE SOURCES TO LOSE BOLD AND UNDERLINE --- */
-.source-ref,
-.source-ref * {
-    font-weight: 500 !important; /* Strip away any Bold */
-    text-decoration: none !important; /* Strip away any Underline */
-}
-
-
-/* --- RESTORE NORMAL ITALICS (FIX FOR REGULAR SENTENCES) --- */
-/* Stop making all regular italics look like sources */
-.explanation-content em, 
-.explanation-content i {
-    font-size: inherit !important;
-    color: inherit !important;
-    line-height: inherit !important;
-}
-
-/* Ensure only actual sources (.source-ref) get the special styling */
-.source-ref,
-.source-ref * {
-    font-style: italic !important;
-    font-size: 0.92rem !important;
-    color: #475569 !important;
-    font-weight: 500 !important;
-    text-decoration: none !important;
+    color: #0f172a;
+    font-weight: 500;
 }
 

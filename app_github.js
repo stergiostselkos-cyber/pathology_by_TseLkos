@@ -125,7 +125,7 @@ function getCleanQuestionTitle(fullQuestionText) {
     clean = clean.replace(/\\n/g, '\n').trim();
     
     // Find where the choices list starts (e.g. "a) ", "1. ", "a. ")
-    let match = clean.match(/(?:^|\s|\n)([α-γ]|\d+)[\.\)]\s/i);
+    let match = clean.match(/(?:^|\s|\n)([a-gΑ-Ω]|\d+)[\.\)]\s/i);
     if (match) {
         let index = clean.indexOf(match[0]);
         if (index !== -1) {
@@ -478,10 +478,10 @@ function revealExplanation(explanationText) {
         const parts = explanationText.split("### Αναλυτική Απάντηση");
         mainExp = parts[0];
         detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
-    } else if (explanationText.includes("### Αναλυτική Απάντηση")) {
-        const parts = explanationText.split("### Αναλυτική Απάντηση");
+    } else if (explanationText.includes("### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ")) {
+        const parts = explanationText.split("### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ");
         mainExp = parts[0];
-        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
+        detailedTheory = "### ΠΛΗΡΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ" + parts[1];
     }
     
     let finalHtml = '<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>';
@@ -518,17 +518,10 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="" alt="" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption"></span></div>');
     
     // Auto-format sources (Catch phrases with or without colons, brackets, case-insensitive)
-    
-    
-    
-    if (normalized.trim().startsWith('<div')) {
-        return normalized; // It is already raw HTML from NotebookLM
-    }
+    normalized = normalized.replace(/^(.*(?:Από το αρχείο|Πηγ[ήές]).*)$/gmi, '<span class="source-ref">$1</span>');
     
     if (typeof marked !== 'undefined') {
-
-        
-        return marked.parse(normalized, { breaks: true, gfm: true });
+        return marked.parse(normalized);
     }
     
     return normalized.replace(/\n/g, '<br/>');

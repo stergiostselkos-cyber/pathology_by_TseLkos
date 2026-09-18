@@ -74,9 +74,7 @@ body.light-theme {
     box-sizing: border-box;
 }
 
-b, strong {
-    font-weight: 500 !important;
-}
+b, strong { font-weight: bold; }
 
 body {
     font-family: var(--font-family);
@@ -321,26 +319,26 @@ body.light-theme .moon-icon {
 /* Option States */
 .option-btn.correct {
     background: var(--success-bg) !important;
-    border-color: var(--success-color) !important;
+    border-color: var(--success-color);
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
 }
 
 .option-btn.correct .option-badge {
     background: var(--success-color) !important;
-    border-color: var(--success-color) !important;
-    color: #ffffff !important;
+    border-color: var(--success-color);
+    color: #ffffff;
 }
 
 .option-btn.incorrect {
     background: var(--error-bg) !important;
-    border-color: var(--error-color) !important;
+    border-color: var(--error-color);
     opacity: 0.85;
 }
 
 .option-btn.incorrect .option-badge {
     background: var(--error-color) !important;
-    border-color: var(--error-color) !important;
-    color: #ffffff !important;
+    border-color: var(--error-color);
+    color: #ffffff;
 }
 
 .option-btn:disabled {
@@ -1158,9 +1156,9 @@ body.light-theme .explanation-wrapper {
 
 .explanation-wrapper h4,
 .explanation-wrapper h2 {
-    font-size: 1.15rem !important;
-    font-weight: 800 !important;
-    color: var(--primary-hover) !important;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--primary-hover);
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
@@ -1299,7 +1297,7 @@ body.light-theme .explanation-wrapper {
 
 .table-section-row td {
     background: rgba(var(--primary-rgb), 0.04) !important;
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1327,7 +1325,7 @@ body.light-theme .explanation-wrapper {
     padding: 16px 20px;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
     font-family: var(--font-family);
     font-size: 0.95rem;
     line-height: 1.5;
@@ -1337,7 +1335,7 @@ body.light-theme .explanation-wrapper {
 
 .checkbox-container:hover:not(:has(input[type="checkbox"]:disabled)) {
     background: var(--option-hover) !important;
-    border-color: var(--option-hover-border) !important;
+    border-color: var(--option-hover-border);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -1370,7 +1368,7 @@ body.light-theme .checkbox-container input[type="checkbox"] {
 /* Checkbox Checked state */
 .checkbox-container input[type="checkbox"]:checked {
     background: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
+    border-color: var(--primary-color);
     box-shadow: 0 0 10px var(--primary-glow);
 }
 
@@ -1390,18 +1388,18 @@ body.light-theme .checkbox-container input[type="checkbox"] {
 /* Checked Card styling */
 .checkbox-container:has(input[type="checkbox"]:checked) {
     background: rgba(var(--primary-rgb), 0.08) !important;
-    border-color: var(--primary-color) !important;
+    border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.08);
 }
 
 body.light-theme .checkbox-container:has(input[type="checkbox"]:checked) {
     background: rgba(var(--primary-rgb), 0.05) !important;
-    border-color: var(--primary-color) !important;
+    border-color: var(--primary-color);
 }
 
 /* Text state when checked */
 .checkbox-container:has(input[type="checkbox"]:checked) span {
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
     font-weight: 550;
 }
 
@@ -1418,24 +1416,24 @@ body.light-theme .checkbox-container:has(input[type="checkbox"]:checked) {
 /* Custom Checkbox Highlights on Submission */
 .checkbox-container.choice-correct {
     background: var(--success-bg) !important;
-    border-color: var(--success-color) !important;
+    border-color: var(--success-color);
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.12) !important;
 }
 
 .checkbox-container.choice-correct input[type="checkbox"] {
     background: var(--success-color) !important;
-    border-color: var(--success-color) !important;
+    border-color: var(--success-color);
 }
 
 .checkbox-container.choice-incorrect {
     background: var(--error-bg) !important;
-    border-color: var(--error-color) !important;
+    border-color: var(--error-color);
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.12) !important;
 }
 
 .checkbox-container.choice-incorrect input[type="checkbox"] {
     background: var(--error-color) !important;
-    border-color: var(--error-color) !important;
+    border-color: var(--error-color);
 }
 
 .checkbox-container.choice-correct:has(input[type="checkbox"]:disabled),
@@ -1542,7 +1540,7 @@ body.light-theme .topic-title-header {
 @media print {
     body {
         background: white !important;
-        color: black !important;
+        color: black;
         padding: 0 !important;
         font-family: Arial, sans-serif !important;
     }
@@ -1584,14 +1582,14 @@ body.light-theme .topic-title-header {
     }
 
     .table-pane-header h3 {
-        color: black !important;
-        font-size: 1.6rem !important;
+        color: black;
+        font-size: 1.6rem;
         margin-bottom: 6px !important;
     }
 
     .table-pane-header p {
-        color: #444 !important;
-        font-size: 0.95rem !important;
+        color: #444;
+        font-size: 0.95rem;
         margin-bottom: 20px !important;
     }
 
@@ -1601,25 +1599,25 @@ body.light-theme .topic-title-header {
     }
 
     .med-table {
-        font-size: 10pt !important;
+        font-size: 10pt;
     }
 
     .med-table th {
         background: #f0f0f0 !important;
-        color: black !important;
+        color: black;
         border-bottom: 2px solid #ccc !important;
         padding: 10px !important;
     }
 
     .med-table td {
-        color: black !important;
+        color: black;
         border-bottom: 1px solid #ccc !important;
         padding: 10px !important;
     }
 
     .table-section-row td {
         background: #f9f9f9 !important;
-        color: black !important;
+        color: black;
         border-bottom: 2px solid #ccc !important;
     }
     
@@ -1631,25 +1629,25 @@ body.light-theme .topic-title-header {
         background: transparent !important;
         border: 1px solid #ccc !important;
         margin-bottom: 15px !important;
-        color: black !important;
+        color: black;
     }
     
     .fluid-card h4 {
-        color: black !important;
+        color: black;
         border-bottom: 1px solid #ccc !important;
         padding-bottom: 6px !important;
     }
     
     .fluid-card span {
-        color: black !important;
-        font-weight: bold !important;
+        color: black;
+        font-weight: bold;
     }
     
     .example-box {
         background: #f9f9f9 !important;
         border: 1px solid #ccc !important;
         border-left: 4px solid var(--primary-hover) !important;
-        color: black !important;
+        color: black;
     }
 }
 
@@ -1676,14 +1674,14 @@ body.light-theme .quick-nav-btn {
 .quick-nav-btn:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    color: white !important;
+    color: white;
     transform: translateY(-1px);
 }
 
 .quick-nav-btn.active {
     background: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-    color: white !important;
+    border-color: var(--primary-color);
+    color: white;
     box-shadow: 0 0 10px var(--primary-glow);
 }
 
@@ -1735,9 +1733,9 @@ body.light-theme .topic-pills-container {
 
 /* Quick recall active pill (Orange) */
 #quick-recall-view .topic-pill.active {
-    color: white !important;
+    color: white;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%) !important;
-    border-color: var(--primary-color) !important;
+    border-color: var(--primary-color);
     box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.45);
 }
 
@@ -1908,8 +1906,8 @@ body.light-theme .topic-pills-container {
 
 .quick-theme .modal-chapter-item.active {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%) !important;
-    border-color: var(--primary-color) !important;
-    color: white !important;
+    border-color: var(--primary-color);
+    color: white;
     box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.45);
 }
 
@@ -2053,8 +2051,8 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 
 .overlay-chapter-item.active {
     background: rgba(var(--primary-rgb), 0.1) !important;
-    border-color: var(--primary-color) !important;
-    color: var(--primary-color) !important;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -2112,8 +2110,8 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 
 .overlay-question-item.active {
     background: rgba(var(--primary-rgb), 0.1) !important;
-    border-color: var(--primary-color) !important;
-    color: var(--primary-color) !important;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -2169,8 +2167,8 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 .active-cell-selected {
     background: rgba(99, 102, 241, 0.15) !important;
     border: 2.5px solid var(--primary-color) !important;
-    color: var(--primary-color) !important;
-    font-weight: 700 !important;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 body.light-theme .active-cell-selected {
@@ -2341,10 +2339,10 @@ body.light-theme .cell-tooltip {
 
 /* Table 2.7 Specific Styles */
 .table7-th {
-    background-color: #0f172a !important;
-    color: #ffffff !important;
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
+    background-color: #0f172a;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
     text-transform: none !important;
     border: 1px solid var(--card-border) !important;
     text-shadow: none !important;
@@ -2352,46 +2350,46 @@ body.light-theme .cell-tooltip {
 
 .table7-td {
     background: #f8fafc !important;
-    color: #0f172a !important;
-    font-size: 0.9rem !important;
-    font-weight: normal !important;
-    line-height: 1.6 !important;
+    color: #0f172a;
+    font-size: 0.9rem;
+    font-weight: normal;
+    line-height: 1.6;
     border: 1px solid var(--card-border) !important;
     padding: 18px !important;
 }
 
 body.light-theme .table7-td {
     background: #ffffff !important;
-    color: #0f172a !important;
+    color: #0f172a;
 }
 
 .interactive-li-t7 {
-    font-weight: normal !important;
-    font-size: 0.9rem !important;
-    color: #1e293b !important;
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: #1e293b;
     transition: all 0.2s ease;
 }
 
 .interactive-li-t7:hover {
-    color: #0f766e !important;
+    color: #0f766e;
 }
 
 .interactive-li-t7:hover span.hover-trigger {
-    color: #0d9488 !important;
-    border-bottom-color: #0d9488 !important;
+    color: #0d9488;
+    border-bottom-color: #0d9488;
 }
 
 .interactive-li-t7.active-cell-selected {
-    background-color: #cbd5e1 !important;
+    background-color: #cbd5e1;
     border-radius: 6px;
     padding-left: 6px;
-    color: #0f172a !important;
-    font-weight: 700 !important;
+    color: #0f172a;
+    font-weight: 700;
 }
 
 .interactive-li-t7.active-cell-selected span.hover-trigger {
-    color: #0f172a !important;
-    font-weight: 700 !important;
+    color: #0f172a;
+    font-weight: 700;
     border-bottom-style: solid !important;
 }
 
@@ -2425,7 +2423,7 @@ body.light-theme #global-table-cell-tooltip.cell-tooltip {
 
 body.light-theme .embedded-image-container {
     background: #ffffff !important;
-    border-color: rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
 .embedded-med-image {
@@ -2444,25 +2442,25 @@ body.light-theme .embedded-image-container {
 }
 
 .image-caption {
-    font-size: 0.85rem !important;
-    color: var(--text-secondary) !important;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
     margin-top: 8px !important;
     font-style: italic !important;
     text-align: center !important;
-    font-weight: 500 !important;
+    font-weight: 500;
     display: block !important;
 }
 
 /* Universal Underline Styling for u tags */
 u, ins, .underlined-text {
     text-decoration: underline !important;
-    text-decoration-color: currentColor !important;
+    text-decoration-color: currentColor;
     text-underline-offset: 3px !important;
     text-decoration-thickness: 1.5px !important;
 }
 .portal-card-btn {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%) !important;
-    color: #ffffff !important;
+    color: #ffffff;
     box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3) !important;
     border: none !important;
 }
@@ -2484,9 +2482,9 @@ u, ins, .underlined-text {
     background: #ffffff !important;
 }
 .correct-answer-box th, .explanation-wrapper th {
-    background-color: var(--primary-color, #4f46e5) !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
+    background-color: var(--primary-color, #4f46e5);
+    color: #ffffff;
+    font-weight: 700;
     padding: 14px 16px !important;
     text-align: left !important;
     border: 1px solid rgba(255,255,255,0.1) !important;
@@ -2494,13 +2492,13 @@ u, ins, .underlined-text {
 .correct-answer-box td, .explanation-wrapper td {
     padding: 12px 16px !important;
     border: 1px solid #e2e8f0 !important;
-    color: #1e293b !important;
+    color: #1e293b;
 }
 .correct-answer-box tr:nth-child(even), .explanation-wrapper tr:nth-child(even) {
-    background-color: #f8fafc !important;
+    background-color: #f8fafc;
 }
 .correct-answer-box tr:hover, .explanation-wrapper tr:hover {
-    background-color: #f1f5f9 !important;
+    background-color: #f1f5f9;
 }
 
 /* Dark theme tables */
@@ -2509,18 +2507,18 @@ u, ins, .underlined-text {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
 }
 .dark-theme .correct-answer-box th, .dark-theme .explanation-wrapper th {
-    background-color: var(--primary-color, #6366f1) !important;
-    border-color: #334155 !important;
+    background-color: var(--primary-color, #6366f1);
+    border-color: #334155;
 }
 .dark-theme .correct-answer-box td, .dark-theme .explanation-wrapper td {
-    border-color: #334155 !important;
-    color: #cbd5e1 !important;
+    border-color: #334155;
+    color: #cbd5e1;
 }
 .dark-theme .correct-answer-box tr:nth-child(even), .dark-theme .explanation-wrapper tr:nth-child(even) {
-    background-color: #0f172a !important;
+    background-color: #0f172a;
 }
 .dark-theme .correct-answer-box tr:hover, .dark-theme .explanation-wrapper tr:hover {
-    background-color: #334155 !important;
+    background-color: #334155;
 }
 
 /* DIFFERENT BACKGROUNDS FOR ANSWER AND EXPLANATION */
@@ -2554,32 +2552,32 @@ u, ins, .underlined-text {
 }
 .correct-answer-box li, .explanation-wrapper li {
     margin-bottom: 8px !important;
-    line-height: 1.6 !important;
-    font-weight: 400 !important;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 /* User Overrides for Font Sizes */
 #quick-recall-question, .recall-question-text {
-    font-size: 13pt !important;
+    font-size: 13pt;
 }
 .correct-answer-text, #quick-correct-answer-text, .correct-answer-text p, .correct-answer-text li {
-    font-size: 12pt !important;
-    font-weight: 400 !important;
+    font-size: 12pt;
+    font-weight: 400;
 }
 .explanation-content, #quick-recall-explanation-content, .explanation-content p, .explanation-content li {
-    font-size: 12pt !important;
-    font-weight: 400 !important;
+    font-size: 12pt;
+    font-weight: 400;
 }
 .explanation-content strong, .correct-answer-text strong, #quick-recall-explanation-content strong, #quick-correct-answer-text strong {
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 
 
 /* --- USER OVERRIDES --- */
 #progress-text {
-    color: #e6b800 !important; /* Ochre/Yellow */
-    font-weight: 800 !important;
-    font-size: 1.05rem !important;
+    color: #e6b800; /* Ochre/Yellow */
+    font-weight: 800;
+    font-size: 1.05rem;
 }
 
 #quiz-view .question-container,
@@ -2592,7 +2590,7 @@ u, ins, .underlined-text {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
 }
 
 /* --- FIX FOR QUESTION OVERLAY ALIGNMENT --- */
@@ -2632,15 +2630,15 @@ body.light-theme .explanation-content {
 .explanation-content h3, 
 .explanation-content h3:first-of-type,
 .explanation-content h3:nth-of-type(2) {
-    color: var(--primary-color) !important;
-    font-weight: 700 !important;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .explanation-content p, 
 .explanation-content li {
-    line-height: 1.7 !important;
-    color: var(--text-primary) !important;
-    font-size: 1.05rem !important; 
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-size: 1.05rem; 
 }
 
 /* =========================================================================
@@ -2675,7 +2673,7 @@ body.light-theme .explanation-content {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
     padding: 24px !important;
     margin-bottom: 24px !important;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
 }
 body.dark-theme .mcq-strict-answer,
 body.dark-theme .correct-answer-box {
@@ -2686,9 +2684,9 @@ body.dark-theme .correct-answer-box {
 }
 .mcq-strict-answer h3, 
 .correct-answer-box h3 {
-    color: var(--primary-color) !important;
-    font-weight: 800 !important;
-    font-size: 1.15rem !important;
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.15rem;
     margin-top: 0 !important;
     margin-bottom: 16px !important;
     border-bottom: 1px solid rgba(var(--primary-rgb), 0.1) !important;
@@ -2696,9 +2694,9 @@ body.dark-theme .correct-answer-box {
 }
 .mcq-strict-answer p, .mcq-strict-answer li,
 .correct-answer-box p, .correct-answer-box li {
-    font-size: 1.05rem !important;
-    line-height: 1.65 !important;
-    color: var(--text-primary) !important;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-primary);
 }
 
 /* 2. SWEET & SOFT THEORY CARD */
@@ -2717,7 +2715,7 @@ body.dark-theme .mcq-sweet-theory,
 body.dark-theme .explanation-wrapper {
     background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(var(--primary-rgb), 0.05) 100%) !important;
     box-shadow: inset 0 2px 20px rgba(255, 255, 255, 0.03), 0 8px 24px rgba(0, 0, 0, 0.25) !important;
-    border-color: rgba(var(--primary-rgb), 0.3) !important;
+    border-color: rgba(var(--primary-rgb), 0.3);
 }
 /* Theory Header with Icon */
 .theory-icon-header {
@@ -2733,9 +2731,9 @@ body.dark-theme .explanation-wrapper {
 }
 .mcq-sweet-theory h3, .mcq-sweet-theory h4,
 .explanation-wrapper h2, .explanation-wrapper h3, .explanation-wrapper h4 {
-    color: var(--primary-color) !important;
-    font-weight: 800 !important;
-    font-size: 1.15rem !important;
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.15rem;
     letter-spacing: -0.01em !important;
     margin-top: 24px !important;
     margin-bottom: 12px !important;
@@ -2747,13 +2745,13 @@ body.dark-theme .explanation-wrapper {
 }
 .mcq-sweet-theory p, .mcq-sweet-theory li,
 .explanation-wrapper p, .explanation-wrapper li {
-    font-size: 1.05rem !important;
-    line-height: 1.8 !important;
-    color: var(--text-primary) !important;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-primary);
 }
 /* Table overriding inside Theory */
 .mcq-sweet-theory th, .explanation-wrapper th {
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
 }
 
 
@@ -2882,7 +2880,7 @@ table p { margin: 0; padding: 0; }
     border-left: 4px solid var(--primary-color) !important;
     padding-left: 1.5rem !important;
     margin-left: 1rem !important;
-    color: #4b5563 !important;
+    color: #4b5563;
 }
 /* ------------------------------------------------ */
 /* MODERN CLINICAL CASES UI STYLES                  */
