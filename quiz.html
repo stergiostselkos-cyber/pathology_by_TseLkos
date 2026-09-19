@@ -353,7 +353,17 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="questions_v3.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const bank = urlParams.get('bank');
+    let scriptSrc = 'questions_v3.js'; // Default fallback
+    if (bank === 'bank_1') {
+        scriptSrc = 'questions_bank_1.js';
+    } else if (bank === 'old_book') {
+        scriptSrc = 'questions_v3.js';
+    }
+    document.write('<script charset="UTF-8" src="' + scriptSrc + '"><\/script>');
+</script>
 <script src="marked.min.js"></script>
 <script charset="UTF-8" src="app.js?v=1789730204.9312747"></script>
 </body>
