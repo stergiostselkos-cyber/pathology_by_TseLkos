@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -353,8 +353,20 @@
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="questions_v3.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const bank = urlParams.get('bank');
+    
+    let scriptSrc = "questions_v3.js";
+    if (bank === 'bank_1') {
+        scriptSrc = "questions_bank_1.js";
+    }
+    scriptSrc += "?v=" + new Date().getTime();
+    document.write('<script charset="UTF-8" src="' + scriptSrc + '"><\/script>');
+</script>
 <script src="marked.min.js"></script>
-<script charset="UTF-8" src="app.js?v=1789730204.9312747"></script>
+<script>
+    document.write('<script charset="UTF-8" src="app.js?v=' + new Date().getTime() + '"><\/script>');
+</script>
     </body>
 </html>

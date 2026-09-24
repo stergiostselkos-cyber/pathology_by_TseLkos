@@ -603,7 +603,7 @@
             const selector = document.getElementById('mcq-selector');
             const book = selector.value;
             if(book) {
-                window.location.href = 'quiz.html?bank=' + book;
+                window.location.href = 'quiz.html?v=' + new Date().getTime() + '&bank=' + book;
             }
         }
     </script>
