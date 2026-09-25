@@ -1675,7 +1675,12 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
             
             if(subpartSection) subpartSection.style.display = 'none';
             
-            pdfIframe.src = selectedPart.file;
+            let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
+            if (isLocalDesktop) {
+                pdfIframe.src = selectedPart.file;
+            } else {
+                pdfIframe.src = 'pdfjs/web/viewer.html?file=' + encodeURIComponent('../../' + selectedPart.file);
+            }
         if(externalPdfBtn) externalPdfBtn.href = selectedPart.file; 
             pdfPlaceholder.style.display = 'none';
             pdfContainer.style.display = 'block';
@@ -1705,7 +1710,12 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
                 const chapterName = chapterVal.substring(8);
                 const selectedSubchapter = currentSelectedBook.chapters[chapterName][parseInt(subpartIndex)];
                 
-                pdfIframe.src = selectedSubchapter.file;
+                let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
+                if (isLocalDesktop) {
+                    pdfIframe.src = selectedSubchapter.file;
+                } else {
+                    pdfIframe.src = 'pdfjs/web/viewer.html?file=' + encodeURIComponent('../../' + selectedSubchapter.file);
+                }
         if(externalPdfBtn) externalPdfBtn.href = selectedSubchapter.file; 
                 pdfPlaceholder.style.display = 'none';
                 pdfContainer.style.display = 'block';
