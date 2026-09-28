@@ -2757,7 +2757,7 @@ body.dark-theme .explanation-wrapper {
 
 /* Fixes for HTML questions */
 .question-text img, .answer-text img, .question img, .answer img, .question-card img, #question-text img, #answer-text img { max-width: 100% !important; height: auto !important; }
-.question-text table, .answer-text table, .question table, .answer table, .question-card table, #question-text table, #answer-text table { max-width: 100% !important; overflow-x: auto !important; display: block !important; border-collapse: collapse; width: 100%; margin-bottom: 15px; word-break: break-word; }
+.question-text table, .answer-text table, .question table, .answer table, .question-card table, #question-text table, #answer-text table { max-width: 100% !important; overflow-x: auto !important; display: block !important; border-collapse: collapse; width: 100%; margin-bottom: 15px; word-break: normal; }
 .question-text table td, .question-text table th, .answer-text table td, .answer-text table th, .question table td, .question table th, .answer table td, .answer table th, .question-card table td, .question-card table th, #question-text table td, #question-text table th, #answer-text table td, #answer-text table th { border: 1px solid #ccc; padding: 5px; }
 table p { margin: 0; padding: 0; }
 
@@ -3343,4 +3343,175 @@ table p { margin: 0; padding: 0; }
     left: 0;
     top: 2px;
     font-size: 1.2rem;
+}
+
+/* GLOBAL FIGVIEWER CSS COPIED FROM CASES-EXTRA */
+.figviewer{
+  position: fixed; inset: 0; z-index: 9999;
+  display: none; flex-direction: column;
+  background: rgba(6,10,16,.96);
+  backdrop-filter: blur(4px);
+  animation: fv-in .18s ease;
+}
+.figviewer.open{ display: flex; }
+@keyframes fv-in{ from{ opacity:0 } to{ opacity:1 } }
+
+.fv-bar{
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 18px; flex: none;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  color: #e6edf3;
+}
+.fv-cap{
+  font-size: .88rem; opacity: .85; line-height: 1.35;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.fv-tools{ margin-left: auto; display: flex; align-items: center; gap: 6px; flex: none; }
+.fv-tools button{
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,.08); color: #e6edf3;
+  border: 1px solid rgba(255,255,255,.14);
+  font-size: 1rem; font-weight: 700; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s ease;
+}
+.fv-tools button:hover{ background: rgba(255,255,255,.18); }
+.fv-tools button[data-fv="close"]{ margin-left: 6px; background: rgba(239,68,68,.22); border-color: rgba(239,68,68,.5); }
+.fv-zoom{
+  min-width: 52px; text-align: center; font-size: .78rem;
+  font-variant-numeric: tabular-nums; opacity: .8;
+}
+
+.fv-stage{
+  flex: 1; min-height: 0; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; touch-action: none;
+}
+.fv-stage img{
+  max-width: 96%; max-height: 96%;
+  transform-origin: center center;
+  transition: transform .12s ease-out;
+  user-select: none; -webkit-user-drag: none;
+  will-change: transform;
+}
+.fv-hint{
+  flex: none; padding: 9px 18px 14px; text-align: center;
+  font-size: .72rem; color: rgba(230,237,243,.45);
+}
+
+@media (max-width: 640px){
+  .fv-cap{ display: none; }
+  .fv-hint{ font-size: .66rem; }
+  .fv-tools{ margin: 0 auto; }
+}
+@media (prefers-reduced-motion: reduce){
+  .figviewer{ animation: none; }
+  .fv-stage img{ transition: none; }
+}
+
+/* --- NEW PREMIUM TEXT VISIBILITY OVERRIDES --- */
+
+/* BOLD TEXT: Make strong tags stand out significantly from body text */
+.explanation-content strong, 
+.correct-answer-text strong, 
+#quick-recall-explanation-content strong, 
+#quick-correct-answer-text strong,
+.explanation-wrapper strong,
+.correct-answer-box strong {
+    font-weight: 800 !important; /* Poppins 800 is loaded and very crisp */
+    color: #000000 !important; /* Solid black for max contrast */
+    letter-spacing: 0.1px !important;
+}
+body.dark-theme .explanation-content strong, 
+body.dark-theme .correct-answer-text strong, 
+body.dark-theme #quick-recall-explanation-content strong, 
+body.dark-theme #quick-correct-answer-text strong,
+body.dark-theme .explanation-wrapper strong,
+body.dark-theme .correct-answer-box strong {
+    font-weight: 800 !important;
+    color: #ffffff !important; /* Solid white for dark theme */
+    text-shadow: 0 0 1px rgba(255,255,255,0.2) !important;
+}
+
+/* EXPLANATION BOX: Softer background, easier to read large text */
+.explanation-wrapper {
+    background: #fdfdfd !important; /* Extremely clean white-gray */
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    padding: 28px 30px !important;
+    margin-top: 24px !important;
+    border-left: 5px solid #6366f1 !important; /* Indigo accent to differentiate */
+    color: #1e293b !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important; /* More breathing room for long text */
+}
+body.dark-theme .explanation-wrapper {
+    background: #151d2c !important; /* Very clean dark slate */
+    border: 1px solid #1e293b !important;
+    border-left: 5px solid #818cf8 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+/* SHORT ANSWER BOX: Distinct from explanation, crisp readability */
+.correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-left: 6px solid #10b981 !important; /* Emerald green accent */
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important;
+    padding: 24px 28px !important;
+    margin-bottom: 24px !important;
+    color: #0f172a !important;
+    font-size: 1.1rem !important;
+    line-height: 1.75 !important;
+}
+body.dark-theme .correct-answer-box {
+    background: #0f172a !important; /* Darker than explanation for distinction */
+    border: 1px solid #064e3b !important;
+    border-left: 6px solid #10b981 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    color: #f1f5f9 !important;
+}
+
+
+/* FIX TABLE OVERFLOW EVERYWHERE */
+.explanation-wrapper table, .correct-answer-box table, .explanation-content table { display: block !important; overflow-x: auto !important; width: max-content !important; max-width: 100% !important; word-break: normal !important; }
+/* --- PREMIUM SPECIFICITY FIXES --- */
+body.light-theme .explanation-content strong, 
+body.light-theme .correct-answer-text strong, 
+body.light-theme #quick-recall-explanation-content strong, 
+body.light-theme #quick-correct-answer-text strong,
+body.light-theme .explanation-wrapper strong,
+body.light-theme .correct-answer-box strong {
+    font-weight: 900 !important;
+    color: #000000 !important;
+    letter-spacing: 0.2px !important;
+}
+
+body.light-theme .explanation-wrapper {
+    background: #fdfdfd !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    padding: 28px 30px !important;
+    margin-top: 24px !important;
+    border-left: 5px solid #6366f1 !important;
+    color: #1e293b !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+}
+
+body.light-theme .correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-left: 6px solid #10b981 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important;
+    padding: 24px 28px !important;
+    margin-bottom: 24px !important;
+    color: #0f172a !important;
+    font-size: 1.1rem !important;
+    line-height: 1.75 !important;
 }

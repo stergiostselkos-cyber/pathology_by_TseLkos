@@ -10,7 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=1788464784" rel="stylesheet"/>
+<link href="style.css?v=1790548093" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -108,14 +108,7 @@
     }
 
     /* Correct Answer Box */
-    #quick-recall-view .correct-answer-box {
-      background: #ffffff !important;
-      border: 2px solid #f2d974 !important;
-      color: #000000 !important;
-      border-radius: 12px !important;
-      padding: 16px 20px !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-    }
+    
     #quick-recall-view .correct-answer-box h4 {
       color: var(--primary-color) !important;
       font-weight: 900 !important;
@@ -124,7 +117,7 @@
     }
     #quick-recall-view #quick-correct-answer-text {
       color: #000000 !important;
-      font-weight: 600 !important;
+      font-weight: 400 !important;
       font-size: 1.05rem !important;
       line-height: 1.6 !important;
     }
@@ -148,16 +141,7 @@
     }
 
     /* Explanation Wrapper */
-    #quick-recall-view .explanation-wrapper {
-      margin-top: 24px !important;
-      padding: 22px 26px !important;
-      border-radius: 16px !important;
-      background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08) 0%, rgba(var(--primary-rgb), 0.15) 100%) !important;
-      border: 1.5px solid rgba(var(--primary-rgb), 0.3) !important;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
-      position: relative !important;
-      transition: all 0.3s ease !important;
-    }
+    
 
     #quick-recall-view .explanation-wrapper h4 {
       color: var(--primary-hover) !important;
@@ -244,7 +228,58 @@
 
 
 
-<link rel="stylesheet" href="modern-theme.css?v=1788949901" />
+<link rel="stylesheet" href="modern-theme.css?v=1790550446" />
+
+<style>
+
+.explanation-content strong, 
+.correct-answer-text strong, 
+#quick-recall-explanation-content strong, 
+#quick-correct-answer-text strong,
+.explanation-wrapper strong,
+.correct-answer-box strong {
+    font-weight: 900 !important;
+    color: #000000 !important;
+    letter-spacing: 0.1px !important;
+}
+body.dark-theme .explanation-content strong, 
+body.dark-theme .correct-answer-text strong, 
+body.dark-theme #quick-recall-explanation-content strong, 
+body.dark-theme #quick-correct-answer-text strong,
+body.dark-theme .explanation-wrapper strong,
+body.dark-theme .correct-answer-box strong {
+    font-weight: 900 !important;
+    color: #ffffff !important;
+}
+.explanation-wrapper {
+    background: #fdfdfd !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    border-left: 8px solid #6366f1 !important;
+}
+body.dark-theme .explanation-wrapper {
+    background: #151d2c !important;
+    border-left: 8px solid #818cf8 !important;
+}
+.correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-left: 8px solid #10b981 !important;
+    border-radius: 12px !important;
+}
+body.dark-theme .correct-answer-box {
+    background: #0f172a !important;
+    border-left: 8px solid #10b981 !important;
+}
+.explanation-wrapper table, .correct-answer-box table, .explanation-content table { 
+    display: block !important; 
+    overflow-x: auto !important; 
+    width: max-content !important; 
+    max-width: 100% !important; 
+    word-break: normal !important; 
+}
+</style>
+
 </head>
 <body class="light-theme" style="--c1: #004d00; --c2: #2ecc71; --c3: #f1c40f; --c4: #27ae60;">
 <div class="modern-shape modern-shape-1"></div>
@@ -370,7 +405,17 @@
 </div>
 </section>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="data/flashcard_questions.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const bank = urlParams.get('bank');
+    let scriptFile = 'data/flashcard_questions.js';
+    
+    if (bank === 'new_bank') {
+        scriptFile = 'data/anaptyxi_2026.js';
+    }
+    
+    document.write('<script charset="UTF-8" src="' + scriptFile + '?v=' + new Date().getTime() + '"><\/script>');
+</script>
 <script src="marked.min.js"></script>
 <script charset="UTF-8" src="study.js"></script>
     </body>

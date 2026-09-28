@@ -177,7 +177,7 @@ body {
 .correct-answer-box, .explanation-wrapper, .explanation-panel.expanded {
     background: rgba(255, 255, 255, 0.7) !important;
     border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    border-left: 6px solid var(--c4) !important;
+    border-left: 8px solid var(--c4) !important;
     border-radius: 16px !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
 }
@@ -260,3 +260,240 @@ ol ol ol { list-style-type: lower-roman !important; }
     font-weight: 500;
 }
 
+
+/* --- NEW PREMIUM TEXT VISIBILITY OVERRIDES --- */
+
+/* BOLD TEXT: Make strong tags stand out significantly from body text */
+.explanation-content strong, 
+.correct-answer-text strong, 
+#quick-recall-explanation-content strong, 
+#quick-correct-answer-text strong,
+.explanation-wrapper strong,
+.correct-answer-box strong {
+    font-weight: 900 !important;
+    color: #000000 !important;
+    letter-spacing: 0.1px !important;
+}
+body.dark-theme .explanation-content strong, 
+body.dark-theme .correct-answer-text strong, 
+body.dark-theme #quick-recall-explanation-content strong, 
+body.dark-theme #quick-correct-answer-text strong,
+body.dark-theme .explanation-wrapper strong,
+body.dark-theme .correct-answer-box strong {
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 1px rgba(255,255,255,0.2) !important;
+}
+
+/* EXPLANATION BOX: Softer background, easier to read large text */
+.explanation-wrapper {
+    background: #fdfdfd !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    padding: 28px 30px !important;
+    margin-top: 24px !important;
+    border-left: 8px solid #6366f1 !important;
+    color: #1e293b !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+}
+body.dark-theme .explanation-wrapper {
+    background: #151d2c !important;
+    border: 1px solid #1e293b !important;
+    border-left: 8px solid #818cf8 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+/* SHORT ANSWER BOX: Distinct from explanation, crisp readability */
+.correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-left: 8px solid #10b981 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important;
+    padding: 24px 28px !important;
+    margin-bottom: 24px !important;
+    color: #0f172a !important;
+    font-size: 1.1rem !important;
+    line-height: 1.75 !important;
+}
+body.dark-theme .correct-answer-box {
+    background: #0f172a !important;
+    border: 1px solid #064e3b !important;
+    border-left: 8px solid #10b981 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    color: #f1f5f9 !important;
+}
+
+/* FIX TABLE OVERFLOW EVERYWHERE */
+.explanation-wrapper table, .correct-answer-box table, .explanation-content table { 
+    display: block !important; 
+    overflow-x: auto !important; 
+    width: max-content !important; 
+    max-width: 100% !important; 
+    word-break: normal !important; 
+}
+
+/* THE ULTIMATE OVERRIDES */
+#quick-recall-view .explanation-wrapper, .explanation-wrapper {
+    background: #fdfdfd !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    border-left: 8px solid #6366f1 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    padding: 28px 30px !important;
+    margin-top: 24px !important;
+    color: #1e293b !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+}
+
+#quick-recall-view .correct-answer-box, .correct-answer-box {
+    background: #ffffff !important;
+    border: 1px solid #d1fae5 !important;
+    border-left: 8px solid #10b981 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important;
+    padding: 24px 28px !important;
+    margin-bottom: 24px !important;
+    color: #0f172a !important;
+    font-size: 1.1rem !important;
+    line-height: 1.75 !important;
+}
+
+#quick-recall-view .explanation-content strong, 
+#quick-recall-view .correct-answer-text strong, 
+#quick-recall-view #quick-recall-explanation-content strong, 
+#quick-recall-view #quick-correct-answer-text strong {
+    font-weight: 900 !important;
+    color: #000000 !important;
+    letter-spacing: 0.1px !important;
+}
+
+#quick-recall-view .explanation-wrapper table, 
+#quick-recall-view .correct-answer-box table, 
+#quick-recall-view .explanation-content table { 
+    display: block !important; 
+    overflow-x: auto !important; 
+    width: max-content !important; 
+    max-width: 100% !important; 
+    word-break: normal !important; 
+}
+
+
+
+/* TABLE ZOOM FEATURE */
+.table-zoom-container {
+    position: relative;
+    width: 100%;
+}
+.zoom-table-btn {
+    position: absolute;
+    top: -15px;
+    right: 5px;
+    background: rgba(99, 102, 241, 0.95);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 10;
+    transition: background 0.2s, transform 0.2s;
+}
+.zoom-table-btn:hover {
+    background: rgba(79, 70, 229, 1);
+    transform: translateY(-2px);
+}
+body.dark-theme .zoom-table-btn {
+    background: rgba(129, 140, 248, 0.95);
+}
+body.dark-theme .zoom-table-btn:hover {
+    background: rgba(99, 102, 241, 1);
+}
+
+/* TABLE VIEWER MODAL */
+.table-viewer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(8px);
+    display: none;
+    flex-direction: column;
+    animation: fadeIn 0.2s ease;
+}
+.table-viewer-overlay.open {
+    display: flex;
+}
+.table-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 24px;
+    background: rgba(30, 41, 59, 0.9);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.table-viewer-title {
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+.table-viewer-close {
+    background: rgba(239, 68, 68, 0.85);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.table-viewer-close:hover {
+    background: rgba(220, 38, 38, 1);
+}
+.table-viewer-content {
+    flex: 1;
+    overflow: auto;
+    padding: 24px;
+    display: flex;
+    justify-content: flex-start; /* so scrolling works if it's huge */
+    align-items: flex-start;
+}
+.table-viewer-content table {
+    background: white;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: none !important;
+    width: max-content !important; /* expand to fit content natively */
+    font-size: 1.1rem !important; /* Larger text for zooming */
+    margin: 0 auto;
+}
+.table-viewer-content table th {
+    background: #6366f1 !important;
+    color: white !important;
+    padding: 14px 20px !important;
+    font-size: 1.15rem !important;
+    white-space: nowrap;
+}
+.table-viewer-content table td {
+    padding: 12px 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    word-break: normal !important;
+}
+body.dark-theme .table-viewer-content table {
+    background: #1e293b;
+    color: #f8fafc;
+}
+body.dark-theme .table-viewer-content table th {
+    background: #4f46e5 !important;
+}
+body.dark-theme .table-viewer-content table td {
+    border: 1px solid #334155 !important;
+}

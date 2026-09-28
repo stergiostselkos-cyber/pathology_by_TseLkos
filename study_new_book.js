@@ -1017,7 +1017,7 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/\\/g, '');
     
     // Pre-process our custom image syntax
-    normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="" alt="" class="embedded-med-image" onclick="window.open(this.src, \'_blank\')" /><span class="image-caption"></span></div>');
+    normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" /><span class="image-caption">$1</span></div>');
     
     if (typeof marked !== 'undefined') {
         return marked.parse(normalized);
@@ -2177,3 +2177,196 @@ function highlightSearchTerms(element) {
         }
     });
 }
+
+
+/* GLOBAL IMAGE VIEWER ADDED FOR DIAGRAMS */
+/* ==========================================================================
+   ΠΡΟΒΟΛΕΑΣ ΕΙΚΟΝΩΝ
+   Κλικ σε ακτινογραφία ή ΗΚΓ → άνοιγμα σε πλήρη οθόνη με ζουμ και μετακίνηση.
+   Ζουμ: ροδέλα ποντικιού (προς τον δείκτη), κουμπιά +/−, ή διπλό κλικ.
+   Μετακίνηση: σύρσιμο. Κλείσιμο: Esc, ✕, ή κλικ στο φόντο.
+   ========================================================================== */
+(function () {
+  "use strict";
+  var ov, stage, img, cap, zoomLabel;
+  var scale = 1, tx = 0, ty = 0, drag = null;
+  var MIN = 1, MAX = 8;
+
+  function build() {
+    if (ov) return;
+    ov = document.createElement("div");
+    ov.className = "figviewer";
+    ov.setAttribute("role", "dialog");
+    ov.setAttribute("aria-modal", "true");
+    ov.innerHTML =
+      '<div class="fv-bar">' +
+        '<span class="fv-cap"></span>' +
+        '<span class="fv-tools">' +
+          '<button type="button" data-fv="out" aria-label="Σμίκρυνση">−</button>' +
+          '<span class="fv-zoom">100%</span>' +
+          '<button type="button" data-fv="in" aria-label="Μεγέθυνση">+</button>' +
+          '<button type="button" data-fv="reset" aria-label="Επαναφορά">⟲</button>' +
+          '<button type="button" data-fv="close" aria-label="Κλείσιμο">✕</button>' +
+        '</span>' +
+      '</div>' +
+      '<div class="fv-stage"><img alt=""></div>' +
+      '<div class="fv-hint">Ροδέλα ή +/− για ζουμ · σύρσιμο για μετακίνηση · Esc για κλείσιμο</div>';
+    document.body.appendChild(ov);
+    stage = ov.querySelector(".fv-stage");
+    img   = ov.querySelector("img");
+    cap   = ov.querySelector(".fv-cap");
+    zoomLabel = ov.querySelector(".fv-zoom");
+
+    ov.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-fv]");
+      if (b) {
+        var a = b.dataset.fv;
+        if (a === "close") close();
+        else if (a === "reset") { scale = 1; tx = ty = 0; apply(); }
+        else zoomAt(a === "in" ? 1.4 : 1 / 1.4, 0, 0);
+        return;
+      }
+      if (e.target === stage || e.target === ov) close();
+    });
+
+    stage.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      var r = stage.getBoundingClientRect();
+      zoomAt(e.deltaY < 0 ? 1.18 : 1 / 1.18,
+             e.clientX - r.left - r.width / 2,
+             e.clientY - r.top - r.height / 2);
+    }, { passive: false });
+
+    img.addEventListener("dblclick", function (e) {
+      var r = stage.getBoundingClientRect();
+      if (scale > 1.05) { scale = 1; tx = ty = 0; apply(); }
+      else zoomAt(2.5, e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2);
+    });
+
+    img.addEventListener("pointerdown", function (e) {
+      if (scale <= 1.01) return;
+      drag = { x: e.clientX - tx, y: e.clientY - ty };
+      img.setPointerCapture(e.pointerId);
+      img.style.cursor = "grabbing";
+      e.preventDefault();
+    });
+    img.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      tx = e.clientX - drag.x; ty = e.clientY - drag.y; apply();
+    });
+    ["pointerup", "pointercancel"].forEach(function (ev) {
+      img.addEventListener(ev, function () { drag = null; img.style.cursor = scale > 1.01 ? "grab" : "zoom-in"; });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!ov.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "+" || e.key === "=") zoomAt(1.4, 0, 0);
+      if (e.key === "-") zoomAt(1 / 1.4, 0, 0);
+      if (e.key === "0") { scale = 1; tx = ty = 0; apply(); }
+    });
+  }
+
+  function zoomAt(factor, px, py) {
+    var next = Math.min(MAX, Math.max(MIN, scale * factor));
+    if (next === scale) return;
+    // κρατάμε σταθερό το σημείο κάτω από τον δείκτη
+    tx = px - (px - tx) * (next / scale);
+    ty = py - (py - ty) * (next / scale);
+    scale = next;
+    if (scale <= 1.01) { tx = ty = 0; }
+    apply();
+  }
+
+  function apply() {
+    img.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+    img.style.cursor = scale > 1.01 ? "grab" : "zoom-in";
+    zoomLabel.textContent = Math.round(scale * 100) + "%";
+  }
+
+  function open(src, caption) {
+    build();
+    img.src = src;
+    img.alt = caption || "";
+    cap.textContent = caption || "";
+    scale = 1; tx = ty = 0; apply();
+    ov.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close() {
+    if (!ov) return;
+    ov.classList.remove("open");
+    document.body.style.overflow = "";
+    setTimeout(function () { if (!ov.classList.contains("open")) img.src = ""; }, 220);
+  }
+
+  document.addEventListener("click", function (e) {
+    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image");
+    if (!im || !im.getAttribute("src")) return;
+    var fig = im.closest("figure, .case-fig");
+    var c = fig && fig.querySelector("figcaption");
+    open(im.getAttribute("src"), c ? c.textContent.trim() : (im.alt || ""));
+  });
+})();
+
+
+/* --- TABLE ZOOM LOGIC --- */
+(function() {
+    // Create the modal HTML once
+    let modal = document.createElement('div');
+    modal.className = 'table-viewer-overlay';
+    modal.innerHTML = `
+        <div class="table-viewer-header">
+            <div class="table-viewer-title">🔍 Προβολή Πίνακα</div>
+            <button class="table-viewer-close">✕</button>
+        </div>
+        <div class="table-viewer-content" id="table-viewer-content"></div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = modal.querySelector('.table-viewer-close');
+    const content = modal.querySelector('#table-viewer-content');
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { content.innerHTML = ''; }, 200);
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Periodically find tables and add zoom button
+    setInterval(() => {
+        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table');
+        tables.forEach(table => {
+            if (!table.parentElement.classList.contains('table-zoom-container')) {
+                // Wrap the table
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-zoom-container';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+
+                // Add button
+                const btn = document.createElement('button');
+                btn.className = 'zoom-table-btn';
+                btn.innerHTML = '🔍 Μεγέθυνση Πίνακα';
+                
+                // When clicked, copy the table to the modal
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    content.innerHTML = table.outerHTML;
+                    modal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                wrapper.appendChild(btn);
+            }
+        });
+    }, 500);
+})();
