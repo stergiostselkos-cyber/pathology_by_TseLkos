@@ -102,18 +102,22 @@ function isChapterMatch(questionCh, activeCh) {
 function getChapterList(questions) {
     const presentChapters = new Set();
     questions.forEach(q => {
-        presentChapters.add(getQuestionChapter(q));
+        const ch = getQuestionChapter(q);
+        if (ch) presentChapters.add(ch);
     });
+
+    const chapterNum = (s) => {
+        const m = String(s).match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
+        return m ? parseInt(m[1], 10) : 9999;
+    };
     
-    // Sort chapters to place "Γενικά" at the end if present
-    const list = Array.from(presentChapters).sort((a, b) => {
-        if (a === "Γενικά") return 1;
-        if (b === "Γενικά") return -1;
-        return a.localeCompare(b, 'el');
-    });
+    const ordered = [...presentChapters].sort(
+        (a, b) => chapterNum(a) - chapterNum(b) || String(a).localeCompare(String(b), 'el')
+    );
     
-    return ["Όλα", ...list];
+    return ["Όλα", ...ordered];
 }
+
 
 /**
  * Helper to clean embedded options from the question title for display.
@@ -509,6 +513,12 @@ function revealExplanation(explanationText) {
 function parseMarkdown(text) {
     if (!text) return "";
     
+    // BYPASS FOR RAW HTML (WORD EXPORT)
+    if (text.trim().startsWith('<div class="word-export"')) {
+        return text;
+    }
+
+    
     // Normalize different escaped newline variations and strip stray backslashes
     let normalized = text.replace(/\\n/g, '\n');
     normalized = normalized.replace(/\\\n/g, '\n');
@@ -739,7 +749,7 @@ function restartQuiz() {
   }
 
   document.addEventListener("click", function (e) {
-    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image");
+    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image, .word-export img");
     if (!im || !im.getAttribute("src")) return;
     var fig = im.closest("figure, .case-fig");
     var c = fig && fig.querySelector("figcaption");

@@ -115,55 +115,21 @@ function getChapterList(questions) {
     const presentChapters = new Set();
     questions.forEach(q => {
         const ch = getQuestionChapter(q);
-        if (ch) {
-            presentChapters.add(ch);
-        }
+        if (ch) presentChapters.add(ch);
     });
 
-    // Ταξινόμηση με βάση τον αριθμό του κεφαλαίου, όποιο κι αν είναι το όνομά του,
-    // ώστε να δουλεύει και για όσα κεφάλαια προστεθούν στο μέλλον.
     const chapterNum = (s) => {
         const m = String(s).match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
         return m ? parseInt(m[1], 10) : 9999;
     };
+    
     const ordered = [...presentChapters].sort(
         (a, b) => chapterNum(a) - chapterNum(b) || String(a).localeCompare(String(b), 'el')
     );
     
-    const list = [];
-    ordered.forEach(ch => {
-        const numMatch = ch.match(/^(\d+)/);
-        if (numMatch) {
-            const num = numMatch[1];
-            presentChapters.forEach(pCh => {
-                const pNumMatch = pCh.match(/^(\d+)/);
-                if (pNumMatch && pNumMatch[1] === num) {
-                    list.push(pCh);
-                }
-            });
-        }
-    });
-
-    presentChapters.forEach(ch => {
-        const hasPref = ordered.some(o => {
-            const m1 = ch.match(/^(\d+)/);
-            const m2 = o.match(/^(\d+)/);
-            return m1 && m2 && m1[1] === m2[1];
-        });
-        if (!hasPref) {
-            list.push(ch);
-        }
-    });
-
-    const uniqueList = [];
-    list.forEach(ch => {
-        if (!uniqueList.includes(ch)) {
-            uniqueList.push(ch);
-        }
-    });
-
-    return ["Όλα", ...uniqueList];
+    return ["Όλα", ...ordered];
 }
+
 
 /**
  * Toggles a beautiful empty state panel when a chapter has no questions.
@@ -619,6 +585,12 @@ function loadQuickRandomQuestion() {
 function parseMarkdown(text) {
     if (!text) return "";
     
+    // BYPASS FOR RAW HTML (WORD EXPORT)
+    if (text.trim().startsWith('<div class="word-export"')) {
+        return text;
+    }
+
+    
     // Normalize different escaped newline variations and strip stray backslashes
     let normalized = text.replace(/\\n/g, '\n');
     normalized = normalized.replace(/\\\n/g, '\n');
@@ -768,7 +740,7 @@ window.addEventListener('click', () => {
   }
 
   document.addEventListener("click", function (e) {
-    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image");
+    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image, .word-export img");
     if (!im || !im.getAttribute("src")) return;
     var fig = im.closest("figure, .case-fig");
     var c = fig && fig.querySelector("figcaption");
