@@ -280,6 +280,7 @@ body.dark-theme .correct-answer-box {
 }
 </style>
 
+    <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261009">
 </head>
 <body class="light-theme" style="--c1: #004d00; --c2: #2ecc71; --c3: #f1c40f; --c4: #27ae60;">
 <div class="modern-shape modern-shape-1"></div>
@@ -411,12 +412,12 @@ body.dark-theme .correct-answer-box {
     let scriptFile = 'data/flashcard_questions.js';
     
     if (bank === 'new_bank') {
-        scriptFile = 'data/anaptyxi_2026.js';
+        scriptFile = 'data/anaptyxi_2026.js?v=20261009';
     }
     
     document.write('<script charset="UTF-8" src="' + scriptFile + '?v=' + new Date().getTime() + '"><\/script>');
 </script>
 <script src="marked.min.js"></script>
-<script charset="UTF-8" src="study.js"></script>
+<script charset="UTF-8" src="study.js?v=20261009"></script>
     </body>
 </html>
