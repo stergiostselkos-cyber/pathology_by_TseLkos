@@ -1,0 +1,9 @@
+/* Chapter 7 exact Word/LibreOffice rendering support.
+   The JS strings are self-contained and also inline all paragraph/heading defaults. */
+.word-export { font-family:"Times New Roman","Liberation Serif",serif; font-size:12pt; direction:ltr; max-width:100%; }
+.word-export p { widows:2; orphans:2; }
+.word-export ul, .word-export ol { margin-top:0; margin-bottom:0; margin-left:0; padding-left:18.45pt; list-style-position:outside; }
+.word-export li { margin:0; padding:0; }
+.word-export table { border-collapse:collapse; max-width:100%; }
+.word-export img { max-width:100%; height:auto; }
+.word-export .diagram-source-html { display:none !important; }
