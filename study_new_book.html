@@ -606,5 +606,46 @@ body.dark-theme .correct-answer-box {
         </div>
     </div>
 
-    </body>
+    
+<!-- MathJax for LaTeX Rendering -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['', ''], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    },
+    startup: {
+      pageReady: function () {
+        return MathJax.startup.defaultPageReady().then(function () {
+          const observer = new MutationObserver(function (mutations) {
+            let shouldTypeset = false;
+            for (let mutation of mutations) {
+              if (mutation.addedNodes.length > 0 || mutation.type === 'characterData') {
+                shouldTypeset = true;
+                break;
+              }
+            }
+            if (shouldTypeset) {
+              if (!window.mathJaxTimeout) {
+                window.mathJaxTimeout = setTimeout(function () {
+                  MathJax.typesetPromise().catch(function (err) { console.log('MathJax error:', err.message); });
+                  window.mathJaxTimeout = null;
+                }, 100);
+              }
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+        });
+      }
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
 </html>
