@@ -370,12 +370,15 @@
     document.write('<script charset="UTF-8" src="app.js?v=20261015?v=' + new Date().getTime() + '"><\/script>');
 </script>
     
+
+
+
 <!-- MathJax for LaTeX Rendering -->
 <script>
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['', ''], ['\\[', '\\]']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
       processEscapes: true,
       processEnvironments: true
     },
