@@ -575,6 +575,33 @@
             box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
         }
 
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin: 25px 0 10px 0;
+        }
+        .load-more-btn {
+            background: #ffffff;
+            border: 2px solid #ea580c;
+            color: #ea580c;
+            padding: 11px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 10px rgba(234, 88, 12, 0.12);
+        }
+        .load-more-btn:hover {
+            background: #ea580c;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(234, 88, 12, 0.25);
+        }
+
         /* History Autocomplete Dropdown */
         .custom-dropdown {
             display: none;
@@ -671,7 +698,7 @@
         #loading-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(5px);
             z-index: 9999;
             display: flex;
@@ -709,7 +736,7 @@
     <div id="loading-overlay">
         <div class="spinner"></div>
         <div style="font-weight: 700; font-size: 1.1rem; color: #0f172a; margin-bottom: 6px;">Φόρτωση Ιατρικών Βάσεων Δεδομένων...</div>
-        <div id="loading-details" style="font-size: 0.88rem; color: #64748b;">Ερωτήσεις Πολλαπλής, Νέο Βιβλίο, Θέματα Ανάπτυξης, Κλινικά Σενάρια</div>
+        <div id="loading-details" style="font-size: 0.88rem; color: #64748b;">Πολλαπλής Επιλογής (742), Νέο Βιβλίο (2.717), Ανάπτυξη (624), Σενάρια (171), Βιβλιοθήκη</div>
     </div>
 
     <!-- Top Navigation -->
@@ -794,11 +821,11 @@
             
         </form>
 
-        <!-- Source Filter Pills -->
-        <div class="source-filters" id="source-filters" style="display: none;">
+        <!-- Source Filter Pills (Always Available) -->
+        <div class="source-filters" id="source-filters">
             <div class="filter-pill active" data-source="ALL" onclick="filterBySource('ALL')">
                 <i class="fa-solid fa-layer-group"></i>
-                <span>Όλα τα Αποτελέσματα</span>
+                <span>Όλα</span>
                 <span class="pill-count" id="count-ALL">0</span>
             </div>
             <div class="filter-pill" data-source="mcq" onclick="filterBySource('mcq')">
@@ -824,8 +851,8 @@
         </div>
 
         <!-- Results Toolbar -->
-        <div class="results-toolbar" id="results-toolbar" style="display: none;">
-            <div class="results-count" id="results-count-text">Βρέθηκαν 0 αποτελέσματα</div>
+        <div class="results-toolbar" id="results-toolbar">
+            <div class="results-count" id="results-count-text">Επιλέξτε κατηγορία ή αναζητήστε λέξεις-κλειδιά</div>
             <div class="results-actions">
                 <button type="button" class="action-toggle-btn" onclick="toggleAllCards(true)" title="Ανάπτυξη όλων των καρτών">
                     <i class="fa-solid fa-angles-down"></i>
@@ -840,6 +867,14 @@
 
         <!-- Results Container -->
         <div id="results"></div>
+
+        <!-- Load More Container -->
+        <div class="load-more-container" id="load-more-container" style="display: none;">
+            <button type="button" class="load-more-btn" onclick="loadMoreResults()">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span id="load-more-text">Φόρτωση περισσότερων αποτελεσμάτων</span>
+            </button>
+        </div>
 
     </div>
 
@@ -859,6 +894,8 @@
         let activeSourceFilter = 'ALL';
         let currentSearchTerms = [];
         let currentFocusInput = null;
+        let displayedCount = 0;
+        const PAGE_SIZE = 35;
 
         // Accent remover for Greek search
         function removeAccents(str) {
@@ -925,9 +962,10 @@
         function clearAllInputs() {
             document.querySelectorAll('.adv-search-input').forEach(i => i.value = '');
             closeAllDropdowns();
-            document.getElementById('results').innerHTML = '';
-            document.getElementById('source-filters').style.display = 'none';
-            document.getElementById('results-toolbar').style.display = 'none';
+            currentSearchTerms = [];
+            currentSearchResults = unifiedSearchIndex;
+            updateCountsPills(currentSearchResults);
+            renderFilteredResults();
             document.querySelector('.adv-search-input').focus();
         }
         function closeAllDropdowns() {
@@ -1028,6 +1066,9 @@
         // Highlight matching terms
         function highlightMatch(sourceText, terms) {
             if (!sourceText) return "";
+            if (!terms || terms.length === 0) {
+                return sourceText.length > 200 ? sourceText.substring(0, 200) + "..." : sourceText;
+            }
             let lowerNoAcc = removeAccents(sourceText);
             let matches = [];
             terms.forEach(term => {
@@ -1040,7 +1081,7 @@
                 }
             });
             if (matches.length === 0) {
-                return sourceText.length > 220 ? sourceText.substring(0, 220) + "..." : sourceText;
+                return sourceText.length > 200 ? sourceText.substring(0, 200) + "..." : sourceText;
             }
             matches.sort((a, b) => a.start - b.start);
             let merged = [];
@@ -1054,7 +1095,7 @@
             });
 
             let firstMatch = merged[0];
-            let startContext = Math.max(0, firstMatch.start - 60);
+            let startContext = Math.max(0, firstMatch.start - 50);
             let endContext = Math.min(sourceText.length, firstMatch.start + 180);
             let isStartTruncated = startContext > 0;
             let isEndTruncated = endContext < sourceText.length;
@@ -1085,12 +1126,16 @@
                     let fullText = [q.chapter || "", q.category || "", q.question || "", optionsText, cleanExp].join(" ");
                     
                     let correctIndices = [];
-                    if (Array.isArray(q.correctAnswerIndices)) correctIndices = q.correctAnswerIndices;
-                    else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) correctIndices = [q.correctAnswerIndex];
-                    else if (q.correct !== undefined && q.correct !== null) correctIndices = [parseInt(q.correct, 10) - 1];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    } else if (q.correct !== undefined && q.correct !== null) {
+                        correctIndices = [parseInt(q.correct, 10) - 1];
+                    }
 
                     index.push({
-                        id: 'mcq-' + (q.id || idx),
+                        id: 'mcq-' + (q.id || (idx + 1)),
                         source: 'mcq',
                         sourceLabel: 'Πολλαπλής Επιλογής',
                         badgeClass: 'badge-mcq',
@@ -1100,6 +1145,7 @@
                         cleanText: fullText,
                         normText: removeAccents(fullText),
                         originalItem: q,
+                        correctIndices: correctIndices,
                         appUrl: 'quiz.html?bank=old_book&qId=' + (q.id || (idx + 1)),
                         type: 'mcq'
                     });
@@ -1112,7 +1158,7 @@
                     let cleanCont = (q.content || "").replace(/<[^>]*>?/gm, ' ');
                     let fullText = [q.chapter || "", q.category || "", q.question || "", cleanCont].join(" ");
                     index.push({
-                        id: 'nb-' + (q.id || idx),
+                        id: 'nb-' + (q.id || (idx + 1)),
                         source: 'new_book',
                         sourceLabel: 'Νέο Βιβλίο 2026',
                         badgeClass: 'badge-newbook',
@@ -1134,7 +1180,7 @@
                     let cleanAns = (q.correctAnswer || "").replace(/<[^>]*>?/gm, ' ');
                     let fullText = [q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns].join(" ");
                     index.push({
-                        id: 'essay-' + (q.id || idx),
+                        id: 'essay-' + (q.id || (idx + 1)),
                         source: 'essay',
                         sourceLabel: 'Θέμα Ανάπτυξης',
                         badgeClass: 'badge-essay',
@@ -1239,19 +1285,21 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Build index
             unifiedSearchIndex = buildUnifiedIndex();
+            currentSearchResults = unifiedSearchIndex;
             
             // Hide loading overlay
             const overlay = document.getElementById('loading-overlay');
             if (overlay) {
                 overlay.style.opacity = '0';
-                setTimeout(() => overlay.remove(), 300);
+                setTimeout(() => overlay.remove(), 250);
             }
 
-            // Update status pill
+            // Update status pill and initial filter counts
             const statusText = document.getElementById('index-count-text');
             if (statusText) {
                 statusText.textContent = `${unifiedSearchIndex.length.toLocaleString('el-GR')} καταχωρήσεις έτοιμες για αναζήτηση`;
             }
+            updateCountsPills(unifiedSearchIndex);
 
             // Focus and Input Listeners
             const inputs = document.querySelectorAll('.adv-search-input');
@@ -1282,9 +1330,13 @@
             // Check if terms exist in URL or localStorage
             const urlParams = new URLSearchParams(window.location.search);
             const qParam = urlParams.get('q');
+            const srcParam = urlParams.get('source');
             if (qParam) {
                 document.querySelector('input[name="term1"]').value = qParam;
+                if (srcParam) activeSourceFilter = srcParam;
                 doSearch();
+            } else if (srcParam) {
+                filterBySource(srcParam);
             }
         });
 
@@ -1296,33 +1348,23 @@
 
             const terms = Array.from(inputs).map(i => removeAccents(i.value.trim())).filter(v => v.length > 0);
             currentSearchTerms = terms;
-            const resultsDiv = document.getElementById('results');
-            const toolbar = document.getElementById('results-toolbar');
-            const filtersBar = document.getElementById('source-filters');
 
             if (terms.length === 0) {
-                resultsDiv.innerHTML = '<p style="text-align:center; color:#94a3b8; font-style:italic; padding: 30px;">Παρακαλώ εισάγετε τουλάχιστον έναν όρο αναζήτησης...</p>';
-                toolbar.style.display = 'none';
-                filtersBar.style.display = 'none';
-                return;
+                // If inputs are empty, display all items for browsing
+                currentSearchResults = unifiedSearchIndex;
+            } else {
+                const matchType = document.querySelector('input[name="matchType"]:checked').value; // 'AND' or 'OR'
+                currentSearchResults = unifiedSearchIndex.filter(item => {
+                    if (matchType === "AND") {
+                        return terms.every(t => item.normText.includes(t));
+                    } else {
+                        return terms.some(t => item.normText.includes(t));
+                    }
+                });
             }
-
-            const matchType = document.querySelector('input[name="matchType"]:checked').value; // 'AND' or 'OR'
-
-            // Filter items
-            currentSearchResults = unifiedSearchIndex.filter(item => {
-                if (matchType === "AND") {
-                    return terms.every(t => item.normText.includes(t));
-                } else {
-                    return terms.some(t => item.normText.includes(t));
-                }
-            });
 
             // Update Counts on Filter Pills
             updateCountsPills(currentSearchResults);
-            filtersBar.style.display = 'flex';
-            toolbar.style.display = 'flex';
-
             renderFilteredResults();
         }
 
@@ -1347,10 +1389,11 @@
             renderFilteredResults();
         }
 
-        // Render Filtered Results
+        // Render Filtered Results with Pagination
         function renderFilteredResults() {
             const resultsDiv = document.getElementById('results');
             const countText = document.getElementById('results-count-text');
+            const loadMoreContainer = document.getElementById('load-more-container');
 
             let visibleMatches = currentSearchResults;
             if (activeSourceFilter !== 'ALL') {
@@ -1358,121 +1401,169 @@
             }
 
             if (visibleMatches.length === 0) {
-                resultsDiv.innerHTML = '<div style="text-align:center; padding: 40px; color:#ef4444; font-weight:700;"><i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 10px; display:block;"></i>Δεν βρέθηκαν αποτελέσματα για τους επιλεγμένους όρους.</div>';
+                resultsDiv.innerHTML = '<div style="text-align:center; padding: 40px; color:#ef4444; font-weight:700;"><i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 10px; display:block;"></i>Δεν βρέθηκαν αποτελέσματα για αυτή την κατηγορία.</div>';
                 countText.textContent = 'Βρέθηκαν 0 αποτελέσματα';
+                loadMoreContainer.style.display = 'none';
                 return;
             }
 
-            const matchType = document.querySelector('input[name="matchType"]:checked').value;
-            countText.innerHTML = `Βρέθηκαν <strong>${visibleMatches.length}</strong> αποτελέσματα <span style="font-size:0.85rem; font-weight:normal; color:#64748b;">(Ταίριασμα: ${matchType === 'AND' ? 'Όλες οι λέξεις' : 'Έστω μία'})</span>:`;
+            displayedCount = Math.min(PAGE_SIZE, visibleMatches.length);
+            
+            const matchType = document.querySelector('input[name="matchType"]:checked') ? document.querySelector('input[name="matchType"]:checked').value : 'AND';
+            const filterLabel = activeSourceFilter === 'ALL' ? 'Όλες οι κατηγορίες' : document.querySelector(`.filter-pill[data-source="${activeSourceFilter}"] span`).textContent;
 
-            // Render Result Cards
+            countText.innerHTML = `Βρέθηκαν <strong>${visibleMatches.length}</strong> αποτελέσματα (${filterLabel})${currentSearchTerms.length > 0 ? ` <span style="font-size:0.85rem; font-weight:normal; color:#64748b;">[${matchType === 'AND' ? 'Όλες οι λέξεις' : 'Έστω μία'}]</span>` : ''}:`;
+
+            // Render Cards up to displayedCount
             let html = '';
-            visibleMatches.forEach((item, index) => {
-                const snippet = highlightMatch(item.cleanText, currentSearchTerms);
-                const cardId = 'card-' + index;
+            for (let i = 0; i < displayedCount; i++) {
+                html += renderCardHtml(visibleMatches[i], i);
+            }
+            resultsDiv.innerHTML = html;
 
-                html += `
-                <div class="result-card" id="${cardId}">
-                    <div class="card-header-clickable" onclick="toggleCard('${cardId}')">
-                        <div class="card-info">
-                            <div class="badge-row">
-                                <span class="source-badge ${item.badgeClass}">
-                                    <span>${item.badgeIcon}</span>
-                                    <span>${item.sourceLabel}</span>
-                                </span>
-                                <span class="chapter-tag">${item.chapter}</span>
-                            </div>
-                            <div class="result-title">${item.title}</div>
-                            <div class="result-snippet">${snippet}</div>
+            // Update Load More button
+            if (displayedCount < visibleMatches.length) {
+                loadMoreContainer.style.display = 'block';
+                document.getElementById('load-more-text').textContent = `Φόρτωση περισσότερων (απομένουν ${visibleMatches.length - displayedCount})`;
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
+
+        // Load More Results Function
+        function loadMoreResults() {
+            let visibleMatches = currentSearchResults;
+            if (activeSourceFilter !== 'ALL') {
+                visibleMatches = currentSearchResults.filter(m => m.source === activeSourceFilter);
+            }
+
+            const nextCount = Math.min(displayedCount + PAGE_SIZE, visibleMatches.length);
+            const resultsDiv = document.getElementById('results');
+            
+            for (let i = displayedCount; i < nextCount; i++) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = renderCardHtml(visibleMatches[i], i);
+                resultsDiv.appendChild(tempDiv.firstElementChild);
+            }
+            displayedCount = nextCount;
+
+            const loadMoreContainer = document.getElementById('load-more-container');
+            if (displayedCount < visibleMatches.length) {
+                loadMoreContainer.style.display = 'block';
+                document.getElementById('load-more-text').textContent = `Φόρτωση περισσότερων (απομένουν ${visibleMatches.length - displayedCount})`;
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
+
+        // Helper to Render a Card
+        function renderCardHtml(item, index) {
+            const snippet = highlightMatch(item.cleanText, currentSearchTerms);
+            const cardId = 'card-' + index;
+
+            return `
+            <div class="result-card" id="${cardId}">
+                <div class="card-header-clickable" onclick="toggleCard('${cardId}')">
+                    <div class="card-info">
+                        <div class="badge-row">
+                            <span class="source-badge ${item.badgeClass}">
+                                <span>${item.badgeIcon}</span>
+                                <span>${item.sourceLabel}</span>
+                            </span>
+                            <span class="chapter-tag">${item.chapter}</span>
                         </div>
-                        <div class="expand-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="result-title">${item.title}</div>
+                        <div class="result-snippet">${snippet}</div>
                     </div>
-                    
-                    <div class="card-body-expanded">
-                        ${renderExpandedContent(item)}
-                        <div class="card-actions-row">
-                            <a href="${item.appUrl}" target="_blank" class="open-in-app-btn">
-                                <span>Άνοιγμα στην Εφαρμογή</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                        </div>
+                    <div class="expand-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                
+                <div class="card-body-expanded">
+                    ${renderExpandedContent(item)}
+                    <div class="card-actions-row">
+                        <a href="${item.appUrl}" target="_blank" class="open-in-app-btn">
+                            <span>Άνοιγμα στην Εφαρμογή</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
                 </div>
-                `;
-            });
-
-            resultsDiv.innerHTML = html;
+            </div>
+            `;
         }
 
         // Render In-Place Detailed Content for Browsing
         function renderExpandedContent(item) {
-            let out = '';
-            const q = item.originalItem;
+            try {
+                let out = '';
+                const q = item.originalItem;
 
-            if (item.type === 'mcq') {
-                out += `<div class="full-question-box"><strong>Ερώτηση:</strong> ${q.question || ''}</div>`;
-                if (Array.isArray(q.options) && q.options.length > 0) {
-                    out += '<div class="mcq-preview-list">';
-                    const correctIndices = item.data.correctIndices || [];
-                    q.options.forEach((opt, oIdx) => {
-                        const isCorrect = correctIndices.includes(oIdx);
-                        const correctClass = isCorrect ? 'is-correct' : '';
-                        const badge = isCorrect ? '<span class="correct-badge"><i class="fa-solid fa-check"></i> Σωστή Επιλογή</span>' : '';
-                        out += `<div class="mcq-preview-option ${correctClass}"><span>${opt}</span>${badge}</div>`;
-                    });
-                    out += '</div>';
+                if (item.type === 'mcq') {
+                    out += `<div class="full-question-box"><strong>Ερώτηση:</strong> ${q.question || ''}</div>`;
+                    if (Array.isArray(q.options) && q.options.length > 0) {
+                        out += '<div class="mcq-preview-list">';
+                        const correctIndices = item.correctIndices || [];
+                        q.options.forEach((opt, oIdx) => {
+                            const isCorrect = correctIndices.includes(oIdx);
+                            const correctClass = isCorrect ? 'is-correct' : '';
+                            const badge = isCorrect ? '<span class="correct-badge"><i class="fa-solid fa-check"></i> Σωστή Επιλογή</span>' : '';
+                            out += `<div class="mcq-preview-option ${correctClass}"><span>${opt}</span>${badge}</div>`;
+                        });
+                        out += '</div>';
+                    }
+                    if (q.explanation) {
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${q.explanation}</div>`;
+                    }
+                } 
+                else if (item.type === 'flashcard') {
+                    out += `<div class="full-question-box"><strong>Ερώτηση Flashcard:</strong> ${q.question || ''}</div>`;
+                    if (q.content) {
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-book-medical" style="color:#f59e0b;"></i> Απάντηση & Ανάλυση</h4>${q.content}</div>`;
+                    }
+                } 
+                else if (item.type === 'essay') {
+                    out += `<div class="full-question-box"><strong>Θέμα Ανάπτυξης:</strong> ${q.question || ''}</div>`;
+                    if (q.mnemonic) {
+                        out += `<div style="background:#fefce8; border:1px solid #fef08a; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:600; color:#854d0e;">💡 Μνημονικός Κανόνας: ${q.mnemonic}</div>`;
+                    }
+                    if (q.correctAnswer) {
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-pen-fancy" style="color:#10b981;"></i> Πλήρης Ανάπτυξη Θέματος</h4>${q.correctAnswer}</div>`;
+                    }
+                } 
+                else if (item.type === 'case') {
+                    out += `<div class="full-question-box"><strong>Παρουσίαση:</strong> ${q.presentation || q.title || ''}</div>`;
+                    if (q.history) {
+                        out += `<div class="full-answer-box" style="margin-bottom:12px;"><h4><i class="fa-solid fa-user-doctor" style="color:#e11d48;"></i> Ιστορικό Ασθενούς</h4>${q.history}</div>`;
+                    }
+                    if (q.examination) {
+                        out += `<div class="full-answer-box" style="margin-bottom:12px;"><h4><i class="fa-solid fa-stethoscope" style="color:#e11d48;"></i> Κλινική Εξέταση</h4>${q.examination}</div>`;
+                    }
+                    if (Array.isArray(q.stages)) {
+                        q.stages.forEach((st, sIdx) => {
+                            let stQuestions = Array.isArray(st.questions) ? st.questions.join("<br>• ") : (st.questions || "");
+                            out += `<div class="full-answer-box" style="margin-bottom:12px; border-left:3px solid #e11d48;">
+                                <h4><i class="fa-solid fa-circle-question" style="color:#e11d48;"></i> Στάδιο ${sIdx+1}: ${st.title || 'Ερωτήματα'}</h4>
+                                <p style="font-weight:600; margin-bottom:8px;">• ${stQuestions}</p>
+                                ${st.answer ? `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #cbd5e1;"><strong>Απάντηση & Διάγνωση:</strong><br>${st.answer}</div>` : ''}
+                            </div>`;
+                        });
+                    }
+                } 
+                else if (item.type === 'book') {
+                    out += `<div class="full-question-box"><strong>${item.chapter}</strong><br>${item.title}</div>`;
+                    out += `<div class="full-answer-box">
+                        <p style="margin-bottom:10px;">Το αρχείο είναι διαθέσιμο για άμεση προβολή σε μορφή PDF στη Βιβλιοθήκη.</p>
+                        <a href="${item.appUrl}" target="_blank" class="open-in-app-btn" style="display:inline-flex;">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <span>Άνοιγμα PDF στη Βιβλιοθήκη</span>
+                        </a>
+                    </div>`;
                 }
-                if (q.explanation) {
-                    out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${q.explanation}</div>`;
-                }
-            } 
-            else if (item.type === 'flashcard') {
-                out += `<div class="full-question-box"><strong>Ερώτηση Flashcard:</strong> ${q.question || ''}</div>`;
-                if (q.content) {
-                    out += `<div class="full-answer-box"><h4><i class="fa-solid fa-book-medical" style="color:#f59e0b;"></i> Απάντηση & Ανάλυση</h4>${q.content}</div>`;
-                }
-            } 
-            else if (item.type === 'essay') {
-                out += `<div class="full-question-box"><strong>Θέμα Ανάπτυξης:</strong> ${q.question || ''}</div>`;
-                if (q.mnemonic) {
-                    out += `<div style="background:#fefce8; border:1px solid #fef08a; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:600; color:#854d0e;">💡 Μνημονικός Κανόνας: ${q.mnemonic}</div>`;
-                }
-                if (q.correctAnswer) {
-                    out += `<div class="full-answer-box"><h4><i class="fa-solid fa-pen-fancy" style="color:#10b981;"></i> Πλήρης Ανάπτυξη Θέματος</h4>${q.correctAnswer}</div>`;
-                }
-            } 
-            else if (item.type === 'case') {
-                out += `<div class="full-question-box"><strong>Παρουσίαση:</strong> ${q.presentation || q.title || ''}</div>`;
-                if (q.history) {
-                    out += `<div class="full-answer-box" style="margin-bottom:12px;"><h4><i class="fa-solid fa-user-doctor" style="color:#e11d48;"></i> Ιστορικό Ασθενούς</h4>${q.history}</div>`;
-                }
-                if (q.examination) {
-                    out += `<div class="full-answer-box" style="margin-bottom:12px;"><h4><i class="fa-solid fa-stethoscope" style="color:#e11d48;"></i> Κλινική Εξέταση</h4>${q.examination}</div>`;
-                }
-                if (Array.isArray(q.stages)) {
-                    q.stages.forEach((st, sIdx) => {
-                        let stQuestions = Array.isArray(st.questions) ? st.questions.join("<br>• ") : (st.questions || "");
-                        out += `<div class="full-answer-box" style="margin-bottom:12px; border-left:3px solid #e11d48;">
-                            <h4><i class="fa-solid fa-circle-question" style="color:#e11d48;"></i> Στάδιο ${sIdx+1}: ${st.title || 'Ερωτήματα'}</h4>
-                            <p style="font-weight:600; margin-bottom:8px;">• ${stQuestions}</p>
-                            ${st.answer ? `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #cbd5e1;"><strong>Απάντηση & Διάγνωση:</strong><br>${st.answer}</div>` : ''}
-                        </div>`;
-                    });
-                }
-            } 
-            else if (item.type === 'book') {
-                out += `<div class="full-question-box"><strong>${item.chapter}</strong><br>${item.title}</div>`;
-                out += `<div class="full-answer-box">
-                    <p style="margin-bottom:10px;">Το αρχείο είναι διαθέσιμο για άμεση προβολή σε μορφή PDF στη Βιβλιοθήκη.</p>
-                    <a href="${item.appUrl}" target="_blank" class="open-in-app-btn" style="display:inline-flex;">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        <span>Άνοιγμα PDF στη Βιβλιοθήκη</span>
-                    </a>
-                </div>`;
+
+                return out;
+            } catch(e) {
+                console.error("Error rendering expanded card:", e, item);
+                return `<div class="full-question-box">${item.title}</div><div class="full-answer-box">${item.cleanText.substring(0, 300)}...</div>`;
             }
-
-            return out;
         }
 
         // Toggle Single Card Accordion
