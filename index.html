@@ -503,6 +503,93 @@
             .glow-name::before { display: none !important; }
         }
 
+
+        /* TOP UNIFIED SEARCH BANNER */
+        .top-search-banner {
+            max-width: 820px;
+            margin: 28px auto 12px auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+        .top-search-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(249, 115, 22, 0.45);
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.16), 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+        }
+        .top-search-btn:hover {
+            transform: translateY(-3px) scale(1.015);
+            background: #ffffff;
+            border-color: #ea580c;
+            box-shadow: 0 14px 32px rgba(249, 115, 22, 0.28), 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .top-search-btn i.fa-magnifying-glass {
+            font-size: 1.3rem;
+            color: #ea580c;
+            background: #ffedd5;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(234, 88, 12, 0.2);
+            flex-shrink: 0;
+        }
+        .search-main-label {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+        .search-sub-label {
+            font-size: 0.88rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-right: auto;
+        }
+        .search-badge-pill {
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #ffedd5;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .search-kbd-shortcut {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            .top-search-btn {
+                padding: 10px 16px;
+                border-radius: 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .search-sub-label { display: none; }
+            .search-kbd-shortcut { display: none; }
+            .search-main-label { font-size: 0.98rem; }
+        }
+    
 </style>
     <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
 </head>
@@ -517,6 +604,16 @@
     <header>
         <h1 class="main-title">Pathologia<span class="quiz">Quiz</span> <span class="glow-name">By TseLkos</span> </h1>
         <p class="subtitle">Η απόλυτη πλατφόρμα μελέτης και εξάσκησης</p>
+            <!-- Unified Search Top Banner -->
+        <div class="top-search-banner">
+            <button type="button" class="top-search-btn" onclick="openGlobalSearch()" title="Σύνθετη Αναζήτηση σε Όλα τα Δεδομένα (Ctrl + K)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span class="search-main-label">Σύνθετη Αναζήτηση σε Όλα</span>
+                <span class="search-sub-label">(Ερωτήσεις, Απαντήσεις, Βιβλία, Σενάρια)</span>
+                <span class="search-badge-pill"><i class="fa-solid fa-sliders"></i> 5 Πεδία • ΚΑΙ / Ή</span>
+                <span class="search-kbd-shortcut">Ctrl + K</span>
+            </button>
+        </div>
     </header>
 
     <main>
@@ -599,6 +696,21 @@
 
     <script>
         
+        
+        function openGlobalSearch() {
+            if (window.innerWidth < 768) {
+                window.location.href = 'search.html';
+            } else {
+                window.open('search.html', 'PathologiaUnifiedSearch', 'width=980,height=900,left=150,top=50,resizable=yes,scrollbars=yes');
+            }
+        }
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                openGlobalSearch();
+            }
+        });
+    
         function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;

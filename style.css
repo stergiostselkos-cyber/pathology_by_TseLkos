@@ -3515,3 +3515,250 @@ body.light-theme .correct-answer-box {
     font-size: 1.1rem !important;
     line-height: 1.75 !important;
 }
+
+
+/* ==========================================================================
+   GLOBAL TABLE & IMAGE VIEWER ENHANCEMENTS (ZOOM & FULLSCREEN)
+   ========================================================================== */
+
+/* Embedded Medical Image Zoom Hover */
+.embedded-med-image, 
+.explanation-content img, 
+.explanation-box img, 
+.mcq-strict-answer img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    cursor: zoom-in !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.embedded-med-image:hover, 
+.explanation-content img:hover, 
+.explanation-box img:hover, 
+.mcq-strict-answer img:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.embedded-image-container {
+    text-align: center !important;
+    margin: 18px 0 !important;
+}
+
+/* Zoomable Table Styling */
+table.zoomable-table {
+    cursor: zoom-in !important;
+    transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+table.zoomable-table:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Table Zoom Toolbar */
+.table-zoom-toolbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    margin: 18px 0 8px 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+.table-zoom-hint {
+    font-size: 0.88rem !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.zoom-table-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 6px 14px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.zoom-table-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.45) !important;
+}
+
+/* TABLE VIEWER MODAL OVERLAY */
+.table-viewer-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999999 !important;
+    background: rgba(15, 23, 42, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    display: none !important;
+    flex-direction: column !important;
+    opacity: 0;
+    transition: opacity 0.25s ease !important;
+}
+
+.table-viewer-overlay.open {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.table-viewer-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 14px 24px !important;
+    background: #1e293b !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    flex-shrink: 0 !important;
+}
+
+.table-viewer-title {
+    color: #f8fafc !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.table-viewer-tools {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.tv-tool-btn {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 6px !important;
+    padding: 5px 12px !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+}
+
+.tv-tool-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.table-viewer-close {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 8px !important;
+    transition: background 0.2s ease !important;
+}
+
+.table-viewer-close:hover {
+    background: #dc2626 !important;
+}
+
+.table-viewer-content {
+    flex: 1 !important;
+    overflow: auto !important;
+    padding: 28px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.table-viewer-content table {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-collapse: collapse !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+    max-width: none !important;
+    width: max-content !important;
+    min-width: 60% !important;
+    margin: auto !important;
+    font-size: 1.1rem !important;
+    display: table !important;
+    overflow: hidden !important;
+}
+
+.table-viewer-content th {
+    background: #102C57 !important;
+    color: #ffffff !important;
+    padding: 14px 20px !important;
+    font-size: 1.12rem !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    border: 1px solid #334155 !important;
+    white-space: nowrap !important;
+}
+
+.table-viewer-content td {
+    padding: 12px 18px !important;
+    border: 1px solid #cbd5e1 !important;
+    line-height: 1.6 !important;
+    font-size: 1.05rem !important;
+    word-break: normal !important;
+}
+
+.table-viewer-content tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-viewer-content tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Dark Theme Overrides */
+body.dark-theme .table-zoom-toolbar {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+body.dark-theme .table-zoom-hint {
+    color: #94a3b8 !important;
+}
+body.dark-theme .table-viewer-content table {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+body.dark-theme .table-viewer-content th {
+    background: #0f172a !important;
+    color: #38bdf8 !important;
+    border-color: #334155 !important;
+}
+body.dark-theme .table-viewer-content td {
+    border-color: #334155 !important;
+    color: #f1f5f9 !important;
+}
+body.dark-theme .table-viewer-content tr:nth-child(even) td {
+    background-color: #0f172a !important;
+}
+body.dark-theme .table-viewer-content tr:hover td {
+    background-color: #334155 !important;
+}
+

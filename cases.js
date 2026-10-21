@@ -159,6 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('is-completed', done);
             markCompletedText.textContent = done ? 'Ολοκληρώθηκε ✓' : 'Σήμανση ως Ολοκληρωμένο';
             refreshCaseOptions();
+
+    // Check if specific case requested via URL (?case=kl-01)
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetCaseId = urlParams.get('case');
+    if (targetCaseId && typeof clinicalCases !== 'undefined' && Array.isArray(clinicalCases)) {
+        const c = clinicalCases.find(x => String(x.id) === String(targetCaseId));
+        if (c) {
+            if (bookSelect) bookSelect.value = c.book;
+            loadCasesForBook(c.book);
+            if (caseSelect) caseSelect.value = c.id;
+            renderCase(c);
+        }
+    }
         } catch (err) {
             markCompletedText.textContent = 'Σφάλμα: ' + err.message;
             console.error('mark-completed:', err);
@@ -559,3 +572,18 @@ document.addEventListener('DOMContentLoaded', () => {
     open(im.getAttribute("src"), c ? c.textContent.trim() : (im.alt || ""));
   });
 })();
+
+
+window.openGlobalSearch = function() {
+    if (window.innerWidth < 768) {
+        window.location.href = 'search.html';
+    } else {
+        window.open('search.html', 'PathologiaUnifiedSearch', 'width=980,height=900,left=150,top=50,resizable=yes,scrollbars=yes');
+    }
+};
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openGlobalSearch();
+    }
+});

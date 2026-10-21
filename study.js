@@ -62,6 +62,17 @@ function loadQuestions() {
     if (typeof renderMainChapterFilters === 'function') renderMainChapterFilters();
     if (typeof renderSubchapterFilters === 'function') renderSubchapterFilters();
     if (typeof loadFirstMatchingQuickQuestion === 'function') loadFirstMatchingQuickQuestion();
+
+    // Check if question ID requested via URL (?qId=123)
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetQId = urlParams.get('qId') || urlParams.get('id');
+    if (targetQId && flashcardQuestions.length > 0) {
+        const foundIdx = flashcardQuestions.findIndex(q => String(q.id) === String(targetQId));
+        if (foundIdx !== -1) {
+            currentQuickIndex = foundIdx;
+            if (typeof loadQuickRecallQuestion === 'function') loadQuickRecallQuestion(foundIdx);
+        }
+    }
 }
 
 /**
@@ -739,25 +750,31 @@ window.addEventListener('click', () => {
     setTimeout(function () { if (!ov.classList.contains("open")) img.src = ""; }, 220);
   }
 
-  document.addEventListener("click", function (e) {
-    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image, .word-export img");
+    document.addEventListener("click", function (e) {
+    var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image, .word-export img, .explanation-content img, .explanation-box img, .mcq-strict-answer img, .embedded-image-container img");
     if (!im || !im.getAttribute("src")) return;
-    var fig = im.closest("figure, .case-fig");
-    var c = fig && fig.querySelector("figcaption");
+    var fig = im.closest("figure, .case-fig, .embedded-image-container");
+    var c = fig && (fig.querySelector("figcaption, .image-caption") || fig.querySelector("span, div"));
     open(im.getAttribute("src"), c ? c.textContent.trim() : (im.alt || ""));
   });
 })();
 
 
-/* --- TABLE ZOOM LOGIC --- */
+/* --- ENHANCED TABLE ZOOM & FULLSCREEN LOGIC --- */
 (function() {
-    // Create the modal HTML once
     let modal = document.createElement('div');
     modal.className = 'table-viewer-overlay';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
     modal.innerHTML = `
         <div class="table-viewer-header">
-            <div class="table-viewer-title">🔍 Προβολή Πίνακα</div>
-            <button class="table-viewer-close">✕</button>
+            <div class="table-viewer-title">📊 Προβολή &amp; Μεγέθυνση Πίνακα</div>
+            <div class="table-viewer-tools">
+                <button type="button" class="tv-tool-btn" data-tv="out" title="Σμίκρυνση">A−</button>
+                <button type="button" class="tv-tool-btn" data-tv="reset" title="Επαναφορά">⟲</button>
+                <button type="button" class="tv-tool-btn" data-tv="in" title="Μεγέθυνση">A+</button>
+                <button type="button" class="table-viewer-close" title="Κλείσιμο (Esc)">✕</button>
+            </div>
         </div>
         <div class="table-viewer-content" id="table-viewer-content"></div>
     `;
@@ -765,46 +782,103 @@ window.addEventListener('click', () => {
 
     const closeBtn = modal.querySelector('.table-viewer-close');
     const content = modal.querySelector('#table-viewer-content');
+    let currentScale = 1.0;
+
+    function openModal(table) {
+        content.innerHTML = table.outerHTML;
+        currentScale = 1.0;
+        const copiedTable = content.querySelector('table');
+        if (copiedTable) {
+            copiedTable.style.fontSize = '1.1rem';
+            copiedTable.style.cursor = 'default';
+            copiedTable.style.width = 'max-content';
+            copiedTable.style.maxWidth = 'none';
+            copiedTable.style.display = 'table';
+        }
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
 
     function closeModal() {
         modal.classList.remove('open');
         document.body.style.overflow = '';
         setTimeout(() => { content.innerHTML = ''; }, 200);
     }
+
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        if (e.target === modal || e.target === content) closeModal();
+        const tool = e.target.closest('[data-tv]');
+        if (tool) {
+            const act = tool.dataset.tv;
+            const tbl = content.querySelector('table');
+            if (!tbl) return;
+            if (act === 'in') { currentScale = Math.min(2.0, currentScale + 0.15); }
+            else if (act === 'out') { currentScale = Math.max(0.75, currentScale - 0.15); }
+            else if (act === 'reset') { currentScale = 1.0; }
+            tbl.style.fontSize = (1.1 * currentScale) + 'rem';
+        }
     });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
 
-    // Periodically find tables and add zoom button
+    // Periodically detect tables in explanations and equip them with zoom
     setInterval(() => {
-        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table');
+        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table, .explanation-box table, .mcq-strict-answer table');
         tables.forEach(table => {
-            if (!table.parentElement.classList.contains('table-zoom-container')) {
-                // Wrap the table
-                const wrapper = document.createElement('div');
-                wrapper.className = 'table-zoom-container';
-                table.parentNode.insertBefore(wrapper, table);
-                wrapper.appendChild(table);
+            if (table.closest('#table-viewer-content') || table.dataset.zoomReady === 'true') {
+                return;
+            }
+            table.dataset.zoomReady = 'true';
+            table.classList.add('zoomable-table');
+            table.style.cursor = 'zoom-in';
+            table.title = 'Κάντε κλικ στον πίνακα για μεγέθυνση σε πλήρη οθόνη';
 
-                // Add button
-                const btn = document.createElement('button');
-                btn.className = 'zoom-table-btn';
-                btn.innerHTML = '🔍 Μεγέθυνση Πίνακα';
-                
-                // When clicked, copy the table to the modal
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    content.innerHTML = table.outerHTML;
-                    modal.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                });
-                
-                wrapper.appendChild(btn);
+            // Clicking the table directly opens zoom modal
+            table.addEventListener('click', (e) => {
+                openModal(table);
+            });
+
+            // Add dedicated toolbar right above the table
+            const toolbar = document.createElement('div');
+            toolbar.className = 'table-zoom-toolbar';
+            toolbar.innerHTML = `
+                <span class="table-zoom-hint">💡 Κλικ στον πίνακα για πλήρη προβολή:</span>
+                <button type="button" class="zoom-table-btn">🔍 Μεγέθυνση Πίνακα</button>
+            `;
+
+            const btn = toolbar.querySelector('.zoom-table-btn');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                openModal(table);
+            });
+
+            // Insert toolbar outside scroll container if present
+            const scrollParent = table.parentElement;
+            if (scrollParent && (scrollParent.style.overflowX === 'auto' || scrollParent.classList.contains('table-scroll-container'))) {
+                scrollParent.parentNode.insertBefore(toolbar, scrollParent);
+            } else {
+                table.parentNode.insertBefore(toolbar, table);
             }
         });
-    }, 500);
+    }, 400);
 })();
+
+
+
+window.openGlobalSearch = function() {
+    if (window.innerWidth < 768) {
+        window.location.href = 'search.html';
+    } else {
+        window.open('search.html', 'PathologiaUnifiedSearch', 'width=980,height=900,left=150,top=50,resizable=yes,scrollbars=yes');
+    }
+};
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openGlobalSearch();
+    }
+});

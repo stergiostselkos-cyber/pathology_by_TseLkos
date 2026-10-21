@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const booksDatabase = {
+    const booksDatabase = window.booksDatabase = {
     "book1": {
         "title": "ΠΑΘΟΛΟΓΙΑ ΤΟΜΕΑ ΕΚΔΟΣΗ 2026",
         "parts": [

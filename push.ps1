@@ -1,4 +1,4 @@
-﻿$git = "C:\Users\taste\AppData\Local\GitHubDesktop\app-3.6.6\resources\app\git\cmd\git.exe"
+﻿$git = "C:\Users\taste\AppData\Local\GitHubDesktop\app-3.6.7\resources\app\git\cmd\git.exe"
 & $git config user.email "stergiostselkos@gmail.com"
 & $git config user.name "Stergios Tselkos"
 & $git add .

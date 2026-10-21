@@ -390,9 +390,7 @@ body.dark-theme .correct-answer-box {
     width: 100%;
 }
 .zoom-table-btn {
-    position: absolute;
-    top: -15px;
-    right: 5px;
+    position: static;
     background: rgba(99, 102, 241, 0.95);
     color: white;
     border: none;

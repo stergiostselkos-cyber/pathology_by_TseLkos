@@ -39,8 +39,12 @@ window.navigateToQuestionFromSearch = function(idx) {
     window.scrollTo({top: 0, behavior: 'smooth'});
 };
 
-window.openSearchModal = function() {
-    window.open('search.html', 'AdvancedSearch', 'width=700,height=700,left=200,top=100,resizable=yes,scrollbars=yes');
+window.openSearchModal = window.openGlobalSearch = function() {
+    if (window.innerWidth < 768) {
+        window.location.href = 'search.html';
+    } else {
+        window.open('search.html', 'PathologiaUnifiedSearch', 'width=980,height=900,left=150,top=50,resizable=yes,scrollbars=yes');
+    }
 };
 
 window.closeSearchModal = function() {
