@@ -196,6 +196,7 @@
         /* Specific Card Colors and RGB Variables for Transparency */
         .card.essay { --card-color: #10b981; --card-rgb: 16, 185, 129; }
         .card.mcq { --card-color: #0ea5e9; --card-rgb: 14, 165, 233; }
+        .card.pharma { --card-color: #06b6d4; --card-rgb: 6, 182, 212; }
         .card.new-book { --card-color: #f59e0b; --card-rgb: 245, 158, 11; }
         .card.scenarios { --card-color: #ef4444; --card-rgb: 239, 68, 68; }
         .card.books { --card-color: #8b5cf6; --card-rgb: 139, 92, 246; }
@@ -398,6 +399,7 @@
         /* Specific Card Colors */
         .card.essay { --card-color: #2ECC71; }
         .card.mcq { --card-color: #0EA5E9; }
+        .card.pharma { --card-color: #06B6D4; }
         .card.new-book { --card-color: #F39C12; }
         .card.scenarios { --card-color: #E74C3C; }
         .card.books { --card-color: #9B59B6; }
@@ -844,7 +846,22 @@
                 <a href="study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards</a>
             </div>
 
-            <!-- 4. Κλινικά Σενάρια -->
+            <!-- 4. Φάρμακα & Ουσίες -->
+            <div class="card pharma">
+                <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                <h2>Φάρμακα &amp; Ουσίες</h2>
+                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
+                <p>Οδηγοί κλινικής φαρμακολογίας, δραστικές ουσίες, εμπορικά σκευάσματα, φάσμα δράσης, ενδείξεις και θεραπευτικά πρωτόκολλα.</p>
+                <form onsubmit="startPharma(event)" style="width: 100%;">
+                    <select id="pharma-selector" class="fancy-select" required>
+                        <option value="" disabled selected>Επίλεξε Κατηγορία Φαρμάκων...</option>
+                        <option value="antimikrobiaka.html">Αντιμικροβιακά Φάρμακα</option>
+                    </select>
+                    <button type="submit" class="btn"><i class="fa-solid fa-capsules"></i> Άνοιγμα Οδηγού</button>
+                </form>
+            </div>
+
+            <!-- 5. Κλινικά Σενάρια -->
             <div class="card scenarios">
                 <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
                 <h2>Κλινικά Σενάρια</h2>
@@ -853,7 +870,7 @@
                 <a href="cases.html" class="btn"><i class="fa-solid fa-microscope"></i> Προβολή Περιστατικών</a>
             </div>
 
-            <!-- 5. Χρήσιμα Βιβλία -->
+            <!-- 6. Χρήσιμα Βιβλία -->
             <div class="card books">
                 <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
                 <h2>Χρήσιμα Βιβλία</h2>
@@ -862,7 +879,7 @@
                 <a href="books.html?v=1790289906,23765" class="btn"><i class="fa-solid fa-folder-open"></i> Άνοιγμα Βιβλιοθήκης</a>
             </div>
 
-            <!-- 6. Links & Υλικό -->
+            <!-- 7. Links & Υλικό -->
             <div class="card links">
                 <div class="card-icon"><i class="fa-solid fa-link"></i></div>
                 <h2>Links & Υλικό</h2>
@@ -899,6 +916,15 @@
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
             window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
+        }
+
+        function startPharma(e) {
+            e.preventDefault();
+            const selector = document.getElementById('pharma-selector');
+            const page = selector.value;
+            if(page) {
+                window.location.href = page;
+            }
         }
 
         function startMCQ(e) {

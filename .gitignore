@@ -1,1 +1,8 @@
 *.bak
+
+LARNAKA/
+assets/images/part2_dia_*
+assets/images/larnaka_*
+
+PUSH_TO_GITHUB.bat
+*.bat
