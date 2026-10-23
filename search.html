@@ -341,6 +341,96 @@
             border-color: #94a3b8;
         }
 
+                /* Top & Bottom Card Action Buttons & Header Actions */
+        .card-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .card-header-go-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            color: #0284c7;
+            border: 1px solid #cbd5e1;
+            padding: 5px 11px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .card-header-go-btn:hover {
+            background: #0284c7;
+            color: #ffffff !important;
+            border-color: #0284c7;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 600px) {
+            .card-header-go-btn span { display: none; }
+            .card-header-go-btn { padding: 5px 8px; }
+        }
+        .card-actions-top {
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .card-actions-bottom {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-book-viewer { background: #7e22ce !important; border-color: #6b21a8 !important; }
+        .btn-book-viewer:hover { background: #6b21a8 !important; }
+        .btn-case-viewer { background: #be123c !important; border-color: #9f1239 !important; }
+        .btn-case-viewer:hover { background: #9f1239 !important; }
+        .btn-pharma-viewer { background: #0891b2 !important; border-color: #0e7490 !important; }
+        .btn-pharma-viewer:hover { background: #0e7490 !important; }
+        .btn-direct-pdf { background: #0284c7 !important; border-color: #0369a1 !important; }
+        .btn-direct-pdf:hover { background: #0369a1 !important; }
+        .btn-mcq-viewer { background: #0284c7 !important; border-color: #0369a1 !important; }
+        .btn-newbook-viewer { background: #d97706 !important; border-color: #b45309 !important; }
+        .btn-essay-viewer { background: #15803d !important; border-color: #166534 !important; }
+
+        .new-tab-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #475569;
+            user-select: none;
+            transition: all 0.2s;
+        }
+        .new-tab-toggle:hover {
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+        .new-tab-toggle input[type="checkbox"] {
+            accent-color: #0ea5e9;
+            cursor: pointer;
+            width: 14px;
+            height: 14px;
+        }
+
         /* Result Items & Cards */
         #results {
             display: flex;
@@ -985,6 +1075,10 @@
                     <i class="fa-solid fa-angles-up"></i>
                     <span>Σύμπτυξη Όλων</span>
                 </button>
+                <label class="new-tab-toggle" title="Επιλογή αν οι εφαρμογές θα ανοίγουν σε νέα καρτέλα ή στην ίδια">
+                    <input type="checkbox" id="open-new-tab-checkbox" onchange="toggleOpenInNewTab(this.checked)" checked>
+                    <span class="toggle-text"><i class="fa-solid fa-arrow-up-right-from-square"></i> Νέα καρτέλα</span>
+                </label>
             </div>
         </div>
 
@@ -1017,6 +1111,16 @@
         let currentSearchResults = [];
         let activeSourceFilter = 'ALL';
         let currentSearchTerms = [];
+        let openInNewTab = localStorage.getItem('search_open_new_tab') !== 'false';
+
+        function toggleOpenInNewTab(checked) {
+            openInNewTab = checked;
+            try { localStorage.setItem('search_open_new_tab', checked ? 'true' : 'false'); } catch(e) {}
+            const newTarget = openInNewTab ? '_blank' : '_self';
+            document.querySelectorAll('.open-in-app-btn, .card-header-go-btn').forEach(btn => {
+                btn.target = newTarget;
+            });
+        }
         let currentFocusInput = null;
         let displayedCount = 0;
         const PAGE_SIZE = 35;
@@ -1454,6 +1558,8 @@
 
         // Initialize Application
         document.addEventListener('DOMContentLoaded', () => {
+            const cb = document.getElementById('open-new-tab-checkbox');
+            if (cb) cb.checked = openInNewTab;
             // Build index
             unifiedSearchIndex = buildUnifiedIndex();
             currentSearchResults = unifiedSearchIndex;
@@ -1631,6 +1737,43 @@
         function renderCardHtml(item, index) {
             const snippet = highlightMatch(item.cleanText, currentSearchTerms);
             const cardId = 'card-' + index;
+            const targetAttr = openInNewTab ? 'target="_blank"' : 'target="_self"';
+
+            let btnText = 'Άνοιγμα στην Εφαρμογή';
+            let actionIcon = 'fa-arrow-up-right-from-square';
+            let btnClass = '';
+
+            if (item.source === 'case' || item.type === 'case') {
+                btnText = 'Άνοιγμα στο Κλινικό Σενάριο';
+                actionIcon = 'fa-stethoscope';
+                btnClass = 'btn-case-viewer';
+            } else if (item.source === 'book' || item.type === 'book') {
+                btnText = 'Άνοιγμα στη Βιβλιοθήκη (Πλήρης Προβολή)';
+                actionIcon = 'fa-book-open-reader';
+                btnClass = 'btn-book-viewer';
+            } else if (item.source === 'pharma' || item.type === 'pharma') {
+                btnText = 'Προβολή στον Οδηγό Φαρμάκων';
+                actionIcon = 'fa-capsules';
+                btnClass = 'btn-pharma-viewer';
+            } else if (item.source === 'mcq' || item.type === 'mcq') {
+                btnText = 'Άνοιγμα στην Εφαρμογή MCQ';
+                actionIcon = 'fa-circle-dot';
+                btnClass = 'btn-mcq-viewer';
+            } else if (item.source === 'new_book' || item.type === 'flashcard') {
+                btnText = 'Άνοιγμα στο Νέο Βιβλίο 2026';
+                actionIcon = 'fa-book-medical';
+                btnClass = 'btn-newbook-viewer';
+            } else if (item.source === 'essay' || item.type === 'essay') {
+                btnText = 'Άνοιγμα στο Θέμα Ανάπτυξης';
+                actionIcon = 'fa-pen-fancy';
+                btnClass = 'btn-essay-viewer';
+            }
+
+            const directPdfBtn = (item.type === 'book' && item.originalItem && item.originalItem.file) ? `
+                <a href="${encodeURI(item.originalItem.file)}" ${targetAttr} class="open-in-app-btn btn-direct-pdf">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Άμεσο PDF</span>
+                </a>` : '';
 
             return `
             <div class="result-card" id="${cardId}">
@@ -1646,16 +1789,34 @@
                         <div class="result-title">${item.title}</div>
                         <div class="result-snippet">${snippet}</div>
                     </div>
-                    <div class="expand-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="card-header-actions">
+                        <a href="${item.appUrl}" ${targetAttr} class="card-header-go-btn" onclick="event.stopPropagation();" title="${btnText}">
+                            <span>Μετάβαση</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <div class="expand-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+                    </div>
                 </div>
                 
                 <div class="card-body-expanded">
-                    ${renderExpandedContent(item)}
-                    <div class="card-actions-row">
-                        <a href="${item.appUrl}" target="_blank" class="open-in-app-btn">
-                            <span>${item.type === 'pharma' ? 'Προβολή στον Οδηγό Φαρμάκων' : (item.type === 'book' ? 'Άνοιγμα στη Βιβλιοθήκη' : 'Άνοιγμα στην Εφαρμογή')}</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <!-- TOP ACTIONS ROW (Πάνω-πάνω!) -->
+                    <div class="card-actions-row card-actions-top">
+                        <a href="${item.appUrl}" ${targetAttr} class="open-in-app-btn ${btnClass}">
+                            <i class="fa-solid ${actionIcon}"></i>
+                            <span>${btnText}</span>
                         </a>
+                        ${directPdfBtn}
+                    </div>
+
+                    ${renderExpandedContent(item)}
+
+                    <!-- BOTTOM ACTIONS ROW (Για άνεση μετά από ανάγνωση μεγάλων κειμένων) -->
+                    <div class="card-actions-row card-actions-bottom">
+                        <a href="${item.appUrl}" ${targetAttr} class="open-in-app-btn ${btnClass}">
+                            <i class="fa-solid ${actionIcon}"></i>
+                            <span>${btnText}</span>
+                        </a>
+                        ${directPdfBtn}
                     </div>
                 </div>
             </div>

@@ -160,18 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             markCompletedText.textContent = done ? 'Ολοκληρώθηκε ✓' : 'Σήμανση ως Ολοκληρωμένο';
             refreshCaseOptions();
 
-    // Check if specific case requested via URL (?case=kl-01)
-    const urlParams = new URLSearchParams(window.location.search);
-    const targetCaseId = urlParams.get('case');
-    if (targetCaseId && typeof clinicalCases !== 'undefined' && Array.isArray(clinicalCases)) {
-        const c = clinicalCases.find(x => String(x.id) === String(targetCaseId));
-        if (c) {
-            if (bookSelect) bookSelect.value = c.book;
-            loadCasesForBook(c.book);
-            if (caseSelect) caseSelect.value = c.id;
-            renderCase(c);
-        }
-    }
+
         } catch (err) {
             markCompletedText.textContent = 'Σφάλμα: ' + err.message;
             console.error('mark-completed:', err);
@@ -439,8 +428,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Auto-select and display case from URL parameter (?case=kl-01)
+    function handleCaseUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetCaseId = urlParams.get('case');
+        if (!targetCaseId) return;
+
+        if (typeof clinicalCases !== 'undefined' && Array.isArray(clinicalCases)) {
+            const c = clinicalCases.find(x => String(x.id).toLowerCase() === String(targetCaseId).toLowerCase());
+            if (c) {
+                if (bookSelect) bookSelect.value = c.book;
+                loadCasesForBook(c.book);
+                if (caseSelect) caseSelect.value = String(c.id);
+                renderCase(c);
+                setTimeout(() => {
+                    if (activeCaseContainer) {
+                        activeCaseContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 150);
+            }
+        }
+    }
+
     // Initialize
     loadBooks();
+    handleCaseUrlParams();
+    window.addEventListener('popstate', handleCaseUrlParams);
 });
 
 /* ==========================================================================
