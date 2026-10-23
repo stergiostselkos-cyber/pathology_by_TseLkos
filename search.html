@@ -1007,7 +1007,7 @@
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
     <script src="data/cases_em_70.js?v=20261021"></script>
-    <script src="books.js?v=20261021"></script>
+    <script src="books.js?v=20261023.booksfix"></script>
     <script src="data/pharma_database.js?v=20261023"></script>
 
     <!-- Master Unified Search Logic -->
@@ -1359,6 +1359,7 @@
                     if (Array.isArray(b.parts)) {
                         b.parts.forEach((p, idx) => {
                             let fullText = bTitle + " " + (p.title || "");
+                            let bookUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&part=' + idx + '&file=' + encodeURIComponent(p.file);
                             index.push({
                                 id: 'book-' + bKey + '-' + idx,
                                 source: 'book',
@@ -1370,7 +1371,7 @@
                                 cleanText: fullText,
                                 normText: removeAccents(fullText),
                                 originalItem: p,
-                                appUrl: 'books.html?file=' + encodeURIComponent(p.file),
+                                appUrl: bookUrl,
                                 type: 'book'
                             });
                         });
@@ -1381,6 +1382,7 @@
                             if (Array.isArray(parts)) {
                                 parts.forEach((p, idx) => {
                                     let fullText = bTitle + " " + ch + " " + (p.title || "");
+                                    let bookUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&chapter=' + encodeURIComponent(ch) + '&subpart=' + idx + '&file=' + encodeURIComponent(p.file);
                                     index.push({
                                         id: 'book-' + bKey + '-' + ch + '-' + idx,
                                         source: 'book',
@@ -1392,7 +1394,7 @@
                                         cleanText: fullText,
                                         normText: removeAccents(fullText),
                                         originalItem: p,
-                                        appUrl: 'books.html?file=' + encodeURIComponent(p.file),
+                                        appUrl: bookUrl,
                                         type: 'book'
                                     });
                                 });
@@ -1651,7 +1653,7 @@
                     ${renderExpandedContent(item)}
                     <div class="card-actions-row">
                         <a href="${item.appUrl}" target="_blank" class="open-in-app-btn">
-                            <span>${item.type === 'pharma' ? 'Προβολή στον Οδηγό Φαρμάκων' : (item.type === 'book' ? 'Άνοιγμα PDF στη Βιβλιοθήκη' : 'Άνοιγμα στην Εφαρμογή')}</span>
+                            <span>${item.type === 'pharma' ? 'Προβολή στον Οδηγό Φαρμάκων' : (item.type === 'book' ? 'Άνοιγμα στη Βιβλιοθήκη' : 'Άνοιγμα στην Εφαρμογή')}</span>
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
@@ -1718,13 +1720,20 @@
                     }
                 } 
                 else if (item.type === 'book') {
+                    let directPdf = (item.originalItem && item.originalItem.file) ? encodeURI(item.originalItem.file) : item.appUrl;
                     out += `<div class="full-question-box"><strong>${item.chapter}</strong><br>${item.title}</div>`;
                     out += `<div class="full-answer-box">
-                        <p style="margin-bottom:10px;">Το αρχείο είναι διαθέσιμο για άμεση προβολή σε μορφή PDF στη Βιβλιοθήκη.</p>
-                        <a href="${item.appUrl}" target="_blank" class="open-in-app-btn" style="display:inline-flex;">
-                            <i class="fa-solid fa-file-pdf"></i>
-                            <span>Άνοιγμα PDF στη Βιβλιοθήκη</span>
-                        </a>
+                        <p style="margin-bottom:12px; color:#475569;">Το αρχείο είναι διαθέσιμο για προβολή στη Βιβλιοθήκη με αυτόματη επιλογή κεφαλαίου στις μπάρες ή για άμεσο άνοιγμα του αρχείου PDF στον browser.</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                            <a href="${item.appUrl}" target="_blank" class="open-in-app-btn" style="display:inline-flex; background:#7e22ce; border-color:#6b21a8; color:#fff;">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                                <span>Άνοιγμα στη Βιβλιοθήκη (Πλήρης Προβολή &amp; Μπάρες)</span>
+                            </a>
+                            <a href="${directPdf}" target="_blank" class="open-in-app-btn" style="display:inline-flex; background:#0284c7; border-color:#0369a1; color:#fff;">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>Άμεσο Άνοιγμα Αρχείου PDF</span>
+                            </a>
+                        </div>
                     </div>`;
                 }
                 else if (item.type === 'pharma') {

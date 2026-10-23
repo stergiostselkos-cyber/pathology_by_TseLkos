@@ -1624,16 +1624,33 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         pdfContainer.style.display = 'none';
         pdfPlaceholder.style.display = 'block';
         pdfIframe.src = '';
-    if(externalPdfBtn) externalPdfBtn.href = '#';
+        if (externalPdfBtn) externalPdfBtn.href = '#';
     }
 
-    bookSelect.addEventListener('change', (e) => {
-        const selectedBookId = e.target.value;
+    function displayPdf(filePath) {
+        if (!filePath) return;
+        let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
+        if (isLocalDesktop) {
+            pdfIframe.src = filePath;
+        } else {
+            pdfIframe.src = 'pdfjs/web/viewer.html?file=' + encodeURIComponent('../../' + filePath);
+        }
+        if (externalPdfBtn) externalPdfBtn.href = filePath;
+        pdfPlaceholder.style.display = 'none';
+        pdfContainer.style.display = 'block';
+
+        setTimeout(() => {
+            pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+    }
+
+    function selectBook(selectedBookId) {
         currentSelectedBook = booksDatabase[selectedBookId];
+        bookSelect.value = selectedBookId || "";
         
         partSelect.innerHTML = '<option value="">-- Επιλέξτε Κεφάλαιο --</option>';
-        if(subpartSelect) subpartSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>';
-        if(subpartSection) subpartSection.style.display = 'none';
+        if (subpartSelect) subpartSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>';
+        if (subpartSection) subpartSection.style.display = 'none';
         resetPdfViewer();
 
         if (currentSelectedBook) {
@@ -1654,10 +1671,55 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
                     partSelect.appendChild(option);
                 }
             }
+            return true;
         } else {
             partSelect.disabled = true;
             partSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>';
+            return false;
         }
+    }
+
+    function selectPart(index) {
+        if (!currentSelectedBook || !currentSelectedBook.parts) return false;
+        const selectedPart = currentSelectedBook.parts[index];
+        if (!selectedPart) return false;
+
+        partSelect.value = 'part_' + index;
+        if (subpartSection) subpartSection.style.display = 'none';
+        displayPdf(selectedPart.file);
+        return true;
+    }
+
+    function selectChapter(chapterName, subpartIndex) {
+        if (!currentSelectedBook || !currentSelectedBook.chapters) return false;
+        const subchapters = currentSelectedBook.chapters[chapterName];
+        if (!subchapters) return false;
+
+        partSelect.value = 'chapter_' + chapterName;
+        if (subpartSelect) {
+            subpartSelect.innerHTML = '<option value="">-- Επιλέξτε Υποκεφάλαιο --</option>';
+            subchapters.forEach((sub, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = sub.title;
+                subpartSelect.appendChild(option);
+            });
+        }
+        if (subpartSection) subpartSection.style.display = 'flex';
+
+        if (subpartIndex !== undefined && subpartIndex !== null && subpartIndex !== "") {
+            const idx = parseInt(subpartIndex, 10);
+            if (!isNaN(idx) && subchapters[idx]) {
+                if (subpartSelect) subpartSelect.value = idx;
+                displayPdf(subchapters[idx].file);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bookSelect.addEventListener('change', (e) => {
+        selectBook(e.target.value);
     });
 
     partSelect.addEventListener('change', (e) => {
@@ -1665,63 +1727,104 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         resetPdfViewer();
         
         if (!selectedVal) {
-            if(subpartSection) subpartSection.style.display = 'none';
+            if (subpartSection) subpartSection.style.display = 'none';
             return;
         }
 
         if (selectedVal.startsWith('part_')) {
-            const index = parseInt(selectedVal.split('_')[1]);
-            const selectedPart = currentSelectedBook.parts[index];
-            
-            if(subpartSection) subpartSection.style.display = 'none';
-            
-            let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
-            if (isLocalDesktop) {
-                pdfIframe.src = selectedPart.file;
-            } else {
-                pdfIframe.src = 'pdfjs/web/viewer.html?file=' + encodeURIComponent('../../' + selectedPart.file);
-            }
-        if(externalPdfBtn) externalPdfBtn.href = selectedPart.file; 
-            pdfPlaceholder.style.display = 'none';
-            pdfContainer.style.display = 'block';
+            const index = parseInt(selectedVal.split('_')[1], 10);
+            selectPart(index);
         } else if (selectedVal.startsWith('chapter_')) {
             const chapterName = selectedVal.substring(8);
-            const subchapters = currentSelectedBook.chapters[chapterName];
-            
-            if(subpartSelect) {
-                subpartSelect.innerHTML = '<option value="">-- Επιλέξτε Υποκεφάλαιο --</option>';
-                subchapters.forEach((sub, index) => {
-                    const option = document.createElement('option');
-                    option.value = index;
-                    option.textContent = sub.title;
-                    subpartSelect.appendChild(option);
-                });
-            }
-            if(subpartSection) subpartSection.style.display = 'flex';
+            selectChapter(chapterName, null);
         }
     });
 
-    if(subpartSelect) {
+    if (subpartSelect) {
         subpartSelect.addEventListener('change', (e) => {
             const subpartIndex = e.target.value;
-            
             if (subpartIndex !== "") {
                 const chapterVal = partSelect.value;
                 const chapterName = chapterVal.substring(8);
-                const selectedSubchapter = currentSelectedBook.chapters[chapterName][parseInt(subpartIndex)];
-                
-                let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
-                if (isLocalDesktop) {
-                    pdfIframe.src = selectedSubchapter.file;
-                } else {
-                    pdfIframe.src = 'pdfjs/web/viewer.html?file=' + encodeURIComponent('../../' + selectedSubchapter.file);
-                }
-        if(externalPdfBtn) externalPdfBtn.href = selectedSubchapter.file; 
-                pdfPlaceholder.style.display = 'none';
-                pdfContainer.style.display = 'block';
+                selectChapter(chapterName, subpartIndex);
             } else {
                 resetPdfViewer();
             }
         });
     }
+
+    function normalizePath(str) {
+        if (!str) return '';
+        try { str = decodeURIComponent(str); } catch(e) {}
+        return str.replace(/\\/g, '/').replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
+    function findItemByFile(targetFile) {
+        if (!targetFile) return null;
+        let cleanTarget = normalizePath(targetFile);
+        if (cleanTarget.startsWith('./')) cleanTarget = cleanTarget.substring(2);
+
+        for (const bId in booksDatabase) {
+            const book = booksDatabase[bId];
+            if (book.parts) {
+                for (let i = 0; i < book.parts.length; i++) {
+                    let f = normalizePath(book.parts[i].file);
+                    if (f === cleanTarget || f.endsWith(cleanTarget) || cleanTarget.endsWith(f)) {
+                        return { bookId: bId, type: 'part', partIndex: i, item: book.parts[i] };
+                    }
+                }
+            }
+            if (book.chapters) {
+                for (const chName in book.chapters) {
+                    const subList = book.chapters[chName];
+                    for (let j = 0; j < subList.length; j++) {
+                        let f = normalizePath(subList[j].file);
+                        if (f === cleanTarget || f.endsWith(cleanTarget) || cleanTarget.endsWith(f)) {
+                            return { bookId: bId, type: 'chapter', chapterName: chName, subpartIndex: j, item: subList[j] };
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    // Auto-select from URL Parameters
+    function handleUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const reqBook = urlParams.get('book');
+        const reqChapter = urlParams.get('chapter');
+        const reqSubpart = urlParams.get('subpart');
+        const reqPart = urlParams.get('part');
+        const reqFile = urlParams.get('file');
+
+        // Priority 1: Direct parameters (book + part / chapter)
+        if (reqBook && booksDatabase[reqBook]) {
+            selectBook(reqBook);
+            if (reqPart !== null && reqPart !== undefined && reqPart !== "") {
+                selectPart(parseInt(reqPart, 10));
+                return;
+            } else if (reqChapter) {
+                selectChapter(reqChapter, (reqSubpart !== null && reqSubpart !== undefined && reqSubpart !== "") ? reqSubpart : 0);
+                return;
+            }
+        }
+
+        // Priority 2: Match by File (either standalone or fallback)
+        if (reqFile) {
+            const match = findItemByFile(reqFile);
+            if (match) {
+                selectBook(match.bookId);
+                if (match.type === 'part') {
+                    selectPart(match.partIndex);
+                } else if (match.type === 'chapter') {
+                    selectChapter(match.chapterName, match.subpartIndex);
+                }
+                return;
+            }
+        }
+    }
+
+    handleUrlParams();
+    window.addEventListener('popstate', handleUrlParams);
 });
