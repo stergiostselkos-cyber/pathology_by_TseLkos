@@ -19,6 +19,8 @@ const explanationPanel = document.getElementById('explanation-panel');
 const explanationContent = document.getElementById('explanation-content');
 const nextButton = document.getElementById('next-button');
 const prevButton = document.getElementById('prev-button');
+const nextButtonTop = document.getElementById('next-button-top');
+const prevButtonTop = document.getElementById('prev-button-top');
 const themeToggleBtn = document.getElementById('theme-toggle');
 const revealAnswerBtn = document.getElementById('reveal-answer-btn');
 
@@ -50,9 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadQuestions();
     setupDropdownEventListeners();
     
-    // Event Listeners
-    nextButton.addEventListener('click', handleNextQuestion);
-    prevButton.addEventListener('click', handlePrevQuestion);
+    // Event Listeners (both bottom and top navigation)
+    const allNextBtns = [nextButton, document.getElementById('next-button-top')].filter(Boolean);
+    const allPrevBtns = [prevButton, document.getElementById('prev-button-top')].filter(Boolean);
+    allNextBtns.forEach(btn => btn.addEventListener('click', handleNextQuestion));
+    allPrevBtns.forEach(btn => btn.addEventListener('click', handlePrevQuestion));
     restartButton.addEventListener('click', restartQuiz);
     // themeToggleBtn listener removed
     if (revealAnswerBtn) {
@@ -349,16 +353,17 @@ function showQuestion(index) {
     categoryBadge.textContent = question.category || "Παθολογική Ανατομική";
     questionText.textContent = getCleanQuestionTitle(question.question);
     
-    // Navigation state
-    prevButton.disabled = (index === 0);
+    // Navigation state (sync both bottom and top navigation bars)
+    const prevButtons = [prevButton, document.getElementById('prev-button-top')].filter(Boolean);
+    const nextButtons = [nextButton, document.getElementById('next-button-top')].filter(Boolean);
     
-    // Change Next button text on the last question to reflect completion
-    const nextSpan = nextButton.querySelector('span');
-    if (index === filteredQuestions.length - 1) {
-        nextSpan.textContent = "Αποτελέσματα";
-    } else {
-        nextSpan.textContent = "Επόμενη";
-    }
+    prevButtons.forEach(btn => btn.disabled = (index === 0));
+    
+    const nextLabel = (index === filteredQuestions.length - 1) ? "Αποτελέσματα" : "Επόμενη";
+    nextButtons.forEach(btn => {
+        const span = btn.querySelector('span');
+        if (span) span.textContent = nextLabel;
+    });
     
     const correctIndices = getCorrectAnswerIndices(question);
     
@@ -404,6 +409,7 @@ function showQuestion(index) {
         if (revealAnswerBtn) revealAnswerBtn.style.display = 'none';
     } else {
         explanationPanel.classList.remove('expanded');
+        explanationPanel.classList.add('collapsed');
         explanationContent.innerHTML = "";
         if (revealAnswerBtn) revealAnswerBtn.style.display = 'flex';
     }
@@ -511,7 +517,13 @@ function revealExplanation(explanationText) {
         '</div>';
     }
     
-    explanationContent.innerHTML = finalHtml;
+    try {
+        explanationContent.innerHTML = injectSectionBackToTop(finalHtml);
+    } catch (e) {
+        console.error("Error setting explanationContent:", e);
+        explanationContent.innerHTML = finalHtml;
+    }
+    explanationPanel.classList.remove('collapsed');
     explanationPanel.classList.add('expanded');
     
     // Smooth scroll down to explanation panel if mobile
@@ -586,6 +598,7 @@ function handleNextQuestion() {
     if (currentQuestionIndex < filteredQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion(currentQuestionIndex);
+        window.scrollToQuestionTop();
     } else {
         showResults();
     }
@@ -598,6 +611,7 @@ function handlePrevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         showQuestion(currentQuestionIndex);
+        window.scrollToQuestionTop();
     }
 }
 
@@ -893,5 +907,83 @@ document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         openGlobalSearch();
+    }
+});
+
+
+// ==============================================================================
+// Section Back-to-Top & Floating Return Utilities (v20261023)
+// ==============================================================================
+window.scrollToQuestionTop = function() {
+    const target = document.getElementById('quiz-view') || 
+                   document.getElementById('question-text') || 
+                   document.getElementById('quiz-navigation-top') || 
+                   document.querySelector('.question-card') || 
+                   document.body;
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
+
+function injectSectionBackToTop(html) {
+    if (!html || typeof html !== 'string') return html;
+    try {
+        const topBtnHtml = '<div class="section-back-to-top">' +
+            '<button type="button" class="btn-section-top" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">' +
+            '<svg fill="none" height="14" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '</svg>' +
+            '<span>Επιστροφή στην κορυφή</span>' +
+            '</button></div>';
+
+        // 1. If explanation has .section-heading or .theory-icon-header
+        if (html.includes('class="section-heading"') || html.includes('class="theory-icon-header"')) {
+            let count = 0;
+            let modified = html.replace(/<div class="(?:section-heading|theory-icon-header)"/g, (match) => {
+                count++;
+                if (count > 1) {
+                    return topBtnHtml + match;
+                }
+                return match;
+            });
+            return modified + topBtnHtml;
+        }
+        
+        // 2. If explanation has h2, h3, or h4
+        if (html.includes('<h2') || html.includes('<h3') || html.includes('<h4')) {
+            let count = 0;
+            let modified = html.replace(/<h[234]/g, (match) => {
+                count++;
+                if (count > 1) {
+                    return topBtnHtml + match;
+                }
+                return match;
+            });
+            return modified + topBtnHtml;
+        }
+
+        // 3. Fallback: if long enough (> 400 chars), append at the end
+        if (html.length > 400) {
+            return html + topBtnHtml;
+        }
+
+        return html;
+    } catch (err) {
+        console.error("injectSectionBackToTop error:", err);
+        return html;
+    }
+}
+
+// Window scroll listener for floating back-to-top button
+window.addEventListener('scroll', () => {
+    const floatBtn = document.getElementById('floating-back-to-top');
+    if (floatBtn) {
+        if (window.scrollY > 280) {
+            floatBtn.classList.remove('hidden');
+        } else {
+            floatBtn.classList.add('hidden');
+        }
     }
 });

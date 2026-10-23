@@ -2,6 +2,7 @@
 
 <html lang="el">
 <head>
+    <script src="auth-guard.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Προσομοιωτής Quiz Παθολογίας</title>
@@ -33,7 +34,7 @@
     }
 
     /* Quiz Panel Outer Background (Solid Thalassi Blue) */
-    /* solid thalassi blue */
+    #quiz-view.view-panel {
       border: 2px solid var(--primary-hover) !important;
       padding: 24px !important;
       border-radius: 20px !important;
@@ -267,6 +268,24 @@
 <span>Εμφάνιση Απάντησης</span>
 </button>
 </div>
+<!-- Top Quick Navigation Bar -->
+<div class="quiz-navigation quiz-navigation-top" id="quiz-navigation-top">
+<button class="btn btn-secondary btn-icon prev-button-sync" id="prev-button-top" disabled="">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 12H5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 19L5 12L12 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Προηγούμενη</span>
+</button>
+<button class="btn btn-primary btn-icon next-button-sync" id="next-button-top">
+<span>Επόμενη</span>
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 12H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 5L19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+
 <!-- Explanation Panel (Collapsible) -->
 <div class="explanation-panel collapsed" id="explanation-panel">
 <div class="explanation-panel-inner">
@@ -368,6 +387,12 @@
     let scriptSrc = "questions_v3.js";
     if (bank === 'bank_1') {
         scriptSrc = "questions_bank_1.js";
+    } else if (bank === 'larnaka' || bank === 'larnaka_1' || bank === 'larnaka_part_01') {
+        scriptSrc = "LARNAKA/larnaka_part_01.js";
+    } else if (bank === 'larnaka_2' || bank === 'larnaka_part_02') {
+        scriptSrc = "LARNAKA/larnaka_part_02.js";
+    } else if (bank === 'larnaka_3' || bank === 'larnaka_part_03') {
+        scriptSrc = "LARNAKA/larnaka_part_03.js";
     }
     scriptSrc += "?v=" + new Date().getTime();
     document.write('<script charset="UTF-8" src="' + scriptSrc + '"><\/script>');
@@ -419,6 +444,14 @@
   };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<!-- Floating Back to Top Button -->
+<button id="floating-back-to-top" class="floating-back-to-top hidden" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή" aria-label="Επιστροφή στην κορυφή">
+<svg fill="none" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
 
 </body>
 </html>

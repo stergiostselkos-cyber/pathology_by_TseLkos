@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
+    <script src="auth-guard.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Pathologia Quiz</title>
@@ -222,6 +223,14 @@
                 💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
             </div>
 </footer>
+
+<!-- Floating Return-to-Top Button -->
+<button class="floating-back-to-top hidden" id="floating-back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Επιστροφή στην κορυφή">
+<svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+
 </div>
 <!-- App Logic Scripts -->
 <script charset="UTF-8" src="data/cases_klinika_100.js"></script>

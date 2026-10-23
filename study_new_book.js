@@ -672,9 +672,13 @@ function setupEventListeners() {
 
     // Quick Recall Controls (Flashcards)
     if (quickRevealBtn) quickRevealBtn.addEventListener('click', revealQuickAnswer);
-    if (quickRecallPrevBtn) quickRecallPrevBtn.addEventListener('click', () => navigateQuickRecall(-1));
-    if (quickRecallNextBtn) quickRecallNextBtn.addEventListener('click', () => navigateQuickRecall(1));
-    if (quickRecallRandomBtn) quickRecallRandomBtn.addEventListener('click', loadQuickRandomQuestion);
+    const allPrevStudyBtns = [quickRecallPrevBtn, document.getElementById('quick-recall-prev-btn-top')].filter(Boolean);
+    const allNextStudyBtns = [quickRecallNextBtn, document.getElementById('quick-recall-next-btn-top')].filter(Boolean);
+    const allRandStudyBtns = [quickRecallRandomBtn, document.getElementById('quick-recall-random-btn-top')].filter(Boolean);
+
+    allPrevStudyBtns.forEach(btn => btn.addEventListener('click', () => navigateQuickRecall(-1)));
+    allNextStudyBtns.forEach(btn => btn.addEventListener('click', () => navigateQuickRecall(1)));
+    allRandStudyBtns.forEach(btn => btn.addEventListener('click', loadQuickRandomQuestion));
 
     const quickMainChaptersDropdownBtn = document.getElementById('quick-main-chapters-dropdown-btn');
     const quickMainChaptersOverlay = document.getElementById('quick-main-chapters-overlay');
@@ -857,12 +861,18 @@ function loadQuickRecallQuestion(index) {
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.remove('hidden');
 
     if (quickRecallPrevBtn) quickRecallPrevBtn.disabled = (currentIndexInMatch === 0 || currentIndexInMatch === -1);
+    const prevBtnTop = document.getElementById('quick-recall-prev-btn-top');
+    if (prevBtnTop) prevBtnTop.disabled = (currentIndexInMatch === 0 || currentIndexInMatch === -1);
+
+    const nextLabel = (currentIndexInMatch === matchingIndices.length - 1) ? "Επανεκκίνηση" : "Επόμενο";
     if (quickRecallNextBtn) {
-        if (currentIndexInMatch === matchingIndices.length - 1) {
-            quickRecallNextBtn.querySelector('span').textContent = "Επανεκκίνηση";
-        } else {
-            quickRecallNextBtn.querySelector('span').textContent = "Επόμενο";
-        }
+        const span = quickRecallNextBtn.querySelector('span');
+        if (span) span.textContent = nextLabel;
+    }
+    const nextBtnTop = document.getElementById('quick-recall-next-btn-top');
+    if (nextBtnTop) {
+        const span = nextBtnTop.querySelector('span');
+        if (span) span.textContent = nextLabel;
     }
 }
 
@@ -893,7 +903,12 @@ function revealQuickAnswer() {
     }
 
     if (quickCorrectAnswerText) {
-        quickCorrectAnswerText.innerHTML = ansHtml;
+        try {
+            quickCorrectAnswerText.innerHTML = injectSectionBackToTop(ansHtml);
+        } catch (e) {
+            console.error("Error setting quickCorrectAnswerText:", e);
+            quickCorrectAnswerText.innerHTML = ansHtml;
+        }
         if (typeof highlightSearchTerms === 'function') {
             highlightSearchTerms(quickCorrectAnswerText);
             const qEl = document.getElementById('question-text');
@@ -920,7 +935,12 @@ function revealQuickAnswer() {
         if (expHtml) {
             explanationWrapper.style.display = "block";
             if (quickRecallExplanationContent) {
-                quickRecallExplanationContent.innerHTML = expHtml;
+                try {
+                    quickRecallExplanationContent.innerHTML = injectSectionBackToTop(expHtml);
+                } catch (e) {
+                    console.error("Error setting quickRecallExplanationContent:", e);
+                    quickRecallExplanationContent.innerHTML = expHtml;
+                }
             }
         } else {
             explanationWrapper.style.display = "none";
@@ -968,6 +988,7 @@ function revealQuickAnswer() {
 
 }
 function navigateQuickRecall(direction) {
+    window.scrollToQuestionTop();
     const matchingIndices = [];
     flashcardQuestions.forEach((q, idx) => {
         if (isQuestionMatch(q, activeQuickChapter, activeQuickSubchapter, activeQuickThematicUnit)) {
@@ -2374,3 +2395,80 @@ function highlightSearchTerms(element) {
         });
     }, 500);
 })();
+
+
+// ==============================================================================
+// Section Back-to-Top & Floating Return Utilities (v20261023)
+// ==============================================================================
+window.scrollToQuestionTop = function() {
+    const target = document.getElementById('quick-recall-view') || 
+                   document.querySelector('.topic-title-header') || 
+                   document.querySelector('.app-main') || 
+                   document.body;
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
+
+function injectSectionBackToTop(html) {
+    if (!html || typeof html !== 'string') return html;
+    try {
+        const topBtnHtml = '<div class="section-back-to-top">' +
+        '<button type="button" class="btn-section-top" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">' +
+        '<svg fill="none" height="14" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
+        '<span>Επιστροφή στην κορυφή</span>' +
+        '</button></div>';
+
+    // 1. If explanation has .section-heading
+    if (html.includes('class="section-heading"')) {
+        let count = 0;
+        let modified = html.replace(/<div class="section-heading"/g, (match) => {
+            count++;
+            if (count > 1) {
+                return topBtnHtml + match;
+            }
+            return match;
+        });
+        return modified + topBtnHtml;
+    }
+    
+    // 2. If explanation has h2, h3, or h4
+    if (html.includes('<h2') || html.includes('<h3') || html.includes('<h4')) {
+        let count = 0;
+        let modified = html.replace(/<h[234]/g, (match) => {
+            count++;
+            if (count > 1) {
+                return topBtnHtml + match;
+            }
+            return match;
+        });
+        return modified + topBtnHtml;
+    }
+
+    // 3. Fallback: if long enough (> 400 chars), append at the end
+    if (html.length > 400) {
+        return html + topBtnHtml;
+    }
+
+    return html;
+    } catch (err) {
+        console.error("injectSectionBackToTop error:", err);
+        return html;
+    }
+}
+
+// Window scroll listener for floating back-to-top button
+window.addEventListener('scroll', () => {
+    const floatBtn = document.getElementById('floating-back-to-top');
+    if (floatBtn) {
+        if (window.scrollY > 280) {
+            floatBtn.classList.remove('hidden');
+        } else {
+            floatBtn.classList.add('hidden');
+        }
+    }
+});

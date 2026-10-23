@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σφάλμα Συστήματος 503 • Πλατφόρμα Εκτός Λειτουργίας</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.78);
+            --card-border: rgba(239, 68, 68, 0.22);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.25);
+            --accent-glow: rgba(14, 165, 233, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(239, 68, 68, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 85% 85%, rgba(30, 41, 59, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 15% 85%, rgba(15, 23, 42, 0.6) 0%, transparent 50%);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle ambient grid pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .crash-container {
+            width: 100%;
+            max-width: 740px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8),
+                        0 0 50px -10px var(--danger-glow);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Error Header Pill */
+        .error-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239, 68, 68, 0.14);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fca5a5;
+            margin-bottom: 20px;
+        }
+
+        .error-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--danger);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--danger);
+            animation: pulseDot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .crash-description {
+            color: var(--text-secondary);
+            font-size: 0.96rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Illustration Frame */
+        .illustration-wrapper {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #0b1120;
+        }
+
+        .illustration-img {
+            width: 100%;
+            height: auto;
+            max-height: 380px;
+            object-fit: cover;
+            display: block;
+            filter: contrast(1.05) saturate(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .illustration-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 12, 20, 0.85) 0%, transparent 45%),
+                        radial-gradient(circle at center, transparent 60%, rgba(8, 12, 20, 0.4) 100%);
+            pointer-events: none;
+        }
+
+        /* Technical Log Console */
+        .terminal-box {
+            background: rgba(2, 6, 23, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: left;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            overflow-x: auto;
+        }
+
+        .terminal-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .terminal-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .term-tag {
+            color: #f87171;
+            font-weight: 700;
+        }
+
+        .term-msg {
+            color: #cbd5e1;
+        }
+
+        .term-time {
+            color: #475569;
+            margin-left: auto;
+        }
+
+        .status-footer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+
+        /* 
+           SECRET REFLEX HAMMER (EASTER EGG)
+           Positioned specifically in the BOTTOM-LEFT INSIDE THE IMAGE (on the floor).
+           Looks exactly like an authentic medical tool (Taylor neurological hammer)
+           scattered on the floor. NO button borders, NO backgrounds, cursor default.
+        */
+        .secret-trigger-in-image {
+            position: absolute;
+            bottom: 16px;
+            left: 18px;
+            z-index: 25;
+            cursor: default; /* Discrete: looks like an instrument lying on the floor */
+            user-select: none;
+            -webkit-user-select: none;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            opacity: 0.85;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .secret-trigger-in-image:hover {
+            opacity: 0.98;
+        }
+
+        .secret-trigger-in-image:active {
+            transform: scale(0.92);
+        }
+
+        .reflex-hammer-svg {
+            width: 54px;
+            height: 54px;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.92));
+            transform: rotate(35deg);
+        }
+
+        @media (max-width: 640px) {
+            .crash-container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 1.45rem;
+            }
+            .crash-description {
+                font-size: 0.88rem;
+            }
+            .illustration-img {
+                max-height: 280px;
+            }
+            .secret-trigger-in-image {
+                bottom: 12px;
+                left: 12px;
+            }
+            .reflex-hammer-svg {
+                width: 44px;
+                height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="crash-container">
+        <!-- Error Status Badge -->
+        <div class="error-badge">
+            <span class="error-dot"></span>
+            CRITICAL_SERVER_CRASH • ERROR 503
+        </div>
+
+        <!-- Main Title -->
+        <h1>Η Πλατφόρμα Τέθηκε Εκτός Λειτουργίας</h1>
+        
+        <!-- Explanation (Technical Complications, Not Maintenance) -->
+        <p class="crash-description">
+            Παρουσιάστηκαν κρίσιμες τεχνικές επιπλοκές στην απόκριση των διακομιστών και στη βάση δεδομένων. 
+            Η λειτουργία όλων των ιατρικών εφαρμογών έχει ανασταλεί εκτάκτως λόγω ανεπανόρθωτης βλάβης συστήματος.
+        </p>
+
+        <!-- Illustration: Crying student with tablet & scattered medical items -->
+        <div class="illustration-wrapper">
+            <img src="assets/images/failed_student_crash.jpg" 
+                 alt="Σφάλμα Συστήματος" 
+                 class="illustration-img"
+                 onerror="this.src='https://images.unsplash.com/photo-1584467735871-8e85353a8413?q=80&w=1000&auto=format&fit=crop'">
+            <div class="illustration-overlay"></div>
+
+            <!-- 
+                SECRET TRIGGER IN BOTTOM-LEFT INSIDE THE IMAGE:
+                Small Neurological Reflex Hammer (Taylor hammer with triangular rubber head & stainless steel shaft)
+                Lying on the floor among books & bones inside the picture. Clicking it opens access.html.
+            -->
+            <div class="secret-trigger-in-image" id="secret-reflex-hammer" title="" onclick="openAccess()" role="button" tabindex="0">
+                <svg class="reflex-hammer-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Metallic gradient for the chrome handle -->
+                        <linearGradient id="metalHandle" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#cbd5e1" />
+                            <stop offset="35%" stop-color="#f8fafc" />
+                            <stop offset="70%" stop-color="#94a3b8" />
+                            <stop offset="100%" stop-color="#64748b" />
+                        </linearGradient>
+                        <!-- Rubber head gradient (classic Taylor maroon/dark red rubber) -->
+                        <linearGradient id="rubberHead" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#991b1b" />
+                            <stop offset="50%" stop-color="#7f1d1d" />
+                            <stop offset="100%" stop-color="#450a0a" />
+                        </linearGradient>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.85"/>
+                        </filter>
+                    </defs>
+
+                    <!-- Taylor Reflex Hammer -->
+                    <g filter="url(#shadow)">
+                        <!-- Chrome Metal Handle (slender tapered flat rod) -->
+                        <!-- Bottom Babinski pointed tip -->
+                        <path d="M78 82 L75 87 L71 85 L73 80 Z" fill="#94a3b8" />
+                        <!-- Main Stem -->
+                        <path d="M38 34 L74 81 L71 84 L35 37 Z" fill="url(#metalHandle)" stroke="#475569" stroke-width="0.8" />
+                        
+                        <!-- Collar / Ferrule clasp holding head -->
+                        <rect x="29" y="27" width="12" height="6" rx="2" transform="rotate(45 35 30)" fill="#e2e8f0" stroke="#475569" stroke-width="0.8" />
+
+                        <!-- Triangular Rubber Percussion Head (Taylor Hammer) -->
+                        <!-- Rounded Triangular Rubber Bumper -->
+                        <path d="M22 10 
+                                 C25 8, 38 18, 44 26 
+                                 C46 29, 39 42, 33 46 
+                                 C29 48, 14 36, 12 30 
+                                 C10 26, 18 12, 22 10 Z" 
+                              fill="url(#rubberHead)" 
+                              stroke="#450a0a" 
+                              stroke-width="1.2" />
+
+                        <!-- Rubber Head Apex highlight -->
+                        <path d="M22 12 C24 10, 34 19, 40 26" stroke="#f87171" stroke-width="1" stroke-linecap="round" opacity="0.6" />
+                        
+                        <!-- Center metal retaining pin on rubber head -->
+                        <circle cx="28" cy="27" r="2.5" fill="#e2e8f0" stroke="#475569" stroke-width="0.6" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Real-looking System Crash Diagnostics Console -->
+        <div class="terminal-box">
+            <div class="terminal-row">
+                <span class="term-tag">[CRITICAL_FAULT]</span>
+                <span class="term-msg">Cluster connection pool timeout: 0x88F02C</span>
+                <span class="term-time">FAULT_ID: #9942</span>
+            </div>
+            <div class="terminal-row">
+                <span class="term-tag">[SYSTEM_KERNEL]</span>
+                <span class="term-msg">Fatal deadlock in internal query runner engine</span>
+                <span class="term-time">PID: 8888</span>
+            </div>
+            <div class="terminal-row">
+                <span class="term-tag">[STATUS]</span>
+                <span class="term-msg">All services offline. Unresolved runtime exception.</span>
+                <span class="term-time">STATE: TERMINATED</span>
+            </div>
+        </div>
+
+        <div class="status-footer">
+            Κωδικός αναφοράς σφάλματος: <strong>ERR_NODE_IO_SUBSYSTEM_FAILED_88</strong>
+        </div>
+    </div>
+
+    <script>
+        function openAccess() {
+            window.location.href = 'access.html';
+        }
+
+        // Also allow keyboard accessibility (Enter / Space on hidden focus)
+        document.getElementById('secret-reflex-hammer').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openAccess();
+            }
+        });
+    </script>
+</body>
+</html>

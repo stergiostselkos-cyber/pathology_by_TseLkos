@@ -3762,3 +3762,205 @@ body.dark-theme .table-viewer-content tr:hover td {
     background-color: #334155 !important;
 }
 
+
+
+/* ==============================================================================
+   Top Navigation & Return-to-Top Enhancements (v20261023)
+   ============================================================================== */
+
+/* Quiz & Study Top Navigation Bar */
+.quiz-navigation-top {
+    margin: 14px 0 16px 0 !important;
+    padding: 10px 14px !important;
+    background: rgba(var(--primary-rgb, 14, 165, 233), 0.05) !important;
+    border: 1px solid rgba(var(--primary-rgb, 14, 165, 233), 0.2) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+body.dark-theme .quiz-navigation-top {
+    background: rgba(var(--primary-rgb, 14, 165, 233), 0.12) !important;
+    border-color: rgba(var(--primary-rgb, 14, 165, 233), 0.3) !important;
+}
+
+/* In-line Section Back to Top */
+.section-back-to-top {
+    text-align: right;
+    margin: 20px 0 24px 0;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(var(--primary-rgb, 14, 165, 233), 0.25);
+}
+
+.btn-section-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(var(--primary-rgb, 14, 165, 233), 0.08);
+    border: 1.5px solid rgba(var(--primary-rgb, 14, 165, 233), 0.35);
+    color: var(--primary-color, #0ea5e9);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-section-top:hover {
+    background: var(--primary-color, #0ea5e9);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb, 14, 165, 233), 0.35);
+}
+
+body.dark-theme .btn-section-top {
+    background: rgba(var(--primary-rgb, 14, 165, 233), 0.18);
+    border-color: rgba(var(--primary-rgb, 14, 165, 233), 0.5);
+    color: #38bdf8;
+}
+
+body.dark-theme .btn-section-top:hover {
+    background: var(--primary-color, #0ea5e9);
+    color: #ffffff;
+}
+
+/* Global Floating Back to Top Button */
+.floating-back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color, #0ea5e9);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.floating-back-to-top:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    background: var(--primary-hover, #0284c7);
+}
+
+.floating-back-to-top.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+@media (max-width: 640px) {
+    .quiz-navigation-top {
+        padding: 8px 10px !important;
+        gap: 8px !important;
+    }
+    .quiz-navigation-top .btn {
+        padding: 10px 14px !important;
+        font-size: 0.9rem !important;
+    }
+    .btn-section-top {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+    }
+    .floating-back-to-top {
+        bottom: 20px;
+        right: 18px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+
+/* ==============================================================================
+   Larnaka Quotes Container (At the end with small font & collapsible details)
+   ============================================================================== */
+.larnaka-quotes-container {
+    margin-top: 32px !important;
+    padding: 16px 20px !important;
+    background: rgba(241, 245, 249, 0.75) !important;
+    border: 1.5px dashed #cbd5e1 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+body.dark-theme .larnaka-quotes-container {
+    background: rgba(15, 23, 42, 0.5) !important;
+    border-color: #334155 !important;
+}
+
+.larnaka-quotes-details {
+    cursor: pointer;
+}
+
+.larnaka-quotes-details summary {
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    color: #0284c7 !important;
+    padding-bottom: 8px !important;
+    outline: none !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.6) !important;
+}
+
+body.dark-theme .larnaka-quotes-details summary {
+    color: #38bdf8 !important;
+    border-bottom-color: rgba(51, 65, 85, 0.6) !important;
+}
+
+.quotes-toggle-hint {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    margin-left: auto !important;
+}
+
+body.dark-theme .quotes-toggle-hint {
+    color: #94a3b8 !important;
+}
+
+.quotes-content {
+    margin-top: 14px !important;
+    font-size: 0.85rem !important;
+    line-height: 1.52 !important;
+    color: #475569 !important;
+}
+
+body.dark-theme .quotes-content {
+    color: #94a3b8 !important;
+}
+
+.quotes-content p,
+.quotes-content div,
+.quotes-content span,
+.quotes-content i {
+    font-size: 0.85rem !important;
+    line-height: 1.52 !important;
+}
+
+.quotes-content strong,
+.quotes-content b {
+    font-size: 0.86rem !important;
+    color: #1e293b !important;
+}
+
+body.dark-theme .quotes-content strong,
+body.dark-theme .quotes-content b {
+    color: #e2e8f0 !important;
+}

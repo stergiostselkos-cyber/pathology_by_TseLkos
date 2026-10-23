@@ -600,3 +600,16 @@ document.addEventListener('keydown', (e) => {
         openGlobalSearch();
     }
 });
+
+
+// Window scroll listener for floating back-to-top button
+window.addEventListener('scroll', () => {
+    const floatBtn = document.getElementById('floating-back-to-top');
+    if (floatBtn) {
+        if (window.scrollY > 280) {
+            floatBtn.classList.remove('hidden');
+        } else {
+            floatBtn.classList.add('hidden');
+        }
+    }
+});

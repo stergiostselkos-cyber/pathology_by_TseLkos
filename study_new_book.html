@@ -2,6 +2,7 @@
 
 <html lang="el">
 <head>
+    <script src="auth-guard.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Pathologia Quiz</title>
@@ -455,6 +456,25 @@ body.dark-theme .correct-answer-box {
 <span>👀 Εμφάνιση Απάντησης</span>
 </button>
 </div>
+<!-- Top Quick Navigation Bar -->
+<div class="quiz-navigation quiz-navigation-top" id="quick-recall-navigation-top">
+<button class="btn btn-secondary btn-icon" disabled="" id="quick-recall-prev-btn-top">
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Προηγούμενο</span>
+</button>
+<button class="btn btn-secondary btn-icon" id="quick-recall-random-btn-top" style="padding: 10px 14px">
+<span>🎲 Τυχαίο</span>
+</button>
+<button class="btn btn-primary btn-icon" id="quick-recall-next-btn-top" style="border: none">
+<span>Επόμενο</span>
+<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+
 <div class="revealed-block collapsed" id="quick-revealed-block">
 <div class="correct-answer-box">
 <h4 style="opacity: 0.9">Σύντομη Απάντηση:</h4>
@@ -649,6 +669,14 @@ body.dark-theme .correct-answer-box {
   };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<!-- Floating Back to Top Button -->
+<button id="floating-back-to-top" class="floating-back-to-top hidden" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή" aria-label="Επιστροφή στην κορυφή">
+<svg fill="none" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
 
 </body>
 </html>

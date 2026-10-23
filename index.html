@@ -2,6 +2,7 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
+    <script src="auth-guard.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathologia Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -832,6 +833,9 @@
                         <option value="" disabled selected>Επίλεξε Τράπεζα Ερωτήσεων...</option>
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
+                        <option value="larnaka">Τράπεζα Θεμάτων (Λάρνακα - Μέρος 1ο: Q1-Q105)</option>
+                        <option value="larnaka_2">Τράπεζα Θεμάτων (Λάρνακα - Μέρος 2ο: Q106-Q203)</option>
+                        <option value="larnaka_3">Τράπεζα Θεμάτων (Λάρνακα - Μέρος 3ο: Q204-Q272)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
@@ -894,13 +898,18 @@
     </main>
 
     <footer>
-        <p>Σχεδιασμένο με 🎨 δημιουργικότητα & αγάπη! | Επικοινωνία: <a href="mailto:stergiostselkos@gmail.com">stergiostselkos@gmail.com</a></p>
+        <p>Σχεδιασμένο με 🎨 δημιουργικότητα & αγάπη! | Επικοινωνία: <a href="mailto:stergiostselkos@gmail.com">stergiostselkos@gmail.com</a>
+           <span style="opacity: 0.35; margin-left: 14px; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=0.35" onclick="lockPlatform()" title="Κλείδωμα Πλατφόρμας"><i class="fa-solid fa-lock"></i></span>
+        </p>
     </footer>
 
     <script>
+        function lockPlatform() {
+            localStorage.removeItem('pathologia_access_granted');
+            window.location.href = 'crash.html';
+        }
         
-        
-        function openGlobalSearch() {
+                function openGlobalSearch() {
             if (window.innerWidth < 768) {
                 window.location.href = 'search.html';
             } else {
@@ -933,7 +942,13 @@
             e.preventDefault();
             const selector = document.getElementById('mcq-selector');
             const book = selector.value;
-            if(book) {
+            if (book === 'larnaka' || book === 'larnaka_1') {
+                window.location.href = 'LARNAKA/index.html';
+            } else if (book === 'larnaka_2') {
+                window.location.href = 'LARNAKA/part2.html';
+            } else if (book === 'larnaka_3') {
+                window.location.href = 'LARNAKA/part3.html';
+            } else if (book) {
                 window.location.href = 'quiz.html?v=' + new Date().getTime() + '&bank=' + book;
             }
         }
