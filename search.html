@@ -406,6 +406,125 @@
         .badge-essay { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
         .badge-case { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
         .badge-book { background: #ede9fe; color: #6d28d9; border: 1px solid #ddd6fe; }
+        .badge-pharma { background: #cffafe; color: #0891b2; border: 1px solid #a5f3fc; }
+
+        /* Pharmacology Card Styling */
+        .pharma-card-detail {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pharma-header-box {
+            background: #f0fdfa;
+            border: 1px solid #ccfbf1;
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .pharma-title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        .pharma-substance-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .pharma-inn {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #64748b;
+        }
+        .pharma-galinos-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #0284c7;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            transition: opacity 0.2s;
+        }
+        .pharma-galinos-btn:hover {
+            opacity: 0.9;
+        }
+        .pharma-category-sub {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0d9488;
+        }
+        .pharma-sub-note {
+            margin-top: 6px;
+            font-size: 0.88rem;
+            color: #475569;
+            background: rgba(255,255,255,0.7);
+            padding: 6px 10px;
+            border-radius: 6px;
+            border-left: 3px solid #0d9488;
+        }
+        .pharma-section-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+        .pharma-section-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pharma-brands-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .pharma-brand-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            color: #1e293b;
+        }
+        .pharma-brand-desc {
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+        .pharma-brand-tag .mini-g {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            background: #0284c7;
+            border-radius: 3px;
+            padding: 0 4px;
+            line-height: 15px;
+            vertical-align: middle;
+        }
+        .pharma-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.88rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+        .pharma-list li {
+            margin: 4px 0;
+        }
 
         .chapter-tag {
             font-size: 0.82rem;
@@ -756,7 +875,7 @@
         
         <div class="search-header">
             <h2><i class="fa-solid fa-magnifying-glass"></i> Σύνθετη Αναζήτηση</h2>
-            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της Παθολογίας: <strong>Ερωτήσεις Πολλαπλής Επιλογής (MCQ)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong> & <strong>Βιβλιοθήκη</strong>.</p>
+            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της Παθολογίας: <strong>Ερωτήσεις Πολλαπλής Επιλογής (MCQ)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong> & <strong>Βιβλιοθήκη</strong> & <strong>Φάρμακα &amp; Ουσίες</strong>.</p>
             <div class="status-badge-container">
                 <span class="status-pill" id="index-status">
                     <span class="dot"></span>
@@ -848,6 +967,10 @@
                 <span>📚 Βιβλιοθήκη</span>
                 <span class="pill-count" id="count-book">0</span>
             </div>
+            <div class="filter-pill" data-source="pharma" onclick="filterBySource('pharma')">
+                <span>💊 Φάρμακα &amp; Ουσίες</span>
+                <span class="pill-count" id="count-pharma">0</span>
+            </div>
         </div>
 
         <!-- Results Toolbar -->
@@ -885,6 +1008,7 @@
     <script src="data/cases_klinika_100.js?v=20261021"></script>
     <script src="data/cases_em_70.js?v=20261021"></script>
     <script src="books.js?v=20261021"></script>
+    <script src="data/pharma_database.js?v=20261023"></script>
 
     <!-- Master Unified Search Logic -->
     <script>
@@ -1278,6 +1402,51 @@
                 }
             }
 
+            // 6. Pharmacology Database (pharmaDatabase)
+            if (typeof pharmaDatabase !== 'undefined' && Array.isArray(pharmaDatabase)) {
+                pharmaDatabase.forEach((p, idx) => {
+                    let fullText = [
+                        p.guide || "",
+                        p.category || "",
+                        p.substance || "",
+                        p.inn || "",
+                        p.note || "",
+                        p.brands_str || "",
+                        Array.isArray(p.brands_details) ? p.brands_details.map(b => (b.name || "") + " " + (b.tag || "")).join(" ") : "",
+                        Array.isArray(p.mechanism) ? p.mechanism.join(" ") : "",
+                        Array.isArray(p.indications) ? p.indications.join(" ") : "",
+                        Array.isArray(p.spectrum) ? p.spectrum.join(" ") : "",
+                        Array.isArray(p.contraindications) ? p.contraindications.join(" ") : "",
+                        Array.isArray(p.adverse_effects) ? p.adverse_effects.join(" ") : "",
+                        Array.isArray(p.pearls) ? p.pearls.join(" ") : "",
+                        Array.isArray(p.content_parts) ? p.content_parts.join(" ") : "",
+                        p.abbreviations || ""
+                    ].join(" ");
+
+                    let titleStr = p.substance || "Φάρμακο";
+                    if (p.inn) titleStr += ` (${p.inn})`;
+                    if (p.brands && p.brands.length > 0) {
+                        let sampleBrands = p.brands.slice(0, 4).join(", ");
+                        titleStr += ` — [${sampleBrands}${p.brands.length > 4 ? ', ...' : ''}]`;
+                    }
+
+                    index.push({
+                        id: p.id || ('pharma-' + idx),
+                        source: 'pharma',
+                        sourceLabel: p.type === 'category' ? 'Κατηγορία Φαρμάκων' : (p.type === 'guide_summary' ? 'Θεραπευτικός Οδηγός' : 'Φάρμακο / Ουσία'),
+                        badgeClass: 'badge-pharma',
+                        badgeIcon: '💊',
+                        chapter: `${p.guide} — ${p.category}`,
+                        title: titleStr,
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: p,
+                        appUrl: p.url,
+                        type: 'pharma'
+                    });
+                });
+            }
+
             return index;
         }
 
@@ -1370,7 +1539,7 @@
 
         // Update Counts for Filter Pills
         function updateCountsPills(matches) {
-            const counts = { ALL: matches.length, mcq: 0, new_book: 0, essay: 0, case: 0, book: 0 };
+            const counts = { ALL: matches.length, mcq: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
             matches.forEach(m => {
                 if (counts[m.source] !== undefined) counts[m.source]++;
             });
@@ -1482,7 +1651,7 @@
                     ${renderExpandedContent(item)}
                     <div class="card-actions-row">
                         <a href="${item.appUrl}" target="_blank" class="open-in-app-btn">
-                            <span>Άνοιγμα στην Εφαρμογή</span>
+                            <span>${item.type === 'pharma' ? 'Προβολή στον Οδηγό Φαρμάκων' : (item.type === 'book' ? 'Άνοιγμα PDF στη Βιβλιοθήκη' : 'Άνοιγμα στην Εφαρμογή')}</span>
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
@@ -1557,6 +1726,88 @@
                             <span>Άνοιγμα PDF στη Βιβλιοθήκη</span>
                         </a>
                     </div>`;
+                }
+                else if (item.type === 'pharma') {
+                    const p = item.originalItem;
+                    out += `<div class="pharma-card-detail">`;
+                    
+                    out += `<div class="pharma-header-box">
+                        <div class="pharma-title-row">
+                            <span class="pharma-substance-name"><i class="fa-solid fa-capsules" style="color:#0ea5e9;"></i> ${p.substance}</span>
+                            ${p.inn ? `<span class="pharma-inn">(${p.inn})</span>` : ''}
+                            ${p.galinos_url ? `<a href="${p.galinos_url}" target="_blank" rel="noopener" class="pharma-galinos-btn" title="Προβολή στον Γαληνό">Γαληνός ↗</a>` : ''}
+                        </div>
+                        <div class="pharma-category-sub"><i class="fa-solid fa-folder-open"></i> ${p.guide} &bull; ${p.category}</div>
+                        ${p.note ? `<div class="pharma-sub-note"><i class="fa-solid fa-circle-info"></i> ${p.note}</div>` : ''}
+                    </div>`;
+
+                    if (Array.isArray(p.brands_details) && p.brands_details.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-tag" style="color:#f59e0b;"></i> Εμπορικά Σκευάσματα & Συνδυασμοί</div>
+                            <div class="pharma-brands-wrap">`;
+                        p.brands_details.forEach(b => {
+                            out += `<span class="pharma-brand-tag">
+                                <strong>${b.name}</strong>${b.tag ? ` <span class="pharma-brand-desc">${b.tag}</span>` : ''}
+                                ${b.galinos_url ? `<a href="${b.galinos_url}" target="_blank" rel="noopener" class="mini-g">G</a>` : ''}
+                            </span>`;
+                        });
+                        out += `</div></div>`;
+                    }
+
+                    if (Array.isArray(p.spectrum) && p.spectrum.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-shield-virus" style="color:#10b981;"></i> Αντιμικροβιακό Φάσμα Δράσης</div>
+                            <ul class="pharma-list">${p.spectrum.map(s => `<li>${s}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.mechanism) && p.mechanism.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-gears" style="color:#3b82f6;"></i> Μηχανισμός Δράσης</div>
+                            <ul class="pharma-list">${p.mechanism.map(m => `<li>${m}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.indications) && p.indications.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-circle-check" style="color:#059669;"></i> Κλινικές Ενδείξεις</div>
+                            <ul class="pharma-list">${p.indications.map(ind => `<li>${ind}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.contraindications) && p.contraindications.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-ban" style="color:#dc2626;"></i> Αντενδείξεις & Δοσολογία σε Νεφρική Νόσο</div>
+                            <ul class="pharma-list">${p.contraindications.map(ci => `<li>${ci}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.adverse_effects) && p.adverse_effects.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-triangle-exclamation" style="color:#ea580c;"></i> Ανεπιθύμητες Ενέργειες & Τοξικότητα</div>
+                            <ul class="pharma-list">${p.adverse_effects.map(ae => `<li>${ae}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.pearls) && p.pearls.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-lightbulb" style="color:#d97706;"></i> Κλινικές Ιδιαιτερότητες & Pearls</div>
+                            <ul class="pharma-list">${p.pearls.map(pr => `<li>${pr}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (Array.isArray(p.content_parts) && p.content_parts.length > 0) {
+                        out += `<div class="pharma-section-block">
+                            <div class="pharma-section-title"><i class="fa-solid fa-clipboard-list" style="color:#2563eb;"></i> Κατευθυντήριες Οδηγίες & Επιλογή Θεραπείας</div>
+                            <ul class="pharma-list">${p.content_parts.map(cp => `<li>${cp}</li>`).join('')}</ul>
+                        </div>`;
+                    }
+
+                    if (p.abbreviations) {
+                        out += `<div style="font-size:0.8rem; color:#64748b; margin-top:6px; font-style:italic;">${p.abbreviations}</div>`;
+                    }
+
+                    out += `</div>`;
                 }
 
                 return out;
