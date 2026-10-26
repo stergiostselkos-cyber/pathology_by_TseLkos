@@ -226,6 +226,12 @@ function loadQuestions() {
     try {
         if (typeof questionsData !== 'undefined' && Array.isArray(questionsData)) {
             questions = questionsData;
+        } else if (typeof larnakaPart04Questions !== 'undefined' && Array.isArray(larnakaPart04Questions)) {
+            questions = larnakaPart04Questions;
+        } else if (typeof larnakaQuestionsPart4 !== 'undefined' && Array.isArray(larnakaQuestionsPart4)) {
+            questions = larnakaQuestionsPart4;
+        } else if (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) {
+            questions = larnakaAllQuestions;
         } else {
             throw new Error("questionsData is not defined or is not an array");
         }
