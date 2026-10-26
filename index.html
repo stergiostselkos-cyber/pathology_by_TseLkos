@@ -843,10 +843,11 @@
                         <option value="" disabled selected>Επίλεξε Τράπεζα Ερωτήσεων...</option>
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
-                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων (Λάρνακα - Ενιαία: 228 Θέματα Q45-Q272)</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων (Λάρνακα - Ενιαία: 313 Θέματα Q45-Q357)</option>
                         <option value="larnaka_1" style="font-size:0.9em; color:#64748b;">&nbsp;&nbsp;↳ Μέρος 1ο (Q45-Q105)</option>
                         <option value="larnaka_2" style="font-size:0.9em; color:#64748b;">&nbsp;&nbsp;↳ Μέρος 2ο (Q106-Q203)</option>
                         <option value="larnaka_3" style="font-size:0.9em; color:#64748b;">&nbsp;&nbsp;↳ Μέρος 3ο (Q204-Q272)</option>
+                        <option value="larnaka_4" style="font-size:0.9em; color:#64748b;">&nbsp;&nbsp;↳ Μέρος 4ο (Q273-Q357)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
@@ -962,6 +963,8 @@
                 window.location.href = 'LARNAKA/part2.html';
             } else if (book === 'larnaka_3') {
                 window.location.href = 'LARNAKA/part3.html';
+            } else if (book === 'larnaka_4') {
+                window.location.href = 'LARNAKA/part4.html';
             } else if (book) {
                 window.location.href = 'quiz.html?v=' + new Date().getTime() + '&bank=' + book;
             }
