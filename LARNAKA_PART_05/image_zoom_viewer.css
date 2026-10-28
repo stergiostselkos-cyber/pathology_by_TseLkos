@@ -1,14 +1,14 @@
 /* ==========================================================================
-   ADVANCED MEDICAL IMAGE ZOOM VIEWER (HD INSPECTOR)
+   ADVANCED MEDICAL HD ZOOM INSPECTOR (IMAGES, TABLES & CHARTS)
    ========================================================================== */
 
 .med-zoom-modal {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 999999;
   background: rgba(10, 15, 26, 0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: none;
   flex-direction: column;
   color: #f8fafc;
@@ -147,12 +147,14 @@
   align-items: center;
   justify-content: center;
   touch-action: none;
+  padding: 20px;
 }
 
 .med-zoom-stage:active {
   cursor: grabbing;
 }
 
+/* IMAGE VIEW */
 .med-zoom-img {
   max-width: 95vw;
   max-height: 82vh;
@@ -164,6 +166,65 @@
   pointer-events: auto;
   image-rendering: high-quality;
   image-rendering: -webkit-optimize-contrast;
+}
+
+/* CUSTOM CONTENT VIEW (TABLES & GRAPHS) */
+.med-zoom-custom-wrap {
+  max-width: 95vw;
+  max-height: 82vh;
+  overflow: auto;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 24px 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+  transform-origin: center center;
+  transition: transform 0.08s ease-out;
+  pointer-events: auto;
+  user-select: text;
+}
+
+.med-zoom-custom-wrap table {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  color: #f8fafc !important;
+  background: transparent !important;
+  display: table !important;
+}
+
+.med-zoom-custom-wrap th {
+  background: #1e293b !important;
+  color: #38bdf8 !important;
+  border: 1px solid #475569 !important;
+  padding: 12px 16px !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+}
+
+.med-zoom-custom-wrap td {
+  border: 1px solid #334155 !important;
+  padding: 10px 14px !important;
+  vertical-align: top !important;
+  color: #e2e8f0 !important;
+}
+
+.med-zoom-custom-wrap tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.med-zoom-custom-wrap tr:hover {
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+.med-zoom-custom-wrap svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* BOTTOM HINT BAR */
@@ -201,6 +262,62 @@
   font-family: monospace;
   font-size: 0.76rem;
   color: #e2e8f0;
+}
+
+/* INLINE TABLE & IMAGE ZOOM BUTTONS */
+.med-table-zoom-pill {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.btn-med-zoom-table {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-med-zoom-table:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+table.med-zoomable {
+  cursor: zoom-in !important;
+  transition: outline 0.15s ease, box-shadow 0.15s ease;
+}
+
+table.med-zoomable:hover {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.15);
+}
+
+.chart-container.med-zoomable,
+.graph-container.med-zoomable,
+.med-graph.med-zoomable {
+  cursor: zoom-in;
+  transition: outline 0.15s ease;
+}
+
+.chart-container.med-zoomable:hover,
+.graph-container.med-zoomable:hover,
+.med-graph.med-zoomable:hover {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
 }
 
 /* BUTTON IN QUIZ EXPLANATIONS */

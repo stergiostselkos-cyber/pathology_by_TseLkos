@@ -818,6 +818,10 @@ function restartQuiz() {
     let currentScale = 1.0;
 
     function openModal(table) {
+        if (window.openMedZoom) {
+            window.openMedZoom(table, table.getAttribute('data-title') || table.querySelector('caption, th')?.textContent?.trim(), 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+            return;
+        }
         content.innerHTML = table.outerHTML;
         currentScale = 1.0;
         const copiedTable = content.querySelector('table');

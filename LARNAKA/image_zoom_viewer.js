@@ -1,25 +1,28 @@
 /**
- * Medical Image Zoom Inspector (HD Interactive Viewer)
- * Supports: Zoom In/Out, Presets (Fit, 100%, 150%, 200%, 300%),
- * Mouse Wheel Zoom (cursor-centered), Drag & Pan, Touch Pinch-to-Zoom,
- * Fullscreen, and Keyboard Shortcuts.
+ * Medical HD Zoom Inspector (Images, Tables & Charts/Graphs)
+ * Unified Interactive Viewer supporting:
+ * - High-Resolution Images (Pan, Zoom, HD Presets)
+ * - Clinical Tables (Full styling, Zoom, Pan, Contrast & Spacing)
+ * - SVG Diagrams & Graphs
+ * - Mouse Wheel Zoom, Pointer Drag & Pan, Touch Pinch-to-Zoom, Presets (Fit, 100%, 150%, 200%, 300%), Fullscreen, Keyboard Shortcuts
  */
 (function() {
   'use strict';
 
-  let modal, stage, imgEl, titleEl, badgeEl, zoomIndEl;
+  let modal, stage, imgEl, customEl, titleEl, badgeEl, zoomIndEl, resEl;
   let presetBtns = {};
   
   let scale = 1;
   let tx = 0, ty = 0;
   let isDragging = false;
   let startX = 0, startY = 0;
+  let activeType = 'image'; // 'image' | 'custom'
   
   // Pinch-to-zoom touch state
   let initialPinchDist = null;
   let initialPinchScale = 1;
 
-  const MIN_SCALE = 0.6;
+  const MIN_SCALE = 0.5;
   const MAX_SCALE = 8.0;
 
   function buildModal() {
@@ -35,7 +38,7 @@
       <div class="med-zoom-toolbar">
         <div class="med-zoom-title-group">
           <span class="med-zoom-badge" id="mzv-badge">ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ</span>
-          <span class="med-zoom-title" id="mzv-title">Τίτλος Διαγράμματος</span>
+          <span class="med-zoom-title" id="mzv-title">Τίτλος Προβολής</span>
         </div>
 
         <div class="med-zoom-actions">
@@ -53,7 +56,7 @@
 
           <!-- Presets -->
           <button type="button" class="med-zoom-btn btn-preset" data-preset="fit" title="Προσαρμογή στην Οθόνη">Fit</button>
-          <button type="button" class="med-zoom-btn btn-preset" data-preset="1" title="Φυσικό Μέγεθος (1:1 HD)">100%</button>
+          <button type="button" class="med-zoom-btn btn-preset" data-preset="1" title="Φυσικό Μέγεθος (100%)">100%</button>
           <button type="button" class="med-zoom-btn btn-preset" data-preset="1.5" title="Μεγέθυνση 150%">150%</button>
           <button type="button" class="med-zoom-btn btn-preset" data-preset="2" title="Μεγέθυνση 200%">200%</button>
           <button type="button" class="med-zoom-btn btn-preset" data-preset="3" title="Μεγέθυνση 300%">300%</button>
@@ -77,7 +80,8 @@
       </div>
 
       <div class="med-zoom-stage" id="mzv-stage">
-        <img id="mzv-img" class="med-zoom-img" src="" alt="Medical Diagram" draggable="false" />
+        <img id="mzv-img" class="med-zoom-img" src="" alt="Medical Diagram" draggable="false" style="display:none;" />
+        <div id="mzv-custom" class="med-zoom-custom-wrap" style="display:none;"></div>
       </div>
 
       <div class="med-zoom-footer">
@@ -97,19 +101,21 @@
 
     stage = document.getElementById('mzv-stage');
     imgEl = document.getElementById('mzv-img');
+    customEl = document.getElementById('mzv-custom');
     titleEl = document.getElementById('mzv-title');
     badgeEl = document.getElementById('mzv-badge');
     zoomIndEl = document.getElementById('mzv-indicator');
+    resEl = document.getElementById('mzv-res-info');
 
-    // Controls
-    document.getElementById('mzv-btn-in').addEventListener('click', () => zoomBy(1.3));
-    document.getElementById('mzv-btn-out').addEventListener('click', () => zoomBy(1 / 1.3));
+    // Button Listeners
+    document.getElementById('mzv-btn-in').addEventListener('click', () => zoomBy(1.25));
+    document.getElementById('mzv-btn-out').addEventListener('click', () => zoomBy(1 / 1.25));
     document.getElementById('mzv-btn-reset').addEventListener('click', resetTransform);
     document.getElementById('mzv-btn-close').addEventListener('click', closeZoom);
     document.getElementById('mzv-btn-fullscreen').addEventListener('click', toggleFullscreen);
 
-    modal.querySelectorAll('[data-preset]').forEach(btn => {
-      const p = btn.getAttribute('data-preset');
+    modal.querySelectorAll('.btn-preset').forEach(btn => {
+      const p = btn.dataset.preset;
       presetBtns[p] = btn;
       btn.addEventListener('click', () => {
         if (p === 'fit') {
@@ -137,15 +143,15 @@
       zoomAt(factor, px, py);
     }, { passive: false });
 
-    // Double click to toggle
-    imgEl.addEventListener('dblclick', (e) => {
+    // Double click to toggle zoom
+    stage.addEventListener('dblclick', (e) => {
       const rect = stage.getBoundingClientRect();
       const px = e.clientX - rect.left - rect.width / 2;
       const py = e.clientY - rect.top - rect.height / 2;
       if (scale > 1.2) {
         resetTransform();
       } else {
-        zoomAt(2.2, px, py);
+        zoomAt(2.0, px, py);
       }
     });
 
@@ -201,10 +207,10 @@
 
     // Keyboard support
     document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('active')) return;
+      if (!modal || !modal.classList.contains('active')) return;
       if (e.key === 'Escape') closeZoom();
-      else if (e.key === '+' || e.key === '=') zoomBy(1.3);
-      else if (e.key === '-') zoomBy(1 / 1.3);
+      else if (e.key === '+' || e.key === '=') zoomBy(1.25);
+      else if (e.key === '-') zoomBy(1 / 1.25);
       else if (e.key === '0' || e.key.toLowerCase() === 'r') resetTransform();
       else if (e.key === 'ArrowLeft') { tx += 40; applyTransform(); }
       else if (e.key === 'ArrowRight') { tx -= 40; applyTransform(); }
@@ -214,8 +220,13 @@
   }
 
   function applyTransform() {
-    imgEl.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
-    zoomIndEl.textContent = `${Math.round(scale * 100)}%`;
+    const activeEl = (activeType === 'image') ? imgEl : customEl;
+    if (activeEl) {
+      activeEl.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    }
+    if (zoomIndEl) {
+      zoomIndEl.textContent = `${Math.round(scale * 100)}%`;
+    }
     
     // Update preset button active states
     Object.keys(presetBtns).forEach(k => {
@@ -266,25 +277,71 @@
 
   function toggleFullscreen() {
     if (!document.fullscreenElement) {
-      modal.requestFullscreen?.().catch(() => {});
+      modal?.requestFullscreen?.().catch(() => {});
     } else {
       document.exitFullscreen?.().catch(() => {});
     }
   }
 
-  function openZoom(src, title, badge) {
+  function openImageZoom(src, title, badge) {
     buildModal();
+    activeType = 'image';
+    customEl.style.display = 'none';
+    customEl.innerHTML = '';
+
+    imgEl.style.display = 'block';
     imgEl.src = src;
     imgEl.alt = title || 'Medical Diagram';
     titleEl.textContent = title || 'Ιατρικό Διάγραμμα';
     if (badgeEl) badgeEl.textContent = badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ';
 
     imgEl.onload = () => {
-      const resEl = document.getElementById('mzv-res-info');
       if (resEl && imgEl.naturalWidth) {
         resEl.textContent = `Ανάλυση: ${imgEl.naturalWidth} × ${imgEl.naturalHeight} px (Full HD)`;
       }
     };
+
+    resetTransform();
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openCustomZoom(elementOrHtml, title, badge) {
+    buildModal();
+    activeType = 'custom';
+    imgEl.style.display = 'none';
+    imgEl.src = '';
+
+    customEl.style.display = 'block';
+    customEl.innerHTML = '';
+
+    let contentNode;
+    if (typeof elementOrHtml === 'string') {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = elementOrHtml;
+      contentNode = wrapper.firstElementChild || wrapper;
+    } else if (elementOrHtml && elementOrHtml.nodeType) {
+      contentNode = elementOrHtml.cloneNode(true);
+    }
+
+    if (contentNode) {
+      // Remove any internal zoom triggers from the clone to prevent recursive buttons
+      contentNode.querySelectorAll('.med-table-zoom-pill, .btn-table-zoom-trigger, .table-zoom-toolbar, .table-viewer-header').forEach(el => el.remove());
+      
+      // If table, ensure full visibility & styling
+      if (contentNode.tagName === 'TABLE' || contentNode.querySelector('table')) {
+        const tbl = contentNode.tagName === 'TABLE' ? contentNode : contentNode.querySelector('table');
+        if (tbl) {
+          tbl.classList.add('med-zoom-table-active');
+          tbl.style.cursor = 'default';
+        }
+      }
+      customEl.appendChild(contentNode);
+    }
+
+    titleEl.textContent = title || 'Κλινικός Πίνακας / Γράφημα';
+    if (badgeEl) badgeEl.textContent = badge || 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ / ΓΡΑΦΗΜΑ';
+    if (resEl) resEl.textContent = 'Διαδραστική Προβολή HD (Zoom & Pan)';
 
     resetTransform();
     modal.classList.add('active');
@@ -301,31 +358,148 @@
   }
 
   // Global exposure
-  window.openMedZoom = function(srcOrEl, title, badge) {
-    let src = '';
-    if (typeof srcOrEl === 'string') {
-      src = srcOrEl;
-    } else if (srcOrEl && srcOrEl.tagName === 'IMG') {
-      src = srcOrEl.src;
-      title = title || srcOrEl.alt;
-    } else if (srcOrEl && srcOrEl.closest) {
-      const container = srcOrEl.closest('.embedded-image-container, .photo-card, .image-wrapper');
+  window.openMedZoom = function(target, title, badge) {
+    if (!target) return;
+
+    // String URL of image
+    if (typeof target === 'string') {
+      if (target.trim().startsWith('<')) {
+        openCustomZoom(target, title, badge || 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+      } else {
+        openImageZoom(target, title, badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ');
+      }
+      return;
+    }
+
+    // Direct Image Element
+    if (target.tagName === 'IMG') {
+      openImageZoom(target.src, title || target.alt, badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ');
+      return;
+    }
+
+    // Direct Table Element
+    if (target.tagName === 'TABLE') {
+      openCustomZoom(target, title || target.getAttribute('data-title') || target.querySelector('caption, th')?.textContent?.trim(), badge || 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+      return;
+    }
+
+    // Table container (e.g. .scroll with table)
+    if (target.querySelector && target.querySelector('table')) {
+      const tbl = target.querySelector('table');
+      openCustomZoom(tbl, title || tbl.getAttribute('data-title') || tbl.querySelector('caption, th')?.textContent?.trim(), badge || 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+      return;
+    }
+
+    // SVG Graph / Diagram
+    if (target.tagName === 'svg' || (target.querySelector && target.querySelector('svg'))) {
+      const svgEl = target.tagName === 'svg' ? target : target.querySelector('svg');
+      openCustomZoom(svgEl, title || 'Ιατρικό Γράφημα', badge || 'ΙΑΤΡΙΚΟ ΓΡΑΦΗΜΑ');
+      return;
+    }
+
+    // Container with image
+    if (target.closest) {
+      const container = target.closest('.embedded-image-container, .photo-card, .image-wrapper, .case-fig');
       const img = container?.querySelector('img');
       if (img) {
-        src = img.src;
-        title = title || img.alt || container.querySelector('.card-title, .image-title')?.textContent?.trim();
+        openImageZoom(img.src, title || img.alt || container.querySelector('.card-title, .image-title, figcaption')?.textContent?.trim(), badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ');
+        return;
       }
-    }
-    if (src) {
-      openZoom(src, title, badge);
+
+      // Container with table
+      const tblContainer = target.closest('.table-container, .ch8-table-wrap, .scroll');
+      const tbl = tblContainer?.querySelector('table') || target.closest('table');
+      if (tbl) {
+        openCustomZoom(tbl, title || tbl.getAttribute('data-title') || tbl.querySelector('caption, th')?.textContent?.trim(), badge || 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+        return;
+      }
     }
   };
 
   window.closeMedZoom = closeZoom;
 
+  // Auto-decorate all tables and charts across the page with zoom pill
+  function decorateTablesAndGraphs() {
+    // 1. Process all tables
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+      if (table.closest('#med-zoom-modal') || table.dataset.medZoomReady === 'true') {
+        return;
+      }
+      table.dataset.medZoomReady = 'true';
+      table.classList.add('med-zoomable');
+      table.title = table.title || 'Κάντε κλικ ή χρησιμοποιήστε το κουμπί για μεγέθυνση σε πλήρη οθόνη (HD Zoom)';
+
+      // Check if parent already has zoom pill
+      const parent = table.parentElement;
+      if (!parent.querySelector('.med-table-zoom-pill')) {
+        const pill = document.createElement('div');
+        pill.className = 'med-table-zoom-pill';
+        pill.innerHTML = `
+          <button type="button" class="btn-med-zoom-table" title="Μεγέθυνση Πίνακα σε HD Inspector">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" style="vertical-align:-2px"><path stroke="currentColor" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+            <span>HD Zoom Πίνακα</span>
+          </button>
+        `;
+        table.parentNode.insertBefore(pill, table);
+      }
+    });
+
+    // 2. Process all standalone SVG diagrams / charts
+    const graphs = document.querySelectorAll('.chart-container, .graph-container, .med-graph');
+    graphs.forEach(graph => {
+      if (graph.closest('#med-zoom-modal') || graph.dataset.medZoomReady === 'true') {
+        return;
+      }
+      graph.dataset.medZoomReady = 'true';
+      graph.classList.add('med-zoomable');
+      graph.title = 'Κάντε κλικ για μεγέθυνση γραφήματος σε πλήρη οθόνη (HD Zoom)';
+    });
+  }
+
+  // Periodic and MutationObserver scanner for dynamically injected content (explanations, etc.)
+  if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', decorateTablesAndGraphs);
+    setInterval(decorateTablesAndGraphs, 1500);
+
+    const domObserver = new MutationObserver(() => {
+      decorateTablesAndGraphs();
+    });
+    domObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
   // Global delegated click listener for automatic binding
   document.addEventListener('click', (e) => {
-    // Check if clicked directly on image or zoom button
+    // 1. Table zoom pill or table click
+    const tablePill = e.target.closest('.btn-med-zoom-table');
+    if (tablePill) {
+      e.preventDefault();
+      e.stopPropagation();
+      const parentWrap = tablePill.closest('.med-table-zoom-pill');
+      const table = parentWrap?.nextElementSibling?.tagName === 'TABLE' ? parentWrap.nextElementSibling : parentWrap?.parentElement?.querySelector('table');
+      if (table) {
+        window.openMedZoom(table, table.getAttribute('data-title') || table.querySelector('caption, th')?.textContent?.trim(), 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+        return;
+      }
+    }
+
+    // Direct Table click (if user clicks directly on any table)
+    const directTable = e.target.closest('table.med-zoomable, table.zoomable-table');
+    if (directTable && !directTable.closest('#med-zoom-modal') && !e.target.closest('button, a, input, select')) {
+      e.preventDefault();
+      window.openMedZoom(directTable, directTable.getAttribute('data-title') || directTable.querySelector('caption, th')?.textContent?.trim(), 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+      return;
+    }
+
+    // Direct Graph / Chart click
+    const directGraph = e.target.closest('.chart-container, .graph-container, .med-graph');
+    if (directGraph && !directGraph.closest('#med-zoom-modal')) {
+      e.preventDefault();
+      window.openMedZoom(directGraph, 'Ιατρικό Γράφημα / Διάγραμμα', 'ΙΑΤΡΙΚΟ ΓΡΑΦΗΜΑ');
+      return;
+    }
+
+    // 2. Image zoom triggers
     const zoomBtn = e.target.closest('.btn-med-zoom-trigger, .btn-action, .image-overlay, [data-zoom-trigger]');
     if (zoomBtn) {
       e.preventDefault();
@@ -333,7 +507,7 @@
       return;
     }
 
-    const clickedImg = e.target.closest('.embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img');
+    const clickedImg = e.target.closest('.embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img, .case-fig img, .case-image');
     if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img') {
       e.preventDefault();
       window.openMedZoom(clickedImg);
