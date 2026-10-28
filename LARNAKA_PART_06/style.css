@@ -4168,3 +4168,47 @@ body.dark-theme .essay-question-container p {
     padding-right: 6px !important;
     word-break: normal !important;
 }
+
+
+/* Compact badges for diagrams, tables, infographics, and source excerpts */
+.diagram-title-badge {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #0369a1 !important;
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+    border-left: 4px solid #0284c7 !important;
+    padding: 4px 10px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin: 14px 0 6px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+}
+
+body.dark-theme .diagram-title-badge {
+    background: #0f172a !important;
+    color: #38bdf8 !important;
+    border-color: #0369a1 !important;
+    border-left-color: #38bdf8 !important;
+}
+
+.excerpt-title-badge {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-left: 3px solid #64748b !important;
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin: 12px 0 4px 0 !important;
+}
+
+body.dark-theme .excerpt-title-badge {
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+    border-left-color: #94a3b8 !important;
+}
