@@ -1,0 +1,2642 @@
+{
+ "M6_Q351_TAB_01": {
+  "question": 351,
+  "file": "M6_Q351_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΜΙΚΡΟΟΡΓΑΝΙΣΜΩΝ ΕΝΔΟΚΑΡΔΙΤΙΔΑΣ"
+ },
+ "M6_Q351_DIAG_01": {
+  "question": 351,
+  "file": "M6_Q351_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΛΟΙΜΩΔΟΥΣ ΕΝΔΟΚΑΡΔΙΤΙΔΑΣ (ESC 2023)"
+ },
+ "M6_Q351_TABD_01": {
+  "question": 351,
+  "file": "M6_Q351_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΙ ΠΡΟΣΚΟΛΛΗΣΗΣ ΚΑΙ ΠΑΘΟΓΕΝΕΣΙΑΣ ΠΑΘΟΓΟΝΩΝ"
+ },
+ "M6_Q351_DIAG_02": {
+  "question": 351,
+  "file": "M6_Q351_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ESC 2023 / DUKE"
+ },
+ "M6_Q351_TABD_02": {
+  "question": 351,
+  "file": "M6_Q351_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΤΟΧΕΥΜΕΝΗ ΑΝΤΙΜΙΚΡΟΒΙΑΚΗ ΘΕΡΑΠΕΙΑ ΑΝΑ ΠΑΘΟΓΟΝΟ"
+ },
+ "M6_Q351_DIAG_03": {
+  "question": 351,
+  "file": "M6_Q351_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΣΙΑΣ ΕΝΔΟΚΑΡΔΙΤΙΔΑΣ"
+ },
+ "M6_Q351_TAB_02": {
+  "question": 351,
+  "file": "M6_Q351_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q351_TAB_03": {
+  "question": 351,
+  "file": "M6_Q351_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q352_TAB_01": {
+  "question": 352,
+  "file": "M6_Q352_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΔΙΑΦΟΡΙΚΗΣ ΔΙΑΓΝΩΣΗΣ ΕΡΓΑΣΤΗΡΙΑΚΩΝ ΠΑΡΑΜΕΤΡΩΝ"
+ },
+ "M6_Q352_DIAG_01": {
+  "question": 352,
+  "file": "M6_Q352_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΕΠΙΔΗΜΙΟΛΟΓΙΚΟΣ ΚΥΚΛΟΣ ΛΕΠΤΟΣΠΕΙΡΩΣΗΣ"
+ },
+ "M6_Q352_DIAG_02": {
+  "question": 352,
+  "file": "M6_Q352_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΚΛΙΝΙΚΗ ΠΟΡΕΙΑ ΛΕΠΤΟΣΠΕΙΡΩΣΗΣ (ΔΙΦΑΣΙΚΗ)"
+ },
+ "M6_Q352_TABD_01": {
+  "question": 352,
+  "file": "M6_Q352_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΠΙΠΤΩΣΕΙΣ ΛΕΠΤΟΣΠΕΙΡΩΣΗΣ ΣΤΑ ΚΥΡΙΟΤΕΡΑ ΟΡΓΑΝΑ-ΣΤΟΧΟΥΣ"
+ },
+ "M6_Q352_DIAG_03": {
+  "question": 352,
+  "file": "M6_Q352_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΦΟΡΙΚΗ ΔΙΑΓΝΩΣΗ ΙΚΤΕΡΙΚΗΣ ΛΕΠΤΟΣΠΕΙΡΩΣΗΣ"
+ },
+ "M6_Q352_TABD_02": {
+  "question": 352,
+  "file": "M6_Q352_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΘΕΡΑΠΕΥΤΙΚΟ ΠΡΩΤΟΚΟΛΛΟ ΛΕΠΤΟΣΠΕΙΡΩΣΗΣ (ESC / CDC / WHO)"
+ },
+ "M6_Q352_DIAG_04": {
+  "question": 352,
+  "file": "M6_Q352_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΣΙΑΣ ΝΟΣΟΥ WEIL"
+ },
+ "M6_Q352_TAB_02": {
+  "question": 352,
+  "file": "M6_Q352_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q352_TAB_03": {
+  "question": 352,
+  "file": "M6_Q352_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q353_TAB_01": {
+  "question": 353,
+  "file": "M6_Q353_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΔΙΑΦΟΡΙΚΗΣ ΔΙΑΓΝΩΣΗΣ ΔΥΣΕΝΤΕΡΙΚΩΝ ΣΥΝΔΡΟΜΩΝ"
+ },
+ "M6_Q353_DIAG_01": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΕΠΙΔΗΜΙΟΛΟΓΙΚΗ ΤΑΞΙΝΟΜΗΣΗ ΔΥΣΕΝΤΕΡΙΚΩΝ ΑΙΤΙΩΝ"
+ },
+ "M6_Q353_TABD_01": {
+  "question": 353,
+  "file": "M6_Q353_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΕΙΣΒΟΛΗΣ ΚΑΙ ΠΑΘΟΓΕΝΕΣΙΑΣ SHIGELLA"
+ },
+ "M6_Q353_DIAG_02": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΔΥΣΕΝΤΕΡΙΑΣ"
+ },
+ "M6_Q353_TABD_02": {
+  "question": 353,
+  "file": "M6_Q353_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΘΕΡΑΠΕΥΤΙΚΟ ΠΡΩΤΟΚΟΛΛΟ ΒΑΚΤΗΡΙΔΙΑΚΗΣ ΔΥΣΕΝΤΕΡΙΑΣ"
+ },
+ "M6_Q353_DIAG_03": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΣΙΑΣ ΣΙΓΚΕΛΛΩΣΗΣ"
+ },
+ "M6_Q353_TAB_02": {
+  "question": 353,
+  "file": "M6_Q353_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q353_TAB_03": {
+  "question": 353,
+  "file": "M6_Q353_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q353_TAB_04": {
+  "question": 353,
+  "file": "M6_Q353_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΡΕΥΜΑΤΙΚΩΝ ΑΙΤΙΩΝ ΠΥΡΕΤΟΥ ΑΓΝΩΣΤΟΥ ΑΙΤΙΟΛΟΓΙΑΣ"
+ },
+ "M6_Q353_DIAG_04": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΛΟΓΙΚΗ ΚΑΤΑΝΟΜΗ ΚΛΑΣΙΚΟΥ ΠΑΑ (CLASSIC FUO)"
+ },
+ "M6_Q353_TABD_03": {
+  "question": 353,
+  "file": "M6_Q353_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΡΕΥΜΑΤΙΚΩΝ ΑΙΤΙΩΝ ΠΑΑ VS ΣΚΛΗΡΟΔΕΡΜΑΤΟΣ"
+ },
+ "M6_Q353_DIAG_05": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_05.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΠΑΑ / FUO"
+ },
+ "M6_Q353_TABD_04": {
+  "question": 353,
+  "file": "M6_Q353_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΑΙ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΣΥΣΤΗΜΑΤΙΚΗΣ ΣΚΛΗΡΥΝΣΗΣ"
+ },
+ "M6_Q353_DIAG_06": {
+  "question": 353,
+  "file": "M6_Q353_DIAG_06.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΥΡΕΤΟΓΕΝΕΣΗΣ ΣΤΑ NIIDs"
+ },
+ "M6_Q353_TAB_05": {
+  "question": 353,
+  "file": "M6_Q353_TAB_05.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q353_TAB_06": {
+  "question": 353,
+  "file": "M6_Q353_TAB_06.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q354_TAB_01": {
+  "question": 354,
+  "file": "M6_Q354_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΡΕΥΜΑΤΙΚΩΝ ΑΙΤΙΩΝ ΠΥΡΕΤΟΥ ΑΓΝΩΣΤΟΥ ΑΙΤΙΟΛΟΓΙΑΣ"
+ },
+ "M6_Q354_DIAG_01": {
+  "question": 354,
+  "file": "M6_Q354_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΛΟΓΙΚΗ ΚΑΤΑΝΟΜΗ ΚΛΑΣΙΚΟΥ ΠΑΑ (CLASSIC FUO)"
+ },
+ "M6_Q354_TABD_01": {
+  "question": 354,
+  "file": "M6_Q354_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΡΕΥΜΑΤΙΚΩΝ ΑΙΤΙΩΝ ΠΑΑ VS ΣΚΛΗΡΟΔΕΡΜΑΤΟΣ"
+ },
+ "M6_Q354_DIAG_02": {
+  "question": 354,
+  "file": "M6_Q354_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΠΑΑ / FUO"
+ },
+ "M6_Q354_TABD_02": {
+  "question": 354,
+  "file": "M6_Q354_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΑΙ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΣΥΣΤΗΜΑΤΙΚΗΣ ΣΚΛΗΡΥΝΣΗΣ"
+ },
+ "M6_Q354_DIAG_03": {
+  "question": 354,
+  "file": "M6_Q354_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΥΡΕΤΟΓΕΝΕΣΗΣ ΣΤΑ NIIDs"
+ },
+ "M6_Q354_TAB_02": {
+  "question": 354,
+  "file": "M6_Q354_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q354_TAB_03": {
+  "question": 354,
+  "file": "M6_Q354_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q355_TAB_01": {
+  "question": 355,
+  "file": "M6_Q355_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΠΡΟΦΙΛ ΤΟΞΙΚΟΤΗΤΑΣ ΚΑΙ ΜΕΤΑΒΟΛΙΣΜΟΥ ΦΑΡΜΑΚΩΝ"
+ },
+ "M6_Q355_TABD_01": {
+  "question": 355,
+  "file": "M6_Q355_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΑΙ ΜΗΧΑΝΙΣΜΟΙ ΦΑΡΜΑΚΕΥΤΙΚΗΣ ΗΠΑΤΟΤΟΞΙΚΟΤΗΤΑΣ"
+ },
+ "M6_Q355_DIAG_01": {
+  "question": 355,
+  "file": "M6_Q355_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΥΝΕΡΓΙΚΗ ΗΠΑΤΟΤΟΞΙΚΟΤΗΤΑ INH + RIF"
+ },
+ "M6_Q355_TABD_02": {
+  "question": 355,
+  "file": "M6_Q355_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΚΑΙ ΕΚΔΗΛΩΣΕΙΣ ΟΠΤΙΚΗΣ ΝΕΥΡΙΤΙΔΑΣ ΑΙΘΑΜΒΟΥΤΟΛΗΣ"
+ },
+ "M6_Q355_DIAG_02": {
+  "question": 355,
+  "file": "M6_Q355_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΔΙΑΧΕΙΡΙΣΗΣ ΗΠΑΤΟΤΟΞΙΚΟΤΗΤΑΣ ATT"
+ },
+ "M6_Q355_DIAG_03": {
+  "question": 355,
+  "file": "M6_Q355_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΦΑΡΜΑΚΕΥΤΙΚΗΣ ΗΠΑΤΟΤΟΞΙΚΟΤΗΤΑΣ"
+ },
+ "M6_Q355_TAB_02": {
+  "question": 355,
+  "file": "M6_Q355_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q355_TAB_03": {
+  "question": 355,
+  "file": "M6_Q355_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q356_TAB_01": {
+  "question": 356,
+  "file": "M6_Q356_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΚΑΙ ΤΟΞΙΚΟΤΗΤΑΣ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q356_DIAG_01": {
+  "question": 356,
+  "file": "M6_Q356_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΑΙ ΓΕΝΙΕΣ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q356_TABD_01": {
+  "question": 356,
+  "file": "M6_Q356_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΑΙΔΙΑΤΡΙΚΗ ΚΑΙ ΟΣΤΙΚΗ ΤΟΞΙΚΟΤΗΤΑ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q356_DIAG_02": {
+  "question": 356,
+  "file": "M6_Q356_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΝΕΦΡΙΚΗ ΤΟΞΙΚΟΤΗΤΑ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q356_TABD_02": {
+  "question": 356,
+  "file": "M6_Q356_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΕΥΤΙΚΕΣ ΑΛΛΗΛΕΠΙΔΡΑΣΕΙΣ ΚΑΙ ΧΗΛΙΚΟΣ ΣΧΗΜΑΤΙΣΜΟΣ"
+ },
+ "M6_Q356_DIAG_03": {
+  "question": 356,
+  "file": "M6_Q356_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΤΟΞΙΚΟΤΗΤΑΣ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q356_TAB_02": {
+  "question": 356,
+  "file": "M6_Q356_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q356_TAB_03": {
+  "question": 356,
+  "file": "M6_Q356_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q357_TAB_01": {
+  "question": 357,
+  "file": "M6_Q357_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ ΚΑΙ ΣΤΟΜΑΤΙΚΩΝ ΕΚΔΗΛΩΣΕΩΝ"
+ },
+ "M6_Q357_DIAG_01": {
+  "question": 357,
+  "file": "M6_Q357_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΛΟΓΙΚΗ ΤΑΞΙΝΟΜΗΣΗ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ"
+ },
+ "M6_Q357_TABD_01": {
+  "question": 357,
+  "file": "M6_Q357_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΦΑΡΜΑΚΟΓΕΝΟΥΣ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ (DIGO)"
+ },
+ "M6_Q357_DIAG_02": {
+  "question": 357,
+  "file": "M6_Q357_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΣΧΗΜΑΤΙΣΜΟΥ ΓΡΑΜΜΗΣ BURTON"
+ },
+ "M6_Q357_DIAG_03": {
+  "question": 357,
+  "file": "M6_Q357_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΔΙΟΓΚΩΣΗΣ ΟΥΛΩΝ"
+ },
+ "M6_Q357_DIAG_04": {
+  "question": 357,
+  "file": "M6_Q357_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΣΤΟΜΑΤΙΚΩΝ ΒΛΑΒΩΝ"
+ },
+ "M6_Q357_TAB_02": {
+  "question": 357,
+  "file": "M6_Q357_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q357_TAB_03": {
+  "question": 357,
+  "file": "M6_Q357_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q357B_TAB_01": {
+  "question": 357,
+  "file": "M6_Q357B_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ ΚΑΙ ΣΤΟΜΑΤΙΚΩΝ ΕΚΔΗΛΩΣΕΩΝ"
+ },
+ "M6_Q357B_DIAG_01": {
+  "question": 357,
+  "file": "M6_Q357B_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΛΟΓΙΚΗ ΤΑΞΙΝΟΜΗΣΗ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ"
+ },
+ "M6_Q357B_TABD_01": {
+  "question": 357,
+  "file": "M6_Q357B_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΦΑΡΜΑΚΟΓΕΝΟΥΣ ΥΠΕΡΠΛΑΣΙΑΣ ΟΥΛΩΝ (DIGO)"
+ },
+ "M6_Q357B_DIAG_02": {
+  "question": 357,
+  "file": "M6_Q357B_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΣΧΗΜΑΤΙΣΜΟΥ ΓΡΑΜΜΗΣ BURTON"
+ },
+ "M6_Q357B_DIAG_03": {
+  "question": 357,
+  "file": "M6_Q357B_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΔΙΟΓΚΩΣΗΣ ΟΥΛΩΝ"
+ },
+ "M6_Q357B_DIAG_04": {
+  "question": 357,
+  "file": "M6_Q357B_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΣΤΟΜΑΤΙΚΩΝ ΒΛΑΒΩΝ"
+ },
+ "M6_Q357B_TAB_02": {
+  "question": 357,
+  "file": "M6_Q357B_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q357B_TAB_03": {
+  "question": 357,
+  "file": "M6_Q357B_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q358_TAB_01": {
+  "question": 358,
+  "file": "M6_Q358_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΦΥΣΙΚΗΣ ΕΞΕΤΑΣΗΣ ΣΤΙΣ ΚΥΡΙΟΤΕΡΕΣ ΠΝΕΥΜΟΝΙΚΕΣ ΠΑΘΗΣΕΙΣ"
+ },
+ "M6_Q358_DIAG_01": {
+  "question": 358,
+  "file": "M6_Q358_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΙΣΤΟΠΑΘΟΛΟΓΙΚΑ ΣΤΑΔΙΑ ΛΟΒΩΔΟΥΣ ΠΝΕΥΜΟΝΙΑΣ"
+ },
+ "M6_Q358_DIAG_02": {
+  "question": 358,
+  "file": "M6_Q358_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΦΥΣΙΚΑ ΣΗΜΕΙΑ ΠΝΕΥΜΟΝΙΚΗΣ ΠΥΚΝΩΣΗΣ ΑΝΑ ΜΕΘΟΔΟ ΕΞΕΤΑΣΗΣ"
+ },
+ "M6_Q358_DIAG_03": {
+  "question": 358,
+  "file": "M6_Q358_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΠΡΟΣΘΕΤΩΝ ΑΝΑΠΝΕΥΣΤΙΚΩΝ ΗΧΩΝ"
+ },
+ "M6_Q358_DIAG_04": {
+  "question": 358,
+  "file": "M6_Q358_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΔΙΑΦΟΡΟΔΙΑΓΝΩΣΗΣ ΘΩΡΑΚΙΚΩΝ ΣΥΝΔΡΟΜΩΝ"
+ },
+ "M6_Q358_DIAG_05": {
+  "question": 358,
+  "file": "M6_Q358_DIAG_05.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ ΠΥΚΝΩΣΗΣ"
+ },
+ "M6_Q358_TAB_02": {
+  "question": 358,
+  "file": "M6_Q358_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q358_TAB_03": {
+  "question": 358,
+  "file": "M6_Q358_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q359_TAB_01": {
+  "question": 359,
+  "file": "M6_Q359_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΤΥΠΩΝ ΙΟΥ ΓΡΙΠΗΣ ΚΑΙ ΔΙΑΦΟΡΙΚΗΣ ΔΙΑΓΝΩΣΗΣ ΑΝΑΠΝΕΥΣΤΙΚΩΝ ΙΩΝ"
+ },
+ "M6_Q359_DIAG_01": {
+  "question": 359,
+  "file": "M6_Q359_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΙ ΑΝΤΙΓΟΝΙΚΗΣ ΜΕΤΑΒΟΛΗΣ ΙΩΝ ΓΡΙΠΗΣ"
+ },
+ "M6_Q359_TABD_01": {
+  "question": 359,
+  "file": "M6_Q359_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΛΙΝΙΚΗ ΕΙΚΟΝΑ ΚΑΙ ΣΥΜΠΤΩΜΑΤΟΛΟΓΙΑ ΟΞΕΙΑΣ ΓΡΙΠΗΣ"
+ },
+ "M6_Q359_DIAG_02": {
+  "question": 359,
+  "file": "M6_Q359_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΔΕΥΤΕΡΟΓΕΝΗΣ ΒΑΚΤΗΡΙΑΚΗ ΠΝΕΥΜΟΝΙΑ (POST-FLU)"
+ },
+ "M6_Q359_TABD_02": {
+  "question": 359,
+  "file": "M6_Q359_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΝΤΙΙΪΚΗ ΘΕΡΑΠΕΙΑ ΚΑΙ ΧΗΜΕΙΟΠΡΟΦΥΛΑΞΗ ΓΡΙΠΗΣ"
+ },
+ "M6_Q359_DIAG_03": {
+  "question": 359,
+  "file": "M6_Q359_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΤΗΣ ΓΡΙΠΗΣ"
+ },
+ "M6_Q359_TAB_02": {
+  "question": 359,
+  "file": "M6_Q359_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q359_TAB_03": {
+  "question": 359,
+  "file": "M6_Q359_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q360_TAB_01": {
+  "question": 360,
+  "file": "M6_Q360_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΠΑΡΑΜΕΤΡΩΝ ΓΡΙΠΗΣ ΚΑΙ ΚΑΤΕΥΘΥΝΤΗΡΙΩΝ ΟΔΗΓΙΩΝ ΕΜΒΟΛΙΑΣΜΟΥ"
+ },
+ "M6_Q360_TAB_02": {
+  "question": 360,
+  "file": "M6_Q360_TAB_02.png",
+  "type": "table",
+  "caption": "ii)Νευραμινιδάση (Neuraminidase - NA): Υπεύθυνη για την αποσύνδεση και απελευθέρωση των νεοσχηματισμένων ιόντων από το προσβεβλημένο κύτταρο."
+ },
+ "M6_Q360_TAB_03": {
+  "question": 360,
+  "file": "M6_Q360_TAB_03.png",
+  "type": "table",
+  "caption": "Σύμφωνα με το Εθνικό Πρόγραμμα Εμβολιασμών Ενηλίκων και τις οδηγίες του ΕΟΔΥ, ο ετήσιος αντιγριπικός εμβολιασμός είναι απαραίτητος στις εξής ομάδες:"
+ },
+ "M6_Q360_TAB_04": {
+  "question": 360,
+  "file": "M6_Q360_TAB_04.png",
+  "type": "table",
+  "caption": "Η γρίπη χαρακτηρίζεται από βραχύτατο χρόνο επώασης (1–4 ημέρες, μέσος όρος 2 ημέρες) και αιφνίδια εισβολή έντονων συστηματικών εκδηλώσεων:"
+ },
+ "M6_Q360_TAB_05": {
+  "question": 360,
+  "file": "M6_Q360_TAB_05.png",
+  "type": "table",
+  "caption": "4.2 Κύρια Βακτηριακά Αίτια & Κλινικά Χαρακτηριστικά"
+ },
+ "M6_Q360_TAB_06": {
+  "question": 360,
+  "file": "M6_Q360_TAB_06.png",
+  "type": "table",
+  "caption": "Στάδιο | Φυσιολογική & Μοριακή Διεργασία | Κλινικό & Ανοσολογικό Αποτέλεσμα"
+ },
+ "M6_Q360_TAB_07": {
+  "question": 360,
+  "file": "M6_Q360_TAB_07.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q360_TAB_08": {
+  "question": 360,
+  "file": "M6_Q360_TAB_08.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q361_TAB_01": {
+  "question": 361,
+  "file": "M6_Q361_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΠΗΓΩΝ ΜΕΤΑΔΟΣΗΣ ΚΑΙ ΕΠΙΔΗΜΙΟΛΟΓΙΚΩΝ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ"
+ },
+ "M6_Q361_DIAG_01": {
+  "question": 361,
+  "file": "M6_Q361_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΑΙ ΑΝΤΙΓΟΝΙΚΗ ΔΟΜΗ SALMONELLA"
+ },
+ "M6_Q361_TAB_02": {
+  "question": 361,
+  "file": "M6_Q361_TAB_02.png",
+  "type": "table",
+  "caption": "1.3 Διαφοροποίηση Τυφικών vs Μη Τυφικών Στελεχών"
+ },
+ "M6_Q361_DIAG_02": {
+  "question": 361,
+  "file": "M6_Q361_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΚΑΘΕΤΗΣ ΚΑΙ ΟΡΙΖΟΝΤΙΑΣ ΜΕΤΑΔΟΣΗΣ NTS"
+ },
+ "M6_Q361_TABD_01": {
+  "question": 361,
+  "file": "M6_Q361_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΔΙΑΓΝΩΣΤΙΚΟΣ ΠΙΝΑΚΑΣ ΤΡΟΦΙΜΟΓΕΝΩΝ ΒΑΚΤΗΡΙΑΚΩΝ ΛΟΙΜΩΞΕΩΝ"
+ },
+ "M6_Q361_DIAG_03": {
+  "question": 361,
+  "file": "M6_Q361_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΜΟΡΙΑΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΠΑΘΟΓΕΝΕΙΑΣ SALMONELLA"
+ },
+ "M6_Q361_DIAG_04": {
+  "question": 361,
+  "file": "M6_Q361_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΝΟΣΟΥ NTS"
+ },
+ "M6_Q361_TAB_03": {
+  "question": 361,
+  "file": "M6_Q361_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q361_TAB_04": {
+  "question": 361,
+  "file": "M6_Q361_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q362_TAB_01": {
+  "question": 362,
+  "file": "M6_Q362_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΚΛΙΝΙΚΩΝ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΚΑΙ ΕΠΙΠΛΟΚΩΝ ΔΡΕΠΑΝΟΚΥΤΤΑΡΙΚΗΣ ΑΝΑΙΜΙΑΣ"
+ },
+ "M6_Q362_DIAG_01": {
+  "question": 362,
+  "file": "M6_Q362_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΠΟΛΥΜΕΡΙΣΜΟΥ ΚΑΙ ΔΡΕΠΑΝΩΣΗΣ"
+ },
+ "M6_Q362_DIAG_02": {
+  "question": 362,
+  "file": "M6_Q362_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΦΥΣΙΚΗ ΙΣΤΟΡΙΑ ΣΠΛΗΝΟΣ ΣΤΗΝ HbSS ΝΟΣΟ"
+ },
+ "M6_Q362_DIAG_03": {
+  "question": 362,
+  "file": "M6_Q362_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΚΥΡΙΕΣ ΠΟΛΥΣΥΣΤΗΜΑΤΙΚΕΣ ΕΠΙΠΛΟΚΕΣ ΔΡΕΠΑΝΟΚΥΤΤΑΡΙΚΗΣ ΑΝΑΙΜΙΑΣ"
+ },
+ "M6_Q362_DIAG_04": {
+  "question": 362,
+  "file": "M6_Q362_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΝΕΦΡΙΚΗΣ ΥΠΟΣΘΕΝΟΥΡΙΑΣ ΣΤΗΝ HbSS"
+ },
+ "M6_Q362_DIAG_05": {
+  "question": 362,
+  "file": "M6_Q362_DIAG_05.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΝΟΣΟΥ HbSS"
+ },
+ "M6_Q362_TAB_02": {
+  "question": 362,
+  "file": "M6_Q362_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q362_TAB_03": {
+  "question": 362,
+  "file": "M6_Q362_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q363_TAB_01": {
+  "question": 363,
+  "file": "M6_Q363_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΝΟΣΟΛΟΓΙΚΩΝ ΟΝΤΟΤΗΤΩΝ, ΠΑΘΟΛΟΓΙΑΣ ΛΕΜΦΑΔΕΝΩΝ ΚΑΙ ΚΛΙΝΙΚΗΣ ΕΙΚΟΝΑΣ"
+ },
+ "M6_Q363_DIAG_01": {
+  "question": 363,
+  "file": "M6_Q363_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΛΕΜΦΑΔΕΝΟΠΑΘΕΙΑΣ"
+ },
+ "M6_Q363_DIAG_02": {
+  "question": 363,
+  "file": "M6_Q363_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΠΑΘΟΓΕΝΕΙΑ ΠΡΩΤΟΠΑΘΟΥΣ ITP ΚΑΙ ΑΠΟΥΣΙΑ"
+ },
+ "M6_Q363_TABD_01": {
+  "question": 363,
+  "file": "M6_Q363_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΑΙΜΑΤΟΛΟΓΙΚΩΝ ΚΑΚΟΗΘΕΙΩΝ ΜΕ ΛΕΜΦΑΔΕΝΟΠΑΘΕΙΑ"
+ },
+ "M6_Q363_DIAG_03": {
+  "question": 363,
+  "file": "M6_Q363_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΓΕΝΕΙΑ ΚΑΙ ΤΡΙΑΔΑ ΛΟΙΜΩΔΟΥΣ ΜΟΝΟΠΥΡΗΝΩΣΗΣ"
+ },
+ "M6_Q363_DIAG_04": {
+  "question": 363,
+  "file": "M6_Q363_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΛΕΜΦΑΔΕΝΟΠΑΘΕΙΑΣ"
+ },
+ "M6_Q363_TAB_02": {
+  "question": 363,
+  "file": "M6_Q363_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q363_TAB_03": {
+  "question": 363,
+  "file": "M6_Q363_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q364_TAB_01": {
+  "question": 364,
+  "file": "M6_Q364_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΧΡΟΝΙΑΣ ΝΕΦΡΙΚΗΣ ΝΟΣΟΥ (ΧΝΝ) ΚΑΙ ΝΕΦΡΙΚΗΣ ΝΟΣΟΥ ΤΕΛΙΚΟΥ ΣΤΑΔΙΟΥ (ΝΝΤΣ)"
+ },
+ "M6_Q364_DIAG_01": {
+  "question": 364,
+  "file": "M6_Q364_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΟΠΟΙΗΣΗ ΧΡΟΝΙΑΣ ΝΕΦΡΙΚΗΣ ΝΟΣΟΥ (KDIGO Matrix)"
+ },
+ "M6_Q364_TAB_02": {
+  "question": 364,
+  "file": "M6_Q364_TAB_02.png",
+  "type": "table",
+  "caption": "Στάδιο eGFR | Τιμή eGFR (mL/min/1,73m²) | Περιγραφή Λειτουργίας | Στάδιο Αλβουμινουρίας | Τιμή ACR (mg/g) | Περιγραφή Αλβουμινουρίας"
+ },
+ "M6_Q364_DIAG_02": {
+  "question": 364,
+  "file": "M6_Q364_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΚΑΙ ΑΙΜΟΔΥΝΑΜΙΚΗ ΠΑΘΟΓΕΝΕΙΑ ΔΙΑΒΗΤΙΚΗΣ ΝΕΦΡ."
+ },
+ "M6_Q364_TABD_01": {
+  "question": 364,
+  "file": "M6_Q364_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΔΙΑΓΝΩΣΤΙΚΟΣ ΠΙΝΑΚΑΣ ΚΥΡΙΟΤΕΡΩΝ ΑΙΤΙΩΝ ΧΝΝ"
+ },
+ "M6_Q364_DIAG_03": {
+  "question": 364,
+  "file": "M6_Q364_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΘΕΡΑΠΕΥΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΕΠΙΒΡΑΔΥΝΣΗΣ ΧΝΝ/DKD"
+ },
+ "M6_Q364_DIAG_04": {
+  "question": 364,
+  "file": "M6_Q364_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΔΙΑΒΗΤΙΚΗΣ ΧΝΝ"
+ },
+ "M6_Q364_TAB_03": {
+  "question": 364,
+  "file": "M6_Q364_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q364_TAB_04": {
+  "question": 364,
+  "file": "M6_Q364_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q365_TAB_01": {
+  "question": 365,
+  "file": "M6_Q365_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΝΑΣΤΡΕΨΙΜΩΝ ΑΙΤΙΩΝ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ (AKI)"
+ },
+ "M6_Q365_DIAG_01": {
+  "question": 365,
+  "file": "M6_Q365_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΟΠΟΙΗΣΗ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ (KDIGO)"
+ },
+ "M6_Q365_TAB_02": {
+  "question": 365,
+  "file": "M6_Q365_TAB_02.png",
+  "type": "table",
+  "caption": "1.2 Παθοφυσιολογική Ταξινόμηση AKI"
+ },
+ "M6_Q365_DIAG_02": {
+  "question": 365,
+  "file": "M6_Q365_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΠΡΟΝΕΦΡΙΚΗΣ ΑΖΩΘΑΙΜΙΑΣ"
+ },
+ "M6_Q365_TAB_03": {
+  "question": 365,
+  "file": "M6_Q365_TAB_03.png",
+  "type": "table",
+  "caption": "2.3 Εργαστηριακή Διαφοροποίηση Προνεφρικής Αζωθαιμίας vs Οξείας Σωληναριακής Νέκρωσης (ATN)"
+ },
+ "M6_Q365_TABD_01": {
+  "question": 365,
+  "file": "M6_Q365_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΕΥΤΙΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ"
+ },
+ "M6_Q365_DIAG_03": {
+  "question": 365,
+  "file": "M6_Q365_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΜΕΤΑΝΕΦΡΙΚΗΣ ΑΠΟΦΡΑΞΗΣ & ΑΝΑΣΤΡΟΦΗΣ"
+ },
+ "M6_Q365_DIAG_04": {
+  "question": 365,
+  "file": "M6_Q365_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ & ΑΝΑΣΤΡΟΦΗΣ AKI"
+ },
+ "M6_Q365_TAB_04": {
+  "question": 365,
+  "file": "M6_Q365_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q365_TAB_05": {
+  "question": 365,
+  "file": "M6_Q365_TAB_05.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q366_TAB_01": {
+  "question": 366,
+  "file": "M6_Q366_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΝΑΣΤΡΕΨΙΜΩΝ ΑΙΤΙΩΝ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ (AKI)"
+ },
+ "M6_Q366_DIAG_01": {
+  "question": 366,
+  "file": "M6_Q366_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΟΠΟΙΗΣΗ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ (KDIGO)"
+ },
+ "M6_Q366_TAB_02": {
+  "question": 366,
+  "file": "M6_Q366_TAB_02.png",
+  "type": "table",
+  "caption": "1.2 Παθοφυσιολογική Ταξινόμηση AKI"
+ },
+ "M6_Q366_DIAG_02": {
+  "question": 366,
+  "file": "M6_Q366_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΚΑΤΑΠΛΗΞΙΑΣ ΚΑΙ ΠΡΟΝΕΦΡΙΚΗΣ AKI"
+ },
+ "M6_Q366_TAB_03": {
+  "question": 366,
+  "file": "M6_Q366_TAB_03.png",
+  "type": "table",
+  "caption": "2.2 Εργαστηριακή Διαφοροποίηση Προνεφρικής Αζωθαιμίας vs Οξείας Σωληναριακής Νέκρωσης (ATN)"
+ },
+ "M6_Q366_TABD_01": {
+  "question": 366,
+  "file": "M6_Q366_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΕΥΤΙΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΟΞΕΙΑΣ ΝΕΦΡΙΚΗΣ ΒΛΑΒΗΣ"
+ },
+ "M6_Q366_DIAG_03": {
+  "question": 366,
+  "file": "M6_Q366_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΜΕΤΑΝΕΦΡΙΚΗΣ ΑΠΟΦΡΑΞΗΣ & ΑΝΑΣΤΡΟΦΗΣ"
+ },
+ "M6_Q366_DIAG_04": {
+  "question": 366,
+  "file": "M6_Q366_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ & ΑΝΑΣΤΡΟΦΗΣ AKI"
+ },
+ "M6_Q366_TAB_04": {
+  "question": 366,
+  "file": "M6_Q366_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q366_TAB_05": {
+  "question": 366,
+  "file": "M6_Q366_TAB_05.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q367_TAB_01": {
+  "question": 367,
+  "file": "M6_Q367_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΑΥΞΗΣΗΣ ΟΥΡΙΑΣ ΑΙΜΑΤΟΣ (BUN)"
+ },
+ "M6_Q367_DIAG_01": {
+  "question": 367,
+  "file": "M6_Q367_DIAG_01.png",
+  "type": "diagram",
+  "caption": "Ο ΚΥΚΛΟΣ ΤΗΣ ΟΥΡΙΑΣ (KREBS-HENSELEIT CYCLE)"
+ },
+ "M6_Q367_DIAG_02": {
+  "question": 367,
+  "file": "M6_Q367_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ ΣΕ ΑΙΜΟΡΡΑΓΙΑ ΓΑΣΤΡΕΝΤΕΡΙΚΟΥ"
+ },
+ "M6_Q367_TABD_01": {
+  "question": 367,
+  "file": "M6_Q367_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ ΑΠΟ ΓΛΥΚΟΚΟΡΤΙΚΟΕΙΔΗ ΚΑΙ ΤΕΤΡΑΚΥΚΛΙΝΕΣ"
+ },
+ "M6_Q367_TAB_02": {
+  "question": 367,
+  "file": "M6_Q367_TAB_02.png",
+  "type": "table",
+  "caption": "Η αξιολόγηση της αύξησης της ουρίας αίματος απαιτεί πάντα τη συγκριτική συσχέτιση με την κρεατινίνη ορού:"
+ },
+ "M6_Q367_DIAG_03": {
+  "question": 367,
+  "file": "M6_Q367_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΑΞΙΟΛΟΓΗΣΗΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ"
+ },
+ "M6_Q367_DIAG_04": {
+  "question": 367,
+  "file": "M6_Q367_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ"
+ },
+ "M6_Q367_TAB_03": {
+  "question": 367,
+  "file": "M6_Q367_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q367_TAB_04": {
+  "question": 367,
+  "file": "M6_Q367_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q368_TAB_01": {
+  "question": 368,
+  "file": "M6_Q368_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΑΥΞΗΣΗΣ ΟΥΡΙΑΣ ΑΙΜΑΤΟΣ (BUN)"
+ },
+ "M6_Q368_DIAG_01": {
+  "question": 368,
+  "file": "M6_Q368_DIAG_01.png",
+  "type": "diagram",
+  "caption": "Ο ΚΥΚΛΟΣ ΤΗΣ ΟΥΡΙΑΣ (KREBS-HENSELEIT CYCLE)"
+ },
+ "M6_Q368_DIAG_02": {
+  "question": 368,
+  "file": "M6_Q368_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ ΣΕ ΑΙΜΟΡΡΑΓΙΑ ΓΑΣΤΡΕΝΤΕΡΙΚΟΥ"
+ },
+ "M6_Q368_TABD_01": {
+  "question": 368,
+  "file": "M6_Q368_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ ΑΠΟ ΓΛΥΚΟΚΟΡΤΙΚΟΕΙΔΗ ΚΑΙ ΤΕΤΡΑΚΥΚΛΙΝΕΣ"
+ },
+ "M6_Q368_TAB_02": {
+  "question": 368,
+  "file": "M6_Q368_TAB_02.png",
+  "type": "table",
+  "caption": "Η αξιολόγηση της αύξησης της ουρίας αίματος απαιτεί πάντα τη συγκριτική συσχέτιση με την κρεατινίνη ορού:"
+ },
+ "M6_Q368_DIAG_03": {
+  "question": 368,
+  "file": "M6_Q368_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΑΞΙΟΛΟΓΗΣΗΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ"
+ },
+ "M6_Q368_DIAG_04": {
+  "question": 368,
+  "file": "M6_Q368_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΥΠΕΡΟΥΡΑΙΜΙΑΣ"
+ },
+ "M6_Q368_TAB_03": {
+  "question": 368,
+  "file": "M6_Q368_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q368_TAB_04": {
+  "question": 368,
+  "file": "M6_Q368_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q369_TAB_01": {
+  "question": 369,
+  "file": "M6_Q369_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΑΥΞΗΣΗΣ ΚΡΕΑΤΙΝΙΝΗΣ ΟΡΟΥ"
+ },
+ "M6_Q369_DIAG_01": {
+  "question": 369,
+  "file": "M6_Q369_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΒΙΟΣΥΝΘΕΣΗ ΚΑΙ ΜΕΤΑΒΟΛΙΣΜΟΣ ΚΡΕΑΤΙΝΗΣ"
+ },
+ "M6_Q369_DIAG_02": {
+  "question": 369,
+  "file": "M6_Q369_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΑΥΞΗΣΗΣ ΚΡΕΑΤΙΝΙΝΗΣ ΑΠΟ ΚΑΤΑΝΑΛΩΣΗ ΚΡΕΑΤΟΣ"
+ },
+ "M6_Q369_DIAG_03": {
+  "question": 369,
+  "file": "M6_Q369_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΠΛΟΣ ΜΗΧΑΝΙΣΜΟΣ ΥΠΕΡΚΡΕΑΤΙΝΙΝΑΙΜΙΑΣ ΣΕ ΚΕΤΟΞΕΩΣΗ"
+ },
+ "M6_Q369_TAB_02": {
+  "question": 369,
+  "file": "M6_Q369_TAB_02.png",
+  "type": "table",
+  "caption": "4.2 Εξισώσεις Υπολογισμού eGFR"
+ },
+ "M6_Q369_DIAG_04": {
+  "question": 369,
+  "file": "M6_Q369_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΥΠΕΡΚΡΕΑΤΙΝΙΝΑΙΜΙΑΣ"
+ },
+ "M6_Q369_TAB_03": {
+  "question": 369,
+  "file": "M6_Q369_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q369_TAB_04": {
+  "question": 369,
+  "file": "M6_Q369_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q370_TAB_01": {
+  "question": 370,
+  "file": "M6_Q370_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΤΙΩΝ ΔΕΥΤΕΡΟΠΑΘΟΥΣ ΥΠΕΡΤΑΣΗΣ"
+ },
+ "M6_Q370_DIAG_01": {
+  "question": 370,
+  "file": "M6_Q370_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΕΠΙΔΗΜΙΟΛΟΓΙΚΗ ΚΑΤΑΝΟΜΗ ΑΡΤΗΡΙΑΚΗΣ ΥΠΕΡΤΑΣΗΣ"
+ },
+ "M6_Q370_TABD_01": {
+  "question": 370,
+  "file": "M6_Q370_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΙ ΜΗΧΑΝΙΣΜΟΙ ΝΕΦΡΙΚΗΣ ΠΑΡΕΓΧΥΜΑΤΙΚΗΣ ΥΠΕΡΤΑΣΗΣ"
+ },
+ "M6_Q370_DIAG_02": {
+  "question": 370,
+  "file": "M6_Q370_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΝΕΦΡΙΚΗΣ ΠΑΡΕΓΧΥΜΑΤΙΚΗΣ ΑΥ"
+ },
+ "M6_Q370_TAB_02": {
+  "question": 370,
+  "file": "M6_Q370_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q370_TAB_03": {
+  "question": 370,
+  "file": "M6_Q370_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q371_TAB_01": {
+  "question": 371,
+  "file": "M6_Q371_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΙΜΑΤΟΛΟΓΙΚΗΣ ΑΠΑΝΤΗΣΗΣ ΛΟΙΜΩΞΕΩΝ"
+ },
+ "M6_Q371_DIAG_01": {
+  "question": 371,
+  "file": "M6_Q371_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΑΠΟΛΥΤΗΣ ΚΑΙ ΣΧΕΤΙΚΗΣ ΛΕΜΦΟΚΥΤΤΑΡΩΣΗΣ"
+ },
+ "M6_Q371_TABD_01": {
+  "question": 371,
+  "file": "M6_Q371_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΛΕΜΦΟΚΥΤΤΑΡΩΣΗΣ ΣΤΟΝ ΚΟΚΚΥΤΗ (PTX TOXIN)"
+ },
+ "M6_Q371_DIAG_02": {
+  "question": 371,
+  "file": "M6_Q371_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΑΙΜΑΤΟΛΟΓΙΚΗ ΕΞΕΛΙΞΗ ΛΕΜΦΟΚΥΤΤΑΡΩΝ ΣΤΗ ΛΟΙΜΩΞΗ HIV"
+ },
+ "M6_Q371_TAB_02": {
+  "question": 371,
+  "file": "M6_Q371_TAB_02.png",
+  "type": "table",
+  "caption": "Χαρακτηριστικό | Αντιδραστική / Καλοήθης Λεμφοκυττάρωση | Νεοπλασματική / Κλωνική (π.χ. ΧΛΛ)"
+ },
+ "M6_Q371_DIAG_03": {
+  "question": 371,
+  "file": "M6_Q371_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΛΕΥΚΟΚΥΤΤΑΡΩΣΗΣ"
+ },
+ "M6_Q371_TAB_03": {
+  "question": 371,
+  "file": "M6_Q371_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q371_TAB_04": {
+  "question": 371,
+  "file": "M6_Q371_TAB_04.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q372_TAB_01": {
+  "question": 372,
+  "file": "M6_Q372_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΠΡΟΤΑΣΕΩΝ ΠΥΡΕΤΟΥ Q"
+ },
+ "M6_Q372_DIAG_01": {
+  "question": 372,
+  "file": "M6_Q372_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΝΑΠΤΥΞΙΑΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΔΙΜΟΡΦΙΣΜΟΣ C. BURNETII"
+ },
+ "M6_Q372_TABD_01": {
+  "question": 372,
+  "file": "M6_Q372_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΠΙΔΗΜΙΟΛΟΓΙΚΟΙ ΚΥΚΛΟΙ ΜΕΤΑΔΟΣΗΣ ΤΗΣ COXIELLA BURNETII"
+ },
+ "M6_Q372_DIAG_02": {
+  "question": 372,
+  "file": "M6_Q372_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΚΛΙΝΙΚΕΣ ΜΟΡΦΕΣ ΟΞΕΟΣ ΚΑΙ ΧΡΟΝΙΟΥ ΠΥΡΕΤΟΥ Q"
+ },
+ "M6_Q372_DIAG_03": {
+  "question": 372,
+  "file": "M6_Q372_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΠΥΡΕΤΟΥ Q"
+ },
+ "M6_Q372_TAB_02": {
+  "question": 372,
+  "file": "M6_Q372_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q372_TAB_03": {
+  "question": 372,
+  "file": "M6_Q372_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q373_TAB_01": {
+  "question": 373,
+  "file": "M6_Q373_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΜΕΤΑΕΚΘΕΣΙΑΚΗΣ ΠΡΟΦΥΛΑΞΗΣ (PEP)"
+ },
+ "M6_Q373_DIAG_01": {
+  "question": 373,
+  "file": "M6_Q373_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΑΞΙΟΛΟΓΗΣΗΣ ΚΑΙ ΕΝΑΡΞΗΣ HIV PEP"
+ },
+ "M6_Q373_TABD_01": {
+  "question": 373,
+  "file": "M6_Q373_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΝΔΕΙΞΕΙΣ ΧΗΜΕΙΟΠΡΟΦΥΛΑΞΗΣ ΕΝΑΝΤΙ ΜΗΝΙΓΓΙΤΙΔΟΚΟΚΚΟΥ"
+ },
+ "M6_Q373_TABD_02": {
+  "question": 373,
+  "file": "M6_Q373_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ HBV PEP ΜΕΤΑ ΑΠΟ ΔΙΑΔΕΡΜΙΚΟ ΝΥΓΜΑ ΒΕΛΟΝΑΣ"
+ },
+ "M6_Q373_TABD_03": {
+  "question": 373,
+  "file": "M6_Q373_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΝΟΨΗ ΛΟΙΜΩΞΕΩΝ ΜΕ ΕΝΔΕΙΞΗ ΜΕΤΑΕΚΘΕΣΙΑΚΗΣ ΠΡΟΦΥΛΑΞΗΣ (PEP)"
+ },
+ "M6_Q373_DIAG_02": {
+  "question": 373,
+  "file": "M6_Q373_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΚΑΙ PEP"
+ },
+ "M6_Q373_TAB_02": {
+  "question": 373,
+  "file": "M6_Q373_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q373_TAB_03": {
+  "question": 373,
+  "file": "M6_Q373_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q373B_TAB_01": {
+  "question": 373,
+  "file": "M6_Q373B_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΜΕΤΑΕΚΘΕΣΙΑΚΗΣ ΠΡΟΦΥΛΑΞΗΣ (PEP)"
+ },
+ "M6_Q373B_TABD_01": {
+  "question": 373,
+  "file": "M6_Q373B_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΑΞΙΟΛΟΓΗΣΗΣ ΚΑΙ ΕΝΑΡΞΗΣ HIV PEP"
+ },
+ "M6_Q373B_TABD_02": {
+  "question": 373,
+  "file": "M6_Q373B_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΝΔΕΙΞΕΙΣ ΧΗΜΕΙΟΠΡΟΦΥΛΑΞΗΣ ΕΝΑΝΤΙ ΜΗΝΙΓΓΙΤΙΔΟΚΟΚΚΟΥ"
+ },
+ "M6_Q373B_TABD_03": {
+  "question": 373,
+  "file": "M6_Q373B_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ HBV PEP ΜΕΤΑ ΑΠΟ ΔΙΑΔΕΡΜΙΚΟ ΝΥΓΜΑ ΒΕΛΟΝΑΣ"
+ },
+ "M6_Q373B_TABD_04": {
+  "question": 373,
+  "file": "M6_Q373B_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΝΟΨΗ ΛΟΙΜΩΞΕΩΝ ΜΕ ΕΝΔΕΙΞΗ ΜΕΤΑΕΚΘΕΣΙΑΚΗΣ ΠΡΟΦΥΛΑΞΗΣ (PEP)"
+ },
+ "M6_Q373B_DIAG_01": {
+  "question": 373,
+  "file": "M6_Q373B_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΚΑΙ PEP"
+ },
+ "M6_Q373B_TAB_02": {
+  "question": 373,
+  "file": "M6_Q373B_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q373B_TAB_03": {
+  "question": 373,
+  "file": "M6_Q373B_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q374_TAB_01": {
+  "question": 374,
+  "file": "M6_Q374_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΣΗΜΕΙΩΝ ΚΑΙ ΣΥΝΔΡΟΜΩΝ"
+ },
+ "M6_Q374_DIAG_01": {
+  "question": 374,
+  "file": "M6_Q374_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΑΙΤΙΟΛΟΓΙΑ ΜΗΧΑΝΙΚΗΣ ΑΠΟΦΡΑΞΗΣ ΧΟΛΗΔΟΧΟΥ ΠΟΡΟΥ"
+ },
+ "M6_Q374_TABD_01": {
+  "question": 374,
+  "file": "M6_Q374_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΡΙΑΔΑ ΤΟΥ CHARCOT ΚΑΙ ΠΕΝΤΑΔΑ ΤΟΥ REYNOLDS"
+ },
+ "M6_Q374_DIAG_02": {
+  "question": 374,
+  "file": "M6_Q374_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΣΗΜΕΙΟΛΟΓΙΑΣ: ΧΟΛΑΓΓΕΙΙΤΙΔΑ vs ΜΗΝΙΓΓΙΤΙΔΑ"
+ },
+ "M6_Q374_DIAG_03": {
+  "question": 374,
+  "file": "M6_Q374_DIAG_03.png",
+  "type": "diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ TOKYO GUIDELINES (TG18)"
+ },
+ "M6_Q374_DIAG_04": {
+  "question": 374,
+  "file": "M6_Q374_DIAG_04.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΧΟΛΑΓΓΕΙΙΤΙΔΑΣ"
+ },
+ "M6_Q374_TAB_02": {
+  "question": 374,
+  "file": "M6_Q374_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q374_TAB_03": {
+  "question": 374,
+  "file": "M6_Q374_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q375_TAB_01": {
+  "question": 375,
+  "file": "M6_Q375_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΠΡΟΤΑΣΕΩΝ ΥΠΕΡΟΥΡΙΧΑΙΜΙΑΣ"
+ },
+ "M6_Q375_DIAG_01": {
+  "question": 375,
+  "file": "M6_Q375_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΒΙΟΧΗΜΙΚΟ ΜΟΝΟΠΑΤΙ ΚΑΤΑΒΟΛΙΣΜΟΥ ΠΟΥΡΙΝΩΝ"
+ },
+ "M6_Q375_TABD_01": {
+  "question": 375,
+  "file": "M6_Q375_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΤΑΔΙΑ ΝΕΦΡΙΚΗΣ ΔΙΑΧΕΙΡΙΣΗΣ ΟΥΡΙΚΟΥ ΟΞΕΟΣ ΣΤΟ ΕΓΓΥΣ ΣΩΛΗΝΑΡΙΟ"
+ },
+ "M6_Q375_TABD_02": {
+  "question": 375,
+  "file": "M6_Q375_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΣΧΗΜΑΤΙΣΜΟΥ ΛΙΘΩΝ ΟΥΡΙΚΟΥ ΟΞΕΟΣ ΣΤΑ ΟΥΡΑ"
+ },
+ "M6_Q375_DIAG_02": {
+  "question": 375,
+  "file": "M6_Q375_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΥΠΕΡΟΥΡΙΧΑΙΜΙΑΣ"
+ },
+ "M6_Q375_TAB_02": {
+  "question": 375,
+  "file": "M6_Q375_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q375_TAB_03": {
+  "question": 375,
+  "file": "M6_Q375_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q376_TAB_01": {
+  "question": 376,
+  "file": "M6_Q376_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΜΙΚΡΟΒΙΟΛΟΓΙΚΩΝ & ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΩΝ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ"
+ },
+ "M6_Q376_TABD_01": {
+  "question": 376,
+  "file": "M6_Q376_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΠΡΟΣΧΗΜΑΤΙΣΜΕΝΗΣ ΣΤΑΦΥΛΟΚΟΚΚΙΚΗΣ ΤΟΞΙΝΩΣΗΣ"
+ },
+ "M6_Q376_DIAG_01": {
+  "question": 376,
+  "file": "M6_Q376_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΤΟΞΙΝΗΣ ΧΟΛΕΡΑΣ (CTX)"
+ },
+ "M6_Q376_TABD_02": {
+  "question": 376,
+  "file": "M6_Q376_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΚΥΤΤΑΡΙΚΗΣ ΕΙΣΒΟΛΗΣ ΤΗΣ YERSINIA ENTEROCOLITICA"
+ },
+ "M6_Q376_TABD_03": {
+  "question": 376,
+  "file": "M6_Q376_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΔΙΕΙΣΔΥΤΙΚΩΝ ΒΑΚΤΗΡΙΩΝ ΤΟΥ ΠΕΠΤΙΚΟΥ ΣΥΣΤΗΜΑΤΟΣ"
+ },
+ "M6_Q376_DIAG_02": {
+  "question": 376,
+  "file": "M6_Q376_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΔΙΑΡΡΟΙΑΣ"
+ },
+ "M6_Q376_TAB_02": {
+  "question": 376,
+  "file": "M6_Q376_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q376_TAB_03": {
+  "question": 376,
+  "file": "M6_Q376_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q377_TAB_01": {
+  "question": 377,
+  "file": "M6_Q377_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΜΙΚΡΟΒΙΑΚΟΥ ΦΑΣΜΑΤΟΣ"
+ },
+ "M6_Q377_DIAG_01": {
+  "question": 377,
+  "file": "M6_Q377_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΣΟΒΑΡΟΤΗΤΑΣ ΟΥΔΕΤΕΡΟΠΕΝΙΑΣ (ANC)"
+ },
+ "M6_Q377_TABD_01": {
+  "question": 377,
+  "file": "M6_Q377_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΙΚΡΟΒΙΑΚΟ ΦΑΣΜΑ ΛΟΙΜΩΞΕΩΝ ΣΕ ΣΟΒΑΡΗ ΟΥΔΕΤΕΡΟΠΕΝΙΑ (ANC < 500/μL)"
+ },
+ "M6_Q377_TABD_02": {
+  "question": 377,
+  "file": "M6_Q377_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΑΝΟΣΟΑΝΕΠΑΡΚΕΙΩΝ: ΦΑΓΟΚΥΤΤΑΡΑ vs Τ-ΚΥΤΤΑΡΑ"
+ },
+ "M6_Q377_TABD_03": {
+  "question": 377,
+  "file": "M6_Q377_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΑΝΤΙΜΕΤΩΠΙΣΗΣ ΕΜΠΥΡΕΤΟΥ ΟΥΔΕΤΕΡΟΠΕΝΙΑΣ"
+ },
+ "M6_Q377_DIAG_02": {
+  "question": 377,
+  "file": "M6_Q377_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΟΥΔΕΤΕΡΟΠΕΝΙΑΣ"
+ },
+ "M6_Q377_TAB_02": {
+  "question": 377,
+  "file": "M6_Q377_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q377_TAB_03": {
+  "question": 377,
+  "file": "M6_Q377_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q378_TAB_01": {
+  "question": 378,
+  "file": "M6_Q378_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΜΙΚΡΟΒΙΑΚΟΥ ΦΑΣΜΑΤΟΣ & ΤΥΠΟΥ ΑΝΟΣΙΑΣ"
+ },
+ "M6_Q378_TABD_01": {
+  "question": 378,
+  "file": "M6_Q378_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΑΞΟΝΑΣ ΕΝΕΡΓΟΠΟΙΗΣΗΣ ΚΥΤΤΑΡΙΚΗΣ ΑΝΟΣΙΑΣ (Th1 / IFN-γ)"
+ },
+ "M6_Q378_TABD_02": {
+  "question": 378,
+  "file": "M6_Q378_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΥΤΤΑΡΙΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΕΝΔΟΚΥΤΤΑΡΙΑ ΔΙΑΦΥΓΗ ΤΗΣ LISTERIA MONOCYTOGENES"
+ },
+ "M6_Q378_TABD_03": {
+  "question": 378,
+  "file": "M6_Q378_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΑΜΥΝΑΣ ΕΝΑΝΤΙ ΑΣΠΕΡΓΙΛΛΟΥ: ΡΟΛΟΣ ΟΥΔΕΤΕΡΟΦΙΛΩΝ"
+ },
+ "M6_Q378_DIAG_01": {
+  "question": 378,
+  "file": "M6_Q378_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ CMI DEFECT"
+ },
+ "M6_Q378_TAB_02": {
+  "question": 378,
+  "file": "M6_Q378_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q378_TAB_03": {
+  "question": 378,
+  "file": "M6_Q378_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q378B_TAB_01": {
+  "question": 378,
+  "file": "M6_Q378B_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΜΙΚΡΟΒΙΑΚΟΥ ΦΑΣΜΑΤΟΣ & ΤΥΠΟΥ ΑΝΟΣΙΑΣ"
+ },
+ "M6_Q378B_TABD_01": {
+  "question": 378,
+  "file": "M6_Q378B_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΑΞΟΝΑΣ ΕΝΕΡΓΟΠΟΙΗΣΗΣ ΚΥΤΤΑΡΙΚΗΣ ΑΝΟΣΙΑΣ (Th1 / IFN-γ)"
+ },
+ "M6_Q378B_TABD_02": {
+  "question": 378,
+  "file": "M6_Q378B_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΥΤΤΑΡΙΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΕΝΔΟΚΥΤΤΑΡΙΑ ΔΙΑΦΥΓΗ ΤΗΣ LISTERIA MONOCYTOGENES"
+ },
+ "M6_Q378B_TABD_03": {
+  "question": 378,
+  "file": "M6_Q378B_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΑΜΥΝΑΣ ΕΝΑΝΤΙ ΑΣΠΕΡΓΙΛΛΟΥ: ΡΟΛΟΣ ΟΥΔΕΤΕΡΟΦΙΛΩΝ"
+ },
+ "M6_Q378B_DIAG_01": {
+  "question": 378,
+  "file": "M6_Q378B_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ CMI DEFECT"
+ },
+ "M6_Q378B_TAB_02": {
+  "question": 378,
+  "file": "M6_Q378B_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q378B_TAB_03": {
+  "question": 378,
+  "file": "M6_Q378B_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q379_TAB_01": {
+  "question": 379,
+  "file": "M6_Q379_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΕΠΙΔΗΜΙΟΛΟΓΙΑΣ ΚΑΙ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΚΑΚΟΗΘΕΙΩΝ"
+ },
+ "M6_Q379_DIAG_01": {
+  "question": 379,
+  "file": "M6_Q379_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΗΛΙΚΙΑΚΗ ΚΑΤΑΝΟΜΗ ΚΑΚΟΗΘΕΙΩΝ ΟΡΧΕΩΣ (BIMODAL PEAKS)"
+ },
+ "M6_Q379_TABD_01": {
+  "question": 379,
+  "file": "M6_Q379_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΙΣΤΟΛΟΓΙΚΗ ΤΑΞΙΝΟΜΗΣΗ ΟΓΚΩΝ ΟΡΧΕΩΣ ΑΠΟ ΓΕΝΝΗΤΙΚΑ ΚΥΤΤΑΡΑ (GCTs)"
+ },
+ "M6_Q379_TABD_02": {
+  "question": 379,
+  "file": "M6_Q379_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΡΚΙΝΙΚΟΙ ΔΕΙΚΤΕΣ ΟΡΟΥ ΣΤΟΥΣ ΟΓΚΟΥΣ ΟΡΧΕΩΝ (TUMOR MARKERS)"
+ },
+ "M6_Q379_TABD_03": {
+  "question": 379,
+  "file": "M6_Q379_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΔΙΑΓΝΩΣΗΣ ΚΑΙ ΧΕΙΡΟΥΡΓΙΚΗΣ ΑΝΤΙΜΕΤΩΠΙΣΗΣ ΟΓΚΟΥ ΟΡΧΕΩΣ"
+ },
+ "M6_Q379_DIAG_02": {
+  "question": 379,
+  "file": "M6_Q379_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΚΑΡΚΙΝΟΥ ΟΡΧΕΩΝ"
+ },
+ "M6_Q379_TAB_02": {
+  "question": 379,
+  "file": "M6_Q379_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q379_TAB_03": {
+  "question": 379,
+  "file": "M6_Q379_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q380_TAB_01": {
+  "question": 380,
+  "file": "M6_Q380_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΝΕΟΠΛΑΣΜΑΤΙΚΩΝ ΔΕΙΚΤΩΝ"
+ },
+ "M6_Q380_TABD_01": {
+  "question": 380,
+  "file": "M6_Q380_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΠΡΟΕΛΕΥΣΗ ΚΑΙ ΕΚΦΡΑΣΗΣ ΤΟΥ CA 125 (MUC16)"
+ },
+ "M6_Q380_TABD_02": {
+  "question": 380,
+  "file": "M6_Q380_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΛΟΗΘΕΙΣ ΚΑΙ ΠΑΘΟΛΟΓΙΚΕΣ ΑΙΤΙΕΣ ΑΥΞΗΣΗΣ ΤΟΥ CA 125"
+ },
+ "M6_Q380_TABD_03": {
+  "question": 380,
+  "file": "M6_Q380_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΟΓΚΟΛΟΓΙΚΟΙ ΔΕΙΚΤΕΣ ΜΗ ΕΠΙΘΗΛΙΑΚΩΝ ΝΕΟΠΛΑΣΜΑΤΩΝ ΩΟΘΗΚΗΣ"
+ },
+ "M6_Q380_TABD_04": {
+  "question": 380,
+  "file": "M6_Q380_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ROMA ΚΑΙ ΚΛΙΝΙΚΗ ΔΙΑΧΕΙΡΙΣΗ ΕΞΑΡΤΗΜΑΤΙΚΗΣ ΜΑΖΑΣ"
+ },
+ "M6_Q380_DIAG_01": {
+  "question": 380,
+  "file": "M6_Q380_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ CA 125 (MUC16)"
+ },
+ "M6_Q380_TAB_02": {
+  "question": 380,
+  "file": "M6_Q380_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q380_TAB_03": {
+  "question": 380,
+  "file": "M6_Q380_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q381_TAB_01": {
+  "question": 381,
+  "file": "M6_Q381_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΕΠΙΘΥΜΗΤΩΝ ΕΝΕΡΓΕΙΩΝ ΚΟΤΡΙΜΟΞΑΖΟΛΗΣ"
+ },
+ "M6_Q381_TABD_01": {
+  "question": 381,
+  "file": "M6_Q381_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΑΛΛΗΛΟΥΧΙΚΟΥ ΑΠΟΚΛΕΙΣΜΟΥ ΦΥΛΛΙΚΟΥ ΟΞΕΟΣ (TMP-SMX)"
+ },
+ "M6_Q381_TABD_02": {
+  "question": 381,
+  "file": "M6_Q381_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΣ ΠΡΟΚΛΗΣΗΣ ΥΠΕΡΚΑΛΙΑΙΜΙΑΣ ΑΠΟ ΤΡΙΜΕΘΟΠΡΙΜΗ (ENaC BLOCKADE)"
+ },
+ "M6_Q381_DIAG_01": {
+  "question": 381,
+  "file": "M6_Q381_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΔΡΑΣΗΣ ΤΡΙΜΕΘΟΠΡΙΜΗΣ (TMP)"
+ },
+ "M6_Q381_TAB_02": {
+  "question": 381,
+  "file": "M6_Q381_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q381_TAB_03": {
+  "question": 381,
+  "file": "M6_Q381_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q382_TAB_01": {
+  "question": 382,
+  "file": "M6_Q382_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΕΡΓΑΣΤΗΡΙΑΚΩΝ ΕΥΡΗΜΑΤΩΝ ΜΕΓΑΛΟΒΛΑΣΤΙΚΗΣ ΑΝΑΙΜΙΑΣ"
+ },
+ "M6_Q382_TABD_01": {
+  "question": 382,
+  "file": "M6_Q382_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΕΤΑΒΟΛΙΣΜΟΣ ΒΙΤΑΜΙΝΗΣ B12 ΚΑΙ ΦΥΛΛΙΚΟΥ ΟΞΕΟΣ (FOLATE TRAP)"
+ },
+ "M6_Q382_TABD_02": {
+  "question": 382,
+  "file": "M6_Q382_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΥΚΛΟΣ ΕΝΔΟΜΥΕΛΙΚΗΣ ΑΙΜΟΛΥΣΗΣ ΣΤΗ ΜΕΓΑΛΟΒΛΑΣΤΙΚΗ"
+ },
+ "M6_Q382_TABD_03": {
+  "question": 382,
+  "file": "M6_Q382_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΥΝΑΜΙΚΗ ΜΕΤΑΒΟΛΗ ΔΙΚΤΥΟΕΡΥΘΡΟΚΥΤΤΑΡΩΝ (ΔΕΚ) ΠΡΙΝ ΚΑΙ ΜΕΤΑ ΤΗ ΘΕΡΑΠΕΙΑ"
+ },
+ "M6_Q382_TABD_04": {
+  "question": 382,
+  "file": "M6_Q382_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΕΛΛΕΙΨΗΣ ΒΙΤΑΜΙΝΗΣ B12 ΚΑΙ ΦΥΛΛΙΚΟΥ ΟΞΕΟΣ"
+ },
+ "M6_Q382_DIAG_01": {
+  "question": 382,
+  "file": "M6_Q382_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΜΕΓΑΛΟΒΛΑΣΤΩΣΗΣ"
+ },
+ "M6_Q382_TAB_02": {
+  "question": 382,
+  "file": "M6_Q382_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q382_TAB_03": {
+  "question": 382,
+  "file": "M6_Q382_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q383_TAB_01": {
+  "question": 383,
+  "file": "M6_Q383_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ Β-ΛΑΚΤΑΜΩΝ"
+ },
+ "M6_Q383_TABD_01": {
+  "question": 383,
+  "file": "M6_Q383_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΒΑΚΤΗΡΙΟΚΤΟΝΟΥ ΔΡΑΣΗΣ ΠΕΝΙΚΙΛΛΙΝΗΣ G"
+ },
+ "M6_Q383_TABD_02": {
+  "question": 383,
+  "file": "M6_Q383_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΣΥΓΚΡΙΣΗ ΦΥΣΙΟΛΟΓΙΚΗΣ ΔΡΑΣΗΣ GABA-A vs ΑΝΤΑΓΩΝΙΣΜΟΥ ΠΕΝΙΚΙΛΛΙΝΗΣ"
+ },
+ "M6_Q383_TABD_03": {
+  "question": 383,
+  "file": "M6_Q383_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΡΟΔΙΑΘΕΣΙΚΟΙ ΠΑΡΑΓΟΝΤΕΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ ΠΕΝΙΚΙΛΛΙΝΗΣ G"
+ },
+ "M6_Q383_TABD_04": {
+  "question": 383,
+  "file": "M6_Q383_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΙΕΡΑΡΧΗΣΗ ΚΙΝΔΥΝΟΥ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ / ΣΠΑΣΜΩΝ Β-ΛΑΚΤΑΜΙΚΩΝ ΑΝΤΙΒΙΟΤΙΚΩΝ"
+ },
+ "M6_Q383_DIAG_01": {
+  "question": 383,
+  "file": "M6_Q383_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ ΠΕΝΙΚΙΛΛΙΝΗΣ G"
+ },
+ "M6_Q383_TAB_02": {
+  "question": 383,
+  "file": "M6_Q383_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q383_TAB_03": {
+  "question": 383,
+  "file": "M6_Q383_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q384_TAB_01": {
+  "question": 384,
+  "file": "M6_Q384_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ & ΣΠΑΣΜΩΝ"
+ },
+ "M6_Q384_TABD_01": {
+  "question": 384,
+  "file": "M6_Q384_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΣΥΓΚΡΙΣΗ ΠΕΝΙΚΙΛΛΙΝΗΣ G ΚΑΙ ΙΜΙΠΕΝΕΜΗΣ"
+ },
+ "M6_Q384_TABD_02": {
+  "question": 384,
+  "file": "M6_Q384_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑ ΑΝΤΑΓΩΝΙΣΜΟΥ GABA-A ΑΠΟ ΠΕΝΙΚΙΛΛΙΝΗ G & ΙΜΙΠΕΝΕΜΗ"
+ },
+ "M6_Q384_TABD_03": {
+  "question": 384,
+  "file": "M6_Q384_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΡΟΔΙΑΘΕΣΙΚΟΙ ΠΑΡΑΓΟΝΤΕΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ & ΣΠΑΣΜΩΝ"
+ },
+ "M6_Q384_TABD_04": {
+  "question": 384,
+  "file": "M6_Q384_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΙΕΡΑΡΧΗΣΗ ΚΙΝΔΥΝΟΥ ΣΠΑΣΜΩΝ Β-ΛΑΚΤΑΜΩΝ ΚΑΙ ΚΑΡΒΑΠΕΝΕΜΩΝ"
+ },
+ "M6_Q384_DIAG_01": {
+  "question": 384,
+  "file": "M6_Q384_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΝΕΥΡΟΤΟΞΙΚΟΤΗΤΑΣ & ΣΠΑΣΜΩΝ"
+ },
+ "M6_Q384_TAB_02": {
+  "question": 384,
+  "file": "M6_Q384_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q384_TAB_03": {
+  "question": 384,
+  "file": "M6_Q384_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q385_TAB_01": {
+  "question": 385,
+  "file": "M6_Q385_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΕΞΑΝΘΗΜΑΤΟΣ EBV"
+ },
+ "M6_Q385_TABD_01": {
+  "question": 385,
+  "file": "M6_Q385_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΙΟΛΟΓΙΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΚΛΙΝΙΚΗ ΠΑΘΟΓΕΝΕΙΑ ΤΟΥ ΙΟΥ EPSTEIN-BARR (EBV)"
+ },
+ "M6_Q385_TABD_02": {
+  "question": 385,
+  "file": "M6_Q385_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΝΟΣΟΛΟΓΙΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΕΞΑΝΘΗΜΑΤΟΣ ΑΜΠΙΚΙΛΛΙΝΗΣ ΣΕ ΛΟΙΜΩΞΗ EBV"
+ },
+ "M6_Q385_TABD_03": {
+  "question": 385,
+  "file": "M6_Q385_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΕΞΑΝΘΗΜΑΤΟΣ EBV-ΑΜΠΙΚΙΛΛΙΝΗΣ vs ΑΛΗΘΟΥΣ ΑΛΛΕΡΓΙΑΣ ΠΕΝΙΚΙΛΛΙΝΗΣ"
+ },
+ "M6_Q385_TABD_04": {
+  "question": 385,
+  "file": "M6_Q385_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΔΙΑΧΕΙΡΙΣΗΣ ΕΞΑΝΘΗΜΑΤΟΣ ΑΜΠΙΚΙΛΛΙΝΗΣ ΣΕ ΛΟΙΜΩΞΗ EBV"
+ },
+ "M6_Q385_DIAG_01": {
+  "question": 385,
+  "file": "M6_Q385_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ ΕΞΑΝΘΗΜΑΤΟΣ EBV"
+ },
+ "M6_Q385_TAB_02": {
+  "question": 385,
+  "file": "M6_Q385_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q385_TAB_03": {
+  "question": 385,
+  "file": "M6_Q385_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q386_TAB_01": {
+  "question": 386,
+  "file": "M6_Q386_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΗΣ & ΨΕΥΔΟΧΟΛΟΛΙΘΙΑΣΗΣ"
+ },
+ "M6_Q386_TABD_01": {
+  "question": 386,
+  "file": "M6_Q386_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΟ ΠΡΟΦΙΛ ΚΑΙ ΔΙΠΛΗ ΑΠΕΚΚΡΙΣΗ ΤΗΣ ΚΕΦΤΡΙΑΞΟΝΗΣ"
+ },
+ "M6_Q386_TABD_02": {
+  "question": 386,
+  "file": "M6_Q386_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΧΗΜΙΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΣΧΗΜΑΤΙΣΜΟΥ ΑΛΑΤΟΣ ΑΣΒΕΣΤΙΟΥ-ΚΕΦΤΡΙΑΞΟΝΗΣ"
+ },
+ "M6_Q386_TABD_03": {
+  "question": 386,
+  "file": "M6_Q386_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΡΟΔΙΑΘΕΣΙΚΟΙ ΠΑΡΑΓΟΝΤΕΣ ΚΙΝΔΥΝΟΥ ΨΕΥΔΟΧΟΛΟΛΙΘΙΑΣΗΣ ΑΠΟ ΚΕΦΤΡΙΑΞΟΝΗ"
+ },
+ "M6_Q386_TABD_04": {
+  "question": 386,
+  "file": "M6_Q386_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΨΕΥΔΟΧΟΛΟΛΙΘΙΑΣΗΣ ΚΕΦΤΡΙΑΞΟΝΗΣ vs ΑΛΗΘΟΥΣ ΧΟΛΟΛΙΘΙΑΣΗΣ"
+ },
+ "M6_Q386_TABD_05": {
+  "question": 386,
+  "file": "M6_Q386_TABD_05.png",
+  "type": "table_from_diagram",
+  "caption": "ΑΛΓΟΡΙΘΜΟΣ ΚΛΙΝΙΚΗΣ ΔΙΑΧΕΙΡΙΣΗΣ ΨΕΥΔΟΧΟΛΟΛΙΘΙΑΣΗΣ ΑΠΟ ΚΕΦΤΡΙΑΞΟΝΗ"
+ },
+ "M6_Q386_DIAG_01": {
+  "question": 386,
+  "file": "M6_Q386_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΨΕΥΔΟΧΟΛΟΛΙΘΙΑΣΗΣ ΚΕΦΤΡΙΑΞΟΝΗΣ"
+ },
+ "M6_Q386_TAB_02": {
+  "question": 386,
+  "file": "M6_Q386_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q386_TAB_03": {
+  "question": 386,
+  "file": "M6_Q386_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q387_TAB_01": {
+  "question": 387,
+  "file": "M6_Q387_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΚΕΦΑΛΟΣΠΟΡΙΝΩΝ 2ης ΓΕΝΙΑΣ"
+ },
+ "M6_Q387_TABD_01": {
+  "question": 387,
+  "file": "M6_Q387_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΧΗΜΙΚΗ ΣΥΓΚΡΙΣΗ ΚΛΑΣΙΚΩΝ ΚΕΦΑΛΟΣΠΟΡΙΝΩΝ ΚΑΙ ΚΕΦΑΜΥΚΙΝΩΝ (2ης ΓΕΝΙΑΣ)"
+ },
+ "M6_Q387_TABD_02": {
+  "question": 387,
+  "file": "M6_Q387_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΕΥΑΙΣΘΗΣΙΑΣ ΑΝΑΕΡΟΒΙΩΝ ΣΕ ΑΝΤΙΜΙΚΡΟΒΙΑΚΟΥΣ ΠΑΡΑΓΟΝΤΕΣ"
+ },
+ "M6_Q387_TABD_03": {
+  "question": 387,
+  "file": "M6_Q387_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΛΙΝΙΚΑ ΘΕΡΑΠΕΥΤΙΚΑ ΣΧΗΜΑΤΑ ΚΕΦΟΞΙΤΙΝΗΣ"
+ },
+ "M6_Q387_TABD_04": {
+  "question": 387,
+  "file": "M6_Q387_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΙΔΙΚΟ ΠΡΟΦΙΛ ΤΟΞΙΚΟΤΗΤΑΣ ΚΕΦΑΛΟΣΠΟΡΙΝΩΝ 2ης ΓΕΝΙΑΣ"
+ },
+ "M6_Q387_DIAG_01": {
+  "question": 387,
+  "file": "M6_Q387_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΔΡΑΣΗΣ ΚΕΦΟΞΙΤΙΝΗΣ ΣΤΑ ΑΝΑΕΡΟΒΙΑ"
+ },
+ "M6_Q387_TAB_02": {
+  "question": 387,
+  "file": "M6_Q387_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q387_TAB_03": {
+  "question": 387,
+  "file": "M6_Q387_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q388_TAB_01": {
+  "question": 388,
+  "file": "M6_Q388_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΣΧΕΣΗΣ ΜΕ ΤΗΝ ΨΕΥΔΟΜΕΜΒΡΑΝΩΔΗ ΕΝΤΕΡΟΚΟΛΙΤΙΔΑ"
+ },
+ "M6_Q388_TABD_01": {
+  "question": 388,
+  "file": "M6_Q388_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΙΚΡΟΒΙΟΛΟΓΙΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΠΑΘΟΓΕΝΕΙΑ ΤΟΥ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388_TABD_02": {
+  "question": 388,
+  "file": "M6_Q388_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΤΑΤΑΞΗ ΑΝΤΙΒΙΟΤΙΚΩΝ ΒΑΣΕΙ ΚΙΝΔΥΝΟΥ ΠΡΟΚΛΗΣΗΣ  ΛΟΙΜΩΞΗΣ C. DIFFICILE"
+ },
+ "M6_Q388_TABD_03": {
+  "question": 388,
+  "file": "M6_Q388_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΛΟΙΜΩΞΗΣ ΑΠΟ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388_TABD_04": {
+  "question": 388,
+  "file": "M6_Q388_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΧΡΟΝΑ ΘΕΡΑΠΕΥΤΙΚΑ ΠΡΩΤΟΚΟΛΛΑ ΛΟΙΜΩΞΗΣ ΑΠΟ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388_DIAG_01": {
+  "question": 388,
+  "file": "M6_Q388_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ PSI-ΕΝΤΕΡΟΚΟΛΙΤΙΔΑΣ"
+ },
+ "M6_Q388_TAB_02": {
+  "question": 388,
+  "file": "M6_Q388_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q388_TAB_03": {
+  "question": 388,
+  "file": "M6_Q388_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q388B_TAB_01": {
+  "question": 388,
+  "file": "M6_Q388B_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΣΧΕΣΗΣ ΜΕ ΤΗΝ ΨΕΥΔΟΜΕΜΒΡΑΝΩΔΗ ΕΝΤΕΡΟΚΟΛΙΤΙΔΑ"
+ },
+ "M6_Q388B_TABD_01": {
+  "question": 388,
+  "file": "M6_Q388B_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΙΚΡΟΒΙΟΛΟΓΙΚΟΣ ΚΥΚΛΟΣ ΚΑΙ ΠΑΘΟΓΕΝΕΙΑ ΤΟΥ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388B_TABD_02": {
+  "question": 388,
+  "file": "M6_Q388B_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΤΑΤΑΞΗ ΑΝΤΙΒΙΟΤΙΚΩΝ ΒΑΣΕΙ ΚΙΝΔΥΝΟΥ ΠΡΟΚΛΗΣΗΣ  ΛΟΙΜΩΞΗΣ C. DIFFICILE"
+ },
+ "M6_Q388B_TABD_03": {
+  "question": 388,
+  "file": "M6_Q388B_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΛΟΙΜΩΞΗΣ ΑΠΟ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388B_TABD_04": {
+  "question": 388,
+  "file": "M6_Q388B_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΧΡΟΝΑ ΘΕΡΑΠΕΥΤΙΚΑ ΠΡΩΤΟΚΟΛΛΑ ΛΟΙΜΩΞΗΣ ΑΠΟ CLOSTRIDIOIDES DIFFICILE"
+ },
+ "M6_Q388B_DIAG_01": {
+  "question": 388,
+  "file": "M6_Q388B_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΠΑΘΟΓΕΝΕΙΑΣ PSI-ΕΝΤΕΡΟΚΟΛΙΤΙΔΑΣ"
+ },
+ "M6_Q388B_TAB_02": {
+  "question": 388,
+  "file": "M6_Q388B_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q388B_TAB_03": {
+  "question": 388,
+  "file": "M6_Q388B_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q389_TAB_01": {
+  "question": 389,
+  "file": "M6_Q389_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΔΙΕΙΣΔΥΣΗΣ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΣΤΟ ΕΝΥ (ΕΠΙ ΦΛΕΓΜΑΙΝΟΥΣΩΝ ΜΗΝΙΓΓΩΝ)"
+ },
+ "M6_Q389_TABD_01": {
+  "question": 389,
+  "file": "M6_Q389_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΥΣΙΟΛΟΓΙΚΟΣ vs ΦΛΕΓΜΑΙΝΩΝ ΑΙΜΑΤΟΕΓΚΕΦΑΛΙΚΟΣ ΦΡΑΓΜΟΣ (BBB)"
+ },
+ "M6_Q389_TABD_02": {
+  "question": 389,
+  "file": "M6_Q389_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΕΜΠΕΙΡΙΚΗΣ ΑΝΤΙΜΙΚΡΟΒΙΑΚΗΣ ΑΓΩΓΗΣ ΜΗΝΙΓΓΙΤΙΔΑΣ"
+ },
+ "M6_Q389_TABD_03": {
+  "question": 389,
+  "file": "M6_Q389_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΑ ΕΜΠΟΔΙΑ ΑΜΙΝΟΓΛΥΚΟΣΙΔΩΝ ΣΤΟΝ ΑΙΜΑΤΟΕΓΚΕΦΑΛΙΚΟ ΦΡΑΓΜΟ"
+ },
+ "M6_Q389_TABD_04": {
+  "question": 389,
+  "file": "M6_Q389_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΠΙΔΡΑ ΣΗ ΔΕΞΑΜΕΘΑΖΟΝΗΣ ΣΤΗ ΔΙΕΙΣΔΥΣΗ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΣΤΟ ΕΝΥ"
+ },
+ "M6_Q389_DIAG_01": {
+  "question": 389,
+  "file": "M6_Q389_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΔΙΑΠΕΡΑΤΟΤΗΤΑΣ BBB & ΕΝΥ"
+ },
+ "M6_Q389_TAB_02": {
+  "question": 389,
+  "file": "M6_Q389_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q389_TAB_03": {
+  "question": 389,
+  "file": "M6_Q389_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q390_TAB_01": {
+  "question": 390,
+  "file": "M6_Q390_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΑΝΤΙΨΕΥΔΟΜΟΝΑΔΙΚΗΣ ΔΡΑΣΗΣ"
+ },
+ "M6_Q390_TABD_01": {
+  "question": 390,
+  "file": "M6_Q390_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΗΧΑΝΙΣΜΟΙ ΑΝΤΟΧΗΣ ΤΗΣ PSEUDOMONAS AERUGINOSA ΣΤΙΣ β-ΛΑΚΤΑΜΕΣ"
+ },
+ "M6_Q390_TABD_02": {
+  "question": 390,
+  "file": "M6_Q390_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΤΑΤΑΞΗ β-ΛΑΚΤΑΜΩΝ ΒΑΣΕΙ ΑΝΤΙΨΕΥΔΟΜΟΝΑΔΙΚΗΣ ΔΡΑΣΗΣ"
+ },
+ "M6_Q390_TABD_03": {
+  "question": 390,
+  "file": "M6_Q390_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΚΑΡΒΑΠΕΝΕΜΩΝ ΒΑΣΕΙ ΑΝΤΙΨΕΥΔΟΜΟΝΑΔΙΚΗΣ ΔΡΑΣΗΣ"
+ },
+ "M6_Q390_TABD_04": {
+  "question": 390,
+  "file": "M6_Q390_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΚΕΦΑΛΟΣΠΟΡΙΝΩΝ 3ης ΓΕΝΙΑΣ: ΚΕΦΟΤΑΞΙΜΗ vs ΚΕΦΤΑΖΙΔΙΜΗ"
+ },
+ "M6_Q390_TAB_02": {
+  "question": 390,
+  "file": "M6_Q390_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q390_TAB_03": {
+  "question": 390,
+  "file": "M6_Q390_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q391_TAB_01": {
+  "question": 391,
+  "file": "M6_Q391_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΑΝΤΙΣΤΑΦΥΛΟΚΟΚΚΙΚΗΣ ΔΡΑΣΗΣ"
+ },
+ "M6_Q391_TABD_01": {
+  "question": 391,
+  "file": "M6_Q391_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΞΕΛΙΞΗ ΜΗΧΑΝΙΣΜΩΝ ΑΝΤΟΧΗΣ ΤΟΥ STAPHYLOCOCCUS AUREUS ΣΤΙΣ β-ΛΑΚΤΑΜΕΣ"
+ },
+ "M6_Q391_TABD_02": {
+  "question": 391,
+  "file": "M6_Q391_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΑΝΤΙΣΤΑΦΥΛΟΚΟΚΚΙΚΩΝ ΦΑΡΜΑΚΩΝ ΠΡΩΤΗΣ ΓΡΑΜΜΗΣ (MRSA)"
+ },
+ "M6_Q391_TABD_03": {
+  "question": 391,
+  "file": "M6_Q391_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΙΔΙΚΟΙ ΑΝΤΙΣΤΑΦΥΛΟΚΟΚΚΙΚΟΙ ΠΑΡΑΓΟΝΤΕΣ ΣΤΗΝ ΚΛΙΝΙΚΗ ΠΡΑΞΗ"
+ },
+ "M6_Q391_TABD_04": {
+  "question": 391,
+  "file": "M6_Q391_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΘΕΡΑΠΕΥΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΑΝΤΙΜΕΤΩΠΙΣΗΣ ΣΤΑΦΥΛΟΚΟΚΚΙΚΩΝ ΛΟΙΜΩΞΕΩΝ"
+ },
+ "M6_Q391_DIAG_01": {
+  "question": 391,
+  "file": "M6_Q391_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΜΗΧΑΝΙΣΜΟΥ ΑΝΤΟΧΗΣ S. AUREUS"
+ },
+ "M6_Q391_TAB_02": {
+  "question": 391,
+  "file": "M6_Q391_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q391_TAB_03": {
+  "question": 391,
+  "file": "M6_Q391_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q392_TAB_01": {
+  "question": 392,
+  "file": "M6_Q392_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΑΝΤΙΑΝΑΕΡΟΒΙΑΣ ΔΡΑΣΗΣ"
+ },
+ "M6_Q392_TABD_01": {
+  "question": 392,
+  "file": "M6_Q392_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΥΠΟΧΡΕΩΤΙΚΩΝ ΑΝΑΕΡΟΒΙΩΝ ΒΑΚΤΗΡΙΩΝ ΚΑΤΑ GRAM & ΑΝΑΤΟΜΙΑ"
+ },
+ "M6_Q392_TABD_02": {
+  "question": 392,
+  "file": "M6_Q392_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΦΑΡΜΑΚΩΝ ΕΚΛΟΓΗΣ: ΜΕΤΡΟΝΙΔΑΖΟΛΗ vs ΚΛΙΝΔΑΜΥΚΙΝΗ"
+ },
+ "M6_Q392_TABD_03": {
+  "question": 392,
+  "file": "M6_Q392_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΑΤΑΤΑΞΗ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΒΑΣΕΙ ΑΝΤΙΑΝΑΕΡΟΒΙΑΣ ΔΡΑΣΗΣ ΕΝΑΝΤΙ B. FRAGILIS"
+ },
+ "M6_Q392_TABD_04": {
+  "question": 392,
+  "file": "M6_Q392_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΧΡΟΝΑ ΣΧΗΜΑΤΑ ΕΝΔΟΚΟΙΛΙΑΚΩΝ & ΠΥΕΛΙΚΩΝ ΛΟΙΜΩΞΕΩΝ (IDSA GUIDELINES)"
+ },
+ "M6_Q392_TAB_02": {
+  "question": 392,
+  "file": "M6_Q392_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q392_TAB_03": {
+  "question": 392,
+  "file": "M6_Q392_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q393_TAB_01": {
+  "question": 393,
+  "file": "M6_Q393_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΠΑΙΔΙΑΤΡΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ & ΕΠΙΔΡΑΣΗΣ ΣΤΗΝ ΑΝΑΠΤΥΞΗ"
+ },
+ "M6_Q393_TABD_01": {
+  "question": 393,
+  "file": "M6_Q393_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ ΚΙΝΟΛΟΝΩΝ / ΦΘΟΡΙΟΚΙΝΟΛΟΝΩΝ ΚΑΤΑ ΓΕΝΕΕΣ & ΦΑΣΜΑ"
+ },
+ "M6_Q393_TABD_02": {
+  "question": 393,
+  "file": "M6_Q393_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΧΟΝΔΡΟΤΟΞΙΚΟΤΗΤΑΣ ΚΑΙ ΑΡΘΡΟΠΑΘΕΙΑΣ ΚΙΝΟΛΟΝΩΝ"
+ },
+ "M6_Q393_TABD_03": {
+  "question": 393,
+  "file": "M6_Q393_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΠΑΙΔΙΑΤΡΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΚΑΤΗΓΟΡΙΩΝ"
+ },
+ "M6_Q393_TABD_04": {
+  "question": 393,
+  "file": "M6_Q393_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΓΚΕΚΡΙΜΕΝΕΣ ΠΑΙΔΙΑΤΡΙΚΕΣ ΕΝΔΕΙΞΕΙΣ ΦΘΟΡΙΟΚΙΝΟΛΟΝΩΝ (FDA / AAP)"
+ },
+ "M6_Q393_TAB_02": {
+  "question": 393,
+  "file": "M6_Q393_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q393_TAB_03": {
+  "question": 393,
+  "file": "M6_Q393_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q394_TAB_01": {
+  "question": 394,
+  "file": "M6_Q394_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΧΑΡΑΚΤΗΡΙΣΤΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ"
+ },
+ "M6_Q394_TABD_01": {
+  "question": 394,
+  "file": "M6_Q394_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΕΣ & ΦΑΡΜΑΚΟΔΥΝΑΜΙΚΕΣ ΠΑΡΑΜΕΤΡΟΙ ΒΑΝΚΟΜΥΚΙΝΗΣ"
+ },
+ "M6_Q394_TABD_02": {
+  "question": 394,
+  "file": "M6_Q394_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΣΥΝΔΡΟΜΟΥ RED MAN (RMS) vs ΑΛΗΘΟΥΣ IgE ΑΝΑΦΥΛΑΞΙΑΣ"
+ },
+ "M6_Q394_TABD_03": {
+  "question": 394,
+  "file": "M6_Q394_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΧΕΙΡΙΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΕΜΦΑΝΙΣΗΣ ΣΥΝΔΡΟΜΟΥ RED MAN (RMS)"
+ },
+ "M6_Q394_TABD_04": {
+  "question": 394,
+  "file": "M6_Q394_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΠΑΡΕΝΕΡΓΕΙΩΝ ΛΟΙΠΩΝ ΑΝΤΙΒΙΟΤΙΚΩΝ"
+ },
+ "M6_Q394_TAB_02": {
+  "question": 394,
+  "file": "M6_Q394_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q394_TAB_03": {
+  "question": 394,
+  "file": "M6_Q394_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q395_TAB_01": {
+  "question": 395,
+  "file": "M6_Q395_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΤΟΞΙΚΟΤΗΤΑΣ ΠΑΡΑΤΕΤΑΜΕΝΗΣ ΧΟΡΗΓΗΣΗΣ"
+ },
+ "M6_Q395_TABD_01": {
+  "question": 395,
+  "file": "M6_Q395_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΕΣ ΠΑΡΑΜΕΤΡΟΙ & ΣΤΟΧΟΙ MONITORING ΒΑΝΚΟΜΥΚΙΝΗΣ"
+ },
+ "M6_Q395_TABD_02": {
+  "question": 395,
+  "file": "M6_Q395_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΤΑΔΙΑ ΑΝΑΠΤΥΞΗΣ ΜΥΕΛΟΤΟΞΙΚΟΤΗΤΑΣ ΒΑΝΚΟΜΥΚΙΝΗΣ (>15 ΗΜΕΡΕΣ)"
+ },
+ "M6_Q395_TABD_03": {
+  "question": 395,
+  "file": "M6_Q395_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΧΕΙΡΙΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΕΜΦΑΝΙΣΗΣ ΜΥΕΛΟΤΟΞΙΚΟΤΗΤΑΣ ΒΑΝΚΟΜΥΚΙΝΗΣ"
+ },
+ "M6_Q395_TABD_04": {
+  "question": 395,
+  "file": "M6_Q395_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΧΑΡΑΚΤΗΡΙΣΤΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΚΑΤΗΓΟΡΙΩΝ"
+ },
+ "M6_Q395_TAB_02": {
+  "question": 395,
+  "file": "M6_Q395_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q395_TAB_03": {
+  "question": 395,
+  "file": "M6_Q395_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q396_TAB_01": {
+  "question": 396,
+  "file": "M6_Q396_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΤΙΒΙΟΤΙΚΩΝ & ΣΥΧΝΟΤΗΤΑΣ ΠΑΡΕΝΕΡΓΕΙΩΝ"
+ },
+ "M6_Q396_TABD_01": {
+  "question": 396,
+  "file": "M6_Q396_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΦΑΡΜΑΚΟΔΥΝΑΜΙΚΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ & ΦΑΣΜΑ ΔΡΑΣΗΣ ΑΜΙΝΟΓΛΥΚΟΣΙΔΩΝ"
+ },
+ "M6_Q396_TABD_02": {
+  "question": 396,
+  "file": "M6_Q396_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΝΕΦΡΟΤΟΞΙΚΟΤΗΤΑΣ & ATN ΑΜΙΝΟΓΛΥΚΟΣΙΔΩΝ"
+ },
+ "M6_Q396_TABD_03": {
+  "question": 396,
+  "file": "M6_Q396_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΩΤΟΤΟΞΙΚΟΤΗΤΑΣ & ΝΕΥΡΟΜΥΪΚΟΥ ΑΠΟΚΛΕΙΣΜΟΥ ΑΜΙΝΟΓΛΥΚΟΣΙΔΩΝ"
+ },
+ "M6_Q396_TABD_04": {
+  "question": 396,
+  "file": "M6_Q396_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΠΡΩΤΟΚΟΛΛΩΝ ΧΟΡΗΓΗΣΗΣ ΑΜΙΝΟΓΛΥΚΟΣΙΔΩΝ (ONCE-DAILY vs MULTIPLE)"
+ },
+ "M6_Q396_TAB_02": {
+  "question": 396,
+  "file": "M6_Q396_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q396_TAB_03": {
+  "question": 396,
+  "file": "M6_Q396_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q397_TAB_01": {
+  "question": 397,
+  "file": "M6_Q397_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΠΑΡΕΝΕΡΓΕΙΩΝ & ΤΟΞΙΚΟΤΗΤΑΣ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q397_TABD_01": {
+  "question": 397,
+  "file": "M6_Q397_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΤΑΞΙΝΟΜΗΣΗ & ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q397_TABD_02": {
+  "question": 397,
+  "file": "M6_Q397_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΚΛΙΝΙΚΟ ΠΡΟΦΙΛ ΟΔΟΝΤΙΚΗΣ & ΟΣΤΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q397_TABD_03": {
+  "question": 397,
+  "file": "M6_Q397_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΙΔΙΚΑ ΤΟΞΙΚΟΛΟΓΙΚΑ ΣΥΝΔΡΟΜΑ ΤΕΤΡΑΚΥΚΛΙΝΩΝ"
+ },
+ "M6_Q397_TABD_04": {
+  "question": 397,
+  "file": "M6_Q397_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΑΙΜΑΤΟΛΟΓΙΚΗΣ ΤΟΞΙΚΟΤΗΤΑΣ: ΧΛΩΡΑΜΦΕΝΙΚΟΛΗ vs ΤΕΤΡΑΚΥΚΛΙΝΕΣ"
+ },
+ "M6_Q397_TAB_02": {
+  "question": 397,
+  "file": "M6_Q397_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q397_TAB_03": {
+  "question": 397,
+  "file": "M6_Q397_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q398_TAB_01": {
+  "question": 398,
+  "file": "M6_Q398_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΠΑΡΕΝΕΡΓΕΙΩΝ & ΤΟΞΙΚΟΤΗΤΑΣ ΧΛΩΡΑΜΦΕΝΙΚΟΛΗΣ"
+ },
+ "M6_Q398_DIAG_01": {
+  "question": 398,
+  "file": "M6_Q398_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΦΑΡΜΑΚΟΛΟΓΙΚΑ & ΦΑΡΜΑΚΟΚΙΝΗΤΙΚΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΧΛΩΡΑΜΦΕΝΙΚΟΛΗΣ"
+ },
+ "M6_Q398_TABD_01": {
+  "question": 398,
+  "file": "M6_Q398_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΜΟΡΦΩΝ ΜΥΕΛΟΤΟΞΙΚΟΤΗΤΑΣ ΧΛΩΡΑΜΦΕΝΙΚΟΛΗΣ"
+ },
+ "M6_Q398_TABD_02": {
+  "question": 398,
+  "file": "M6_Q398_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΤΑΔΙΑ ΑΝΑΠΤΥΞΗΣ ΣΥΝΔΡΟΜΟΥ ΦΑΙΟΥ ΒΡΕΦΟΥΣ (GRAY BABY SYNDROME)"
+ },
+ "M6_Q398_TABD_03": {
+  "question": 398,
+  "file": "M6_Q398_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΧΑΡΑΚΤΗΡΙΣΤΙΚΩΝ ΤΟΞΙΚΟΤΗΤΩΝ ΑΝΤΙΜΙΚΡΟΒΙΑΚΩΝ ΚΑΤΗΓΟΡΙΩΝ"
+ },
+ "M6_Q398_TAB_02": {
+  "question": 398,
+  "file": "M6_Q398_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q398_TAB_03": {
+  "question": 398,
+  "file": "M6_Q398_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q399_TAB_01": {
+  "question": 399,
+  "file": "M6_Q399_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΑΝΑΙΜΙΩΝ & ΔΕΡΜΑΤΙΚΩΝ ΕΚΔΗΛΩΣΕΩΝ"
+ },
+ "M6_Q399_TABD_01": {
+  "question": 399,
+  "file": "M6_Q399_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΗ ΔΟΜΗ ΜΕΜΒΡΑΝΗΣ ΕΡΥΘΡΟΚΥΤΤΑΡΟΥ & ΕΛΑΤΤΩΜΑΤΑ ΣΦΑΙΡΟΚΥΤΤΑΡΩΣΗΣ"
+ },
+ "M6_Q399_TABD_02": {
+  "question": 399,
+  "file": "M6_Q399_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΕΡΓΑΣΤΗΡΙΑΚΑ ΕΥΡΗΜΑΤΑ & ΔΙΑΓΝΩΣΤΙΚΕΣ ΔΟΚΙΜΑΣΙΕΣ ΣΦΑΙΡΟΚΥΤΤΑΡΩΣΗΣ"
+ },
+ "M6_Q399_TABD_03": {
+  "question": 399,
+  "file": "M6_Q399_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ & ΑΓΓΕΙΑΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ ΔΗΜΙΟΥΡΓΙΑΣ ΕΛΚΩΝ ΚΝΗΜΩΝ"
+ },
+ "M6_Q399_TABD_04": {
+  "question": 399,
+  "file": "M6_Q399_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΘΕΡΑΠΕΥΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΑΝΤΙΜΕΤΩΠΙΣΗΣ ΕΛΚΩΝ ΣΤΗ ΣΦΑΙΡΟΚΥΤΤΑΡΩΣΗ"
+ },
+ "M6_Q399_TABD_05": {
+  "question": 399,
+  "file": "M6_Q399_TABD_05.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΙΚΗ ΔΙΑΓΝΩΣΗ ΔΕΡΜΑΤΙΚΩΝ ΕΚΔΗΛΩΣΕΩΝ ΣΤΙΣ ΑΝΑΙΜΙΕΣ"
+ },
+ "M6_Q399_TAB_02": {
+  "question": 399,
+  "file": "M6_Q399_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q399_TAB_03": {
+  "question": 399,
+  "file": "M6_Q399_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q400_TAB_01": {
+  "question": 400,
+  "file": "M6_Q400_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΕΡΓΑΣΤΗΡΙΑΚΩΝ ΕΥΡΗΜΑΤΩΝ ΣΙΔΗΡΟΠΕΝΙΚΗΣ ΑΝΑΙΜΙΑΣ"
+ },
+ "M6_Q400_DIAG_01": {
+  "question": 400,
+  "file": "M6_Q400_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΣΤΑΔΙΑ ΕΞΕΛΙΞΗΣ ΤΗΣ ΣΙΔΗΡΟΠΕΝΙΑΣ & ΕΡΓΑΣΤΗΡΙΑΚΕΣ ΜΕΤΑΒΟΛΕΣ"
+ },
+ "M6_Q400_TABD_01": {
+  "question": 400,
+  "file": "M6_Q400_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΦΟΛΟΓΙΚΑ ΕΥΡΗΜΑΤΑ ΕΠΙΧΡΙΣΜΑΤΟΣ ΑΙΜΑΤΟΣ ΣΤΗ ΣΙΔΗΡΟΠΕΝΙΚΗ ΑΝΑΙΜΙΑ"
+ },
+ "M6_Q400_TABD_02": {
+  "question": 400,
+  "file": "M6_Q400_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΜΟΡΙΑΚΟΣ ΜΗΧΑΝΙΣΜΟΣ ΠΡΟΚΛΗΣΗΣ ΒΑΣΕΟΦΙΛΗΣ ΣΤΙΞΗΣ ΣΤΗ ΜΟΛΥΒΔΙΑΣΗ"
+ },
+ "M6_Q400_DIAG_02": {
+  "question": 400,
+  "file": "M6_Q400_DIAG_02.png",
+  "type": "diagram",
+  "caption": "ΣΥΓΚΡΙΤΙΚΗ ΔΙΑΦΟΡΙΚΗ ΔΙΑΓΝΩΣΗ ΜΙΚΡΟΚΥΤΤΑΡΙΚΩΝ ΑΝΑΙΜΙΩΝ"
+ },
+ "M6_Q400_TAB_02": {
+  "question": 400,
+  "file": "M6_Q400_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q400_TAB_03": {
+  "question": 400,
+  "file": "M6_Q400_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ },
+ "M6_Q401_TAB_01": {
+  "question": 401,
+  "file": "M6_Q401_TAB_01.png",
+  "type": "table",
+  "caption": "ΣΥΓΚΡΙΤΙΚΟΣ ΠΙΝΑΚΑΣ ΑΞΙΟΛΟΓΗΣΗΣ ΒΑΘΜΟΥ ΣΠΛΗΝΟΜΕΓΑΛΙΑΣ ΚΑΙ ΝΟΣΟΛΟΓΙΚΩΝ ΑΙΤΙΩΝ"
+ },
+ "M6_Q401_TABD_01": {
+  "question": 401,
+  "file": "M6_Q401_TABD_01.png",
+  "type": "table_from_diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΗ ΤΑΞΙΝΟΜΗΣΗ ΜΗΧΑΝΙΣΜΩΝ ΣΠΛΗΝΟΜΕΓΑΛΙΑΣ"
+ },
+ "M6_Q401_TABD_02": {
+  "question": 401,
+  "file": "M6_Q401_TABD_02.png",
+  "type": "table_from_diagram",
+  "caption": "ΣΥΓΚΡΙΣΗ ΑΙΤΙΩΝ ΜΕΓΑΛΗΣ ΣΠΛΗΝΟΜΕΓΑΛΙΑΣ (> 8 CM ΚΑΤΩ ΠΛΕΥΡΑΣ)"
+ },
+ "M6_Q401_TABD_03": {
+  "question": 401,
+  "file": "M6_Q401_TABD_03.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΦΟΡΟΠΟΙΗΣΗ ΣΠΛΗΝΟΜΕΓΑΛΙΑΣ: ΟΞΕΙΑ ΗΠΑΤΙΤΙΔΑ vs ΧΡΟΝΙΑ ΝΟΣΟΣ"
+ },
+ "M6_Q401_TABD_04": {
+  "question": 401,
+  "file": "M6_Q401_TABD_04.png",
+  "type": "table_from_diagram",
+  "caption": "ΔΙΑΓΝΩΣΤΙΚΟΣ ΑΛΓΟΡΙΘΜΟΣ ΔΙΕΡΕΥΝΗΣΗΣ ΣΠΛΗΝΟΜΕΓΑΛΙΑΣ"
+ },
+ "M6_Q401_TAB_02": {
+  "question": 401,
+  "file": "M6_Q401_TAB_02.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΑΚΟΣ ΠΙΝΑΚΑΣ ΚΑΤΑΡΡΑΚΤΗ ΠΑΘΟΦΥΣΙΟΛΟΓΙΑΣ (SEQUENTIAL WATERFALL TABLE)"
+ },
+ "M6_Q401_TAB_03": {
+  "question": 401,
+  "file": "M6_Q401_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: ΣΥΓΚΕΝΤΡΩΤΙΚΟΣ ΠΙΝΑΚΑΣ"
+ }
+}

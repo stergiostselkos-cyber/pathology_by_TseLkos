@@ -844,6 +844,7 @@
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
                         <option value="larnaka">🏛️ Τράπεζα Θεμάτων (Λάρνακα - 313 Θέματα Q45-Q357)</option>
+                        <option value="larnaka6">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 6ο (Q351 - Q401)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
@@ -953,6 +954,8 @@
             const book = selector.value;
             if (book === 'larnaka') {
                 window.location.href = 'LARNAKA/index.html';
+            } else if (book === 'larnaka6') {
+                window.location.href = 'LARNAKA_PART_06/index.html';
             } else if (book) {
                 window.location.href = 'quiz.html?v=' + new Date().getTime() + '&bank=' + book;
             }
