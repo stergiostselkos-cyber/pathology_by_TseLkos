@@ -4051,7 +4051,8 @@ body.dark-theme .essay-question-container p {
 }
 
 .word-question p {
-    text-align: left !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
     text-justify: auto !important;
     line-height: 1.72 !important;
     margin-bottom: 9pt !important;
@@ -4061,7 +4062,8 @@ body.dark-theme .essay-question-container p {
 }
 
 .word-question li {
-    text-align: left !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
     line-height: 1.65 !important;
     margin-bottom: 6pt !important;
     color: #1e293b !important;
@@ -4298,4 +4300,43 @@ body.dark-theme .excerpt-title-badge {
 .table-responsive-wrapper table td p:last-child,
 .word-table td p:last-child {
     margin-bottom: 0 !important;
+}
+
+
+/* Full Justification (Πλήρης Στοίχιση) for Medical Texts */
+#quiz-view .explanation-content p,
+#quiz-view .explanation-content li,
+.word-question p,
+.word-question li,
+.explanation-box p,
+.explanation-box li,
+#question-text {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+}
+
+/* Explicit alignment exceptions for diagrams, headers, lists and tables */
+.word-question p[style*="monospace"],
+.word-question span[style*="Courier New"],
+.word-question p[style*="Courier New"],
+.diagram-title-badge,
+.stage-banner,
+.thematic-banner,
+.thematic-topics-list,
+.thematic-topics-list li,
+.notebook-img-container,
+.fig-img-wrap,
+.table-responsive-wrapper table td,
+.table-responsive-wrapper table td p,
+.word-table td,
+.word-table td p {
+    text-align: left !important;
+    text-justify: auto !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    text-align: center !important;
 }

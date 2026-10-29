@@ -166,7 +166,8 @@
     #quiz-view .explanation-content p,
     #quiz-view .explanation-content li {
       color: #1e293b !important;
-      text-align: left !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
     }
 
     /* Bottom navigation adjustments */
@@ -213,7 +214,8 @@
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
-      text-align: left !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
@@ -259,7 +261,8 @@
       overflow-wrap: break-word !important;
     }
     .word-question p {
-      text-align: left !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
       text-justify: auto !important;
       word-break: normal !important;
       overflow-wrap: break-word !important;
@@ -342,6 +345,45 @@
     margin-bottom: 0 !important;
 }
 
+
+/* Full Justification (Πλήρης Στοίχιση) for Medical Texts */
+#quiz-view .explanation-content p,
+#quiz-view .explanation-content li,
+.word-question p,
+.word-question li,
+.explanation-box p,
+.explanation-box li,
+#question-text {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+}
+
+/* Explicit alignment exceptions for diagrams, headers, lists and tables */
+.word-question p[style*="monospace"],
+.word-question span[style*="Courier New"],
+.word-question p[style*="Courier New"],
+.diagram-title-badge,
+.stage-banner,
+.thematic-banner,
+.thematic-topics-list,
+.thematic-topics-list li,
+.notebook-img-container,
+.fig-img-wrap,
+.table-responsive-wrapper table td,
+.table-responsive-wrapper table td p,
+.word-table td,
+.word-table td p {
+    text-align: left !important;
+    text-justify: auto !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    text-align: center !important;
+}
+
 </style>
 
 <style id="dynamic-theme">
@@ -378,7 +420,8 @@
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
-      text-align: left !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
