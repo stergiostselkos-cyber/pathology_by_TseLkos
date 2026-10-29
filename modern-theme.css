@@ -343,17 +343,53 @@ body.dark-theme .correct-answer-box {
 .table-responsive table,
 .explanation-wrapper table,
 .correct-answer-box table,
-.explanation-content table {
+.explanation-content table,
+.word-export table {
     display: table !important;
     width: 100% !important;
     min-width: 680px !important;
+    max-width: none !important;
     border-collapse: collapse !important;
     word-break: normal !important;
+    table-layout: auto !important;
+    font-family: inherit !important;
+}
+
+.table-responsive-wrapper table col,
+.word-export col,
+.explanation-content col {
+    width: auto !important;
+}
+
+.table-responsive-wrapper table th,
+.table-responsive-wrapper table td,
+.word-export th,
+.word-export td {
+    width: auto !important;
+    max-width: none !important;
+    font-family: inherit !important;
+    vertical-align: top !important;
+}
+
+.table-responsive-wrapper table p,
+.word-export table p {
+    margin: 3px 0 !important;
+    line-height: 1.55 !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+}
+
+.table-responsive-wrapper table font,
+.word-export table font {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: inherit !important;
 }
 
 /* Neutralize any legacy Word export block spans inside table cells */
 table td span[data-wordfmt],
-table th span[data-wordfmt] {
+table th span[data-wordfmt],
+.word-export table span[data-wordfmt] {
     display: inline !important;
     font-size: inherit !important;
     line-height: inherit !important;

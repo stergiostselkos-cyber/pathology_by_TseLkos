@@ -526,12 +526,20 @@ function revealExplanation(explanationText) {
 /**
  * Simple Markdown to HTML parser
  */
+function wrapTablesInHtml(html) {
+    if (!html || typeof html !== 'string' || !html.includes('<table')) return html;
+    return html.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
+        if (wrapped) return wrapped;
+        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
+    });
+}
+
 function parseMarkdown(text) {
     if (!text) return "";
     
     // BYPASS FOR RAW HTML (WORD EXPORT)
     if (text.trim().startsWith('<div class="word-export"')) {
-        return text;
+        return wrapTablesInHtml(text);
     }
 
     
@@ -548,7 +556,7 @@ function parseMarkdown(text) {
     
     
     if (normalized.trim().startsWith('<div')) {
-        return normalized; // It is already raw HTML from NotebookLM
+        return wrapTablesInHtml(normalized);
     }
     
     if (typeof marked !== 'undefined') {
