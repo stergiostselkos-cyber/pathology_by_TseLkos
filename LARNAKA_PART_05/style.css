@@ -4097,6 +4097,319 @@ body.dark-theme .essay-question-container p {
 
 
 /* ==============================================================================
+   LARNAKA PART 6 - LAYOUT, BANNERS, TABLES & BREATHING ROOM FIXES
+   Prevents text from colliding with borders / stepping on frames
+   ============================================================================== */
+
+/* Explanation container breathing room */
+.word-question {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    padding: 28px 36px !important;
+    margin: 14px auto !important;
+    max-width: 98% !important;
+    text-align: left !important;
+    line-height: 1.72 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+    overflow-x: auto !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.word-question p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    text-justify: auto !important;
+    line-height: 1.72 !important;
+    margin-bottom: 9pt !important;
+    color: #1e293b !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.word-question li {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    line-height: 1.65 !important;
+    margin-bottom: 6pt !important;
+    color: #1e293b !important;
+}
+
+/* Stage & Thematic Unit Banners */
+.stage-banner {
+    font-size: 12.5pt !important;
+    font-weight: bold !important;
+    color: #0f172a !important;
+    background: #e0f2fe !important;
+    padding: 10px 18px !important;
+    border-left: 6px solid #0284c7 !important;
+    border-radius: 6px !important;
+    margin: 24px 0 12px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+.thematic-banner {
+    font-size: 12pt !important;
+    font-weight: bold !important;
+    color: #312e81 !important;
+    background: #ede9fe !important;
+    padding: 9px 16px !important;
+    border-left: 5px solid #6366f1 !important;
+    border-radius: 6px !important;
+    margin: 22px 0 10px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Tables in Part 6 - Complete fix for letter clipping & frame collisions */
+.word-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.word-table th, 
+.word-table td {
+    border: 1px solid #cbd5e1 !important;
+    padding: 12px 16px !important;
+    vertical-align: top !important;
+    line-height: 1.6 !important;
+    color: #1e293b !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    background-color: #ffffff !important;
+}
+
+.word-table tr:first-child td,
+.word-table th {
+    background: #f1f5f9 !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    border-bottom: 2px solid #94a3b8 !important;
+}
+
+.word-table tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.word-table tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Eliminate negative indent and pre-wrap squeeze inside table cells */
+.word-table p {
+    margin: 0 0 6px 0 !important;
+    line-height: 1.55 !important;
+    white-space: normal !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+    text-indent: 0 !important;
+}
+
+.word-table p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Bullets inside table cells */
+.word-table p span[style*="min-width"] {
+    display: inline-block !important;
+    min-width: 16px !important;
+    margin-right: 4px !important;
+    color: #0284c7 !important;
+    font-weight: bold !important;
+}
+
+/* Monospace & ASCII diagrams breathing room */
+.word-question p[style*="monospace"],
+.word-question span[style*="Courier New"] {
+    text-align: left !important;
+    text-justify: auto !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.2px !important;
+    font-size: 9.5pt !important;
+}
+
+/* Options buttons - avoid cutting descenders / accents */
+.option-btn {
+    min-height: 52px !important;
+    padding: 14px 20px !important;
+    line-height: 1.5 !important;
+    overflow: visible !important;
+}
+
+.option-text {
+    flex: 1 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    padding-right: 6px !important;
+    word-break: normal !important;
+}
+
+
+/* Compact badges for diagrams, tables, infographics, and source excerpts */
+.diagram-title-badge {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #0369a1 !important;
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+    border-left: 4px solid #0284c7 !important;
+    padding: 4px 10px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin: 14px 0 6px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+}
+
+body.dark-theme .diagram-title-badge {
+    background: #0f172a !important;
+    color: #38bdf8 !important;
+    border-color: #0369a1 !important;
+    border-left-color: #38bdf8 !important;
+}
+
+.excerpt-title-badge {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-left: 3px solid #64748b !important;
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin: 12px 0 4px 0 !important;
+}
+
+body.dark-theme .excerpt-title-badge {
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+    border-left-color: #94a3b8 !important;
+}
+
+
+/* Responsive Wrapper & Zoomable Medical Tables (Larnaka 5/6 Standard) */
+.table-responsive-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+    margin: 18px 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+}
+
+.table-responsive-wrapper table.zoomable-table,
+.word-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    cursor: zoom-in !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table-responsive-wrapper table td,
+.word-table td {
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+    vertical-align: top !important;
+    background-color: #ffffff !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.table-responsive-wrapper table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-responsive-wrapper table tbody tr:hover td,
+.word-table tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+.table-responsive-wrapper table td p,
+.word-table td p {
+    margin: 0 0 4px 0 !important;
+    line-height: 1.55 !important;
+    white-space: normal !important;
+    text-align: left !important;
+}
+
+.table-responsive-wrapper table td p:last-child,
+.word-table td p:last-child {
+    margin-bottom: 0 !important;
+}
+
+
+/* Full Justification (Πλήρης Στοίχιση) for Medical Texts */
+#quiz-view .explanation-content p,
+#quiz-view .explanation-content li,
+.word-question p,
+.word-question li,
+.explanation-box p,
+.explanation-box li,
+#question-text {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+}
+
+/* Explicit alignment exceptions for diagrams, headers, lists and tables */
+.word-question p[style*="monospace"],
+.word-question span[style*="Courier New"],
+.word-question p[style*="Courier New"],
+.diagram-title-badge,
+.stage-banner,
+.thematic-banner,
+.thematic-topics-list,
+.thematic-topics-list li,
+.notebook-img-container,
+.fig-img-wrap,
+.table-responsive-wrapper table td,
+.table-responsive-wrapper table td p,
+.word-table td,
+.word-table td p {
+    text-align: left !important;
+    text-justify: auto !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    text-align: center !important;
+}
+
+
+/* ==============================================================================
    UNIVERSAL HIGH-CONTRAST MEDICAL TABLE STYLING ACROSS ALL QUESTION BANKS
    Guarantees 100% text readability with NO invisible letters, matching colors,
    or color clashes in both normal page view and HD Zoom modal.

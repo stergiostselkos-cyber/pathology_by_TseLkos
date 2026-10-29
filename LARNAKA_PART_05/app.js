@@ -173,15 +173,22 @@ function populateQuestionSelector() {
     
     filteredQuestions.forEach((q, idx) => {
         const cleanQuestion = getCleanQuestionTitle(q.question);
-        const shortQ = cleanQuestion.length > 60 ? cleanQuestion.substring(0, 58) + "..." : cleanQuestion;
+        const shortQ = cleanQuestion.length > 65 ? cleanQuestion.substring(0, 62) + "..." : cleanQuestion;
+        const qNum = q.id || (idx + 1);
         
         const overlayItem = document.createElement('button');
         overlayItem.className = 'overlay-question-item';
         overlayItem.setAttribute('data-index', idx);
         overlayItem.style.width = '100%';
+        overlayItem.style.display = 'flex';
+        overlayItem.style.alignItems = 'flex-start';
+        overlayItem.style.textAlign = 'left';
+        overlayItem.style.padding = '10px 14px';
+        overlayItem.style.gap = '8px';
+        overlayItem.style.borderBottom = '1px solid #e2e8f0';
         overlayItem.innerHTML = `
-            <strong style="color: var(--primary-color); flex-shrink: 0; margin-right: 4px;">Ερ. ${idx + 1}:</strong>
-            <span style="flex-grow: 1; text-align: left;">${shortQ}</span>
+            <strong style="color: var(--primary-color); flex-shrink: 0; min-width: 65px; text-align: left;">Ερ. ${qNum}:</strong>
+            <span style="flex-grow: 1; text-align: left; line-height: 1.35; color: #1e293b;">${shortQ}</span>
         `;
         overlayItem.addEventListener('click', () => {
             currentQuestionIndex = idx;
@@ -332,7 +339,8 @@ function showQuestion(index) {
     if (quickQuestionsDropdownValue) {
         const cleanQ = getCleanQuestionTitle(question.question);
         const shortQ = cleanQ.length > 50 ? cleanQ.substring(0, 48) + "..." : cleanQ;
-        quickQuestionsDropdownValue.textContent = `Ερ. ${index + 1}: ${shortQ}`;
+        const qNum = question.id || (index + 1);
+        quickQuestionsDropdownValue.textContent = `Ερ. ${qNum}: ${shortQ}`;
     }
     
     // Highlights in overlays
@@ -502,33 +510,8 @@ function revealExplanation(explanationText) {
         return;
     }
     
-    let mainExp = explanationText;
-    let detailedTheory = "";
-    
-    if (explanationText.includes("### Αναλυτική Απάντηση")) {
-        const parts = explanationText.split("### Αναλυτική Απάντηση");
-        mainExp = parts[0];
-        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
-    } else if (explanationText.includes("### Αναλυτική Απάντηση")) {
-        const parts = explanationText.split("### Αναλυτική Απάντηση");
-        mainExp = parts[0];
-        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
-    }
-    
-    let finalHtml = '<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>';
-    if (detailedTheory) {
-        finalHtml += '<div class="mcq-sweet-theory">' +
-            '<div class="theory-icon-header">📖 Έξτρα Υλικό Μελέτης</div>' +
-            '<div class="theory-content">' + parseMarkdown(detailedTheory) + '</div>' +
-        '</div>';
-    }
-    
-    try {
-        explanationContent.innerHTML = injectSectionBackToTop(finalHtml);
-    } catch (e) {
-        console.error("Error setting explanationContent:", e);
-        explanationContent.innerHTML = finalHtml;
-    }
+    // Render the explanation text directly without any interference or extra wrappers
+    explanationContent.innerHTML = explanationText;
     explanationPanel.classList.remove('collapsed');
     explanationPanel.classList.add('expanded');
     

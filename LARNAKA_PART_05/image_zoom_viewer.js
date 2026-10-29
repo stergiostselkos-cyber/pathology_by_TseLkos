@@ -510,7 +510,7 @@
       return;
     }
 
-    const clickedImg = e.target.closest('.embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img, .case-fig img, .case-image');
+    const clickedImg = e.target.closest('.fig-img, .fig-img-wrap img, .embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img, .case-fig img, .case-image');
     if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img') {
       e.preventDefault();
       window.openMedZoom(clickedImg);

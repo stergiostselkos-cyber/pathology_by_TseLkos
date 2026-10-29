@@ -141,20 +141,33 @@
       color: #ffffff !important;
     }
 
-    /* Explanation panel styling */
+    /* Explanation panel styling - Elegant, spacious, no clipping */
     #quiz-view .explanation-panel {
-      background: #f0f9ff !important;
-      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 18px !important;
+      padding: 22px 26px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+      margin-top: 24px !important;
     }
     #quiz-view .explanation-panel-inner {
-      color: #000000;
+      color: #1e293b;
+      padding: 0 !important;
     }
     #quiz-view .explanation-header {
-      border-bottom-color: rgba(var(--primary-rgb), 0.2) !important;
+      display: none !important;
+    }
+    #quiz-view .explanation-content {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
     }
     #quiz-view .explanation-content p,
     #quiz-view .explanation-content li {
-      color: #000000;
+      color: #1e293b !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
     }
 
     /* Bottom navigation adjustments */
@@ -196,12 +209,13 @@
     .explanation-content li, .explanation-box li {
       margin: 4px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
       text-align: justify !important;
+      text-justify: inter-word !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
@@ -229,7 +243,201 @@
       line-height: 1.55 !important;
     }
 
-  </style>
+  
+    /* Word Base Question Styling - Elegant white card with ample padding */
+    .word-question {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      padding: 28px 36px !important;
+      margin: 14px auto !important;
+      max-width: 98% !important;
+      font-family: 'Inter', Arial, sans-serif !important;
+      font-size: 1.01rem !important;
+      line-height: 1.72 !important;
+      color: #1e293b !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+    }
+    .word-question p {
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      text-justify: auto !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      line-height: 1.72 !important;
+      margin-bottom: 9pt !important;
+      color: #1e293b !important;
+    }
+    .word-question p.blank { height: 1.5em; margin: 0; }
+    .word-question .word-table { border-collapse: collapse; width: 100%; margin: 0.8em 0; background: #ffffff; }
+    .word-question .word-table td, .word-question .word-table th { border: 1px solid #cbd5e1; padding: 7px 10px; vertical-align: top; }
+    .word-question .word-table p { margin: 0 !important; }
+    .word-question .fig-img { max-width: 100%; height: auto; display: block; margin: 0.8em auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: zoom-in; }
+    .word-question .fig-img-wrap { text-align: center; margin: 12px 0; }
+
+/* Responsive Wrapper & Zoomable Medical Tables (Larnaka 5/6 Standard) */
+.table-responsive-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+    margin: 18px 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+}
+
+.table-responsive-wrapper table.zoomable-table,
+.word-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    cursor: zoom-in !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table-responsive-wrapper table td,
+.word-table td {
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+    vertical-align: top !important;
+    background-color: #ffffff !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.table-responsive-wrapper table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-responsive-wrapper table tbody tr:hover td,
+.word-table tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+.table-responsive-wrapper table td p,
+.word-table td p {
+    margin: 0 0 4px 0 !important;
+    line-height: 1.55 !important;
+    white-space: normal !important;
+    text-align: left !important;
+}
+
+.table-responsive-wrapper table td p:last-child,
+.word-table td p:last-child {
+    margin-bottom: 0 !important;
+}
+
+
+
+    /* Enhanced Morphology (Ample Breathing Room & Elegant Padding) */
+    .word-question, .explanation-box {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 34px 44px !important;
+      margin: 16px auto !important;
+      max-width: 96% !important;
+      font-family: 'Inter', Arial, sans-serif !important;
+      font-size: 1.01rem !important;
+      line-height: 1.74 !important;
+      color: #1e293b !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      box-sizing: border-box !important;
+    }
+    .stage-banner {
+      padding: 10px 22px !important;
+      border-left: 5px solid #0284c7 !important;
+      border-radius: 8px !important;
+      margin: 22px 0 12px 0 !important;
+      box-sizing: border-box !important;
+    }
+    .thematic-banner {
+      padding: 8px 18px !important;
+      border-left: 4px solid #6366f1 !important;
+      border-radius: 8px !important;
+      margin: 18px 0 8px 0 !important;
+      box-sizing: border-box !important;
+    }
+    .excerpt-title-badge {
+      padding: 5px 14px !important;
+      border-left: 4px solid #64748b !important;
+      border-radius: 6px !important;
+      box-sizing: border-box !important;
+    }
+    .diagram-title-badge {
+      padding: 6px 14px !important;
+      border-left: 4px solid #0284c7 !important;
+      border-radius: 6px !important;
+      box-sizing: border-box !important;
+    }
+    #quiz-view .question-container {
+      background: rgba(var(--primary-rgb), 0.06) !important;
+      border: 1px solid rgba(var(--primary-rgb), 0.22) !important;
+      border-left: 6px solid var(--primary-color) !important;
+      border-radius: 14px !important;
+      padding: 24px 30px !important;
+      box-sizing: border-box !important;
+    }
+
+/* Full Justification (Πλήρης Στοίχιση) for Medical Texts */
+#quiz-view .explanation-content p,
+#quiz-view .explanation-content li,
+.word-question p,
+.word-question li,
+.explanation-box p,
+.explanation-box li,
+#question-text {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+}
+
+/* Explicit alignment exceptions for diagrams, headers, lists and tables */
+.word-question p[style*="monospace"],
+.word-question span[style*="Courier New"],
+.word-question p[style*="Courier New"],
+.diagram-title-badge,
+.stage-banner,
+.thematic-banner,
+.thematic-topics-list,
+.thematic-topics-list li,
+.notebook-img-container,
+.fig-img-wrap,
+.table-responsive-wrapper table td,
+.table-responsive-wrapper table td p,
+.word-table td,
+.word-table td p {
+    text-align: left !important;
+    text-justify: auto !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    text-align: center !important;
+}
+
+</style>
 
 <style id="dynamic-theme">
 :root {
@@ -260,12 +468,13 @@
     .explanation-content li, .explanation-box li {
       margin: 4px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
       text-align: justify !important;
+      text-justify: inter-word !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
@@ -307,7 +516,7 @@
 <path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 <path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
-<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.1rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: #fff; padding: 2px 10px; border-radius: 6px;">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα: Q302 - Q350)</span></h1>
+<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.1rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: #fff; padding: 2px 10px; border-radius: 6px;">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (50 Θέματα: Q302 - Q350)</span></h1>
 </div>
 <div class="header-controls">
 <a class="btn btn-secondary btn-icon" href="../index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
@@ -324,7 +533,7 @@
 </svg>
 <span>Αναζήτηση</span>
 </button>
-<a class="btn btn-secondary btn-icon" href="photos_preview.html" title="Πίνακας Ελέγχου Φωτογραφιών & Infographics (Μέρος 5ο)" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 700; height: 38px; box-sizing: border-box; cursor: pointer; background: #e0f2fe; border: 1.5px solid #0284c7; color: #0369a1; margin-left: 8px;">
+<a class="btn btn-secondary btn-icon" href="photos_preview.html" title="Πίνακας Ελέγχου Φωτογραφιών & Infographics (Μέρος 6ο)" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 700; height: 38px; box-sizing: border-box; cursor: pointer; background: #e0f2fe; border: 1.5px solid #0284c7; color: #0369a1; margin-left: 8px;">
 <svg fill="none" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
   <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
   <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
