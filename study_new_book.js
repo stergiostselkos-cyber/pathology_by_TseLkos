@@ -2337,64 +2337,7 @@ function highlightSearchTerms(element) {
 
 
 /* --- TABLE ZOOM LOGIC --- */
-(function() {
-    // Create the modal HTML once
-    let modal = document.createElement('div');
-    modal.className = 'table-viewer-overlay';
-    modal.innerHTML = `
-        <div class="table-viewer-header">
-            <div class="table-viewer-title">🔍 Προβολή Πίνακα</div>
-            <button class="table-viewer-close">✕</button>
-        </div>
-        <div class="table-viewer-content" id="table-viewer-content"></div>
-    `;
-    document.body.appendChild(modal);
-
-    const closeBtn = modal.querySelector('.table-viewer-close');
-    const content = modal.querySelector('#table-viewer-content');
-
-    function closeModal() {
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-        setTimeout(() => { content.innerHTML = ''; }, 200);
-    }
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-    });
-
-    // Periodically find tables and add zoom button
-    setInterval(() => {
-        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table');
-        tables.forEach(table => {
-            if (!table.parentElement.classList.contains('table-zoom-container')) {
-                // Wrap the table
-                const wrapper = document.createElement('div');
-                wrapper.className = 'table-zoom-container';
-                table.parentNode.insertBefore(wrapper, table);
-                wrapper.appendChild(table);
-
-                // Add button
-                const btn = document.createElement('button');
-                btn.className = 'zoom-table-btn';
-                btn.innerHTML = '🔍 Μεγέθυνση Πίνακα';
-                
-                // When clicked, copy the table to the modal
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    content.innerHTML = table.outerHTML;
-                    modal.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                });
-                
-                wrapper.appendChild(btn);
-            }
-        });
-    }, 500);
-})();
+// Unified HD Zoom Inspector is handled exclusively by image_zoom_viewer.js
 
 
 // ==============================================================================

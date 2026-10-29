@@ -4340,3 +4340,212 @@ body.dark-theme .excerpt-title-badge {
 .word-table th {
     text-align: center !important;
 }
+
+
+/* ==============================================================================
+   UNIVERSAL HIGH-CONTRAST MEDICAL TABLE STYLING ACROSS ALL QUESTION BANKS
+   Guarantees 100% text readability with NO invisible letters, matching colors,
+   or color clashes in both normal page view and HD Zoom modal.
+   Permanently disables the legacy secondary table modal and toolbars.
+   ============================================================================== */
+
+/* 1. Eliminate legacy secondary modal and duplicate toolbars globally */
+.table-viewer-overlay,
+.table-zoom-toolbar,
+.zoom-table-btn {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* 2. Base Table Appearance in Light Theme / Default */
+table,
+.zoomable-table,
+.word-table,
+.med-table,
+.interactive-med-table,
+.table-responsive-wrapper table {
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Table Headers - Crisp Deep Blue Header on Soft Medical Blue */
+table th,
+.zoomable-table th,
+.word-table th,
+.med-table th,
+.interactive-med-table th,
+.table-responsive-wrapper table th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px 14px !important;
+    text-align: center !important;
+}
+
+table th *,
+.zoomable-table th *,
+.word-table th *,
+.med-table th *,
+.interactive-med-table th *,
+.table-responsive-wrapper table th * {
+    color: #102C57 !important;
+    font-weight: 800 !important;
+}
+
+/* Table Cells - Crisp Readable Dark Slate Text */
+table td,
+.zoomable-table td,
+.word-table td,
+.med-table td,
+.interactive-med-table td,
+.table-responsive-wrapper table td {
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px 14px !important;
+    color: #1e293b !important;
+    background-color: #ffffff !important;
+    line-height: 1.58 !important;
+    font-size: 0.95rem !important;
+    vertical-align: top !important;
+}
+
+table td *,
+.zoomable-table td *,
+.word-table td *,
+.med-table td *,
+.interactive-med-table td *,
+.table-responsive-wrapper table td * {
+    color: #1e293b !important;
+}
+
+/* Alternating Rows for readability */
+table tbody tr:nth-child(even) td,
+.zoomable-table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td,
+.med-table tbody tr:nth-child(even) td,
+.table-responsive-wrapper table tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+table tbody tr:hover td,
+.zoomable-table tbody tr:hover td,
+.word-table tbody tr:hover td,
+.med-table tbody tr:hover td,
+.table-responsive-wrapper table tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* High Contrast for Option / Status Badges and Specific Highlight Cells */
+table tr.correct td,
+table td.correct,
+table tr[style*="#f0fdf4"] td,
+table td[style*="#f0fdf4"],
+table tr[style*="#dcfce7"] td,
+table td[style*="#dcfce7"] {
+    background-color: #ecfdf5 !important;
+    color: #065f46 !important;
+}
+table tr.correct td *,
+table td.correct *,
+table tr[style*="#f0fdf4"] td *,
+table td[style*="#f0fdf4"] *,
+table tr[style*="#dcfce7"] td *,
+table td[style*="#dcfce7"] * {
+    color: #065f46 !important;
+    font-weight: 700 !important;
+}
+
+table tr.incorrect td,
+table td.incorrect,
+table tr[style*="#fef2f2"] td,
+table td[style*="#fef2f2"] {
+    background-color: #fef2f2 !important;
+    color: #991b1b !important;
+}
+table tr.incorrect td *,
+table td.incorrect *,
+table tr[style*="#fef2f2"] td *,
+table td[style*="#fef2f2"] * {
+    color: #991b1b !important;
+}
+
+/* Dark Theme Overrides */
+body.dark-theme table,
+body.dark-theme .zoomable-table,
+body.dark-theme .word-table,
+body.dark-theme .med-table,
+body.dark-theme .interactive-med-table,
+body.dark-theme .table-responsive-wrapper table {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
+body.dark-theme table th,
+body.dark-theme .zoomable-table th,
+body.dark-theme .word-table th,
+body.dark-theme .med-table th,
+body.dark-theme .interactive-med-table th,
+body.dark-theme .table-responsive-wrapper table th {
+    background-color: #0f172a !important;
+    color: #38bdf8 !important;
+    border-color: #334155 !important;
+}
+body.dark-theme table th *,
+body.dark-theme .zoomable-table th *,
+body.dark-theme .word-table th *,
+body.dark-theme .med-table th *,
+body.dark-theme .interactive-med-table th *,
+body.dark-theme .table-responsive-wrapper table th * {
+    color: #38bdf8 !important;
+}
+
+body.dark-theme table td,
+body.dark-theme .zoomable-table td,
+body.dark-theme .word-table td,
+body.dark-theme .med-table td,
+body.dark-theme .interactive-med-table td,
+body.dark-theme .table-responsive-wrapper table td {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+body.dark-theme table td *,
+body.dark-theme .zoomable-table td *,
+body.dark-theme .word-table td *,
+body.dark-theme .med-table td *,
+body.dark-theme .interactive-med-table td *,
+body.dark-theme .table-responsive-wrapper table td * {
+    color: #f1f5f9 !important;
+}
+
+body.dark-theme table tbody tr:nth-child(even) td,
+body.dark-theme .zoomable-table tbody tr:nth-child(even) td,
+body.dark-theme .word-table tbody tr:nth-child(even) td,
+body.dark-theme .med-table tbody tr:nth-child(even) td,
+body.dark-theme .table-responsive-wrapper table tbody tr:nth-child(even) td {
+    background-color: #0f172a !important;
+}
+body.dark-theme table tbody tr:hover td,
+body.dark-theme .zoomable-table tbody tr:hover td,
+body.dark-theme .word-table tbody tr:hover td,
+body.dark-theme .med-table tbody tr:hover td,
+body.dark-theme .table-responsive-wrapper table tbody tr:hover td {
+    background-color: #334155 !important;
+}
+
+body.dark-theme table tr.correct td,
+body.dark-theme table td.correct {
+    background-color: #064e3b !important;
+    color: #a7f3d0 !important;
+}
+body.dark-theme table tr.correct td *,
+body.dark-theme table td.correct * {
+    color: #a7f3d0 !important;
+}

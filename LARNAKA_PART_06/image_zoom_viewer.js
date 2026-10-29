@@ -314,6 +314,7 @@
 
     customEl.style.display = 'block';
     customEl.innerHTML = '';
+    customEl.onclick = function(e) { e.stopPropagation(); };
 
     let contentNode;
     if (typeof elementOrHtml === 'string') {
@@ -334,6 +335,7 @@
         if (tbl) {
           tbl.classList.add('med-zoom-table-active');
           tbl.style.cursor = 'default';
+          tbl.querySelectorAll('th, td, tr, p, span, h6').forEach(n => n.style.cursor = 'default');
         }
       }
       customEl.appendChild(contentNode);
@@ -484,7 +486,7 @@
     }
 
     // Direct Table click (if user clicks directly on any table)
-    const directTable = e.target.closest('table.med-zoomable, table.zoomable-table');
+    const directTable = e.target.closest('table.med-zoomable, table.zoomable-table, .word-table, .interactive-med-table, .case-table, .table-responsive-wrapper table, .explanation-content table, .explanation-box table, .correct-answer-box table, .word-question table');
     if (directTable && !directTable.closest('#med-zoom-modal') && !e.target.closest('button, a, input, select')) {
       e.preventDefault();
       window.openMedZoom(directTable, directTable.getAttribute('data-title') || directTable.querySelector('caption, th')?.textContent?.trim(), 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
