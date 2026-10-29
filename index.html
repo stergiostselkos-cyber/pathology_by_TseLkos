@@ -827,7 +827,8 @@
                         <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
                         <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ ΜΕΧΡΙ 2026 5ΟΥ ΚΑΙ 6ΟΥ ΕΤΟΥΣ</option>
                         <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (313 Θέματα Q45-Q357)</option>
-                                                                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
+                                                                        <option value="larnaka1">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 1ο (62 Θέματα Q45 - Q105)</option>
+                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
                         <option value="larnaka3">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 3ο (74 Θέματα Q145 - Q217)</option>
                         <option value="larnaka4">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 4ο (85 Θέματα Q218 - Q301)</option>
                         <option value="larnaka5">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα Q302 - Q350)</option>
@@ -850,7 +851,8 @@
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
                         <option value="larnaka">🏛️ Τράπεζα Θεμάτων (Λάρνακα - 313 Θέματα Q45-Q357)</option>
-                                                                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
+                                                                        <option value="larnaka1">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 1ο (62 Θέματα Q45 - Q105)</option>
+                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
                         <option value="larnaka3">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 3ο (74 Θέματα Q145 - Q217)</option>
                         <option value="larnaka4">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 4ο (85 Θέματα Q218 - Q301)</option>
                         <option value="larnaka5">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα Q302 - Q350)</option>
@@ -949,6 +951,8 @@
             const bank = document.getElementById('essay-selector').value;
             if (bank === 'larnaka') {
                 window.location.href = 'LARNAKA/index.html';
+            } else if (bank === 'larnaka1') {
+                window.location.href = 'LARNAKA_PART_01/index.html';
             } else if (bank === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';
             } else if (bank === 'larnaka3') {
@@ -981,6 +985,8 @@
             const book = selector.value;
             if (book === 'larnaka') {
                 window.location.href = 'LARNAKA/index.html';
+            } else if (book === 'larnaka1') {
+                window.location.href = 'LARNAKA_PART_01/index.html';
             } else if (book === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';
             } else if (book === 'larnaka3') {
