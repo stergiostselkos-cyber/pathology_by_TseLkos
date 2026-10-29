@@ -826,14 +826,7 @@
                     <select id="essay-selector" class="fancy-select" required>
                         <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
                         <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ ΜΕΧΡΙ 2026 5ΟΥ ΚΑΙ 6ΟΥ ΕΤΟΥΣ</option>
-                        <option value="larnaka">🌟 🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΟΛΑ ΤΑ ΜΕΡΗ (475 Θέματα Q45 - Q456)</option>
-                                                                        <option value="larnaka1">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 1ο (62 Θέματα Q45 - Q105)</option>
-                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
-                        <option value="larnaka3">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 3ο (74 Θέματα Q145 - Q217)</option>
-                        <option value="larnaka4">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 4ο (85 Θέματα Q218 - Q301)</option>
-                        <option value="larnaka5">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα Q302 - Q350)</option>
-                        <option value="larnaka6">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 6ο (51 Θέματα Q351 - Q401)</option>
-                        <option value="larnaka7">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 7ο (55 Θέματα Q402 - Q456)</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 475 Θέματα Q45-Q456)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</button>
                 </form>
@@ -850,14 +843,7 @@
                         <option value="" disabled selected>Επίλεξε Τράπεζα Ερωτήσεων...</option>
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
-                        <option value="larnaka">🌟 🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΟΛΑ ΤΑ ΜΕΡΗ (475 Θέματα Q45 - Q456)</option>
-                                                                        <option value="larnaka1">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 1ο (62 Θέματα Q45 - Q105)</option>
-                        <option value="larnaka2">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 2ο (98 Θέματα Q47 - Q144)</option>
-                        <option value="larnaka3">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 3ο (74 Θέματα Q145 - Q217)</option>
-                        <option value="larnaka4">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 4ο (85 Θέματα Q218 - Q301)</option>
-                        <option value="larnaka5">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα Q302 - Q350)</option>
-                        <option value="larnaka6">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 6ο (51 Θέματα Q351 - Q401)</option>
-                        <option value="larnaka7">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 7ο (55 Θέματα Q402 - Q456)</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 475 Θέματα Q45-Q456)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
@@ -949,10 +935,8 @@
         function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
-            if (bank === 'larnaka') {
+            if (bank === 'larnaka' || bank.startsWith('larnaka')) {
                 window.location.href = 'LARNAKA/index.html';
-            } else if (bank === 'larnaka1') {
-                window.location.href = 'LARNAKA_PART_01/index.html';
             } else if (bank === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';
             } else if (bank === 'larnaka3') {
@@ -983,10 +967,8 @@
             e.preventDefault();
             const selector = document.getElementById('mcq-selector');
             const book = selector.value;
-            if (book === 'larnaka') {
+            if (book === 'larnaka' || book.startsWith('larnaka')) {
                 window.location.href = 'LARNAKA/index.html';
-            } else if (book === 'larnaka1') {
-                window.location.href = 'LARNAKA_PART_01/index.html';
             } else if (book === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';
             } else if (book === 'larnaka3') {
