@@ -455,7 +455,12 @@ function revealQuickAnswer() {
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.add('hidden');
 
     if (quickCorrectAnswerText) {
-        let ansParsed = parseMarkdown(question.correctAnswer || question.answer || "");
+        let rawAns = question.correctAnswer || question.answer || "";
+        if (!rawAns && question.correctAnswerIndices && question.options) {
+            const indices = Array.isArray(question.correctAnswerIndices) ? question.correctAnswerIndices : [question.correctAnswerIndices];
+            rawAns = indices.map(i => question.options[i]).filter(Boolean).join("<br>");
+        }
+        let ansParsed = parseMarkdown(rawAns);
         try {
             quickCorrectAnswerText.innerHTML = injectSectionBackToTop(ansParsed);
         } catch (e) {

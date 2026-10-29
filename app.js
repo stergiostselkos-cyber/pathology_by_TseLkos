@@ -497,20 +497,36 @@ function handleRevealAnswer() {
  * Reveal explanation panel and parse markdown
  */
 function revealExplanation(explanationText) {
-    if (!explanationText || !explanationText.trim()) {
+    const question = (typeof filteredQuestions !== 'undefined' && filteredQuestions[currentQuestionIndex]) ? filteredQuestions[currentQuestionIndex] : null;
+    
+    let mainExp = explanationText || "";
+    let detailedTheory = "";
+    
+    // Check if mainExp has actual text content beyond empty HTML tags
+    const strippedText = mainExp.replace(/<[^>]+>/g, '').trim();
+    if (!strippedText && question) {
+        const correctIndices = getCorrectAnswerIndices(question);
+        const correctOpts = correctIndices.map(i => question.options[i]).filter(Boolean);
+        const optsHtml = correctOpts.map(opt => `<div style="margin-bottom: 8px;">• ${opt}</div>`).join('');
+        mainExp = `
+            <div class="explanation-box correct-answer-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: 12px; padding: 18px 22px; margin-top: 15px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);">
+                <div style="font-size: 1.15rem; font-weight: 700; color: #15803d; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1.3rem;">✅</span> <span>Σωστή Απάντηση:</span>
+                </div>
+                <div style="font-size: 1.05rem; font-weight: 600; color: #166534; line-height: 1.6; padding-left: 28px;">
+                    ${optsHtml}
+                </div>
+            </div>
+        `;
+    }
+    
+    if (!mainExp || !mainExp.trim()) {
         explanationPanel.classList.remove('expanded');
         return;
     }
     
-    let mainExp = explanationText;
-    let detailedTheory = "";
-    
-    if (explanationText.includes("### Αναλυτική Απάντηση")) {
-        const parts = explanationText.split("### Αναλυτική Απάντηση");
-        mainExp = parts[0];
-        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
-    } else if (explanationText.includes("### Αναλυτική Απάντηση")) {
-        const parts = explanationText.split("### Αναλυτική Απάντηση");
+    if (mainExp.includes("### Αναλυτική Απάντηση")) {
+        const parts = mainExp.split("### Αναλυτική Απάντηση");
         mainExp = parts[0];
         detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
     }
