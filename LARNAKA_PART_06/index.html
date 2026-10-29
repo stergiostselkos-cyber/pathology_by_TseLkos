@@ -273,6 +273,75 @@
     .word-question .word-table p { margin: 0 !important; }
     .word-question .fig-img { max-width: 100%; height: auto; display: block; margin: 0.8em auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: zoom-in; }
     .word-question .fig-img-wrap { text-align: center; margin: 12px 0; }
+
+/* Responsive Wrapper & Zoomable Medical Tables (Larnaka 5/6 Standard) */
+.table-responsive-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+    margin: 18px 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+}
+
+.table-responsive-wrapper table.zoomable-table,
+.word-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    cursor: zoom-in !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table-responsive-wrapper table td,
+.word-table td {
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+    vertical-align: top !important;
+    background-color: #ffffff !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.table-responsive-wrapper table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-responsive-wrapper table tbody tr:hover td,
+.word-table tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+.table-responsive-wrapper table td p,
+.word-table td p {
+    margin: 0 0 4px 0 !important;
+    line-height: 1.55 !important;
+    white-space: normal !important;
+    text-align: left !important;
+}
+
+.table-responsive-wrapper table td p:last-child,
+.word-table td p:last-child {
+    margin-bottom: 0 !important;
+}
+
 </style>
 
 <style id="dynamic-theme">
