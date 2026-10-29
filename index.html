@@ -825,8 +825,11 @@
                 <form onsubmit="startEssay(event)" style="width: 100%;">
                     <select id="essay-selector" class="fancy-select" required>
                         <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
-                        
                         <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ ΜΕΧΡΙ 2026 5ΟΥ ΚΑΙ 6ΟΥ ΕΤΟΥΣ</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (313 Θέματα Q45-Q357)</option>
+                        <option value="larnaka5">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 5ο (48 Θέματα Q302 - Q350)</option>
+                        <option value="larnaka6">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 6ο (51 Θέματα Q351 - Q401)</option>
+                        <option value="larnaka7">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 7ο (55 Θέματα Q402 - Q456)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</button>
                 </form>
@@ -938,7 +941,17 @@
         function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
-            window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
+            if (bank === 'larnaka') {
+                window.location.href = 'LARNAKA/index.html';
+            } else if (bank === 'larnaka5') {
+                window.location.href = 'LARNAKA_PART_05/index.html';
+            } else if (bank === 'larnaka6') {
+                window.location.href = 'LARNAKA_PART_06/index.html';
+            } else if (bank === 'larnaka7') {
+                window.location.href = 'LARNAKA_PART_07/index.html';
+            } else {
+                window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
+            }
         }
 
         function startPharma(e) {

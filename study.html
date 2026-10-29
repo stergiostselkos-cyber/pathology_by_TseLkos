@@ -445,8 +445,17 @@ body.dark-theme .correct-answer-box {
 </section>
 <!-- App Logic Scripts -->
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
     const bank = urlParams.get('bank');
+    if (bank === 'larnaka') {
+        window.location.href = 'LARNAKA/index.html';
+    } else if (bank === 'larnaka5') {
+        window.location.href = 'LARNAKA_PART_05/index.html';
+    } else if (bank === 'larnaka6') {
+        window.location.href = 'LARNAKA_PART_06/index.html';
+    } else if (bank === 'larnaka7') {
+        window.location.href = 'LARNAKA_PART_07/index.html';
+    }
     let scriptFile = 'data/anaptyxi_2026.js?v=20261015';
     
     if (bank === 'new_bank') {

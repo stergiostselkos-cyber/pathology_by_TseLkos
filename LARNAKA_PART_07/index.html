@@ -488,6 +488,15 @@
 </svg>
 <span>📸 Φωτογραφίες</span>
 </a>
+<div class="part-switcher-wrap" style="position: relative; display: inline-flex; align-items: center; margin-left: 8px;">
+<select class="part-switcher-select" onchange="switchLarnakaPart(this)" style="padding: 6px 12px; font-size: 0.88rem; border-radius: 8px; font-weight: 700; height: 38px; background: #ffffff; border: 1.5px solid #0ea5e9; color: #0284c7; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(14,165,233,0.15);">
+  <option value="" disabled>-- Επιλογή Μέρους --</option>
+  <option value="../LARNAKA_PART_05/index.html">🏛️ Μέρος 5ο (Q302-Q350)</option>
+  <option value="../LARNAKA_PART_06/index.html">🏛️ Μέρος 6ο (Q351-Q401)</option>
+  <option value="../LARNAKA_PART_07/index.html" selected>🏛️ Μέρος 7ο (Q402-Q456)</option>
+  <option value="../LARNAKA/index.html">🏛️ Όλα τα Θέματα (Q45-Q357)</option>
+</select>
+</div>
 
 <!-- Progress Bar Tracker -->
 <div class="progress-container">
@@ -742,6 +751,21 @@
 </button>
 
 <script src="image_zoom_viewer.js"></script>
+<script>
+function switchLarnakaPart(sel) {
+  var v = sel.value;
+  if (!v) return;
+  var p = decodeURIComponent(window.location.pathname);
+  if (p.indexOf("λαρνακα") !== -1) {
+    if (v.indexOf("PART_05") !== -1) window.location.href = "../LARNAKA_PART_05/index.html";
+    else if (v.indexOf("PART_06") !== -1) window.location.href = "../λαρνακα 6/index.html";
+    else if (v.indexOf("PART_07") !== -1) window.location.href = "../λαρνακα 7/index.html";
+    else window.location.href = v;
+  } else {
+    window.location.href = v;
+  }
+}
+</script>
 </body>
 
 </html>
