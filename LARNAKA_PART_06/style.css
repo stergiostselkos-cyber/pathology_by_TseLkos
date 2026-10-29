@@ -4036,7 +4036,15 @@ body.dark-theme .essay-question-container p {
 
 /* Explanation container breathing room */
 .word-question {
-    padding: 10px 16px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    padding: 28px 36px !important;
+    margin: 14px auto !important;
+    max-width: 98% !important;
+    text-align: left !important;
+    line-height: 1.72 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
     overflow-x: auto !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
@@ -4045,8 +4053,18 @@ body.dark-theme .essay-question-container p {
 .word-question p {
     text-align: left !important;
     text-justify: auto !important;
-    line-height: 1.6 !important;
-    margin-bottom: 8pt !important;
+    line-height: 1.72 !important;
+    margin-bottom: 9pt !important;
+    color: #1e293b !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.word-question li {
+    text-align: left !important;
+    line-height: 1.65 !important;
+    margin-bottom: 6pt !important;
+    color: #1e293b !important;
 }
 
 /* Stage & Thematic Unit Banners */

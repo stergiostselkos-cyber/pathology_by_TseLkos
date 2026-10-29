@@ -141,20 +141,32 @@
       color: #ffffff !important;
     }
 
-    /* Explanation panel styling */
+    /* Explanation panel styling - Elegant, spacious, no clipping */
     #quiz-view .explanation-panel {
-      background: #f0f9ff !important;
-      border: 2px solid rgba(var(--primary-rgb), 0.2) !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 18px !important;
+      padding: 22px 26px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+      margin-top: 24px !important;
     }
     #quiz-view .explanation-panel-inner {
-      color: #000000;
+      color: #1e293b;
+      padding: 0 !important;
     }
     #quiz-view .explanation-header {
-      border-bottom-color: rgba(var(--primary-rgb), 0.2) !important;
+      display: none !important;
+    }
+    #quiz-view .explanation-content {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
     }
     #quiz-view .explanation-content p,
     #quiz-view .explanation-content li {
-      color: #000000;
+      color: #1e293b !important;
+      text-align: left !important;
     }
 
     /* Bottom navigation adjustments */
@@ -196,12 +208,12 @@
     .explanation-content li, .explanation-box li {
       margin: 4px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
@@ -230,16 +242,37 @@
     }
 
   
-    /* Word Base Question Styling from original developmentQuestionsPart6CSS */
-    .word-question { font-family: Arial, sans-serif; font-size: 12pt; line-height: 1.5; color: #1e293b; }
-    .word-question p { overflow-wrap: anywhere; }
+    /* Word Base Question Styling - Elegant white card with ample padding */
+    .word-question {
+      background-color: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      padding: 28px 36px !important;
+      margin: 14px auto !important;
+      max-width: 98% !important;
+      font-family: 'Inter', Arial, sans-serif !important;
+      font-size: 1.01rem !important;
+      line-height: 1.72 !important;
+      color: #1e293b !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+    }
+    .word-question p {
+      text-align: left !important;
+      text-justify: auto !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      line-height: 1.72 !important;
+      margin-bottom: 9pt !important;
+      color: #1e293b !important;
+    }
     .word-question p.blank { height: 1.5em; margin: 0; }
     .word-question .word-table { border-collapse: collapse; width: 100%; margin: 0.8em 0; background: #ffffff; }
-    .word-question .word-table td, .word-question .word-table th { border: 1px solid #999; padding: 6px 8px; vertical-align: top; }
+    .word-question .word-table td, .word-question .word-table th { border: 1px solid #cbd5e1; padding: 7px 10px; vertical-align: top; }
     .word-question .word-table p { margin: 0 !important; }
     .word-question .fig-img { max-width: 100%; height: auto; display: block; margin: 0.8em auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: zoom-in; }
     .word-question .fig-img-wrap { text-align: center; margin: 12px 0; }
-
 </style>
 
 <style id="dynamic-theme">
@@ -271,12 +304,12 @@
     .explanation-content li, .explanation-box li {
       margin: 4px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     .explanation-content p, .explanation-box p {
       margin: 0 0 10px 0 !important;
       line-height: 1.68 !important;
-      text-align: justify !important;
+      text-align: left !important;
     }
     /* Zoomable Medical Tables */
     .explanation-content table, .explanation-box table {
