@@ -327,13 +327,38 @@ body.dark-theme .correct-answer-box {
     color: #f1f5f9 !important;
 }
 
-/* FIX TABLE OVERFLOW EVERYWHERE */
-.explanation-wrapper table, .correct-answer-box table, .explanation-content table { 
-    display: block !important; 
-    overflow-x: auto !important; 
-    width: max-content !important; 
-    max-width: 100% !important; 
-    word-break: normal !important; 
+/* RESPONSIVE TABLE WRAPPER & PROPER TABLE DISPLAY */
+.table-responsive-wrapper,
+.table-responsive {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 !important;
+    display: block !important;
+    border-radius: 8px;
+}
+
+.table-responsive-wrapper table,
+.table-responsive table,
+.explanation-wrapper table,
+.correct-answer-box table,
+.explanation-content table {
+    display: table !important;
+    width: 100% !important;
+    min-width: 680px !important;
+    border-collapse: collapse !important;
+    word-break: normal !important;
+}
+
+/* Neutralize any legacy Word export block spans inside table cells */
+table td span[data-wordfmt],
+table th span[data-wordfmt] {
+    display: inline !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* THE ULTIMATE OVERRIDES */

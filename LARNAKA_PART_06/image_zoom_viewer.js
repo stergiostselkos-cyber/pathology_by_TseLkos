@@ -419,6 +419,7 @@
   };
 
   window.closeMedZoom = closeZoom;
+  window.initHDZoomInspector = decorateTablesAndGraphs;
 
   // Auto-decorate all tables and charts across the page with zoom pill
   function decorateTablesAndGraphs() {

@@ -527,7 +527,16 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/^(.*(?:Από το αρχείο|Πηγ[ήές]).*)$/gmi, '<span class="source-ref">$1</span>');
     
     if (typeof marked !== 'undefined') {
-        return marked.parse(normalized);
+            // Clean bloated wordfmt spans from markdown table rows
+    normalized = normalized.replace(/^\|.*\|$/gm, function(line) {
+        return line.replace(/<\/?span[^>]*>/gi, '');
+    });
+    
+    let __parsed = marked.parse(normalized);
+    return __parsed.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
+        if (wrapped) return wrapped;
+        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
+    });
     }
     
     return normalized.replace(/\n/g, '<br/>');

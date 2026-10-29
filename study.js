@@ -555,6 +555,9 @@ function revealQuickAnswer() {
 
     if (quickRevealedBlock) {
         quickRevealedBlock.classList.remove('collapsed');
+        if (typeof window.initHDZoomInspector === 'function') {
+            setTimeout(window.initHDZoomInspector, 50);
+        }
     }
 
     setTimeout(() => {
@@ -633,7 +636,16 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" /><span class="image-caption">$1</span></div>');
     
     if (typeof marked !== 'undefined') {
-        return marked.parse(normalized);
+            // Clean bloated wordfmt spans from markdown table rows
+    normalized = normalized.replace(/^\|.*\|$/gm, function(line) {
+        return line.replace(/<\/?span[^>]*>/gi, '');
+    });
+    
+    let __parsed = marked.parse(normalized);
+    return __parsed.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
+        if (wrapped) return wrapped;
+        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
+    });
     }
     
     return normalized.replace(/\n/g, '<br/>');

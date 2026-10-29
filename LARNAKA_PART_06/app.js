@@ -554,7 +554,16 @@ function parseMarkdown(text) {
     if (typeof marked !== 'undefined') {
 
         
-        return marked.parse(normalized, { breaks: true, gfm: true });
+            // Clean bloated wordfmt spans from markdown table rows
+    normalized = normalized.replace(/^\|.*\|$/gm, function(line) {
+        return line.replace(/<\/?span[^>]*>/gi, '');
+    });
+    
+    let __parsed = marked.parse(normalized, { breaks: true, gfm: true });
+    return __parsed.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
+        if (wrapped) return wrapped;
+        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
+    });
     }
     
     return normalized.replace(/\n/g, '<br/>');
