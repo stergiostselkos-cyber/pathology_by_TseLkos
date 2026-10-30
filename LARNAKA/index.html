@@ -676,14 +676,15 @@
 <div class="part-switcher-wrap" style="position: relative; display: inline-flex; align-items: center; margin-left: 8px;">
 <select class="part-switcher-select" onchange="switchLarnakaPart(this)" style="padding: 6px 12px; font-size: 0.88rem; border-radius: 8px; font-weight: 700; height: 38px; background: #ffffff; border: 1.5px solid #0ea5e9; color: #0284c7; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(14,165,233,0.15);">
   <option value="" disabled>-- Επιλογή Ενότητας --</option>
-  <option value="index.html" selected>🏛️ ΟΛΑ ΤΑ ΜΕΡΗ (475 Θέματα Q45-Q456)</option>
-  <option value="../LARNAKA_PART_01/index.html">🏛️ Μέρος 1ο (Q45-Q105)</option>
-  <option value="../LARNAKA_PART_02/index.html">🏛️ Μέρος 2ο (Q47-Q144)</option>
-  <option value="../LARNAKA_PART_03/index.html">🏛️ Μέρος 3ο (Q145-Q217)</option>
-  <option value="../LARNAKA_PART_04/index.html">🏛️ Μέρος 4ο (Q218-Q301)</option>
-  <option value="../LARNAKA_PART_05/index.html">🏛️ Μέρος 5ο (Q302-Q350)</option>
-  <option value="../LARNAKA_PART_06/index.html">🏛️ Μέρος 6ο (Q351-Q401)</option>
-  <option value="../LARNAKA_PART_07/index.html">🏛️ Μέρος 7ο (Q402-Q456)</option>
+  <option value="part=all" selected>🏛️ ΟΛΑ ΤΑ ΜΕΡΗ (523 Θέματα Q45-Q505)</option>
+  <option value="part=1">🏛️ Μέρος 1ο (Q45-Q105)</option>
+  <option value="part=2">🏛️ Μέρος 2ο (Q47-Q144)</option>
+  <option value="part=3">🏛️ Μέρος 3ο (Q145-Q217)</option>
+  <option value="part=4">🏛️ Μέρος 4ο (Q218-Q301)</option>
+  <option value="part=5">🏛️ Μέρος 5ο (Q302-Q350)</option>
+  <option value="part=6">🏛️ Μέρος 6ο (Q351-Q401)</option>
+  <option value="part=7">🏛️ Μέρος 7ο (Q402-Q456)</option>
+  <option value="part=8">🏛️ Μέρος 8ο (Q457-Q505)</option>
 </select>
 </div>
 
@@ -944,6 +945,29 @@
 function switchLarnakaPart(sel) {
   var v = sel.value;
   if (!v) return;
+  if (v.indexOf("part=") !== -1) {
+    var pNum = v.split("part=")[1];
+    if (pNum === "all") {
+      activeChapter = "Όλα";
+      if (document.getElementById('quick-chapters-dropdown-value')) {
+        document.getElementById('quick-chapters-dropdown-value').textContent = "Όλα";
+      }
+      filterQuestions();
+      return;
+    }
+    if (typeof getChapterList === 'function' && typeof questions !== 'undefined') {
+      var chList = getChapterList(questions);
+      var foundCh = chList.find(function(ch) { return ch.indexOf(pNum) !== -1; });
+      if (foundCh) {
+        activeChapter = foundCh;
+        if (document.getElementById('quick-chapters-dropdown-value')) {
+          document.getElementById('quick-chapters-dropdown-value').textContent = foundCh;
+        }
+        filterQuestions();
+        return;
+      }
+    }
+  }
   var p = decodeURIComponent(window.location.pathname);
   if (p.indexOf("λαρνακα") !== -1) {
     if (v.indexOf("PART_05") !== -1) window.location.href = "../LARNAKA_PART_05/index.html";

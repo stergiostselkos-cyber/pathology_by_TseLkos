@@ -261,6 +261,18 @@ function loadQuestions() {
 
         // Check if question ID requested via URL (?qId=123)
         const urlParams = new URLSearchParams(window.location.search);
+        // Support ?part= URL parameter to jump directly to a chapter/part
+        const targetPart = urlParams.get('part');
+        if (targetPart && questions.length > 0) {
+            const chList = getChapterList(questions);
+            const foundCh = chList.find(ch => ch.includes(targetPart) || (targetPart === '8' && (ch.includes('8') || ch.includes('8ο'))));
+            if (foundCh) {
+                activeChapter = foundCh;
+                if (quickChaptersDropdownValue) quickChaptersDropdownValue.textContent = foundCh;
+                filterQuestions();
+            }
+        }
+
         const targetQId = urlParams.get('qId') || urlParams.get('id');
         if (targetQId && questions.length > 0) {
             const foundIdx = questions.findIndex(q => String(q.id) === String(targetQId));

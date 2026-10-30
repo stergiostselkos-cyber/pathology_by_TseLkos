@@ -826,7 +826,8 @@
                     <select id="essay-selector" class="fancy-select" required>
                         <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
                         <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ ΜΕΧΡΙ 2026 5ΟΥ ΚΑΙ 6ΟΥ ΕΤΟΥΣ</option>
-                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 475 Θέματα Q45-Q456)</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 523 Θέματα Q45-Q505)</option>
+                        <option value="larnaka8">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (Μέρος 8ο: Q457-Q505 - 48 Θέματα & 445 Εικόνες)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</button>
                 </form>
@@ -843,7 +844,8 @@
                         <option value="" disabled selected>Επίλεξε Τράπεζα Ερωτήσεων...</option>
                         <option value="old_book">Θέματα Εξετάσεων 2013-2023</option>
                         <option value="bank_1">Τράπεζα Θεμάτων 1</option>
-                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 475 Θέματα Q45-Q456)</option>
+                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 523 Θέματα Q45-Q505)</option>
+                        <option value="larnaka8">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (Μέρος 8ο: Q457-Q505 - 48 Θέματα & 445 Εικόνες)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-rocket"></i> Έναρξη Quiz</button>
                 </form>
@@ -935,7 +937,9 @@
         function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
-            if (bank === 'larnaka' || bank.startsWith('larnaka')) {
+            if (bank === 'larnaka8') {
+                window.location.href = 'LARNAKA/index.html?part=8';
+            } else if (bank === 'larnaka' || bank.startsWith('larnaka')) {
                 window.location.href = 'LARNAKA/index.html';
             } else if (bank === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';
@@ -967,7 +971,9 @@
             e.preventDefault();
             const selector = document.getElementById('mcq-selector');
             const book = selector.value;
-            if (book === 'larnaka' || book.startsWith('larnaka')) {
+            if (book === 'larnaka8') {
+                window.location.href = 'LARNAKA/index.html?part=8';
+            } else if (book === 'larnaka' || book.startsWith('larnaka')) {
                 window.location.href = 'LARNAKA/index.html';
             } else if (book === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';

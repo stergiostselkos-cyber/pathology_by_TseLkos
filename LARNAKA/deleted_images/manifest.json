@@ -1,0 +1,1406 @@
+{
+ "M1_Q45_TAB_01": {
+  "question": 45,
+  "file": "M1_Q45_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αγγειακών & Αιμορραγικών Βλαβών Παχέως Εντέρου:"
+ },
+ "M1_Q45_DIAG_01": {
+  "question": 45,
+  "file": "M1_Q45_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q45_TAB_02": {
+  "question": 45,
+  "file": "M1_Q45_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q45_TAB_03": {
+  "question": 45,
+  "file": "M1_Q45_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q46_TAB_01": {
+  "question": 46,
+  "file": "M1_Q46_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Χαρακτηριστικών Πρωτοπαθών Ηπατοτρόπων Ιών:"
+ },
+ "M1_Q46_DIAG_01": {
+  "question": 46,
+  "file": "M1_Q46_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q46_TAB_02": {
+  "question": 46,
+  "file": "M1_Q46_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q46_TAB_03": {
+  "question": 46,
+  "file": "M1_Q46_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q47_TAB_01": {
+  "question": 47,
+  "file": "M1_Q47_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Επιπλοκών Οξείας Ιογενούς Ηπατίτιδας:"
+ },
+ "M1_Q47_DIAG_01": {
+  "question": 47,
+  "file": "M1_Q47_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q47_TAB_02": {
+  "question": 47,
+  "file": "M1_Q47_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q47_TAB_03": {
+  "question": 47,
+  "file": "M1_Q47_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q48_TAB_01": {
+  "question": 48,
+  "file": "M1_Q48_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Χαρακτηριστικών & Επιπλοκών Κίρρωσης Ήπατος:"
+ },
+ "M1_Q48_DIAG_01": {
+  "question": 48,
+  "file": "M1_Q48_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q48_TAB_02": {
+  "question": 48,
+  "file": "M1_Q48_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q48_TAB_03": {
+  "question": 48,
+  "file": "M1_Q48_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q49_TAB_01": {
+  "question": 49,
+  "file": "M1_Q49_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφοροποίησης Αιτίων & Επιπλοκών Οξείας Ηπατικής Ανεπάρκειας:"
+ },
+ "M1_Q49_DIAG_01": {
+  "question": 49,
+  "file": "M1_Q49_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q49_TAB_02": {
+  "question": 49,
+  "file": "M1_Q49_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q49_TAB_03": {
+  "question": 49,
+  "file": "M1_Q49_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q50_TAB_01": {
+  "question": 50,
+  "file": "M1_Q50_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαγνωστικών & Θεραπευτικών Παραμέτρων στην AKI:"
+ },
+ "M1_Q50_DIAG_01": {
+  "question": 50,
+  "file": "M1_Q50_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q50_TAB_02": {
+  "question": 50,
+  "file": "M1_Q50_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q50_TAB_03": {
+  "question": 50,
+  "file": "M1_Q50_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q51_TAB_01": {
+  "question": 51,
+  "file": "M1_Q51_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Χαρακτηριστικών Κρεατινίνης vs Ουρίας Ορού:"
+ },
+ "M1_Q51_DIAG_01": {
+  "question": 51,
+  "file": "M1_Q51_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q51_TAB_02": {
+  "question": 51,
+  "file": "M1_Q51_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q51_TAB_03": {
+  "question": 51,
+  "file": "M1_Q51_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q52_TAB_01": {
+  "question": 52,
+  "file": "M1_Q52_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτιολογίας & Μηχανισμών Νεφρικής Βλάβης:"
+ },
+ "M1_Q52_DIAG_01": {
+  "question": 52,
+  "file": "M1_Q52_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q52_TAB_02": {
+  "question": 52,
+  "file": "M1_Q52_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q52_TAB_03": {
+  "question": 52,
+  "file": "M1_Q52_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q53_TAB_01": {
+  "question": 53,
+  "file": "M1_Q53_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφοροδιάγνωσης Νευρομυϊκών Διαταραχών (MG vs LEMS vs Αλλαντίαση):"
+ },
+ "M1_Q53_DIAG_01": {
+  "question": 53,
+  "file": "M1_Q53_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q53_TAB_02": {
+  "question": 53,
+  "file": "M1_Q53_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q53_TAB_03": {
+  "question": 53,
+  "file": "M1_Q53_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q54_TAB_01": {
+  "question": 54,
+  "file": "M1_Q54_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαγνωστικών Παραμέτρων ΕΝΥ ανά Αιτιολογία:"
+ },
+ "M1_Q54_DIAG_01": {
+  "question": 54,
+  "file": "M1_Q54_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q54_TAB_02": {
+  "question": 54,
+  "file": "M1_Q54_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q54_TAB_03": {
+  "question": 54,
+  "file": "M1_Q54_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q55_TAB_01": {
+  "question": 55,
+  "file": "M1_Q55_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Τεχνικών Παραμέτρων & Επιπλοκών Οσφυονωτιαίας Παρακέντησης:"
+ },
+ "M1_Q55_DIAG_01": {
+  "question": 55,
+  "file": "M1_Q55_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q55_TAB_02": {
+  "question": 55,
+  "file": "M1_Q55_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q55_TAB_03": {
+  "question": 55,
+  "file": "M1_Q55_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q56_TAB_01": {
+  "question": 56,
+  "file": "M1_Q56_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Προγνωστικών Παραγόντων Βακτηριακής Μηνιγγίτιδας:"
+ },
+ "M1_Q56_DIAG_01": {
+  "question": 56,
+  "file": "M1_Q56_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q56_TAB_02": {
+  "question": 56,
+  "file": "M1_Q56_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q56_TAB_03": {
+  "question": 56,
+  "file": "M1_Q56_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q57_TAB_01": {
+  "question": 57,
+  "file": "M1_Q57_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Σταδιοποίησης & Βυθοσκοπικών Ευρημάτων Διαβητικής Αμφιβληστροειδοπάθειας:"
+ },
+ "M1_Q57_DIAG_01": {
+  "question": 57,
+  "file": "M1_Q57_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q57_TAB_02": {
+  "question": 57,
+  "file": "M1_Q57_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q57_TAB_03": {
+  "question": 57,
+  "file": "M1_Q57_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q58_TAB_01": {
+  "question": 58,
+  "file": "M1_Q58_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Συμβατικής vs Εντατικοποιημένης Ινσουλινοθεραπείας στον ΣΔ1:"
+ },
+ "M1_Q58_DIAG_01": {
+  "question": 58,
+  "file": "M1_Q58_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q58_TAB_02": {
+  "question": 58,
+  "file": "M1_Q58_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q58_TAB_03": {
+  "question": 58,
+  "file": "M1_Q58_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q59_TAB_01": {
+  "question": 59,
+  "file": "M1_Q59_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Εργαστηριακών Ευρημάτων Θυρεοειδικής Λειτουργίας & Μεταβολών TBG:"
+ },
+ "M1_Q59_DIAG_01": {
+  "question": 59,
+  "file": "M1_Q59_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q59_TAB_02": {
+  "question": 59,
+  "file": "M1_Q59_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q59_TAB_03": {
+  "question": 59,
+  "file": "M1_Q59_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q60_TAB_01": {
+  "question": 60,
+  "file": "M1_Q60_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Κλινικών Ευρημάτων & Θεραπευτικών Επιλογών σε Όγκους Υπόφυσης:"
+ },
+ "M1_Q60_DIAG_01": {
+  "question": 60,
+  "file": "M1_Q60_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q60_TAB_02": {
+  "question": 60,
+  "file": "M1_Q60_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q60_TAB_03": {
+  "question": 60,
+  "file": "M1_Q60_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q61_TAB_01": {
+  "question": 61,
+  "file": "M1_Q61_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Κλινικών, Θεραπευτικών & Προγνωστικών Παραμέτρων Μεγαλακρίας:"
+ },
+ "M1_Q61_DIAG_01": {
+  "question": 61,
+  "file": "M1_Q61_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q61_TAB_02": {
+  "question": 61,
+  "file": "M1_Q61_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q61_TAB_03": {
+  "question": 61,
+  "file": "M1_Q61_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q62_TAB_01": {
+  "question": 62,
+  "file": "M1_Q62_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Χαρακτηριστικών & Θεραπευτικής Διαχείρισης Δυσλιπιδαιμίας:"
+ },
+ "M1_Q62_DIAG_01": {
+  "question": 62,
+  "file": "M1_Q62_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q62_TAB_02": {
+  "question": 62,
+  "file": "M1_Q62_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q62_TAB_03": {
+  "question": 62,
+  "file": "M1_Q62_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q63_TAB_01": {
+  "question": 63,
+  "file": "M1_Q63_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Ανεπιθύμητων Ενεργειών Αντιφυματικών Φαρμάκων 1ης Γραμμής:"
+ },
+ "M1_Q63_DIAG_01": {
+  "question": 63,
+  "file": "M1_Q63_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q63_TAB_02": {
+  "question": 63,
+  "file": "M1_Q63_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q63_TAB_03": {
+  "question": 63,
+  "file": "M1_Q63_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q64_TAB_01": {
+  "question": 64,
+  "file": "M1_Q64_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Στεροειδογενών Οργάνων, Ενζύμων & Κύριων Ορμονών:"
+ },
+ "M1_Q64_DIAG_01": {
+  "question": 64,
+  "file": "M1_Q64_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q64_TAB_02": {
+  "question": 64,
+  "file": "M1_Q64_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q64_TAB_03": {
+  "question": 64,
+  "file": "M1_Q64_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q65_TAB_01": {
+  "question": 65,
+  "file": "M1_Q65_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Ενζύμων Μεταβολισμού Βιταμίνης D & Λειτουργικού Ρόλου:"
+ },
+ "M1_Q65_DIAG_01": {
+  "question": 65,
+  "file": "M1_Q65_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q65_TAB_02": {
+  "question": 65,
+  "file": "M1_Q65_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q65_TAB_03": {
+  "question": 65,
+  "file": "M1_Q65_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q66_TAB_01": {
+  "question": 66,
+  "file": "M1_Q66_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Γιγαντισμού vs Μεγαλακρίας:"
+ },
+ "M1_Q66_DIAG_01": {
+  "question": 66,
+  "file": "M1_Q66_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q66_TAB_02": {
+  "question": 66,
+  "file": "M1_Q66_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q66_TAB_03": {
+  "question": 66,
+  "file": "M1_Q66_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q67_TAB_01": {
+  "question": 67,
+  "file": "M1_Q67_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Κλινικών & Μεταβολικών Εκδηλώσεων Θυρεοειδικής Δυσλειτουργίας στα Παιδιά:"
+ },
+ "M1_Q67_DIAG_01": {
+  "question": 67,
+  "file": "M1_Q67_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q67_TAB_02": {
+  "question": 67,
+  "file": "M1_Q67_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q67_TAB_03": {
+  "question": 67,
+  "file": "M1_Q67_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q68_TAB_01": {
+  "question": 68,
+  "file": "M1_Q68_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Κλινικών Εκδηλώσεων Προλακτινώματος κατά Φύλο:"
+ },
+ "M1_Q68_DIAG_01": {
+  "question": 68,
+  "file": "M1_Q68_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q68_TAB_02": {
+  "question": 68,
+  "file": "M1_Q68_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q68_TAB_03": {
+  "question": 68,
+  "file": "M1_Q68_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q69_TAB_01": {
+  "question": 69,
+  "file": "M1_Q69_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφορικής Διαγνωστικής Πολυουρίας-Πολυδιψίας:"
+ },
+ "M1_Q69_DIAG_01": {
+  "question": 69,
+  "file": "M1_Q69_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q69_TAB_02": {
+  "question": 69,
+  "file": "M1_Q69_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q69_TAB_03": {
+  "question": 69,
+  "file": "M1_Q69_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q70_TAB_01": {
+  "question": 70,
+  "file": "M1_Q70_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαγνωστικών Κριτηρίων Μεταβολικού Συνδρόμου (NCEP-ATP III vs IDF vs Τιμές Ασθενούς):"
+ },
+ "M1_Q70_DIAG_01": {
+  "question": 70,
+  "file": "M1_Q70_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q70_TAB_02": {
+  "question": 70,
+  "file": "M1_Q70_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q70_TAB_03": {
+  "question": 70,
+  "file": "M1_Q70_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q71_TAB_01": {
+  "question": 71,
+  "file": "M1_Q71_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτίων Υπονατριαιμίας & Διαφοροδιάγνωσης SIADH:"
+ },
+ "M1_Q71_DIAG_01": {
+  "question": 71,
+  "file": "M1_Q71_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q71_TAB_02": {
+  "question": 71,
+  "file": "M1_Q71_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q71_TAB_03": {
+  "question": 71,
+  "file": "M1_Q71_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q72_TAB_01": {
+  "question": 72,
+  "file": "M1_Q72_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Στοιχείων & Ιχνοστοιχείων στη Θυρεοειδική Λειτουργία:"
+ },
+ "M1_Q72_DIAG_01": {
+  "question": 72,
+  "file": "M1_Q72_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q72_TAB_02": {
+  "question": 72,
+  "file": "M1_Q72_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q72_TAB_03": {
+  "question": 72,
+  "file": "M1_Q72_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q73_TAB_01": {
+  "question": 73,
+  "file": "M1_Q73_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτίων Πρωτοπαθούς Υποθυρεοειδισμού:"
+ },
+ "M1_Q73_DIAG_01": {
+  "question": 73,
+  "file": "M1_Q73_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q73_TAB_02": {
+  "question": 73,
+  "file": "M1_Q73_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q73_TAB_03": {
+  "question": 73,
+  "file": "M1_Q73_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q74_TAB_01": {
+  "question": 74,
+  "file": "M1_Q74_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Συνδρόμων Πολλαπλής Ενδοκρινικής Νεοπλασίας (MEN1 vs MEN2A vs MEN2B):"
+ },
+ "M1_Q74_DIAG_01": {
+  "question": 74,
+  "file": "M1_Q74_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q74_TAB_02": {
+  "question": 74,
+  "file": "M1_Q74_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q74_TAB_03": {
+  "question": 74,
+  "file": "M1_Q74_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q75_TAB_01": {
+  "question": 75,
+  "file": "M1_Q75_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαγνωστικών Μεθόδων Εκλογής στις Παθήσεις Θυρεοειδούς:"
+ },
+ "M1_Q75_DIAG_01": {
+  "question": 75,
+  "file": "M1_Q75_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q75_TAB_02": {
+  "question": 75,
+  "file": "M1_Q75_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q75_TAB_03": {
+  "question": 75,
+  "file": "M1_Q75_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q76_TAB_01": {
+  "question": 76,
+  "file": "M1_Q76_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Θυρεοειδικών Παθήσεων & Αυτοαντισωμάτων:"
+ },
+ "M1_Q76_DIAG_01": {
+  "question": 76,
+  "file": "M1_Q76_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q76_TAB_02": {
+  "question": 76,
+  "file": "M1_Q76_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q76_TAB_03": {
+  "question": 76,
+  "file": "M1_Q76_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q77_TAB_01": {
+  "question": 77,
+  "file": "M1_Q77_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτίων Υπερθυρεοειδισμού κατά Ηλικιακή Ομάδα:"
+ },
+ "M1_Q77_DIAG_01": {
+  "question": 77,
+  "file": "M1_Q77_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q77_TAB_02": {
+  "question": 77,
+  "file": "M1_Q77_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q77_TAB_03": {
+  "question": 77,
+  "file": "M1_Q77_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q78_TAB_01": {
+  "question": 78,
+  "file": "M1_Q78_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Ταξινόμησης Υποθυρεοειδισμού κατά Ανατομική Εντόπιση:"
+ },
+ "M1_Q78_DIAG_01": {
+  "question": 78,
+  "file": "M1_Q78_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q78_TAB_02": {
+  "question": 78,
+  "file": "M1_Q78_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q78_TAB_03": {
+  "question": 78,
+  "file": "M1_Q78_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q79_TAB_01": {
+  "question": 79,
+  "file": "M1_Q79_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Φάσεων Υποξείας Θυρεοειδίτιδας:"
+ },
+ "M1_Q79_DIAG_01": {
+  "question": 79,
+  "file": "M1_Q79_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q79_TAB_02": {
+  "question": 79,
+  "file": "M1_Q79_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q79_TAB_03": {
+  "question": 79,
+  "file": "M1_Q79_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q80_TAB_01": {
+  "question": 80,
+  "file": "M1_Q80_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτιολογικής & Διαγνωστικής Διαφοροποίησης Μορφών Υπερθυρεοειδισμού:"
+ },
+ "M1_Q80_DIAG_01": {
+  "question": 80,
+  "file": "M1_Q80_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q80_TAB_02": {
+  "question": 80,
+  "file": "M1_Q80_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q80_TAB_03": {
+  "question": 80,
+  "file": "M1_Q80_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q81_TAB_01": {
+  "question": 81,
+  "file": "M1_Q81_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Χαρακτηριστικών Τοξικού Αδενώματος vs Νόσου Graves vs Τοξικής Πολυοζώδους:"
+ },
+ "M1_Q81_DIAG_01": {
+  "question": 81,
+  "file": "M1_Q81_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q81_TAB_02": {
+  "question": 81,
+  "file": "M1_Q81_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q81_TAB_03": {
+  "question": 81,
+  "file": "M1_Q81_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q82_TAB_01": {
+  "question": 82,
+  "file": "M1_Q82_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Κατανομής Κινδύνου Κακοήθειας σε Θυρεοειδικούς Όζους:"
+ },
+ "M1_Q82_DIAG_01": {
+  "question": 82,
+  "file": "M1_Q82_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q82_TAB_02": {
+  "question": 82,
+  "file": "M1_Q82_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q82_TAB_03": {
+  "question": 82,
+  "file": "M1_Q82_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q83_TAB_01": {
+  "question": 83,
+  "file": "M1_Q83_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφορική Διάγνωση Μονήρους Ψυχρού Όζου σε Ακτινοβολημένο Τράχηλο:"
+ },
+ "M1_Q83_DIAG_01": {
+  "question": 83,
+  "file": "M1_Q83_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q83_TAB_02": {
+  "question": 83,
+  "file": "M1_Q83_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q83_TAB_03": {
+  "question": 83,
+  "file": "M1_Q83_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q84_TAB_01": {
+  "question": 84,
+  "file": "M1_Q84_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφοροποίησης Συνδρόμων MEN 1, MEN 2A και MEN 2B:"
+ },
+ "M1_Q84_DIAG_01": {
+  "question": 84,
+  "file": "M1_Q84_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q84_TAB_02": {
+  "question": 84,
+  "file": "M1_Q84_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q84_TAB_03": {
+  "question": 84,
+  "file": "M1_Q84_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q85_TAB_01": {
+  "question": 85,
+  "file": "M1_Q85_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Μορφών Υπερθυρεοειδισμού σε Ηλικιωμένους Ασθενείς:"
+ },
+ "M1_Q85_DIAG_01": {
+  "question": 85,
+  "file": "M1_Q85_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q85_TAB_02": {
+  "question": 85,
+  "file": "M1_Q85_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q85_TAB_03": {
+  "question": 85,
+  "file": "M1_Q85_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q86_TAB_01": {
+  "question": 86,
+  "file": "M1_Q86_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφοροποίησης Πρωτοπαθούς & Ενδοκρινικής Παχυσαρκίας:"
+ },
+ "M1_Q86_DIAG_01": {
+  "question": 86,
+  "file": "M1_Q86_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q86_TAB_02": {
+  "question": 86,
+  "file": "M1_Q86_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q86_TAB_03": {
+  "question": 86,
+  "file": "M1_Q86_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q87_TAB_01": {
+  "question": 87,
+  "file": "M1_Q87_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Τρόπου Διάγνωσης & Κλινικής Παρουσίασης Υπερπαραθυρεοειδισμού:"
+ },
+ "M1_Q87_DIAG_01": {
+  "question": 87,
+  "file": "M1_Q87_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q87_TAB_02": {
+  "question": 87,
+  "file": "M1_Q87_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q87_TAB_03": {
+  "question": 87,
+  "file": "M1_Q87_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q88_TAB_01": {
+  "question": 88,
+  "file": "M1_Q88_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διαφορική Διάγνωση Υπερασβεστιαιμίας με Θωρακικά Ευρήματα:"
+ },
+ "M1_Q88_DIAG_01": {
+  "question": 88,
+  "file": "M1_Q88_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q88_TAB_02": {
+  "question": 88,
+  "file": "M1_Q88_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q88_TAB_03": {
+  "question": 88,
+  "file": "M1_Q88_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q89_TAB_01": {
+  "question": 89,
+  "file": "M1_Q89_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Φαρμακευτικών Παραγόντων στην Παρανεοπλασματική Υπερασβεστιαιμία:"
+ },
+ "M1_Q89_DIAG_01": {
+  "question": 89,
+  "file": "M1_Q89_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q89_TAB_02": {
+  "question": 89,
+  "file": "M1_Q89_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q89_TAB_03": {
+  "question": 89,
+  "file": "M1_Q89_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q90_TAB_01": {
+  "question": 90,
+  "file": "M1_Q90_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Διεθνών Κριτηρίων Χειρουργικής Επέμβασης στον Ασυμπτωματικό PHPT:"
+ },
+ "M1_Q90_DIAG_01": {
+  "question": 90,
+  "file": "M1_Q90_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q90_TAB_02": {
+  "question": 90,
+  "file": "M1_Q90_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q90_TAB_03": {
+  "question": 90,
+  "file": "M1_Q90_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q91_TAB_01": {
+  "question": 91,
+  "file": "M1_Q91_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Μορφών Ασβεστίου & Φωσφοροδεσμευτικών Παραγόντων στη ΧΝΝ:"
+ },
+ "M1_Q91_DIAG_01": {
+  "question": 91,
+  "file": "M1_Q91_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q91_TAB_02": {
+  "question": 91,
+  "file": "M1_Q91_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q91_TAB_03": {
+  "question": 91,
+  "file": "M1_Q91_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q92_TAB_01": {
+  "question": 92,
+  "file": "M1_Q92_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκριτικός Πίνακας Αιτίων Υποπαραθυρεοειδισμού & Διαφορικής Διάγνωσης Υποασβεστιαιμίας:"
+ },
+ "M1_Q92_DIAG_01": {
+  "question": 92,
+  "file": "M1_Q92_DIAG_01.png",
+  "type": "diagram",
+  "caption": "ΠΑΘΟΦΥΣΙΟΛΟΓΙΚΟΣ ΚΑΤΑΡΡΑΚΤΗΣ"
+ },
+ "M1_Q92_TAB_02": {
+  "question": 92,
+  "file": "M1_Q92_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q92_TAB_03": {
+  "question": 92,
+  "file": "M1_Q92_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q93_TAB_01": {
+  "question": 93,
+  "file": "M1_Q93_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαγνωστικών Κατηγοριών Γλυκαιμίας:"
+ },
+ "M1_Q93_TAB_02": {
+  "question": 93,
+  "file": "M1_Q93_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q93_TAB_03": {
+  "question": 93,
+  "file": "M1_Q93_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q94_TAB_01": {
+  "question": 94,
+  "file": "M1_Q94_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Ανοσολογικών & Διαφοροδιαγνωστικών Χαρακτηριστικών:"
+ },
+ "M1_Q94_TAB_02": {
+  "question": 94,
+  "file": "M1_Q94_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q94_TAB_03": {
+  "question": 94,
+  "file": "M1_Q94_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q100_TAB_01": {
+  "question": 100,
+  "file": "M1_Q100_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαφοροδιάγνωσης Παθογόνων Αιτίων Διάρροιας:"
+ },
+ "M1_Q100_TAB_02": {
+  "question": 100,
+  "file": "M1_Q100_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q100_TAB_03": {
+  "question": 100,
+  "file": "M1_Q100_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q95_TAB_01": {
+  "question": 95,
+  "file": "M1_Q95_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαφορικής Διάγνωσης Αιμορραγικής Συλλογής σε Αιμοκαθαιρόμενο:"
+ },
+ "M1_Q95_TAB_02": {
+  "question": 95,
+  "file": "M1_Q95_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q95_TAB_03": {
+  "question": 95,
+  "file": "M1_Q95_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q96_TAB_01": {
+  "question": 96,
+  "file": "M1_Q96_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Μεταβολικών Νοσολογικών Οντοτήτων με Ινσουλινοαντίσταση:"
+ },
+ "M1_Q96_TAB_02": {
+  "question": 96,
+  "file": "M1_Q96_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q96_TAB_03": {
+  "question": 96,
+  "file": "M1_Q96_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q97_TAB_01": {
+  "question": 97,
+  "file": "M1_Q97_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Επιδημιολογικής Κατανομής Αιτίων Νεφρικής Ανεπάρκειας (ΝΝΤΣ):"
+ },
+ "M1_Q97_TAB_02": {
+  "question": 97,
+  "file": "M1_Q97_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q97_TAB_03": {
+  "question": 97,
+  "file": "M1_Q97_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q98_TAB_01": {
+  "question": 98,
+  "file": "M1_Q98_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Ταξινόμησης Απέκκρισης Αλβουμίνης Ούρων:"
+ },
+ "M1_Q98_TAB_02": {
+  "question": 98,
+  "file": "M1_Q98_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q98_TAB_03": {
+  "question": 98,
+  "file": "M1_Q98_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q101_TAB_01": {
+  "question": 101,
+  "file": "M1_Q101_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Αυτοαντισωμάτων και Συσχετιζόμενων Νοσημάτων:"
+ },
+ "M1_Q101_TAB_02": {
+  "question": 101,
+  "file": "M1_Q101_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q101_TAB_03": {
+  "question": 101,
+  "file": "M1_Q101_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q102_TAB_01": {
+  "question": 102,
+  "file": "M1_Q102_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαφοροδιάγνωσης Αιτίων Παράδοξου Σφυγμού:"
+ },
+ "M1_Q102_TAB_02": {
+  "question": 102,
+  "file": "M1_Q102_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q102_TAB_03": {
+  "question": 102,
+  "file": "M1_Q102_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q103_TAB_01": {
+  "question": 103,
+  "file": "M1_Q103_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαφοροδιάγνωσης Μορφών Πολυκυτταραιμίας:"
+ },
+ "M1_Q103_TAB_02": {
+  "question": 103,
+  "file": "M1_Q103_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q103_TAB_03": {
+  "question": 103,
+  "file": "M1_Q103_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q104_TAB_01": {
+  "question": 104,
+  "file": "M1_Q104_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Διαφοροδιάγνωσης Απειλητικών Κακώσεων Θώρακα (ATLS):"
+ },
+ "M1_Q104_TAB_02": {
+  "question": 104,
+  "file": "M1_Q104_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q104_TAB_03": {
+  "question": 104,
+  "file": "M1_Q104_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q98B_TAB_01": {
+  "question": 98,
+  "file": "M1_Q98B_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Ταξινόμησης Απέκκρισης Αλβουμίνης Ούρων:"
+ },
+ "M1_Q98B_TAB_02": {
+  "question": 98,
+  "file": "M1_Q98B_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q98B_TAB_03": {
+  "question": 98,
+  "file": "M1_Q98B_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q99_TAB_01": {
+  "question": 99,
+  "file": "M1_Q99_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Μελετών DCCT & UKPDS (Επίδραση Μείωσης HbA1c κατά 1%):"
+ },
+ "M1_Q99_TAB_02": {
+  "question": 99,
+  "file": "M1_Q99_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q99_TAB_03": {
+  "question": 99,
+  "file": "M1_Q99_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ },
+ "M1_Q105_TAB_01": {
+  "question": 105,
+  "file": "M1_Q105_TAB_01.png",
+  "type": "table",
+  "caption": "Συγκεντρωτικός Πίνακας Μεταβολικών Διαταραχών στη Διαβητική Κετοξέωση:"
+ },
+ "M1_Q105_TAB_02": {
+  "question": 105,
+  "file": "M1_Q105_TAB_02.png",
+  "type": "table",
+  "caption": "Σταδιακός Πίνακας Παθοφυσιολογικού Καταρράκτη:"
+ },
+ "M1_Q105_TAB_03": {
+  "question": 105,
+  "file": "M1_Q105_TAB_03.png",
+  "type": "table",
+  "caption": "ΣΤΑΔΙΟ 5: Συγκεντρωτικός Πίνακας"
+ }
+}
