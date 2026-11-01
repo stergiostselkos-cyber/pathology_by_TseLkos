@@ -1,4 +1,4 @@
-﻿/* ========================================================
+/* ========================================================
    MODERN THEME - PATHOLOGIA QUIZ
    Profound Redesign - Glassmorphism & Animated Gradients
 ======================================================== */
@@ -42,7 +42,7 @@ body {
     100% { transform: translateY(-50px) scale(1.15); }
 }
 
-/* 3. Main Application Container (Glassmorphism) */
+/* 3. Main Application Container (Glassmorphism - Larnaka Standard 1200px) */
 .app-container {
     background: rgba(255, 255, 255, 0.82) !important;
     backdrop-filter: blur(20px) !important;
@@ -51,8 +51,9 @@ body {
     border-radius: 24px !important;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
     padding: 30px !important;
-    max-width: 800px !important;
-    margin: 40px auto !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 28px auto !important;
 }
 
 /* 4. Headers and Titles */
