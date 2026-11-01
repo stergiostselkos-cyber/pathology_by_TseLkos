@@ -2,7 +2,7 @@
 :root {
     --transition-speed: 0.3s;
     --border-radius: 16px;
-    --font-family: 'Times New Roman', Calibri, 'Segoe UI', sans-serif;
+    --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     
     /* Dark Theme Variables (Default) */
     --bg-color: #0b0f19;
@@ -1951,13 +1951,7 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 .checkbox-container, 
 .overlay-question-item,
 #mnemonic-text, 
-#quick-recall-explanation-content p, 
-#quick-recall-explanation-content li,
-.quick-recall-question-box p,
-.quick-recall-question-box li {
-    text-align: justify !important;
-    text-justify: inter-word !important;
-}
+/* justify removed */
 
 /* Premium Dropdown Selectors */
 .large-dropdown-select-btn {
@@ -2546,10 +2540,7 @@ u, ins, .underlined-text {
 }
 
 /* Bullet list styling overrides */
-.correct-answer-box ul, .explanation-wrapper ul, .correct-answer-box ol, .explanation-wrapper ol {
-    padding-left: 24px !important;
-    margin: 12px 0 !important;
-}
+/* list override removed */
 .correct-answer-box li, .explanation-wrapper li {
     margin-bottom: 8px !important;
     line-height: 1.6;
@@ -2568,9 +2559,7 @@ u, ins, .underlined-text {
     font-size: 12pt;
     font-weight: 400;
 }
-.explanation-content strong, .correct-answer-text strong, #quick-recall-explanation-content strong, #quick-correct-answer-text strong {
-    font-weight: 700;
-}
+.explanation-content strong, .correct-answer-text strong, /* purple strong removed */
 
 
 /* --- USER OVERRIDES --- */
@@ -2808,10 +2797,7 @@ table p { margin: 0; padding: 0; }
 }
 
 /* --- PREMIUM FIXES FOR WORD EXTRACTION (SPACING, TABLES, IMAGES) --- */
-#quick-recall-question p, #quick-correct-answer-text p, #quick-recall-explanation-content p {
-    margin-bottom: 1.25rem !important;
-    line-height: 1.6;
-}
+/* paragraph margin override removed */
 #quick-recall-question table, #quick-correct-answer-text table, #quick-recall-explanation-content table {
     width: 100%;
     max-width: 100%;
@@ -2851,11 +2837,7 @@ table p { margin: 0; padding: 0; }
 
 
 /* --- FIX FOR LIST INDENTATION & BULLETS --- */
-#quick-recall-question ul, #quick-correct-answer-text ul, #quick-recall-explanation-content ul {
-    padding-left: 2.5rem !important;
-    margin-bottom: 1.5rem !important;
-    list-style-type: disc !important;
-}
+/* ul list-style override removed */
 
 #quick-recall-question ol, #quick-correct-answer-text ol, #quick-recall-explanation-content ol {
     padding-left: 2.5rem !important;
@@ -2863,10 +2845,7 @@ table p { margin: 0; padding: 0; }
     list-style-type: decimal !important;
 }
 
-#quick-recall-question li, #quick-correct-answer-text li, #quick-recall-explanation-content li {
-    margin-bottom: 0.75rem !important;
-    line-height: 1.6;
-}
+/* li margin override removed */
 
 /* Fix for nested lists */
 #quick-recall-question ul ul, #quick-correct-answer-text ul ul, #quick-recall-explanation-content ul ul,
@@ -3476,75 +3455,8 @@ body.dark-theme .correct-answer-box {
 }
 
 
-/* RESPONSIVE TABLE WRAPPER & PROPER TABLE DISPLAY */
-.table-responsive-wrapper,
-.table-responsive {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    margin: 16px 0 !important;
-    display: block !important;
-    border-radius: 8px;
-}
-
-.table-responsive-wrapper table,
-.table-responsive table,
-.explanation-wrapper table,
-.correct-answer-box table,
-.explanation-content table,
-.word-export table {
-    display: table !important;
-    width: 100% !important;
-    min-width: 680px !important;
-    max-width: none !important;
-    border-collapse: collapse !important;
-    word-break: normal !important;
-    table-layout: auto !important;
-    font-family: inherit !important;
-}
-
-.table-responsive-wrapper table col,
-.word-export col,
-.explanation-content col {
-    width: auto !important;
-}
-
-.table-responsive-wrapper table th,
-.table-responsive-wrapper table td,
-.word-export th,
-.word-export td {
-    width: auto !important;
-    max-width: none !important;
-    font-family: inherit !important;
-    vertical-align: top !important;
-}
-
-.table-responsive-wrapper table p,
-.word-export table p {
-    margin: 3px 0 !important;
-    line-height: 1.55 !important;
-    font-size: inherit !important;
-    font-family: inherit !important;
-}
-
-.table-responsive-wrapper table font,
-.word-export table font {
-    font-family: inherit !important;
-    font-size: inherit !important;
-    color: inherit !important;
-}
-
-/* Neutralize any legacy Word export block spans inside table cells */
-table td span[data-wordfmt],
-table th span[data-wordfmt],
-.word-export table span[data-wordfmt] {
-    display: inline !important;
-    font-size: inherit !important;
-    line-height: inherit !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
+/* FIX TABLE OVERFLOW EVERYWHERE */
+.explanation-wrapper table, .correct-answer-box table, .explanation-content table { display: block !important; overflow-x: auto !important; width: max-content !important; max-width: 100% !important; word-break: normal !important; }
 /* --- PREMIUM SPECIFICITY FIXES --- */
 body.light-theme .explanation-content strong, 
 body.light-theme .correct-answer-text strong, 
@@ -4096,215 +4008,6 @@ body.dark-theme .essay-question-container p {
 
 
 
-/* ==============================================================================
-   UNIVERSAL HIGH-CONTRAST MEDICAL TABLE STYLING ACROSS ALL QUESTION BANKS
-   Guarantees 100% text readability with NO invisible letters, matching colors,
-   or color clashes in both normal page view and HD Zoom modal.
-   Permanently disables the legacy secondary table modal and toolbars.
-   ============================================================================== */
-
-/* 1. Eliminate legacy secondary modal and duplicate toolbars globally */
-.table-viewer-overlay,
-.table-zoom-toolbar,
-.zoom-table-btn {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-}
-
-/* 2. Base Table Appearance in Light Theme / Default */
-table,
-.zoomable-table,
-.word-table,
-.med-table,
-.interactive-med-table,
-.table-responsive-wrapper table {
-    border-collapse: collapse !important;
-    background-color: #ffffff !important;
-    color: #1e293b !important;
-    border: 1px solid #cbd5e1 !important;
-}
-
-/* Table Headers - Crisp Deep Blue Header on Soft Medical Blue */
-table th,
-.zoomable-table th,
-.word-table th,
-.med-table th,
-.interactive-med-table th,
-.table-responsive-wrapper table th {
-    background-color: #EBF2F7 !important;
-    color: #102C57 !important;
-    font-weight: 800 !important;
-    border: 1px solid #cbd5e1 !important;
-    padding: 10px 14px !important;
-    text-align: center !important;
-}
-
-table th *,
-.zoomable-table th *,
-.word-table th *,
-.med-table th *,
-.interactive-med-table th *,
-.table-responsive-wrapper table th * {
-    color: #102C57 !important;
-    font-weight: 800 !important;
-}
-
-/* Table Cells - Crisp Readable Dark Slate Text */
-table td,
-.zoomable-table td,
-.word-table td,
-.med-table td,
-.interactive-med-table td,
-.table-responsive-wrapper table td {
-    border: 1px solid #cbd5e1 !important;
-    padding: 10px 14px !important;
-    color: #1e293b !important;
-    background-color: #ffffff !important;
-    line-height: 1.58 !important;
-    font-size: 0.95rem !important;
-    vertical-align: top !important;
-}
-
-table td *,
-.zoomable-table td *,
-.word-table td *,
-.med-table td *,
-.interactive-med-table td *,
-.table-responsive-wrapper table td * {
-    color: #1e293b !important;
-}
-
-/* Alternating Rows for readability */
-table tbody tr:nth-child(even) td,
-.zoomable-table tbody tr:nth-child(even) td,
-.word-table tbody tr:nth-child(even) td,
-.med-table tbody tr:nth-child(even) td,
-.table-responsive-wrapper table tbody tr:nth-child(even) td {
-    background-color: #f8fafc !important;
-}
-
-table tbody tr:hover td,
-.zoomable-table tbody tr:hover td,
-.word-table tbody tr:hover td,
-.med-table tbody tr:hover td,
-.table-responsive-wrapper table tbody tr:hover td {
-    background-color: #f1f5f9 !important;
-}
-
-/* High Contrast for Option / Status Badges and Specific Highlight Cells */
-table tr.correct td,
-table td.correct,
-table tr[style*="#f0fdf4"] td,
-table td[style*="#f0fdf4"],
-table tr[style*="#dcfce7"] td,
-table td[style*="#dcfce7"] {
-    background-color: #ecfdf5 !important;
-    color: #065f46 !important;
-}
-table tr.correct td *,
-table td.correct *,
-table tr[style*="#f0fdf4"] td *,
-table td[style*="#f0fdf4"] *,
-table tr[style*="#dcfce7"] td *,
-table td[style*="#dcfce7"] * {
-    color: #065f46 !important;
-    font-weight: 700 !important;
-}
-
-table tr.incorrect td,
-table td.incorrect,
-table tr[style*="#fef2f2"] td,
-table td[style*="#fef2f2"] {
-    background-color: #fef2f2 !important;
-    color: #991b1b !important;
-}
-table tr.incorrect td *,
-table td.incorrect *,
-table tr[style*="#fef2f2"] td *,
-table td[style*="#fef2f2"] * {
-    color: #991b1b !important;
-}
-
-/* Dark Theme Overrides */
-body.dark-theme table,
-body.dark-theme .zoomable-table,
-body.dark-theme .word-table,
-body.dark-theme .med-table,
-body.dark-theme .interactive-med-table,
-body.dark-theme .table-responsive-wrapper table {
-    background-color: #1e293b !important;
-    color: #f8fafc !important;
-    border-color: #334155 !important;
-}
-
-body.dark-theme table th,
-body.dark-theme .zoomable-table th,
-body.dark-theme .word-table th,
-body.dark-theme .med-table th,
-body.dark-theme .interactive-med-table th,
-body.dark-theme .table-responsive-wrapper table th {
-    background-color: #0f172a !important;
-    color: #38bdf8 !important;
-    border-color: #334155 !important;
-}
-body.dark-theme table th *,
-body.dark-theme .zoomable-table th *,
-body.dark-theme .word-table th *,
-body.dark-theme .med-table th *,
-body.dark-theme .interactive-med-table th *,
-body.dark-theme .table-responsive-wrapper table th * {
-    color: #38bdf8 !important;
-}
-
-body.dark-theme table td,
-body.dark-theme .zoomable-table td,
-body.dark-theme .word-table td,
-body.dark-theme .med-table td,
-body.dark-theme .interactive-med-table td,
-body.dark-theme .table-responsive-wrapper table td {
-    background-color: #1e293b !important;
-    color: #f1f5f9 !important;
-    border-color: #334155 !important;
-}
-body.dark-theme table td *,
-body.dark-theme .zoomable-table td *,
-body.dark-theme .word-table td *,
-body.dark-theme .med-table td *,
-body.dark-theme .interactive-med-table td *,
-body.dark-theme .table-responsive-wrapper table td * {
-    color: #f1f5f9 !important;
-}
-
-body.dark-theme table tbody tr:nth-child(even) td,
-body.dark-theme .zoomable-table tbody tr:nth-child(even) td,
-body.dark-theme .word-table tbody tr:nth-child(even) td,
-body.dark-theme .med-table tbody tr:nth-child(even) td,
-body.dark-theme .table-responsive-wrapper table tbody tr:nth-child(even) td {
-    background-color: #0f172a !important;
-}
-body.dark-theme table tbody tr:hover td,
-body.dark-theme .zoomable-table tbody tr:hover td,
-body.dark-theme .word-table tbody tr:hover td,
-body.dark-theme .med-table tbody tr:hover td,
-body.dark-theme .table-responsive-wrapper table tbody tr:hover td {
-    background-color: #334155 !important;
-}
-
-body.dark-theme table tr.correct td,
-body.dark-theme table td.correct {
-    background-color: #064e3b !important;
-    color: #a7f3d0 !important;
-}
-body.dark-theme table tr.correct td *,
-body.dark-theme table td.correct * {
-    color: #a7f3d0 !important;
-}
-
-
 /* ENLARGED APPS & WIDE CRISP WHITE EXPLANATION CARDS (Larnaka Standard 1200px) */
 .app-container {
     width: 100% !important;
@@ -4353,17 +4056,7 @@ body.dark-theme table td.correct * {
     color: #1e293b !important;
 }
 
-.word-question p, 
-.explanation-content p, 
-.explanation-box p {
-    max-width: 100% !important;
-    width: 100% !important;
-    line-height: 1.76 !important;
-    text-align: justify !important;
-    text-justify: inter-word !important;
-    margin-bottom: 12px !important;
-    color: #1e293b !important;
-}
+/* justify removed */
 
 .table-responsive-wrapper, 
 .word-table, 
@@ -4417,14 +4110,7 @@ body.dark-theme table td.correct * {
         line-height: 1.65 !important;
     }
     
-    .word-question p, 
-    .explanation-content p, 
-    .explanation-box p {
-        margin-bottom: 10px !important;
-        line-height: 1.65 !important;
-        text-align: left !important;
-        text-justify: normal !important;
-    }
+    /* justify removed */
     
     .word-question p[style*="padding-left"] {
         padding-left: 12px !important;
@@ -4435,3 +4121,84 @@ body.dark-theme table td.correct * {
     }
 }
 
+
+
+/* ==========================================================================
+   V6 CURATED CONTENT RENDERING (Faithful Layout with Full Justification)
+   ========================================================================== */
+
+#quick-correct-answer-text,
+#quick-recall-explanation-content {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: #0f172a !important;
+}
+
+/* Paragraphs: full justification (πλήρης στοίχιση) as requested */
+#quick-correct-answer-text p,
+#quick-recall-explanation-content p {
+    font-family: inherit !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+/* Headings with explicit font-size remain left-aligned for clear hierarchy */
+#quick-correct-answer-text p[style*="font-size: 1."],
+#quick-recall-explanation-content p[style*="font-size: 1."],
+#quick-correct-answer-text p[style*="font-size:1."],
+#quick-recall-explanation-content p[style*="font-size:1."],
+#quick-correct-answer-text p[style*="font-size: 0.85em"],
+#quick-recall-explanation-content p[style*="font-size: 0.85em"] {
+    text-align: left !important;
+}
+
+#quick-correct-answer-text strong,
+#quick-recall-explanation-content strong,
+#quick-correct-answer-text b,
+#quick-recall-explanation-content b {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+}
+
+#quick-correct-answer-text ul,
+#quick-recall-explanation-content ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+}
+
+#quick-correct-answer-text li,
+#quick-recall-explanation-content li {
+    font-family: inherit !important;
+    list-style: none !important;
+    list-style-type: none !important;
+    text-align: left !important;
+}
+
+#quick-correct-answer-text table,
+#quick-recall-explanation-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 15px 0 !important;
+    font-size: 0.95em !important;
+    background: #ffffff !important;
+}
+
+#quick-correct-answer-text th,
+#quick-recall-explanation-content th,
+#quick-correct-answer-text td,
+#quick-recall-explanation-content td {
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px 12px !important;
+    vertical-align: top !important;
+    color: #0f172a !important;
+}
+
+#quick-correct-answer-text th,
+#quick-recall-explanation-content th {
+    background: #f1f5f9 !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+}
