@@ -825,9 +825,8 @@
                 <form onsubmit="startEssay(event)" style="width: 100%;">
                     <select id="essay-selector" class="fancy-select" required>
                         <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
-                        <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ ΜΕΧΡΙ 2026 5ΟΥ ΚΑΙ 6ΟΥ ΕΤΟΥΣ</option>
-                        <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (ΟΛΑ ΤΑ ΜΕΡΗ: 523 Θέματα Q45-Q505)</option>
-                        <option value="larnaka8">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (Μέρος 8ο: Q457-Q505 - 48 Θέματα & 445 Εικόνες)</option>
+                        <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ 2013-2023 (609 Θέματα - Flashcards &amp; Μελέτη)</option>
+                        <option value="proepiskopisi">📖 Πλήρης Προεπισκόπηση &amp; Εκτενής Ανάλυση (609 Θέματα)</option>
                     </select>
                     <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</button>
                 </form>
@@ -937,9 +936,12 @@
         function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
-            if (bank === 'larnaka8') {
-                window.location.href = 'LARNAKA/index.html?part=8';
-            } else if (bank === 'larnaka' || bank.startsWith('larnaka')) {
+            if (bank === 'proepiskopisi') {
+                window.location.href = 'proepiskopisi_anaptyxi.html?v=' + new Date().getTime();
+            } else {
+                window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
+            }
+        } else if (bank === 'larnaka' || bank.startsWith('larnaka')) {
                 window.location.href = 'LARNAKA/index.html';
             } else if (bank === 'larnaka2') {
                 window.location.href = 'LARNAKA_PART_02/index.html';

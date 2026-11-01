@@ -176,7 +176,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Navigation Bar (Card View) - NO multiple choice pills */
+        /* Navigation Bar (Card View) - Strictly Essay (NO MCQ chapters) */
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -297,24 +297,28 @@
         }
 
         /* =====================================================================
-           CLEAN, PURE CONTENT RENDERING (ΟΠΩΣ ΣΤΗΝ ΕΦΑΡΜΟΓΗ ΤΟΥ ΝΕΟΥ ΒΙΒΛΙΟΥ)
-           Χωρίς τεχνητά εξωτερικά πλαίσια (fld / section-box), με πλήρη διατήρηση
-           δομής, εσοχών, αριθμήσεων, μπουλετς και τετραγώνων.
+           EXACT TEXT FORMATTING (FROM NEW BOOK & MCQ APPS)
+           - Πλήρης στοίχιση (Justify)
+           - Διατήρηση εσοχών & ιεραρχιών σε 1ο, 2ο, 3ο επίπεδο
+           - Σταθερά αγκυρωμένα μπουλετς & αριθμήσεις
+           - Παραθέσεις αυτούσιων αποσπασμάτων στο ΤΕΛΟΣ του κειμένου
            ===================================================================== */
         .content-body {
-            color: #0f172a;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 15.5px;
-            line-height: 1.65;
-            width: 100%;
+            color: #0f172a !important;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+            font-size: 15.5px !important;
+            line-height: 1.65 !important;
+            width: 100% !important;
+            background: #ffffff !important;
         }
 
-        /* Paragraphs: full justification (πλήρης στοίχιση) */
+        /* Paragraphs: full justification */
         .content-body p {
-            font-family: inherit;
-            text-align: justify;
-            text-justify: inter-word;
-            color: #0f172a;
+            font-family: inherit !important;
+            text-align: justify !important;
+            text-justify: inter-word !important;
+            color: #0f172a !important;
+            margin-bottom: 8px !important;
         }
 
         /* Section Headings inside content: left-aligned to preserve hierarchy */
@@ -327,15 +331,16 @@
         /* Bold terms: crisp and readable */
         .content-body strong,
         .content-body b {
-            color: #0f172a;
-            font-weight: 700;
+            color: #0f172a !important;
+            font-weight: 700 !important;
         }
 
-        /* Green bold text if explicitly coded */
+        /* Green bold text highlights */
         .content-body span[style*="color: green"],
         .content-body span[style*="color: #10b981"],
         .content-body span[style*="color: #059669"] {
-            font-weight: 700;
+            font-weight: 700 !important;
+            color: #059669 !important;
         }
 
         /* Lists: Completely preserve inline margins (20pt, 28pt, 36pt...) and 0 padding */
@@ -438,7 +443,7 @@
             transform: scale(1.01);
         }
 
-        /* Divider between Part 1 and Part 2 */
+        /* Section Separator */
         .section-separator {
             margin: 28px 0;
             border: 0;
@@ -576,7 +581,7 @@
         </div>
     </div>
 
-    <!-- Navigation Bar for Card View (NO multiple choice pills) -->
+    <!-- Navigation Bar for Card View (NO MCQ pills) -->
     <div class="nav-bar" id="card-nav-bar">
         <div style="display: flex; gap: 8px;">
             <button class="nav-btn" id="btn-prev" onclick="prevQuestion()">
@@ -617,7 +622,7 @@
                     <h2 class="question-title" id="q-title">Φόρτωση...</h2>
                 </div>
 
-                <!-- Pure Content Flow without artificial boxes -->
+                <!-- Pure Content Flow (Summary -> Ektenes -> Parathesis at END) -->
                 <div class="content-body" id="q-content-area"></div>
             </article>
         </div>
@@ -658,7 +663,7 @@
             if (index >= candidatePaths.length) {
                 const loadEl = document.getElementById('loading-view');
                 if (loadEl) {
-                    loadEl.innerHTML = '❌ Σφάλμα: Δεν ήταν δυνατή η φόρτωση της βάσης δεδομένων (anaptyxi_2026.js). Ελέγξτε ότι το αρχείο βρίσκεται στον ίδιο φάκελο.';
+                    loadEl.innerHTML = '❌ Σφάλμα: Δεν ήταν δυνατή η φόρτωση της βάσης δεδομένων (anaptyxi_2026.js).';
                     loadEl.style.color = '#dc2626';
                 }
                 return;
@@ -680,7 +685,6 @@
             document.head.appendChild(script);
         }
         
-        // Start loading
         if (window.flashcardQuestionsData && Array.isArray(window.flashcardQuestionsData)) {
             initApp();
         } else {
@@ -694,8 +698,84 @@
     let filteredQuestions = [];
     let currentIndex = 0;
     let currentSearchTerm = '';
-    let currentMode = 'card'; // 'card' or 'scroll'
+    let currentMode = 'card';
     let appInitialized = false;
+
+    // Helper: normalize Greek accents for robust searching and section detection
+    function stripAccents(str) {
+        if (!str) return '';
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
+    // Dynamic Guarantee: Ensure Paratheseis are always placed at the END of text
+    function formatQuestionContent(q) {
+        const ans = (q.correctAnswer || '').trim();
+        const exp = (q.explanation || '').trim();
+        let fullHtml = ans + (exp && exp !== ans ? ('\n<hr class="section-separator">\n' + exp) : '');
+
+        const norm = stripAccents(fullHtml);
+        const parathesiTerms = [
+            "παραθεση αυτουσιων",
+            "αυτουσια παραθεματα",
+            "αυτουσιες παραθεσεις",
+            "αυτουσια αποσπασματα",
+            "αποσπασματα απο τα βιβλια"
+        ];
+        const ektenesTerms = [
+            "εκτενες κειμενο αναλυσης",
+            "εκτενης αναλυση",
+            "εκτενης αναλυτικη αναπτυξη",
+            "μερος 2ο: εκτενης",
+            "μερος 2ο : εκτενης",
+            "μερος 2ο:εκτενης",
+            "δευτερο μερος: εκτενης",
+            "δευτερο μερος : εκτενης",
+            "δευτερο μερος:εκτενης"
+        ];
+
+        let pPos = -1;
+        for (const t of parathesiTerms) {
+            const pos = norm.indexOf(t);
+            if (pos !== -1 && (pPos === -1 || pos < pPos)) pPos = pos;
+        }
+
+        let ePos = -1;
+        for (const t of ektenesTerms) {
+            const pos = norm.indexOf(t);
+            if (pos !== -1 && (ePos === -1 || pos < ePos)) ePos = pos;
+        }
+
+        // If Parathesis is found BEFORE Ektenes, move it to the END
+        if (pPos !== -1 && ePos !== -1 && pPos < ePos) {
+            let boundaryP = fullHtml.lastIndexOf('<p', pPos);
+            const divP = fullHtml.lastIndexOf('<div', pPos);
+            if (divP > boundaryP) boundaryP = divP;
+            if (boundaryP === -1 || (pPos - boundaryP) > 300) boundaryP = pPos;
+
+            let boundaryE = fullHtml.lastIndexOf('<p', ePos);
+            const divE = fullHtml.lastIndexOf('<div', ePos);
+            if (divE > boundaryE) boundaryE = divE;
+            if (boundaryE === -1 || (ePos - boundaryE) > 300) boundaryE = ePos;
+
+            const partSummary = fullHtml.substring(0, boundaryP).trim();
+            const partParathesi = fullHtml.substring(boundaryP, boundaryE).trim();
+            const partEktenes = fullHtml.substring(boundaryE).trim();
+
+            let reordered = '';
+            if (partSummary) reordered += partSummary;
+            if (partEktenes) {
+                if (reordered) reordered += '<hr class="section-separator">';
+                reordered += partEktenes;
+            }
+            if (partParathesi) {
+                if (reordered) reordered += '<hr class="section-separator">';
+                reordered += partParathesi;
+            }
+            return reordered;
+        }
+
+        return fullHtml;
+    }
 
     // Init App
     function initApp() {
@@ -713,9 +793,7 @@
             allQuestions = flashcardQuestions;
         }
 
-        if (!allQuestions || allQuestions.length === 0) {
-            return;
-        }
+        if (!allQuestions || allQuestions.length === 0) return;
 
         appInitialized = true;
         document.getElementById('loading-view').style.display = 'none';
@@ -729,15 +807,16 @@
 
     // Filter questions
     function filterQuestions() {
-        const term = document.getElementById('search-input').value.trim().toLowerCase();
+        const rawTerm = document.getElementById('search-input').value.trim();
+        const term = stripAccents(rawTerm);
         currentSearchTerm = term;
 
         filteredQuestions = allQuestions.filter(q => {
             if (!term) return true;
 
-            const qText = (q.question || '').toLowerCase();
-            const aText = (q.correctAnswer || '').toLowerCase();
-            const eText = (q.explanation || '').toLowerCase();
+            const qText = stripAccents(q.question || '');
+            const aText = stripAccents(q.correctAnswer || '');
+            const eText = stripAccents(q.explanation || '');
             const idText = (q.id || '').toString();
 
             return qText.includes(term) || aText.includes(term) || eText.includes(term) || idText.includes(term);
@@ -778,22 +857,9 @@
         document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length}`;
         document.getElementById('q-title').innerHTML = q.question;
 
-        // Pure Content Rendering
+        // Content Area with Paratheseis at the END
         const contentArea = document.getElementById('q-content-area');
-        let fullHtml = '';
-        
-        if (q.correctAnswer && q.correctAnswer.trim()) {
-            fullHtml += q.correctAnswer;
-        }
-        
-        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
-            if (fullHtml.length > 0) {
-                fullHtml += '<hr class="section-separator">';
-            }
-            fullHtml += q.explanation;
-        }
-        
-        contentArea.innerHTML = fullHtml;
+        contentArea.innerHTML = formatQuestionContent(q);
 
         // Update Nav UI
         document.getElementById('progress-indicator').innerText = `${currentIndex + 1} από ${filteredQuestions.length}`;
@@ -801,7 +867,6 @@
         document.getElementById('btn-next').disabled = (currentIndex === filteredQuestions.length - 1);
         document.getElementById('jump-select').value = currentIndex;
 
-        // Image handling
         applyImageHandling(article);
     }
 
@@ -820,7 +885,9 @@
             art.className = 'question-card scroll-item';
             art.id = `q-item-${idx}`;
 
-            let html = `
+            const contentHtml = formatQuestionContent(q);
+
+            art.innerHTML = `
                 <div class="question-header">
                     <div class="question-tags">
                         <span class="q-badge number">Θέμα #${idx + 1}</span>
@@ -828,22 +895,10 @@
                     <h2 class="question-title">${q.question}</h2>
                 </div>
                 <div class="content-body">
+                    ${contentHtml}
+                </div>
             `;
 
-            if (q.correctAnswer && q.correctAnswer.trim()) {
-                html += q.correctAnswer;
-            }
-
-            if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
-                if (q.correctAnswer && q.correctAnswer.trim()) {
-                    html += '<hr class="section-separator">';
-                }
-                html += q.explanation;
-            }
-
-            html += `</div>`;
-
-            art.innerHTML = html;
             applyImageHandling(art);
             container.appendChild(art);
         });
