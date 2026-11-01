@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -21,7 +21,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=20261101_v7_pure" rel="stylesheet"/>
+<link href="style.css?v=20261101_v7_clean" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -110,7 +110,7 @@
       box-shadow: 0 6px 25px rgba(0,0,0,0.06) !important;
     }
 
-    /* PURE CONTENT RENDERING - As Written in the File with Full Justification */
+    /* PURE CONTENT RENDERING - Full Justification with 100% Faithful Hierarchies, Indents & Bullets */
     #quick-correct-answer-text,
     .new-book-pure-container {
       background: #ffffff !important;
@@ -121,6 +121,7 @@
       padding: 6px 0 !important;
     }
 
+    /* Paragraphs: full justification (πλήρης στοίχιση) */
     #quick-correct-answer-text p,
     .new-book-pure-container p {
       font-family: inherit !important;
@@ -129,7 +130,7 @@
       color: #0f172a !important;
     }
 
-    /* Titles/Headings keep left alignment and clear hierarchy */
+    /* Section Headings: left-aligned to preserve clear visual hierarchy */
     #quick-correct-answer-text p[style*="font-size: 1."],
     #quick-correct-answer-text p[style*="font-size:1."],
     #quick-correct-answer-text p[style*="font-size: 0.85em"],
@@ -139,6 +140,7 @@
       text-align: left !important;
     }
 
+    /* Crisp, natural bold headers and terms */
     #quick-correct-answer-text strong,
     #quick-correct-answer-text b,
     .new-book-pure-container strong,
@@ -147,16 +149,39 @@
       font-weight: 700 !important;
     }
 
+    /* Lists: Completely preserve inline margins (20pt, 28pt, 36pt...) and 0 padding */
     #quick-correct-answer-text ul,
-    .new-book-pure-container ul {
+    #quick-correct-answer-text ol,
+    .new-book-pure-container ul,
+    .new-book-pure-container ol {
       list-style: none !important;
-      padding-left: 0 !important;
+      list-style-type: none !important;
+      padding: 0 !important;
     }
 
+    /* List Items: Relative positioning so bullet spans align perfectly, with full justification */
     #quick-correct-answer-text li,
     .new-book-pure-container li {
+      position: relative !important;
       list-style: none !important;
+      list-style-type: none !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      color: #0f172a !important;
+      margin-bottom: 5px !important;
+    }
+
+    /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): perfectly anchored at left: 0 */
+    #quick-correct-answer-text li > span:first-child,
+    .new-book-pure-container li > span:first-child {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      display: inline-block !important;
       text-align: left !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      width: 1.15em !important;
     }
 
     /* Navigation button styling */
@@ -284,7 +309,7 @@
   --bg-gradient: radial-gradient(circle at 50% 0%, #78350f 0%, #111827 80%);
   --bg-color: #111827;
 }
-</style><link rel="stylesheet" href="modern-theme.css?v=1790550446" />
+</style><link rel="stylesheet" href="modern-theme.css?v=20261101_v7_clean" />
 
 <style>
 
@@ -336,8 +361,7 @@ body.dark-theme .correct-answer-box {
 }
 </style>
 
-    <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
-</head>
+    </head>
 <body class="light-theme" style="--c1: #d35400; --c2: #f39c12; --c3: #f1c40f; --c4: #e67e22;">
 <div class="modern-shape modern-shape-1"></div>
 <div class="modern-shape modern-shape-2"></div>
@@ -573,9 +597,9 @@ body.dark-theme .correct-answer-box {
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="data/new_book_questions.js?v=20261101_v7_pure"></script>
+<script charset="UTF-8" src="data/new_book_questions.js"></script>
 <script src="marked.min.js"></script>
-<script charset="UTF-8" src="study_new_book.js?v=20261101_v7_pure"></script>
+<script charset="UTF-8" src="study_new_book.js"></script>
 
     <!-- Advanced Search Modal -->
     <div id="search-modal">
