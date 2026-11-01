@@ -933,28 +933,11 @@
             }
         });
     
-        function startEssay(e) {
+                function startEssay(e) {
             e.preventDefault();
             const bank = document.getElementById('essay-selector').value;
             if (bank === 'proepiskopisi') {
                 window.location.href = 'proepiskopisi_anaptyxi.html?v=' + new Date().getTime();
-            } else {
-                window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
-            }
-        } else if (bank === 'larnaka' || bank.startsWith('larnaka')) {
-                window.location.href = 'LARNAKA/index.html';
-            } else if (bank === 'larnaka2') {
-                window.location.href = 'LARNAKA_PART_02/index.html';
-            } else if (bank === 'larnaka3') {
-                window.location.href = 'LARNAKA_PART_03/index.html';
-            } else if (bank === 'larnaka4') {
-                window.location.href = 'LARNAKA_PART_04/index.html';
-            } else if (bank === 'larnaka5') {
-                window.location.href = 'LARNAKA_PART_05/index.html';
-            } else if (bank === 'larnaka6') {
-                window.location.href = 'LARNAKA_PART_06/index.html';
-            } else if (bank === 'larnaka7') {
-                window.location.href = 'LARNAKA_PART_07/index.html';
             } else {
                 window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
             }
