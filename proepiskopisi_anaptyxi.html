@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Προεπισκόπηση & Μελέτη Θεμάτων Ανάπτυξης 2013-2023</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DejaVu+Sans+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --primary-light: rgba(2, 132, 199, 0.08);
+            --primary-border: rgba(2, 132, 199, 0.25);
+            --accent: #d97706;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-heading: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.65;
+            padding: 24px 16px;
+        }
+
+        /* 1200px Larnaka Standard Wide Container */
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 28px 32px;
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title-box h1 {
+            font-size: 1.85rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-title-box p {
+            font-size: 0.98rem;
+            opacity: 0.92;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Controls Panel */
+        .controls-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex-grow: 1;
+            min-width: 280px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 18px 12px 42px;
+            border-radius: 12px;
+            border: 1.5px solid var(--card-border);
+            font-size: 0.98rem;
+            font-family: inherit;
+            background: #f8fafc;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            font-size: 1.1rem;
+        }
+
+        .mode-toggle-group {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            gap: 4px;
+        }
+
+        .mode-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mode-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Chapter Filter Pills */
+        .chapter-pills-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: thin;
+        }
+
+        .chapter-pill {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: var(--text-heading);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .chapter-pill:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
+        .chapter-pill.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+        }
+
+        /* Navigation Bar (Card View) */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-btn {
+            background: #f8fafc;
+            border: 1.5px solid var(--card-border);
+            color: var(--text-heading);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 700;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #ffffff;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.primary {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 3px 10px rgba(2, 132, 199, 0.28);
+        }
+
+        .nav-btn.primary:hover:not(:disabled) {
+            background: var(--primary-hover);
+            color: #ffffff;
+        }
+
+        .jump-select {
+            padding: 9px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--card-border);
+            font-size: 0.92rem;
+            font-weight: 700;
+            font-family: inherit;
+            background: #ffffff;
+            color: var(--text-heading);
+            cursor: pointer;
+            outline: none;
+            max-width: 380px;
+        }
+
+        .jump-select:focus {
+            border-color: var(--primary);
+        }
+
+        /* Question Content Container */
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 36px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .question-header {
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 16px;
+        }
+
+        .question-tags {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .q-badge {
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .q-badge.chapter {
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(2, 132, 199, 0.25);
+        }
+
+        .q-badge.number {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+
+        .question-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+        }
+
+        /* Sections */
+        .section-box {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px 24px;
+            border: 1.5px solid #e2e8f0;
+            position: relative;
+        }
+
+        .section-box.summary {
+            border-left: 6px solid #10b981;
+            background: #fafdfb;
+        }
+
+        .section-box.analysis {
+            border-left: 6px solid var(--primary);
+            background: #ffffff;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .section-box.summary .section-label {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .section-box.analysis .section-label {
+            background: rgba(2, 132, 199, 0.12);
+            color: var(--primary);
+        }
+
+        /* Typography & Content inside Answers */
+        .content-body {
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: var(--text-main);
+        }
+
+        .content-body p {
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: 12px;
+        }
+
+        .content-body p[style*="font-size: 1."],
+        .content-body p[style*="font-size:1."],
+        .content-body p[style*="font-size: 0.85em"] {
+            text-align: left !important;
+        }
+
+        .content-body strong, .content-body b {
+            color: #0f172a;
+            font-weight: 750;
+        }
+
+        .content-body ul, .content-body ol {
+            margin: 4px 0 12px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .content-body li {
+            text-align: justify;
+            text-justify: inter-word;
+            position: relative;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        /* Diagrams & ASCII code styling */
+        pre {
+            font-family: 'DejaVu Sans Mono', Consolas, 'Courier New', monospace !important;
+            font-size: 0.88em !important;
+            line-height: 1.18 !important;
+            text-align: left !important;
+            white-space: pre !important;
+            overflow-x: auto !important;
+            background: #f8fafc !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            padding: 14px 18px !important;
+            margin: 14px 0 !important;
+            color: #1e293b !important;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        /* Table Styling */
+        table {
+            border-collapse: collapse !important;
+            width: 100% !important;
+            margin: 16px 0 !important;
+            font-size: 0.92rem !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04) !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+        }
+
+        th {
+            background: #0284c7 !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 14px !important;
+            text-align: left !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+        }
+
+        td {
+            padding: 10px 14px !important;
+            border: 1px solid #e2e8f0 !important;
+            line-height: 1.5 !important;
+        }
+
+        tr:nth-child(even) td {
+            background: #f8fafc !important;
+        }
+
+        tr:hover td {
+            background: #f1f5f9 !important;
+        }
+
+        /* Images */
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            margin: 16px auto !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+            border: 1px solid #e2e8f0 !important;
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+
+        img:hover {
+            transform: scale(1.01);
+        }
+
+        /* Continuous Scroll Mode */
+        .continuous-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .scroll-item {
+            scroll-margin-top: 20px;
+        }
+
+        /* Back to top floating */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+            transition: all 0.2s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background: var(--primary-hover);
+        }
+
+        /* Image Zoom Modal */
+        #img-modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #img-modal.open {
+            display: flex;
+        }
+
+        #img-modal img {
+            max-width: 95vw !important;
+            max-height: 92vh !important;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.2);
+            cursor: default;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 12px 8px; }
+            .question-card { padding: 20px 16px; border-radius: 14px; }
+            .header-card { padding: 20px; border-radius: 16px; }
+            .header-title-box h1 { font-size: 1.4rem; }
+            .jump-select { max-width: 100%; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Header -->
+    <header class="header-card">
+        <div class="header-top">
+            <div class="header-title-box">
+                <h1>📚 Θέματα Εξετάσεων Ανάπτυξης <span style="font-weight: 400; opacity: 0.85;">2013–2023</span></h1>
+                <p>Πλήρης Επιμελημένη &amp; Διορθωμένη Τράπεζα με όλα τα Κλινικά Διαγράμματα, Flowcharts &amp; Συγκριτικούς Πίνακες</p>
+            </div>
+            <div class="header-badge" id="stats-badge">609 Θέματα</div>
+        </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls-card">
+        <!-- Search and Mode -->
+        <div class="search-row">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" class="search-input" placeholder="Αναζήτηση θέματος, όρου, έτους (π.χ. 2017, υπονατριαιμία, μυασθένεια)...">
+            </div>
+            <div class="mode-toggle-group">
+                <button class="mode-btn active" id="btn-mode-card" onclick="setMode('card')">
+                    🎴 Κάρτα Μελέτης
+                </button>
+                <button class="mode-btn" id="btn-mode-scroll" onclick="setMode('scroll')">
+                    📜 Συνεχής Προβολή
+                </button>
+            </div>
+        </div>
+
+        <!-- Chapter Filter Pills -->
+        <div class="chapter-pills-row" id="chapter-pills-container">
+            <!-- Dynamic pills generated via JS -->
+        </div>
+    </section>
+
+    <!-- Top Navigation Bar (Card Mode) -->
+    <div class="nav-bar" id="card-nav-bar">
+        <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="nav-btn" id="btn-prev" onclick="prevQuestion()">
+                ← Προηγούμενο
+            </button>
+            <button class="nav-btn" id="btn-random" onclick="randomQuestion()" title="Τυχαία ερώτηση">
+                🎲 Τυχαίο
+            </button>
+            <button class="nav-btn primary" id="btn-next" onclick="nextQuestion()">
+                Επόμενο →
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="progress-indicator" style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">1 από 609</span>
+            <select id="jump-select" class="jump-select" onchange="onJumpSelect(this.value)">
+                <!-- Dynamic options -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Active View Area -->
+    <main id="main-view-area">
+        <!-- Card View Container -->
+        <div id="card-view-container">
+            <article class="question-card" id="single-question-article">
+                <div class="question-header">
+                    <div class="question-tags">
+                        <span class="q-badge chapter" id="q-chapter-tag">ΚΕΦΑΛΑΙΟ 1ο</span>
+                        <span class="q-badge number" id="q-num-tag">Θέμα #1</span>
+                    </div>
+                    <h2 class="question-title" id="q-title">Φόρτωση ερώτησης...</h2>
+                </div>
+
+                <!-- Section B: Structured Summary -->
+                <div class="section-box summary" id="box-summary">
+                    <div class="section-label">✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση (Exam Summary)</div>
+                    <div class="content-body" id="q-summary-content"></div>
+                </div>
+
+                <!-- Section A: In-depth Development & Textbooks Quotes -->
+                <div class="section-box analysis" id="box-analysis">
+                    <div class="section-label">📖 Μέρος 2: Παράθεση Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης (Διαγράμματα &amp; Πίνακες)</div>
+                    <div class="content-body" id="q-analysis-content"></div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Continuous Scroll View Container -->
+        <div id="continuous-view-container" class="continuous-list" style="display: none;">
+            <!-- Questions rendered here in scroll mode -->
+        </div>
+    </main>
+</div>
+
+<!-- Back to top button -->
+<button class="back-to-top" id="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Επιστροφή στην αρχή">
+    ↑
+</button>
+
+<!-- Image Zoom Modal -->
+<div id="img-modal" onclick="closeImgModal()">
+    <img id="modal-img" src="" alt="Zoomed diagram">
+</div>
+
+<!-- Load Database -->
+<script charset="UTF-8" src="anaptyxi_2026_ΤΕΛΙΚΟ.js"></script>
+
+<script>
+    // State
+    let allQuestions = [];
+    let filteredQuestions = [];
+    let currentIndex = 0;
+    let currentMode = 'card'; // 'card' or 'scroll'
+    let activeChapter = 'Όλα';
+
+    // Normalize greek search string
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData)) {
+            allQuestions = flashcardQuestionsData;
+        } else {
+            console.error("Could not find flashcardQuestionsData array!");
+            document.getElementById('q-title').innerText = "Σφάλμα: Δεν βρέθηκε το αρχείο δεδομένων anaptyxi_2026_ΤΕΛΙΚΟ.js!";
+            return;
+        }
+
+        document.getElementById('stats-badge').innerText = `${allQuestions.length} Θέματα`;
+
+        initChapterPills();
+        filterQuestions();
+        setupSearch();
+        setupImageFallbackAndZoom();
+
+        // Scroll listener for back to top
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top-btn');
+            if (window.scrollY > 400) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+    });
+
+    // Setup chapters
+    function initChapterPills() {
+        const container = document.getElementById('chapter-pills-container');
+        container.innerHTML = '';
+
+        const chapters = new Set();
+        allQuestions.forEach(q => {
+            if (q.chapter) chapters.add(q.chapter.trim());
+        });
+
+        // Natural sort for Greek chapter names (1ο, 2ο... 10ο)
+        const sortedCh = Array.from(chapters).sort((a, b) => {
+            const numA = parseInt(a.replace(/\D/g, '')) || 0;
+            const numB = parseInt(b.replace(/\D/g, '')) || 0;
+            return numA - numB;
+        });
+
+        const list = ['Όλα', ...sortedCh];
+
+        list.forEach(ch => {
+            const btn = document.createElement('button');
+            btn.className = `chapter-pill ${ch === activeChapter ? 'active' : ''}`;
+            btn.innerText = ch;
+            btn.addEventListener('click', () => {
+                activeChapter = ch;
+                document.querySelectorAll('.chapter-pill').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                filterQuestions();
+            });
+            container.appendChild(btn);
+        });
+    }
+
+    // Filter questions
+    function filterQuestions() {
+        const term = removeAccents(document.getElementById('search-input').value.trim());
+
+        filteredQuestions = allQuestions.filter(q => {
+            const matchCh = (activeChapter === 'Όλα' || (q.chapter && q.chapter.trim() === activeChapter));
+            if (!matchCh) return false;
+
+            if (!term) return true;
+            const qText = removeAccents((q.question || '') + ' ' + (q.chapter || '') + ' ' + (q.category || ''));
+            return qText.includes(term);
+        });
+
+        currentIndex = 0;
+        updateJumpSelect();
+
+        if (currentMode === 'card') {
+            renderCardView();
+        } else {
+            renderContinuousView();
+        }
+    }
+
+    // Populate Dropdown
+    function updateJumpSelect() {
+        const sel = document.getElementById('jump-select');
+        sel.innerHTML = '';
+
+        if (filteredQuestions.length === 0) {
+            const opt = document.createElement('option');
+            opt.innerText = "Δεν βρέθηκαν ερωτήσεις";
+            sel.appendChild(opt);
+            return;
+        }
+
+        filteredQuestions.forEach((q, idx) => {
+            const opt = document.createElement('option');
+            opt.value = idx;
+            const cleanTitle = q.question.replace(/\n/g, ' ').slice(0, 75);
+            opt.innerText = `${idx + 1}. [${q.chapter || 'Γενικά'}] ${cleanTitle}...`;
+            sel.appendChild(opt);
+        });
+    }
+
+    // Render single question in Card View
+    function renderCardView() {
+        const article = document.getElementById('single-question-article');
+        if (filteredQuestions.length === 0) {
+            article.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 1.1rem;">Δεν βρέθηκαν αποτελέσματα με τα επιλεγμένα κριτήρια.</div>';
+            return;
+        }
+
+        const q = filteredQuestions[currentIndex];
+        document.getElementById('q-chapter-tag').innerText = q.chapter || 'Παθολογία';
+        document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length} (ID #${q.id})`;
+        document.getElementById('q-title').innerHTML = q.question;
+
+        // Content
+        const summaryBox = document.getElementById('box-summary');
+        const summaryContent = document.getElementById('q-summary-content');
+        if (q.correctAnswer && q.correctAnswer.trim()) {
+            summaryBox.style.display = 'block';
+            summaryContent.innerHTML = q.correctAnswer;
+        } else {
+            summaryBox.style.display = 'none';
+        }
+
+        const analysisBox = document.getElementById('box-analysis');
+        const analysisContent = document.getElementById('q-analysis-content');
+        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
+            analysisBox.style.display = 'block';
+            analysisContent.innerHTML = q.explanation;
+        } else {
+            analysisBox.style.display = 'none';
+        }
+
+        // Update Nav UI
+        document.getElementById('progress-indicator').innerText = `${currentIndex + 1} από ${filteredQuestions.length}`;
+        document.getElementById('btn-prev').disabled = (currentIndex === 0);
+        document.getElementById('btn-next').disabled = (currentIndex === filteredQuestions.length - 1);
+        document.getElementById('jump-select').value = currentIndex;
+
+        // Image handling
+        applyImageHandling(article);
+    }
+
+    // Render all in Continuous View
+    function renderContinuousView() {
+        const container = document.getElementById('continuous-view-container');
+        container.innerHTML = '';
+
+        if (filteredQuestions.length === 0) {
+            container.innerHTML = '<div class="question-card" style="padding: 40px; text-align: center; color: var(--text-muted);">Δεν βρέθηκαν αποτελέσματα.</div>';
+            return;
+        }
+
+        // Render questions
+        filteredQuestions.forEach((q, idx) => {
+            const art = document.createElement('article');
+            art.className = 'question-card scroll-item';
+            art.id = `q-item-${idx}`;
+
+            let html = `
+                <div class="question-header">
+                    <div class="question-tags">
+                        <span class="q-badge chapter">${q.chapter || 'Παθολογία'}</span>
+                        <span class="q-badge number">Θέμα #${idx + 1} (ID #${q.id})</span>
+                    </div>
+                    <h2 class="question-title">${q.question}</h2>
+                </div>
+            `;
+
+            if (q.correctAnswer && q.correctAnswer.trim()) {
+                html += `
+                    <div class="section-box summary">
+                        <div class="section-label">✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση</div>
+                        <div class="content-body">${q.correctAnswer}</div>
+                    </div>
+                `;
+            }
+
+            if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
+                html += `
+                    <div class="section-box analysis">
+                        <div class="section-label">📖 Μέρος 2: Παράθεση Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης</div>
+                        <div class="content-body">${q.explanation}</div>
+                    </div>
+                `;
+            }
+
+            art.innerHTML = html;
+            applyImageHandling(art);
+            container.appendChild(art);
+        });
+    }
+
+    // Image error fallback & modal zoom
+    function applyImageHandling(scope) {
+        scope.querySelectorAll('img').forEach(img => {
+            img.loading = "lazy";
+            img.onerror = function() {
+                if (!this.dataset.retried) {
+                    this.dataset.retried = "1";
+                    // Try fallback to absolute path if running locally
+                    const src = this.getAttribute('src');
+                    this.src = "file:///C:/Users/taste/Desktop/pathologia-quiz-FINAL-FIX/" + src;
+                }
+            };
+            img.onclick = function() {
+                openImgModal(this.src);
+            };
+        });
+    }
+
+    // Modal
+    function openImgModal(src) {
+        document.getElementById('modal-img').src = src;
+        document.getElementById('img-modal').classList.add('open');
+    }
+    function closeImgModal() {
+        document.getElementById('img-modal').classList.remove('open');
+    }
+
+    // Search setup
+    function setupSearch() {
+        let timeout = null;
+        document.getElementById('search-input').addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                filterQuestions();
+            }, 250);
+        });
+    }
+
+    // Navigation actions
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderCardView();
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+    }
+
+    function nextQuestion() {
+        if (currentIndex < filteredQuestions.length - 1) {
+            currentIndex++;
+            renderCardView();
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+    }
+
+    function randomQuestion() {
+        if (filteredQuestions.length <= 1) return;
+        let nextIdx = currentIndex;
+        while (nextIdx === currentIndex) {
+            nextIdx = Math.floor(Math.random() * filteredQuestions.length);
+        }
+        currentIndex = nextIdx;
+        renderCardView();
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function onJumpSelect(val) {
+        currentIndex = parseInt(val, 10);
+        renderCardView();
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    // Mode Toggle
+    function setMode(mode) {
+        currentMode = mode;
+        const btnCard = document.getElementById('btn-mode-card');
+        const btnScroll = document.getElementById('btn-mode-scroll');
+        const cardNav = document.getElementById('card-nav-bar');
+        const cardContainer = document.getElementById('card-view-container');
+        const scrollContainer = document.getElementById('continuous-view-container');
+
+        if (mode === 'card') {
+            btnCard.classList.add('active');
+            btnScroll.classList.remove('active');
+            cardNav.style.display = 'flex';
+            cardContainer.style.display = 'block';
+            scrollContainer.style.display = 'none';
+            renderCardView();
+        } else {
+            btnScroll.classList.add('active');
+            btnCard.classList.remove('active');
+            cardNav.style.display = 'none';
+            cardContainer.style.display = 'none';
+            scrollContainer.style.display = 'flex';
+            renderContinuousView();
+        }
+    }
+</script>
+
+</body>
+</html>
