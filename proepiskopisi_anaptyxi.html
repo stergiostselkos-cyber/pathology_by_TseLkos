@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Προεπισκόπηση & Μελέτη Θεμάτων Ανάπτυξης 2013-2023</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DejaVu+Sans+Mono&display=swap" rel="stylesheet">
+    <title>Προεπισκόπηση Θεμάτων Ανάπτυξης 2013-2023 (Παθολογία)</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+    
     <style>
         :root {
             --primary: #0284c7;
@@ -157,18 +155,18 @@
         }
 
         .mode-btn {
-            background: transparent;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.88rem;
+            padding: 9px 18px;
+            border-radius: 9px;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: var(--text-muted);
+            border: none;
             cursor: pointer;
+            background: transparent;
+            color: var(--text-muted);
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .mode-btn.active {
@@ -177,7 +175,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Chapter Filter Pills */
+        /* Chapter Pills */
         .chapter-pills-row {
             display: flex;
             gap: 8px;
@@ -188,12 +186,12 @@
 
         .chapter-pill {
             background: #f1f5f9;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--card-border);
             color: var(--text-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
@@ -293,7 +291,7 @@
             box-shadow: 0 6px 30px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         .question-header {
@@ -338,84 +336,39 @@
             letter-spacing: -0.3px;
         }
 
-        /* Sections */
-        .section-box {
+        /* PURE CONTENT RENDERING - As Written in the File with Natural Elements */
+        .pure-answer-content {
             background: #ffffff;
-            border-radius: 14px;
-            padding: 20px 24px;
-            border: 1.5px solid #e2e8f0;
-            position: relative;
-        }
-
-        .section-box.summary {
-            border-left: 6px solid #10b981;
-            background: #fafdfb;
-        }
-
-        .section-box.analysis {
-            border-left: 6px solid var(--primary);
-            background: #ffffff;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .section-box.summary .section-label {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .section-box.analysis .section-label {
-            background: rgba(2, 132, 199, 0.12);
-            color: var(--primary);
-        }
-
-        /* Typography & Content inside Answers */
-        .content-body {
-            font-size: 15.5px;
-            line-height: 1.7;
-            color: var(--text-main);
-        }
-
-        .content-body p {
-            text-align: justify;
-            text-justify: inter-word;
-            margin-bottom: 12px;
-        }
-
-        .content-body p[style*="font-size: 1."],
-        .content-body p[style*="font-size:1."],
-        .content-body p[style*="font-size: 0.85em"] {
-            text-align: left !important;
-        }
-
-        .content-body strong, .content-body b {
             color: #0f172a;
-            font-weight: 750;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15.5px;
+            line-height: 1.65;
+            padding: 4px 0;
+            width: 100%;
         }
 
-        .content-body ul, .content-body ol {
-            margin: 4px 0 12px 0;
-            padding: 0;
+        /* Let paragraphs take their natural inline styling */
+        .pure-answer-content p {
+            font-family: inherit;
+            color: #0f172a;
+        }
+
+        /* Crisp bold headings and text */
+        .pure-answer-content strong,
+        .pure-answer-content b {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* Lists and list items: allow inline margins and paddings to take full effect */
+        .pure-answer-content ul,
+        .pure-answer-content ol {
             list-style: none;
         }
 
-        .content-body li {
-            text-align: justify;
-            text-justify: inter-word;
-            position: relative;
-            line-height: 1.6;
-            margin-bottom: 6px;
+        .pure-answer-content li {
+            list-style: none;
+            color: #0f172a;
         }
 
         /* Diagrams & ASCII code styling */
@@ -437,48 +390,48 @@
 
         /* Table Styling */
         table {
-            border-collapse: collapse !important;
-            width: 100% !important;
-            margin: 16px 0 !important;
-            font-size: 0.92rem !important;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04) !important;
-            border-radius: 10px !important;
-            overflow: hidden !important;
-            background: #ffffff !important;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ffffff;
         }
 
         th {
-            background: #0284c7 !important;
-            color: #ffffff !important;
-            font-weight: 800 !important;
-            padding: 10px 14px !important;
-            text-align: left !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
+            background: #0284c7;
+            color: #ffffff;
+            font-weight: 800;
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         td {
-            padding: 10px 14px !important;
-            border: 1px solid #e2e8f0 !important;
-            line-height: 1.5 !important;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            line-height: 1.5;
         }
 
         tr:nth-child(even) td {
-            background: #f8fafc !important;
+            background: #f8fafc;
         }
 
         tr:hover td {
-            background: #f1f5f9 !important;
+            background: #f1f5f9;
         }
 
         /* Images */
         img {
-            max-width: 100% !important;
-            height: auto !important;
-            display: block !important;
-            margin: 16px auto !important;
-            border-radius: 10px !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
-            border: 1px solid #e2e8f0 !important;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 16px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
             cursor: zoom-in;
             transition: transform 0.2s;
         }
@@ -577,54 +530,58 @@
     <header class="header-card">
         <div class="header-top">
             <div class="header-title-box">
-                <h1>📚 Θέματα Εξετάσεων Ανάπτυξης <span style="font-weight: 400; opacity: 0.85;">2013–2023</span></h1>
-                <p>Πλήρης Επιμελημένη &amp; Διορθωμένη Τράπεζα με όλα τα Κλινικά Διαγράμματα, Flowcharts &amp; Συγκριτικούς Πίνακες</p>
+                <h1>🩺 Θέματα Εξετάσεων Ανάπτυξης 2013-2023</h1>
+                <p>Παθολογία - Πλήρης Επιστημονική &amp; Κλινική Προεπισκόπηση</p>
             </div>
-            <div class="header-badge" id="stats-badge">609 Θέματα</div>
+            <div class="header-badge" id="total-badge">
+                609 Θέματα
+            </div>
         </div>
     </header>
 
-    <!-- Controls -->
-    <section class="controls-card">
-        <!-- Search and Mode -->
+    <!-- Controls Card -->
+    <div class="controls-card">
         <div class="search-row">
             <div class="search-input-wrapper">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" class="search-input" placeholder="Αναζήτηση θέματος, όρου, έτους (π.χ. 2017, υπονατριαιμία, μυασθένεια)...">
+                <input type="text" class="search-input" id="search-input" placeholder="Αναζήτηση σε τίτλους, συνόψεις, κλινικά διαγράμματα ή κείμενο...">
             </div>
             <div class="mode-toggle-group">
-                <button class="mode-btn active" id="btn-mode-card" onclick="setMode('card')">
-                    🎴 Κάρτα Μελέτης
+                <button class="mode-btn active" id="btn-mode-card" onclick="setViewMode('card')">
+                    🗂️ Κάρτα Μελέτης
                 </button>
-                <button class="mode-btn" id="btn-mode-scroll" onclick="setMode('scroll')">
-                    📜 Συνεχής Προβολή
+                <button class="mode-btn" id="btn-mode-scroll" onclick="setViewMode('scroll')">
+                    📜 Συνεχής Ροή (Όλα)
                 </button>
             </div>
         </div>
 
-        <!-- Chapter Filter Pills -->
-        <div class="chapter-pills-row" id="chapter-pills-container">
-            <!-- Dynamic pills generated via JS -->
+        <!-- Chapters Filter -->
+        <div class="chapter-pills-row" id="chapter-pills-row">
+            <button class="chapter-pill active" onclick="filterChapter('ALL')">Όλα τα Κεφάλαια</button>
+            <!-- Chapter pills populated dynamically -->
         </div>
-    </section>
+    </div>
 
-    <!-- Top Navigation Bar (Card Mode) -->
+    <!-- Navigation Bar for Card View -->
     <div class="nav-bar" id="card-nav-bar">
-        <div style="display: flex; gap: 8px; align-items: center;">
+        <div style="display: flex; gap: 8px;">
             <button class="nav-btn" id="btn-prev" onclick="prevQuestion()">
                 ← Προηγούμενο
-            </button>
-            <button class="nav-btn" id="btn-random" onclick="randomQuestion()" title="Τυχαία ερώτηση">
-                🎲 Τυχαίο
             </button>
             <button class="nav-btn primary" id="btn-next" onclick="nextQuestion()">
                 Επόμενο →
             </button>
+            <button class="nav-btn" onclick="randomQuestion()">
+                🎲 Τυχαίο
+            </button>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <span id="progress-indicator" style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">1 από 609</span>
-            <select id="jump-select" class="jump-select" onchange="onJumpSelect(this.value)">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="progress-indicator" style="font-weight: 700; color: var(--text-muted); font-size: 0.95rem;">
+                1 από 609
+            </span>
+            <select class="jump-select" id="jump-select" onchange="jumpToQuestion(parseInt(this.value))">
                 <!-- Dynamic options -->
             </select>
         </div>
@@ -643,17 +600,8 @@
                     <h2 class="question-title" id="q-title">Φόρτωση ερώτησης...</h2>
                 </div>
 
-                <!-- Section B: Structured Summary -->
-                <div class="section-box summary" id="box-summary">
-                    <div class="section-label">✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση (Exam Summary)</div>
-                    <div class="content-body" id="q-summary-content"></div>
-                </div>
-
-                <!-- Section A: In-depth Development & Textbooks Quotes -->
-                <div class="section-box analysis" id="box-analysis">
-                    <div class="section-label">📖 Μέρος 2: Παράθεση Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης (Διαγράμματα &amp; Πίνακες)</div>
-                    <div class="content-body" id="q-analysis-content"></div>
-                </div>
+                <!-- Pure Answer Content Container -->
+                <div class="pure-answer-content" id="q-answer-content"></div>
             </article>
         </div>
 
@@ -678,90 +626,80 @@
 <script charset="UTF-8" src="anaptyxi_2026_ΤΕΛΙΚΟ.js"></script>
 
 <script>
-    // State
     let allQuestions = [];
     let filteredQuestions = [];
     let currentIndex = 0;
+    let currentChapter = 'ALL';
+    let currentSearchTerm = '';
     let currentMode = 'card'; // 'card' or 'scroll'
-    let activeChapter = 'Όλα';
 
-    // Normalize greek search string
-    function removeAccents(str) {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    }
-
-    // Initialize
-    window.addEventListener('DOMContentLoaded', () => {
+    // Init App
+    document.addEventListener('DOMContentLoaded', () => {
         if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData)) {
             allQuestions = flashcardQuestionsData;
-        } else {
-            console.error("Could not find flashcardQuestionsData array!");
-            document.getElementById('q-title').innerText = "Σφάλμα: Δεν βρέθηκε το αρχείο δεδομένων anaptyxi_2026_ΤΕΛΙΚΟ.js!";
+        } else if (typeof anaptyxiData !== 'undefined' && Array.isArray(anaptyxiData)) {
+            allQuestions = anaptyxiData;
+        } else if (typeof questions !== 'undefined' && Array.isArray(questions)) {
+            allQuestions = questions;
+        } else if (typeof anaptyxi_2026 !== 'undefined' && Array.isArray(anaptyxi_2026)) {
+            allQuestions = anaptyxi_2026;
+        } else if (typeof flashcardQuestions !== 'undefined' && Array.isArray(flashcardQuestions)) {
+            allQuestions = flashcardQuestions;
+        }
+
+        if (allQuestions.length === 0) {
+            document.getElementById('q-title').innerText = 'Σφάλμα: Δεν βρέθηκαν δεδομένα στο αρχείο anaptyxi_2026_ΤΕΛΙΚΟ.js';
             return;
         }
 
-        document.getElementById('stats-badge').innerText = `${allQuestions.length} Θέματα`;
+        document.getElementById('total-badge').innerText = `${allQuestions.length} Θέματα`;
 
-        initChapterPills();
+        buildChapterPills();
         filterQuestions();
         setupSearch();
-        setupImageFallbackAndZoom();
-
-        // Scroll listener for back to top
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('back-to-top-btn');
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        });
+        setupScrollListener();
     });
 
-    // Setup chapters
-    function initChapterPills() {
-        const container = document.getElementById('chapter-pills-container');
-        container.innerHTML = '';
+    // Populate chapters
+    function buildChapterPills() {
+        const container = document.getElementById('chapter-pills-row');
+        const chapters = [];
+        const seen = new Set();
 
-        const chapters = new Set();
         allQuestions.forEach(q => {
-            if (q.chapter) chapters.add(q.chapter.trim());
+            const chap = q.chapter || 'Γενικά';
+            if (!seen.has(chap)) {
+                seen.add(chap);
+                chapters.push(chap);
+            }
         });
 
-        // Natural sort for Greek chapter names (1ο, 2ο... 10ο)
-        const sortedCh = Array.from(chapters).sort((a, b) => {
-            const numA = parseInt(a.replace(/\D/g, '')) || 0;
-            const numB = parseInt(b.replace(/\D/g, '')) || 0;
-            return numA - numB;
-        });
-
-        const list = ['Όλα', ...sortedCh];
-
-        list.forEach(ch => {
+        chapters.forEach(ch => {
             const btn = document.createElement('button');
-            btn.className = `chapter-pill ${ch === activeChapter ? 'active' : ''}`;
+            btn.className = 'chapter-pill';
             btn.innerText = ch;
-            btn.addEventListener('click', () => {
-                activeChapter = ch;
-                document.querySelectorAll('.chapter-pill').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                filterQuestions();
-            });
+            btn.onclick = () => filterChapter(ch);
             container.appendChild(btn);
         });
     }
 
     // Filter questions
     function filterQuestions() {
-        const term = removeAccents(document.getElementById('search-input').value.trim());
+        const term = document.getElementById('search-input').value.trim().toLowerCase();
+        currentSearchTerm = term;
 
         filteredQuestions = allQuestions.filter(q => {
-            const matchCh = (activeChapter === 'Όλα' || (q.chapter && q.chapter.trim() === activeChapter));
-            if (!matchCh) return false;
+            const matchChapter = (currentChapter === 'ALL' || (q.chapter || 'Γενικά') === currentChapter);
+            if (!matchChapter) return false;
 
             if (!term) return true;
-            const qText = removeAccents((q.question || '') + ' ' + (q.chapter || '') + ' ' + (q.category || ''));
-            return qText.includes(term);
+
+            const qText = (q.question || '').toLowerCase();
+            const aText = (q.correctAnswer || '').toLowerCase();
+            const eText = (q.explanation || '').toLowerCase();
+            const idText = (q.id || '').toString();
+
+            return qText.includes(term) || aText.includes(term) || eText.includes(term) || idText.includes(term);
         });
 
         currentIndex = 0;
@@ -774,25 +712,30 @@
         }
     }
 
-    // Populate Dropdown
+    // Update Jump Select dropdown
     function updateJumpSelect() {
         const sel = document.getElementById('jump-select');
         sel.innerHTML = '';
-
-        if (filteredQuestions.length === 0) {
-            const opt = document.createElement('option');
-            opt.innerText = "Δεν βρέθηκαν ερωτήσεις";
-            sel.appendChild(opt);
-            return;
-        }
-
         filteredQuestions.forEach((q, idx) => {
             const opt = document.createElement('option');
             opt.value = idx;
-            const cleanTitle = q.question.replace(/\n/g, ' ').slice(0, 75);
-            opt.innerText = `${idx + 1}. [${q.chapter || 'Γενικά'}] ${cleanTitle}...`;
+            const preview = q.question.replace(/<[^>]*>/g, '').substring(0, 50);
+            opt.innerText = `${idx + 1}. [ID ${q.id}] ${preview}...`;
             sel.appendChild(opt);
         });
+    }
+
+    // Helper to get natural answer HTML
+    function getFullAnswerHtml(q) {
+        let contentHtml = (q.correctAnswer || '').trim();
+        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== contentHtml) {
+            if (contentHtml) {
+                contentHtml += '<div style="margin: 28px 0 20px 0;"></div>' + q.explanation;
+            } else {
+                contentHtml = q.explanation;
+            }
+        }
+        return contentHtml;
     }
 
     // Render single question in Card View
@@ -808,24 +751,9 @@
         document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length} (ID #${q.id})`;
         document.getElementById('q-title').innerHTML = q.question;
 
-        // Content
-        const summaryBox = document.getElementById('box-summary');
-        const summaryContent = document.getElementById('q-summary-content');
-        if (q.correctAnswer && q.correctAnswer.trim()) {
-            summaryBox.style.display = 'block';
-            summaryContent.innerHTML = q.correctAnswer;
-        } else {
-            summaryBox.style.display = 'none';
-        }
-
-        const analysisBox = document.getElementById('box-analysis');
-        const analysisContent = document.getElementById('q-analysis-content');
-        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
-            analysisBox.style.display = 'block';
-            analysisContent.innerHTML = q.explanation;
-        } else {
-            analysisBox.style.display = 'none';
-        }
+        // Pure Answer Content
+        const answerContainer = document.getElementById('q-answer-content');
+        answerContainer.innerHTML = getFullAnswerHtml(q);
 
         // Update Nav UI
         document.getElementById('progress-indicator').innerText = `${currentIndex + 1} από ${filteredQuestions.length}`;
@@ -853,6 +781,8 @@
             art.className = 'question-card scroll-item';
             art.id = `q-item-${idx}`;
 
+            const contentHtml = getFullAnswerHtml(q);
+
             let html = `
                 <div class="question-header">
                     <div class="question-tags">
@@ -861,25 +791,8 @@
                     </div>
                     <h2 class="question-title">${q.question}</h2>
                 </div>
+                <div class="pure-answer-content">${contentHtml}</div>
             `;
-
-            if (q.correctAnswer && q.correctAnswer.trim()) {
-                html += `
-                    <div class="section-box summary">
-                        <div class="section-label">✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση</div>
-                        <div class="content-body">${q.correctAnswer}</div>
-                    </div>
-                `;
-            }
-
-            if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
-                html += `
-                    <div class="section-box analysis">
-                        <div class="section-label">📖 Μέρος 2: Παράθεση Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης</div>
-                        <div class="content-body">${q.explanation}</div>
-                    </div>
-                `;
-            }
 
             art.innerHTML = html;
             applyImageHandling(art);
@@ -953,20 +866,36 @@
         window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    function onJumpSelect(val) {
-        currentIndex = parseInt(val, 10);
-        renderCardView();
-        window.scrollTo({ top: 120, behavior: 'smooth' });
+    function jumpToQuestion(idx) {
+        if (idx >= 0 && idx < filteredQuestions.length) {
+            currentIndex = idx;
+            renderCardView();
+            window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
     }
 
-    // Mode Toggle
-    function setMode(mode) {
+    function filterChapter(chap) {
+        currentChapter = chap;
+        document.querySelectorAll('.chapter-pill').forEach(btn => {
+            if (chap === 'ALL' && btn.innerText === 'Όλα τα Κεφάλαια') {
+                btn.classList.add('active');
+            } else if (btn.innerText === chap) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        filterQuestions();
+    }
+
+    function setViewMode(mode) {
         currentMode = mode;
-        const btnCard = document.getElementById('btn-mode-card');
-        const btnScroll = document.getElementById('btn-mode-scroll');
         const cardNav = document.getElementById('card-nav-bar');
         const cardContainer = document.getElementById('card-view-container');
         const scrollContainer = document.getElementById('continuous-view-container');
+
+        const btnCard = document.getElementById('btn-mode-card');
+        const btnScroll = document.getElementById('btn-mode-scroll');
 
         if (mode === 'card') {
             btnCard.classList.add('active');
@@ -984,7 +913,17 @@
             renderContinuousView();
         }
     }
-</script>
 
+    function setupScrollListener() {
+        const topBtn = document.getElementById('back-to-top-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                topBtn.classList.add('visible');
+            } else {
+                topBtn.classList.remove('visible');
+            }
+        });
+    }
+</script>
 </body>
 </html>
