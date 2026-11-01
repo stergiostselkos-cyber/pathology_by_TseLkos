@@ -885,30 +885,19 @@ function revealQuickAnswer() {
 
     if (quickRevealBtnContainer) quickRevealBtnContainer.classList.add('hidden');
 
-    let ansHtml = "";
-    let expHtml = "";
-
-    if (question.content) {
-        if (question.content.includes("<!-- SPLIT -->")) {
-            let parts = question.content.split("<!-- SPLIT -->");
-            ansHtml = parts[0] || "";
-            expHtml = parts[1] || "";
-        } else {
-            ansHtml = question.content;
-            expHtml = "";
+    let contentHtml = question.content || "";
+    if (!contentHtml) {
+        contentHtml = (question.correctAnswer ? parseMarkdown(question.correctAnswer) : (question.answer ? parseMarkdown(question.answer) : ""));
+        if (question.explanation) {
+            contentHtml += "<br><br>" + parseMarkdown(question.explanation);
         }
-    } else {
-        ansHtml = question.correctAnswer ? parseMarkdown(question.correctAnswer) : (question.answer ? parseMarkdown(question.answer) : "");
-        expHtml = question.explanation ? parseMarkdown(question.explanation) : "";
     }
 
+    // Cleanly remove <!-- SPLIT --> comment so text flows naturally
+    contentHtml = contentHtml.replace(/<!--\s*SPLIT\s*-->/g, '');
+
     if (quickCorrectAnswerText) {
-        try {
-            quickCorrectAnswerText.innerHTML = injectSectionBackToTop(ansHtml);
-        } catch (e) {
-            console.error("Error setting quickCorrectAnswerText:", e);
-            quickCorrectAnswerText.innerHTML = ansHtml;
-        }
+        quickCorrectAnswerText.innerHTML = contentHtml;
         if (typeof highlightSearchTerms === 'function') {
             highlightSearchTerms(quickCorrectAnswerText);
             const qEl = document.getElementById('question-text');
@@ -932,19 +921,7 @@ function revealQuickAnswer() {
 
     const explanationWrapper = document.querySelector('#quick-recall-view .explanation-wrapper');
     if (explanationWrapper) {
-        if (expHtml) {
-            explanationWrapper.style.display = "block";
-            if (quickRecallExplanationContent) {
-                try {
-                    quickRecallExplanationContent.innerHTML = injectSectionBackToTop(expHtml);
-                } catch (e) {
-                    console.error("Error setting quickRecallExplanationContent:", e);
-                    quickRecallExplanationContent.innerHTML = expHtml;
-                }
-            }
-        } else {
-            explanationWrapper.style.display = "none";
-        }
+        explanationWrapper.style.display = "none";
     }
 
     if (quickRevealedBlock) quickRevealedBlock.classList.remove('collapsed');
@@ -1033,14 +1010,6 @@ function loadQuickRandomQuestion() {
 /**
  * Simple Markdown to HTML parser
  */
-function wrapTablesInHtml(html) {
-    if (!html || typeof html !== 'string' || !html.includes('<table')) return html;
-    return html.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
-        if (wrapped) return wrapped;
-        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
-    });
-}
-
 function parseMarkdown(text) {
     if (!text) return "";
     
@@ -1053,16 +1022,7 @@ function parseMarkdown(text) {
     normalized = normalized.replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="embedded-image-container"><img src="$2" alt="$1" class="embedded-med-image" /><span class="image-caption">$1</span></div>');
     
     if (typeof marked !== 'undefined') {
-            // Clean bloated wordfmt spans from markdown table rows
-    normalized = normalized.replace(/^\|.*\|$/gm, function(line) {
-        return line.replace(/<\/?span[^>]*>/gi, '');
-    });
-    
-    let __parsed = marked.parse(normalized);
-    return __parsed.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
-        if (wrapped) return wrapped;
-        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
-    });
+        return marked.parse(normalized);
     }
     
     return normalized.replace(/\n/g, '<br/>');
@@ -2354,7 +2314,64 @@ function highlightSearchTerms(element) {
 
 
 /* --- TABLE ZOOM LOGIC --- */
-// Unified HD Zoom Inspector is handled exclusively by image_zoom_viewer.js
+(function() {
+    // Create the modal HTML once
+    let modal = document.createElement('div');
+    modal.className = 'table-viewer-overlay';
+    modal.innerHTML = `
+        <div class="table-viewer-header">
+            <div class="table-viewer-title">🔍 Προβολή Πίνακα</div>
+            <button class="table-viewer-close">✕</button>
+        </div>
+        <div class="table-viewer-content" id="table-viewer-content"></div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = modal.querySelector('.table-viewer-close');
+    const content = modal.querySelector('#table-viewer-content');
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { content.innerHTML = ''; }, 200);
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Periodically find tables and add zoom button
+    setInterval(() => {
+        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table');
+        tables.forEach(table => {
+            if (!table.parentElement.classList.contains('table-zoom-container')) {
+                // Wrap the table
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-zoom-container';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+
+                // Add button
+                const btn = document.createElement('button');
+                btn.className = 'zoom-table-btn';
+                btn.innerHTML = '🔍 Μεγέθυνση Πίνακα';
+                
+                // When clicked, copy the table to the modal
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    content.innerHTML = table.outerHTML;
+                    modal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                wrapper.appendChild(btn);
+            }
+        });
+    }, 500);
+})();
 
 
 // ==============================================================================

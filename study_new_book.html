@@ -21,7 +21,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=20261101_v6_final" rel="stylesheet"/>
+<link href="style.css?v=20261101_v7_pure" rel="stylesheet"/>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
@@ -43,33 +43,25 @@
       animation: tselkosGlow 2s infinite ease-in-out !important;
     }
 
-    /* Quick Recall Section styling overrides */
-    /* Quick Recall Section styling overrides */
-    border: 2px solid var(--primary-hover) !important;
-      padding: 24px !important;
-      border-radius: 20px !important;
-      box-shadow: 0 10px 40px rgba(112, 26, 117, 0.3) !important;
-    }
-
     /* Subfields inside container */
     #quick-recall-view .large-dropdown-select-btn {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
-      color: #000000 !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(var(--primary-rgb), 0.25) !important;
+      color: #0f172a !important;
       border-radius: 12px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-label {
       color: var(--primary-color) !important;
-      font-weight: 900 !important;
+      font-weight: 800 !important;
       opacity: 1 !important;
-      font-size: 0.85rem !important;
+      font-size: 0.82rem !important;
       letter-spacing: 0.5px !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-value {
-      color: #000000 !important;
-      font-weight: 800 !important;
-      font-size: 1.05rem !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      font-size: 1rem !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-arrow {
       color: var(--primary-color) !important;
@@ -77,16 +69,16 @@
 
     /* Question display box */
     #quick-recall-view .topic-title-header {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
-      border-left: 6px solid var(--primary-color) !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-left: 5px solid var(--primary-color) !important;
       border-radius: 14px !important;
       padding: 20px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
       margin: 16px 0 !important;
     }
     #quick-recall-view .question-label-span {
-      font-size: 1.25rem !important;
+      font-size: 1.15rem !important;
       font-weight: 900 !important;
       color: var(--primary-color) !important;
       text-transform: uppercase !important;
@@ -100,8 +92,8 @@
       box-shadow: none !important;
     }
     #quick-recall-view #quick-recall-question {
-      color: #000000 !important;
-      font-weight: 800 !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
       font-size: 1.15rem !important;
       line-height: 1.65 !important;
       margin: 0 !important;
@@ -109,83 +101,69 @@
       text-justify: inter-word !important;
     }
 
-    /* Active Card Container customized */
+    /* Clean Card Container for New Book */
     #quick-recall-view .recall-card-container {
-      background: #fdf2f8 !important;
-      border: 2px solid #fbcfe8 !important;
-      border-radius: 16px !important;
-      padding: 24px !important;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05) !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 18px !important;
+      padding: 28px !important;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.06) !important;
     }
 
-    /* Correct Answer Box */
-    
-    #quick-recall-view .correct-answer-box h4 {
-      color: var(--primary-color) !important;
-      font-weight: 900 !important;
-      font-size: 0.95rem !important;
-      margin-bottom: 6px !important;
-    }
-    #quick-recall-view #quick-correct-answer-text {
-      color: #000000 !important;
-      font-weight: 400 !important;
-      font-size: 1.05rem !important;
-      line-height: 1.6 !important;
-    }
-
-    /* Mnemonic Box */
-    #quick-recall-view .mnemonic-box {
-      background: rgba(var(--primary-rgb), 0.05) !important;
-      border: 2px solid rgba(var(--primary-rgb), 0.3) !important;
-      border-radius: 12px !important;
-      padding: 16px 20px !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-    }
-    #quick-recall-view .mnemonic-header h5 {
-      color: var(--primary-hover) !important;
-      font-weight: 900 !important;
-    }
-    #quick-recall-view #quick-mnemonic-text {
-      color: #000000 !important;
-      font-weight: 750 !important;
-      font-style: italic !important;
-    }
-
-    /* Explanation Wrapper */
-    
-
-    #quick-recall-view .explanation-wrapper h4 {
-      color: var(--primary-color) !important;
-      font-weight: 900 !important;
-      border-bottom: 2px solid rgba(var(--primary-rgb), 0.25) !important;
-      padding-bottom: 10px !important;
-      margin-bottom: 14px !important;
-      font-size: 1.15rem !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content {
-      color: #000000 !important;
-      font-weight: 500 !important;
-      font-size: 1.02rem !important;
+    /* PURE CONTENT RENDERING - As Written in the File with Full Justification */
+    #quick-correct-answer-text,
+    .new-book-pure-container {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+      font-size: 15.5px !important;
       line-height: 1.65 !important;
+      padding: 6px 0 !important;
     }
-    #quick-recall-view #quick-recall-explanation-content p, 
-    #quick-recall-view #quick-recall-explanation-content li {
-      color: #000000 !important;
-      font-weight: 500 !important;
-      text-align: justify !important;
-    }
-    /* purple strong removed */
 
-    /* Navigation bar styles adaptation */
+    #quick-correct-answer-text p,
+    .new-book-pure-container p {
+      font-family: inherit !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      color: #0f172a !important;
+    }
+
+    /* Titles/Headings keep left alignment and clear hierarchy */
+    #quick-correct-answer-text p[style*="font-size: 1."],
+    #quick-correct-answer-text p[style*="font-size:1."],
+    #quick-correct-answer-text p[style*="font-size: 0.85em"],
+    .new-book-pure-container p[style*="font-size: 1."],
+    .new-book-pure-container p[style*="font-size:1."],
+    .new-book-pure-container p[style*="font-size: 0.85em"] {
+      text-align: left !important;
+    }
+
+    #quick-correct-answer-text strong,
+    #quick-correct-answer-text b,
+    .new-book-pure-container strong,
+    .new-book-pure-container b {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+
+    #quick-correct-answer-text ul,
+    .new-book-pure-container ul {
+      list-style: none !important;
+      padding-left: 0 !important;
+    }
+
+    #quick-correct-answer-text li,
+    .new-book-pure-container li {
+      list-style: none !important;
+      text-align: left !important;
+    }
+
+    /* Navigation button styling */
     #quick-recall-view .quiz-navigation .btn-secondary {
       background: #ffffff !important;
-      border: 2px solid #fbcfe8 !important;
+      border: 1.5px solid #cbd5e1 !important;
       color: var(--primary-color) !important;
-      font-weight: 800 !important;
-    }
       font-weight: 700 !important;
     }
     #quick-recall-view .quiz-navigation .btn-primary {
@@ -194,7 +172,7 @@
       box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
     }
 
-    /* Table Analysis Section styling overrides */
+
     #table-analysis-view {
       background: var(--primary-color) !important;
       border: 2px solid var(--primary-hover) !important;
@@ -483,25 +461,17 @@ body.dark-theme .correct-answer-box {
 </div>
 
 <div class="revealed-block collapsed" id="quick-revealed-block">
-<div class="correct-answer-box">
-<h4 style="opacity: 0.9">Σύντομη Απάντηση:</h4>
-<div id="quick-correct-answer-text">Φόρτωση σύντομης απάντησης...</div>
+<div class="new-book-pure-container" id="quick-correct-answer-text">
+Φόρτωση περιεχομένου...
 </div>
-<div class="mnemonic-box" id="quick-mnemonic-box">
+<div class="mnemonic-box" id="quick-mnemonic-box" style="display: none;">
 <div class="mnemonic-header">
 <svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 <h5>Μνημονικό Tip / Σημείο-Κλειδί</h5>
 </div>
-<p id="quick-mnemonic-text">Φόρτωση tip...</p>
-</div>
-<div class="explanation-wrapper">
-<div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px">
-<span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
-</div>
-<h4>💡 Επιπλέον Υλικό για Μελέτη</h4>
-<div class="explanation-content" id="quick-recall-explanation-content"></div>
+<p id="quick-mnemonic-text"></p>
 </div>
 </div>
 </div>
@@ -603,9 +573,9 @@ body.dark-theme .correct-answer-box {
 </footer>
 </div>
 <!-- App Logic Scripts -->
-<script charset="UTF-8" src="data/new_book_questions.js?v=20261101_v6_final"></script>
+<script charset="UTF-8" src="data/new_book_questions.js?v=20261101_v7_pure"></script>
 <script src="marked.min.js"></script>
-<script charset="UTF-8" src="study_new_book.js?v=20261101_v6_final"></script>
+<script charset="UTF-8" src="study_new_book.js?v=20261101_v7_pure"></script>
 
     <!-- Advanced Search Modal -->
     <div id="search-modal">

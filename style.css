@@ -2551,11 +2551,11 @@ u, ins, .underlined-text {
 #quick-recall-question, .recall-question-text {
     font-size: 13pt;
 }
-.correct-answer-text, #quick-correct-answer-text, .correct-answer-text p, .correct-answer-text li {
+.correct-answer-text, .correct-answer-text p, .correct-answer-text li {
     font-size: 12pt;
     font-weight: 400;
 }
-.explanation-content, #quick-recall-explanation-content, .explanation-content p, .explanation-content li {
+.explanation-content, .explanation-content p, .explanation-content li {
     font-size: 12pt;
     font-weight: 400;
 }
@@ -3393,8 +3393,6 @@ table p { margin: 0; padding: 0; }
 /* BOLD TEXT: Make strong tags stand out significantly from body text */
 .explanation-content strong, 
 .correct-answer-text strong, 
-#quick-recall-explanation-content strong, 
-#quick-correct-answer-text strong,
 .explanation-wrapper strong,
 .correct-answer-box strong {
     font-weight: 800 !important; /* Poppins 800 is loaded and very crisp */
@@ -3403,8 +3401,6 @@ table p { margin: 0; padding: 0; }
 }
 body.dark-theme .explanation-content strong, 
 body.dark-theme .correct-answer-text strong, 
-body.dark-theme #quick-recall-explanation-content strong, 
-body.dark-theme #quick-correct-answer-text strong,
 body.dark-theme .explanation-wrapper strong,
 body.dark-theme .correct-answer-box strong {
     font-weight: 800 !important;
@@ -3460,8 +3456,6 @@ body.dark-theme .correct-answer-box {
 /* --- PREMIUM SPECIFICITY FIXES --- */
 body.light-theme .explanation-content strong, 
 body.light-theme .correct-answer-text strong, 
-body.light-theme #quick-recall-explanation-content strong, 
-body.light-theme #quick-correct-answer-text strong,
 body.light-theme .explanation-wrapper strong,
 body.light-theme .correct-answer-box strong {
     font-weight: 900 !important;
