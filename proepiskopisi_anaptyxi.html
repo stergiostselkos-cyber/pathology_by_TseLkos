@@ -36,7 +36,7 @@
             padding: 24px 16px;
         }
 
-        /* 1200px Larnaka Standard Wide Container - Fit more words per line */
+        /* 1200px Wide Container (όπως στο Νέο Βιβλίο & MCQ) */
         .app-container {
             width: 100%;
             max-width: 1200px;
@@ -176,7 +176,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Navigation Bar (Card View) - Strictly Essay (NO MCQ chapters) */
+        /* Navigation Bar (Card View) - ΧΩΡΙΣ κουμπιά MCQ */
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -297,11 +297,7 @@
         }
 
         /* =====================================================================
-           EXACT TEXT FORMATTING (FROM NEW BOOK & MCQ APPS)
-           - Πλήρης στοίχιση (Justify)
-           - Διατήρηση εσοχών & ιεραρχιών σε 1ο, 2ο, 3ο επίπεδο
-           - Σταθερά αγκυρωμένα μπουλετς & αριθμήσεις
-           - Παραθέσεις αυτούσιων αποσπασμάτων στο ΤΕΛΟΣ του κειμένου
+           ΜΟΡΦΟΠΟΙΗΣΗ ΚΕΙΜΕΝΟΥ ΟΠΩΣ ΣΤΟ ΝΕΟ ΒΙΒΛΙΟ & ΣΤΙΣ ΕΡΩΤΗΣΕΙΣ ΠΟΛΛΑΠΛΗΣ
            ===================================================================== */
         .content-body {
             color: #0f172a !important;
@@ -312,7 +308,7 @@
             background: #ffffff !important;
         }
 
-        /* Paragraphs: full justification */
+        /* Paragraphs: πλήρης στοίχιση (justify) */
         .content-body p {
             font-family: inherit !important;
             text-align: justify !important;
@@ -321,21 +317,21 @@
             margin-bottom: 8px !important;
         }
 
-        /* Section Headings inside content: left-aligned to preserve hierarchy */
+        /* Headings: left-aligned to preserve hierarchy */
         .content-body p[style*="font-size: 1."],
         .content-body p[style*="font-size:1."],
         .content-body p[style*="font-size: 0.85em"] {
             text-align: left !important;
         }
 
-        /* Bold terms: crisp and readable */
+        /* Bold terms: καθαρά και ευανάγνωστα */
         .content-body strong,
         .content-body b {
             color: #0f172a !important;
             font-weight: 700 !important;
         }
 
-        /* Green bold text highlights */
+        /* Πράσινα μπολντ */
         .content-body span[style*="color: green"],
         .content-body span[style*="color: #10b981"],
         .content-body span[style*="color: #059669"] {
@@ -343,7 +339,7 @@
             color: #059669 !important;
         }
 
-        /* Lists: Completely preserve inline margins (20pt, 28pt, 36pt...) and 0 padding */
+        /* Lists: Διατήρηση εσοχών (margin: 20pt, 28pt...) */
         .content-body ul,
         .content-body ol {
             list-style: none !important;
@@ -351,7 +347,7 @@
             padding: 0 !important;
         }
 
-        /* List Items: Relative positioning so bullet spans align perfectly, with full justification */
+        /* List Items: Relative positioning με πλήρη στοίχιση */
         .content-body li {
             position: relative !important;
             list-style: none !important;
@@ -362,7 +358,7 @@
             margin-bottom: 5px !important;
         }
 
-        /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): perfectly anchored at left: 0 */
+        /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): αριστερή αγκύρωση */
         .content-body li > span:first-child {
             position: absolute !important;
             left: 0 !important;
@@ -374,7 +370,7 @@
             width: 1.15em !important;
         }
 
-        /* ASCII DIAGRAM BOXES & SQUARES (ΤΑ ΤΕΤΡΑΓΩΝΑ ΣΤΑ ΚΕΙΜΕΝΑ) */
+        /* ASCII DIAGRAM BOXES & ΤΕΤΡΑΓΩΝΑ */
         .content-body pre {
             font-family: 'DejaVu Sans Mono', Consolas, 'Courier New', monospace !important;
             font-size: 0.88em !important;
@@ -391,7 +387,7 @@
             box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
         }
 
-        /* Table Styling */
+        /* Tables */
         .content-body table {
             border-collapse: collapse !important;
             width: 100% !important;
@@ -462,7 +458,7 @@
             scroll-margin-top: 20px;
         }
 
-        /* Back to top floating button */
+        /* Back to top */
         .back-to-top {
             position: fixed;
             bottom: 28px;
@@ -525,17 +521,15 @@
             cursor: default;
         }
 
-        /* Loading Spinner */
-        #loading-view {
-            background: #ffffff;
+        #error-view {
+            display: none;
+            background: #fff;
+            padding: 30px;
             border-radius: 16px;
-            padding: 48px 24px;
             text-align: center;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            font-size: 1.15rem;
+            color: #dc2626;
             font-weight: 700;
-            color: var(--primary);
+            border: 1px solid #fecaca;
         }
 
         @media (max-width: 768px) {
@@ -568,7 +562,7 @@
         <div class="search-row">
             <div class="search-input-wrapper">
                 <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" id="search-input" placeholder="Αναζήτηση σε τίτλους, συνόψεις, κλινικά διαγράμματα ή κείμενο...">
+                <input type="text" class="search-input" id="search-input" placeholder="Αναζήτηση σε τίτλους ή περιεχόμενο...">
             </div>
             <div class="mode-toggle-group">
                 <button class="mode-btn active" id="btn-mode-card" onclick="setViewMode('card')">
@@ -605,13 +599,13 @@
         </div>
     </div>
 
-    <!-- Loading Box -->
-    <div id="loading-view">
-        ⏳ Φόρτωση δεδομένων 609 θεμάτων... Παρακαλώ περιμένετε...
+    <!-- Error message fallback -->
+    <div id="error-view">
+        ❌ Δεν βρέθηκαν τα δεδομένα (anaptyxi_2026.js). Βεβαιωθείτε ότι το αρχείο βρίσκεται στον ίδιο φάκελο.
     </div>
 
     <!-- Active View Area -->
-    <main id="main-view-area" style="display: none;">
+    <main id="main-view-area">
         <!-- Card View Container -->
         <div id="card-view-container">
             <article class="question-card" id="single-question-article">
@@ -644,183 +638,79 @@
     <img id="modal-img" src="" alt="Zoomed diagram">
 </div>
 
-<!-- RESILIENT MULTI-PATH DATASET LOADER -->
+<!-- INFALLIBLE SYNCHRONOUS DATASET LOADING -->
+<script charset="UTF-8" src="anaptyxi_2026.js"></script>
 <script>
-    (function() {
-        const candidatePaths = [
-            "anaptyxi_2026.js",
-            "data/anaptyxi_2026.js",
-            "anaptyxi_2026_ΤΕΛΙΚΟ.js",
-            "../anaptyxi_2026.js",
-            "../anaptyxi_2026_ΤΕΛΙΚΟ.js"
-        ];
-        
-        function tryLoadScript(index) {
-            if (window.flashcardQuestionsData && Array.isArray(window.flashcardQuestionsData) && window.flashcardQuestionsData.length > 0) {
-                initApp();
-                return;
-            }
-            if (index >= candidatePaths.length) {
-                const loadEl = document.getElementById('loading-view');
-                if (loadEl) {
-                    loadEl.innerHTML = '❌ Σφάλμα: Δεν ήταν δυνατή η φόρτωση της βάσης δεδομένων (anaptyxi_2026.js).';
-                    loadEl.style.color = '#dc2626';
-                }
-                return;
-            }
-            
-            const script = document.createElement('script');
-            script.charset = 'UTF-8';
-            script.src = candidatePaths[index] + '?v=' + Date.now();
-            script.onload = function() {
-                if (window.flashcardQuestionsData || window.anaptyxiData || window.questions) {
-                    initApp();
-                } else {
-                    tryLoadScript(index + 1);
-                }
-            };
-            script.onerror = function() {
-                tryLoadScript(index + 1);
-            };
-            document.head.appendChild(script);
-        }
-        
-        if (window.flashcardQuestionsData && Array.isArray(window.flashcardQuestionsData)) {
-            initApp();
-        } else {
-            tryLoadScript(0);
-        }
-    })();
+    if (typeof flashcardQuestionsData === 'undefined' && typeof anaptyxiData === 'undefined') {
+        document.write('<script charset="UTF-8" src="data/anaptyxi_2026.js"><\/script>');
+    }
+</script>
+<script>
+    if (typeof flashcardQuestionsData === 'undefined' && typeof anaptyxiData === 'undefined') {
+        document.write('<script charset="UTF-8" src="anaptyxi_2026_ΤΕΛΙΚΟ.js"><\/script>');
+    }
 </script>
 
 <script>
     let allQuestions = [];
     let filteredQuestions = [];
     let currentIndex = 0;
-    let currentSearchTerm = '';
     let currentMode = 'card';
-    let appInitialized = false;
 
-    // Helper: normalize Greek accents for robust searching and section detection
-    function stripAccents(str) {
-        if (!str) return '';
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    }
-
-    // Dynamic Guarantee: Ensure Paratheseis are always placed at the END of text
-    function formatQuestionContent(q) {
-        const ans = (q.correctAnswer || '').trim();
-        const exp = (q.explanation || '').trim();
-        let fullHtml = ans + (exp && exp !== ans ? ('\n<hr class="section-separator">\n' + exp) : '');
-
-        const norm = stripAccents(fullHtml);
-        const parathesiTerms = [
-            "παραθεση αυτουσιων",
-            "αυτουσια παραθεματα",
-            "αυτουσιες παραθεσεις",
-            "αυτουσια αποσπασματα",
-            "αποσπασματα απο τα βιβλια"
-        ];
-        const ektenesTerms = [
-            "εκτενες κειμενο αναλυσης",
-            "εκτενης αναλυση",
-            "εκτενης αναλυτικη αναπτυξη",
-            "μερος 2ο: εκτενης",
-            "μερος 2ο : εκτενης",
-            "μερος 2ο:εκτενης",
-            "δευτερο μερος: εκτενης",
-            "δευτερο μερος : εκτενης",
-            "δευτερο μερος:εκτενης"
-        ];
-
-        let pPos = -1;
-        for (const t of parathesiTerms) {
-            const pos = norm.indexOf(t);
-            if (pos !== -1 && (pPos === -1 || pos < pPos)) pPos = pos;
-        }
-
-        let ePos = -1;
-        for (const t of ektenesTerms) {
-            const pos = norm.indexOf(t);
-            if (pos !== -1 && (ePos === -1 || pos < ePos)) ePos = pos;
-        }
-
-        // If Parathesis is found BEFORE Ektenes, move it to the END
-        if (pPos !== -1 && ePos !== -1 && pPos < ePos) {
-            let boundaryP = fullHtml.lastIndexOf('<p', pPos);
-            const divP = fullHtml.lastIndexOf('<div', pPos);
-            if (divP > boundaryP) boundaryP = divP;
-            if (boundaryP === -1 || (pPos - boundaryP) > 300) boundaryP = pPos;
-
-            let boundaryE = fullHtml.lastIndexOf('<p', ePos);
-            const divE = fullHtml.lastIndexOf('<div', ePos);
-            if (divE > boundaryE) boundaryE = divE;
-            if (boundaryE === -1 || (ePos - boundaryE) > 300) boundaryE = ePos;
-
-            const partSummary = fullHtml.substring(0, boundaryP).trim();
-            const partParathesi = fullHtml.substring(boundaryP, boundaryE).trim();
-            const partEktenes = fullHtml.substring(boundaryE).trim();
-
-            let reordered = '';
-            if (partSummary) reordered += partSummary;
-            if (partEktenes) {
-                if (reordered) reordered += '<hr class="section-separator">';
-                reordered += partEktenes;
-            }
-            if (partParathesi) {
-                if (reordered) reordered += '<hr class="section-separator">';
-                reordered += partParathesi;
-            }
-            return reordered;
-        }
-
-        return fullHtml;
+    // Simple, super fast accent stripper for search
+    function cleanSearchStr(s) {
+        if (!s) return '';
+        return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     }
 
     // Init App
-    function initApp() {
-        if (appInitialized) return;
-        
-        if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData)) {
+    function init() {
+        if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
             allQuestions = flashcardQuestionsData;
-        } else if (typeof anaptyxiData !== 'undefined' && Array.isArray(anaptyxiData)) {
+        } else if (typeof anaptyxiData !== 'undefined' && Array.isArray(anaptyxiData) && anaptyxiData.length > 0) {
             allQuestions = anaptyxiData;
-        } else if (typeof questions !== 'undefined' && Array.isArray(questions)) {
+        } else if (typeof questions !== 'undefined' && Array.isArray(questions) && questions.length > 0) {
             allQuestions = questions;
-        } else if (typeof anaptyxi_2026 !== 'undefined' && Array.isArray(anaptyxi_2026)) {
+        } else if (typeof anaptyxi_2026 !== 'undefined' && Array.isArray(anaptyxi_2026) && anaptyxi_2026.length > 0) {
             allQuestions = anaptyxi_2026;
-        } else if (typeof flashcardQuestions !== 'undefined' && Array.isArray(flashcardQuestions)) {
+        } else if (typeof flashcardQuestions !== 'undefined' && Array.isArray(flashcardQuestions) && flashcardQuestions.length > 0) {
             allQuestions = flashcardQuestions;
         }
 
-        if (!allQuestions || allQuestions.length === 0) return;
+        if (!allQuestions || allQuestions.length === 0) {
+            const err = document.getElementById('error-view');
+            if (err) err.style.display = 'block';
+            document.getElementById('main-view-area').style.display = 'none';
+            return;
+        }
 
-        appInitialized = true;
-        document.getElementById('loading-view').style.display = 'none';
-        document.getElementById('main-view-area').style.display = 'block';
         document.getElementById('total-badge').innerText = `${allQuestions.length} Θέματα`;
+        filteredQuestions = allQuestions;
 
-        filterQuestions();
+        updateJumpSelect();
+        renderCardView();
         setupSearch();
         setupScrollListener();
     }
 
     // Filter questions
     function filterQuestions() {
-        const rawTerm = document.getElementById('search-input').value.trim();
-        const term = stripAccents(rawTerm);
-        currentSearchTerm = term;
+        const raw = document.getElementById('search-input').value.trim();
+        const term = cleanSearchStr(raw);
 
-        filteredQuestions = allQuestions.filter(q => {
-            if (!term) return true;
-
-            const qText = stripAccents(q.question || '');
-            const aText = stripAccents(q.correctAnswer || '');
-            const eText = stripAccents(q.explanation || '');
-            const idText = (q.id || '').toString();
-
-            return qText.includes(term) || aText.includes(term) || eText.includes(term) || idText.includes(term);
-        });
+        if (!term) {
+            filteredQuestions = allQuestions;
+        } else {
+            filteredQuestions = allQuestions.filter(q => {
+                const qT = cleanSearchStr(q.question || '');
+                const idT = (q.id || '').toString();
+                // Check title and id first (instant)
+                if (qT.includes(term) || idT.includes(term)) return true;
+                // Check sample of answer
+                const aT = cleanSearchStr((q.correctAnswer || '').substring(0, 500));
+                return aT.includes(term);
+            });
+        }
 
         currentIndex = 0;
         updateJumpSelect();
@@ -839,10 +729,21 @@
         filteredQuestions.forEach((q, idx) => {
             const opt = document.createElement('option');
             opt.value = idx;
-            const preview = q.question.replace(/<[^>]*>/g, '').substring(0, 60);
+            const preview = (q.question || '').replace(/<[^>]*>/g, '').substring(0, 60);
             opt.innerText = `${idx + 1}. ${preview}...`;
             sel.appendChild(opt);
         });
+    }
+
+    // Format Question HTML: 1. Summary -> 2. Ektenes -> 3. Parathesis at END
+    function getFullQuestionHtml(q) {
+        let fullHtml = (q.correctAnswer || '').trim();
+        const exp = (q.explanation || '').trim();
+        if (exp && exp !== fullHtml) {
+            if (fullHtml) fullHtml += '<hr class="section-separator">';
+            fullHtml += exp;
+        }
+        return fullHtml;
     }
 
     // Render single question in Card View
@@ -857,11 +758,9 @@
         document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length}`;
         document.getElementById('q-title').innerHTML = q.question;
 
-        // Content Area with Paratheseis at the END
         const contentArea = document.getElementById('q-content-area');
-        contentArea.innerHTML = formatQuestionContent(q);
+        contentArea.innerHTML = getFullQuestionHtml(q);
 
-        // Update Nav UI
         document.getElementById('progress-indicator').innerText = `${currentIndex + 1} από ${filteredQuestions.length}`;
         document.getElementById('btn-prev').disabled = (currentIndex === 0);
         document.getElementById('btn-next').disabled = (currentIndex === filteredQuestions.length - 1);
@@ -885,8 +784,6 @@
             art.className = 'question-card scroll-item';
             art.id = `q-item-${idx}`;
 
-            const contentHtml = formatQuestionContent(q);
-
             art.innerHTML = `
                 <div class="question-header">
                     <div class="question-tags">
@@ -895,7 +792,7 @@
                     <h2 class="question-title">${q.question}</h2>
                 </div>
                 <div class="content-body">
-                    ${contentHtml}
+                    ${getFullQuestionHtml(q)}
                 </div>
             `;
 
@@ -930,7 +827,7 @@
         document.getElementById('img-modal').classList.remove('open');
     }
 
-    // Search setup
+    // Search setup with debounce
     function setupSearch() {
         let timeout = null;
         document.getElementById('search-input').addEventListener('input', () => {
@@ -1012,6 +909,13 @@
                 topBtn.classList.remove('visible');
             }
         });
+    }
+
+    // Start immediately
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 </script>
 </body>
