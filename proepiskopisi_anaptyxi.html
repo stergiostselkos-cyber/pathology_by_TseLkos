@@ -12,7 +12,9 @@
             --primary-hover: #0369a1;
             --primary-light: rgba(2, 132, 199, 0.08);
             --primary-border: rgba(2, 132, 199, 0.25);
-            --accent: #d97706;
+            --success: #10b981;
+            --success-dark: #065f46;
+            --success-light: #d1fae5;
             --bg-body: #f8fafc;
             --card-bg: #ffffff;
             --card-border: #e2e8f0;
@@ -175,40 +177,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Chapter Pills */
-        .chapter-pills-row {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            scrollbar-width: thin;
-        }
-
-        .chapter-pill {
-            background: #f1f5f9;
-            border: 1px solid var(--card-border);
-            color: var(--text-heading);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-
-        .chapter-pill:hover {
-            background: #e2e8f0;
-            transform: translateY(-1px);
-        }
-
-        .chapter-pill.active {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
-        }
-
         /* Navigation Bar (Card View) */
         .nav-bar {
             display: flex;
@@ -275,7 +243,7 @@
             color: var(--text-heading);
             cursor: pointer;
             outline: none;
-            max-width: 380px;
+            max-width: 440px;
         }
 
         .jump-select:focus {
@@ -291,7 +259,7 @@
             box-shadow: 0 6px 30px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
         }
 
         .question-header {
@@ -308,23 +276,16 @@
         }
 
         .q-badge {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 800;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 20px;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .q-badge.chapter {
-            background: rgba(2, 132, 199, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(2, 132, 199, 0.25);
         }
 
         .q-badge.number {
             background: #f1f5f9;
-            color: #475569;
+            color: #334155;
             border: 1px solid #cbd5e1;
         }
 
@@ -336,42 +297,70 @@
             letter-spacing: -0.3px;
         }
 
-        /* PURE CONTENT RENDERING - As Written in the File with Natural Elements */
-        .pure-answer-content {
+        /* =====================================================================
+           STRUCTURED SECTION FRAMES (ΤΑ ΠΛΑΙΣΙΑ & Η ΔΟΜΗ)
+           ===================================================================== */
+        .section-box {
             background: #ffffff;
+            border-radius: 14px;
+            padding: 22px 26px;
+            border: 1.5px solid #e2e8f0;
+            position: relative;
+        }
+
+        /* GREEN ACCENT FRAME & GREEN BOLD (ΤΑ ΠΡΑΣΙΝΑ ΜΠΟΛΝΤ) */
+        .section-box.summary {
+            border-left: 6px solid #10b981;
+            background: #fafdfb;
+        }
+
+        .section-label.summary-label {
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: 800;
+            font-size: 0.88rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* BLUE ACCENT FRAME FOR IN-DEPTH ANALYSIS */
+        .section-box.analysis {
+            border-left: 6px solid var(--primary);
+            background: #ffffff;
+        }
+
+        .section-label.analysis-label {
+            background: rgba(2, 132, 199, 0.12);
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.88rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* CONTENT CONTAINER - NO EXTERNAL CSS OVERRIDES ON INNER P / LI / UL / STRONG */
+        .content-body {
             color: #0f172a;
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 15.5px;
             line-height: 1.65;
-            padding: 4px 0;
-            width: 100%;
         }
 
-        /* Let paragraphs take their natural inline styling */
-        .pure-answer-content p {
-            font-family: inherit;
-            color: #0f172a;
-        }
-
-        /* Crisp bold headings and text */
-        .pure-answer-content strong,
-        .pure-answer-content b {
-            color: #0f172a;
-            font-weight: 700;
-        }
-
-        /* Lists and list items: allow inline margins and paddings to take full effect */
-        .pure-answer-content ul,
-        .pure-answer-content ol {
-            list-style: none;
-        }
-
-        .pure-answer-content li {
-            list-style: none;
-            color: #0f172a;
-        }
-
-        /* Diagrams & ASCII code styling */
+        /* =====================================================================
+           ASCII DIAGRAM BOXES & SQUARES (ΤΑ ΤΕΤΡΑΓΩΝΑ ΣΤΑ ΚΕΙΜΕΝΑ)
+           ===================================================================== */
         pre {
             font-family: 'DejaVu Sans Mono', Consolas, 'Courier New', monospace !important;
             font-size: 0.88em !important;
@@ -380,7 +369,7 @@
             white-space: pre !important;
             overflow-x: auto !important;
             background: #f8fafc !important;
-            border: 1px solid #cbd5e1 !important;
+            border: 1.5px solid #cbd5e1 !important;
             border-radius: 10px !important;
             padding: 14px 18px !important;
             margin: 14px 0 !important;
@@ -390,48 +379,48 @@
 
         /* Table Styling */
         table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 16px 0;
-            font-size: 0.92rem;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-            border-radius: 10px;
-            overflow: hidden;
-            background: #ffffff;
+            border-collapse: collapse !important;
+            width: 100% !important;
+            margin: 16px 0 !important;
+            font-size: 0.92rem !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04) !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
         }
 
         th {
-            background: #0284c7;
-            color: #ffffff;
-            font-weight: 800;
-            padding: 10px 14px;
-            text-align: left;
-            border: 1px solid rgba(255,255,255,0.2);
+            background: #0284c7 !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 14px !important;
+            text-align: left !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
         }
 
         td {
-            padding: 10px 14px;
-            border: 1px solid #e2e8f0;
-            line-height: 1.5;
+            padding: 10px 14px !important;
+            border: 1px solid #e2e8f0 !important;
+            line-height: 1.5 !important;
         }
 
         tr:nth-child(even) td {
-            background: #f8fafc;
+            background: #f8fafc !important;
         }
 
         tr:hover td {
-            background: #f1f5f9;
+            background: #f1f5f9 !important;
         }
 
         /* Images */
         img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 16px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            margin: 16px auto !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+            border: 1px solid #e2e8f0 !important;
             cursor: zoom-in;
             transition: transform 0.2s;
         }
@@ -555,12 +544,6 @@
                 </button>
             </div>
         </div>
-
-        <!-- Chapters Filter -->
-        <div class="chapter-pills-row" id="chapter-pills-row">
-            <button class="chapter-pill active" onclick="filterChapter('ALL')">Όλα τα Κεφάλαια</button>
-            <!-- Chapter pills populated dynamically -->
-        </div>
     </div>
 
     <!-- Navigation Bar for Card View -->
@@ -594,14 +577,26 @@
             <article class="question-card" id="single-question-article">
                 <div class="question-header">
                     <div class="question-tags">
-                        <span class="q-badge chapter" id="q-chapter-tag">ΚΕΦΑΛΑΙΟ 1ο</span>
-                        <span class="q-badge number" id="q-num-tag">Θέμα #1</span>
+                        <span class="q-badge number" id="q-num-tag">Θέμα 1 από 609</span>
                     </div>
                     <h2 class="question-title" id="q-title">Φόρτωση ερώτησης...</h2>
                 </div>
 
-                <!-- Pure Answer Content Container -->
-                <div class="pure-answer-content" id="q-answer-content"></div>
+                <!-- Structured Frame 1: Summary (Green Accent Frame & Green Bold Label) -->
+                <div class="section-box summary" id="box-summary">
+                    <div class="section-label summary-label">
+                        ✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση (Exam Summary)
+                    </div>
+                    <div class="content-body" id="q-summary-content"></div>
+                </div>
+
+                <!-- Structured Frame 2: In-depth Development & Textbooks Quotes (Blue Accent Frame) -->
+                <div class="section-box analysis" id="box-analysis">
+                    <div class="section-label analysis-label">
+                        📖 Μέρος 2: Παράθεση Αυτούσιων Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης
+                    </div>
+                    <div class="content-body" id="q-analysis-content"></div>
+                </div>
             </article>
         </div>
 
@@ -629,7 +624,6 @@
     let allQuestions = [];
     let filteredQuestions = [];
     let currentIndex = 0;
-    let currentChapter = 'ALL';
     let currentSearchTerm = '';
     let currentMode = 'card'; // 'card' or 'scroll'
 
@@ -654,34 +648,10 @@
 
         document.getElementById('total-badge').innerText = `${allQuestions.length} Θέματα`;
 
-        buildChapterPills();
         filterQuestions();
         setupSearch();
         setupScrollListener();
     });
-
-    // Populate chapters
-    function buildChapterPills() {
-        const container = document.getElementById('chapter-pills-row');
-        const chapters = [];
-        const seen = new Set();
-
-        allQuestions.forEach(q => {
-            const chap = q.chapter || 'Γενικά';
-            if (!seen.has(chap)) {
-                seen.add(chap);
-                chapters.push(chap);
-            }
-        });
-
-        chapters.forEach(ch => {
-            const btn = document.createElement('button');
-            btn.className = 'chapter-pill';
-            btn.innerText = ch;
-            btn.onclick = () => filterChapter(ch);
-            container.appendChild(btn);
-        });
-    }
 
     // Filter questions
     function filterQuestions() {
@@ -689,9 +659,6 @@
         currentSearchTerm = term;
 
         filteredQuestions = allQuestions.filter(q => {
-            const matchChapter = (currentChapter === 'ALL' || (q.chapter || 'Γενικά') === currentChapter);
-            if (!matchChapter) return false;
-
             if (!term) return true;
 
             const qText = (q.question || '').toLowerCase();
@@ -719,23 +686,10 @@
         filteredQuestions.forEach((q, idx) => {
             const opt = document.createElement('option');
             opt.value = idx;
-            const preview = q.question.replace(/<[^>]*>/g, '').substring(0, 50);
-            opt.innerText = `${idx + 1}. [ID ${q.id}] ${preview}...`;
+            const preview = q.question.replace(/<[^>]*>/g, '').substring(0, 60);
+            opt.innerText = `${idx + 1}. ${preview}...`;
             sel.appendChild(opt);
         });
-    }
-
-    // Helper to get natural answer HTML
-    function getFullAnswerHtml(q) {
-        let contentHtml = (q.correctAnswer || '').trim();
-        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== contentHtml) {
-            if (contentHtml) {
-                contentHtml += '<div style="margin: 28px 0 20px 0;"></div>' + q.explanation;
-            } else {
-                contentHtml = q.explanation;
-            }
-        }
-        return contentHtml;
     }
 
     // Render single question in Card View
@@ -747,13 +701,28 @@
         }
 
         const q = filteredQuestions[currentIndex];
-        document.getElementById('q-chapter-tag').innerText = q.chapter || 'Παθολογία';
-        document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length} (ID #${q.id})`;
+        document.getElementById('q-num-tag').innerText = `Θέμα ${currentIndex + 1} από ${filteredQuestions.length}`;
         document.getElementById('q-title').innerHTML = q.question;
 
-        // Pure Answer Content
-        const answerContainer = document.getElementById('q-answer-content');
-        answerContainer.innerHTML = getFullAnswerHtml(q);
+        // Structured Frame 1: Summary
+        const summaryBox = document.getElementById('box-summary');
+        const summaryContent = document.getElementById('q-summary-content');
+        if (q.correctAnswer && q.correctAnswer.trim()) {
+            summaryBox.style.display = 'block';
+            summaryContent.innerHTML = q.correctAnswer;
+        } else {
+            summaryBox.style.display = 'none';
+        }
+
+        // Structured Frame 2: Analysis
+        const analysisBox = document.getElementById('box-analysis');
+        const analysisContent = document.getElementById('q-analysis-content');
+        if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
+            analysisBox.style.display = 'block';
+            analysisContent.innerHTML = q.explanation;
+        } else {
+            analysisBox.style.display = 'none';
+        }
 
         // Update Nav UI
         document.getElementById('progress-indicator').innerText = `${currentIndex + 1} από ${filteredQuestions.length}`;
@@ -781,18 +750,36 @@
             art.className = 'question-card scroll-item';
             art.id = `q-item-${idx}`;
 
-            const contentHtml = getFullAnswerHtml(q);
-
             let html = `
                 <div class="question-header">
                     <div class="question-tags">
-                        <span class="q-badge chapter">${q.chapter || 'Παθολογία'}</span>
-                        <span class="q-badge number">Θέμα #${idx + 1} (ID #${q.id})</span>
+                        <span class="q-badge number">Θέμα #${idx + 1}</span>
                     </div>
                     <h2 class="question-title">${q.question}</h2>
                 </div>
-                <div class="pure-answer-content">${contentHtml}</div>
             `;
+
+            if (q.correctAnswer && q.correctAnswer.trim()) {
+                html += `
+                    <div class="section-box summary">
+                        <div class="section-label summary-label">
+                            ✅ Μέρος 1: Δομημένη Σύντομη Απάντηση &amp; Δικαιολόγηση (Exam Summary)
+                        </div>
+                        <div class="content-body">${q.correctAnswer}</div>
+                    </div>
+                `;
+            }
+
+            if (q.explanation && q.explanation.trim() && q.explanation.trim() !== (q.correctAnswer || '').trim()) {
+                html += `
+                    <div class="section-box analysis">
+                        <div class="section-label analysis-label">
+                            📖 Μέρος 2: Παράθεση Αυτούσιων Αποσπασμάτων &amp; Εκτενές Κείμενο Ανάλυσης
+                        </div>
+                        <div class="content-body">${q.explanation}</div>
+                    </div>
+                `;
+            }
 
             art.innerHTML = html;
             applyImageHandling(art);
@@ -872,20 +859,6 @@
             renderCardView();
             window.scrollTo({ top: 120, behavior: 'smooth' });
         }
-    }
-
-    function filterChapter(chap) {
-        currentChapter = chap;
-        document.querySelectorAll('.chapter-pill').forEach(btn => {
-            if (chap === 'ALL' && btn.innerText === 'Όλα τα Κεφάλαια') {
-                btn.classList.add('active');
-            } else if (btn.innerText === chap) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        filterQuestions();
     }
 
     function setViewMode(mode) {
