@@ -894,7 +894,11 @@ function revealQuickAnswer() {
     }
 
     // Cleanly remove <!-- SPLIT --> comment so text flows naturally
+    // Cleanly remove <!-- SPLIT --> comment so text flows naturally
     contentHtml = contentHtml.replace(/<!--\s*SPLIT\s*-->/g, '').replace(/\u25CB/g, '\u25E6');
+    // Ensure 'ΑΠΑΝΤΗΣΗ' header has proper modern styling class
+    contentHtml = contentHtml.replace(/<p style=['"][^'"]*font-size:\s*0\.85em[^'"]*['"]><strong>ΑΠΑΝΤΗΣΗ<\/strong><\/p>/gi, 
+        '<p class="new-book-answer-header"><strong>ΑΠΑΝΤΗΣΗ</strong></p>');
 
     if (quickCorrectAnswerText) {
         quickCorrectAnswerText.innerHTML = contentHtml;

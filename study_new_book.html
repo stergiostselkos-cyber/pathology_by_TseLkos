@@ -187,7 +187,7 @@
       margin-bottom: 5px !important;
     }
 
-    /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): perfectly anchored at left: 0 */
+    /* Bullet and Number Spans (•, ◦, ▪, 1., α), i)): perfectly anchored at left: 0 */
     #quick-correct-answer-text li > span:first-child,
     .new-book-pure-container li > span:first-child {
       position: static !important;
@@ -832,60 +832,74 @@
         font-size: inherit !important;
     }
 
-    </style><link rel="stylesheet" href="modern-theme.css?v=20261101_v7_clean" />
+    </style>
+<style id="new-book-3tier-and-answer-styles">
 
-<style>
+    /* =====================================================================
+       PROMINENT ANSWER BADGE ("ΑΠΑΝΤΗΣΗ")
+       Guarantees "ΑΠΑΝΤΗΣΗ" is large, bold, prominent and never tiny/faded
+       ===================================================================== */
+    #quick-correct-answer-text p[style*="font-size: 0.85em"],
+    #quick-correct-answer-text p[style*="font-size:0.85em"],
+    #quick-correct-answer-text p[style*="0.85em"],
+    .new-book-pure-container p[style*="font-size: 0.85em"],
+    .new-book-pure-container p[style*="font-size:0.85em"],
+    .new-book-pure-container p[style*="0.85em"],
+    .new-book-answer-header {
+        font-size: 1.35rem !important; /* ~21.5px - Large and Prominent */
+        font-weight: 850 !important;
+        color: #0369a1 !important;
+        background: #e0f2fe !important;
+        border: 1.5px solid #bae6fd !important;
+        border-left: 7px solid #0284c7 !important;
+        border-radius: 9px !important;
+        padding: 10px 22px !important;
+        margin: 14px 0 22px 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        letter-spacing: 0.06em !important;
+        opacity: 1 !important;
+        box-shadow: 0 3px 10px rgba(2, 132, 199, 0.12) !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
+    }
 
-.explanation-content strong, 
-.correct-answer-text strong, 
-#quick-recall-explanation-content strong, 
-#quick-correct-answer-text strong,
-.explanation-wrapper strong,
-.correct-answer-box strong {
-    font-weight: 900 !important;
-    color: #000000 !important;
-    letter-spacing: 0.1px !important;
-}
-body.dark-theme .explanation-content strong, 
-body.dark-theme .correct-answer-text strong, 
-body.dark-theme #quick-recall-explanation-content strong, 
-body.dark-theme #quick-correct-answer-text strong,
-body.dark-theme .explanation-wrapper strong,
-body.dark-theme .correct-answer-box strong {
-    font-weight: 900 !important;
-    color: #ffffff !important;
-}
-.explanation-wrapper {
-    background: #fdfdfd !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 12px !important;
-    border-left: 8px solid #6366f1 !important;
-}
-body.dark-theme .explanation-wrapper {
-    background: #151d2c !important;
-    border-left: 8px solid #818cf8 !important;
-}
-.correct-answer-box {
-    background: #ffffff !important;
-    border: 1px solid #d1fae5 !important;
-    border-left: 8px solid #10b981 !important;
-    border-radius: 12px !important;
-}
-body.dark-theme .correct-answer-box {
-    background: #0f172a !important;
-    border-left: 8px solid #10b981 !important;
-}
-.explanation-wrapper table, .correct-answer-box table, .explanation-content table { 
-    display: block !important; 
-    overflow-x: auto !important; 
-    width: max-content !important; 
-    max-width: 100% !important; 
-    word-break: normal !important; 
-}
+    #quick-correct-answer-text p[style*="0.85em"] *,
+    .new-book-pure-container p[style*="0.85em"] *,
+    .new-book-answer-header * {
+        font-size: 1.35rem !important;
+        font-weight: 850 !important;
+        color: #0369a1 !important;
+        letter-spacing: 0.06em !important;
+        opacity: 1 !important;
+    }
 
-    
+    body.dark-theme #quick-correct-answer-text p[style*="0.85em"],
+    body.dark-theme .new-book-pure-container p[style*="0.85em"],
+    body.dark-theme .new-book-answer-header {
+        background: #0f172a !important;
+        border-color: #0369a1 !important;
+        border-left-color: #38bdf8 !important;
+        color: #38bdf8 !important;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4) !important;
+    }
 
-    /* 1ο Χρώμα: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί / Sky Blue Πλαίσιο) */
+    body.dark-theme #quick-correct-answer-text p[style*="0.85em"] *,
+    body.dark-theme .new-book-pure-container p[style*="0.85em"] *,
+    body.dark-theme .new-book-answer-header * {
+        color: #38bdf8 !important;
+        opacity: 1 !important;
+    }
+
+    /* =====================================================================
+       ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΝΕΟ ΒΙΒΛΙΟ
+       1ο Επίπεδο: Ενότητες & Κεφάλαια -> Πολύ Ανοιχτό Θαλασσί (Μεγάλο)
+       2ο Επίπεδο: Υποενότητες -> Μωβ (Μεσαίο)
+       3ο Επίπεδο: Υπο-υποενότητες & Παράγραφοι -> Απαλό Λεβάντα / Indigo
+       + Κενή γραμμή πριν από κάθε κεφάλαιο, ενότητα, υποενότητα (margin-top: 28px - 32px)
+       ===================================================================== */
+
+    /* 1ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί - Μεγάλο) */
     #quick-correct-answer-text p[style*="font-size: 1.5em"],
     #quick-correct-answer-text p[style*="font-size:1.5em"],
     #quick-correct-answer-text p[style*="font-size: 1.33em"],
@@ -896,129 +910,19 @@ body.dark-theme .correct-answer-box {
     .new-book-pure-container p[style*="font-size:1.33em"],
     #quick-correct-answer-text h1,
     #quick-correct-answer-text h2,
-    #quick-correct-answer-text h3,
     .new-book-pure-container h1,
     .new-book-pure-container h2,
-    .new-book-pure-container h3,
     .stage-banner {
-        font-size: 12.5pt !important;
+        font-size: 1.25rem !important; /* ~20px */
         font-weight: 800 !important;
-        color: #0369a1 !important;
-        background: #e0f2fe !important; /* πολύ ανοιχτό θαλασσί */
-        border: 1px solid #bae6fd !important;
-        border-left: 6px solid #0284c7 !important;
-        border-radius: 8px !important;
-        padding: 10px 18px !important;
-        margin-top: 28px !important; /* Κενή γραμμή πριν από κάθε κεφάλαιο / ενότητα */
-        margin-bottom: 14px !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        text-align: left !important;
-        line-height: 1.5 !important;
-        display: block !important;
-        clear: both !important;
-        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
-    }
-
-    #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.5em"] *,
-    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
-    .new-book-pure-container p[style*="font-size: 1.5em"] *,
-    .new-book-pure-container p[style*="font-size:1.5em"] *,
-    .new-book-pure-container p[style*="font-size: 1.33em"] *,
-    .new-book-pure-container p[style*="font-size:1.33em"] *,
-    #quick-correct-answer-text h1 *,
-    #quick-correct-answer-text h2 *,
-    #quick-correct-answer-text h3 *,
-    .new-book-pure-container h1 *,
-    .new-book-pure-container h2 *,
-    .new-book-pure-container h3 *,
-    .stage-banner * {
-        color: #0369a1 !important;
-    }
-
-    /* 2ο Χρώμα: ΥΠΟΕΝΟΤΗΤΕΣ (Μωβ Πλαίσιο) */
-    #quick-correct-answer-text p[style*="font-size: 1.17em"],
-    #quick-correct-answer-text p[style*="font-size:1.17em"],
-    #quick-correct-answer-text p[style*="font-size: 1.08em"],
-    #quick-correct-answer-text p[style*="font-size:1.08em"],
-    .new-book-pure-container p[style*="font-size: 1.17em"],
-    .new-book-pure-container p[style*="font-size:1.17em"],
-    .new-book-pure-container p[style*="font-size: 1.08em"],
-    .new-book-pure-container p[style*="font-size:1.08em"],
-    #quick-correct-answer-text h4,
-    #quick-correct-answer-text h5,
-    #quick-correct-answer-text h6,
-    .new-book-pure-container h4,
-    .new-book-pure-container h5,
-    .new-book-pure-container h6,
-    .thematic-banner {
-        font-size: 11.5pt !important;
-        font-weight: 700 !important;
-        color: #581c87 !important;
-        background: #f3e8ff !important; /* απαλό μωβ */
-        border: 1px solid #d8b4fe !important;
-        border-left: 5px solid #9333ea !important;
-        border-radius: 8px !important;
-        padding: 8px 16px !important;
-        margin-top: 22px !important; /* Κενή γραμμή πριν από κάθε υποενότητα */
-        margin-bottom: 12px !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        text-align: left !important;
-        line-height: 1.5 !important;
-        display: block !important;
-        clear: both !important;
-        box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08) !important;
-    }
-
-    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
-    #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.08em"] *,
-    .new-book-pure-container p[style*="font-size: 1.17em"] *,
-    .new-book-pure-container p[style*="font-size:1.17em"] *,
-    .new-book-pure-container p[style*="font-size: 1.08em"] *,
-    .new-book-pure-container p[style*="font-size:1.08em"] *,
-    #quick-correct-answer-text h4 *,
-    #quick-correct-answer-text h5 *,
-    #quick-correct-answer-text h6 *,
-    .new-book-pure-container h4 *,
-    .new-book-pure-container h5 *,
-    .new-book-pure-container h6 *,
-    .thematic-banner * {
-        color: #581c87 !important;
-    }
-
-    
-    /* =====================================================================
-       ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΝΕΟ ΒΙΒΛΙΟ
-       1. Κεφάλαιο / Κύριο Μέρος: Πολύ Ανοιχτό Θαλασσί (Μεγάλο)
-       2. Ενότητα / Υποκεφάλαιο: Μωβ (Μεσαίο)
-       3. Υποενότητα / Παράγραφος: Απαλό Λεβάντα / Indigo (3ο επίπεδο)
-       ===================================================================== */
-
-    /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ (Πολύ Ανοιχτό Θαλασσί - Μεγάλο) */
-    #quick-correct-answer-text p[style*="font-size: 1.5em"],
-    #quick-correct-answer-text p[style*="font-size:1.5em"],
-    .new-book-pure-container p[style*="font-size: 1.5em"],
-    .new-book-pure-container p[style*="font-size:1.5em"],
-    #quick-correct-answer-text h1,
-    #quick-correct-answer-text h2,
-    .new-book-pure-container h1,
-    .new-book-pure-container h2,
-    .stage-banner {
-        font-size: 1.35rem !important; /* ~21px */
-        font-weight: 850 !important;
         color: #0369a1 !important;
         background: #e0f2fe !important;
         border: 1.5px solid #bae6fd !important;
-        border-left: 7px solid #0284c7 !important;
-        border-radius: 9px !important;
-        padding: 12px 20px !important;
-        margin-top: 32px !important;
-        margin-bottom: 16px !important;
+        border-left: 6.5px solid #0284c7 !important;
+        border-radius: 8px !important;
+        padding: 10px 20px !important;
+        margin-top: 30px !important; /* Κενή γραμμή πριν από κάθε ενότητα */
+        margin-bottom: 14px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
         text-align: left !important;
@@ -1026,12 +930,17 @@ body.dark-theme .correct-answer-box {
         display: block !important;
         clear: both !important;
         box-shadow: 0 3px 10px rgba(2, 132, 199, 0.1) !important;
+        box-sizing: border-box !important;
     }
 
     #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
     #quick-correct-answer-text p[style*="font-size:1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
     .new-book-pure-container p[style*="font-size: 1.5em"] *,
     .new-book-pure-container p[style*="font-size:1.5em"] *,
+    .new-book-pure-container p[style*="font-size: 1.33em"] *,
+    .new-book-pure-container p[style*="font-size:1.33em"] *,
     #quick-correct-answer-text h1 *,
     #quick-correct-answer-text h2 *,
     .new-book-pure-container h1 *,
@@ -1039,18 +948,18 @@ body.dark-theme .correct-answer-box {
     .stage-banner * {
         color: #0369a1 !important;
         font-size: inherit !important;
-        font-weight: 850 !important;
+        font-weight: 800 !important;
     }
 
-    /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Μωβ Πλαίσιο) */
-    #quick-correct-answer-text p[style*="font-size: 1.33em"],
-    #quick-correct-answer-text p[style*="font-size:1.33em"],
-    .new-book-pure-container p[style*="font-size: 1.33em"],
-    .new-book-pure-container p[style*="font-size:1.33em"],
+    /* 2ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ (Μωβ Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.17em"],
+    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    .new-book-pure-container p[style*="font-size: 1.17em"],
+    .new-book-pure-container p[style*="font-size:1.17em"],
     #quick-correct-answer-text h3,
     .new-book-pure-container h3,
     .section-banner {
-        font-size: 1.15rem !important; /* ~18px */
+        font-size: 1.12rem !important; /* ~18px */
         font-weight: 750 !important;
         color: #581c87 !important;
         background: #f3e8ff !important;
@@ -1058,7 +967,7 @@ body.dark-theme .correct-answer-box {
         border-left: 5.5px solid #9333ea !important;
         border-radius: 8px !important;
         padding: 9px 18px !important;
-        margin-top: 24px !important;
+        margin-top: 24px !important; /* Κενή γραμμή πριν από κάθε υποενότητα */
         margin-bottom: 12px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -1067,12 +976,13 @@ body.dark-theme .correct-answer-box {
         display: block !important;
         clear: both !important;
         box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08) !important;
+        box-sizing: border-box !important;
     }
 
-    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
-    .new-book-pure-container p[style*="font-size: 1.33em"] *,
-    .new-book-pure-container p[style*="font-size:1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
+    .new-book-pure-container p[style*="font-size: 1.17em"] *,
+    .new-book-pure-container p[style*="font-size:1.17em"] *,
     #quick-correct-answer-text h3 *,
     .new-book-pure-container h3 *,
     .section-banner * {
@@ -1080,13 +990,9 @@ body.dark-theme .correct-answer-box {
         font-size: inherit !important;
     }
 
-    /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Λεβάντα / Indigo Πλαίσιο) */
-    #quick-correct-answer-text p[style*="font-size: 1.17em"],
-    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟ-ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Λεβάντα / Indigo Πλαίσιο) */
     #quick-correct-answer-text p[style*="font-size: 1.08em"],
     #quick-correct-answer-text p[style*="font-size:1.08em"],
-    .new-book-pure-container p[style*="font-size: 1.17em"],
-    .new-book-pure-container p[style*="font-size:1.17em"],
     .new-book-pure-container p[style*="font-size: 1.08em"],
     .new-book-pure-container p[style*="font-size:1.08em"],
     #quick-correct-answer-text h4,
@@ -1105,7 +1011,7 @@ body.dark-theme .correct-answer-box {
         border-left: 4.5px solid #6366f1 !important;
         border-radius: 7px !important;
         padding: 7px 15px !important;
-        margin-top: 20px !important;
+        margin-top: 20px !important; /* Κενή γραμμή πριν από κάθε παράγραφο/υποδιαίρεση */
         margin-bottom: 10px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -1114,14 +1020,11 @@ body.dark-theme .correct-answer-box {
         display: block !important;
         clear: both !important;
         box-shadow: 0 2px 6px rgba(99, 102, 241, 0.07) !important;
+        box-sizing: border-box !important;
     }
 
-    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
-    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
     #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
     #quick-correct-answer-text p[style*="font-size:1.08em"] *,
-    .new-book-pure-container p[style*="font-size: 1.17em"] *,
-    .new-book-pure-container p[style*="font-size:1.17em"] *,
     .new-book-pure-container p[style*="font-size: 1.08em"] *,
     .new-book-pure-container p[style*="font-size:1.08em"] *,
     #quick-correct-answer-text h4 *,
@@ -1136,9 +1039,29 @@ body.dark-theme .correct-answer-box {
         font-size: inherit !important;
     }
 
-    </style>
+    /* Bullet and Number Spans (•, ◦, ▪, 1., α), i)): perfectly anchored, no overlapping */
+    #quick-correct-answer-text li > span:first-child,
+    .new-book-pure-container li > span:first-child {
+        position: static !important;
+        display: inline-block !important;
+        min-width: 1.35em !important;
+        margin-right: 6px !important;
+        text-align: left !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+    }
 
-    </head>
+    /* Full justification across all paragraphs */
+    #quick-correct-answer-text p,
+    .new-book-pure-container p {
+        font-family: inherit !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        color: #0f172a !important;
+    }
+
+</style>
+</head>
 <body class="light-theme" style="--c1: #d35400; --c2: #f39c12; --c3: #f1c40f; --c4: #e67e22;">
 <div class="modern-shape modern-shape-1"></div>
 <div class="modern-shape modern-shape-2"></div>
