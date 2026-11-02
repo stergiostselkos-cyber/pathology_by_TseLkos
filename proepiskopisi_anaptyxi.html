@@ -660,6 +660,18 @@
         document.getElementById('total-badge').innerText = `${allQuestions.length} Θέματα`;
         filteredQuestions = allQuestions;
 
+        // Support deep-linking from search or direct links via ?qId=... or ?index=...
+        const urlParams = new URLSearchParams(window.location.search);
+        const qIdParam = urlParams.get('qId');
+        const idxParam = urlParams.get('index');
+        if (qIdParam) {
+            const foundIdx = allQuestions.findIndex(q => String(q.id) === String(qIdParam));
+            if (foundIdx !== -1) currentIndex = foundIdx;
+        } else if (idxParam) {
+            const pIdx = parseInt(idxParam);
+            if (!isNaN(pIdx) && pIdx >= 0 && pIdx < allQuestions.length) currentIndex = pIdx;
+        }
+
         updateJumpSelect();
         renderCardView();
         setupSearch();

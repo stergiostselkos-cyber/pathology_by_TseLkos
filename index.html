@@ -820,15 +820,14 @@
             <div class="card essay">
                 <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
                 <h2>Θέματα Ανάπτυξης</h2>
-                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
-                <p>Μελετήστε δομημένα τις ερωτήσεις ανάπτυξης του βιβλίου, με έμφαση στα κρίσιμα σημεία. Δοκιμάστε τις γνώσεις σας βήμα-βήμα.</p>
+                <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (609 ΘΕΜΑΤΑ)</span></div>
+                <p>Πλήρης επιστημονική &amp; κλινική ανάλυση όλων των θεμάτων εξετάσεων 2013-2023 με δομημένη σύνοψη, παραθέσεις και εκτενές κείμενο.</p>
                 <form onsubmit="startEssay(event)" style="width: 100%;">
                     <select id="essay-selector" class="fancy-select" required>
-                        <option value="" disabled selected>Επίλεξε Τράπεζα Θεμάτων...</option>
-                        <option value="new_bank">ΟΛΑ ΤΑ ΘΕΜΑΤΑ ΑΝΑΠΤΥΞΗΣ 2013-2023 (609 Θέματα - Flashcards &amp; Μελέτη)</option>
-                        <option value="proepiskopisi">📖 Πλήρης Προεπισκόπηση &amp; Εκτενής Ανάλυση (609 Θέματα)</option>
+                        <option value="proepiskopisi" selected>📖 Θέματα Εξετάσεων Ανάπτυξης 2013-2023 (609 Θέματα - Νέα Έκδοση &amp; Ανάλυση)</option>
+                        <option value="flashcards">🗂️ Προβολή Flashcard (study.html)</option>
                     </select>
-                    <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Ξεκίνα Μελέτη</button>
+                    <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Ανάπτυξης</button>
                 </form>
             </div>
 
@@ -934,12 +933,13 @@
         });
     
                 function startEssay(e) {
-            e.preventDefault();
-            const bank = document.getElementById('essay-selector').value;
-            if (bank === 'proepiskopisi') {
-                window.location.href = 'proepiskopisi_anaptyxi.html?v=' + new Date().getTime();
+            if (e) e.preventDefault();
+            const sel = document.getElementById('essay-selector');
+            const bank = sel ? sel.value : 'proepiskopisi';
+            if (bank === 'flashcards' || bank === 'old_study') {
+                window.location.href = 'study.html?bank=new_bank&v=' + new Date().getTime();
             } else {
-                window.location.href = 'study.html?v=' + new Date().getTime() + '&bank=' + bank;
+                window.location.href = 'proepiskopisi_anaptyxi.html?v=' + new Date().getTime();
             }
         }
 
