@@ -4324,3 +4324,52 @@ body.dark-theme .essay-question-container p {
     line-height: 1.5 !important;
     clear: both !important;
 }
+
+
+/* Level 1: Main Section / Answer */
+.banner-level-1-anaptyxi {
+    font-size: 1.35rem !important;
+    font-weight: 850 !important;
+    color: #064e3b !important;
+    background: #ecfdf5 !important;
+    border: 1.5px solid #a7f3d0 !important;
+    border-left: 7px solid #059669 !important;
+    border-radius: 9px !important;
+    padding: 12px 20px !important;
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
+    display: block !important;
+    clear: both !important;
+}
+
+/* Level 2: Section */
+.banner-level-2-anaptyxi {
+    font-size: 1.15rem !important;
+    font-weight: 750 !important;
+    color: #713f12 !important;
+    background: #fef9c3 !important;
+    border: 1px solid #fde047 !important;
+    border-left: 5.5px solid #eab308 !important;
+    border-radius: 8px !important;
+    padding: 9px 18px !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    clear: both !important;
+}
+
+/* Level 3: Subsection */
+.banner-level-3-anaptyxi {
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    color: #9a3412 !important;
+    background: #fff7ed !important;
+    border: 1px solid #fed7aa !important;
+    border-left: 4.5px solid #f97316 !important;
+    border-radius: 7px !important;
+    padding: 7px 15px !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+    clear: both !important;
+}

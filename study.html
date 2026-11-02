@@ -217,7 +217,133 @@
       box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
     }
 
-</style>
+
+        /* =====================================================================
+           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
+           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
+           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
+           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
+           ===================================================================== */
+
+        .q-badge.category {
+            background: #ecfdf5 !important;
+            color: #064e3b !important;
+            border: 1px solid #a7f3d0 !important;
+            font-weight: 800 !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
+        .content-body p[style*="font-size: 1.5em"],
+        .content-body p[style*="font-size:1.5em"],
+        .content-body h1,
+        .content-body h2,
+        .content-body .stage-banner {
+            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
+            font-weight: 850 !important;
+            color: #064e3b !important;
+            background: #ecfdf5 !important;
+            border: 1.5px solid #a7f3d0 !important;
+            border-left: 7px solid #059669 !important;
+            border-radius: 9px !important;
+            padding: 12px 20px !important;
+            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
+            margin-bottom: 16px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.45 !important;
+            letter-spacing: -0.2px !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
+        }
+
+        .content-body p[style*="font-size: 1.5em"] *,
+        .content-body p[style*="font-size:1.5em"] *,
+        .content-body h1 *,
+        .content-body h2 *,
+        .content-body .stage-banner * {
+            color: #064e3b !important;
+            font-size: inherit !important;
+            font-weight: 850 !important;
+        }
+
+        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
+        .content-body p[style*="font-size: 1.33em"],
+        .content-body p[style*="font-size:1.33em"],
+        .content-body h3,
+        .content-body .section-banner {
+            font-size: 1.15rem !important; /* ~18px */
+            font-weight: 750 !important;
+            color: #713f12 !important;
+            background: #fef9c3 !important;
+            border: 1px solid #fde047 !important;
+            border-left: 5.5px solid #eab308 !important;
+            border-radius: 8px !important;
+            padding: 9px 18px !important;
+            margin-top: 24px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 12px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
+        }
+
+        .content-body p[style*="font-size: 1.33em"] *,
+        .content-body p[style*="font-size:1.33em"] *,
+        .content-body h3 *,
+        .content-body .section-banner * {
+            color: #713f12 !important;
+            font-size: inherit !important;
+        }
+
+        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
+        .content-body p[style*="font-size: 1.17em"],
+        .content-body p[style*="font-size:1.17em"],
+        .content-body p[style*="font-size: 1.08em"],
+        .content-body p[style*="font-size:1.08em"],
+        .content-body h4,
+        .content-body h5,
+        .content-body h6,
+        .content-body .thematic-banner,
+        .content-body .subsection-banner {
+            font-size: 1.02rem !important; /* ~16px */
+            font-weight: 700 !important;
+            color: #9a3412 !important;
+            background: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-left: 4.5px solid #f97316 !important;
+            border-radius: 7px !important;
+            padding: 7px 15px !important;
+            margin-top: 20px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 10px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
+        }
+
+        .content-body p[style*="font-size: 1.17em"] *,
+        .content-body p[style*="font-size:1.17em"] *,
+        .content-body p[style*="font-size: 1.08em"] *,
+        .content-body p[style*="font-size:1.08em"] *,
+        .content-body h4 *,
+        .content-body h5 *,
+        .content-body h6 *,
+        .content-body .thematic-banner *,
+        .content-body .subsection-banner * {
+            color: #9a3412 !important;
+            font-size: inherit !important;
+        }
+
+    </style>
 
 <style id="dynamic-theme">
 :root {
@@ -227,7 +353,133 @@
   --bg-gradient: radial-gradient(circle at 50% 0%, #064e3b 0%, #111827 80%);
   --bg-color: #111827;
 }
-</style>
+
+        /* =====================================================================
+           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
+           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
+           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
+           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
+           ===================================================================== */
+
+        .q-badge.category {
+            background: #ecfdf5 !important;
+            color: #064e3b !important;
+            border: 1px solid #a7f3d0 !important;
+            font-weight: 800 !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
+        .content-body p[style*="font-size: 1.5em"],
+        .content-body p[style*="font-size:1.5em"],
+        .content-body h1,
+        .content-body h2,
+        .content-body .stage-banner {
+            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
+            font-weight: 850 !important;
+            color: #064e3b !important;
+            background: #ecfdf5 !important;
+            border: 1.5px solid #a7f3d0 !important;
+            border-left: 7px solid #059669 !important;
+            border-radius: 9px !important;
+            padding: 12px 20px !important;
+            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
+            margin-bottom: 16px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.45 !important;
+            letter-spacing: -0.2px !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
+        }
+
+        .content-body p[style*="font-size: 1.5em"] *,
+        .content-body p[style*="font-size:1.5em"] *,
+        .content-body h1 *,
+        .content-body h2 *,
+        .content-body .stage-banner * {
+            color: #064e3b !important;
+            font-size: inherit !important;
+            font-weight: 850 !important;
+        }
+
+        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
+        .content-body p[style*="font-size: 1.33em"],
+        .content-body p[style*="font-size:1.33em"],
+        .content-body h3,
+        .content-body .section-banner {
+            font-size: 1.15rem !important; /* ~18px */
+            font-weight: 750 !important;
+            color: #713f12 !important;
+            background: #fef9c3 !important;
+            border: 1px solid #fde047 !important;
+            border-left: 5.5px solid #eab308 !important;
+            border-radius: 8px !important;
+            padding: 9px 18px !important;
+            margin-top: 24px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 12px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
+        }
+
+        .content-body p[style*="font-size: 1.33em"] *,
+        .content-body p[style*="font-size:1.33em"] *,
+        .content-body h3 *,
+        .content-body .section-banner * {
+            color: #713f12 !important;
+            font-size: inherit !important;
+        }
+
+        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
+        .content-body p[style*="font-size: 1.17em"],
+        .content-body p[style*="font-size:1.17em"],
+        .content-body p[style*="font-size: 1.08em"],
+        .content-body p[style*="font-size:1.08em"],
+        .content-body h4,
+        .content-body h5,
+        .content-body h6,
+        .content-body .thematic-banner,
+        .content-body .subsection-banner {
+            font-size: 1.02rem !important; /* ~16px */
+            font-weight: 700 !important;
+            color: #9a3412 !important;
+            background: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-left: 4.5px solid #f97316 !important;
+            border-radius: 7px !important;
+            padding: 7px 15px !important;
+            margin-top: 20px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 10px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
+        }
+
+        .content-body p[style*="font-size: 1.17em"] *,
+        .content-body p[style*="font-size:1.17em"] *,
+        .content-body p[style*="font-size: 1.08em"] *,
+        .content-body p[style*="font-size:1.08em"] *,
+        .content-body h4 *,
+        .content-body h5 *,
+        .content-body h6 *,
+        .content-body .thematic-banner *,
+        .content-body .subsection-banner * {
+            color: #9a3412 !important;
+            font-size: inherit !important;
+        }
+
+    </style>
 
 
 
@@ -289,7 +541,133 @@ body.dark-theme .correct-answer-box {
     max-width: 100% !important; 
     word-break: normal !important; 
 }
-</style>
+
+        /* =====================================================================
+           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
+           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
+           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
+           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
+           ===================================================================== */
+
+        .q-badge.category {
+            background: #ecfdf5 !important;
+            color: #064e3b !important;
+            border: 1px solid #a7f3d0 !important;
+            font-weight: 800 !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
+        .content-body p[style*="font-size: 1.5em"],
+        .content-body p[style*="font-size:1.5em"],
+        .content-body h1,
+        .content-body h2,
+        .content-body .stage-banner {
+            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
+            font-weight: 850 !important;
+            color: #064e3b !important;
+            background: #ecfdf5 !important;
+            border: 1.5px solid #a7f3d0 !important;
+            border-left: 7px solid #059669 !important;
+            border-radius: 9px !important;
+            padding: 12px 20px !important;
+            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
+            margin-bottom: 16px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.45 !important;
+            letter-spacing: -0.2px !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
+        }
+
+        .content-body p[style*="font-size: 1.5em"] *,
+        .content-body p[style*="font-size:1.5em"] *,
+        .content-body h1 *,
+        .content-body h2 *,
+        .content-body .stage-banner * {
+            color: #064e3b !important;
+            font-size: inherit !important;
+            font-weight: 850 !important;
+        }
+
+        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
+        .content-body p[style*="font-size: 1.33em"],
+        .content-body p[style*="font-size:1.33em"],
+        .content-body h3,
+        .content-body .section-banner {
+            font-size: 1.15rem !important; /* ~18px */
+            font-weight: 750 !important;
+            color: #713f12 !important;
+            background: #fef9c3 !important;
+            border: 1px solid #fde047 !important;
+            border-left: 5.5px solid #eab308 !important;
+            border-radius: 8px !important;
+            padding: 9px 18px !important;
+            margin-top: 24px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 12px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
+        }
+
+        .content-body p[style*="font-size: 1.33em"] *,
+        .content-body p[style*="font-size:1.33em"] *,
+        .content-body h3 *,
+        .content-body .section-banner * {
+            color: #713f12 !important;
+            font-size: inherit !important;
+        }
+
+        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
+        .content-body p[style*="font-size: 1.17em"],
+        .content-body p[style*="font-size:1.17em"],
+        .content-body p[style*="font-size: 1.08em"],
+        .content-body p[style*="font-size:1.08em"],
+        .content-body h4,
+        .content-body h5,
+        .content-body h6,
+        .content-body .thematic-banner,
+        .content-body .subsection-banner {
+            font-size: 1.02rem !important; /* ~16px */
+            font-weight: 700 !important;
+            color: #9a3412 !important;
+            background: #fff7ed !important;
+            border: 1px solid #fed7aa !important;
+            border-left: 4.5px solid #f97316 !important;
+            border-radius: 7px !important;
+            padding: 7px 15px !important;
+            margin-top: 20px !important; /* Κενή γραμμή πριν */
+            margin-bottom: 10px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            line-height: 1.5 !important;
+            display: block !important;
+            clear: both !important;
+            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
+        }
+
+        .content-body p[style*="font-size: 1.17em"] *,
+        .content-body p[style*="font-size:1.17em"] *,
+        .content-body p[style*="font-size: 1.08em"] *,
+        .content-body p[style*="font-size:1.08em"] *,
+        .content-body h4 *,
+        .content-body h5 *,
+        .content-body h6 *,
+        .content-body .thematic-banner *,
+        .content-body .subsection-banner * {
+            color: #9a3412 !important;
+            font-size: inherit !important;
+        }
+
+    </style>
 
     <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
   <link rel="stylesheet" href="image_zoom_viewer.css">
@@ -403,7 +781,7 @@ body.dark-theme .correct-answer-box {
 
 <div class="revealed-block collapsed" id="quick-revealed-block">
 <div class="correct-answer-box">
-<h4 style="opacity: 0.9">Σύντομη Απάντηση:</h4>
+<h3 style="font-size: 1.35rem; font-weight: 850; color: #064e3b; background: #ecfdf5; border: 1.5px solid #a7f3d0; border-left: 7px solid #059669; border-radius: 9px; padding: 12px 18px; margin: 16px 0;">💡 Σύντομη Απάντηση &amp; Σύνοψη:</h3>
 <p id="quick-correct-answer-text">Φόρτωση σύντομης απάντησης...</p>
 </div>
 <div class="mnemonic-box" id="quick-mnemonic-box">
@@ -447,15 +825,7 @@ body.dark-theme .correct-answer-box {
 <script>
         const urlParams = new URLSearchParams(window.location.search);
     const bank = urlParams.get('bank');
-    if (bank === 'larnaka') {
-        window.location.href = 'LARNAKA/index.html';
-    } else if (bank === 'larnaka5') {
-        window.location.href = 'LARNAKA_PART_05/index.html';
-    } else if (bank === 'larnaka6') {
-        window.location.href = 'LARNAKA_PART_06/index.html';
-    } else if (bank === 'larnaka7') {
-        window.location.href = 'LARNAKA_PART_07/index.html';
-    }
+    
     let scriptFile = 'data/anaptyxi_2026.js?v=20261015';
     
     if (bank === 'new_bank') {
