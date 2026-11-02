@@ -894,7 +894,7 @@ function revealQuickAnswer() {
     }
 
     // Cleanly remove <!-- SPLIT --> comment so text flows naturally
-    contentHtml = contentHtml.replace(/<!--\s*SPLIT\s*-->/g, '');
+    contentHtml = contentHtml.replace(/<!--\s*SPLIT\s*-->/g, '').replace(/\u25CB/g, '\u25E6');
 
     if (quickCorrectAnswerText) {
         quickCorrectAnswerText.innerHTML = contentHtml;

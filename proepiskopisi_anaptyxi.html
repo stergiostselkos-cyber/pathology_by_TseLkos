@@ -865,7 +865,7 @@
             if (fullHtml) fullHtml += '<hr class="section-separator">';
             fullHtml += exp;
         }
-        return fullHtml;
+        return fullHtml.replace(/\u25CB/g, '\u25E6');
     }
 
     function renderCardView() {
