@@ -190,14 +190,13 @@
     /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): perfectly anchored at left: 0 */
     #quick-correct-answer-text li > span:first-child,
     .new-book-pure-container li > span:first-child {
-      position: absolute !important;
-      left: 0 !important;
-      top: 0 !important;
+      position: static !important;
       display: inline-block !important;
+      min-width: 1.35em !important;
+      margin-right: 6px !important;
       text-align: left !important;
       font-weight: 700 !important;
       color: #0f172a !important;
-      width: 1.15em !important;
     }
 
     /* Navigation button styling */
@@ -315,7 +314,119 @@
       border: 2.5px solid var(--primary-color) !important;
       color: var(--primary-color) !important;
     }
-</style>
+
+    /* =====================================================================
+       ΕΝΟΤΗΤΕΣ & ΥΠΟΕΝΟΤΗΤΕΣ - ΑΙΣΘΗΤΙΚΗ ΠΛΑΙΣΙΩΝ ΛΑΡΝΑΚΑΣ
+       Νέο Βιβλίο: Πολύ Ανοιχτό Θαλασσί (Ενότητες) & Μωβ (Υποενότητες)
+       ===================================================================== */
+
+    /* 1ο Χρώμα: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί / Sky Blue Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.5em"],
+    #quick-correct-answer-text p[style*="font-size:1.5em"],
+    #quick-correct-answer-text p[style*="font-size: 1.33em"],
+    #quick-correct-answer-text p[style*="font-size:1.33em"],
+    .new-book-pure-container p[style*="font-size: 1.5em"],
+    .new-book-pure-container p[style*="font-size:1.5em"],
+    .new-book-pure-container p[style*="font-size: 1.33em"],
+    .new-book-pure-container p[style*="font-size:1.33em"],
+    #quick-correct-answer-text h1,
+    #quick-correct-answer-text h2,
+    #quick-correct-answer-text h3,
+    .new-book-pure-container h1,
+    .new-book-pure-container h2,
+    .new-book-pure-container h3,
+    .stage-banner {
+        font-size: 12.5pt !important;
+        font-weight: 800 !important;
+        color: #0369a1 !important;
+        background: #e0f2fe !important; /* πολύ ανοιχτό θαλασσί */
+        border: 1px solid #bae6fd !important;
+        border-left: 6px solid #0284c7 !important;
+        border-radius: 8px !important;
+        padding: 10px 18px !important;
+        margin-top: 28px !important; /* Κενή γραμμή πριν από κάθε κεφάλαιο / ενότητα */
+        margin-bottom: 14px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
+    .new-book-pure-container p[style*="font-size: 1.5em"] *,
+    .new-book-pure-container p[style*="font-size:1.5em"] *,
+    .new-book-pure-container p[style*="font-size: 1.33em"] *,
+    .new-book-pure-container p[style*="font-size:1.33em"] *,
+    #quick-correct-answer-text h1 *,
+    #quick-correct-answer-text h2 *,
+    #quick-correct-answer-text h3 *,
+    .new-book-pure-container h1 *,
+    .new-book-pure-container h2 *,
+    .new-book-pure-container h3 *,
+    .stage-banner * {
+        color: #0369a1 !important;
+    }
+
+    /* 2ο Χρώμα: ΥΠΟΕΝΟΤΗΤΕΣ (Μωβ Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.17em"],
+    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    #quick-correct-answer-text p[style*="font-size: 1.08em"],
+    #quick-correct-answer-text p[style*="font-size:1.08em"],
+    .new-book-pure-container p[style*="font-size: 1.17em"],
+    .new-book-pure-container p[style*="font-size:1.17em"],
+    .new-book-pure-container p[style*="font-size: 1.08em"],
+    .new-book-pure-container p[style*="font-size:1.08em"],
+    #quick-correct-answer-text h4,
+    #quick-correct-answer-text h5,
+    #quick-correct-answer-text h6,
+    .new-book-pure-container h4,
+    .new-book-pure-container h5,
+    .new-book-pure-container h6,
+    .thematic-banner {
+        font-size: 11.5pt !important;
+        font-weight: 700 !important;
+        color: #581c87 !important;
+        background: #f3e8ff !important; /* απαλό μωβ */
+        border: 1px solid #d8b4fe !important;
+        border-left: 5px solid #9333ea !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        margin-top: 22px !important; /* Κενή γραμμή πριν από κάθε υποενότητα */
+        margin-bottom: 12px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.08em"] *,
+    .new-book-pure-container p[style*="font-size: 1.17em"] *,
+    .new-book-pure-container p[style*="font-size:1.17em"] *,
+    .new-book-pure-container p[style*="font-size: 1.08em"] *,
+    .new-book-pure-container p[style*="font-size:1.08em"] *,
+    #quick-correct-answer-text h4 *,
+    #quick-correct-answer-text h5 *,
+    #quick-correct-answer-text h6 *,
+    .new-book-pure-container h4 *,
+    .new-book-pure-container h5 *,
+    .new-book-pure-container h6 *,
+    .thematic-banner * {
+        color: #581c87 !important;
+    }
+
+    </style>
 
 <style id="dynamic-theme">
 :root {
@@ -325,7 +436,119 @@
   --bg-gradient: radial-gradient(circle at 50% 0%, #78350f 0%, #111827 80%);
   --bg-color: #111827;
 }
-</style><link rel="stylesheet" href="modern-theme.css?v=20261101_v7_clean" />
+
+    /* =====================================================================
+       ΕΝΟΤΗΤΕΣ & ΥΠΟΕΝΟΤΗΤΕΣ - ΑΙΣΘΗΤΙΚΗ ΠΛΑΙΣΙΩΝ ΛΑΡΝΑΚΑΣ
+       Νέο Βιβλίο: Πολύ Ανοιχτό Θαλασσί (Ενότητες) & Μωβ (Υποενότητες)
+       ===================================================================== */
+
+    /* 1ο Χρώμα: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί / Sky Blue Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.5em"],
+    #quick-correct-answer-text p[style*="font-size:1.5em"],
+    #quick-correct-answer-text p[style*="font-size: 1.33em"],
+    #quick-correct-answer-text p[style*="font-size:1.33em"],
+    .new-book-pure-container p[style*="font-size: 1.5em"],
+    .new-book-pure-container p[style*="font-size:1.5em"],
+    .new-book-pure-container p[style*="font-size: 1.33em"],
+    .new-book-pure-container p[style*="font-size:1.33em"],
+    #quick-correct-answer-text h1,
+    #quick-correct-answer-text h2,
+    #quick-correct-answer-text h3,
+    .new-book-pure-container h1,
+    .new-book-pure-container h2,
+    .new-book-pure-container h3,
+    .stage-banner {
+        font-size: 12.5pt !important;
+        font-weight: 800 !important;
+        color: #0369a1 !important;
+        background: #e0f2fe !important; /* πολύ ανοιχτό θαλασσί */
+        border: 1px solid #bae6fd !important;
+        border-left: 6px solid #0284c7 !important;
+        border-radius: 8px !important;
+        padding: 10px 18px !important;
+        margin-top: 28px !important; /* Κενή γραμμή πριν από κάθε κεφάλαιο / ενότητα */
+        margin-bottom: 14px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
+    .new-book-pure-container p[style*="font-size: 1.5em"] *,
+    .new-book-pure-container p[style*="font-size:1.5em"] *,
+    .new-book-pure-container p[style*="font-size: 1.33em"] *,
+    .new-book-pure-container p[style*="font-size:1.33em"] *,
+    #quick-correct-answer-text h1 *,
+    #quick-correct-answer-text h2 *,
+    #quick-correct-answer-text h3 *,
+    .new-book-pure-container h1 *,
+    .new-book-pure-container h2 *,
+    .new-book-pure-container h3 *,
+    .stage-banner * {
+        color: #0369a1 !important;
+    }
+
+    /* 2ο Χρώμα: ΥΠΟΕΝΟΤΗΤΕΣ (Μωβ Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.17em"],
+    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    #quick-correct-answer-text p[style*="font-size: 1.08em"],
+    #quick-correct-answer-text p[style*="font-size:1.08em"],
+    .new-book-pure-container p[style*="font-size: 1.17em"],
+    .new-book-pure-container p[style*="font-size:1.17em"],
+    .new-book-pure-container p[style*="font-size: 1.08em"],
+    .new-book-pure-container p[style*="font-size:1.08em"],
+    #quick-correct-answer-text h4,
+    #quick-correct-answer-text h5,
+    #quick-correct-answer-text h6,
+    .new-book-pure-container h4,
+    .new-book-pure-container h5,
+    .new-book-pure-container h6,
+    .thematic-banner {
+        font-size: 11.5pt !important;
+        font-weight: 700 !important;
+        color: #581c87 !important;
+        background: #f3e8ff !important; /* απαλό μωβ */
+        border: 1px solid #d8b4fe !important;
+        border-left: 5px solid #9333ea !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        margin-top: 22px !important; /* Κενή γραμμή πριν από κάθε υποενότητα */
+        margin-bottom: 12px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.08em"] *,
+    .new-book-pure-container p[style*="font-size: 1.17em"] *,
+    .new-book-pure-container p[style*="font-size:1.17em"] *,
+    .new-book-pure-container p[style*="font-size: 1.08em"] *,
+    .new-book-pure-container p[style*="font-size:1.08em"] *,
+    #quick-correct-answer-text h4 *,
+    #quick-correct-answer-text h5 *,
+    #quick-correct-answer-text h6 *,
+    .new-book-pure-container h4 *,
+    .new-book-pure-container h5 *,
+    .new-book-pure-container h6 *,
+    .thematic-banner * {
+        color: #581c87 !important;
+    }
+
+    </style><link rel="stylesheet" href="modern-theme.css?v=20261101_v7_clean" />
 
 <style>
 
@@ -375,7 +598,119 @@ body.dark-theme .correct-answer-box {
     max-width: 100% !important; 
     word-break: normal !important; 
 }
-</style>
+
+    /* =====================================================================
+       ΕΝΟΤΗΤΕΣ & ΥΠΟΕΝΟΤΗΤΕΣ - ΑΙΣΘΗΤΙΚΗ ΠΛΑΙΣΙΩΝ ΛΑΡΝΑΚΑΣ
+       Νέο Βιβλίο: Πολύ Ανοιχτό Θαλασσί (Ενότητες) & Μωβ (Υποενότητες)
+       ===================================================================== */
+
+    /* 1ο Χρώμα: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί / Sky Blue Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.5em"],
+    #quick-correct-answer-text p[style*="font-size:1.5em"],
+    #quick-correct-answer-text p[style*="font-size: 1.33em"],
+    #quick-correct-answer-text p[style*="font-size:1.33em"],
+    .new-book-pure-container p[style*="font-size: 1.5em"],
+    .new-book-pure-container p[style*="font-size:1.5em"],
+    .new-book-pure-container p[style*="font-size: 1.33em"],
+    .new-book-pure-container p[style*="font-size:1.33em"],
+    #quick-correct-answer-text h1,
+    #quick-correct-answer-text h2,
+    #quick-correct-answer-text h3,
+    .new-book-pure-container h1,
+    .new-book-pure-container h2,
+    .new-book-pure-container h3,
+    .stage-banner {
+        font-size: 12.5pt !important;
+        font-weight: 800 !important;
+        color: #0369a1 !important;
+        background: #e0f2fe !important; /* πολύ ανοιχτό θαλασσί */
+        border: 1px solid #bae6fd !important;
+        border-left: 6px solid #0284c7 !important;
+        border-radius: 8px !important;
+        padding: 10px 18px !important;
+        margin-top: 28px !important; /* Κενή γραμμή πριν από κάθε κεφάλαιο / ενότητα */
+        margin-bottom: 14px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
+    .new-book-pure-container p[style*="font-size: 1.5em"] *,
+    .new-book-pure-container p[style*="font-size:1.5em"] *,
+    .new-book-pure-container p[style*="font-size: 1.33em"] *,
+    .new-book-pure-container p[style*="font-size:1.33em"] *,
+    #quick-correct-answer-text h1 *,
+    #quick-correct-answer-text h2 *,
+    #quick-correct-answer-text h3 *,
+    .new-book-pure-container h1 *,
+    .new-book-pure-container h2 *,
+    .new-book-pure-container h3 *,
+    .stage-banner * {
+        color: #0369a1 !important;
+    }
+
+    /* 2ο Χρώμα: ΥΠΟΕΝΟΤΗΤΕΣ (Μωβ Πλαίσιο) */
+    #quick-correct-answer-text p[style*="font-size: 1.17em"],
+    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    #quick-correct-answer-text p[style*="font-size: 1.08em"],
+    #quick-correct-answer-text p[style*="font-size:1.08em"],
+    .new-book-pure-container p[style*="font-size: 1.17em"],
+    .new-book-pure-container p[style*="font-size:1.17em"],
+    .new-book-pure-container p[style*="font-size: 1.08em"],
+    .new-book-pure-container p[style*="font-size:1.08em"],
+    #quick-correct-answer-text h4,
+    #quick-correct-answer-text h5,
+    #quick-correct-answer-text h6,
+    .new-book-pure-container h4,
+    .new-book-pure-container h5,
+    .new-book-pure-container h6,
+    .thematic-banner {
+        font-size: 11.5pt !important;
+        font-weight: 700 !important;
+        color: #581c87 !important;
+        background: #f3e8ff !important; /* απαλό μωβ */
+        border: 1px solid #d8b4fe !important;
+        border-left: 5px solid #9333ea !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        margin-top: 22px !important; /* Κενή γραμμή πριν από κάθε υποενότητα */
+        margin-bottom: 12px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+        line-height: 1.5 !important;
+        display: block !important;
+        clear: both !important;
+        box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08) !important;
+    }
+
+    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.08em"] *,
+    .new-book-pure-container p[style*="font-size: 1.17em"] *,
+    .new-book-pure-container p[style*="font-size:1.17em"] *,
+    .new-book-pure-container p[style*="font-size: 1.08em"] *,
+    .new-book-pure-container p[style*="font-size:1.08em"] *,
+    #quick-correct-answer-text h4 *,
+    #quick-correct-answer-text h5 *,
+    #quick-correct-answer-text h6 *,
+    .new-book-pure-container h4 *,
+    .new-book-pure-container h5 *,
+    .new-book-pure-container h6 *,
+    .thematic-banner * {
+        color: #581c87 !important;
+    }
+
+    </style>
 
     </head>
 <body class="light-theme" style="--c1: #d35400; --c2: #f39c12; --c3: #f1c40f; --c4: #e67e22;">
