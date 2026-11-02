@@ -879,6 +879,31 @@ function loadQuickRecallQuestion(index) {
 /**
  * Reveal Quick Recall answer
  */
+
+/**
+ * Format excerpts into collapsible Larnaka-style details container (hidden by default)
+ */
+function formatCollapsibleExcerpts(html) {
+    if (!html || typeof html !== 'string') return html;
+    
+    // Match the excerpt title paragraph and everything that follows until the end
+    const excerptRegex = /(<p[^>]*>\s*<strong>\s*Παράθεση\s+Πρωτότυπου\s+Κειμένου\s+Βιβλίου\s*<\/strong>\s*<\/p>)([\s\S]*)$/i;
+    
+    return html.replace(excerptRegex, function(match, header, innerContent) {
+        return '<div class="larnaka-quotes-container new-book-quotes-container" style="margin-top:28px; padding:16px 20px; background:rgba(241, 245, 249, 0.88); border:1.5px dashed #cbd5e1; border-radius:12px;">' +
+               '  <details class="larnaka-quotes-details">' +
+               '    <summary style="font-weight:800; font-size:1.02rem; color:#0284c7; cursor:pointer; outline:none; padding-bottom:6px; user-select:none; display:flex; align-items:center; gap:8px;">' +
+               '      <span>📚 Παράθεση Πρωτότυπου Κειμένου Βιβλίου</span>' +
+               '      <span class="quotes-toggle-hint" style="font-size:0.82rem; color:#64748b; font-weight:600; margin-left:auto;">(Κλικ για προβολή / απόκρυψη)</span>' +
+               '    </summary>' +
+               '    <div class="quotes-content" style="margin-top:14px; font-size:0.92rem; line-height:1.55; color:#334155;">' +
+               innerContent.trim() +
+               '    </div>' +
+               '  </details>' +
+               '</div>';
+    });
+}
+
 function revealQuickAnswer() {
     const question = flashcardQuestions[currentQuickIndex];
     if (!question) return;
@@ -896,7 +921,11 @@ function revealQuickAnswer() {
     // Cleanly remove <!-- SPLIT --> comment so text flows naturally
     // Cleanly remove <!-- SPLIT --> comment so text flows naturally
     contentHtml = contentHtml.replace(/<!--\s*SPLIT\s*-->/g, '').replace(/\u25CB/g, '\u25E6');
-    // Ensure 'ΑΠΑΝΤΗΣΗ' header has proper modern styling class
+    
+    // Transform excerpt into collapsible container (hidden by default like in Larnaka)
+    contentHtml = formatCollapsibleExcerpts(contentHtml);
+    
+    // Ensure 'ΑΠΑΝΤΗΣΗ' header has proper styling (clean, large text without redundant blue frame)
     contentHtml = contentHtml.replace(/<p style=['"][^'"]*font-size:\s*0\.85em[^'"]*['"]><strong>ΑΠΑΝΤΗΣΗ<\/strong><\/p>/gi, 
         '<p class="new-book-answer-header"><strong>ΑΠΑΝΤΗΣΗ</strong></p>');
 

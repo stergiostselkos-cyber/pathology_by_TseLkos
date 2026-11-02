@@ -836,8 +836,8 @@
 <style id="new-book-3tier-and-answer-styles">
 
     /* =====================================================================
-       PROMINENT ANSWER BADGE ("ΑΠΑΝΤΗΣΗ")
-       Guarantees "ΑΠΑΝΤΗΣΗ" is large, bold, prominent and never tiny/faded
+       CLEAN, LARGE ANSWER HEADER ("ΑΠΑΝΤΗΣΗ")
+       Pure typography without any redundant blue frame, box, or background
        ===================================================================== */
     #quick-correct-answer-text p[style*="font-size: 0.85em"],
     #quick-correct-answer-text p[style*="font-size:0.85em"],
@@ -846,20 +846,20 @@
     .new-book-pure-container p[style*="font-size:0.85em"],
     .new-book-pure-container p[style*="0.85em"],
     .new-book-answer-header {
-        font-size: 1.35rem !important; /* ~21.5px - Large and Prominent */
+        font-size: 1.35rem !important; /* ~21.5px - Large, Prominent and Clear */
         font-weight: 850 !important;
-        color: #0369a1 !important;
-        background: #e0f2fe !important;
-        border: 1.5px solid #bae6fd !important;
-        border-left: 7px solid #0284c7 !important;
-        border-radius: 9px !important;
-        padding: 10px 22px !important;
-        margin: 14px 0 22px 0 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        letter-spacing: 0.06em !important;
+        color: #0f172a !important;
+        background: transparent !important;
+        border: none !important;
+        border-left: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 6px 0 16px 0 !important;
+        display: block !important;
+        align-items: initial !important;
+        letter-spacing: 0.05em !important;
         opacity: 1 !important;
-        box-shadow: 0 3px 10px rgba(2, 132, 199, 0.12) !important;
+        box-shadow: none !important;
         text-align: left !important;
         box-sizing: border-box !important;
     }
@@ -869,37 +869,37 @@
     .new-book-answer-header * {
         font-size: 1.35rem !important;
         font-weight: 850 !important;
-        color: #0369a1 !important;
-        letter-spacing: 0.06em !important;
+        color: #0f172a !important;
+        letter-spacing: 0.05em !important;
         opacity: 1 !important;
     }
 
     body.dark-theme #quick-correct-answer-text p[style*="0.85em"],
     body.dark-theme .new-book-pure-container p[style*="0.85em"],
     body.dark-theme .new-book-answer-header {
-        background: #0f172a !important;
-        border-color: #0369a1 !important;
-        border-left-color: #38bdf8 !important;
-        color: #38bdf8 !important;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4) !important;
+        background: transparent !important;
+        border: none !important;
+        border-left: none !important;
+        color: #f8fafc !important;
+        box-shadow: none !important;
     }
 
     body.dark-theme #quick-correct-answer-text p[style*="0.85em"] *,
     body.dark-theme .new-book-pure-container p[style*="0.85em"] *,
     body.dark-theme .new-book-answer-header * {
-        color: #38bdf8 !important;
+        color: #f8fafc !important;
         opacity: 1 !important;
     }
 
     /* =====================================================================
        ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΝΕΟ ΒΙΒΛΙΟ
-       1ο Επίπεδο: Ενότητες & Κεφάλαια -> Πολύ Ανοιχτό Θαλασσί (Μεγάλο)
-       2ο Επίπεδο: Υποενότητες -> Μωβ (Μεσαίο)
-       3ο Επίπεδο: Υπο-υποενότητες & Παράγραφοι -> Απαλό Λεβάντα / Indigo
-       + Κενή γραμμή πριν από κάθε κεφάλαιο, ενότητα, υποενότητα (margin-top: 28px - 32px)
+       1ο Επίπεδο: Ενότητες & Κεφάλαια -> Απαλό Θαλασσί-Μωβ (Lavender)
+       2ο Επίπεδο: Υποενότητες -> Μωβ (Medium Purple)
+       3ο Επίπεδο: Υπο-υποενότητες & Παράγραφοι -> Απαλό Indigo / Λεβάντα
+       + Κενή γραμμή πριν από κάθε κεφάλαιο, ενότητα, υποενότητα (margin-top: 24px - 30px)
        ===================================================================== */
 
-    /* 1ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Πολύ Ανοιχτό Θαλασσί - Μεγάλο) */
+    /* 1ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΚΕΦΑΛΑΙΑ (Απαλό Θαλασσί-Μωβ / Soft Lavender) */
     #quick-correct-answer-text p[style*="font-size: 1.5em"],
     #quick-correct-answer-text p[style*="font-size:1.5em"],
     #quick-correct-answer-text p[style*="font-size: 1.33em"],
@@ -915,10 +915,10 @@
     .stage-banner {
         font-size: 1.25rem !important; /* ~20px */
         font-weight: 800 !important;
-        color: #0369a1 !important;
-        background: #e0f2fe !important;
-        border: 1.5px solid #bae6fd !important;
-        border-left: 6.5px solid #0284c7 !important;
+        color: #4c1d95 !important;
+        background: #f5f3ff !important; /* soft thalassi-purple / lavender */
+        border: 1px solid #ddd6fe !important;
+        border-left: 6px solid #8b5cf6 !important;
         border-radius: 8px !important;
         padding: 10px 20px !important;
         margin-top: 30px !important; /* Κενή γραμμή πριν από κάθε ενότητα */
@@ -929,7 +929,7 @@
         line-height: 1.45 !important;
         display: block !important;
         clear: both !important;
-        box-shadow: 0 3px 10px rgba(2, 132, 199, 0.1) !important;
+        box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08) !important;
         box-sizing: border-box !important;
     }
 
@@ -946,7 +946,7 @@
     .new-book-pure-container h1 *,
     .new-book-pure-container h2 *,
     .stage-banner * {
-        color: #0369a1 !important;
+        color: #4c1d95 !important;
         font-size: inherit !important;
         font-weight: 800 !important;
     }
@@ -990,7 +990,7 @@
         font-size: inherit !important;
     }
 
-    /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟ-ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Λεβάντα / Indigo Πλαίσιο) */
+    /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟ-ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Indigo / Λεβάντα Πλαίσιο) */
     #quick-correct-answer-text p[style*="font-size: 1.08em"],
     #quick-correct-answer-text p[style*="font-size:1.08em"],
     .new-book-pure-container p[style*="font-size: 1.08em"],
@@ -1058,6 +1058,70 @@
         text-align: justify !important;
         text-justify: inter-word !important;
         color: #0f172a !important;
+    }
+
+    /* ==============================================================================
+       LARNAKA-STYLE COLLAPSIBLE QUOTES CONTAINER FOR NEW BOOK (ΑΠΟΚΡΥΨΗ ΠΑΡΑΘΕΣΕΩΝ)
+       ============================================================================== */
+    .larnaka-quotes-container,
+    .new-book-quotes-container {
+        margin-top: 28px !important;
+        padding: 16px 20px !important;
+        background: rgba(241, 245, 249, 0.88) !important;
+        border: 1.5px dashed #cbd5e1 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+        clear: both !important;
+    }
+
+    body.dark-theme .larnaka-quotes-container,
+    body.dark-theme .new-book-quotes-container {
+        background: rgba(15, 23, 42, 0.5) !important;
+        border-color: #334155 !important;
+    }
+
+    .larnaka-quotes-details {
+        cursor: pointer;
+    }
+
+    .larnaka-quotes-details summary {
+        font-size: 1.02rem !important;
+        font-weight: 800 !important;
+        color: #0284c7 !important;
+        padding-bottom: 6px !important;
+        outline: none !important;
+        user-select: none !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        border-bottom: 1px solid rgba(203, 213, 225, 0.6) !important;
+    }
+
+    body.dark-theme .larnaka-quotes-details summary {
+        color: #38bdf8 !important;
+        border-bottom-color: rgba(51, 65, 85, 0.6) !important;
+    }
+
+    .quotes-toggle-hint {
+        font-size: 0.82rem !important;
+        font-weight: 600 !important;
+        color: #64748b !important;
+        margin-left: auto !important;
+    }
+
+    body.dark-theme .quotes-toggle-hint {
+        color: #94a3b8 !important;
+    }
+
+    .quotes-content {
+        margin-top: 14px !important;
+        font-size: 0.92rem !important;
+        line-height: 1.55 !important;
+        color: #334155 !important;
+    }
+
+    body.dark-theme .quotes-content {
+        color: #cbd5e1 !important;
     }
 
 </style>
