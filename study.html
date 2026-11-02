@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="el">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -8,91 +7,99 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-GSSKTV6FKE');
 </script>
-
-    <script src="auth-guard.js"></script>
+<script src="auth-guard.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pathologia Quiz</title>
+<title>Pathologia Quiz — Θέματα Ανάπτυξης 2013-2023</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=20261021.final" rel="stylesheet"/>
+<link href="style.css?v=20261102.final" rel="stylesheet"/>
+<link href="modern-theme.css?v=20261102.final" rel="stylesheet"/>
+<link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261102.final"/>
+<link rel="stylesheet" href="image_zoom_viewer.css"/>
+
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
-      0% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
-      50% {
-        transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
-      }
-      100% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
+      0% { transform: scale(1); text-shadow: 0 0 8px rgba(16, 185, 129, 0.8); }
+      50% { transform: scale(1.08); text-shadow: 0 0 16px rgba(16, 185, 129, 1), 0 0 24px rgba(16, 185, 129, 0.9); }
+      100% { transform: scale(1); text-shadow: 0 0 8px rgba(16, 185, 129, 0.8); }
     }
     .author-tag {
       display: inline-block !important;
       animation: tselkosGlow 2s infinite ease-in-out !important;
     }
 
-    /* Quick Recall Section styling overrides */
-    /* Quick Recall Section styling overrides */
-    border: 2px solid var(--primary-hover) !important;
-      padding: 24px !important;
-      border-radius: 20px !important;
-      box-shadow: 0 10px 40px rgba(184, 134, 11, 0.2) !important;
+    /* Container: generous 1200px desktop width */
+    .app-container {
+      width: 100% !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 16px !important;
     }
 
-    /* Subfields inside container */
+    /* Quick Recall Workspace */
+    #quick-recall-view.view-panel {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+    }
+
+    /* Elegant Modern Dropdowns */
     #quick-recall-view .large-dropdown-select-btn {
-      background: #fffdf2 !important;
-      border: 2px solid #f2d974 !important;
-      color: #000000 !important;
-      border-radius: 12px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      color: #0f172a !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
+      padding: 14px 20px !important;
+      transition: all 0.2s ease !important;
+    }
+    #quick-recall-view .large-dropdown-select-btn:hover {
+      border-color: #10b981 !important;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.12) !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-label {
-      color: var(--primary-color) !important;
-      font-weight: 900 !important;
-      opacity: 1 !important;
-      font-size: 0.85rem !important;
-      letter-spacing: 0.5px !important;
+      color: #059669 !important;
+      font-weight: 800 !important;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.6px !important;
+      text-transform: uppercase !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-value {
-      color: #000000 !important;
-      font-weight: 800 !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
       font-size: 1.05rem !important;
     }
     #quick-recall-view .large-dropdown-select-btn .dropdown-arrow {
-      color: var(--primary-color) !important;
+      color: #059669 !important;
     }
 
-    /* Question display box */
+    /* Question Box: Clean, prominent, full justification */
     #quick-recall-view .topic-title-header {
-      background: #fffdf2 !important;
-      border: 2px solid #f2d974 !important;
-      border-left: 6px solid var(--primary-color) !important;
-      border-radius: 14px !important;
-      padding: 20px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
-      margin: 16px 0 !important;
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      border-left: 6.5px solid #10b981 !important;
+      border-radius: 16px !important;
+      padding: 22px 26px !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04) !important;
+      margin: 18px 0 !important;
     }
     #quick-recall-view .question-label-span {
-      font-size: 1.25rem !important;
-      font-weight: 900 !important;
-      color: var(--primary-color) !important;
+      font-size: 0.95rem !important;
+      font-weight: 850 !important;
+      color: #059669 !important;
       text-transform: uppercase !important;
-      letter-spacing: 0.5px !important;
+      letter-spacing: 0.8px !important;
       margin-bottom: 8px !important;
-      display: block !important;
+      display: inline-block !important;
     }
     #quick-recall-view .question-inner-card {
       background: transparent !important;
@@ -100,592 +107,407 @@
       box-shadow: none !important;
     }
     #quick-recall-view #quick-recall-question {
-      color: #000000 !important;
+      color: #0f172a !important;
       font-weight: 800 !important;
-      font-size: 1.15rem !important;
-      line-height: 1.65 !important;
+      font-size: 1.25rem !important;
+      line-height: 1.6 !important;
       margin: 0 !important;
       text-align: justify !important;
       text-justify: inter-word !important;
     }
 
-    /* Active Card Container customized */
+    /* Active Card Container */
     #quick-recall-view .recall-card-container {
-      background: #fffdf2 !important;
-      border: 2px solid #f2d974 !important;
-      border-radius: 16px !important;
-      padding: 24px !important;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05) !important;
-    }
-
-    /* Correct Answer Box */
-    
-    #quick-recall-view .correct-answer-box h4 {
-      color: var(--primary-color) !important;
-      font-weight: 900 !important;
-      font-size: 0.95rem !important;
-      margin-bottom: 6px !important;
-    }
-    #quick-recall-view #quick-correct-answer-text {
-      color: #000000 !important;
-      font-weight: 400 !important;
-      font-size: 1.05rem !important;
-      line-height: 1.6 !important;
-    }
-
-    /* Mnemonic Box */
-    #quick-recall-view .mnemonic-box {
-      background: rgba(var(--primary-rgb), 0.05) !important;
-      border: 2px solid rgba(var(--primary-rgb), 0.3) !important;
-      border-radius: 12px !important;
-      padding: 16px 20px !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-    }
-    #quick-recall-view .mnemonic-header h5 {
-      color: var(--primary-hover) !important;
-      font-weight: 900 !important;
-    }
-    #quick-recall-view #quick-mnemonic-text {
-      color: #000000 !important;
-      font-weight: 750 !important;
-      font-style: italic !important;
-    }
-
-    /* Explanation Wrapper */
-    
-
-    #quick-recall-view .explanation-wrapper h4 {
-      color: var(--primary-hover) !important;
-      font-weight: 900 !important;
-      border-bottom: 2px solid rgba(var(--primary-rgb), 0.25) !important;
-      padding-bottom: 10px !important;
-      margin-bottom: 14px !important;
-      font-size: 1.15rem !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content {
-      color: #000000 !important;
-      font-weight: 500 !important;
-      font-size: 1.02rem !important;
-      line-height: 1.65 !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content p, 
-    #quick-recall-view #quick-recall-explanation-content li {
-      color: #000000 !important;
-      font-weight: 500 !important;
-      text-align: justify !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content strong {
-      color: #7e22ce !important;
-      font-weight: 900 !important;
-    }
-
-    /* Navigation bar styles adaptation */
-    #quick-recall-view .quiz-navigation .btn-secondary {
       background: #ffffff !important;
-      border: 2px solid #f2d974 !important;
-      color: var(--primary-color) !important;
-      font-weight: 800 !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 18px !important;
+      padding: 28px !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
+      width: 100% !important;
     }
-      font-weight: 400 !important;
-      font-size: 0.98rem !important;
+
+    /* Part 1 & Part 2 Container Boxes */
+    .correct-answer-box,
+    .explanation-wrapper {
+      background: #ffffff !important;
+      border: none !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      margin: 0 !important;
+    }
+
+    /* Section Stage Badges */
+    .answer-stage-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 9px !important;
+      padding: 8px 18px !important;
+      background: #ecfdf5 !important;
+      border: 1.5px solid #a7f3d0 !important;
+      border-radius: 20px !important;
+      color: #064e3b !important;
+      font-weight: 850 !important;
+      font-size: 1.05rem !important;
+      letter-spacing: 0.4px !important;
+      margin-bottom: 16px !important;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08) !important;
+    }
+    .answer-stage-badge-l2 {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 9px !important;
+      padding: 8px 18px !important;
+      background: #fef9c3 !important;
+      border: 1.5px solid #fde047 !important;
+      border-radius: 20px !important;
+      color: #713f12 !important;
+      font-weight: 850 !important;
+      font-size: 1.05rem !important;
+      letter-spacing: 0.4px !important;
+      margin-bottom: 16px !important;
+      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
+    }
+
+    /* PURE CONTENT RENDERING - Full Justification with Authentic Medical Typography */
+    .content-body,
+    #quick-correct-answer-text,
+    #quick-recall-explanation-content,
+    .anaptyxi-pure-container {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+      font-size: 15.5px !important;
       line-height: 1.65 !important;
-    }
-    #quick-recall-view #quick-recall-explanation-content p, 
-    #quick-recall-view #quick-recall-explanation-content li {
-      color: var(--text-primary) !important;
-      font-weight: 400 !important;
+      padding: 4px 0 !important;
       text-align: justify !important;
+      text-justify: inter-word !important;
     }
-    #quick-recall-view #quick-recall-explanation-content strong {
-      color: var(--primary-color) !important;
+
+    /* Paragraphs: full justification */
+    .content-body p,
+    #quick-correct-answer-text p,
+    #quick-recall-explanation-content p,
+    .anaptyxi-pure-container p {
+      font-family: inherit !important;
+      text-align: justify !important;
+      text-justify: inter-word !important;
+      color: #0f172a !important;
+      margin-top: 0 !important;
+      margin-bottom: 12px !important;
+    }
+
+    /* =====================================================================
+       3-TIER HIERARCHY FOR ESSAY QUESTIONS (LARNAKA STANDARD)
+       1ο Επίπεδο: Κεφάλαιο / Κύριο Μέρος / Απάντηση -> Πράσινο Ανοιχτό (1.35rem)
+       2ο Επίπεδο: Ενότητες & Υποκεφάλαια -> Κίτρινο / Κεχριμπαρένιο (1.15rem)
+       3ο Επίπεδο: Υποενότητες & Παράγραφοι -> Απαλό Ροδακινί / Coral (1.02rem)
+       ===================================================================== */
+
+    /* 1ο ΕΠΙΠΕΔΟ: ΠΡΑΣΙΝΟ ΑΝΟΙΧΤΟ */
+    .content-body p[style*="font-size: 1.5em"],
+    .content-body p[style*="font-size:1.5em"],
+    .content-body h1,
+    .content-body h2,
+    .content-body .stage-banner,
+    #quick-correct-answer-text p[style*="font-size: 1.5em"],
+    #quick-correct-answer-text p[style*="font-size:1.5em"],
+    #quick-correct-answer-text h1,
+    #quick-correct-answer-text h2,
+    #quick-recall-explanation-content p[style*="font-size: 1.5em"],
+    #quick-recall-explanation-content p[style*="font-size:1.5em"],
+    #quick-recall-explanation-content h1,
+    #quick-recall-explanation-content h2 {
+      font-size: 1.35rem !important; /* ~21.5px */
+      font-weight: 850 !important;
+      color: #064e3b !important;
+      background: #ecfdf5 !important;
+      border: 1.5px solid #a7f3d0 !important;
+      border-left: 7px solid #059669 !important;
+      border-radius: 9px !important;
+      padding: 12px 20px !important;
+      margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
+      margin-bottom: 16px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      text-align: left !important;
+      line-height: 1.45 !important;
+      letter-spacing: -0.2px !important;
+      display: block !important;
+      clear: both !important;
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
+    }
+    .content-body p[style*="font-size: 1.5em"] *,
+    .content-body p[style*="font-size:1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.5em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.5em"] *,
+    #quick-recall-explanation-content p[style*="font-size: 1.5em"] *,
+    #quick-recall-explanation-content p[style*="font-size:1.5em"] * {
+      color: #064e3b !important;
+      font-size: inherit !important;
       font-weight: 850 !important;
     }
 
-    /* Field 8: Navigation bar styles adaptation */
-    #quick-recall-view .quiz-navigation .btn-secondary {
-      background: #ffffff !important;
-      border: 1px solid #f2d974 !important;
-      color: var(--primary-color) !important;
+    /* 2ο ΕΠΙΠΕΔΟ: ΚΙΤΡΙΝΟ / ΚΕΧΡΙΜΠΑΡΕΝΙΟ */
+    .content-body p[style*="font-size: 1.33em"],
+    .content-body p[style*="font-size:1.33em"],
+    .content-body h3,
+    .content-body .section-banner,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"],
+    #quick-correct-answer-text p[style*="font-size:1.33em"],
+    #quick-correct-answer-text h3,
+    #quick-recall-explanation-content p[style*="font-size: 1.33em"],
+    #quick-recall-explanation-content p[style*="font-size:1.33em"],
+    #quick-recall-explanation-content h3 {
+      font-size: 1.15rem !important; /* ~18.5px */
+      font-weight: 750 !important;
+      color: #713f12 !important;
+      background: #fef9c3 !important;
+      border: 1px solid #fde047 !important;
+      border-left: 5.5px solid #eab308 !important;
+      border-radius: 8px !important;
+      padding: 9px 18px !important;
+      margin-top: 24px !important; /* Κενή γραμμή πριν */
+      margin-bottom: 12px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      display: block !important;
+      clear: both !important;
+      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
+    }
+    .content-body p[style*="font-size: 1.33em"] *,
+    .content-body p[style*="font-size:1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.33em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.33em"] *,
+    #quick-recall-explanation-content p[style*="font-size: 1.33em"] *,
+    #quick-recall-explanation-content p[style*="font-size:1.33em"] * {
+      color: #713f12 !important;
+      font-size: inherit !important;
+    }
+
+    /* 3ο ΕΠΙΠΕΔΟ: ΑΠΑΛΟ ΡΟΔΑΚΙΝΙ / CORAL */
+    .content-body p[style*="font-size: 1.17em"],
+    .content-body p[style*="font-size:1.17em"],
+    .content-body p[style*="font-size: 1.08em"],
+    .content-body p[style*="font-size:1.08em"],
+    .content-body h4,
+    .content-body h5,
+    .content-body h6,
+    .content-body .thematic-banner,
+    .content-body .subsection-banner,
+    #quick-correct-answer-text p[style*="font-size: 1.17em"],
+    #quick-correct-answer-text p[style*="font-size:1.17em"],
+    #quick-correct-answer-text p[style*="font-size: 1.08em"],
+    #quick-correct-answer-text p[style*="font-size:1.08em"],
+    #quick-correct-answer-text h4,
+    #quick-correct-answer-text h5,
+    #quick-correct-answer-text h6,
+    #quick-recall-explanation-content p[style*="font-size: 1.17em"],
+    #quick-recall-explanation-content p[style*="font-size:1.17em"],
+    #quick-recall-explanation-content p[style*="font-size: 1.08em"],
+    #quick-recall-explanation-content p[style*="font-size:1.08em"],
+    #quick-recall-explanation-content h4,
+    #quick-recall-explanation-content h5,
+    #quick-recall-explanation-content h6 {
+      font-size: 1.02rem !important; /* ~16px */
       font-weight: 700 !important;
+      color: #9a3412 !important;
+      background: #fff7ed !important;
+      border: 1px solid #fed7aa !important;
+      border-left: 4.5px solid #f97316 !important;
+      border-radius: 7px !important;
+      padding: 7px 15px !important;
+      margin-top: 20px !important; /* Κενή γραμμή πριν */
+      margin-bottom: 10px !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      text-align: left !important;
+      line-height: 1.5 !important;
+      display: block !important;
+      clear: both !important;
+      box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
     }
-    #quick-recall-view .quiz-navigation .btn-primary {
-      background: var(--primary-color) !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
+    .content-body p[style*="font-size: 1.17em"] *,
+    .content-body p[style*="font-size:1.17em"] *,
+    .content-body p[style*="font-size: 1.08em"] *,
+    .content-body p[style*="font-size:1.08em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.17em"] *,
+    #quick-correct-answer-text p[style*="font-size: 1.08em"] *,
+    #quick-correct-answer-text p[style*="font-size:1.08em"] *,
+    #quick-recall-explanation-content p[style*="font-size: 1.17em"] *,
+    #quick-recall-explanation-content p[style*="font-size:1.17em"] *,
+    #quick-recall-explanation-content p[style*="font-size: 1.08em"] *,
+    #quick-recall-explanation-content p[style*="font-size:1.08em"] * {
+      color: #9a3412 !important;
+      font-size: inherit !important;
     }
 
+    /* Bullets: LARNAKA positioning (never collide with text) */
+    .content-body li,
+    #quick-correct-answer-text li,
+    #quick-recall-explanation-content li {
+      position: relative !important;
+      padding-left: 0 !important;
+      margin-bottom: 7px !important;
+      line-height: 1.6 !important;
+      text-align: justify !important;
+    }
+    .content-body li > span:first-child,
+    #quick-correct-answer-text li > span:first-child,
+    #quick-recall-explanation-content li > span:first-child {
+      position: static !important;
+      display: inline-block !important;
+      min-width: 1.35em !important;
+      margin-right: 6px !important;
+      font-weight: 700 !important;
+      color: #059669 !important;
+      text-align: left !important;
+      vertical-align: baseline !important;
+    }
 
-        /* =====================================================================
-           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
-           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
-           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
-           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
-           ===================================================================== */
+    /* DIAGRAMS & FLOWCHART PHOTOS */
+    .content-body img,
+    #quick-correct-answer-text img,
+    #quick-recall-explanation-content img,
+    #quick-revealed-block img {
+      max-width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      margin: 20px auto !important;
+      border-radius: 10px !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
+      cursor: zoom-in !important;
+      transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+    }
+    .content-body img:hover,
+    #quick-correct-answer-text img:hover,
+    #quick-recall-explanation-content img:hover,
+    #quick-revealed-block img:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.14) !important;
+    }
 
-        .q-badge.category {
-            background: #ecfdf5 !important;
-            color: #064e3b !important;
-            border: 1px solid #a7f3d0 !important;
-            font-weight: 800 !important;
-            font-size: 0.95rem !important;
-        }
+    /* MEDICAL TABLES: HIGH CONTRAST & RESPONSIVE */
+    .content-body table,
+    #quick-correct-answer-text table,
+    #quick-recall-explanation-content table,
+    .med-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 20px 0 !important;
+      font-size: 0.95rem !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
+    }
+    .content-body table th,
+    #quick-correct-answer-text table th,
+    #quick-recall-explanation-content table th,
+    .med-table th {
+      background: #ecfdf5 !important;
+      color: #064e3b !important;
+      font-weight: 800 !important;
+      padding: 11px 15px !important;
+      border: 1px solid #a7f3d0 !important;
+      text-align: left !important;
+    }
+    .content-body table td,
+    #quick-correct-answer-text table td,
+    #quick-recall-explanation-content table td,
+    .med-table td {
+      padding: 10px 14px !important;
+      border: 1px solid #e2e8f0 !important;
+      line-height: 1.55 !important;
+      text-align: left !important;
+      color: #1e293b !important;
+    }
+    .content-body table tr:nth-child(even) td,
+    #quick-correct-answer-text table tr:nth-child(even) td,
+    #quick-recall-explanation-content table tr:nth-child(even) td,
+    .med-table tr:nth-child(even) td {
+      background: #f8fafc !important;
+    }
 
-        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
-        .content-body p[style*="font-size: 1.5em"],
-        .content-body p[style*="font-size:1.5em"],
-        .content-body h1,
-        .content-body h2,
-        .content-body .stage-banner {
-            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
-            font-weight: 850 !important;
-            color: #064e3b !important;
-            background: #ecfdf5 !important;
-            border: 1.5px solid #a7f3d0 !important;
-            border-left: 7px solid #059669 !important;
-            border-radius: 9px !important;
-            padding: 12px 20px !important;
-            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
-            margin-bottom: 16px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.45 !important;
-            letter-spacing: -0.2px !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
-        }
+    /* PREFORMATTED ASCII FLOWCHARTS */
+    .content-body pre,
+    #quick-correct-answer-text pre,
+    #quick-recall-explanation-content pre,
+    pre.flowchart {
+      font-family: 'DejaVu Sans Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+      font-size: 0.88rem !important;
+      line-height: 1.35 !important;
+      background: #f8fafc !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-left: 5.5px solid #10b981 !important;
+      border-radius: 9px !important;
+      padding: 16px 20px !important;
+      margin: 20px 0 !important;
+      overflow-x: auto !important;
+      white-space: pre !important;
+      color: #1e293b !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+    }
 
-        .content-body p[style*="font-size: 1.5em"] *,
-        .content-body p[style*="font-size:1.5em"] *,
-        .content-body h1 *,
-        .content-body h2 *,
-        .content-body .stage-banner * {
-            color: #064e3b !important;
-            font-size: inherit !important;
-            font-weight: 850 !important;
-        }
+    /* CITATION & QUOTE BOXES */
+    .content-body blockquote,
+    .content-body .quote-box,
+    #quick-correct-answer-text blockquote,
+    #quick-correct-answer-text .quote-box,
+    #quick-recall-explanation-content blockquote,
+    #quick-recall-explanation-content .quote-box {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      border-left: 5px solid #64748b !important;
+      border-radius: 8px !important;
+      padding: 14px 20px !important;
+      margin: 18px 0 !important;
+      font-style: italic !important;
+      color: #334155 !important;
+      line-height: 1.6 !important;
+    }
 
-        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
-        .content-body p[style*="font-size: 1.33em"],
-        .content-body p[style*="font-size:1.33em"],
-        .content-body h3,
-        .content-body .section-banner {
-            font-size: 1.15rem !important; /* ~18px */
-            font-weight: 750 !important;
-            color: #713f12 !important;
-            background: #fef9c3 !important;
-            border: 1px solid #fde047 !important;
-            border-left: 5.5px solid #eab308 !important;
-            border-radius: 8px !important;
-            padding: 9px 18px !important;
-            margin-top: 24px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 12px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
-        }
+    /* Bold Elements */
+    .content-body strong,
+    #quick-correct-answer-text strong,
+    #quick-recall-explanation-content strong {
+      font-weight: 800 !important;
+      color: #0f172a !important;
+    }
 
-        .content-body p[style*="font-size: 1.33em"] *,
-        .content-body p[style*="font-size:1.33em"] *,
-        .content-body h3 *,
-        .content-body .section-banner * {
-            color: #713f12 !important;
-            font-size: inherit !important;
-        }
-
-        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
-        .content-body p[style*="font-size: 1.17em"],
-        .content-body p[style*="font-size:1.17em"],
-        .content-body p[style*="font-size: 1.08em"],
-        .content-body p[style*="font-size:1.08em"],
-        .content-body h4,
-        .content-body h5,
-        .content-body h6,
-        .content-body .thematic-banner,
-        .content-body .subsection-banner {
-            font-size: 1.02rem !important; /* ~16px */
-            font-weight: 700 !important;
-            color: #9a3412 !important;
-            background: #fff7ed !important;
-            border: 1px solid #fed7aa !important;
-            border-left: 4.5px solid #f97316 !important;
-            border-radius: 7px !important;
-            padding: 7px 15px !important;
-            margin-top: 20px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 10px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
-        }
-
-        .content-body p[style*="font-size: 1.17em"] *,
-        .content-body p[style*="font-size:1.17em"] *,
-        .content-body p[style*="font-size: 1.08em"] *,
-        .content-body p[style*="font-size:1.08em"] *,
-        .content-body h4 *,
-        .content-body h5 *,
-        .content-body h6 *,
-        .content-body .thematic-banner *,
-        .content-body .subsection-banner * {
-            color: #9a3412 !important;
-            font-size: inherit !important;
-        }
-
-    </style>
-
-<style id="dynamic-theme">
-:root {
-  --primary-color: #10b981;
-  --primary-rgb: 16, 185, 129;
-  --primary-hover: #059669;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #064e3b 0%, #111827 80%);
-  --bg-color: #111827;
-}
-
-        /* =====================================================================
-           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
-           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
-           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
-           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
-           ===================================================================== */
-
-        .q-badge.category {
-            background: #ecfdf5 !important;
-            color: #064e3b !important;
-            border: 1px solid #a7f3d0 !important;
-            font-weight: 800 !important;
-            font-size: 0.95rem !important;
-        }
-
-        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
-        .content-body p[style*="font-size: 1.5em"],
-        .content-body p[style*="font-size:1.5em"],
-        .content-body h1,
-        .content-body h2,
-        .content-body .stage-banner {
-            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
-            font-weight: 850 !important;
-            color: #064e3b !important;
-            background: #ecfdf5 !important;
-            border: 1.5px solid #a7f3d0 !important;
-            border-left: 7px solid #059669 !important;
-            border-radius: 9px !important;
-            padding: 12px 20px !important;
-            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
-            margin-bottom: 16px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.45 !important;
-            letter-spacing: -0.2px !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
-        }
-
-        .content-body p[style*="font-size: 1.5em"] *,
-        .content-body p[style*="font-size:1.5em"] *,
-        .content-body h1 *,
-        .content-body h2 *,
-        .content-body .stage-banner * {
-            color: #064e3b !important;
-            font-size: inherit !important;
-            font-weight: 850 !important;
-        }
-
-        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
-        .content-body p[style*="font-size: 1.33em"],
-        .content-body p[style*="font-size:1.33em"],
-        .content-body h3,
-        .content-body .section-banner {
-            font-size: 1.15rem !important; /* ~18px */
-            font-weight: 750 !important;
-            color: #713f12 !important;
-            background: #fef9c3 !important;
-            border: 1px solid #fde047 !important;
-            border-left: 5.5px solid #eab308 !important;
-            border-radius: 8px !important;
-            padding: 9px 18px !important;
-            margin-top: 24px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 12px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
-        }
-
-        .content-body p[style*="font-size: 1.33em"] *,
-        .content-body p[style*="font-size:1.33em"] *,
-        .content-body h3 *,
-        .content-body .section-banner * {
-            color: #713f12 !important;
-            font-size: inherit !important;
-        }
-
-        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
-        .content-body p[style*="font-size: 1.17em"],
-        .content-body p[style*="font-size:1.17em"],
-        .content-body p[style*="font-size: 1.08em"],
-        .content-body p[style*="font-size:1.08em"],
-        .content-body h4,
-        .content-body h5,
-        .content-body h6,
-        .content-body .thematic-banner,
-        .content-body .subsection-banner {
-            font-size: 1.02rem !important; /* ~16px */
-            font-weight: 700 !important;
-            color: #9a3412 !important;
-            background: #fff7ed !important;
-            border: 1px solid #fed7aa !important;
-            border-left: 4.5px solid #f97316 !important;
-            border-radius: 7px !important;
-            padding: 7px 15px !important;
-            margin-top: 20px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 10px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
-        }
-
-        .content-body p[style*="font-size: 1.17em"] *,
-        .content-body p[style*="font-size:1.17em"] *,
-        .content-body p[style*="font-size: 1.08em"] *,
-        .content-body p[style*="font-size:1.08em"] *,
-        .content-body h4 *,
-        .content-body h5 *,
-        .content-body h6 *,
-        .content-body .thematic-banner *,
-        .content-body .subsection-banner * {
-            color: #9a3412 !important;
-            font-size: inherit !important;
-        }
-
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="modern-theme.css?v=1790550446" />
-
-<style>
-
-.explanation-content strong, 
-.correct-answer-text strong, 
-#quick-recall-explanation-content strong, 
-#quick-correct-answer-text strong,
-.explanation-wrapper strong,
-.correct-answer-box strong {
-    font-weight: 900 !important;
-    color: #000000 !important;
-    letter-spacing: 0.1px !important;
-}
-body.dark-theme .explanation-content strong, 
-body.dark-theme .correct-answer-text strong, 
-body.dark-theme #quick-recall-explanation-content strong, 
-body.dark-theme #quick-correct-answer-text strong,
-body.dark-theme .explanation-wrapper strong,
-body.dark-theme .correct-answer-box strong {
-    font-weight: 900 !important;
-    color: #ffffff !important;
-}
-.explanation-wrapper {
-    background: #fdfdfd !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 12px !important;
-    border-left: 8px solid #6366f1 !important;
-}
-body.dark-theme .explanation-wrapper {
-    background: #151d2c !important;
-    border-left: 8px solid #818cf8 !important;
-}
-.correct-answer-box {
-    background: #ffffff !important;
-    border: 1px solid #d1fae5 !important;
-    border-left: 8px solid #10b981 !important;
-    border-radius: 12px !important;
-}
-body.dark-theme .correct-answer-box {
-    background: #0f172a !important;
-    border-left: 8px solid #10b981 !important;
-}
-.explanation-wrapper table, .correct-answer-box table, .explanation-content table { 
-    display: block !important; 
-    overflow-x: auto !important; 
-    width: max-content !important; 
-    max-width: 100% !important; 
-    word-break: normal !important; 
-}
-
-        /* =====================================================================
-           ΤΡΙΠΛΗ ΚΑΤΗΓΟΡΙΟΠΟΙΗΣΗ ΧΡΩΜΑΤΩΝ (3-TIER HIERARCHY) - ΑΝΑΠΤΥΞΗ
-           1. Κεφάλαιο / Κύριο Μέρος / Απάντηση: Πράσινο Ανοιχτό (Μεγάλο)
-           2. Ενότητα / Υποκεφάλαιο: Κίτρινο / Κεχριμπαρένιο (Μεσαίο)
-           3. Υποενότητα / Παράγραφος: Απαλό Ροδακινί / Coral (3ο επίπεδο)
-           ===================================================================== */
-
-        .q-badge.category {
-            background: #ecfdf5 !important;
-            color: #064e3b !important;
-            border: 1px solid #a7f3d0 !important;
-            font-weight: 800 !important;
-            font-size: 0.95rem !important;
-        }
-
-        /* 1ο ΕΠΙΠΕΔΟ: ΚΕΦΑΛΑΙΟ / ΚΥΡΙΟ ΜΕΡΟΣ / ΑΠΑΝΤΗΣΗ (Πράσινο Ανοιχτό - Μεγάλο, Επιβλητικό) */
-        .content-body p[style*="font-size: 1.5em"],
-        .content-body p[style*="font-size:1.5em"],
-        .content-body h1,
-        .content-body h2,
-        .content-body .stage-banner {
-            font-size: 1.35rem !important; /* ~21px - Μεγάλο και κυρίαρχο σε σχέση με το κείμενο */
-            font-weight: 850 !important;
-            color: #064e3b !important;
-            background: #ecfdf5 !important;
-            border: 1.5px solid #a7f3d0 !important;
-            border-left: 7px solid #059669 !important;
-            border-radius: 9px !important;
-            padding: 12px 20px !important;
-            margin-top: 32px !important; /* Άνετη κενή γραμμή πριν */
-            margin-bottom: 16px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.45 !important;
-            letter-spacing: -0.2px !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.1) !important;
-        }
-
-        .content-body p[style*="font-size: 1.5em"] *,
-        .content-body p[style*="font-size:1.5em"] *,
-        .content-body h1 *,
-        .content-body h2 *,
-        .content-body .stage-banner * {
-            color: #064e3b !important;
-            font-size: inherit !important;
-            font-weight: 850 !important;
-        }
-
-        /* 2ο ΕΠΙΠΕΔΟ: ΕΝΟΤΗΤΕΣ & ΥΠΟΚΕΦΑΛΑΙΑ (Κίτρινο / Κεχριμπαρένιο Πλαίσιο) */
-        .content-body p[style*="font-size: 1.33em"],
-        .content-body p[style*="font-size:1.33em"],
-        .content-body h3,
-        .content-body .section-banner {
-            font-size: 1.15rem !important; /* ~18px */
-            font-weight: 750 !important;
-            color: #713f12 !important;
-            background: #fef9c3 !important;
-            border: 1px solid #fde047 !important;
-            border-left: 5.5px solid #eab308 !important;
-            border-radius: 8px !important;
-            padding: 9px 18px !important;
-            margin-top: 24px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 12px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.08) !important;
-        }
-
-        .content-body p[style*="font-size: 1.33em"] *,
-        .content-body p[style*="font-size:1.33em"] *,
-        .content-body h3 *,
-        .content-body .section-banner * {
-            color: #713f12 !important;
-            font-size: inherit !important;
-        }
-
-        /* 3ο ΕΠΙΠΕΔΟ: ΥΠΟΕΝΟΤΗΤΕΣ & ΠΑΡΑΓΡΑΦΟΙ (Απαλό Ροδακινί / Coral Πλαίσιο) */
-        .content-body p[style*="font-size: 1.17em"],
-        .content-body p[style*="font-size:1.17em"],
-        .content-body p[style*="font-size: 1.08em"],
-        .content-body p[style*="font-size:1.08em"],
-        .content-body h4,
-        .content-body h5,
-        .content-body h6,
-        .content-body .thematic-banner,
-        .content-body .subsection-banner {
-            font-size: 1.02rem !important; /* ~16px */
-            font-weight: 700 !important;
-            color: #9a3412 !important;
-            background: #fff7ed !important;
-            border: 1px solid #fed7aa !important;
-            border-left: 4.5px solid #f97316 !important;
-            border-radius: 7px !important;
-            padding: 7px 15px !important;
-            margin-top: 20px !important; /* Κενή γραμμή πριν */
-            margin-bottom: 10px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            text-align: left !important;
-            line-height: 1.5 !important;
-            display: block !important;
-            clear: both !important;
-            box-shadow: 0 2px 6px rgba(249, 115, 22, 0.07) !important;
-        }
-
-        .content-body p[style*="font-size: 1.17em"] *,
-        .content-body p[style*="font-size:1.17em"] *,
-        .content-body p[style*="font-size: 1.08em"] *,
-        .content-body p[style*="font-size:1.08em"] *,
-        .content-body h4 *,
-        .content-body h5 *,
-        .content-body h6 *,
-        .content-body .thematic-banner *,
-        .content-body .subsection-banner * {
-            color: #9a3412 !important;
-            font-size: inherit !important;
-        }
-
-    </style>
-
-    <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
-  <link rel="stylesheet" href="image_zoom_viewer.css">
+    /* Section Back to Top Button */
+    .section-back-to-top {
+      text-align: right !important;
+      margin: 16px 0 24px 0 !important;
+    }
+    .btn-section-top {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #059669 !important;
+      font-weight: 700 !important;
+      font-size: 0.82rem !important;
+      padding: 6px 14px !important;
+      border-radius: 20px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
+    }
+    .btn-section-top:hover {
+      background: #ecfdf5 !important;
+      border-color: #10b981 !important;
+      transform: translateY(-1px) !important;
+    }
+</style>
 </head>
 <body class="light-theme" style="--c1: #004d00; --c2: #2ecc71; --c3: #f1c40f; --c4: #27ae60;">
 <div class="modern-shape modern-shape-1"></div>
 <div class="modern-shape modern-shape-2"></div>
 <div class="modern-shape modern-shape-3"></div>
-
-
-
-
-
-
-
-
-
-
 
 <div class="app-container">
 <!-- Header Section -->
@@ -712,21 +534,9 @@ body.dark-theme .correct-answer-box {
 </svg>
 <span>Αναζήτηση</span>
 </button>
-
 </div>
 </div>
 </header>
-<!-- Main Workspace -->
-    <!-- Direct Banner to New Proepiskopisi Application -->
-    <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 1.5px solid #a7f3d0; border-radius: 14px; padding: 14px 20px; margin: 20px auto; max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.12);">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 1.4rem;">📖</span>
-            <span style="color: #064e3b; font-weight: 800; font-size: 1rem;">Διατίθεται η Νέα Πλήρης Προεπισκόπηση &amp; Εκτενής Ανάλυση των 609 Θεμάτων Ανάπτυξης:</span>
-        </div>
-        <a href="proepiskopisi_anaptyxi.html" style="background: #059669; color: #ffffff; padding: 10px 20px; border-radius: 10px; font-weight: 800; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(5, 150, 105, 0.35);">
-            Άνοιγμα Νέας Εφαρμογής →
-        </a>
-    </div>
 <main class="app-main">
 <!-- 2b. Quick Recall Flashcards View -->
 <section class="view-panel" id="quick-recall-view">
@@ -790,11 +600,19 @@ body.dark-theme .correct-answer-box {
 </div>
 
 <div class="revealed-block collapsed" id="quick-revealed-block">
-<div class="correct-answer-box">
-<h3 style="font-size: 1.35rem; font-weight: 850; color: #064e3b; background: #ecfdf5; border: 1.5px solid #a7f3d0; border-left: 7px solid #059669; border-radius: 9px; padding: 12px 18px; margin: 16px 0;">💡 Σύντομη Απάντηση &amp; Σύνοψη:</h3>
-<p id="quick-correct-answer-text">Φόρτωση σύντομης απάντησης...</p>
+<!-- Part 1: Structured Summary & Citations -->
+<div class="correct-answer-box" id="quick-part1-box">
+<div class="answer-stage-badge">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    <span>ΜΕΡΟΣ 1: ΔΟΜΗΜΕΝΗ ΣΥΝΟΨΗ &amp; ΠΑΡΑΘΕΣΕΙΣ</span>
 </div>
-<div class="mnemonic-box" id="quick-mnemonic-box">
+<div class="content-body anaptyxi-pure-container" id="quick-correct-answer-text">
+    Φόρτωση σύντομης απάντησης...
+</div>
+</div>
+
+<!-- Mnemonic Tip Box -->
+<div class="mnemonic-box" id="quick-mnemonic-box" style="display: none;">
 <div class="mnemonic-header">
 <svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -803,12 +621,14 @@ body.dark-theme .correct-answer-box {
 </div>
 <p id="quick-mnemonic-text">Φόρτωση tip...</p>
 </div>
-<div class="explanation-wrapper">
-<div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px">
-<span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
+
+<!-- Part 2: In-Depth Analysis (Ektenes Keimeno) -->
+<div class="explanation-wrapper" id="quick-part2-box" style="margin-top: 28px; border-top: 2px dashed #cbd5e1; padding-top: 24px;">
+<div class="answer-stage-badge-l2">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+    <span>ΜΕΡΟΣ 2: ΕΚΤΕΝΕΣ ΚΕΙΜΕΝΟ ΑΝΑΛΥΣΗΣ ΘΕΜΑΤΟΣ ΚΑΙ ΕΠΙΛΟΓΩΝ</span>
 </div>
-<h4>💡 Επιπλέον Υλικό για Μελέτη</h4>
-<div class="explanation-content" id="quick-recall-explanation-content"></div>
+<div class="content-body anaptyxi-pure-container explanation-content" id="quick-recall-explanation-content"></div>
 </div>
 </div>
 </div>
@@ -831,21 +651,12 @@ body.dark-theme .correct-answer-box {
 </button>
 </div>
 </section>
+</main>
+</div>
 <!-- App Logic Scripts -->
-<script>
-        const urlParams = new URLSearchParams(window.location.search);
-    const bank = urlParams.get('bank');
-    
-    let scriptFile = 'data/anaptyxi_2026.js?v=20261015';
-    
-    if (bank === 'new_bank') {
-        scriptFile = 'data/anaptyxi_2026.js?v=20261015';
-    }
-    
-    document.write('<script charset="UTF-8" src="' + scriptFile + '?v=' + new Date().getTime() + '"><\/script>');
-</script>
+<script charset="UTF-8" src="data/anaptyxi_2026.js?v=20261102.final"></script>
 <script src="marked.min.js"></script>
-<script charset="UTF-8" src="study.js?v=20261015"></script>
+<script charset="UTF-8" src="study.js?v=20261102.final"></script>
     
 
 

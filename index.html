@@ -821,14 +821,8 @@
                 <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
                 <h2>Θέματα Ανάπτυξης</h2>
                 <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (609 ΘΕΜΑΤΑ)</span></div>
-                <p>Πλήρης επιστημονική &amp; κλινική ανάλυση όλων των θεμάτων εξετάσεων 2013-2023 με δομημένη σύνοψη, παραθέσεις και εκτενές κείμενο.</p>
-                <form onsubmit="startEssay(event)" style="width: 100%;">
-                    <select id="essay-selector" class="fancy-select" required>
-                        <option value="proepiskopisi" selected>📖 Θέματα Εξετάσεων Ανάπτυξης 2013-2023 (609 Θέματα - Νέα Έκδοση &amp; Ανάλυση)</option>
-                        <option value="flashcards">🗂️ Προβολή Flashcard (study.html)</option>
-                    </select>
-                    <button type="submit" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Ανάπτυξης</button>
-                </form>
+                <p>Πλήρης επιστημονική &amp; κλινική ανάλυση όλων των 609 θεμάτων εξετάσεων με διαγράμματα ροής, πίνακες, σύνοψη και εκτενές κείμενο.</p>
+                <a href="study.html" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Ανάπτυξης</a>
             </div>
 
             <!-- 2. Ερωτήσεις Επιλογής -->
@@ -934,13 +928,7 @@
     
                 function startEssay(e) {
             if (e) e.preventDefault();
-            const sel = document.getElementById('essay-selector');
-            const bank = sel ? sel.value : 'proepiskopisi';
-            if (bank === 'flashcards' || bank === 'old_study') {
-                window.location.href = 'study.html?bank=new_bank&v=' + new Date().getTime();
-            } else {
-                window.location.href = 'proepiskopisi_anaptyxi.html?v=' + new Date().getTime();
-            }
+            window.location.href = 'study.html?v=' + new Date().getTime();
         }
 
         function startPharma(e) {
