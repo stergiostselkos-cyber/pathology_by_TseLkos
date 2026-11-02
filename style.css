@@ -4196,3 +4196,57 @@ body.dark-theme .essay-question-container p {
     font-weight: 700 !important;
     text-align: left !important;
 }
+
+
+/* ==============================================================================
+   LARNAKA STANDARD AESTHETICS & UNIVERSAL BULLET FIX
+   Prevents bullets/numbers from stepping on letters across all apps (Study, Quiz, New Book)
+   ============================================================================== */
+.content-body li > span:first-child,
+.new-book-pure-container li > span:first-child,
+#quick-correct-answer-text li > span:first-child,
+.correct-answer-box li > span:first-child,
+.explanation-content li > span:first-child,
+.explanation-wrapper li > span:first-child,
+.word-question li > span:first-child {
+    display: inline-block !important;
+    position: static !important;
+    min-width: 1.35em !important;
+    margin-right: 6px !important;
+    font-weight: 800 !important;
+    color: #0284c7 !important;
+    text-align: left !important;
+    vertical-align: baseline !important;
+}
+
+/* Lists padding & indent preservation */
+.content-body ul,
+.new-book-pure-container ul,
+#quick-correct-answer-text ul,
+.correct-answer-box ul,
+.explanation-content ul,
+.explanation-wrapper ul,
+.word-question ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 4px 0 10px 0 !important;
+}
+
+.content-body li,
+.new-book-pure-container li,
+#quick-correct-answer-text li,
+.correct-answer-box li,
+.explanation-content li,
+.explanation-wrapper li,
+.word-question li {
+    position: relative !important;
+    list-style: none !important;
+    list-style-type: none !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    color: #1e293b !important;
+    line-height: 1.65 !important;
+    margin-bottom: 6pt !important;
+    padding-left: 0 !important;
+}

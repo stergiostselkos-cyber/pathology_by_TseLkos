@@ -17,9 +17,9 @@
             --bg-body: #f8fafc;
             --card-bg: #ffffff;
             --card-border: #e2e8f0;
-            --text-main: #0f172a;
+            --text-main: #1e293b;
+            --text-heading: #0f172a;
             --text-muted: #64748b;
-            --text-heading: #1e293b;
         }
 
         * {
@@ -32,11 +32,11 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.65;
+            line-height: 1.72;
             padding: 24px 16px;
         }
 
-        /* 1200px Wide Container (όπως στο Νέο Βιβλίο & MCQ) */
+        /* Larnaka Standard 1200px Wide Container */
         .app-container {
             width: 100%;
             max-width: 1200px;
@@ -46,7 +46,7 @@
             gap: 20px;
         }
 
-        /* Header Card */
+        /* Header Card (Larnaka Gradient) */
         .header-card {
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             color: #ffffff;
@@ -176,7 +176,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Navigation Bar (Card View) - ΧΩΡΙΣ κουμπιά MCQ */
+        /* Navigation Bar */
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -249,13 +249,13 @@
             border-color: var(--primary);
         }
 
-        /* Question Card Container */
+        /* Question Card Container (Larnaka word-question Card Aesthetic) */
         .question-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 32px 36px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.05);
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 18px !important;
+            padding: 32px 38px !important;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05) !important;
             display: flex;
             flex-direction: column;
             gap: 22px;
@@ -283,68 +283,72 @@
         }
 
         .q-badge.number {
-            background: #f1f5f9;
-            color: #334155;
-            border: 1px solid #cbd5e1;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
         }
 
         .question-title {
             font-size: 1.45rem;
             font-weight: 800;
-            color: var(--text-heading);
+            color: #0f172a;
             line-height: 1.4;
             letter-spacing: -0.3px;
         }
 
         /* =====================================================================
-           ΜΟΡΦΟΠΟΙΗΣΗ ΚΕΙΜΕΝΟΥ ΟΠΩΣ ΣΤΟ ΝΕΟ ΒΙΒΛΙΟ & ΣΤΙΣ ΕΡΩΤΗΣΕΙΣ ΠΟΛΛΑΠΛΗΣ
+           LARNAKA TYPOGRAPHY & BULLET FIX
            ===================================================================== */
         .content-body {
-            color: #0f172a !important;
+            color: #1e293b !important;
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
             font-size: 15.5px !important;
-            line-height: 1.65 !important;
+            line-height: 1.72 !important;
             width: 100% !important;
             background: #ffffff !important;
         }
 
-        /* Paragraphs: πλήρης στοίχιση (justify) */
+        /* Paragraphs: full justification */
         .content-body p {
             font-family: inherit !important;
             text-align: justify !important;
             text-justify: inter-word !important;
-            color: #0f172a !important;
-            margin-bottom: 8px !important;
+            color: #1e293b !important;
+            margin-bottom: 9pt !important;
+            line-height: 1.72 !important;
         }
 
-        /* Headings: left-aligned to preserve hierarchy */
+        /* Section Headings: left-aligned */
         .content-body p[style*="font-size: 1."],
         .content-body p[style*="font-size:1."],
         .content-body p[style*="font-size: 0.85em"] {
             text-align: left !important;
+            color: #0f172a !important;
+            font-weight: 800 !important;
         }
 
-        /* Bold terms: καθαρά και ευανάγνωστα */
+        /* Bold terms: Solid and crisp */
         .content-body strong,
         .content-body b {
             color: #0f172a !important;
-            font-weight: 700 !important;
+            font-weight: 800 !important;
         }
 
-        /* Πράσινα μπολντ */
+        /* Green bold text highlights */
         .content-body span[style*="color: green"],
         .content-body span[style*="color: #10b981"],
         .content-body span[style*="color: #059669"] {
-            font-weight: 700 !important;
+            font-weight: 800 !important;
             color: #059669 !important;
         }
 
-        /* Lists: Διατήρηση εσοχών (margin: 20pt, 28pt...) */
+        /* Lists: Completely preserve inline margins (20pt, 28pt, 36pt...) */
         .content-body ul,
         .content-body ol {
             list-style: none !important;
             list-style-type: none !important;
             padding: 0 !important;
+            margin: 4px 0 10px 0 !important;
         }
 
         /* List Items: Relative positioning με πλήρη στοίχιση */
@@ -354,72 +358,100 @@
             list-style-type: none !important;
             text-align: justify !important;
             text-justify: inter-word !important;
-            color: #0f172a !important;
-            margin-bottom: 5px !important;
+            color: #1e293b !important;
+            line-height: 1.65 !important;
+            margin-bottom: 6pt !important;
+            padding-left: 0 !important;
         }
 
-        /* Bullet and Number Spans (•, ○, ▪, 1., α), i)): αριστερή αγκύρωση */
+        /* =====================================================================
+           CRITICAL BULLET FIX: NO COLLISION WITH LETTERS (NEVER ABSOLUTE)
+           ===================================================================== */
         .content-body li > span:first-child {
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
             display: inline-block !important;
+            position: static !important;
+            min-width: 1.35em !important;
+            margin-right: 6px !important;
+            font-weight: 800 !important;
+            color: #0284c7 !important;
             text-align: left !important;
-            font-weight: 700 !important;
-            color: #0f172a !important;
-            width: 1.15em !important;
+            vertical-align: baseline !important;
         }
 
-        /* ASCII DIAGRAM BOXES & ΤΕΤΡΑΓΩΝΑ */
+        /* Textbook quote blocks (Παραθέσεις) */
+        .content-body p[style*="border-left"] {
+            border-left: 3.5px solid #0284c7 !important;
+            background: #f8fafc !important;
+            padding: 8px 16px !important;
+            border-radius: 0 8px 8px 0 !important;
+            margin: 10px 0 !important;
+            font-style: italic;
+        }
+
+        /* Citations */
+        .content-body span.cit,
+        .content-body p[style*="opacity: 0.8"] {
+            font-size: 0.86rem !important;
+            color: #64748b !important;
+            margin-top: 4px !important;
+            margin-bottom: 12px !important;
+        }
+
+        /* ASCII DIAGRAM BOXES & MONOSPACE */
         .content-body pre {
             font-family: 'DejaVu Sans Mono', Consolas, 'Courier New', monospace !important;
             font-size: 0.88em !important;
-            line-height: 1.18 !important;
+            line-height: 1.2 !important;
             text-align: left !important;
             white-space: pre !important;
             overflow-x: auto !important;
             background: #f8fafc !important;
             border: 1.5px solid #cbd5e1 !important;
             border-radius: 10px !important;
-            padding: 14px 18px !important;
-            margin: 14px 0 !important;
+            padding: 16px 20px !important;
+            margin: 16px 0 !important;
             color: #1e293b !important;
             box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
         }
 
-        /* Tables */
+        /* UNIVERSAL HIGH-CONTRAST MEDICAL TABLES (Larnaka Standard) */
         .content-body table {
             border-collapse: collapse !important;
             width: 100% !important;
-            margin: 16px 0 !important;
-            font-size: 0.92rem !important;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04) !important;
+            margin: 20px 0 !important;
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            border: 1px solid #cbd5e1 !important;
             border-radius: 10px !important;
             overflow: hidden !important;
-            background: #ffffff !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
         }
 
         .content-body th {
-            background: #0284c7 !important;
-            color: #ffffff !important;
+            background-color: #EBF2F7 !important;
+            color: #102C57 !important;
             font-weight: 800 !important;
-            padding: 10px 14px !important;
-            text-align: left !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
+            border: 1px solid #cbd5e1 !important;
+            padding: 11px 16px !important;
+            text-align: center !important;
         }
 
         .content-body td {
-            padding: 10px 14px !important;
-            border: 1px solid #e2e8f0 !important;
-            line-height: 1.5 !important;
+            border: 1px solid #cbd5e1 !important;
+            padding: 11px 16px !important;
+            color: #1e293b !important;
+            background-color: #ffffff !important;
+            line-height: 1.6 !important;
+            font-size: 0.94rem !important;
+            vertical-align: top !important;
         }
 
-        .content-body tr:nth-child(even) td {
-            background: #f8fafc !important;
+        .content-body tbody tr:nth-child(even) td {
+            background-color: #f8fafc !important;
         }
 
-        .content-body tr:hover td {
-            background: #f1f5f9 !important;
+        .content-body tbody tr:hover td {
+            background-color: #f1f5f9 !important;
         }
 
         /* Images */
@@ -427,7 +459,7 @@
             max-width: 100% !important;
             height: auto !important;
             display: block !important;
-            margin: 16px auto !important;
+            margin: 18px auto !important;
             border-radius: 10px !important;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
             border: 1px solid #e2e8f0 !important;
@@ -444,7 +476,7 @@
             margin: 28px 0;
             border: 0;
             border-top: 2px dashed #cbd5e1;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         /* Continuous Scroll Mode */
@@ -458,7 +490,7 @@
             scroll-margin-top: 20px;
         }
 
-        /* Back to top */
+        /* Back to top button */
         .back-to-top {
             position: fixed;
             bottom: 28px;
@@ -575,7 +607,7 @@
         </div>
     </div>
 
-    <!-- Navigation Bar for Card View (NO MCQ pills) -->
+    <!-- Navigation Bar for Card View -->
     <div class="nav-bar" id="card-nav-bar">
         <div style="display: flex; gap: 8px;">
             <button class="nav-btn" id="btn-prev" onclick="prevQuestion()">
@@ -616,7 +648,7 @@
                     <h2 class="question-title" id="q-title">Φόρτωση...</h2>
                 </div>
 
-                <!-- Pure Content Flow (Summary -> Ektenes -> Parathesis at END) -->
+                <!-- Pure Content Flow: Part 1 (Summary + Paratheseis) -> Part 2 (Ektenes Keimeno) -->
                 <div class="content-body" id="q-content-area"></div>
             </article>
         </div>
@@ -657,13 +689,11 @@
     let currentIndex = 0;
     let currentMode = 'card';
 
-    // Simple, super fast accent stripper for search
     function cleanSearchStr(s) {
         if (!s) return '';
         return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     }
 
-    // Init App
     function init() {
         if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
             allQuestions = flashcardQuestionsData;
@@ -693,7 +723,6 @@
         setupScrollListener();
     }
 
-    // Filter questions
     function filterQuestions() {
         const raw = document.getElementById('search-input').value.trim();
         const term = cleanSearchStr(raw);
@@ -704,9 +733,7 @@
             filteredQuestions = allQuestions.filter(q => {
                 const qT = cleanSearchStr(q.question || '');
                 const idT = (q.id || '').toString();
-                // Check title and id first (instant)
                 if (qT.includes(term) || idT.includes(term)) return true;
-                // Check sample of answer
                 const aT = cleanSearchStr((q.correctAnswer || '').substring(0, 500));
                 return aT.includes(term);
             });
@@ -722,7 +749,6 @@
         }
     }
 
-    // Update Jump Select dropdown
     function updateJumpSelect() {
         const sel = document.getElementById('jump-select');
         sel.innerHTML = '';
@@ -735,7 +761,7 @@
         });
     }
 
-    // Format Question HTML: 1. Summary -> 2. Ektenes -> 3. Parathesis at END
+    // Question content: Part 1 (Summary + Paratheseis) -> Part 2 (Ektenes)
     function getFullQuestionHtml(q) {
         let fullHtml = (q.correctAnswer || '').trim();
         const exp = (q.explanation || '').trim();
@@ -746,7 +772,6 @@
         return fullHtml;
     }
 
-    // Render single question in Card View
     function renderCardView() {
         const article = document.getElementById('single-question-article');
         if (filteredQuestions.length === 0) {
@@ -769,7 +794,6 @@
         applyImageHandling(article);
     }
 
-    // Render all in Continuous View
     function renderContinuousView() {
         const container = document.getElementById('continuous-view-container');
         container.innerHTML = '';
@@ -801,7 +825,6 @@
         });
     }
 
-    // Image fallback & zoom modal
     function applyImageHandling(scope) {
         scope.querySelectorAll('img').forEach(img => {
             img.loading = "lazy";
@@ -818,7 +841,6 @@
         });
     }
 
-    // Modal
     function openImgModal(src) {
         document.getElementById('modal-img').src = src;
         document.getElementById('img-modal').classList.add('open');
@@ -827,7 +849,6 @@
         document.getElementById('img-modal').classList.remove('open');
     }
 
-    // Search setup with debounce
     function setupSearch() {
         let timeout = null;
         document.getElementById('search-input').addEventListener('input', () => {
@@ -838,7 +859,6 @@
         });
     }
 
-    // Navigation actions
     function prevQuestion() {
         if (currentIndex > 0) {
             currentIndex--;
@@ -911,7 +931,6 @@
         });
     }
 
-    // Start immediately
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
