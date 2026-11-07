@@ -1942,17 +1942,6 @@ body.light-theme .modal-chapters-grid::-webkit-scrollbar-thumb {
 
 
 
-/* Full text justification for all sections, explanations, answers, and dialogue blocks */
-.explanation-content p, 
-.explanation-content li, 
-.correct-answer-box p, 
-.explanation-wrapper p, 
-.explanation-wrapper li, 
-.checkbox-container, 
-.overlay-question-item,
-#mnemonic-text, 
-/* justify removed */
-
 /* Premium Dropdown Selectors */
 .large-dropdown-select-btn {
     width: 100%;
@@ -3998,9 +3987,22 @@ body.dark-theme .explanation-clean-content h6 {
     color: #f1f5f9 !important;
 }
 
+.explanation-clean-content p,
+.explanation-clean-content li {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
 .explanation-clean-content p {
     margin: 0.7em 0 !important;
     line-height: 1.76 !important;
+    display: block !important;
 }
 
 .explanation-clean-content ul, 
@@ -4012,6 +4014,7 @@ body.dark-theme .explanation-clean-content h6 {
 .explanation-clean-content li {
     margin-bottom: 5px !important;
     line-height: 1.7 !important;
+    display: list-item !important;
 }
 
 .explanation-clean-content b, 
