@@ -513,15 +513,12 @@ function revealExplanation(explanationText) {
     if (!strippedText && question) {
         const correctIndices = getCorrectAnswerIndices(question);
         const correctOpts = correctIndices.map(i => question.options[i]).filter(Boolean);
-        const optsHtml = correctOpts.map(opt => `<div style="margin-bottom: 8px;">• ${opt}</div>`).join('');
         mainExp = `
-            <div class="explanation-box correct-answer-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: 12px; padding: 18px 22px; margin-top: 15px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #15803d; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1.3rem;">✅</span> <span>Σωστή Απάντηση:</span>
-                </div>
-                <div style="font-size: 1.05rem; font-weight: 600; color: #166534; line-height: 1.6; padding-left: 28px;">
+            <div class="explanation-clean-content">
+                <h4>Σωστή Απάντηση</h4>
+                <ul>
                     ${optsHtml}
-                </div>
+                </ul>
             </div>
         `;
     }
@@ -970,34 +967,8 @@ function injectSectionBackToTop(html) {
             '<span>Επιστροφή στην κορυφή</span>' +
             '</button></div>';
 
-        // 1. If explanation has .section-heading or .theory-icon-header
-        if (html.includes('class="section-heading"') || html.includes('class="theory-icon-header"')) {
-            let count = 0;
-            let modified = html.replace(/<div class="(?:section-heading|theory-icon-header)"/g, (match) => {
-                count++;
-                if (count > 1) {
-                    return topBtnHtml + match;
-                }
-                return match;
-            });
-            return modified + topBtnHtml;
-        }
-        
-        // 2. If explanation has h2, h3, or h4
-        if (html.includes('<h2') || html.includes('<h3') || html.includes('<h4')) {
-            let count = 0;
-            let modified = html.replace(/<h[234]/g, (match) => {
-                count++;
-                if (count > 1) {
-                    return topBtnHtml + match;
-                }
-                return match;
-            });
-            return modified + topBtnHtml;
-        }
-
-        // 3. Fallback: if long enough (> 400 chars), append at the end
-        if (html.length > 400) {
+        // Only append single back-to-top button at the very end of long explanations, never splicing inside headings
+        if (html.length > 500) {
             return html + topBtnHtml;
         }
 

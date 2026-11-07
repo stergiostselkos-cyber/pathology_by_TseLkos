@@ -3939,36 +3939,95 @@ body.dark-theme .quotes-content b {
 }
 
 /* ==========================================================================
-   2013-2023 MCQ Structure & Verdict Box Theme Styling
+   Clean, Uniform Explanation Typography (Larnaka-style Clean Standard)
    ========================================================================== */
-body.dark-theme .explanation-box {
+.explanation-clean-content {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    padding: 26px 34px !important;
+    margin: 16px auto !important;
+    max-width: 99% !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 1.05rem !important;
+    line-height: 1.76 !important;
+    color: #1e293b !important;
+    text-align: justify !important;
+}
+
+body.dark-theme .explanation-clean-content {
     background-color: #1e293b !important;
-    border-color: #b45309 !important;
+    border-color: #334155 !important;
     color: #f1f5f9 !important;
 }
-body.dark-theme .explanation-box b,
-body.dark-theme .explanation-box strong {
+
+.explanation-clean-content h4 {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #0369a1 !important;
+    margin: 1.2em 0 0.5em 0 !important;
+    border-bottom: 2px solid #e0f2fe !important;
+    padding-bottom: 6px !important;
+}
+
+body.dark-theme .explanation-clean-content h4 {
+    color: #38bdf8 !important;
+    border-bottom-color: #0c4a6e !important;
+}
+
+.explanation-clean-content h5 {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 1.1em 0 0.4em 0 !important;
+}
+
+body.dark-theme .explanation-clean-content h5 {
     color: #f8fafc !important;
 }
-body.dark-theme .verdict-item.correct {
-    background: rgba(22, 163, 74, 0.15) !important;
-    border-left-color: #22c55e !important;
+
+.explanation-clean-content h6 {
+    font-size: 1.08rem !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin: 1em 0 0.35em 0 !important;
 }
-body.dark-theme .verdict-item.correct h6 {
-    color: #4ade80 !important;
-}
-body.dark-theme .verdict-item.correct p {
+
+body.dark-theme .explanation-clean-content h6 {
     color: #f1f5f9 !important;
 }
-body.dark-theme .verdict-item.incorrect {
-    background: rgba(220, 38, 38, 0.15) !important;
-    border-left-color: #ef4444 !important;
+
+.explanation-clean-content p {
+    margin: 0.7em 0 !important;
+    line-height: 1.76 !important;
 }
-body.dark-theme .verdict-item.incorrect h6 {
-    color: #f87171 !important;
+
+.explanation-clean-content ul, 
+.explanation-clean-content ol {
+    margin: 0.7em 0 !important;
+    padding-left: 26px !important;
 }
-body.dark-theme .verdict-item.incorrect p {
-    color: #f1f5f9 !important;
+
+.explanation-clean-content li {
+    margin-bottom: 5px !important;
+    line-height: 1.7 !important;
+}
+
+.explanation-clean-content b, 
+.explanation-clean-content strong {
+    font-weight: 700 !important;
+}
+
+/* Neutralize any legacy verdict boxes */
+.verdict-item, 
+.verdict-item.correct, 
+.verdict-item.incorrect {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
 }
 
 /* ==========================================================================
