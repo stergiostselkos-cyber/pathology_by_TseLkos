@@ -503,50 +503,18 @@ function handleRevealAnswer() {
  * Reveal explanation panel and parse markdown
  */
 function revealExplanation(explanationText) {
-    const question = (typeof filteredQuestions !== 'undefined' && filteredQuestions[currentQuestionIndex]) ? filteredQuestions[currentQuestionIndex] : null;
-    
-    let mainExp = explanationText || "";
-    let detailedTheory = "";
-    
-    // Check if mainExp has actual text content beyond empty HTML tags
-    const strippedText = mainExp.replace(/<[^>]+>/g, '').trim();
-    if (!strippedText && question) {
-        const correctIndices = getCorrectAnswerIndices(question);
-        const correctOpts = correctIndices.map(i => question.options[i]).filter(Boolean);
-        mainExp = `
-            <div class="explanation-clean-content">
-                <h4>Σωστή Απάντηση</h4>
-                <ul>
-                    ${optsHtml}
-                </ul>
-            </div>
-        `;
-    }
-    
-    if (!mainExp || !mainExp.trim()) {
+    if (!explanationText || !explanationText.trim()) {
         explanationPanel.classList.remove('expanded');
         return;
     }
     
-    if (mainExp.includes("### Αναλυτική Απάντηση")) {
-        const parts = mainExp.split("### Αναλυτική Απάντηση");
-        mainExp = parts[0];
-        detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
-    }
-    let finalHtml = mainExp.trim().startsWith('<div') ? mainExp : ('<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>');
-    if (detailedTheory) {
-        finalHtml += '<div class="mcq-sweet-theory">' +
-            '<div class="theory-icon-header">📖 Έξτρα Υλικό Μελέτης</div>' +
-            '<div class="theory-content">' + parseMarkdown(detailedTheory) + '</div>' +
-        '</div>';
+    // Render the explanation text directly like Larnaka
+    try {
+        explanationContent.innerHTML = injectSectionBackToTop(explanationText);
+    } catch (e) {
+        explanationContent.innerHTML = explanationText;
     }
     
-    try {
-        explanationContent.innerHTML = injectSectionBackToTop(finalHtml);
-    } catch (e) {
-        console.error("Error setting explanationContent:", e);
-        explanationContent.innerHTML = finalHtml;
-    }
     explanationPanel.classList.remove('collapsed');
     explanationPanel.classList.add('expanded');
     

@@ -69,6 +69,206 @@
     color: #1e293b !important;
 }
 
+/* ==============================================================================
+   3-TIER HIERARCHY SYSTEM - LARNAKA MCQ EXPLANATIONS
+   1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4)
+   2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5)
+   3ο Επίπεδο: Πολύ-πολύ Απαλό Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ)
+   ============================================================================== */
+
+/* 1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4) */
+.stage-banner,
+div.stage-banner,
+p.stage-banner,
+h4.stage-banner,
+.word-question h4,
+.explanation-box h4,
+.explanation-content h4 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 12pt !important;
+    font-weight: 800 !important;
+    color: #0369a1 !important;
+    background: #e0f2fe !important;
+    border: 1.5px solid #bae6fd !important;
+    border-left: 6px solid #0284c7 !important;
+    border-radius: 8px !important;
+    padding: 11px 20px !important;
+    margin: 24px 0 14px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12) !important;
+    box-sizing: border-box !important;
+}
+
+.stage-banner *,
+.word-question h4 *,
+.explanation-box h4 *,
+.explanation-content h4 * {
+    color: #0369a1 !important;
+}
+
+/* 2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5) */
+.thematic-banner,
+div.thematic-banner,
+p.thematic-banner,
+.thematic-unit-banner,
+h5.thematic-banner,
+.word-question h5,
+.explanation-box h5,
+.explanation-content h5 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 11pt !important;
+    font-weight: 750 !important;
+    color: #9d174d !important;
+    background: #fdf2f8 !important;
+    border: 1px solid #fce7f3 !important;
+    border-left: 5.5px solid #ec4899 !important;
+    border-radius: 8px !important;
+    padding: 9px 18px !important;
+    margin: 20px 0 10px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
+    box-sizing: border-box !important;
+}
+
+.thematic-banner *,
+.thematic-unit-banner *,
+.word-question h5 *,
+.explanation-box h5 *,
+.explanation-content h5 * {
+    color: #9d174d !important;
+}
+
+/* 3ο Επίπεδο: Πορτοκαλί Πλαίσιο */
+.subsection-banner,
+div.subsection-banner,
+p.subsection-banner,
+.substage-banner,
+.larnaka-level3-banner {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #9a3412 !important;
+    background: #fff7ed !important;
+    border: 1px solid #ffedd5 !important;
+    border-left: 5px solid #f97316 !important;
+    border-radius: 8px !important;
+    padding: 7px 16px !important;
+    margin: 16px 0 8px 0 !important;
+    text-align: left !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.subsection-banner *,
+.substage-banner *,
+.larnaka-level3-banner * {
+    color: #9a3412 !important;
+}
+
+/* Subheadings & Option Justifications (H6) */
+.word-question h6,
+.explanation-box h6,
+.explanation-content h6 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 16px 0 6px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+}
+
+/* Responsive Medical Tables */
+.table-responsive-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+    margin: 18px 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+}
+
+.table-responsive-wrapper table.zoomable-table,
+.word-table,
+.explanation-content table,
+.explanation-box table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    cursor: zoom-in !important;
+    margin: 14px 0 !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th,
+.explanation-content th,
+.explanation-box th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table-responsive-wrapper table td,
+.word-table td,
+.explanation-content td,
+.explanation-box td {
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+    vertical-align: top !important;
+    background-color: #ffffff !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-align: left !important;
+}
+
+.table-responsive-wrapper table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td,
+.explanation-content tbody tr:nth-child(even) td,
+.explanation-box tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-responsive-wrapper table tbody tr:hover td,
+.word-table tbody tr:hover td,
+.explanation-content tbody tr:hover td,
+.explanation-box tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Diagrams & Flowcharts (Zoomable) */
+.fig-img,
+.theory-diagram-img,
+.zoomable-image {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 14px auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08) !important;
+    cursor: zoom-in !important;
+}
+.fig-img-wrap {
+    text-align: center !important;
+    margin: 16px 0 !important;
+}
+
 .table-responsive-wrapper, 
 .word-table, 
 .fig-img-wrap {
