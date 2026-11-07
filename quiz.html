@@ -224,17 +224,77 @@
     }
 
     #quiz-view .explanation-content p,
-    #quiz-view .explanation-content li,
     .word-question p,
-    .word-question li,
-    .explanation-box p,
-    .explanation-box li {
+    .explanation-box p {
       font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
       color: #1e293b !important;
       line-height: 1.72 !important;
       text-align: justify !important;
       text-justify: inter-word !important;
       margin-bottom: 12px !important;
+    }
+
+    /* List Indentation & Hierarchy (Larnaka Standard) */
+    .word-question ul,
+    .explanation-box ul,
+    #quiz-view .explanation-content ul {
+      margin: 8px 0 14px 0 !important;
+      padding-left: 2.2rem !important;
+      list-style-type: disc !important;
+      list-style-position: outside !important;
+    }
+
+    .word-question ol,
+    .explanation-box ol,
+    #quiz-view .explanation-content ol {
+      margin: 8px 0 14px 0 !important;
+      padding-left: 2.2rem !important;
+      list-style-type: decimal !important;
+      list-style-position: outside !important;
+    }
+
+    .word-question ul ul,
+    .explanation-box ul ul,
+    #quiz-view .explanation-content ul ul {
+      margin: 4px 0 8px 0 !important;
+      padding-left: 1.8rem !important;
+      list-style-type: circle !important;
+    }
+
+    .word-question ul ul ul,
+    .explanation-box ul ul ul,
+    #quiz-view .explanation-content ul ul ul {
+      padding-left: 1.8rem !important;
+      list-style-type: square !important;
+    }
+
+    .word-question ol ol,
+    .explanation-box ol ol,
+    #quiz-view .explanation-content ol ol {
+      margin: 4px 0 8px 0 !important;
+      padding-left: 1.8rem !important;
+      list-style-type: lower-greek !important;
+    }
+
+    .word-question ol ol ol,
+    .explanation-box ol ol ol,
+    #quiz-view .explanation-content ol ol ol {
+      padding-left: 1.8rem !important;
+      list-style-type: lower-roman !important;
+    }
+
+    #quiz-view .explanation-content li,
+    .word-question li,
+    .explanation-box li {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+      color: #1e293b !important;
+      position: static !important;
+      list-style: inherit !important;
+      list-style-position: outside !important;
+      line-height: 1.68 !important;
+      text-align: left !important;
+      margin: 6px 0 !important;
+      padding-left: 4px !important;
     }
 
     /* ==============================================================================

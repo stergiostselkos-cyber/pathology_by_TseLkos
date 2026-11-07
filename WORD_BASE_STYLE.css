@@ -2,8 +2,45 @@
    The JS strings are self-contained and also inline all paragraph/heading defaults. */
 .word-export { font-family:"Times New Roman","Liberation Serif",serif; font-size:12pt; direction:ltr; max-width:100%; }
 .word-export p { widows:2; orphans:2; }
-.word-export ul, .word-export ol { margin-top:0; margin-bottom:0; margin-left:0; padding-left:18.45pt; list-style-position:outside; }
-.word-export li { margin:0; padding:0; }
+.word-export ul, .word-export ol,
+.word-question ul, .explanation-box ul, #quiz-view .explanation-content ul,
+.word-question ol, .explanation-box ol, #quiz-view .explanation-content ol {
+    margin: 8px 0 14px 0 !important;
+    padding-left: 2.2rem !important;
+    list-style-position: outside !important;
+}
+.word-question ul, .explanation-box ul, #quiz-view .explanation-content ul {
+    list-style-type: disc !important;
+}
+.word-question ol, .explanation-box ol, #quiz-view .explanation-content ol {
+    list-style-type: decimal !important;
+}
+.word-question ul ul, .explanation-box ul ul, #quiz-view .explanation-content ul ul {
+    padding-left: 1.8rem !important;
+    margin: 4px 0 8px 0 !important;
+    list-style-type: circle !important;
+}
+.word-question ul ul ul, .explanation-box ul ul ul, #quiz-view .explanation-content ul ul ul {
+    padding-left: 1.8rem !important;
+    list-style-type: square !important;
+}
+.word-question ol ol, .explanation-box ol ol, #quiz-view .explanation-content ol ol {
+    padding-left: 1.8rem !important;
+    margin: 4px 0 8px 0 !important;
+    list-style-type: lower-greek !important;
+}
+.word-question ol ol ol, .explanation-box ol ol ol, #quiz-view .explanation-content ol ol ol {
+    padding-left: 1.8rem !important;
+    list-style-type: lower-roman !important;
+}
+.word-export li, .word-question li, .explanation-box li, #quiz-view .explanation-content li {
+    margin: 6px 0 !important;
+    padding-left: 4px !important;
+    line-height: 1.68 !important;
+    text-align: left !important;
+    list-style: inherit !important;
+    list-style-position: outside !important;
+}
 .word-export table { border-collapse:collapse; max-width:100%; }
 .word-export img { max-width:100%; height:auto; }
 .word-export .diagram-source-html { display:none !important; }
@@ -328,10 +365,6 @@ p.subsection-banner,
         line-height: 1.65 !important;
         text-align: left !important;
         text-justify: normal !important;
-    }
-    
-    .word-question p[style*="padding-left"] {
-        padding-left: 12px !important;
     }
     
     .table-responsive-wrapper {

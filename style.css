@@ -4152,12 +4152,6 @@ body.dark-theme .essay-question-container p {
         line-height: 1.65 !important;
     }
     
-    /* justify removed */
-    
-    .word-question p[style*="padding-left"] {
-        padding-left: 12px !important;
-    }
-    
     .table-responsive-wrapper {
         margin: 10px 0 !important;
     }
@@ -4267,13 +4261,12 @@ body.dark-theme .essay-question-container p {
     vertical-align: baseline !important;
 }
 
-/* Lists padding & indent preservation */
+/* Lists padding & indent preservation for raw text */
 .content-body ul,
 .new-book-pure-container ul,
 #quick-correct-answer-text ul,
 .correct-answer-box ul,
-.explanation-wrapper ul,
-.word-question ul {
+.explanation-wrapper ul {
     list-style: none !important;
     list-style-type: none !important;
     padding: 0 !important;
@@ -4284,8 +4277,7 @@ body.dark-theme .essay-question-container p {
 .new-book-pure-container li,
 #quick-correct-answer-text li,
 .correct-answer-box li,
-.explanation-wrapper li,
-.word-question li {
+.explanation-wrapper li {
     position: relative !important;
     list-style: none !important;
     list-style-type: none !important;
@@ -4295,6 +4287,87 @@ body.dark-theme .essay-question-container p {
     line-height: 1.65 !important;
     margin-bottom: 6pt !important;
     padding-left: 0 !important;
+}
+
+/* ==============================================================================
+   FIX FOR LIST INDENTATION & BULLETS - LARNAKA EXPLANATIONS
+   Restores hierarchical indents (Level 1, 2, 3) and prevents flattening
+   ============================================================================== */
+.word-question ul,
+.explanation-box ul,
+#quiz-view .explanation-content ul {
+    padding-left: 2.2rem !important;
+    margin-top: 6px !important;
+    margin-bottom: 12px !important;
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+}
+
+.word-question ol,
+.explanation-box ol,
+#quiz-view .explanation-content ol {
+    padding-left: 2.2rem !important;
+    margin-top: 6px !important;
+    margin-bottom: 12px !important;
+    list-style-type: decimal !important;
+    list-style-position: outside !important;
+}
+
+/* Nested lists (levels 2 and 3) */
+.word-question ul ul,
+.explanation-box ul ul,
+#quiz-view .explanation-content ul ul {
+    padding-left: 1.8rem !important;
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    list-style-type: circle !important;
+}
+
+.word-question ul ul ul,
+.explanation-box ul ul ul,
+#quiz-view .explanation-content ul ul ul {
+    padding-left: 1.8rem !important;
+    list-style-type: square !important;
+}
+
+.word-question ol ol,
+.explanation-box ol ol,
+#quiz-view .explanation-content ol ol {
+    padding-left: 1.8rem !important;
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    list-style-type: lower-greek !important;
+}
+
+.word-question ol ol ol,
+.explanation-box ol ol ol,
+#quiz-view .explanation-content ol ol ol {
+    padding-left: 1.8rem !important;
+    list-style-type: lower-roman !important;
+}
+
+.word-question li,
+.explanation-box li,
+#quiz-view .explanation-content li {
+    position: static !important;
+    list-style: inherit !important;
+    list-style-position: outside !important;
+    margin-bottom: 6px !important;
+    line-height: 1.68 !important;
+    text-align: left !important;
+    text-justify: auto !important;
+    padding-left: 4px !important;
+}
+
+/* Blockquotes / Indented text */
+.word-question blockquote,
+.explanation-box blockquote,
+#quiz-view .explanation-content blockquote {
+    border-left: 3.5px solid #0284c7 !important;
+    padding-left: 18px !important;
+    margin: 12px 0 12px 18px !important;
+    background: #f8fafc !important;
+    border-radius: 4px !important;
 }
 
 
