@@ -24,7 +24,36 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS Stylesheet -->
-<link href="style.css?v=20261021.final" rel="stylesheet"/>
+<link href="style.css?v=20261107.clean" rel="stylesheet"/>
+<style>
+/* Absolute fail-safe override: eliminate all box wrappers on paragraphs and bullets */
+.explanation-content p, 
+.explanation-content li,
+.explanation-clean-content p, 
+.explanation-clean-content li {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0.7em 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    width: auto !important;
+}
+.explanation-content li,
+.explanation-clean-content li {
+    display: list-item !important;
+}
+.verdict-item, .verdict-item.correct, .verdict-item.incorrect {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+</style>
 <style>
     /* Animation for Author Tag */
     @keyframes tselkosGlow {
