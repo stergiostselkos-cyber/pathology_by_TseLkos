@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="el">
 <head>
@@ -13,6 +13,9 @@
 </script>
 
     <script src="auth-guard.js"></script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Προσομοιωτής Quiz Παθολογίας</title>
@@ -390,40 +393,99 @@
             </div>
 </footer>
 </div>
+<!-- Loading Overlay -->
+<div id="quiz-loading-overlay" style="position: fixed; inset: 0; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; transition: opacity 0.3s ease;">
+  <div style="width: 52px; height: 52px; border: 4px solid #e2e8f0; border-top-color: #0284c7; border-radius: 50%; animation: quizSpin 0.8s linear infinite; margin-bottom: 18px;"></div>
+  <h3 id="quiz-loading-title" style="color: #0f172a; font-weight: 800; font-size: 1.2rem; margin-bottom: 6px;">Φόρτωση Τράπεζας Ερωτήσεων...</h3>
+  <p id="quiz-loading-sub" style="color: #64748b; font-size: 0.92rem;">Προετοιμασία δεδομένων</p>
+</div>
+<style>
+@keyframes quizSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
 <!-- App Logic Scripts -->
+<script src="marked.min.js"></script>
 <script>
-        const urlParams = new URLSearchParams(window.location.search);
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
     const bank = urlParams.get('bank');
     if (bank === 'larnaka') {
-        window.location.href = 'LARNAKA/index.html';
+        window.location.replace('LARNAKA/index.html');
+        return;
     } else if (bank === 'larnaka1') {
-        window.location.href = 'LARNAKA_PART_01/index.html';
+        window.location.replace('LARNAKA_PART_01/index.html');
+        return;
     } else if (bank === 'larnaka2') {
-        window.location.href = 'LARNAKA_PART_02/index.html';
+        window.location.replace('LARNAKA_PART_02/index.html');
+        return;
     } else if (bank === 'larnaka3') {
-        window.location.href = 'LARNAKA_PART_03/index.html';
+        window.location.replace('LARNAKA_PART_03/index.html');
+        return;
     } else if (bank === 'larnaka4') {
-        window.location.href = 'LARNAKA_PART_04/index.html';
+        window.location.replace('LARNAKA_PART_04/index.html');
+        return;
     } else if (bank === 'larnaka5') {
-        window.location.href = 'LARNAKA_PART_05/index.html';
+        window.location.replace('LARNAKA_PART_05/index.html');
+        return;
     } else if (bank === 'larnaka6') {
-        window.location.href = 'LARNAKA_PART_06/index.html';
+        window.location.replace('LARNAKA_PART_06/index.html');
+        return;
     } else if (bank === 'larnaka7') {
-        window.location.href = 'LARNAKA_PART_07/index.html';
+        window.location.replace('LARNAKA_PART_07/index.html');
+        return;
     }
     
     let scriptSrc = "questions_v3.js";
+    let bankName = "Θέματα Εξετάσεων 2013-2023";
     if (bank === 'bank_1') {
         scriptSrc = "questions_bank_1.js";
-    } else if (bank === 'larnaka' || bank.startsWith('larnaka_')) {
+        bankName = "Τράπεζα Θεμάτων 1";
+    } else if (bank === 'larnaka' || (bank && bank.startsWith('larnaka_'))) {
         scriptSrc = "LARNAKA/larnaka.js";
+        bankName = "Τράπεζα Θεμάτων ΛΑΡΝΑΚΑ";
     }
-    scriptSrc += "?v=" + new Date().getTime();
-    document.write('<script charset="UTF-8" src="' + scriptSrc + '"><\/script>');
-</script>
-<script src="marked.min.js"></script>
-<script>
-    document.write('<script charset="UTF-8" src="app.js?v=20261015?v=' + new Date().getTime() + '"><\/script>');
+
+    const overlay = document.getElementById('quiz-loading-overlay');
+    const loadingSub = document.getElementById('quiz-loading-sub');
+    if (loadingSub) loadingSub.textContent = 'Φόρτωση: ' + bankName;
+
+    function loadScriptAsync(src) {
+        return new Promise(function(resolve, reject) {
+            const s = document.createElement('script');
+            s.charset = 'UTF-8';
+            s.src = src;
+            s.onload = resolve;
+            s.onerror = function() {
+                reject(new Error('Failed to load: ' + src));
+            };
+            document.body.appendChild(s);
+        });
+    }
+
+    const cacheBuster = '?v=' + Date.now();
+    loadScriptAsync(scriptSrc + cacheBuster)
+        .then(function() {
+            if (loadingSub) loadingSub.textContent = 'Εκκίνηση εφαρμογής...';
+            return loadScriptAsync('app.js' + cacheBuster);
+        })
+        .then(function() {
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(function() {
+                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                }, 300);
+            }
+        })
+        .catch(function(err) {
+            console.error('Quiz initialization error:', err);
+            const title = document.getElementById('quiz-loading-title');
+            if (title) title.textContent = 'Σφάλμα Φόρτωσης';
+            if (loadingSub) loadingSub.textContent = 'Παρακαλώ ανανεώστε τη σελίδα (F5).';
+        });
+})();
 </script>
     
 

@@ -47,7 +47,7 @@ const quickQuestionsDropdownValue = document.getElementById('quick-questions-dro
 /**
  * Initialize Application
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     initTheme();
     loadQuestions();
     setupDropdownEventListeners();
@@ -57,12 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const allPrevBtns = [prevButton, document.getElementById('prev-button-top')].filter(Boolean);
     allNextBtns.forEach(btn => btn.addEventListener('click', handleNextQuestion));
     allPrevBtns.forEach(btn => btn.addEventListener('click', handlePrevQuestion));
-    restartButton.addEventListener('click', restartQuiz);
+    if (restartButton) restartButton.addEventListener('click', restartQuiz);
     // themeToggleBtn listener removed
     if (revealAnswerBtn) {
         revealAnswerBtn.addEventListener('click', handleRevealAnswer);
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 /**
  * Theme Management

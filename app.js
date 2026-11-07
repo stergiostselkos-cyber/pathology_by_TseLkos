@@ -47,7 +47,7 @@ const quickQuestionsDropdownValue = document.getElementById('quick-questions-dro
 /**
  * Initialize Application
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     initTheme();
     loadQuestions();
     setupDropdownEventListeners();
@@ -57,12 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const allPrevBtns = [prevButton, document.getElementById('prev-button-top')].filter(Boolean);
     allNextBtns.forEach(btn => btn.addEventListener('click', handleNextQuestion));
     allPrevBtns.forEach(btn => btn.addEventListener('click', handlePrevQuestion));
-    restartButton.addEventListener('click', restartQuiz);
+    if (restartButton) restartButton.addEventListener('click', restartQuiz);
     // themeToggleBtn listener removed
     if (revealAnswerBtn) {
         revealAnswerBtn.addEventListener('click', handleRevealAnswer);
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 /**
  * Theme Management
@@ -559,20 +565,12 @@ function revealExplanation(explanationText) {
 /**
  * Simple Markdown to HTML parser
  */
-function wrapTablesInHtml(html) {
-    if (!html || typeof html !== 'string' || !html.includes('<table')) return html;
-    return html.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
-        if (wrapped) return wrapped;
-        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
-    });
-}
-
 function parseMarkdown(text) {
     if (!text) return "";
     
     // BYPASS FOR RAW HTML (WORD EXPORT)
     if (text.trim().startsWith('<div class="word-export"')) {
-        return wrapTablesInHtml(text);
+        return text;
     }
 
     
@@ -589,22 +587,13 @@ function parseMarkdown(text) {
     
     
     if (normalized.trim().startsWith('<div')) {
-        return wrapTablesInHtml(normalized);
+        return normalized; // It is already raw HTML from NotebookLM
     }
     
     if (typeof marked !== 'undefined') {
 
         
-            // Clean bloated wordfmt spans from markdown table rows
-    normalized = normalized.replace(/^\|.*\|$/gm, function(line) {
-        return line.replace(/<\/?span[^>]*>/gi, '');
-    });
-    
-    let __parsed = marked.parse(normalized, { breaks: true, gfm: true });
-    return __parsed.replace(/(<div[^>]*class=["'][^"']*table-responsive-wrapper[^"']*["'][^>]*>[\s\S]*?<\/div>)|<table([\s\S]*?)<\/table>/gi, function(m, wrapped, body) {
-        if (wrapped) return wrapped;
-        return '<div class="table-responsive-wrapper"><table class="zoomable-table med-table"' + body + '</table></div>';
-    });
+        return marked.parse(normalized, { breaks: true, gfm: true });
     }
     
     return normalized.replace(/\n/g, '<br/>');
@@ -826,7 +815,116 @@ function restartQuiz() {
 })();
 
 
-// Unified HD Zoom Inspector is handled exclusively by image_zoom_viewer.js
+/* --- ENHANCED TABLE ZOOM & FULLSCREEN LOGIC --- */
+(function() {
+    let modal = document.createElement('div');
+    modal.className = 'table-viewer-overlay';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.innerHTML = `
+        <div class="table-viewer-header">
+            <div class="table-viewer-title">📊 Προβολή &amp; Μεγέθυνση Πίνακα</div>
+            <div class="table-viewer-tools">
+                <button type="button" class="tv-tool-btn" data-tv="out" title="Σμίκρυνση">A−</button>
+                <button type="button" class="tv-tool-btn" data-tv="reset" title="Επαναφορά">⟲</button>
+                <button type="button" class="tv-tool-btn" data-tv="in" title="Μεγέθυνση">A+</button>
+                <button type="button" class="table-viewer-close" title="Κλείσιμο (Esc)">✕</button>
+            </div>
+        </div>
+        <div class="table-viewer-content" id="table-viewer-content"></div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = modal.querySelector('.table-viewer-close');
+    const content = modal.querySelector('#table-viewer-content');
+    let currentScale = 1.0;
+
+    function openModal(table) {
+        if (window.openMedZoom) {
+            window.openMedZoom(table, table.getAttribute('data-title') || table.querySelector('caption, th')?.textContent?.trim(), 'ΙΑΤΡΙΚΟΣ ΠΙΝΑΚΑΣ');
+            return;
+        }
+        content.innerHTML = table.outerHTML;
+        currentScale = 1.0;
+        const copiedTable = content.querySelector('table');
+        if (copiedTable) {
+            copiedTable.style.fontSize = '1.1rem';
+            copiedTable.style.cursor = 'default';
+            copiedTable.style.width = 'max-content';
+            copiedTable.style.maxWidth = 'none';
+            copiedTable.style.display = 'table';
+        }
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { content.innerHTML = ''; }, 200);
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target === content) closeModal();
+        const tool = e.target.closest('[data-tv]');
+        if (tool) {
+            const act = tool.dataset.tv;
+            const tbl = content.querySelector('table');
+            if (!tbl) return;
+            if (act === 'in') { currentScale = Math.min(2.0, currentScale + 0.15); }
+            else if (act === 'out') { currentScale = Math.max(0.75, currentScale - 0.15); }
+            else if (act === 'reset') { currentScale = 1.0; }
+            tbl.style.fontSize = (1.1 * currentScale) + 'rem';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Periodically detect tables in explanations and equip them with zoom
+    setInterval(() => {
+        const tables = document.querySelectorAll('.correct-answer-box table, .explanation-wrapper table, .explanation-content table, .explanation-box table, .mcq-strict-answer table');
+        tables.forEach(table => {
+            if (table.closest('#table-viewer-content') || table.dataset.zoomReady === 'true') {
+                return;
+            }
+            table.dataset.zoomReady = 'true';
+            table.classList.add('zoomable-table');
+            table.style.cursor = 'zoom-in';
+            table.title = 'Κάντε κλικ στον πίνακα για μεγέθυνση σε πλήρη οθόνη';
+
+            // Clicking the table directly opens zoom modal
+            table.addEventListener('click', (e) => {
+                openModal(table);
+            });
+
+            // Add dedicated toolbar right above the table
+            const toolbar = document.createElement('div');
+            toolbar.className = 'table-zoom-toolbar';
+            toolbar.innerHTML = `
+                <span class="table-zoom-hint">💡 Κλικ στον πίνακα για πλήρη προβολή:</span>
+                <button type="button" class="zoom-table-btn">🔍 Μεγέθυνση Πίνακα</button>
+            `;
+
+            const btn = toolbar.querySelector('.zoom-table-btn');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                openModal(table);
+            });
+
+            // Insert toolbar outside scroll container if present
+            const scrollParent = table.parentElement;
+            if (scrollParent && (scrollParent.style.overflowX === 'auto' || scrollParent.classList.contains('table-scroll-container'))) {
+                scrollParent.parentNode.insertBefore(toolbar, scrollParent);
+            } else {
+                table.parentNode.insertBefore(toolbar, table);
+            }
+        });
+    }, 400);
+})();
 
 
 
