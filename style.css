@@ -4505,9 +4505,16 @@ body.dark-theme .essay-question-container p {
 div.stage-banner,
 p.stage-banner,
 h4.stage-banner,
+h5.stage-banner,
 .word-question h4,
+.word-question h5.stage-banner,
+.word-question .stage-banner,
 .explanation-box h4,
-.explanation-content h4 {
+.explanation-box h5.stage-banner,
+.explanation-box .stage-banner,
+.explanation-content h4,
+.explanation-content h5.stage-banner,
+.explanation-content .stage-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 12pt !important;
     font-weight: 800 !important;
@@ -4527,8 +4534,14 @@ h4.stage-banner,
 
 .stage-banner *,
 .word-question h4 *,
+.word-question h5.stage-banner *,
+.word-question .stage-banner *,
 .explanation-box h4 *,
-.explanation-content h4 * {
+.explanation-box h5.stage-banner *,
+.explanation-box .stage-banner *,
+.explanation-content h4 *,
+.explanation-content h5.stage-banner *,
+.explanation-content .stage-banner * {
     color: #0369a1 !important;
 }
 
@@ -4538,9 +4551,16 @@ div.thematic-banner,
 p.thematic-banner,
 .thematic-unit-banner,
 h5.thematic-banner,
-.word-question h5,
-.explanation-box h5,
-.explanation-content h5 {
+h6.thematic-banner,
+.word-question h5:not(.stage-banner),
+.word-question h6.thematic-banner,
+.word-question .thematic-banner,
+.explanation-box h5:not(.stage-banner),
+.explanation-box h6.thematic-banner,
+.explanation-box .thematic-banner,
+.explanation-content h5:not(.stage-banner),
+.explanation-content h6.thematic-banner,
+.explanation-content .thematic-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 11pt !important;
     font-weight: 750 !important;
@@ -4560,9 +4580,15 @@ h5.thematic-banner,
 
 .thematic-banner *,
 .thematic-unit-banner *,
-.word-question h5 *,
-.explanation-box h5 *,
-.explanation-content h5 * {
+.word-question h5:not(.stage-banner) *,
+.word-question h6.thematic-banner *,
+.word-question .thematic-banner *,
+.explanation-box h5:not(.stage-banner) *,
+.explanation-box h6.thematic-banner *,
+.explanation-box .thematic-banner *,
+.explanation-content h5:not(.stage-banner) *,
+.explanation-content h6.thematic-banner *,
+.explanation-content .thematic-banner * {
     color: #9d174d !important;
 }
 
@@ -4570,8 +4596,15 @@ h5.thematic-banner,
 .subsection-banner,
 div.subsection-banner,
 p.subsection-banner,
+h6.subsection-banner,
 .substage-banner,
-.larnaka-level3-banner {
+.larnaka-level3-banner,
+.word-question h6.subsection-banner,
+.word-question .subsection-banner,
+.explanation-box h6.subsection-banner,
+.explanation-box .subsection-banner,
+.explanation-content h6.subsection-banner,
+.explanation-content .subsection-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 10.5pt !important;
     font-weight: 700 !important;
@@ -4591,18 +4624,28 @@ p.subsection-banner,
 
 .subsection-banner *,
 .substage-banner *,
-.larnaka-level3-banner * {
+.larnaka-level3-banner *,
+.word-question h6.subsection-banner *,
+.word-question .subsection-banner *,
+.explanation-box h6.subsection-banner *,
+.explanation-box .subsection-banner *,
+.explanation-content h6.subsection-banner *,
+.explanation-content .subsection-banner * {
     color: #9a3412 !important;
 }
 
 /* Subheadings & Option Justifications (H6) */
-.word-question h6,
-.explanation-box h6,
-.explanation-content h6 {
+.word-question h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-box h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-content h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner) {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 1.02rem !important;
     font-weight: 700 !important;
     color: #0f172a !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
     margin: 16px 0 6px 0 !important;
     text-align: left !important;
     line-height: 1.5 !important;
