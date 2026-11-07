@@ -15,7 +15,7 @@
     <!-- Auth guard bypassed for standalone workspace -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Προσομοιωτής Quiz Παθολογίας - Τράπεζα Θεμάτων ΛΑΡΝΑΚΑ (Μέρος 2ο: Q47 - Q144))</title>
+<title>Προσομοιωτής Quiz Παθολογίας - Τράπεζα Θεμάτων ΛΑΡΝΑΚΑ (Ενοποιημένη: 618 Θέματα — Q45-Q603)</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -416,6 +416,31 @@ p.thematic-banner,
     box-sizing: border-box !important;
 }
 
+/* 3ο Επίπεδο: Πορτοκαλί Πλαίσιο (Υπο-ενότητες, 3-ψήφιες επικεφαλίδες X.Y.Z.) */
+.subsection-banner,
+div.subsection-banner,
+p.subsection-banner {
+    font-size: 11pt !important;
+    font-weight: 700 !important;
+    color: #9a3412 !important;
+    background: #fff7ed !important;
+    border: 1px solid #ffedd5 !important;
+    border-left: 5px solid #f97316 !important;
+    border-radius: 8px !important;
+    padding: 7px 16px !important;
+    margin: 16px 0 8px 0 !important;
+    text-align: left !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.subsection-banner * {
+    color: #9a3412 !important;
+}
+
+
 .thematic-banner *,
 .thematic-unit-banner * {
     color: #9d174d !important;
@@ -761,7 +786,7 @@ body.dark-theme .substage-banner * {
 <path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 <path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
-<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.1rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: #fff; padding: 2px 10px; border-radius: 6px;">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ: ΜΕΡΟΣ 4ο (85 Θέματα: Q47 - Q144)</span></h1>
+<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.1rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: #fff; padding: 2px 10px; border-radius: 6px;">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (Ενοποιημένη: 618 Θέματα — Q45-Q603)</span></h1>
 </div>
 <div class="header-controls">
 <a class="btn btn-secondary btn-icon" href="../index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
@@ -779,18 +804,8 @@ body.dark-theme .substage-banner * {
 <span>Αναζήτηση</span>
 </button>
 <div class="part-switcher-wrap" style="position: relative; display: inline-flex; align-items: center; margin-left: 8px;">
-<select class="part-switcher-select" onchange="switchLarnakaPart(this)" style="padding: 6px 12px; font-size: 0.88rem; border-radius: 8px; font-weight: 700; height: 38px; background: #ffffff; border: 1.5px solid #0ea5e9; color: #0284c7; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(14,165,233,0.15);">
-  <option value="" disabled>-- Επιλογή Ενότητας --</option>
-  <option value="part=all" selected>🏛️ ΟΛΑ ΤΑ ΜΕΡΗ (569 Θέματα Q45-Q551)</option>
-  <option value="part=1">🏛️ Μέρος 1ο (Q45-Q105)</option>
-  <option value="part=2">🏛️ Μέρος 2ο (Q47-Q144)</option>
-  <option value="part=3">🏛️ Μέρος 3ο (Q145-Q217)</option>
-  <option value="part=4">🏛️ Μέρος 4ο (Q218-Q301)</option>
-  <option value="part=5">🏛️ Μέρος 5ο (Q302-Q350)</option>
-  <option value="part=6">🏛️ Μέρος 6ο (Q351-Q401)</option>
-  <option value="part=7">🏛️ Μέρος 7ο (Q402-Q456)</option>
-  <option value="part=8">🏛️ Μέρος 8ο (Q457-Q505)</option>
-<option value="part=9">🏛️ Μέρος 9ο (Q506-Q551)</option>
+<select class="part-switcher-select" style="padding: 6px 14px; font-size: 0.88rem; border-radius: 8px; font-weight: 700; height: 38px; background: #ffffff; border: 1.5px solid #0ea5e9; color: #0284c7; cursor: default; outline: none; box-shadow: 0 2px 6px rgba(14,165,233,0.15);">
+  <option value="all" selected>🏛️ Τράπεζα Θεμάτων - Λάρνακα (Ενοποιημένη: 618 Θέματα)</option>
 </select>
 </div>
 
