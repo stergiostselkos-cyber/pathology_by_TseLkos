@@ -533,8 +533,7 @@ function revealExplanation(explanationText) {
         mainExp = parts[0];
         detailedTheory = "### Αναλυτική Απάντηση" + parts[1];
     }
-    
-    let finalHtml = '<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>';
+    let finalHtml = mainExp.trim().startsWith('<div') ? mainExp : ('<div class="mcq-strict-answer">' + parseMarkdown(mainExp) + '</div>');
     if (detailedTheory) {
         finalHtml += '<div class="mcq-sweet-theory">' +
             '<div class="theory-icon-header">📖 Έξτρα Υλικό Μελέτης</div>' +

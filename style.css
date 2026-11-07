@@ -4022,16 +4022,6 @@ body.dark-theme .explanation-clean-content h6 {
     font-weight: 700 !important;
 }
 
-/* Neutralize any legacy verdict boxes */
-.verdict-item, 
-.verdict-item.correct, 
-.verdict-item.incorrect {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-}
 
 /* ==========================================================================
    Essay Question Container (Ζητούμενα Ερώτησης Ανάπτυξης με Bullets)
@@ -4095,9 +4085,7 @@ body.dark-theme .essay-question-container p {
 }
 
 .word-question, 
-.explanation-box,
-#quiz-view .word-question,
-#quiz-view .explanation-box {
+#quiz-view .word-question {
     background-color: #ffffff !important;
     border: none !important;
     border-radius: 0 !important;
@@ -4158,9 +4146,7 @@ body.dark-theme .essay-question-container p {
     }
     
     .word-question, 
-    .explanation-box,
-    #quiz-view .word-question,
-    #quiz-view .explanation-box {
+    #quiz-view .word-question {
         padding: 2px 4px !important;
         font-size: 0.98rem !important;
         line-height: 1.65 !important;
@@ -4286,7 +4272,6 @@ body.dark-theme .essay-question-container p {
 .new-book-pure-container ul,
 #quick-correct-answer-text ul,
 .correct-answer-box ul,
-.explanation-content ul,
 .explanation-wrapper ul,
 .word-question ul {
     list-style: none !important;
@@ -4299,7 +4284,6 @@ body.dark-theme .essay-question-container p {
 .new-book-pure-container li,
 #quick-correct-answer-text li,
 .correct-answer-box li,
-.explanation-content li,
 .explanation-wrapper li,
 .word-question li {
     position: relative !important;
