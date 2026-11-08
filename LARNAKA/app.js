@@ -530,6 +530,15 @@ function revealExplanation(explanationText) {
     
     // Render the explanation text directly without any interference or extra wrappers
     explanationContent.innerHTML = explanationText;
+    
+    // Graceful error fallback for any missing infographic or diagram
+    explanationContent.querySelectorAll('img').forEach(function(img) {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            var pWrap = this.closest('figure, .notebook-img-container, .fig-img-wrap, .embedded-image-container');
+            if (pWrap) pWrap.style.display = 'none';
+        });
+    });
     explanationPanel.classList.remove('collapsed');
     explanationPanel.classList.add('expanded');
     
