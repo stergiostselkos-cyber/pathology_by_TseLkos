@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4004 Ερωτήσεις Πολλαπλής Χειρουργικής - By TseLkos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="surgery-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-icon">
+          <i class="fa-solid fa-hospital-user"></i>
+        </div>
+        <div class="header-title-box">
+          <h1>4004 Ερωτήσεις Πολλαπλής Χειρουργικής</h1>
+          <div class="subtitle">
+            <span>Γενική Χειρουργική • 24 Κεφάλαια</span>
+            <span class="author-pill">By Stergios Tselkos</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html" class="nav-home-btn">
+          <i class="fa-solid fa-house"></i>
+          <span>Αρχική Πύλη</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="surgery-main">
+    
+    <!-- Controls Panel -->
+    <section class="surgery-controls">
+      <div class="controls-row-top">
+        <div class="chapter-select-wrapper">
+          <select id="chapterSelect" class="chapter-select">
+            <option value="all">Όλα τα Κεφάλαια (Ερωτήσεις 1 - 4004)</option>
+            <!-- Chapters dynamically injected by app.js -->
+          </select>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-pill" id="scoreStat">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Σκορ: <strong id="scoreVal">0 / 0</strong> (<strong id="scorePct">0%</strong>)</span>
+          </div>
+          <div class="stat-pill" id="totalStat">
+            <i class="fa-solid fa-list-ol"></i>
+            <span>Ερωτήσεις: <strong id="totalCountVal">0</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter and Search Row -->
+      <div class="controls-row-bottom">
+        <div class="filter-btn-group">
+          <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> Όλες</button>
+          <button class="filter-btn" data-filter="unanswered"><i class="fa-regular fa-circle"></i> Αναπάντητες</button>
+          <button class="filter-btn" data-filter="wrong"><i class="fa-solid fa-circle-xmark"></i> Λάθη</button>
+          <button class="filter-btn" data-filter="starred"><i class="fa-solid fa-star"></i> Αγαπημένα</button>
+        </div>
+        <div class="search-input-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Αναζήτηση στην ερώτηση...">
+        </div>
+      </div>
+
+      <!-- Chapter Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </section>
+
+    <!-- Question Card -->
+    <article class="question-card" id="questionCard">
+      <div class="question-meta-bar">
+        <div class="question-badge-box">
+          <span class="q-number-badge" id="qNumberBadge">Ερώτηση 1</span>
+          <span class="q-chapter-badge" id="qChapterBadge">Εφαρμοσμένη ανατομία στη χειρουργική</span>
+        </div>
+        <button class="star-btn" id="starBtn" title="Προσθήκη στα Αγαπημένα">
+          <i class="fa-regular fa-star"></i>
+        </button>
+      </div>
+
+      <div class="question-stem" id="questionStem">
+        Φόρτωση ερώτησης...
+      </div>
+
+      <div class="options-list" id="optionsList">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Instant Feedback Box -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="feedback-content">
+          <h4 id="feedbackTitle">Σωστή Απάντηση!</h4>
+          <p id="feedbackText">Επιλέξατε τη σωστή απάντηση.</p>
+        </div>
+      </div>
+
+      <!-- Navigation Toolbar -->
+      <div class="card-nav-bar">
+        <button class="nav-btn" id="prevBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Προηγούμενη</span>
+        </button>
+
+        <div class="nav-center-group">
+          <button class="nav-btn" id="randomBtn" title="Μετάβαση σε τυχαία ερώτηση">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Τυχαία</span>
+          </button>
+          <div class="jump-input-box">
+            <span>Μετάβαση:</span>
+            <input type="number" id="jumpInput" class="jump-input" min="1" max="4004" placeholder="#">
+          </div>
+        </div>
+
+        <button class="nav-btn" id="nextBtn">
+          <span>Επόμενη</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="surgery-footer">
+    <p>«4004 Ερωτήσεις Πολλαπλών Επιλογών Γενικής Χειρουργικής» • Β. Ν. Παπαδόπουλος</p>
+    <p style="margin-top: 4px;">Επιμέλεια &amp; Ανάπτυξη Εφαρμογής: <a href="mailto:stergiostselkos@gmail.com">Stergios Tselkos</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="chapters.js"></script>
+  <script src="surgery_questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
