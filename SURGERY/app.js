@@ -1,5 +1,5 @@
 /**
- * 4004 Ερωτήσεις Πολλαπλής Επιλογής Χειρουργικής
+ * ΧΕΙΡΟΥΡΓΙΚΗ - Ερωτήσεις Πολλαπλής Επιλογής
  * Core Application Logic
  * Author: Stergios Tselkos
  */
@@ -8,6 +8,7 @@
   'use strict';
 
   // State
+  let currentBank = 'bank_4004'; // 'bank_4004' or 'bank_2002'
   let allQuestions = [];
   let filteredQuestions = [];
   let currentIndex = 0;
@@ -48,7 +49,10 @@
   }
 
   // DOM Elements
+  const bankSelect = document.getElementById('bankSelect');
   const chapterSelect = document.getElementById('chapterSelect');
+  const questionSelect = document.getElementById('questionSelect');
+
   const scoreVal = document.getElementById('scoreVal');
   const scorePct = document.getElementById('scorePct');
   const totalCountVal = document.getElementById('totalCountVal');
@@ -57,6 +61,7 @@
   const filterBtns = document.querySelectorAll('.filter-btn');
   const searchInput = document.getElementById('searchInput');
 
+  const qBankBadge = document.getElementById('qBankBadge');
   const qNumberBadge = document.getElementById('qNumberBadge');
   const qChapterBadge = document.getElementById('qChapterBadge');
   const starBtn = document.getElementById('starBtn');
@@ -75,36 +80,114 @@
 
   // Initialize
   function init() {
-    // Check global datasets
-    if (typeof SURGERY_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_QUESTIONS)) {
-      allQuestions = SURGERY_QUESTIONS;
-    } else {
-      console.warn('SURGERY_QUESTIONS dataset not loaded.');
-      allQuestions = [];
-    }
-
+    loadBankData();
     populateChapters();
     bindEvents();
     applyFilters();
   }
 
+  function loadBankData() {
+    if (currentBank === 'bank_4004') {
+      if (typeof SURGERY_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_QUESTIONS)) {
+        allQuestions = SURGERY_QUESTIONS;
+      } else {
+        allQuestions = [];
+      }
+    } else if (currentBank === 'bank_2002') {
+      // Future surgery bank
+      if (typeof SURGERY_2002_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_2002_QUESTIONS)) {
+        allQuestions = SURGERY_2002_QUESTIONS;
+      } else {
+        allQuestions = [];
+      }
+    }
+  }
+
   function populateChapters() {
-    if (typeof SURGERY_CHAPTERS === 'undefined') return;
+    chapterSelect.innerHTML = '';
     
-    SURGERY_CHAPTERS.forEach(ch => {
+    if (currentBank === 'bank_4004') {
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = 'all';
+      defaultOpt.textContent = 'Όλα τα Κεφάλαια (1 - 4004)';
+      chapterSelect.appendChild(defaultOpt);
+
+      if (typeof SURGERY_CHAPTERS !== 'undefined') {
+        SURGERY_CHAPTERS.forEach(ch => {
+          const opt = document.createElement('option');
+          opt.value = ch.id;
+          opt.textContent = `Κεφάλαιο ${ch.id}: ${ch.title} (Ερ. ${ch.qStart} - ${ch.qEnd})`;
+          chapterSelect.appendChild(opt);
+        });
+      }
+    } else if (currentBank === 'bank_2002') {
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = 'all';
+      defaultOpt.textContent = 'Όλα τα Κεφάλαια (2002 Ερωτήσεις - Προσεχώς)';
+      chapterSelect.appendChild(defaultOpt);
+    }
+    
+    chapterSelect.value = 'all';
+    currentChapter = 'all';
+  }
+
+  function populateQuestionSelect() {
+    questionSelect.innerHTML = '';
+    
+    if (filteredQuestions.length === 0) {
       const opt = document.createElement('option');
-      opt.value = ch.id;
-      opt.textContent = `Κεφάλαιο ${ch.id}: ${ch.title} (Ερ. ${ch.qStart} - ${ch.qEnd})`;
-      chapterSelect.appendChild(opt);
+      opt.value = '';
+      opt.textContent = 'Δεν υπάρχουν διαθέσιμες ερωτήσεις';
+      questionSelect.appendChild(opt);
+      questionSelect.disabled = true;
+      return;
+    }
+
+    questionSelect.disabled = false;
+    filteredQuestions.forEach((q, idx) => {
+      const opt = document.createElement('option');
+      opt.value = q.id;
+      // Short preview of question text
+      let preview = q.question.replace(/\s+/g, ' ').trim();
+      if (preview.length > 70) preview = preview.substring(0, 68) + '...';
+      opt.textContent = `Ερώτηση #${q.id}: ${preview}`;
+      questionSelect.appendChild(opt);
     });
+
+    // Sync selected question in dropdown
+    if (filteredQuestions[currentIndex]) {
+      questionSelect.value = filteredQuestions[currentIndex].id;
+    }
   }
 
   function bindEvents() {
+    // 1. Bank Change
+    bankSelect.addEventListener('change', (e) => {
+      currentBank = e.target.value;
+      loadBankData();
+      populateChapters();
+      applyFilters();
+    });
+
+    // 2. Chapter Change
     chapterSelect.addEventListener('change', (e) => {
       currentChapter = e.target.value;
       applyFilters();
     });
 
+    // 3. Question Change (Bar 3)
+    questionSelect.addEventListener('change', (e) => {
+      const qid = parseInt(e.target.value, 10);
+      if (!isNaN(qid)) {
+        const foundIdx = filteredQuestions.findIndex(q => q.id === qid);
+        if (foundIdx !== -1) {
+          currentIndex = foundIdx;
+          renderCurrentQuestion();
+        }
+      }
+    });
+
+    // Status Filter Buttons
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
@@ -114,6 +197,7 @@
       });
     });
 
+    // Search Input
     let searchDebounce = null;
     searchInput.addEventListener('input', (e) => {
       clearTimeout(searchDebounce);
@@ -123,10 +207,12 @@
       }, 200);
     });
 
+    // Navigation buttons
     prevBtn.addEventListener('click', () => navigate(-1));
     nextBtn.addEventListener('click', () => navigate(1));
     randomBtn.addEventListener('click', goToRandom);
 
+    // Jump Input
     jumpInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const val = parseInt(jumpInput.value, 10);
@@ -141,7 +227,6 @@
 
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
-      // Ignore if user typing in an input
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
       if (e.key === 'ArrowLeft') {
@@ -165,6 +250,15 @@
   }
 
   function applyFilters() {
+    if (currentBank === 'bank_2002' && allQuestions.length === 0) {
+      filteredQuestions = [];
+      currentIndex = 0;
+      renderCurrentQuestion();
+      populateQuestionSelect();
+      updateStats();
+      return;
+    }
+
     filteredQuestions = allQuestions.filter(q => {
       // Chapter filter
       if (currentChapter !== 'all') {
@@ -189,11 +283,26 @@
 
     currentIndex = 0;
     renderCurrentQuestion();
+    populateQuestionSelect();
     updateStats();
   }
 
   function renderCurrentQuestion() {
+    if (currentBank === 'bank_2002' && allQuestions.length === 0) {
+      qBankBadge.textContent = '2002 Ερωτήσεις';
+      qNumberBadge.textContent = 'Προσεχώς';
+      qChapterBadge.textContent = 'Υπό Κατασκευή';
+      questionStem.innerHTML = '<div style="text-align:center; padding: 20px 0;"><i class="fa-solid fa-clock-rotate-left" style="font-size:2.5rem; color:#0f766e; margin-bottom:15px; display:block;"></i><h3>Η τράπεζα «2002 Ερωτήσεις Πολλαπλής Επιλογής» ετοιμάζεται!</h3><p style="color:#64748b; margin-top:8px;">Θα είναι διαθέσιμη αμέσως μόλις φορτωθεί το αρχείο των ερωτήσεων. Επιλέξτε την τράπεζα <strong>«4004 Ερωτήσεις Πολλαπλής Επιλογής»</strong> για να συνεχίσετε την εξάσκηση.</p></div>';
+      optionsList.innerHTML = '';
+      feedbackBox.className = 'feedback-box';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      starBtn.classList.remove('starred');
+      return;
+    }
+
     if (filteredQuestions.length === 0) {
+      qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : '2002 Ερωτήσεις');
       qNumberBadge.textContent = '0 / 0';
       qChapterBadge.textContent = 'Δεν βρέθηκαν ερωτήσεις';
       questionStem.textContent = 'Δεν υπάρχει ερώτηση με τα επιλεγμένα κριτήρια ή φίλτρα.';
@@ -208,8 +317,14 @@
     const q = filteredQuestions[currentIndex];
     const totalInFilter = filteredQuestions.length;
 
+    qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : '2002 Ερωτήσεις');
     qNumberBadge.textContent = `Ερώτηση ${q.id} (Φίλτρο: ${currentIndex + 1} / ${totalInFilter})`;
     qChapterBadge.textContent = q.chapterTitle || `Κεφάλαιο ${q.chapterId}`;
+
+    // Sync Question Dropdown
+    if (questionSelect.value !== String(q.id)) {
+      questionSelect.value = q.id;
+    }
 
     // Star status
     if (starredSet.has(q.id)) {
@@ -228,7 +343,6 @@
     optionsList.innerHTML = '';
     const answerState = userAnswers[q.id];
     const hasAnswered = !!answerState;
-
     const optLetters = ['Α', 'Β', 'Γ', 'Δ', 'Ε'];
 
     q.options.forEach((optText, idx) => {
@@ -236,7 +350,6 @@
       btn.className = 'option-btn';
       if (hasAnswered) btn.classList.add('disabled');
 
-      // Strip existing prefix if already present in text
       let cleanText = optText.replace(/^[Α-ΕA-E8Οo0-9]+[\.\)\:\-]\s*/, '').trim();
 
       const letterBox = document.createElement('div');
@@ -250,7 +363,6 @@
       const iconBox = document.createElement('div');
       iconBox.className = 'option-status-icon';
 
-      // Mark states if answered
       if (hasAnswered) {
         if (idx === q.correctAnswer) {
           btn.classList.add('correct');
@@ -274,7 +386,7 @@
       optionsList.appendChild(btn);
     });
 
-    // Render Feedback Box
+    // Feedback Box
     if (hasAnswered) {
       const correctLetter = optLetters[q.correctAnswer] || 'Α';
       if (answerState.isCorrect) {
@@ -300,7 +412,7 @@
   function selectOption(selectedIndex) {
     if (filteredQuestions.length === 0) return;
     const q = filteredQuestions[currentIndex];
-    if (userAnswers[q.id]) return; // already answered
+    if (userAnswers[q.id]) return;
 
     const isCorrect = (selectedIndex === q.correctAnswer);
     userAnswers[q.id] = {
@@ -333,13 +445,10 @@
   }
 
   function jumpToQuestionId(qid) {
-    // If not in current filtered list, switch chapter to all or target
     let targetIdx = filteredQuestions.findIndex(q => q.id === qid);
     if (targetIdx === -1) {
-      // Find question in allQuestions
       const targetQ = allQuestions.find(q => q.id === qid);
       if (targetQ) {
-        // Reset chapter and filters
         currentChapter = 'all';
         chapterSelect.value = 'all';
         currentFilter = 'all';
@@ -384,7 +493,6 @@
     scoreVal.textContent = `${correctCount} / ${answeredCount}`;
     scorePct.textContent = `${pct}%`;
 
-    // Overall Progress fill
     const progressPct = totalAll > 0 ? Math.round((answeredCount / totalAll) * 100) : 0;
     progressFill.style.width = `${progressPct}%`;
   }

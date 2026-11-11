@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4004 Ερωτήσεις Πολλαπλής Χειρουργικής - By TseLkos</title>
+  <title>ΧΕΙΡΟΥΡΓΙΚΗ - Ερωτήσεις Πολλαπλής Επιλογής - By TseLkos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,9 +17,9 @@
           <i class="fa-solid fa-hospital-user"></i>
         </div>
         <div class="header-title-box">
-          <h1>4004 Ερωτήσεις Πολλαπλής Χειρουργικής</h1>
+          <h1>ΧΕΙΡΟΥΡΓΙΚΗ - Ερωτήσεις Πολλαπλής Επιλογής</h1>
           <div class="subtitle">
-            <span>Γενική Χειρουργική • 24 Κεφάλαια</span>
+            <span>Τράπεζες Θεμάτων Γενικής Χειρουργικής</span>
             <span class="author-pill">By Stergios Tselkos</span>
           </div>
         </div>
@@ -38,11 +38,17 @@
     
     <!-- Controls Panel -->
     <section class="surgery-controls">
-      <div class="controls-row-top">
-        <div class="chapter-select-wrapper">
-          <select id="chapterSelect" class="chapter-select">
-            <option value="all">Όλα τα Κεφάλαια (Ερωτήσεις 1 - 4004)</option>
-            <!-- Chapters dynamically injected by app.js -->
+
+      <!-- 1. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΤΡΑΠΕΖΑΣ ΘΕΜΑΤΩΝ -->
+      <div class="nav-selector-row bank-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-database"></i>
+          <span>Τράπεζα Θεμάτων:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="bankSelect" class="styled-select bank-select">
+            <option value="bank_4004" selected>4004 Ερωτήσεις Πολλαπλής Επιλογής (Β. Ν. Παπαδόπουλος)</option>
+            <option value="bank_2002">2002 Ερωτήσεις Πολλαπλής Επιλογής (Προσεχώς)</option>
           </select>
         </div>
         <div class="stats-badges">
@@ -54,6 +60,33 @@
             <i class="fa-solid fa-list-ol"></i>
             <span>Ερωτήσεις: <strong id="totalCountVal">0</strong></span>
           </div>
+        </div>
+      </div>
+
+      <!-- 2. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΚΕΦΑΛΑΙΟΥ -->
+      <div class="nav-selector-row chapter-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-book-medical"></i>
+          <span>Κεφάλαιο Τράπεζας:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="chapterSelect" class="styled-select chapter-select">
+            <option value="all">Όλα τα Κεφάλαια (1 - 4004)</option>
+            <!-- Chapters dynamically injected by app.js -->
+          </select>
+        </div>
+      </div>
+
+      <!-- 3. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΕΡΩΤΗΣΗΣ ΚΕΦΑΛΑΙΟΥ -->
+      <div class="nav-selector-row question-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-list-ol"></i>
+          <span>Ερώτηση Κεφαλαίου:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="questionSelect" class="styled-select question-select">
+            <!-- Questions of current chapter dynamically injected by app.js -->
+          </select>
         </div>
       </div>
 
@@ -81,6 +114,7 @@
     <article class="question-card" id="questionCard">
       <div class="question-meta-bar">
         <div class="question-badge-box">
+          <span class="q-bank-badge" id="qBankBadge">4004 Ερωτήσεις</span>
           <span class="q-number-badge" id="qNumberBadge">Ερώτηση 1</span>
           <span class="q-chapter-badge" id="qChapterBadge">Εφαρμοσμένη ανατομία στη χειρουργική</span>
         </div>
@@ -137,7 +171,7 @@
 
   <!-- Footer -->
   <footer class="surgery-footer">
-    <p>«4004 Ερωτήσεις Πολλαπλών Επιλογών Γενικής Χειρουργικής» • Β. Ν. Παπαδόπουλος</p>
+    <p>«ΧΕΙΡΟΥΡΓΙΚΗ - Ερωτήσεις Πολλαπλής Επιλογής» • 4004 &amp; 2002 Ερωτήσεις</p>
     <p style="margin-top: 4px;">Επιμέλεια &amp; Ανάπτυξη Εφαρμογής: <a href="mailto:stergiostselkos@gmail.com">Stergios Tselkos</a></p>
   </footer>
 

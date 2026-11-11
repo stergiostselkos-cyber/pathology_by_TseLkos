@@ -198,7 +198,87 @@ body::after {
   box-shadow: var(--surg-shadow);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+}
+
+/* Three-tier Navigation Rows: Bank -> Chapter -> Question */
+.nav-selector-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surg-border);
+  box-shadow: 0 2px 6px rgba(6, 78, 59, 0.03);
+  transition: all 0.2s ease;
+  flex-wrap: wrap;
+}
+.nav-selector-row:hover {
+  border-color: rgba(15, 118, 110, 0.4);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.08);
+}
+
+.nav-selector-row.bank-row {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.05) 0%, rgba(16, 185, 129, 0.03) 100%);
+  border: 1.5px solid rgba(15, 118, 110, 0.3);
+}
+
+.selector-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 170px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--surg-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.selector-label i {
+  color: var(--surg-primary);
+  font-size: 1rem;
+}
+
+.selector-input-wrapper {
+  flex: 1;
+  min-width: 240px;
+  position: relative;
+}
+
+.styled-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--surg-border);
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--surg-dark);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.styled-select:focus {
+  border-color: var(--surg-primary);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+.styled-select.bank-select {
+  font-weight: 800;
+  color: var(--surg-deep);
+  background: #f8fafc;
+}
+
+.styled-select.chapter-select {
+  color: var(--surg-primary);
+}
+
+.styled-select.question-select {
+  color: #334155;
+  font-size: 0.9rem;
 }
 
 .controls-row-top {
@@ -209,36 +289,12 @@ body::after {
   flex-wrap: wrap;
 }
 
-.chapter-select-wrapper {
-  flex: 1;
-  min-width: 280px;
-  position: relative;
-}
-
-.chapter-select {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--surg-border);
-  background: #ffffff;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--surg-dark);
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.chapter-select:focus {
-  border-color: var(--surg-primary);
-  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.15);
-}
-
 .stats-badges {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-left: auto;
 }
 
 .stat-pill {
@@ -363,6 +419,18 @@ body::after {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.q-bank-badge {
+  background: rgba(15, 118, 110, 0.12);
+  color: var(--surg-primary);
+  border: 1px solid rgba(15, 118, 110, 0.3);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .q-number-badge {
