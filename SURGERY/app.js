@@ -345,12 +345,34 @@
     const hasAnswered = !!answerState;
     const optLetters = ['Α', 'Β', 'Γ', 'Δ', 'Ε'];
 
+    const GREEK_UPPER_MAP = {
+      'α': 'Α', 'ά': 'Ά', 'β': 'Β', 'γ': 'Γ', 'δ': 'Δ', 'ε': 'Ε', 'έ': 'Έ',
+      'ζ': 'Ζ', 'η': 'Η', 'ή': 'Ή', 'θ': 'Θ', 'ι': 'Ι', 'ί': 'Ί', 'ϊ': 'Ϊ', 'ΐ': 'Ϊ',
+      'κ': 'Κ', 'λ': 'Λ', 'μ': 'Μ', 'ν': 'Ν', 'ξ': 'Ξ', 'ο': 'Ο', 'ό': 'Ό',
+      'π': 'Π', 'ρ': 'Ρ', 'σ': 'Σ', 'ς': 'Σ', 'τ': 'Τ', 'υ': 'Υ', 'ύ': 'Ύ', 'ϋ': 'Ϋ', 'ΰ': 'Ϋ',
+      'φ': 'Φ', 'χ': 'Χ', 'ψ': 'Ψ', 'ω': 'Ω', 'ώ': 'Ώ'
+    };
+
+    function capitalizeFirstLetter(str) {
+      if (!str) return '';
+      str = str.trim();
+      for (let i = 0; i < str.length; i++) {
+        const ch = str[i];
+        if (/[a-zA-Z\u0370-\u03FF]/.test(ch)) {
+          const up = GREEK_UPPER_MAP[ch] || ch.toUpperCase();
+          return str.slice(0, i) + up + str.slice(i + 1);
+        }
+      }
+      return str;
+    }
+
     q.options.forEach((optText, idx) => {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       if (hasAnswered) btn.classList.add('disabled');
 
       let cleanText = optText.replace(/^[Α-ΕA-E8Οo0-9]+[\.\)\:\-]\s*/, '').trim();
+      cleanText = capitalizeFirstLetter(cleanText);
 
       const letterBox = document.createElement('div');
       letterBox.className = 'option-letter';
