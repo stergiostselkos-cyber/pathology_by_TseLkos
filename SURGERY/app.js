@@ -56,6 +56,7 @@
   const scoreVal = document.getElementById('scoreVal');
   const scorePct = document.getElementById('scorePct');
   const totalCountVal = document.getElementById('totalCountVal');
+  const resetScoreBtn = document.getElementById('resetScoreBtn');
   const progressFill = document.getElementById('progressFill');
 
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -235,6 +236,11 @@
 
     starBtn.addEventListener('click', toggleCurrentStarred);
 
+    // Reset Score Button
+    if (resetScoreBtn) {
+      resetScoreBtn.addEventListener('click', resetSurgeryScore);
+    }
+
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -258,6 +264,32 @@
       }
     });
   }
+
+  function resetSurgeryScore() {
+    const bankName = (bankSelect && bankSelect.options[bankSelect.selectedIndex]) ? bankSelect.options[bankSelect.selectedIndex].textContent : 'Χειρουργική';
+    if (confirm(`Θέλετε να μηδενίσετε όλες τις απαντήσεις και το σκορ στη ${bankName};`)) {
+      userAnswers = {};
+      try {
+        localStorage.removeItem(STORAGE_KEY_ANSWERS);
+      } catch (e) {}
+      saveAnswers();
+      renderCurrentQuestion();
+      updateStats();
+      applyFilters();
+    }
+  }
+
+  // Clear / Retry current question selection
+  window.retryCurrentQuestion = function() {
+    if (filteredQuestions.length === 0) return;
+    const q = filteredQuestions[currentIndex];
+    if (userAnswers[q.id]) {
+      delete userAnswers[q.id];
+      saveAnswers();
+      renderCurrentQuestion();
+      updateStats();
+    }
+  };
 
   function applyFilters() {
     if (currentBank === 'bank_2002' && allQuestions.length === 0) {
@@ -410,9 +442,7 @@
       btn.appendChild(iconBox);
 
       btn.addEventListener('click', () => {
-        if (!hasAnswered) {
-          selectOption(idx);
-        }
+        selectOption(idx);
       });
 
       optionsList.appendChild(btn);
@@ -424,16 +454,19 @@
       if (answerState.isCorrect) {
         feedbackBox.className = 'feedback-box correct';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-        feedbackTitle.textContent = 'Σωστή Απάντηση! Συγχαρητήρια!';
-        feedbackText.textContent = `Η ορθή επιλογή είναι η (${correctLetter}).`;
+        feedbackTitle.textContent = 'Σωστή Απάντηση! Μπράβο!';
+        feedbackText.innerHTML = `Μπράβο, επιλέξατε τη σωστή απάντηση <strong>(${correctLetter})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Επαναφορά Επιλογής</button>`;
       } else {
         feedbackBox.className = 'feedback-box incorrect';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
         feedbackTitle.textContent = 'Λανθασμένη Επιλογή';
-        feedbackText.textContent = `Η σωστή απάντηση είναι η επιλογή (${correctLetter}).`;
+        feedbackText.innerHTML = `Η σωστή απάντηση έιναι η <strong>(${correctLetter})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
       }
     } else {
       feedbackBox.className = 'feedback-box';
+      feedbackIcon.innerHTML = '';
+      feedbackTitle.textContent = '';
+      feedbackText.innerHTML = '';
     }
 
     // Navigation buttons state
@@ -444,6 +477,15 @@
   function selectOption(selectedIndex) {
     if (filteredQuestions.length === 0) return;
     const q = filteredQuestions[currentIndex];
+
+    // Toggle off / clear selection if clicked the same option again
+    if (userAnswers[q.id] && userAnswers[q.id].selectedIndex === selectedIndex) {
+      delete userAnswers[q.id];
+      saveAnswers();
+      renderCurrentQuestion();
+      updateStats();
+      return;
+    }
 
     const isCorrect = (selectedIndex === q.correctAnswer);
     userAnswers[q.id] = {

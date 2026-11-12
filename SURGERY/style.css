@@ -766,3 +766,33 @@ body::after {
   color: #ffffff;
   transform: translateY(-1px);
 }
+
+
+/* Enable pointer cursor and hover on answered options so users know they can clear/change choices */
+.option-btn.disabled {
+  cursor: pointer;
+}
+
+/* Retry / Reset current question choice button in feedback box */
+.retry-q-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1.5px solid var(--surg-primary, #0f766e);
+  color: var(--surg-primary, #0f766e);
+  padding: 5px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-q-btn:hover {
+  background: var(--surg-primary, #0f766e);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);
+}
