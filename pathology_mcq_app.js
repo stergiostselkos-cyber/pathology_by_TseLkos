@@ -268,6 +268,9 @@
     // 1. Bank Change
     bankSelect.addEventListener('change', (e) => {
       currentBank = e.target.value;
+      currentChapter = 'all';
+      if (chapterSelect) chapterSelect.value = 'all';
+      currentIndex = 0;
       loadBankData();
       populateChapters();
       applyFilters();
@@ -624,8 +627,20 @@
       if (currentBank === 'larnaka') {
         expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
       }
+      if (expHtml && expHtml.length > 400 && !expHtml.includes('btn-section-top')) {
+        expHtml += `<div class="section-back-to-top">
+          <button type="button" class="btn-section-top" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Επιστροφή στην κορυφή</span>
+          </button>
+        </div>`;
+      }
       explanationBody.innerHTML = expHtml;
       explanationPanel.className = 'patho-explanation-panel active';
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([explanationBody]).catch(function(err){ console.log('MathJax error:', err); });
+      }
     } else {
       explanationPanel.className = 'patho-explanation-panel';
       explanationBody.innerHTML = '';

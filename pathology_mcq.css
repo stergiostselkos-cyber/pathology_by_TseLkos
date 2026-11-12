@@ -733,81 +733,414 @@ body::after {
   color: #ffffff;
 }
 
-/* PATHOLOGY EXPLANATION PANEL (Clean, bulletproof display) */
+/* PATHOLOGY EXPLANATION PANEL (Restored pristine formatting, paragraphs & 3-tier banners) */
 .patho-explanation-panel {
   display: none;
   background: #ffffff;
   border: 1.5px solid rgba(2, 132, 199, 0.25);
   border-left: 6px solid var(--patho-primary);
   border-radius: var(--radius-md);
-  padding: 24px;
-  margin-top: 14px;
+  padding: 24px 30px;
+  margin-top: 16px;
   box-shadow: 0 6px 24px rgba(2, 132, 199, 0.08);
   animation: fadeIn 0.35s ease;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .patho-explanation-panel.active {
   display: block !important;
 }
 
-/* Guarantee inner .explanation-box from json data is 100% visible */
+/* Ensure inner database containers remain visible and render gracefully */
 .patho-explanation-panel .explanation-box,
-.patho-explanation-panel .word-question {
+.patho-explanation-panel .word-question,
+.patho-explanation-panel .explanation-clean-content {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+/* BANK 1 & GREEN CORRECT ANSWER CARDS */
+.patho-explanation-panel .correct-answer-card,
+.explanation-body .correct-answer-card,
+.correct-answer-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border: 2px solid #22c55e !important;
+  border-radius: 12px !important;
+  padding: 18px 22px !important;
+  margin: 15px 0 !important;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15) !important;
+  display: block !important;
+  box-sizing: border-box !important;
 }
 
 .explanation-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1.1rem;
+  gap: 10px;
+  font-size: 1.18rem;
   font-weight: 800;
   color: var(--patho-deep);
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #e2e8f0;
 }
 
 .explanation-body {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: #334155;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.76;
+  color: #1e293b;
   overflow-wrap: break-word;
+  text-align: justify;
 }
 
-.explanation-body img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin: 12px 0;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+/* PARAGRAPH FORMATTING (Restores clean spacing, line-height & justification) */
+.explanation-body p,
+.patho-explanation-panel p,
+.explanation-box p,
+.word-question p,
+.explanation-clean-content p {
+  margin: 0.85em 0 !important;
+  line-height: 1.76 !important;
+  font-size: 1.03rem !important;
+  color: #1e293b !important;
+  text-align: justify !important;
+  display: block !important;
 }
 
-.explanation-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 14px 0;
-  font-size: 0.9rem;
+.explanation-body strong,
+.explanation-body b,
+.patho-explanation-panel strong,
+.patho-explanation-panel b {
+  font-weight: 750 !important;
+  color: #0f172a !important;
 }
 
-.explanation-body th, .explanation-body td {
-  border: 1px solid #cbd5e1;
-  padding: 8px 12px;
-  text-align: left;
+/* ==============================================================================
+   3-TIER HIERARCHY SYSTEM - LARNAKA & EXAM BANK EXPLANATIONS
+   1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4)
+   2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5)
+   3ο Επίπεδο: Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ & H6 Banners)
+   ============================================================================== */
+
+/* 1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4) */
+.stage-banner,
+div.stage-banner,
+p.stage-banner,
+h4.stage-banner,
+h5.stage-banner,
+.explanation-body h4,
+.word-question h4,
+.explanation-box h4,
+.explanation-clean-content h4 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 12pt !important;
+  font-weight: 800 !important;
+  color: #0369a1 !important;
+  background: #e0f2fe !important;
+  border: 1.5px solid #bae6fd !important;
+  border-left: 6px solid #0284c7 !important;
+  border-radius: 8px !important;
+  padding: 11px 20px !important;
+  margin: 24px 0 14px 0 !important;
+  text-align: left !important;
+  line-height: 1.5 !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12) !important;
+  box-sizing: border-box !important;
 }
 
-.explanation-body th {
-  background: #f1f5f9;
-  color: var(--patho-dark);
+.stage-banner *,
+.explanation-body h4 *,
+.word-question h4 *,
+.explanation-box h4 *,
+.explanation-clean-content h4 * {
+  color: #0369a1 !important;
+}
+
+/* 2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5) */
+.thematic-banner,
+div.thematic-banner,
+p.thematic-banner,
+.thematic-unit-banner,
+h5.thematic-banner,
+h6.thematic-banner,
+.explanation-body h5:not(.stage-banner),
+.word-question h5:not(.stage-banner),
+.explanation-box h5:not(.stage-banner),
+.explanation-clean-content h5 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 11pt !important;
+  font-weight: 750 !important;
+  color: #9d174d !important;
+  background: #fdf2f8 !important;
+  border: 1px solid #fce7f3 !important;
+  border-left: 5.5px solid #ec4899 !important;
+  border-radius: 8px !important;
+  padding: 9px 18px !important;
+  margin: 20px 0 10px 0 !important;
+  text-align: left !important;
+  line-height: 1.5 !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
+  box-sizing: border-box !important;
+}
+
+.thematic-banner *,
+.thematic-unit-banner *,
+.explanation-body h5:not(.stage-banner) *,
+.word-question h5:not(.stage-banner) *,
+.explanation-box h5:not(.stage-banner) *,
+.explanation-clean-content h5 * {
+  color: #9d174d !important;
+}
+
+/* 3ο Επίπεδο: Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ) */
+.subsection-banner,
+div.subsection-banner,
+p.subsection-banner,
+h6.subsection-banner,
+.substage-banner,
+.larnaka-level3-banner,
+.explanation-body h6.subsection-banner,
+.word-question h6.subsection-banner,
+.explanation-box h6.subsection-banner,
+.explanation-clean-content h6.subsection-banner {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 10.5pt !important;
+  font-weight: 700 !important;
+  color: #9a3412 !important;
+  background: #fff7ed !important;
+  border: 1px solid #ffedd5 !important;
+  border-left: 5px solid #f97316 !important;
+  border-radius: 8px !important;
+  padding: 7px 16px !important;
+  margin: 16px 0 8px 0 !important;
+  text-align: left !important;
+  line-height: 1.45 !important;
+  display: block !important;
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.subsection-banner *,
+.substage-banner *,
+.larnaka-level3-banner *,
+.explanation-body h6.subsection-banner *,
+.word-question h6.subsection-banner *,
+.explanation-box h6.subsection-banner * {
+  color: #9a3412 !important;
+}
+
+/* Option Justification Subheadings (H6 regular [ΣΩΣΤΟ] / [ΛΑΘΟΣ]) */
+.explanation-body h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.word-question h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-box h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-clean-content h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner) {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 1.04rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 18px 0 6px 0 !important;
+  text-align: left !important;
+  line-height: 1.5 !important;
+  display: block !important;
+}
+
+/* HIERARCHICAL LISTS (Restores Level 1, Level 2, Level 3 Bullets) */
+.explanation-body ul,
+.patho-explanation-panel ul,
+.word-question ul,
+.explanation-box ul,
+.explanation-clean-content ul {
+  padding-left: 2.2rem !important;
+  margin-top: 8px !important;
+  margin-bottom: 12px !important;
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+}
+
+.explanation-body ol,
+.patho-explanation-panel ol,
+.word-question ol,
+.explanation-box ol,
+.explanation-clean-content ol {
+  padding-left: 2.2rem !important;
+  margin-top: 8px !important;
+  margin-bottom: 12px !important;
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+}
+
+.explanation-body ul ul,
+.word-question ul ul,
+.explanation-box ul ul,
+.explanation-clean-content ul ul {
+  padding-left: 1.8rem !important;
+  margin-top: 4px !important;
+  margin-bottom: 6px !important;
+  list-style-type: circle !important;
+}
+
+.explanation-body ul ul ul,
+.word-question ul ul ul,
+.explanation-box ul ul ul,
+.explanation-clean-content ul ul ul {
+  padding-left: 1.8rem !important;
+  list-style-type: square !important;
+}
+
+.explanation-body ol ol,
+.word-question ol ol,
+.explanation-box ol ol,
+.explanation-clean-content ol ol {
+  padding-left: 1.8rem !important;
+  margin-top: 4px !important;
+  margin-bottom: 6px !important;
+  list-style-type: lower-greek !important;
+}
+
+.explanation-body ol ol ol,
+.word-question ol ol ol,
+.explanation-box ol ol ol,
+.explanation-clean-content ol ol ol {
+  padding-left: 1.8rem !important;
+  list-style-type: lower-roman !important;
+}
+
+.explanation-body li,
+.patho-explanation-panel li,
+.word-question li,
+.explanation-box li,
+.explanation-clean-content li {
+  position: static !important;
+  list-style: inherit !important;
+  list-style-position: outside !important;
+  margin-bottom: 6px !important;
+  line-height: 1.68 !important;
+  text-align: left !important;
+  padding-left: 4px !important;
+  color: #1e293b !important;
+  font-size: 1.02rem !important;
+}
+
+/* BLOCKQUOTES */
+.explanation-body blockquote,
+.word-question blockquote,
+.explanation-box blockquote,
+.explanation-clean-content blockquote {
+  border-left: 4px solid #0284c7 !important;
+  padding: 10px 18px !important;
+  margin: 14px 0 14px 18px !important;
+  background: #f8fafc !important;
+  border-radius: 6px !important;
+  font-style: italic !important;
+  color: #334155 !important;
+}
+
+/* RESPONSIVE MEDICAL TABLES */
+.explanation-body table,
+.explanation-box table,
+.word-question table,
+.explanation-clean-content table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid #cbd5e1 !important;
+  margin: 16px 0 !important;
+}
+
+.explanation-body th,
+.explanation-box th,
+.word-question th,
+.explanation-clean-content th {
+  background-color: #EBF2F7 !important;
+  color: #102C57 !important;
+  font-weight: 800 !important;
+  padding: 10px 14px !important;
+  border: 1px solid #cbd5e1 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.explanation-body td,
+.explanation-box td,
+.word-question td,
+.explanation-clean-content td {
+  padding: 10px 14px !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  font-size: 0.95rem !important;
+  line-height: 1.58 !important;
+  vertical-align: top !important;
+  background-color: #ffffff !important;
+  text-align: left !important;
+}
+
+.explanation-body tr:nth-child(even) td,
+.explanation-box tr:nth-child(even) td,
+.word-question tr:nth-child(even) td {
+  background-color: #f8fafc !important;
+}
+
+.explanation-body tr:hover td,
+.explanation-box tr:hover td,
+.word-question tr:hover td {
+  background-color: #f1f5f9 !important;
+}
+
+/* DIAGRAMS & FIGURES */
+.explanation-body img,
+.explanation-box img,
+.word-question img,
+.explanation-clean-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 10px !important;
+  margin: 14px auto !important;
+  display: block !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08) !important;
+  cursor: zoom-in !important;
+}
+
+/* SECTION BACK TO TOP BUTTON */
+.section-back-to-top {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed #cbd5e1;
+  text-align: right;
+}
+
+.btn-section-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+  padding: 7px 15px;
+  border-radius: 8px;
+  font-size: 0.85rem;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-section-top:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: translateY(-1px);
 }
 
 /* Navigation Toolbar */

@@ -13,8 +13,27 @@
     gtag('config', 'G-GSSKTV6FKE');
   </script>
   <script src="auth-guard.js"></script>
+    <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix1">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix2">
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -254,10 +273,11 @@
   </footer>
 
   <!-- Question Data Scripts (All with explicit window exports) -->
-  <script src="questions_v3.js?v=20261112.fix1"></script>
-  <script src="questions_bank_1.js?v=20261112.fix1"></script>
-  <script src="LARNAKA/larnaka.js?v=20261112.fix1"></script>
+  <script src="questions_v3.js?v=20261112.fix2"></script>
+  <script src="questions_bank_1.js?v=20261112.fix2"></script>
+  <script src="LARNAKA/larnaka.js?v=20261112.fix2"></script>
   <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261112.fix1"></script>
+  <script src="pathology_mcq_app.js?v=20261112.fix2"></script>
+  <script src="image_zoom_viewer.js"></script>
 </body>
 </html>
