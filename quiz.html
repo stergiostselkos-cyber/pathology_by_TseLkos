@@ -14,7 +14,7 @@
   </script>
   <script src="auth-guard.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pathology_mcq.css?v=20261112">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix1">
 </head>
 <body>
 
@@ -70,6 +70,10 @@
             <i class="fa-solid fa-list-ol"></i>
             <span>Ερωτήσεις: <strong id="totalCountVal">0</strong></span>
           </div>
+          <button type="button" class="stat-btn-results" id="openResultsBtn" title="Προβολή αναλυτικών αποτελεσμάτων">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Αποτελέσματα</span>
+          </button>
           <button type="button" class="stat-reset-btn" id="resetScoreBtn" title="Μηδενισμός σκορ &amp; απαντήσεων">
             <i class="fa-solid fa-rotate-left"></i>
             <span>Επαναφορά</span>
@@ -131,9 +135,15 @@
           <span class="q-number-badge" id="qNumberBadge">Ερώτηση 1</span>
           <span class="q-chapter-badge" id="qChapterBadge">Κεφάλαιο</span>
         </div>
-        <button class="star-btn" id="starBtn" title="Προσθήκη στα Αγαπημένα">
-          <i class="fa-regular fa-star"></i>
-        </button>
+        <div class="question-meta-right">
+          <button type="button" class="toggle-exp-btn" id="toggleExpBtn" title="Εμφάνιση ή απόκρυψη ανάλυσης">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Αιτιολόγηση</span>
+          </button>
+          <button class="star-btn" id="starBtn" title="Προσθήκη στα Αγαπημένα">
+            <i class="fa-regular fa-star"></i>
+          </button>
+        </div>
       </div>
 
       <div class="question-stem" id="questionStem">
@@ -155,8 +165,8 @@
         </div>
       </div>
 
-      <!-- Full Rich Explanation Box -->
-      <div class="explanation-box" id="explanationBox">
+      <!-- Full Rich Explanation Panel (Guaranteed display of analytical text) -->
+      <div class="patho-explanation-panel" id="explanationPanel">
         <div class="explanation-header">
           <i class="fa-solid fa-circle-info"></i>
           <span>Αιτιολόγηση &amp; Επεξήγηση</span>
@@ -166,8 +176,13 @@
         </div>
       </div>
 
-      <!-- Navigation Toolbar -->
+      <!-- Navigation Toolbar with Beginning / End Jumps -->
       <div class="card-nav-bar">
+        <button class="nav-btn" id="firstBtn" title="Μετάβαση στην πρώτη ερώτηση">
+          <i class="fa-solid fa-backward-step"></i>
+          <span>Αρχή</span>
+        </button>
+
         <button class="nav-btn" id="prevBtn">
           <i class="fa-solid fa-arrow-left"></i>
           <span>Προηγούμενη</span>
@@ -188,10 +203,49 @@
           <span>Επόμενη</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
+
+        <button class="nav-btn" id="lastBtn" title="Μετάβαση στην τελευταία ερώτηση">
+          <span>Τέλος</span>
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
       </div>
     </article>
 
   </main>
+
+  <!-- Results Modal -->
+  <div class="modal-overlay" id="resultsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-chart-pie" style="color:var(--patho-primary)"></i> Συγκεντρωτικά Αποτελέσματα</h3>
+        <button type="button" class="modal-close-btn" id="closeResultsModalBtn">&times;</button>
+      </div>
+      <div class="results-grid">
+        <div class="res-stat-card">
+          <div class="res-stat-val pct" id="modalPct">0%</div>
+          <div class="res-stat-label">Ποσοστό Επιτυχίας</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-stat-val correct" id="modalCorrect">0</div>
+          <div class="res-stat-label">Σωστές</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-stat-val wrong" id="modalWrong">0</div>
+          <div class="res-stat-label">Λανθασμένες</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-stat-val" id="modalUnanswered">0</div>
+          <div class="res-stat-label">Αναπάντητες</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="modal-btn modal-btn-outline" id="modalViewWrongBtn"><i class="fa-solid fa-circle-xmark" style="color:#ef4444"></i> Μελέτη Λαθών</button>
+        <button type="button" class="modal-btn modal-btn-outline" id="modalViewUnansweredBtn"><i class="fa-regular fa-circle" style="color:#0284c7"></i> Αναπάντητες</button>
+        <button type="button" class="modal-btn modal-btn-danger" id="modalResetBtn"><i class="fa-solid fa-rotate-left"></i> Επαναφορά</button>
+        <button type="button" class="modal-btn modal-btn-primary" id="modalCloseBtn">Κλείσιμο</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="patho-footer">
@@ -199,11 +253,11 @@
     <p style="margin-top: 4px;">Επιμέλεια &amp; Ανάπτυξη Εφαρμογής: <a href="mailto:stergiostselkos@gmail.com">Stergios Tselkos</a></p>
   </footer>
 
-  <!-- Question Data Scripts -->
-  <script src="questions_v3.js?v=20261112"></script>
-  <script src="questions_bank_1.js?v=20261112"></script>
-  <script src="LARNAKA/larnaka.js?v=20261112"></script>
+  <!-- Question Data Scripts (All with explicit window exports) -->
+  <script src="questions_v3.js?v=20261112.fix1"></script>
+  <script src="questions_bank_1.js?v=20261112.fix1"></script>
+  <script src="LARNAKA/larnaka.js?v=20261112.fix1"></script>
   <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261112"></script>
+  <script src="pathology_mcq_app.js?v=20261112.fix1"></script>
 </body>
 </html>

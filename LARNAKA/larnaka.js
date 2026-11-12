@@ -20496,3 +20496,4 @@ const larnakaAllQuestions = [
     ]
   }
 ];
+if (typeof window !== "undefined") { window.larnakaAllQuestions = larnakaAllQuestions; }

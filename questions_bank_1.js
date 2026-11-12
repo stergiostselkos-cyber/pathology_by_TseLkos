@@ -54026,11 +54026,10 @@ var questionsBank1Data = [
         "chapter": "ΤΡΑΠΕΖΑ ΕΡΩΤΗΣΕΩΝ ΠΑΘΟΛΟΓΙΑΣ",
         "correctAnswer": "Α) Χυλομικρά"
     }
-];
-if (typeof questionsData === 'undefined') {
-    var questionsData = questionsBank1Data;
-}
+;
 if (typeof window !== 'undefined') {
-    window.questionsBank1Data = questionsBank1Data;
+  window.questionsBank1Data = questionsBank1Data;
+  if (!window.questionsData) {
+    window.questionsData = questionsBank1Data;
+  }
 }
-

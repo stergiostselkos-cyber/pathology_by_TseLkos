@@ -15,6 +15,7 @@
   let currentFilter = 'all'; // all, unanswered, wrong, starred
   let currentChapter = 'all';
   let searchTerm = '';
+  let showExplanationForced = false;
 
   // Local Storage State
   let userAnswers = {};
@@ -118,6 +119,7 @@
   const scorePct = document.getElementById('scorePct');
   const totalCountVal = document.getElementById('totalCountVal');
   const resetScoreBtn = document.getElementById('resetScoreBtn');
+  const openResultsBtn = document.getElementById('openResultsBtn');
   const progressFill = document.getElementById('progressFill');
 
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -127,6 +129,7 @@
   const qTypeBadge = document.getElementById('qTypeBadge');
   const qNumberBadge = document.getElementById('qNumberBadge');
   const qChapterBadge = document.getElementById('qChapterBadge');
+  const toggleExpBtn = document.getElementById('toggleExpBtn');
   const starBtn = document.getElementById('starBtn');
 
   const questionStem = document.getElementById('questionStem');
@@ -137,13 +140,27 @@
   const feedbackTitle = document.getElementById('feedbackTitle');
   const feedbackText = document.getElementById('feedbackText');
 
-  const explanationBox = document.getElementById('explanationBox');
+  const explanationPanel = document.getElementById('explanationPanel');
   const explanationBody = document.getElementById('explanationBody');
 
+  const firstBtn = document.getElementById('firstBtn');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
+  const lastBtn = document.getElementById('lastBtn');
   const randomBtn = document.getElementById('randomBtn');
   const jumpInput = document.getElementById('jumpInput');
+
+  // Results Modal Elements
+  const resultsModal = document.getElementById('resultsModal');
+  const closeResultsModalBtn = document.getElementById('closeResultsModalBtn');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalResetBtn = document.getElementById('modalResetBtn');
+  const modalViewWrongBtn = document.getElementById('modalViewWrongBtn');
+  const modalViewUnansweredBtn = document.getElementById('modalViewUnansweredBtn');
+  const modalPct = document.getElementById('modalPct');
+  const modalCorrect = document.getElementById('modalCorrect');
+  const modalWrong = document.getElementById('modalWrong');
+  const modalUnanswered = document.getElementById('modalUnanswered');
 
   // Initialize Application
   function init() {
@@ -178,25 +195,22 @@
     }
   }
 
-  // Load Bank Data
+  // Load Bank Data (Guaranteed across all 3 banks)
   function loadBankData() {
     loadStorageData();
+    showExplanationForced = false;
 
     if (currentBank === 'old_book') {
-      const source = (typeof questionsData !== 'undefined' && Array.isArray(questionsData)) ? questionsData :
-                     (typeof window !== 'undefined' && Array.isArray(window.questionsData)) ? window.questionsData : [];
-      allQuestions = source;
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.questionsData)) ? window.questionsData :
+                     (typeof questionsData !== 'undefined' && Array.isArray(questionsData)) ? questionsData : [];
     } else if (currentBank === 'bank_1') {
-      const source = (typeof questionsBank1Data !== 'undefined' && Array.isArray(questionsBank1Data)) ? questionsBank1Data :
-                     (typeof window !== 'undefined' && Array.isArray(window.questionsBank1Data)) ? window.questionsBank1Data : [];
-      allQuestions = source;
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.questionsBank1Data)) ? window.questionsBank1Data :
+                     (typeof questionsBank1Data !== 'undefined' && Array.isArray(questionsBank1Data)) ? questionsBank1Data : [];
     } else if (currentBank === 'larnaka') {
-      const source = (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) ? larnakaAllQuestions :
-                     (typeof window !== 'undefined' && Array.isArray(window.larnakaAllQuestions)) ? window.larnakaAllQuestions : [];
-      allQuestions = source;
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.larnakaAllQuestions)) ? window.larnakaAllQuestions :
+                     (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) ? larnakaAllQuestions : [];
     }
 
-    // Set jump input max
     if (jumpInput) {
       jumpInput.max = allQuestions.length || 9999;
     }
@@ -279,13 +293,41 @@
 
     // Reset Score Button
     if (resetScoreBtn) {
-      resetScoreBtn.addEventListener('click', () => {
-        const bankName = (bankSelect.options[bankSelect.selectedIndex] || {}).textContent || '';
-        if (confirm(`Θέλετε να μηδενίσετε το σκορ και τις απαντήσεις σας στην τράπεζα:\n«${bankName}»;`)) {
-          userAnswers = {};
-          saveAnswers();
-          renderCurrentQuestion();
-          updateStats();
+      resetScoreBtn.addEventListener('click', resetBankScore);
+    }
+
+    // Results Modal Trigger
+    if (openResultsBtn) {
+      openResultsBtn.addEventListener('click', openResultsModal);
+    }
+    if (closeResultsModalBtn) closeResultsModalBtn.addEventListener('click', closeResultsModal);
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeResultsModal);
+    if (modalResetBtn) modalResetBtn.addEventListener('click', () => { closeResultsModal(); resetBankScore(); });
+
+    if (modalViewWrongBtn) {
+      modalViewWrongBtn.addEventListener('click', () => {
+        closeResultsModal();
+        currentFilter = 'wrong';
+        filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === 'wrong'));
+        applyFilters();
+      });
+    }
+
+    if (modalViewUnansweredBtn) {
+      modalViewUnansweredBtn.addEventListener('click', () => {
+        closeResultsModal();
+        currentFilter = 'unanswered';
+        filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === 'unanswered'));
+        applyFilters();
+      });
+    }
+
+    // Toggle Explanation Manual Button
+    if (toggleExpBtn) {
+      toggleExpBtn.addEventListener('click', () => {
+        showExplanationForced = !showExplanationForced;
+        if (explanationPanel) {
+          explanationPanel.classList.toggle('active', showExplanationForced);
         }
       });
     }
@@ -311,6 +353,8 @@
     });
 
     // Navigation Buttons
+    if (firstBtn) firstBtn.addEventListener('click', () => navigateToExtreme(0));
+    if (lastBtn) lastBtn.addEventListener('click', () => navigateToExtreme(filteredQuestions.length - 1));
     prevBtn.addEventListener('click', () => navigate(-1));
     nextBtn.addEventListener('click', () => navigate(1));
     randomBtn.addEventListener('click', navigateRandom);
@@ -339,6 +383,8 @@
         navigate(1);
       } else if (e.key.toLowerCase() === 's') {
         toggleCurrentStarred();
+      } else if (e.key.toLowerCase() === 'e') {
+        if (toggleExpBtn) toggleExpBtn.click();
       } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
         const optIdx = parseInt(e.key, 10) - 1;
         selectOption(optIdx);
@@ -350,6 +396,40 @@
         }
       }
     });
+  }
+
+  function resetBankScore() {
+    const bankName = (bankSelect.options[bankSelect.selectedIndex] || {}).textContent || '';
+    if (confirm(`Θέλετε να μηδενίσετε το σκορ και τις απαντήσεις σας στην τράπεζα:\n«${bankName}»;`)) {
+      userAnswers = {};
+      saveAnswers();
+      renderCurrentQuestion();
+      updateStats();
+      applyFilters();
+    }
+  }
+
+  function openResultsModal() {
+    if (!resultsModal) return;
+    const totalAll = allQuestions.length;
+    const currentBankIds = new Set(allQuestions.map(q => q.id));
+    const answeredInBank = Object.keys(userAnswers).filter(id => currentBankIds.has(parseInt(id, 10)) && userAnswers[id].completed);
+    const answeredCount = answeredInBank.length;
+    const correctCount = answeredInBank.filter(id => userAnswers[id] && userAnswers[id].isCorrect).length;
+    const wrongCount = answeredCount - correctCount;
+    const unansweredCount = Math.max(0, totalAll - answeredCount);
+    const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+
+    modalPct.textContent = `${pct}%`;
+    modalCorrect.textContent = correctCount;
+    modalWrong.textContent = wrongCount;
+    modalUnanswered.textContent = unansweredCount;
+
+    resultsModal.classList.add('active');
+  }
+
+  function closeResultsModal() {
+    if (resultsModal) resultsModal.classList.remove('active');
   }
 
   // Apply Filters
@@ -402,9 +482,11 @@
       questionStem.textContent = 'Δεν υπάρχει ερώτηση με τα επιλεγμένα κριτήρια ή φίλτρα.';
       optionsList.innerHTML = '';
       feedbackBox.className = 'feedback-box';
-      explanationBox.className = 'explanation-box';
+      explanationPanel.className = 'patho-explanation-panel';
       prevBtn.disabled = true;
       nextBtn.disabled = true;
+      if (firstBtn) firstBtn.disabled = true;
+      if (lastBtn) lastBtn.disabled = true;
       starBtn.classList.remove('starred');
       return;
     }
@@ -536,22 +618,24 @@
       feedbackBox.className = 'feedback-box';
     }
 
-    // Explanation Box
-    if (q.explanation && (hasAnswered || (answerState.selected && answerState.selected.length > 0))) {
+    // Explanation Panel (Displays analysis whenever question is answered OR forced)
+    if (q.explanation && (hasAnswered || showExplanationForced || (answerState.selected && answerState.selected.length > 0))) {
       let expHtml = q.explanation;
       if (currentBank === 'larnaka') {
         expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
       }
       explanationBody.innerHTML = expHtml;
-      explanationBox.className = 'explanation-box active';
+      explanationPanel.className = 'patho-explanation-panel active';
     } else {
-      explanationBox.className = 'explanation-box';
+      explanationPanel.className = 'patho-explanation-panel';
       explanationBody.innerHTML = '';
     }
 
     // Navigation buttons state
     prevBtn.disabled = (currentIndex === 0);
     nextBtn.disabled = (currentIndex === filteredQuestions.length - 1);
+    if (firstBtn) firstBtn.disabled = (currentIndex === 0);
+    if (lastBtn) lastBtn.disabled = (currentIndex === filteredQuestions.length - 1);
   }
 
   // Handle Option Click
@@ -609,6 +693,16 @@
     const nextIdx = currentIndex + delta;
     if (nextIdx >= 0 && nextIdx < filteredQuestions.length) {
       currentIndex = nextIdx;
+      showExplanationForced = false;
+      renderCurrentQuestion();
+    }
+  }
+
+  function navigateToExtreme(targetIdx) {
+    if (filteredQuestions.length === 0) return;
+    if (targetIdx >= 0 && targetIdx < filteredQuestions.length) {
+      currentIndex = targetIdx;
+      showExplanationForced = false;
       renderCurrentQuestion();
     }
   }
@@ -620,6 +714,7 @@
       rand = (currentIndex + 1) % filteredQuestions.length;
     }
     currentIndex = rand;
+    showExplanationForced = false;
     renderCurrentQuestion();
   }
 
@@ -644,6 +739,7 @@
 
     if (targetIdx !== -1) {
       currentIndex = targetIdx;
+      showExplanationForced = false;
       renderCurrentQuestion();
     }
   }
