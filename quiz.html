@@ -18,7 +18,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix2">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix3">
+  <link rel="stylesheet" href="image_zoom_viewer.css?v=20261112.fix3">
   <!-- MathJax for LaTeX Rendering -->
   <script>
     window.MathJax = {
@@ -232,6 +233,13 @@
 
   </main>
 
+  <!-- Floating Back to Top Button -->
+  <button id="floating-back-to-top" class="floating-back-to-top hidden" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή" aria-label="Επιστροφή στην κορυφή">
+    <svg fill="none" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+    </svg>
+  </button>
+
   <!-- Results Modal -->
   <div class="modal-overlay" id="resultsModal">
     <div class="modal-card">
@@ -273,11 +281,11 @@
   </footer>
 
   <!-- Question Data Scripts (All with explicit window exports) -->
-  <script src="questions_v3.js?v=20261112.fix2"></script>
-  <script src="questions_bank_1.js?v=20261112.fix2"></script>
-  <script src="LARNAKA/larnaka.js?v=20261112.fix2"></script>
+  <script src="questions_v3.js?v=20261112.fix3"></script>
+  <script src="questions_bank_1.js?v=20261112.fix3"></script>
+  <script src="LARNAKA/larnaka.js?v=20261112.fix3"></script>
   <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261112.fix2"></script>
+  <script src="pathology_mcq_app.js?v=20261112.fix3"></script>
   <script src="image_zoom_viewer.js"></script>
 </body>
 </html>

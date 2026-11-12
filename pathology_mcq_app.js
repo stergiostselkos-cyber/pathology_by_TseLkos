@@ -67,10 +67,12 @@
   function getCleanQuestionTitle(fullText) {
     if (!fullText) return '';
     let clean = fullText.replace(/\*/g, '').replace(/\\n/g, '\n').trim();
-    const match = clean.match(/(?:^|\s|\n)([α-γ]|\d+)[\.\)]\s/i);
+    // Only strip when choices start on a NEWLINE (e.g. \nΑ) or \n1.)
+    // Never strip numbers in continuous prose like "39°C, 2. ημέρες μετά" or "pH 7.32, 25."
+    const match = clean.match(/\n\s*([Α-ΕA-Eα-εa-e]|\d+)[\.\)]\s/);
     if (match) {
       const idx = clean.indexOf(match[0]);
-      if (idx !== -1 && idx > 15) {
+      if (idx !== -1) {
         return clean.substring(0, idx).trim();
       }
     }
@@ -211,6 +213,12 @@
                      (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) ? larnakaAllQuestions : [];
     }
 
+    // Assign guaranteed unique identifiers & global sequential indices
+    allQuestions.forEach((q, idx) => {
+      q._uid = `${currentBank}_${q.id || (idx + 1)}_${idx}`;
+      q._globalIndex = idx + 1;
+    });
+
     if (jumpInput) {
       jumpInput.max = allQuestions.length || 9999;
     }
@@ -251,15 +259,16 @@
     questionSelect.disabled = false;
     filteredQuestions.forEach((q, idx) => {
       const opt = document.createElement('option');
-      opt.value = q.id;
+      opt.value = q._uid || q.id;
       let preview = getCleanQuestionTitle(q.question).replace(/\s+/g, ' ').trim();
       if (preview.length > 70) preview = preview.substring(0, 68) + '...';
-      opt.textContent = `Ερώτηση #${q.id}: ${preview}`;
+      const dispNum = (currentBank === 'larnaka') ? q._globalIndex : (q.id || q._globalIndex);
+      opt.textContent = `Ερ. #${dispNum}: ${preview}`;
       questionSelect.appendChild(opt);
     });
 
     if (filteredQuestions[currentIndex]) {
-      questionSelect.value = filteredQuestions[currentIndex].id;
+      questionSelect.value = filteredQuestions[currentIndex]._uid || filteredQuestions[currentIndex].id;
     }
   }
 
@@ -284,13 +293,11 @@
 
     // 3. Question Change
     questionSelect.addEventListener('change', (e) => {
-      const qid = parseInt(e.target.value, 10);
-      if (!isNaN(qid)) {
-        const foundIdx = filteredQuestions.findIndex(q => q.id === qid);
-        if (foundIdx !== -1) {
-          currentIndex = foundIdx;
-          renderCurrentQuestion();
-        }
+      const val = e.target.value;
+      const foundIdx = filteredQuestions.findIndex(q => (q._uid === val || String(q.id) === val));
+      if (foundIdx !== -1) {
+        currentIndex = foundIdx;
+        renderQuestion();
       }
     });
 
@@ -325,12 +332,37 @@
       });
     }
 
-    // Toggle Explanation Manual Button
+    // Toggle Explanation Manual Button (Guaranteed to populate & open immediately)
     if (toggleExpBtn) {
       toggleExpBtn.addEventListener('click', () => {
         showExplanationForced = !showExplanationForced;
-        if (explanationPanel) {
-          explanationPanel.classList.toggle('active', showExplanationForced);
+        if (filteredQuestions.length === 0) return;
+        const q = filteredQuestions[currentIndex];
+        if (showExplanationForced) {
+          let expHtml = q.explanation || '<p>Δεν υπάρχει διαθέσιμη αιτιολόγηση για αυτή την ερώτηση.</p>';
+          if (currentBank === 'larnaka') {
+            expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
+          }
+          if (expHtml && expHtml.length > 400 && !expHtml.includes('btn-section-top')) {
+            expHtml += `<div class="section-back-to-top">
+              <button type="button" class="btn-section-top" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">
+                <i class="fa-solid fa-arrow-up"></i>
+                <span>Επιστροφή στην κορυφή</span>
+              </button>
+            </div>`;
+          }
+          explanationBody.innerHTML = expHtml;
+          explanationPanel.className = 'patho-explanation-panel active';
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([explanationBody]).catch(function(err){});
+          }
+        } else {
+          const ansKey = q._uid || q.id;
+          const answerState = userAnswers[ansKey] || { selected: [], completed: false };
+          if (!answerState.completed) {
+            explanationPanel.className = 'patho-explanation-panel';
+            explanationBody.innerHTML = '';
+          }
         }
       });
     }
@@ -502,12 +534,14 @@
     // Badges
     qTypeBadge.textContent = isMultiChoice ? `Πολλαπλών Επιλογών (${correctIndices.length} σωστές)` : 'Μονής Επιλογής';
     qTypeBadge.className = isMultiChoice ? 'q-type-badge multi' : 'q-type-badge';
-    qNumberBadge.textContent = `Ερώτηση ${q.id} (Φίλτρο: ${currentIndex + 1} / ${totalInFilter})`;
+    const displayId = (currentBank === 'larnaka') ? `${q._globalIndex} / ${allQuestions.length}` : `#${q.id || q._globalIndex}`;
+    qNumberBadge.textContent = `Ερώτηση ${displayId} (α/α: ${currentIndex + 1} / ${totalInFilter})`;
     qChapterBadge.textContent = getQuestionChapter(q);
 
     // Sync Question Dropdown
-    if (questionSelect.value !== String(q.id)) {
-      questionSelect.value = q.id;
+    const curVal = q._uid || q.id;
+    if (questionSelect.value !== String(curVal)) {
+      questionSelect.value = curVal;
     }
 
     // Star status
@@ -526,7 +560,8 @@
 
     // Render options
     optionsList.innerHTML = '';
-    const answerState = userAnswers[q.id] || { selected: [], completed: false, isCorrect: false };
+    const ansKey = q._uid || q.id;
+    const answerState = userAnswers[ansKey] || { selected: [], completed: false, isCorrect: false };
     const hasAnswered = answerState.completed;
     const optLetters = ['Α', 'Β', 'Γ', 'Δ', 'Ε'];
 
@@ -556,7 +591,9 @@
       const btn = document.createElement('button');
       btn.className = 'option-btn';
 
-      let cleanText = optText.replace(/^[Α-ΕA-E8Οo0-9]+[\.\)\:\-]\s*/, '').trim();
+      // Only strip single-letter choice indicators like "Α) ", "a) ", "Α. ", "(Α) "
+      // NEVER strip numbers or digits (e.g. "1.5 g/kg", "2-3 ημέρες", "24ωρη", "8-12 ώρες")
+      let cleanText = optText.replace(/^[\(\[]?[Α-ΕA-Ea-eα-ε][\.\)\:\-\]]\s+/, '').trim();
       cleanText = capitalizeFirstLetter(cleanText);
 
       const letterBox = document.createElement('div');
@@ -660,7 +697,8 @@
     const correctIndices = getCorrectIndices(q);
     const isMultiChoice = correctIndices.length > 1;
 
-    let ans = userAnswers[q.id] || { selected: [], completed: false, isCorrect: false, timestamp: Date.now() };
+    const ansKey = q._uid || q.id;
+    let ans = userAnswers[ansKey] || { selected: [], completed: false, isCorrect: false, timestamp: Date.now() };
 
     if (!ans.selected.includes(selectedIndex)) {
       ans.selected.push(selectedIndex);
@@ -685,7 +723,7 @@
     }
 
     ans.timestamp = Date.now();
-    userAnswers[q.id] = ans;
+    userAnswers[ansKey] = ans;
     saveAnswers();
     renderCurrentQuestion();
     updateStats();
@@ -734,9 +772,9 @@
   }
 
   function jumpToQuestionId(qid) {
-    let targetIdx = filteredQuestions.findIndex(q => q.id === qid);
+    let targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid));
     if (targetIdx === -1) {
-      const targetQ = allQuestions.find(q => q.id === qid);
+      const targetQ = allQuestions.find(q => (q.id === qid || q._globalIndex === qid));
       if (targetQ) {
         currentChapter = 'all';
         chapterSelect.value = 'all';
@@ -745,7 +783,7 @@
         searchTerm = '';
         searchInput.value = '';
         applyFilters();
-        targetIdx = filteredQuestions.findIndex(q => q.id === qid);
+        targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid));
       } else {
         alert(`Η ερώτηση #${qid} δεν βρέθηκε στη συγκεκριμένη τράπεζα.`);
         return;

@@ -510,10 +510,11 @@
       return;
     }
 
-    const clickedImg = e.target.closest('.embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img, .case-fig img, .case-image');
-    if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img') {
+    const clickedImg = e.target.closest('img');
+    if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img' && !clickedImg.closest('#med-zoom-modal')) {
       e.preventDefault();
       window.openMedZoom(clickedImg);
+      return;
     }
   });
 
