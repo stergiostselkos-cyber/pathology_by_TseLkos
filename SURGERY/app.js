@@ -84,15 +84,25 @@
     populateChapters();
     bindEvents();
     applyFilters();
+
+    // Check URL parameters for direct question jump (e.g. from search.html)
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetQId = urlParams.get('qId') || urlParams.get('id');
+    if (targetQId) {
+      const qNum = parseInt(targetQId, 10);
+      if (!isNaN(qNum)) {
+        jumpToQuestionId(qNum);
+      }
+    }
   }
 
   function loadBankData() {
     if (currentBank === 'bank_4004') {
-      if (typeof SURGERY_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_QUESTIONS)) {
-        allQuestions = SURGERY_QUESTIONS;
-      } else {
-        allQuestions = [];
-      }
+      const source = (typeof SURGERY_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_QUESTIONS)) ? SURGERY_QUESTIONS :
+                     (typeof surgeryQuestions !== 'undefined' && Array.isArray(surgeryQuestions)) ? surgeryQuestions :
+                     (typeof window !== 'undefined' && Array.isArray(window.SURGERY_QUESTIONS)) ? window.SURGERY_QUESTIONS :
+                     (typeof window !== 'undefined' && Array.isArray(window.surgeryQuestions)) ? window.surgeryQuestions : [];
+      allQuestions = source;
     } else if (currentBank === 'bank_2002') {
       // Future surgery bank
       if (typeof SURGERY_2002_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_2002_QUESTIONS)) {

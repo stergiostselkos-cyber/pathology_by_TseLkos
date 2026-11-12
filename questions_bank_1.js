@@ -1,4 +1,4 @@
-const questionsData = [
+var questionsBank1Data = [
     {
         "id": 1,
         "category": "ΚΕΦΑΛΑΙΟ 10ο, ΣΥΣΤΗΜΑΤΙΚΑ ΡΕΥΜΑΤΟΛΟΓΙΚΑ ΝΟΣΗΜΑΤΑ",
@@ -54027,3 +54027,10 @@ const questionsData = [
         "correctAnswer": "Α) Χυλομικρά"
     }
 ];
+if (typeof questionsData === 'undefined') {
+    var questionsData = questionsBank1Data;
+}
+if (typeof window !== 'undefined') {
+    window.questionsBank1Data = questionsBank1Data;
+}
+

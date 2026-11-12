@@ -412,6 +412,10 @@
         .btn-direct-pdf { background: #0284c7 !important; border-color: #0369a1 !important; }
         .btn-direct-pdf:hover { background: #0369a1 !important; }
         .btn-mcq-viewer { background: #0284c7 !important; border-color: #0369a1 !important; }
+        .btn-larnaka-viewer { background: #b45309 !important; border-color: #92400e !important; }
+        .btn-larnaka-viewer:hover { background: #92400e !important; }
+        .btn-surgery-viewer { background: #0f766e !important; border-color: #115e59 !important; }
+        .btn-surgery-viewer:hover { background: #115e59 !important; }
         .btn-newbook-viewer { background: #d97706 !important; border-color: #b45309 !important; }
         .btn-essay-viewer { background: #15803d !important; border-color: #166534 !important; }
 
@@ -503,6 +507,8 @@
         }
         /* Specific Badges */
         .badge-mcq { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+        .badge-larnaka { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+        .badge-surgery { background: #ccfbf1; color: #0f766e; border: 1px solid #99f6e4; }
         .badge-newbook { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
         .badge-essay { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
         .badge-case { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
@@ -1052,6 +1058,14 @@
                 <span>🎯 Πολλαπλής Επιλογής (MCQ)</span>
                 <span class="pill-count" id="count-mcq">0</span>
             </div>
+            <div class="filter-pill" data-source="larnaka" onclick="filterBySource('larnaka')">
+                <span>🏛️ Τράπεζα ΛΑΡΝΑΚΑ</span>
+                <span class="pill-count" id="count-larnaka">0</span>
+            </div>
+            <div class="filter-pill" data-source="surgery" onclick="filterBySource('surgery')">
+                <span>🏥 Χειρουργική (4004)</span>
+                <span class="pill-count" id="count-surgery">0</span>
+            </div>
             <div class="filter-pill" data-source="new_book" onclick="filterBySource('new_book')">
                 <span>📘 Νέο Βιβλίο 2026</span>
                 <span class="pill-count" id="count-new_book">0</span>
@@ -1108,6 +1122,9 @@
 
     <!-- Scripts: Load All Databases -->
     <script src="questions_v3.js?v=20261021.final"></script>
+    <script src="questions_bank_1.js?v=20261112"></script>
+    <script src="LARNAKA/larnaka.js?v=20261112"></script>
+    <script src="SURGERY/surgery_questions.js?v=20261112"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
@@ -1391,6 +1408,111 @@
                 });
             }
 
+            // 1b. Bank 1 MCQ Questions (questionsBank1Data)
+            if (typeof questionsBank1Data !== 'undefined' && Array.isArray(questionsBank1Data)) {
+                questionsBank1Data.forEach((q, idx) => {
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = [q.chapter || "", q.category || "", q.question || "", optionsText, cleanExp].join(" ");
+                    
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    } else if (q.correct !== undefined && q.correct !== null) {
+                        correctIndices = [parseInt(q.correct, 10) - 1];
+                    }
+
+                    index.push({
+                        id: 'bank1-' + (q.id || (idx + 1)),
+                        source: 'mcq',
+                        sourceLabel: 'Τράπεζα Θεμάτων 1',
+                        badgeClass: 'badge-mcq',
+                        badgeIcon: '🎯',
+                        chapter: q.chapter || q.category || 'Τράπεζα Θεμάτων 1',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'quiz.html?bank=bank_1&qId=' + (q.id || (idx + 1)),
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 1c. Larnaka Question Bank (larnakaAllQuestions)
+            if (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) {
+                larnakaAllQuestions.forEach((q, idx) => {
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = [q.chapter || "", q.category || "", q.subcategory || "", q.question || "", optionsText, cleanExp].join(" ");
+
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    } else if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    }
+
+                    index.push({
+                        id: 'larnaka-' + (q.id || (idx + 1)),
+                        source: 'larnaka',
+                        sourceLabel: 'Τράπεζα ΛΑΡΝΑΚΑ',
+                        badgeClass: 'badge-larnaka',
+                        badgeIcon: '🏛️',
+                        chapter: q.chapter || q.category || 'Τράπεζα ΛΑΡΝΑΚΑ',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'LARNAKA/index.html?qId=' + (q.id || (idx + 1)),
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 1d. Surgery Questions (SURGERY_QUESTIONS)
+            const surgerySource = (typeof SURGERY_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_QUESTIONS)) ? SURGERY_QUESTIONS :
+                                 (typeof surgeryQuestions !== 'undefined' && Array.isArray(surgeryQuestions)) ? surgeryQuestions :
+                                 (typeof window !== 'undefined' && Array.isArray(window.SURGERY_QUESTIONS)) ? window.SURGERY_QUESTIONS : null;
+            if (surgerySource) {
+                surgerySource.forEach((q, idx) => {
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = [q.chapterTitle || "", q.question || "", optionsText, cleanExp].join(" ");
+
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    }
+
+                    index.push({
+                        id: 'surgery-' + (q.id || (idx + 1)),
+                        source: 'surgery',
+                        sourceLabel: 'Χειρουργική (4004)',
+                        badgeClass: 'badge-surgery',
+                        badgeIcon: '🏥',
+                        chapter: q.chapterTitle || 'Χειρουργική',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'SURGERY/index.html?qId=' + (q.id || (idx + 1)),
+                        type: 'mcq'
+                    });
+                });
+            }
+
             // 2. New Book Questions (questions)
             if (typeof questions !== 'undefined' && Array.isArray(questions)) {
                 questions.forEach((q, idx) => {
@@ -1658,7 +1780,7 @@
 
         // Update Counts for Filter Pills
         function updateCountsPills(matches) {
-            const counts = { ALL: matches.length, mcq: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
+            const counts = { ALL: matches.length, mcq: 0, larnaka: 0, surgery: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
             matches.forEach(m => {
                 if (counts[m.source] !== undefined) counts[m.source]++;
             });
@@ -1766,6 +1888,14 @@
                 btnText = 'Προβολή στον Οδηγό Φαρμάκων';
                 actionIcon = 'fa-capsules';
                 btnClass = 'btn-pharma-viewer';
+            } else if (item.source === 'larnaka') {
+                btnText = 'Άνοιγμα στην Τράπεζα ΛΑΡΝΑΚΑ';
+                actionIcon = 'fa-landmark';
+                btnClass = 'btn-larnaka-viewer';
+            } else if (item.source === 'surgery') {
+                btnText = 'Άνοιγμα στη Χειρουργική';
+                actionIcon = 'fa-hospital-user';
+                btnClass = 'btn-surgery-viewer';
             } else if (item.source === 'mcq' || item.type === 'mcq') {
                 btnText = 'Άνοιγμα στην Εφαρμογή MCQ';
                 actionIcon = 'fa-circle-dot';
@@ -1854,7 +1984,11 @@
                         out += '</div>';
                     }
                     if (q.explanation) {
-                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${q.explanation}</div>`;
+                        let expContent = q.explanation;
+                        if (item.source === 'larnaka') {
+                            expContent = expContent.replace(/src="images\//g, 'src="LARNAKA/images/');
+                        }
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${expContent}</div>`;
                     }
                 } 
                 else if (item.type === 'flashcard') {
