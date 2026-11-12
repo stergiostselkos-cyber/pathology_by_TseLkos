@@ -8,6 +8,18 @@
   'use strict';
 
   // Global State
+  // Smooth scroll to top of current question
+  window.scrollToQuestionTop = function() {
+    const target = document.getElementById('questionCard') || document.querySelector('.question-card') || document.body;
+    if (target) {
+      const yOffset = -20;
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   let currentBank = 'old_book'; // 'old_book' (2013-2023), 'bank_1', or 'larnaka'
   let allQuestions = [];
   let filteredQuestions = [];
@@ -387,12 +399,22 @@
       }, 200);
     });
 
-    // Navigation Buttons
-    if (firstBtn) firstBtn.addEventListener('click', () => navigateToExtreme(0));
-    if (lastBtn) lastBtn.addEventListener('click', () => navigateToExtreme(filteredQuestions.length - 1));
-    prevBtn.addEventListener('click', () => navigate(-1));
-    nextBtn.addEventListener('click', () => navigate(1));
-    randomBtn.addEventListener('click', navigateRandom);
+    // Navigation Buttons (Top & Bottom Toolbars)
+    document.querySelectorAll('#firstBtn, #firstBtnBottom, .btn-nav-first').forEach(b => {
+      b.addEventListener('click', (e) => { e.preventDefault(); navigateToExtreme(0); });
+    });
+    document.querySelectorAll('#lastBtn, #lastBtnBottom, .btn-nav-last').forEach(b => {
+      b.addEventListener('click', (e) => { e.preventDefault(); navigateToExtreme(filteredQuestions.length - 1); });
+    });
+    document.querySelectorAll('#prevBtn, #prevBtnBottom, .btn-nav-prev').forEach(b => {
+      b.addEventListener('click', (e) => { e.preventDefault(); navigate(-1); });
+    });
+    document.querySelectorAll('#nextBtn, #nextBtnBottom, .btn-nav-next').forEach(b => {
+      b.addEventListener('click', (e) => { e.preventDefault(); navigate(1); });
+    });
+    document.querySelectorAll('#randomBtn, #randomBtnBottom, .btn-nav-random').forEach(b => {
+      b.addEventListener('click', (e) => { e.preventDefault(); navigateRandom(); });
+    });
 
     // Jump Input
     jumpInput.addEventListener('keydown', (e) => {
@@ -683,11 +705,13 @@
       explanationBody.innerHTML = '';
     }
 
-    // Navigation buttons state
-    prevBtn.disabled = (currentIndex === 0);
-    nextBtn.disabled = (currentIndex === filteredQuestions.length - 1);
-    if (firstBtn) firstBtn.disabled = (currentIndex === 0);
-    if (lastBtn) lastBtn.disabled = (currentIndex === filteredQuestions.length - 1);
+    // Navigation buttons state (Sync both top & bottom toolbars)
+    const isFirst = (currentIndex === 0);
+    const isLast = (currentIndex === filteredQuestions.length - 1);
+    document.querySelectorAll('#prevBtn, #prevBtnBottom, .btn-nav-prev').forEach(b => b.disabled = isFirst);
+    document.querySelectorAll('#nextBtn, #nextBtnBottom, .btn-nav-next').forEach(b => b.disabled = isLast);
+    document.querySelectorAll('#firstBtn, #firstBtnBottom, .btn-nav-first').forEach(b => b.disabled = isFirst);
+    document.querySelectorAll('#lastBtn, #lastBtnBottom, .btn-nav-last').forEach(b => b.disabled = isLast);
   }
 
   // Handle Option Click
@@ -741,13 +765,14 @@
     }
   };
 
-  // Navigation
+  // Navigation (With smooth return to question top)
   function navigate(delta) {
     const nextIdx = currentIndex + delta;
     if (nextIdx >= 0 && nextIdx < filteredQuestions.length) {
       currentIndex = nextIdx;
       showExplanationForced = false;
       renderCurrentQuestion();
+      window.scrollToQuestionTop();
     }
   }
 
@@ -757,6 +782,7 @@
       currentIndex = targetIdx;
       showExplanationForced = false;
       renderCurrentQuestion();
+      window.scrollToQuestionTop();
     }
   }
 
@@ -769,6 +795,7 @@
     currentIndex = rand;
     showExplanationForced = false;
     renderCurrentQuestion();
+    window.scrollToQuestionTop();
   }
 
   function jumpToQuestionId(qid) {

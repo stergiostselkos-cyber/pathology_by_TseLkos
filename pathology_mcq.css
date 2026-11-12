@@ -1154,6 +1154,33 @@ h6.subsection-banner,
   flex-wrap: wrap;
 }
 
+.card-nav-bar.nav-top {
+  margin-top: 14px;
+}
+
+.card-nav-bar.nav-bottom {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1.5px dashed #cbd5e1;
+  display: none;
+}
+
+.patho-explanation-panel.active ~ .card-nav-bar.nav-bottom,
+.patho-explanation-panel.active + .card-nav-bar.nav-bottom {
+  display: flex !important;
+}
+
+.btn-nav-top-scroll {
+  background: #f0fdf4 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+.btn-nav-top-scroll:hover {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+}
+
 .nav-btn {
   display: inline-flex;
   align-items: center;

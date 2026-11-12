@@ -18,8 +18,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix3">
-  <link rel="stylesheet" href="image_zoom_viewer.css?v=20261112.fix3">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261112.fix4">
+  <link rel="stylesheet" href="image_zoom_viewer.css?v=20261112.fix4">
   <!-- MathJax for LaTeX Rendering -->
   <script>
     window.MathJax = {
@@ -185,6 +185,40 @@
         </div>
       </div>
 
+      <!-- Navigation Toolbar (TOP: at normal height right below options & feedback) -->
+      <div class="card-nav-bar nav-top">
+        <button class="nav-btn btn-nav-first" id="firstBtn" title="Μετάβαση στην 1η ερώτηση">
+          <i class="fa-solid fa-backward-step"></i>
+          <span>Αρχή</span>
+        </button>
+
+        <button class="nav-btn btn-nav-prev" id="prevBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Προηγούμενη</span>
+        </button>
+
+        <div class="nav-center-group">
+          <button class="nav-btn btn-nav-random" id="randomBtn" title="Μετάβαση σε τυχαία ερώτηση">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Τυχαία</span>
+          </button>
+          <div class="jump-input-box">
+            <span>Μετάβαση:</span>
+            <input type="number" id="jumpInput" class="jump-input" min="1" placeholder="#">
+          </div>
+        </div>
+
+        <button class="nav-btn btn-nav-next" id="nextBtn">
+          <span>Επόμενη</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button class="nav-btn btn-nav-last" id="lastBtn" title="Μετάβαση στην τελευταία ερώτηση">
+          <span>Τέλος</span>
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
+
       <!-- Full Rich Explanation Panel (Guaranteed display of analytical text) -->
       <div class="patho-explanation-panel" id="explanationPanel">
         <div class="explanation-header">
@@ -196,35 +230,35 @@
         </div>
       </div>
 
-      <!-- Navigation Toolbar with Beginning / End Jumps -->
-      <div class="card-nav-bar">
-        <button class="nav-btn" id="firstBtn" title="Μετάβαση στην πρώτη ερώτηση">
+      <!-- Navigation Toolbar (BOTTOM: at the end of the analysis after reading) -->
+      <div class="card-nav-bar nav-bottom" id="bottomNavBar">
+        <button class="nav-btn btn-nav-first" id="firstBtnBottom" title="Μετάβαση στην 1η ερώτηση">
           <i class="fa-solid fa-backward-step"></i>
           <span>Αρχή</span>
         </button>
 
-        <button class="nav-btn" id="prevBtn">
+        <button class="nav-btn btn-nav-prev" id="prevBtnBottom">
           <i class="fa-solid fa-arrow-left"></i>
           <span>Προηγούμενη</span>
         </button>
 
         <div class="nav-center-group">
-          <button class="nav-btn" id="randomBtn" title="Μετάβαση σε τυχαία ερώτηση">
+          <button class="nav-btn btn-nav-random" id="randomBtnBottom" title="Μετάβαση σε τυχαία ερώτηση">
             <i class="fa-solid fa-shuffle"></i>
             <span>Τυχαία</span>
           </button>
-          <div class="jump-input-box">
-            <span>Μετάβαση:</span>
-            <input type="number" id="jumpInput" class="jump-input" min="1" placeholder="#">
-          </div>
+          <button class="nav-btn btn-nav-top-scroll" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Κορυφή</span>
+          </button>
         </div>
 
-        <button class="nav-btn" id="nextBtn">
+        <button class="nav-btn btn-nav-next" id="nextBtnBottom">
           <span>Επόμενη</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
 
-        <button class="nav-btn" id="lastBtn" title="Μετάβαση στην τελευταία ερώτηση">
+        <button class="nav-btn btn-nav-last" id="lastBtnBottom" title="Μετάβαση στην τελευταία ερώτηση">
           <span>Τέλος</span>
           <i class="fa-solid fa-forward-step"></i>
         </button>
@@ -285,7 +319,7 @@
   <script src="questions_bank_1.js?v=20261112.fix3"></script>
   <script src="LARNAKA/larnaka.js?v=20261112.fix3"></script>
   <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261112.fix3"></script>
+  <script src="pathology_mcq_app.js?v=20261112.fix4"></script>
   <script src="image_zoom_viewer.js"></script>
 </body>
 </html>
