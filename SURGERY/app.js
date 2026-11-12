@@ -444,7 +444,6 @@
   function selectOption(selectedIndex) {
     if (filteredQuestions.length === 0) return;
     const q = filteredQuestions[currentIndex];
-    if (userAnswers[q.id]) return;
 
     const isCorrect = (selectedIndex === q.correctAnswer);
     userAnswers[q.id] = {
@@ -515,7 +514,8 @@
 
   function updateStats() {
     const totalAll = allQuestions.length;
-    totalCountVal.textContent = totalAll;
+    const totalInFilter = filteredQuestions.length;
+    totalCountVal.textContent = (currentChapter === 'all' && currentFilter === 'all' && !searchTerm) ? totalAll : `${totalInFilter} (από ${totalAll})`;
 
     const answeredIds = Object.keys(userAnswers);
     const answeredCount = answeredIds.length;

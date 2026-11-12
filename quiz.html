@@ -1,873 +1,209 @@
 <!DOCTYPE html>
-
 <html lang="el">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GSSKTV6FKE');
-</script>
-
-    <script src="auth-guard.js"></script>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Προσομοιωτής Quiz Παθολογίας</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- CSS Stylesheet -->
-<link href="style.css?v=20261107.v3pure" rel="stylesheet"/>
-<style>
-    /* Animation for Author Tag */
-    @keyframes tselkosGlow {
-      0% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
-      50% {
-        transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
-      }
-      100% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
-    }
-    .author-tag {
-      display: inline-block !important;
-      animation: tselkosGlow 2s infinite ease-in-out !important;
-    }
-
-    /* Animation for Author Tag */
-    @keyframes tselkosGlow {
-      0% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
-      50% {
-        transform: scale(1.08);
-        text-shadow: 0 0 16px rgba(var(--primary-rgb), 1), 0 0 8px rgba(var(--primary-rgb), 0.8), 0 0 20px rgba(var(--primary-rgb), 0.9);
-      }
-      100% {
-        transform: scale(1);
-        text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 4px rgba(var(--primary-rgb), 0.8);
-      }
-    }
-    .author-tag {
-      display: inline-block !important;
-      animation: tselkosGlow 2s infinite ease-in-out !important;
-    }
-
-    /* App Container */
-    .app-container {
-      width: 100% !important;
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-    }
-
-    /* Quiz Panel Outer Background (Solid Thalassi Blue) */
-    #quiz-view.view-panel {
-      border: 2px solid var(--primary-hover) !important;
-      padding: 24px !important;
-      border-radius: 20px !important;
-      box-shadow: 0 10px 40px rgba(var(--primary-rgb), 0.3) !important;
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-
-    /* Subfields inside outer container have very soft blue background */
-    #quiz-view .large-dropdown-select-btn {
-      background: rgba(var(--primary-rgb), 0.08) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.25) !important;
-      color: var(--text-primary) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
-    }
-    #quiz-view .large-dropdown-select-btn .dropdown-label {
-      color: var(--text-primary) !important;
-      font-weight: 900 !important;
-      opacity: 1 !important;
-      font-size: 0.85rem !important;
-      letter-spacing: 0.5px !important;
-    }
-    #quiz-view .large-dropdown-select-btn .dropdown-value {
-      color: var(--text-primary) !important;
-      font-weight: 800 !important;
-      font-size: 1.05rem !important;
-    }
-    #quiz-view .large-dropdown-select-btn .dropdown-arrow {
-      color: var(--text-primary) !important;
-    }
-
-    #quiz-view .category-tag-wrapper .badge {
-      background: rgba(var(--primary-rgb), 0.1) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.3) !important;
-      color: var(--text-primary) !important;
-      font-weight: 800 !important;
-    }
-
-    /* Question box background */
-    #quiz-view .question-container {
-      background: rgba(var(--primary-rgb), 0.06) !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.22) !important;
-      border-left: 6px solid var(--primary-color) !important;
-      border-radius: 14px !important;
-      padding: 24px 30px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
-      margin: 16px 0 !important;
-      color: var(--text-primary) !important;
-      font-weight: 700 !important;
-      line-height: 1.65 !important;
-      text-align: left !important;
-    }
-
-    /* Options buttons styling and hover behavior */
-    #quiz-view .option-btn {
-      background: var(--card-bg) !important;
-      border: 1.5px solid var(--card-border) !important;
-      color: var(--text-primary) !important;
-      font-weight: 600 !important;
-      transition: all 0.2s ease !important;
-    }
-    #quiz-view .option-btn:hover:not(:disabled) {
-      background: rgba(var(--primary-rgb), 0.15) !important;
-      border-color: var(--text-primary) !important;
-      color: var(--text-primary) !important;
-      transform: translateY(-2px) !important;
-    }
-    #quiz-view .option-btn .option-badge {
-      background: rgba(var(--primary-rgb), 0.2) !important;
-      border-color: rgba(var(--primary-rgb), 0.2) !important;
-      color: var(--text-primary) !important;
-    }
-    #quiz-view .option-btn:hover:not(:disabled) .option-badge {
-      background: #ffffff !important;
-      color: var(--text-primary) !important;
-    }
-
-    /* Keep correct/incorrect states */
-    #quiz-view .option-btn.correct {
-      background: #d1fae5 !important; /* soft success green background */
-      border-color: #10b981 !important;
-      color: #065f46 !important;
-    }
-    #quiz-view .option-btn.correct .option-badge {
-      background: #10b981 !important;
-      color: #ffffff !important;
-    }
-
-    #quiz-view .option-btn.incorrect {
-      background: #fee2e2 !important; /* soft red background */
-      border-color: rgba(var(--primary-rgb), 0.3) !important;
-      color: var(--primary-hover) !important;
-    }
-    #quiz-view .option-btn.incorrect .option-badge {
-      background: var(--primary-color) !important;
-      color: #ffffff !important;
-    }
-
-    /* Explanation Panel - Crisp Pure White Card (Larnaka Standard) */
-    #quiz-view .explanation-panel {
-      background: #ffffff !important;
-      border: 2px solid #e2e8f0 !important;
-      border-radius: 18px !important;
-      padding: 24px 36px !important;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05) !important;
-      margin-top: 24px !important;
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-    #quiz-view .explanation-panel-inner {
-      color: #1e293b !important;
-      padding: 0 !important;
-    }
-    #quiz-view .explanation-header {
-      display: none !important;
-    }
-    #quiz-view .explanation-content {
-      background: #ffffff !important;
-      border: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-
-    /* Word Base Question Styling - Elegant white card with ample padding */
-    .word-question,
-    .explanation-box,
-    #quiz-view .word-question,
-    #quiz-view .explanation-box {
-      background-color: #ffffff !important;
-      border: none !important;
-      border-radius: 0 !important;
-      padding: 6px 12px !important;
-      margin: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-      box-shadow: none !important;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      font-size: 1.01rem !important;
-      line-height: 1.72 !important;
-      color: #1e293b !important;
-      word-break: normal !important;
-      overflow-wrap: break-word !important;
-      box-sizing: border-box !important;
-    }
-
-    #quiz-view .explanation-content p,
-    .word-question p,
-    .explanation-box p {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      color: #1e293b !important;
-      line-height: 1.72 !important;
-      text-align: justify !important;
-      text-justify: inter-word !important;
-      margin-bottom: 12px !important;
-    }
-
-    /* List Indentation & Hierarchy (Larnaka Standard) */
-    .word-question ul,
-    .explanation-box ul,
-    #quiz-view .explanation-content ul {
-      margin: 8px 0 14px 0 !important;
-      padding-left: 2.2rem !important;
-      list-style-type: disc !important;
-      list-style-position: outside !important;
-    }
-
-    .word-question ol,
-    .explanation-box ol,
-    #quiz-view .explanation-content ol {
-      margin: 8px 0 14px 0 !important;
-      padding-left: 2.2rem !important;
-      list-style-type: decimal !important;
-      list-style-position: outside !important;
-    }
-
-    .word-question ul ul,
-    .explanation-box ul ul,
-    #quiz-view .explanation-content ul ul {
-      margin: 4px 0 8px 0 !important;
-      padding-left: 1.8rem !important;
-      list-style-type: circle !important;
-    }
-
-    .word-question ul ul ul,
-    .explanation-box ul ul ul,
-    #quiz-view .explanation-content ul ul ul {
-      padding-left: 1.8rem !important;
-      list-style-type: square !important;
-    }
-
-    .word-question ol ol,
-    .explanation-box ol ol,
-    #quiz-view .explanation-content ol ol {
-      margin: 4px 0 8px 0 !important;
-      padding-left: 1.8rem !important;
-      list-style-type: lower-greek !important;
-    }
-
-    .word-question ol ol ol,
-    .explanation-box ol ol ol,
-    #quiz-view .explanation-content ol ol ol {
-      padding-left: 1.8rem !important;
-      list-style-type: lower-roman !important;
-    }
-
-    #quiz-view .explanation-content li,
-    .word-question li,
-    .explanation-box li {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      color: #1e293b !important;
-      position: static !important;
-      list-style: inherit !important;
-      list-style-position: outside !important;
-      line-height: 1.68 !important;
-      text-align: left !important;
-      margin: 6px 0 !important;
-      padding-left: 4px !important;
-    }
-
-    /* ==============================================================================
-       3-TIER HIERARCHY SYSTEM - LARNAKA MCQ EXPLANATIONS
-       1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4)
-       2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5)
-       3ο Επίπεδο: Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ)
-       ============================================================================== */
-
-    /* 1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4) */
-    .stage-banner,
-    div.stage-banner,
-    p.stage-banner,
-    h4.stage-banner,
-    .word-question h4,
-    .explanation-box h4,
-    .explanation-content h4 {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      font-size: 12pt !important;
-      font-weight: 800 !important;
-      color: #0369a1 !important;
-      background: #e0f2fe !important;
-      border: 1.5px solid #bae6fd !important;
-      border-left: 6px solid #0284c7 !important;
-      border-radius: 8px !important;
-      padding: 11px 20px !important;
-      margin: 24px 0 14px 0 !important;
-      text-align: left !important;
-      line-height: 1.5 !important;
-      display: block !important;
-      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12) !important;
-      box-sizing: border-box !important;
-    }
-    .stage-banner *,
-    .word-question h4 *,
-    .explanation-box h4 *,
-    .explanation-content h4 * {
-      color: #0369a1 !important;
-    }
-
-    /* 2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5) */
-    .thematic-banner,
-    div.thematic-banner,
-    p.thematic-banner,
-    .thematic-unit-banner,
-    h5.thematic-banner,
-    .word-question h5,
-    .explanation-box h5,
-    .explanation-content h5 {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      font-size: 11pt !important;
-      font-weight: 750 !important;
-      color: #9d174d !important;
-      background: #fdf2f8 !important;
-      border: 1px solid #fce7f3 !important;
-      border-left: 5.5px solid #ec4899 !important;
-      border-radius: 8px !important;
-      padding: 9px 18px !important;
-      margin: 20px 0 10px 0 !important;
-      text-align: left !important;
-      line-height: 1.5 !important;
-      display: block !important;
-      box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
-      box-sizing: border-box !important;
-    }
-    .thematic-banner *,
-    .thematic-unit-banner *,
-    .word-question h5 *,
-    .explanation-box h5 *,
-    .explanation-content h5 * {
-      color: #9d174d !important;
-    }
-
-    /* 3ο Επίπεδο: Πορτοκαλί Πλαίσιο */
-    .subsection-banner,
-    div.subsection-banner,
-    p.subsection-banner,
-    .substage-banner,
-    .larnaka-level3-banner {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      font-size: 10.5pt !important;
-      font-weight: 700 !important;
-      color: #9a3412 !important;
-      background: #fff7ed !important;
-      border: 1px solid #ffedd5 !important;
-      border-left: 5px solid #f97316 !important;
-      border-radius: 8px !important;
-      padding: 7px 16px !important;
-      margin: 16px 0 8px 0 !important;
-      text-align: left !important;
-      line-height: 1.45 !important;
-      display: block !important;
-      box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
-      box-sizing: border-box !important;
-    }
-    .subsection-banner *,
-    .substage-banner *,
-    .larnaka-level3-banner * {
-      color: #9a3412 !important;
-    }
-
-    /* Subheadings & Option Justifications (H6) */
-    .word-question h6,
-    .explanation-box h6,
-    .explanation-content h6 {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      font-size: 1.02rem !important;
-      font-weight: 700 !important;
-      color: #0f172a !important;
-      margin: 16px 0 6px 0 !important;
-      text-align: left !important;
-      line-height: 1.5 !important;
-      display: block !important;
-    }
-
-    /* Zoomable Medical Tables (Larnaka Standard) */
-    .table-responsive-wrapper {
-      width: 100% !important;
-      overflow-x: auto !important;
-      margin: 18px 0 !important;
-      -webkit-overflow-scrolling: touch !important;
-      border-radius: 8px !important;
-    }
-    .table-responsive-wrapper table.zoomable-table,
-    .word-table,
-    .explanation-content table,
-    .explanation-box table {
-      width: 100% !important;
-      border-collapse: collapse !important;
-      background-color: #ffffff !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
-      border-radius: 8px !important;
-      overflow: hidden !important;
-      border: 1px solid #cbd5e1 !important;
-      cursor: zoom-in !important;
-      margin: 14px 0 !important;
-    }
-    .table-responsive-wrapper table th,
-    .word-table th,
-    .explanation-content th,
-    .explanation-box th {
-      background-color: #EBF2F7 !important;
-      color: #102C57 !important;
-      font-weight: 800 !important;
-      padding: 10px 14px !important;
-      border: 1px solid #cbd5e1 !important;
-      text-align: center !important;
-      vertical-align: middle !important;
-    }
-    .table-responsive-wrapper table td,
-    .word-table td,
-    .explanation-content td,
-    .explanation-box td {
-      padding: 10px 14px !important;
-      border: 1px solid #cbd5e1 !important;
-      color: #1e293b !important;
-      font-size: 0.94rem !important;
-      line-height: 1.58 !important;
-      vertical-align: top !important;
-      background-color: #ffffff !important;
-      word-break: normal !important;
-      overflow-wrap: break-word !important;
-      text-align: left !important;
-    }
-    .table-responsive-wrapper table tbody tr:nth-child(even) td,
-    .word-table tbody tr:nth-child(even) td,
-    .explanation-content tbody tr:nth-child(even) td,
-    .explanation-box tbody tr:nth-child(even) td {
-      background-color: #f8fafc !important;
-    }
-    .table-responsive-wrapper table tbody tr:hover td,
-    .word-table tbody tr:hover td,
-    .explanation-content tbody tr:hover td,
-    .explanation-box tbody tr:hover td {
-      background-color: #f1f5f9 !important;
-    }
-
-    /* Flowcharts & Diagrams */
-    .fig-img,
-    .theory-diagram-img,
-    .zoomable-image {
-      max-width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      margin: 14px auto !important;
-      border-radius: 8px !important;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08) !important;
-      cursor: zoom-in !important;
-    }
-    .fig-img-wrap {
-      text-align: center !important;
-      margin: 16px 0 !important;
-    }
-
-    /* Bottom navigation adjustments */
-    #quiz-view .quiz-navigation .btn-secondary {
-      background: #ffffff !important;
-      border: 1px solid rgba(var(--primary-rgb), 0.2) !important;
-      color: var(--text-primary) !important;
-      font-weight: 700 !important;
-    }
-    #quiz-view .quiz-navigation .btn-primary {
-      background: var(--primary-color) !important;
-      color: #000000;
-      font-weight: 700 !important;
-      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3) !important;
-    }
-
-    /* Fix alignment and pink color for question number */
-    #progress-text { color: #ff69b4 !important; font-weight: 800 !important; font-size: 1.05rem !important; }
-    #quiz-view .question-container { text-align: left !important; }
-    #question-text { text-align: left !important; display: block !important; opacity: 1 !important; visibility: visible !important; }
-  </style>
-
-<style id="dynamic-theme">
-:root {
-  --primary-color: #0ea5e9;
-  --primary-rgb: 14, 165, 233;
-  --primary-hover: #0284c7;
-  --bg-gradient: radial-gradient(circle at 50% 0%, #0c4a6e 0%, #111827 80%);
-  --bg-color: #111827;
-}
-</style>    <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
-  <link rel="stylesheet" href="image_zoom_viewer.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ΠΑΘΟΛΟΓΙΑ - Ερωτήσεις Πολλαπλής Επιλογής - By TseLkos</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GSSKTV6FKE');
+  </script>
+  <script src="auth-guard.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261112">
 </head>
-<body class="light-theme">
-<div class="app-container">
-<!-- Header Section -->
-<header class="app-header">
-<div class="header-main">
-<div class="app-logo">
-<svg fill="none" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 8V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-<h1>Pathologia<span>Quiz</span> <span class="author-tag" style="font-size: 1.2rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px; vertical-align: middle">By TseLkos</span></h1>
-</div>
-<div class="header-controls">
-<a class="btn btn-secondary btn-icon" href="index.html" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box">
-<svg fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M9 22V12H15V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span>Αρχική</span>
-</a>
-<button class="btn btn-secondary btn-icon" onclick="openGlobalSearch()" title="Σύνθετη Αναζήτηση σε Όλα (Ctrl + K)" style="padding: 6px 12px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 6px; border-radius: 8px; font-weight: 500; height: 38px; box-sizing: border-box; cursor: pointer; background: #ffffff; border: 1px solid rgba(var(--primary-rgb), 0.3); color: var(--text-primary); margin-left: 8px;">
-<svg fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-<circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
-<line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line>
-</svg>
-<span>Αναζήτηση</span>
-</button>
+<body>
 
-<!-- Progress Bar Tracker -->
-<div class="progress-container">
-<div class="progress-bar-wrapper">
-<div class="progress-fill" id="progress-fill"></div>
-</div>
-<div class="progress-stats">
-<span id="progress-text">Ερώτηση 0 από 0</span>
-<span id="score-text">Σκορ: 0%</span>
-</div>
-</div>
-</div></div></header>
-<!-- Main Content Area -->
-<main class="app-main">
-<!-- Active Quiz View -->
-<section class="view-panel" id="quiz-view" style="border-radius: var(--border-radius); padding: 24px">
-<!-- Chapter Selector Filters -->
-<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 14px; margin-bottom: 8px">
-<button class="large-dropdown-select-btn" id="quick-chapters-dropdown-btn">
-<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Κεφάλαιο</span>
-<span class="dropdown-value" id="quick-chapters-dropdown-value" style="font-weight: 600; font-size: 1rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Όλα</span>
-<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-</button>
-<div class="chapters-vertical-list-overlay hidden" id="quick-chapters-overlay">
-<!-- Dynamic Chapters -->
-</div>
-</div>
-<!-- Topic Selector Dropdown and Overlay -->
-<div class="quick-dropdown-wrapper" style="position: relative; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; margin-bottom: 8px">
-<button class="large-dropdown-select-btn" id="quick-questions-dropdown-btn">
-<span class="dropdown-label" style="opacity: 0.85; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; display: block; text-align: left; margin-bottom: 2px">Ερώτηση</span>
-<span class="dropdown-value" id="quick-questions-dropdown-value" style="font-weight: 600; font-size: 1.05rem; text-align: left; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-right: 24px">Φόρτωση ερώτησης...</span>
-<svg class="dropdown-arrow" fill="none" height="20" style="position: absolute; right: 20px; top: calc(50% - 10px)" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-</button>
-<div class="questions-vertical-list-overlay hidden" id="quick-questions-overlay">
-<!-- Dynamic Questions -->
-</div>
-</div>
-<div class="category-tag-wrapper">
-<span class="badge" id="category-badge">Παθολογική Ανατομική</span>
-</div>
-<!-- Question Text -->
-<div class="question-container">
-<p id="question-text">Φόρτωση ερώτησης...</p>
-</div>
-<!-- Options List (Stacked) -->
-<div class="options-list" id="options-list">
-<!-- Dynamic option buttons go here -->
-</div>
-<!-- Reveal Answer Button -->
-<div class="reveal-btn-container" style="display: flex; justify-content: flex-end; margin-top: 12px; margin-bottom: 12px">
-<button class="btn btn-secondary" id="reveal-answer-btn" style="display: none; align-items: center; gap: 6px; padding: 8px 16px; font-size: 0.9rem; border-radius: 8px; font-weight: 500; cursor: pointer; transition: all 0.2s ease">
-<svg fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
-</svg>
-<span>Εμφάνιση Απάντησης</span>
-</button>
-</div>
-<!-- Top Quick Navigation Bar -->
-<div class="quiz-navigation quiz-navigation-top" id="quiz-navigation-top">
-<button class="btn btn-secondary btn-icon prev-button-sync" id="prev-button-top" disabled="">
-<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M19 12H5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 19L5 12L12 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span>Προηγούμενη</span>
-</button>
-<button class="btn btn-primary btn-icon next-button-sync" id="next-button-top">
-<span>Επόμενη</span>
-<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 12H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 5L19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
+  <!-- Header -->
+  <header class="patho-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-icon">
+          <i class="fa-solid fa-notes-medical"></i>
+        </div>
+        <div class="header-title-box">
+          <h1>ΠΑΘΟΛΟΓΙΑ - Ερωτήσεις Πολλαπλής Επιλογής</h1>
+          <div class="subtitle">
+            <span>Επίσημες Τράπεζες Θεμάτων Παθολογίας</span>
+            <span class="author-pill">By Stergios Tselkos</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="nav-home-btn">
+          <i class="fa-solid fa-house"></i>
+          <span>Αρχική Πύλη</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-<!-- Explanation Panel (Collapsible) -->
-<div class="explanation-panel collapsed" id="explanation-panel">
-<div class="explanation-panel-inner">
-<div class="explanation-header">
-<div class="explanation-title">
-<svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 16V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 8H12.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-<h2>💡 Επιπλέον Υλικό για Μελέτη</h2>
-<div class="extra-info-banner" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; margin-top: 4px">
-<span>💡 Υλικό Εμβάθυνσης &amp; Κατανόησης</span>
-</div>
-</div>
-</div>
-<div class="explanation-content" id="explanation-content">
-<!-- Raw HTML generated from Markdown parsed explanation -->
-</div>
-</div>
-</div>
-<!-- Navigation Footer -->
-<div class="quiz-navigation">
-<button class="btn btn-secondary btn-icon" disabled="" id="prev-button">
-<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M19 12H5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 19L5 12L12 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span>Προηγούμενη</span>
-</button>
-<button class="btn btn-primary btn-icon" id="next-button">
-<span>Επόμενη</span>
-<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 12H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 5L19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</section>
-<!-- Results summary View -->
-<section class="view-panel hidden" id="results-view">
-<div class="results-card">
-<div class="results-header">
-<div class="celebration-icon">
-<svg fill="none" height="64" viewbox="0 0 24 24" width="64" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M19.4 15A1.65 1.65 0 0 0 2 2V22A1.65 1.65 0 0 0 19.4 15Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 2V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 17V22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M4.93 4.93L8.46 8.46" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M15.54 15.54L19.07 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12H7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M17 12H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M8.46 15.54L4.93 19.07" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M19.07 4.93L15.54 8.46" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<h2>Συγχαρητήρια!</h2>
-<p>Ολοκληρώσατε τον Προσομοιωτή Παθολογίας</p>
-</div>
-<div class="results-stats-grid">
-<div class="stat-card">
-<span class="stat-label">Συνολικό Σκορ</span>
-<span class="stat-value" id="final-score">0%</span>
-</div>
-<div class="stat-card">
-<span class="stat-label">Σωστές Απαντήσεις</span>
-<span class="stat-value" id="final-correct">0 / 0</span>
-</div>
-<div class="stat-card">
-<span class="stat-label">Προσπάθειες</span>
-<span class="stat-value" id="final-attempts">0</span>
-</div>
-</div>
-<!-- Performance Rating Banner -->
-<div class="performance-rating" id="performance-rating"></div>
-<button class="btn btn-secondary btn-icon" id="restart-button" style="font-weight: 700 !important">
-<svg fill="none" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l.73-1.19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span>Επανεκκίνηση Quiz</span>
-</button>
-</div>
-</section>
-</main>
-<!-- Footer Info -->
-<footer class="app-footer">
-<p>Σχεδιασμένο για ιατρική εκπαίδευση &amp; εμπέδωση θεωρίας</p>
-<div class="study-feedback-footer" style="margin-top: 16px; padding: 12px 10px; border-top: 1px dashed var(--card-border); text-align: center; font-size: 0.95rem; line-height: 1.5">
-                💡 Αν εντοπίσετε κάποιο λάθος στις απαντήσεις, παρακαλώ στείλτε μου μήνυμα στο <a href="mailto:stergiostselkos@gmail.com" style="font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary-color); transition: all 0.2s ease">stergiostselkos@gmail.com</a> για να το διορθώσουμε μαζί!
-            </div>
-</footer>
-</div>
-<!-- Loading Overlay -->
-<div id="quiz-loading-overlay" style="position: fixed; inset: 0; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; transition: opacity 0.3s ease;">
-  <div style="width: 52px; height: 52px; border: 4px solid #e2e8f0; border-top-color: #0284c7; border-radius: 50%; animation: quizSpin 0.8s linear infinite; margin-bottom: 18px;"></div>
-  <h3 id="quiz-loading-title" style="color: #0f172a; font-weight: 800; font-size: 1.2rem; margin-bottom: 6px;">Φόρτωση Τράπεζας Ερωτήσεων...</h3>
-  <p id="quiz-loading-sub" style="color: #64748b; font-size: 0.92rem;">Προετοιμασία δεδομένων</p>
-</div>
-<style>
-@keyframes quizSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
-
-<!-- App Logic Scripts -->
-<script src="marked.min.js"></script>
-<script>
-(function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bank = urlParams.get('bank');
-    if (bank === 'larnaka') {
-        window.location.replace('LARNAKA/index.html');
-        return;
-    } else if (bank === 'larnaka1') {
-        window.location.replace('LARNAKA_PART_01/index.html');
-        return;
-    } else if (bank === 'larnaka2') {
-        window.location.replace('LARNAKA_PART_02/index.html');
-        return;
-    } else if (bank === 'larnaka3') {
-        window.location.replace('LARNAKA_PART_03/index.html');
-        return;
-    } else if (bank === 'larnaka4') {
-        window.location.replace('LARNAKA_PART_04/index.html');
-        return;
-    } else if (bank === 'larnaka5') {
-        window.location.replace('LARNAKA_PART_05/index.html');
-        return;
-    } else if (bank === 'larnaka6') {
-        window.location.replace('LARNAKA_PART_06/index.html');
-        return;
-    } else if (bank === 'larnaka7') {
-        window.location.replace('LARNAKA_PART_07/index.html');
-        return;
-    }
+  <!-- Main Container -->
+  <main class="patho-main">
     
-    let scriptSrc = "questions_v3.js";
-    let bankName = "Θέματα Εξετάσεων 2013-2023";
-    if (bank === 'bank_1') {
-        scriptSrc = "questions_bank_1.js";
-        bankName = "Τράπεζα Θεμάτων 1";
-    } else if (bank === 'larnaka' || (bank && bank.startsWith('larnaka_'))) {
-        scriptSrc = "LARNAKA/larnaka.js";
-        bankName = "Τράπεζα Θεμάτων ΛΑΡΝΑΚΑ";
-    }
+    <!-- Controls Panel -->
+    <section class="patho-controls">
 
-    const overlay = document.getElementById('quiz-loading-overlay');
-    const loadingSub = document.getElementById('quiz-loading-sub');
-    if (loadingSub) loadingSub.textContent = 'Φόρτωση: ' + bankName;
+      <!-- 1. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΤΡΑΠΕΖΑΣ ΘΕΜΑΤΩΝ -->
+      <div class="nav-selector-row bank-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-database"></i>
+          <span>Τράπεζα Θεμάτων:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="bankSelect" class="styled-select bank-select">
+            <option value="old_book" selected>Θέματα Εξετάσεων 2013-2023 (742 Ερωτήσεις)</option>
+            <option value="bank_1">Τράπεζα Θεμάτων 1 (3002 Ερωτήσεις)</option>
+            <option value="larnaka">🏛️ Τράπεζα Θεμάτων - ΛΑΡΝΑΚΑ (668 Ερωτήσεις)</option>
+          </select>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-pill" id="scoreStat">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Σκορ: <strong id="scoreVal">0 / 0</strong> (<strong id="scorePct">0%</strong>)</span>
+          </div>
+          <div class="stat-pill" id="totalStat">
+            <i class="fa-solid fa-list-ol"></i>
+            <span>Ερωτήσεις: <strong id="totalCountVal">0</strong></span>
+          </div>
+          <button type="button" class="stat-reset-btn" id="resetScoreBtn" title="Μηδενισμός σκορ &amp; απαντήσεων">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Επαναφορά</span>
+          </button>
+        </div>
+      </div>
 
-    function loadScriptAsync(src) {
-        return new Promise(function(resolve, reject) {
-            const s = document.createElement('script');
-            s.charset = 'UTF-8';
-            s.src = src;
-            s.onload = resolve;
-            s.onerror = function() {
-                reject(new Error('Failed to load: ' + src));
-            };
-            document.body.appendChild(s);
-        });
-    }
+      <!-- 2. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΚΕΦΑΛΑΙΟΥ -->
+      <div class="nav-selector-row chapter-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-book-medical"></i>
+          <span>Κεφάλαιο Τράπεζας:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="chapterSelect" class="styled-select chapter-select">
+            <option value="all">Όλα τα Κεφάλαια</option>
+          </select>
+        </div>
+      </div>
 
-    const cacheBuster = '?v=' + Date.now();
-    loadScriptAsync(scriptSrc + cacheBuster)
-        .then(function() {
-            if (loadingSub) loadingSub.textContent = 'Εκκίνηση εφαρμογής...';
-            return loadScriptAsync('app.js' + cacheBuster);
-        })
-        .then(function() {
-            if (overlay) {
-                overlay.style.opacity = '0';
-                setTimeout(function() {
-                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-                }, 300);
-            }
-        })
-        .catch(function(err) {
-            console.error('Quiz initialization error:', err);
-            const title = document.getElementById('quiz-loading-title');
-            if (title) title.textContent = 'Σφάλμα Φόρτωσης';
-            if (loadingSub) loadingSub.textContent = 'Παρακαλώ ανανεώστε τη σελίδα (F5).';
-        });
-})();
-</script>
-    
+      <!-- 3. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΕΡΩΤΗΣΗΣ ΚΕΦΑΛΑΙΟΥ -->
+      <div class="nav-selector-row question-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-list-ol"></i>
+          <span>Ερώτηση Κεφαλαίου:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="questionSelect" class="styled-select question-select">
+          </select>
+        </div>
+      </div>
 
+      <!-- Filter and Search Row -->
+      <div class="controls-row-bottom">
+        <div class="filter-btn-group">
+          <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> Όλες</button>
+          <button class="filter-btn" data-filter="unanswered"><i class="fa-regular fa-circle"></i> Αναπάντητες</button>
+          <button class="filter-btn" data-filter="wrong"><i class="fa-solid fa-circle-xmark"></i> Λάθη</button>
+          <button class="filter-btn" data-filter="starred"><i class="fa-solid fa-star"></i> Αγαπημένα</button>
+        </div>
+        <div class="search-input-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Αναζήτηση στην ερώτηση...">
+        </div>
+      </div>
 
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </section>
 
-<!-- MathJax for LaTeX Rendering -->
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    },
-    startup: {
-      pageReady: function () {
-        return MathJax.startup.defaultPageReady().then(function () {
-          const observer = new MutationObserver(function (mutations) {
-            let shouldTypeset = false;
-            for (let mutation of mutations) {
-              if (mutation.addedNodes.length > 0 || mutation.type === 'characterData') {
-                shouldTypeset = true;
-                break;
-              }
-            }
-            if (shouldTypeset) {
-              if (!window.mathJaxTimeout) {
-                window.mathJaxTimeout = setTimeout(function () {
-                  MathJax.typesetPromise().catch(function (err) { console.log('MathJax error:', err.message); });
-                  window.mathJaxTimeout = null;
-                }, 100);
-              }
-            }
-          });
-          observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-        });
-      }
-    }
-  };
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Question Card -->
+    <article class="question-card" id="questionCard">
+      <div class="question-meta-bar">
+        <div class="question-badge-box">
+          <span class="q-bank-badge" id="qBankBadge">Θέματα 2013-2023</span>
+          <span class="q-type-badge" id="qTypeBadge">Μονής Επιλογής</span>
+          <span class="q-number-badge" id="qNumberBadge">Ερώτηση 1</span>
+          <span class="q-chapter-badge" id="qChapterBadge">Κεφάλαιο</span>
+        </div>
+        <button class="star-btn" id="starBtn" title="Προσθήκη στα Αγαπημένα">
+          <i class="fa-regular fa-star"></i>
+        </button>
+      </div>
 
+      <div class="question-stem" id="questionStem">
+        Φόρτωση ερώτησης...
+      </div>
 
-<!-- Floating Back to Top Button -->
-<button id="floating-back-to-top" class="floating-back-to-top hidden" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή" aria-label="Επιστροφή στην κορυφή">
-<svg fill="none" height="22" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-</button>
+      <div class="options-list" id="optionsList">
+        <!-- Dynamically rendered -->
+      </div>
 
-  <script src="image_zoom_viewer.js"></script>
+      <!-- Instant Feedback Box -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="feedback-content">
+          <h4 id="feedbackTitle">Σωστή Απάντηση!</h4>
+          <p id="feedbackText">Επιλέξατε τη σωστή απάντηση.</p>
+        </div>
+      </div>
+
+      <!-- Full Rich Explanation Box -->
+      <div class="explanation-box" id="explanationBox">
+        <div class="explanation-header">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Αιτιολόγηση &amp; Επεξήγηση</span>
+        </div>
+        <div class="explanation-body" id="explanationBody">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Navigation Toolbar -->
+      <div class="card-nav-bar">
+        <button class="nav-btn" id="prevBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Προηγούμενη</span>
+        </button>
+
+        <div class="nav-center-group">
+          <button class="nav-btn" id="randomBtn" title="Μετάβαση σε τυχαία ερώτηση">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Τυχαία</span>
+          </button>
+          <div class="jump-input-box">
+            <span>Μετάβαση:</span>
+            <input type="number" id="jumpInput" class="jump-input" min="1" placeholder="#">
+          </div>
+        </div>
+
+        <button class="nav-btn" id="nextBtn">
+          <span>Επόμενη</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="patho-footer">
+    <p>«ΠΑΘΟΛΟΓΙΑ - Ερωτήσεις Πολλαπλής Επιλογής» • 4412 Ερωτήσεις (742 + 3002 + 668)</p>
+    <p style="margin-top: 4px;">Επιμέλεια &amp; Ανάπτυξη Εφαρμογής: <a href="mailto:stergiostselkos@gmail.com">Stergios Tselkos</a></p>
+  </footer>
+
+  <!-- Question Data Scripts -->
+  <script src="questions_v3.js?v=20261112"></script>
+  <script src="questions_bank_1.js?v=20261112"></script>
+  <script src="LARNAKA/larnaka.js?v=20261112"></script>
+  <!-- Application Logic -->
+  <script src="pathology_mcq_app.js?v=20261112"></script>
 </body>
 </html>

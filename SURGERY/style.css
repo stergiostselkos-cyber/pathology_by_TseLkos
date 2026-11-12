@@ -745,3 +745,24 @@ body::after {
     font-size: 1.2rem;
   }
 }
+
+
+.stat-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stat-reset-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
