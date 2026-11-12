@@ -20,10 +20,10 @@
   --patho-glow: 0 0 20px rgba(14, 165, 233, 0.35);
 
   /* Feedback Colors */
-  --patho-correct-bg: #ecfdf5;
+  --patho-correct-bg: #d1fae5;
   --patho-correct-border: #10b981;
   --patho-correct-text: #065f46;
-  --patho-wrong-bg: #fef2f2;
+  --patho-wrong-bg: #fee2e2;
   --patho-wrong-border: #ef4444;
   --patho-wrong-text: #991b1b;
 
@@ -632,37 +632,48 @@ body::after {
   flex-shrink: 0;
 }
 
-/* Correct Option State */
+/* Correct Option State (Larnaka High-Contrast Success Green) */
 .option-btn.correct {
-  border-color: var(--patho-correct-border) !important;
-  background: var(--patho-correct-bg) !important;
-  color: var(--patho-correct-text) !important;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important;
+  border-color: #10b981 !important;
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25) !important;
 }
 
 .option-btn.correct .option-letter {
-  background: #10b981;
-  color: #ffffff;
+  background: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.option-btn.correct .option-text {
+  color: #065f46 !important;
+  font-weight: 700 !important;
 }
 
 .option-btn.correct .option-status-icon {
-  color: #10b981;
+  color: #10b981 !important;
 }
 
-/* Incorrect Option State */
+/* Incorrect Option State (Larnaka High-Contrast Error Red) */
 .option-btn.incorrect {
-  border-color: var(--patho-wrong-border) !important;
-  background: var(--patho-wrong-bg) !important;
-  color: var(--patho-wrong-text) !important;
+  border-color: #ef4444 !important;
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15) !important;
 }
 
 .option-btn.incorrect .option-letter {
-  background: #ef4444;
-  color: #ffffff;
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.option-btn.incorrect .option-text {
+  color: #991b1b !important;
+  font-weight: 700 !important;
 }
 
 .option-btn.incorrect .option-status-icon {
-  color: #ef4444;
+  color: #ef4444 !important;
 }
 
 /* Feedback Box */
@@ -796,7 +807,7 @@ body::after {
   text-align: justify;
 }
 
-/* PARAGRAPH FORMATTING (Restores clean spacing, line-height & justification) */
+/* PARAGRAPH FORMATTING (Restores clean spacing, line-height & preserves Larnaka inline colors) */
 .explanation-body p,
 .patho-explanation-panel p,
 .explanation-box p,
@@ -805,9 +816,17 @@ body::after {
   margin: 0.85em 0 !important;
   line-height: 1.76 !important;
   font-size: 1.03rem !important;
-  color: #1e293b !important;
   text-align: justify !important;
   display: block !important;
+}
+
+/* Base text color when not specified by inline styles or banners */
+.explanation-body p:not([style*="color"]),
+.patho-explanation-panel p:not([style*="color"]),
+.explanation-box p:not([style*="color"]),
+.word-question p:not([style*="color"]),
+.explanation-clean-content p:not([style*="color"]) {
+  color: #1e293b;
 }
 
 .explanation-body strong,
@@ -815,7 +834,13 @@ body::after {
 .patho-explanation-panel strong,
 .patho-explanation-panel b {
   font-weight: 750 !important;
-  color: #0f172a !important;
+}
+
+.explanation-body strong:not([style*="color"]),
+.explanation-body b:not([style*="color"]),
+.patho-explanation-panel strong:not([style*="color"]),
+.patho-explanation-panel b:not([style*="color"]) {
+  color: #0f172a;
 }
 
 /* ==============================================================================
@@ -1481,4 +1506,218 @@ h6.subsection-banner,
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
+}
+
+
+/* ==============================================================================
+   LARNAKA AUTHENTIC MEDICAL MCQ COLOR SYSTEM & HIGHLIGHTS
+   ============================================================================== */
+
+/* 1. Correct Answer Banner & Box (Larnaka Emerald/Forest Green) */
+.correct-answer-banner,
+.correct-answer-box,
+div.correct-answer-banner,
+p.correct-answer-banner,
+.patho-explanation-panel .correct-answer-banner,
+.explanation-body .correct-answer-banner {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 10.5pt !important;
+  font-weight: bold !important;
+  color: #15803d !important;
+  background: #f0fdf4 !important;
+  border: 1.5px solid #86efac !important;
+  border-left: 6px solid #16a34a !important;
+  border-radius: 8px !important;
+  margin: 16px 0 12px 0 !important;
+  padding: 11px 20px !important;
+  text-align: left !important;
+  line-height: 1.45 !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.12) !important;
+  box-sizing: border-box !important;
+}
+
+.correct-answer-banner *,
+.correct-answer-box *,
+.correct-answer-banner span,
+.correct-answer-banner b,
+.correct-answer-banner strong {
+  color: #15803d !important;
+}
+
+/* 2. Diagram Title Badge (Larnaka Cerulean Blue) */
+.diagram-title-badge,
+div.diagram-title-badge,
+span.diagram-title-badge,
+.explanation-body .diagram-title-badge,
+.word-question .diagram-title-badge {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 9.5pt !important;
+  font-weight: 700 !important;
+  color: #0369a1 !important;
+  background: #f0f9ff !important;
+  border: 1px solid #bae6fd !important;
+  border-left: 4px solid #0284c7 !important;
+  padding: 5px 12px !important;
+  border-radius: 5px !important;
+  display: inline-block !important;
+  margin: 8px 0 6px 0 !important;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.08) !important;
+}
+
+.diagram-title-badge * {
+  color: #0369a1 !important;
+}
+
+/* 3. Excerpt Title Badge (Larnaka Slate Neutral) */
+.excerpt-title-badge,
+div.excerpt-title-badge,
+span.excerpt-title-badge,
+.explanation-body .excerpt-title-badge,
+.word-question .excerpt-title-badge {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 9.5pt !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-left: 3.5px solid #64748b !important;
+  padding: 4px 10px !important;
+  border-radius: 5px !important;
+  display: inline-block !important;
+  margin: 8px 0 6px 0 !important;
+}
+
+.excerpt-title-badge * {
+  color: #475569 !important;
+}
+
+/* 4. Collapsible Quotes Container (Larnaka Standard) */
+.larnaka-quotes-container,
+.larnaka-quotes-details,
+details.larnaka-quotes-details {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 5px solid #0284c7 !important;
+  border-radius: 10px !important;
+  margin: 16px 0 !important;
+  padding: 12px 18px !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+.quotes-toggle-hint,
+summary.quotes-toggle-hint {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  outline: none !important;
+  padding: 2px 0 !important;
+  user-select: none !important;
+}
+
+.quotes-content-inner {
+  padding-top: 10px !important;
+  color: #334155 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.62 !important;
+}
+
+/* 5. Medical Tables - High-Contrast Option Row / Cell Highlights */
+.explanation-body table tr.correct td,
+.explanation-body table td.correct,
+.explanation-body table tr[style*="#f0fdf4"] td,
+.explanation-body table td[style*="#f0fdf4"],
+.explanation-body table tr[style*="#dcfce7"] td,
+.explanation-body table td[style*="#dcfce7"],
+.explanation-body table tr[style*="rgb(240, 253, 244)"] td,
+.explanation-body table td[style*="rgb(240, 253, 244)"],
+.word-question table tr.correct td,
+.word-question table td.correct,
+.word-question table tr[style*="#f0fdf4"] td,
+.word-question table td[style*="#f0fdf4"],
+.word-question table tr[style*="#dcfce7"] td,
+.word-question table td[style*="#dcfce7"],
+.word-table tr.correct td,
+.word-table td.correct,
+.word-table tr[style*="#f0fdf4"] td,
+.word-table td[style*="#f0fdf4"],
+.word-table tr[style*="#dcfce7"] td,
+.word-table td[style*="#dcfce7"] {
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.explanation-body table tr.correct td *,
+.explanation-body table td.correct *,
+.explanation-body table tr[style*="#f0fdf4"] td *,
+.explanation-body table td[style*="#f0fdf4"] *,
+.word-question table tr.correct td *,
+.word-question table td.correct *,
+.word-table tr.correct td *,
+.word-table td.correct * {
+  color: #065f46 !important;
+}
+
+.explanation-body table tr.incorrect td,
+.explanation-body table td.incorrect,
+.explanation-body table tr[style*="#fef2f2"] td,
+.explanation-body table td[style*="#fef2f2"],
+.explanation-body table tr[style*="rgb(254, 242, 242)"] td,
+.explanation-body table td[style*="rgb(254, 242, 242)"],
+.word-question table tr.incorrect td,
+.word-question table td.incorrect,
+.word-question table tr[style*="#fef2f2"] td,
+.word-question table td[style*="#fef2f2"],
+.word-table tr.incorrect td,
+.word-table td.incorrect,
+.word-table tr[style*="#fef2f2"] td,
+.word-table td[style*="#fef2f2"] {
+  background-color: #fef2f2 !important;
+  color: #991b1b !important;
+  border-color: #fecaca !important;
+}
+
+.explanation-body table tr.incorrect td *,
+.explanation-body table td.incorrect *,
+.explanation-body table tr[style*="#fef2f2"] td *,
+.explanation-body table td[style*="#fef2f2"] *,
+.word-question table tr.incorrect td *,
+.word-question table td.incorrect *,
+.word-table tr.incorrect td *,
+.word-table td.incorrect * {
+  color: #991b1b !important;
+}
+
+/* 6. Preservation of inline-colored spans and labels (e.g., green for correct, red for wrong) */
+.explanation-body span[style*="color:#15803d"],
+.explanation-body span[style*="color: #15803d"],
+.explanation-body span[style*="color:#16a34a"],
+.explanation-body span[style*="color: #16a34a"],
+.explanation-body span[style*="color:#059669"],
+.explanation-body span[style*="color: #059669"],
+.explanation-body b[style*="color:#15803d"],
+.explanation-body b[style*="color: #15803d"],
+.explanation-body b[style*="color:#16a34a"],
+.explanation-body b[style*="color: #16a34a"],
+.explanation-body b[style*="color:#059669"],
+.explanation-body b[style*="color: #059669"] {
+  color: #15803d !important;
+}
+
+.explanation-body span[style*="color:#dc2626"],
+.explanation-body span[style*="color: #dc2626"],
+.explanation-body span[style*="color:#b91c1c"],
+.explanation-body span[style*="color: #b91c1c"],
+.explanation-body span[style*="color:#ef4444"],
+.explanation-body span[style*="color: #ef4444"],
+.explanation-body b[style*="color:#dc2626"],
+.explanation-body b[style*="color: #dc2626"],
+.explanation-body b[style*="color:#b91c1c"],
+.explanation-body b[style*="color: #b91c1c"],
+.explanation-body b[style*="color:#ef4444"],
+.explanation-body b[style*="color: #ef4444"] {
+  color: #dc2626 !important;
 }
