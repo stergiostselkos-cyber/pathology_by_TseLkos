@@ -451,16 +451,22 @@
     // Feedback Box
     if (hasAnswered) {
       const correctLetter = optLetters[q.correctAnswer] || 'Α';
+      let correctOptText = (q.options && q.options[q.correctAnswer]) ? q.options[q.correctAnswer].replace(/^[Α-ΕA-E8δόo0-9]+[\.\)\:\-]\s*/i, '').trim() : '';
+      if (correctOptText) {
+        correctOptText = correctOptText.charAt(0).toUpperCase() + correctOptText.slice(1);
+      }
+      const answerSnippet = correctOptText ? ` — <em>${correctOptText}</em>` : '';
+
       if (answerState.isCorrect) {
         feedbackBox.className = 'feedback-box correct';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         feedbackTitle.textContent = 'Σωστή Απάντηση! Μπράβο!';
-        feedbackText.innerHTML = `Μπράβο, επιλέξατε τη σωστή απάντηση <strong>(${correctLetter})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Επαναφορά Επιλογής</button>`;
+        feedbackText.innerHTML = `Μπράβο, επιλέξατε τη σωστή απάντηση <strong>(${correctLetter})</strong>${answerSnippet}.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Επαναφορά Επιλογής</button>`;
       } else {
         feedbackBox.className = 'feedback-box incorrect';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
         feedbackTitle.textContent = 'Λανθασμένη Επιλογή';
-        feedbackText.innerHTML = `Η σωστή απάντηση έιναι η <strong>(${correctLetter})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
+        feedbackText.innerHTML = `Η σωστή απάντηση είναι η <strong>(${correctLetter})</strong>${answerSnippet}.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
       }
     } else {
       feedbackBox.className = 'feedback-box';
