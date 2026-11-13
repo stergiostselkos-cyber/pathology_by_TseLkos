@@ -1126,6 +1126,7 @@
     <script src="LARNAKA/larnaka.js?v=20261112.part13v2"></script>
     <script src="SURGERY/surgery_questions.js?v=20261112"></script>
     <script src="SURGERY/xeirourgiki_doatap.js?v=20261113"></script>
+    <script src="SURGERY/anatomia_doatap.js?v=20261114"></script>
     <script src="pathologia_doatap.js?v=20261113"></script>
     <script src="farmakologia_doatap.js?v=20261113"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
@@ -1596,6 +1597,42 @@
                         originalItem: q,
                         correctIndices: correctIndices,
                         appUrl: 'SURGERY/index.html?bank=bank_doatap&qId=' + qId,
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 1h. Anatomy DOATAP Questions (anatomiaQuestions)
+            const anatomiaSource = (typeof anatomiaQuestions !== 'undefined' && Array.isArray(anatomiaQuestions)) ? anatomiaQuestions :
+                                   (typeof window !== 'undefined' && Array.isArray(window.anatomiaQuestions)) ? window.anatomiaQuestions : null;
+            if (anatomiaSource) {
+                anatomiaSource.forEach((q, idx) => {
+                    const qId = q.id || (idx + 1);
+                    let expText = '';
+                    if (Array.isArray(q.explanation)) {
+                        expText = q.explanation.map(item => (typeof item === 'object' ? (item.text || '') : String(item))).join(' ');
+                    } else if (typeof q.explanation === 'string') {
+                        expText = q.explanation;
+                    }
+                    let optionsText = Array.isArray(q.options) ? q.options.join(' ') : '';
+                    let fullText = [q.chapterTitle || q.chapter || '', q.question || '', optionsText, expText].join(' ');
+                    let correctIndices = [];
+                    if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    }
+                    index.push({
+                        id: 'surgery-anatomia-' + qId,
+                        source: 'surgery',
+                        sourceLabel: 'Ανατομία ΔΟΑΤΑΠ',
+                        badgeClass: 'badge-surgery',
+                        badgeIcon: '🏛️',
+                        chapter: q.chapterTitle || 'Ανατομία ΔΟΑΤΑΠ',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'SURGERY/index.html?bank=bank_anatomia&qId=' + qId,
                         type: 'mcq'
                     });
                 });

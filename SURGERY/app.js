@@ -10,7 +10,7 @@
   let allQuestions = [];
   let filteredQuestions = [];
   let currentIndex = 0;
-  let currentBank = 'bank_4004'; // 'bank_4004' or 'bank_doatap'
+  let currentBank = 'bank_4004'; // 'bank_4004', 'bank_doatap', or 'bank_anatomia'
   let currentChapter = 'all';
   let searchTerm = '';
   let currentFilter = 'all'; // all, unanswered, wrong, starred
@@ -93,8 +93,8 @@
     // Check URL parameters for bank selection
     const urlParams = new URLSearchParams(window.location.search);
     const bankParam = urlParams.get('bank');
-    if (bankParam && (bankParam === 'bank_4004' || bankParam === 'bank_doatap')) {
-      currentBank = bankParam;
+    if (bankParam && (bankParam === 'bank_4004' || bankParam === 'bank_doatap' || bankParam === 'bank_anatomia' || bankParam === 'anatomia')) {
+      currentBank = (bankParam === 'anatomia') ? 'bank_anatomia' : bankParam;
     }
     if (bankSelect) {
       bankSelect.value = currentBank;
@@ -127,6 +127,12 @@
     } else if (currentBank === 'bank_doatap') {
       const source = (typeof xeirourgikiDoatap !== 'undefined' && Array.isArray(xeirourgikiDoatap)) ? xeirourgikiDoatap :
                      (typeof window !== 'undefined' && Array.isArray(window.xeirourgikiDoatap)) ? window.xeirourgikiDoatap : [];
+      allQuestions = source;
+    } else if (currentBank === 'bank_anatomia') {
+      const source = (typeof anatomiaQuestions !== 'undefined' && Array.isArray(anatomiaQuestions)) ? anatomiaQuestions :
+                     (typeof anatomiaDoatap !== 'undefined' && Array.isArray(anatomiaDoatap)) ? anatomiaDoatap :
+                     (typeof window !== 'undefined' && Array.isArray(window.anatomiaQuestions)) ? window.anatomiaQuestions :
+                     (typeof window !== 'undefined' && Array.isArray(window.anatomiaDoatap)) ? window.anatomiaDoatap : [];
       allQuestions = source;
     }
   }
@@ -162,6 +168,20 @@
           chapterSelect.appendChild(opt);
         });
       }
+    } else if (currentBank === 'bank_anatomia') {
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = 'all';
+      defaultOpt.textContent = `Όλα τα Συστήματα (1 - ${allQuestions.length})`;
+      chapterSelect.appendChild(defaultOpt);
+
+      if (typeof ANATOMIA_CHAPTERS !== 'undefined') {
+        ANATOMIA_CHAPTERS.forEach(ch => {
+          const opt = document.createElement('option');
+          opt.value = ch.id;
+          opt.textContent = `${ch.title} (${ch.count} Ερωτήσεις)`;
+          chapterSelect.appendChild(opt);
+        });
+      }
     }
     
     chapterSelect.value = 'all';
@@ -187,7 +207,7 @@
       // Short preview of question text
       let preview = q.question.replace(/\s+/g, ' ').trim();
       if (preview.length > 70) preview = preview.substring(0, 68) + '...';
-      const prefix = (currentBank === 'bank_doatap') ? 'ΔΟΑΤΑΠ #' : '#';
+      const prefix = (currentBank === 'bank_doatap') ? 'ΔΟΑΤΑΠ #' : (currentBank === 'bank_anatomia' ? 'ΑΝΑΤΟΜΙΑ #' : '#');
       opt.textContent = `${prefix}${q.id}: ${preview}`;
       questionSelect.appendChild(opt);
     });
@@ -352,7 +372,12 @@
 
   function renderCurrentQuestion() {
     if (filteredQuestions.length === 0) {
-      qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : 'Χειρουργική ΔΟΑΤΑΠ');
+      const bankLabels = {
+        'bank_4004': '4004 Ερωτήσεις',
+        'bank_doatap': 'Χειρουργική ΔΟΑΤΑΠ',
+        'bank_anatomia': 'Ανατομία ΔΟΑΤΑΠ'
+      };
+      qBankBadge.textContent = bankLabels[currentBank] || 'Χειρουργική';
       qNumberBadge.textContent = '0 / 0';
       qChapterBadge.textContent = 'Δεν βρέθηκαν ερωτήσεις';
       questionStem.textContent = 'Δεν υπάρχει ερώτηση με τα επιλεγμένα κριτήρια ή φίλτρα.';
@@ -367,7 +392,12 @@
     const q = filteredQuestions[currentIndex];
     const totalInFilter = filteredQuestions.length;
 
-    qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : 'Χειρουργική ΔΟΑΤΑΠ');
+    const bankLabels = {
+        'bank_4004': '4004 Ερωτήσεις',
+        'bank_doatap': 'Χειρουργική ΔΟΑΤΑΠ',
+        'bank_anatomia': 'Ανατομία ΔΟΑΤΑΠ'
+      };
+      qBankBadge.textContent = bankLabels[currentBank] || 'Χειρουργική';
     
     // Question number badge with uncertain flag indicator
     let numberText = `Ερώτηση ${q.id} (Φίλτρο: ${currentIndex + 1} / ${totalInFilter})`;
@@ -474,11 +504,17 @@
       }
       const answerSnippet = correctOptText ? ` — <em>${correctOptText}</em>` : '';
 
-      // Format DOATAP Explanation if available
+      // Format DOATAP / Anatomy Explanation if available
       let expHtml = '';
-      if (Array.isArray(q.explanation) && q.explanation.length > 0) {
+      let expArray = [];
+      if (Array.isArray(q.explanation)) {
+        expArray = q.explanation;
+      } else if (typeof q.explanation === 'string' && q.explanation.trim()) {
+        expArray = [{ type: 'text', text: q.explanation.trim() }];
+      }
+      if (expArray.length > 0) {
         expHtml += '<div class="doatap-explanation-container">';
-        q.explanation.forEach(e => {
+        expArray.forEach(e => {
           if (!e) return;
           if (e.type === 'note' && e.text) {
             expHtml += `<div class="doatap-exp-note"><i class="fa-solid fa-clipboard-check"></i> <strong>Σημείωση / Τεκμηρίωση:</strong> ${e.text}</div>`;
