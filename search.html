@@ -1127,6 +1127,7 @@
     <script src="SURGERY/surgery_questions.js?v=20261112"></script>
     <script src="SURGERY/xeirourgiki_doatap.js?v=20261113"></script>
     <script src="pathologia_doatap.js?v=20261113"></script>
+    <script src="farmakologia_doatap.js?v=20261113"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
@@ -1491,18 +1492,72 @@
                     } else if (typeof q.explanation === 'string') {
                         expText = q.explanation;
                     }
-                    allIndexItems.push({
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let fullText = [q.chapterTitle || q.chapter || "", q.question || "", optionsText, expText].join(" ");
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    }
+
+                    index.push({
                         id: 'patho-doatap-' + qId,
-                        type: 'mcq',
-                        sourceBank: 'Παθολογία ΔΟΑΤΑΠ',
-                        title: 'Ερώτηση #' + qId + ' (ΔΟΑΤΑΠ)',
+                        source: 'mcq',
+                        sourceLabel: 'Παθολογία ΔΟΑΤΑΠ',
+                        badgeClass: 'badge-mcq',
+                        badgeIcon: '🏛️',
                         chapter: q.chapterTitle || q.chapter || 'Παθολογία ΔΟΑΤΑΠ',
-                        question: q.question || '',
-                        options: Array.isArray(q.options) ? q.options : [],
-                        explanation: expText,
-                        keywords: extractKeywords((q.question || '') + ' ' + (Array.isArray(q.options) ? q.options.join(' ') : '')),
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
                         appUrl: 'quiz.html?bank=doatap&qId=' + qId,
-                        raw: q
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 1g. Pharmacology DOATAP Questions (farmakologia)
+            const pharmaSource = (typeof farmakologia !== 'undefined' && Array.isArray(farmakologia)) ? farmakologia :
+                                 (typeof window !== 'undefined' && Array.isArray(window.farmakologia)) ? window.farmakologia : null;
+            if (pharmaSource) {
+                pharmaSource.forEach((q, idx) => {
+                    const qId = q.id || (idx + 1);
+                    let expText = '';
+                    if (Array.isArray(q.explanation)) {
+                        expText = q.explanation.map(item => (typeof item === 'object' ? (item.text || '') : String(item))).join(' ');
+                    } else if (typeof q.explanation === 'string') {
+                        expText = q.explanation;
+                    }
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let fullText = [q.chapterTitle || q.chapter || "", q.question || "", optionsText, expText].join(" ");
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    }
+
+                    index.push({
+                        id: 'pharma-doatap-' + qId,
+                        source: 'mcq',
+                        sourceLabel: 'Φαρμακολογία ΔΟΑΤΑΠ',
+                        badgeClass: 'badge-mcq',
+                        badgeIcon: '💊',
+                        chapter: q.chapterTitle || q.chapter || 'Φαρμακολογία ΔΟΑΤΑΠ',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'quiz.html?bank=farmakologia&qId=' + qId,
+                        type: 'mcq'
                     });
                 });
             }
@@ -1517,22 +1572,31 @@
                     if (Array.isArray(q.explanation)) {
                         expText = q.explanation.map(e => e.text || (e.src ? `<img src="SURGERY/${e.src}" style="max-width:100%">` : '')).join('<br>');
                     }
-                    allIndex.push({
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let fullText = [q.chapterTitle || "", q.question || "", optionsText, expText].join(" ");
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    }
+
+                    index.push({
                         id: 'surgery-doatap-' + qId,
                         source: 'surgery',
                         sourceLabel: 'Χειρουργική ΔΟΑΤΑΠ',
                         badgeClass: 'badge-surgery',
+                        badgeIcon: '🏛️',
                         chapter: q.chapterTitle || ('Κεφάλαιο ' + (q.chapterId || 1)),
-                        originalIndex: qId,
-                        displayId: 'ΔΟΑΤΑΠ #' + qId,
-                        question: q.question || '',
-                        options: q.options || [],
-                        correctAnswer: (typeof q.correctAnswer === 'number' && q.options && q.options[q.correctAnswer]) 
-                                        ? q.options[q.correctAnswer] 
-                                        : (q.correctLetter || ''),
-                        explanation: expText,
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
                         appUrl: 'SURGERY/index.html?bank=bank_doatap&qId=' + qId,
-                        searchText: ((q.question || '') + ' ' + (q.options ? q.options.join(' ') : '') + ' ' + (q.chapterTitle || '')).toLowerCase()
+                        type: 'mcq'
                     });
                 });
             }

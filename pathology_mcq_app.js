@@ -119,7 +119,7 @@
       return q.category || q.chapter || 'Γενικά';
     } else if (currentBank === 'larnaka') {
       return q.part ? ('Μέρος / ' + q.part) : (q.subcategory || q.chapter || 'Γενικά');
-    } else if (currentBank === 'doatap') {
+    } else if (currentBank === 'doatap' || currentBank === 'farmakologia') {
       return q.chapterTitle || q.chapter || q.category || 'Γενικά';
     } else {
       return q.chapter || q.category || 'Γενικά';
@@ -192,6 +192,8 @@
         currentBank = 'larnaka';
       } else if (['doatap', 'bank_doatap', 'pathologia_doatap'].includes(bankParam)) {
         currentBank = 'doatap';
+      } else if (['farmakologia', 'pharma', 'farmaka', 'farmakologia_doatap'].includes(bankParam)) {
+        currentBank = 'farmakologia';
       }
     }
     if (bankSelect) {
@@ -230,6 +232,9 @@
     } else if (currentBank === 'doatap') {
       allQuestions = (typeof window !== 'undefined' && Array.isArray(window.pathologiaDoatap)) ? window.pathologiaDoatap :
                      (typeof pathologiaDoatap !== 'undefined' && Array.isArray(pathologiaDoatap)) ? pathologiaDoatap : [];
+    } else if (currentBank === 'farmakologia') {
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.farmakologia)) ? window.farmakologia :
+                     (typeof farmakologia !== 'undefined' && Array.isArray(farmakologia)) ? farmakologia : [];
     }
 
     // Assign guaranteed unique identifiers & global sequential indices
@@ -573,7 +578,8 @@
       'old_book': 'Θέματα 2013-2023',
       'bank_1': 'Τράπεζα 1',
       'larnaka': 'Τράπεζα ΛΑΡΝΑΚΑ',
-      'doatap': 'Παθολογία ΔΟΑΤΑΠ'
+      'doatap': 'Παθολογία ΔΟΑΤΑΠ',
+      'farmakologia': 'Φαρμακολογία ΔΟΑΤΑΠ'
     };
     qBankBadge.textContent = bankLabels[currentBank] || 'Παθολογία';
 
