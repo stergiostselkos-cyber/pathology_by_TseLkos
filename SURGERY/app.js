@@ -1,50 +1,59 @@
-/**
- * ΧΕΙΡΟΥΡΓΙΚΗ - Ερωτήσεις Πολλαπλής Επιλογής
- * Core Application Logic
- * Author: Stergios Tselkos
- */
+// ==============================================================================
+// SURGERY MCQ ENGINE (4004 & DOATAP 1039)
+// Platform: By Stergios Tselkos
+// ==============================================================================
 
 (function() {
   'use strict';
 
   // State
-  let currentBank = 'bank_4004'; // 'bank_4004' or 'bank_2002'
   let allQuestions = [];
   let filteredQuestions = [];
   let currentIndex = 0;
-  let currentFilter = 'all'; // all, unanswered, wrong, starred
+  let currentBank = 'bank_4004'; // 'bank_4004' or 'bank_doatap'
   let currentChapter = 'all';
   let searchTerm = '';
+  let currentFilter = 'all'; // all, unanswered, wrong, starred
 
-  // Local Storage State
-  const STORAGE_KEY_ANSWERS = 'surgery_quiz_answers_v1';
-  const STORAGE_KEY_STARRED = 'surgery_quiz_starred_v1';
-
+  // Dynamic Local Storage State per bank
   let userAnswers = {};
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY_ANSWERS);
-    if (raw) userAnswers = JSON.parse(raw);
-  } catch (e) {
-    userAnswers = {};
+  let starredSet = new Set();
+
+  function getStorageKeyAnswers() {
+    return 'surgery_quiz_answers_' + currentBank;
   }
 
-  let starredSet = new Set();
-  try {
-    const rawStar = localStorage.getItem(STORAGE_KEY_STARRED);
-    if (rawStar) starredSet = new Set(JSON.parse(rawStar));
-  } catch (e) {
-    starredSet = new Set();
+  function getStorageKeyStarred() {
+    return 'surgery_quiz_starred_' + currentBank;
+  }
+
+  function loadUserAnswers() {
+    try {
+      const raw = localStorage.getItem(getStorageKeyAnswers());
+      userAnswers = raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      userAnswers = {};
+    }
+  }
+
+  function loadStarred() {
+    try {
+      const rawStar = localStorage.getItem(getStorageKeyStarred());
+      starredSet = rawStar ? new Set(JSON.parse(rawStar)) : new Set();
+    } catch (e) {
+      starredSet = new Set();
+    }
   }
 
   function saveAnswers() {
     try {
-      localStorage.setItem(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+      localStorage.setItem(getStorageKeyAnswers(), JSON.stringify(userAnswers));
     } catch (e) {}
   }
 
   function saveStarred() {
     try {
-      localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify(Array.from(starredSet)));
+      localStorage.setItem(getStorageKeyStarred(), JSON.stringify(Array.from(starredSet)));
     } catch (e) {}
   }
 
@@ -81,13 +90,24 @@
 
   // Initialize
   function init() {
+    // Check URL parameters for bank selection
+    const urlParams = new URLSearchParams(window.location.search);
+    const bankParam = urlParams.get('bank');
+    if (bankParam && (bankParam === 'bank_4004' || bankParam === 'bank_doatap')) {
+      currentBank = bankParam;
+    }
+    if (bankSelect) {
+      bankSelect.value = currentBank;
+    }
+
     loadBankData();
+    loadUserAnswers();
+    loadStarred();
     populateChapters();
     bindEvents();
     applyFilters();
 
-    // Check URL parameters for direct question jump (e.g. from search.html)
-    const urlParams = new URLSearchParams(window.location.search);
+    // Check URL parameters for direct question jump
     const targetQId = urlParams.get('qId') || urlParams.get('id');
     if (targetQId) {
       const qNum = parseInt(targetQId, 10);
@@ -104,13 +124,10 @@
                      (typeof window !== 'undefined' && Array.isArray(window.SURGERY_QUESTIONS)) ? window.SURGERY_QUESTIONS :
                      (typeof window !== 'undefined' && Array.isArray(window.surgeryQuestions)) ? window.surgeryQuestions : [];
       allQuestions = source;
-    } else if (currentBank === 'bank_2002') {
-      // Future surgery bank
-      if (typeof SURGERY_2002_QUESTIONS !== 'undefined' && Array.isArray(SURGERY_2002_QUESTIONS)) {
-        allQuestions = SURGERY_2002_QUESTIONS;
-      } else {
-        allQuestions = [];
-      }
+    } else if (currentBank === 'bank_doatap') {
+      const source = (typeof xeirourgikiDoatap !== 'undefined' && Array.isArray(xeirourgikiDoatap)) ? xeirourgikiDoatap :
+                     (typeof window !== 'undefined' && Array.isArray(window.xeirourgikiDoatap)) ? window.xeirourgikiDoatap : [];
+      allQuestions = source;
     }
   }
 
@@ -131,11 +148,20 @@
           chapterSelect.appendChild(opt);
         });
       }
-    } else if (currentBank === 'bank_2002') {
+    } else if (currentBank === 'bank_doatap') {
       const defaultOpt = document.createElement('option');
       defaultOpt.value = 'all';
-      defaultOpt.textContent = 'Όλα τα Κεφάλαια (2002 Ερωτήσεις - Προσεχώς)';
+      defaultOpt.textContent = `Όλα τα Κεφάλαια (1 - ${allQuestions.length})`;
       chapterSelect.appendChild(defaultOpt);
+
+      if (typeof DOATAP_CHAPTERS !== 'undefined') {
+        DOATAP_CHAPTERS.forEach(ch => {
+          const opt = document.createElement('option');
+          opt.value = ch.id;
+          opt.textContent = `Κεφάλαιο ${ch.id}: ${ch.title} (${ch.count} Ερωτήσεις)`;
+          chapterSelect.appendChild(opt);
+        });
+      }
     }
     
     chapterSelect.value = 'all';
@@ -155,13 +181,14 @@
     }
 
     questionSelect.disabled = false;
-    filteredQuestions.forEach((q, idx) => {
+    filteredQuestions.forEach((q) => {
       const opt = document.createElement('option');
       opt.value = q.id;
       // Short preview of question text
       let preview = q.question.replace(/\s+/g, ' ').trim();
       if (preview.length > 70) preview = preview.substring(0, 68) + '...';
-      opt.textContent = `Ερώτηση #${q.id}: ${preview}`;
+      const prefix = (currentBank === 'bank_doatap') ? 'ΔΟΑΤΑΠ #' : '#';
+      opt.textContent = `${prefix}${q.id}: ${preview}`;
       questionSelect.appendChild(opt);
     });
 
@@ -176,7 +203,10 @@
     bankSelect.addEventListener('change', (e) => {
       currentBank = e.target.value;
       loadBankData();
+      loadUserAnswers();
+      loadStarred();
       populateChapters();
+      currentIndex = 0;
       applyFilters();
     });
 
@@ -270,7 +300,7 @@
     if (confirm(`Θέλετε να μηδενίσετε όλες τις απαντήσεις και το σκορ στη ${bankName};`)) {
       userAnswers = {};
       try {
-        localStorage.removeItem(STORAGE_KEY_ANSWERS);
+        localStorage.removeItem(getStorageKeyAnswers());
       } catch (e) {}
       saveAnswers();
       renderCurrentQuestion();
@@ -292,15 +322,6 @@
   };
 
   function applyFilters() {
-    if (currentBank === 'bank_2002' && allQuestions.length === 0) {
-      filteredQuestions = [];
-      currentIndex = 0;
-      renderCurrentQuestion();
-      populateQuestionSelect();
-      updateStats();
-      return;
-    }
-
     filteredQuestions = allQuestions.filter(q => {
       // Chapter filter
       if (currentChapter !== 'all') {
@@ -330,21 +351,8 @@
   }
 
   function renderCurrentQuestion() {
-    if (currentBank === 'bank_2002' && allQuestions.length === 0) {
-      qBankBadge.textContent = '2002 Ερωτήσεις';
-      qNumberBadge.textContent = 'Προσεχώς';
-      qChapterBadge.textContent = 'Υπό Κατασκευή';
-      questionStem.innerHTML = '<div style="text-align:center; padding: 20px 0;"><i class="fa-solid fa-clock-rotate-left" style="font-size:2.5rem; color:#0f766e; margin-bottom:15px; display:block;"></i><h3>Η τράπεζα «2002 Ερωτήσεις Πολλαπλής Επιλογής» ετοιμάζεται!</h3><p style="color:#64748b; margin-top:8px;">Θα είναι διαθέσιμη αμέσως μόλις φορτωθεί το αρχείο των ερωτήσεων. Επιλέξτε την τράπεζα <strong>«4004 Ερωτήσεις Πολλαπλής Επιλογής»</strong> για να συνεχίσετε την εξάσκηση.</p></div>';
-      optionsList.innerHTML = '';
-      feedbackBox.className = 'feedback-box';
-      prevBtn.disabled = true;
-      nextBtn.disabled = true;
-      starBtn.classList.remove('starred');
-      return;
-    }
-
     if (filteredQuestions.length === 0) {
-      qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : '2002 Ερωτήσεις');
+      qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : 'Χειρουργική ΔΟΑΤΑΠ');
       qNumberBadge.textContent = '0 / 0';
       qChapterBadge.textContent = 'Δεν βρέθηκαν ερωτήσεις';
       questionStem.textContent = 'Δεν υπάρχει ερώτηση με τα επιλεγμένα κριτήρια ή φίλτρα.';
@@ -359,14 +367,23 @@
     const q = filteredQuestions[currentIndex];
     const totalInFilter = filteredQuestions.length;
 
-    qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : '2002 Ερωτήσεις');
-    qNumberBadge.textContent = `Ερώτηση ${q.id} (Φίλτρο: ${currentIndex + 1} / ${totalInFilter})`;
+    qBankBadge.textContent = (currentBank === 'bank_4004' ? '4004 Ερωτήσεις' : 'Χειρουργική ΔΟΑΤΑΠ');
+    
+    // Question number badge with uncertain flag indicator
+    let numberText = `Ερώτηση ${q.id} (Φίλτρο: ${currentIndex + 1} / ${totalInFilter})`;
+    if (q.uncertain) {
+      numberText += ` <span class="uncertain-badge" title="Απάντηση προς έλεγχο / αμφισβητούμενη"><i class="fa-solid fa-triangle-exclamation"></i> Προς Έλεγχο</span>`;
+    }
+    qNumberBadge.innerHTML = numberText;
     qChapterBadge.textContent = q.chapterTitle || `Κεφάλαιο ${q.chapterId}`;
 
     // Sync Question Dropdown
     if (questionSelect.value !== String(q.id)) {
       questionSelect.value = q.id;
     }
+
+    // Sync Jump Input max
+    jumpInput.max = allQuestions.length;
 
     // Star status
     if (starredSet.has(q.id)) {
@@ -457,16 +474,37 @@
       }
       const answerSnippet = correctOptText ? ` — <em>${correctOptText}</em>` : '';
 
+      // Format DOATAP Explanation if available
+      let expHtml = '';
+      if (Array.isArray(q.explanation) && q.explanation.length > 0) {
+        expHtml += '<div class="doatap-explanation-container">';
+        q.explanation.forEach(e => {
+          if (!e) return;
+          if (e.type === 'note' && e.text) {
+            expHtml += `<div class="doatap-exp-note"><i class="fa-solid fa-clipboard-check"></i> <strong>Σημείωση / Τεκμηρίωση:</strong> ${e.text}</div>`;
+          } else if (e.type === 'text' && e.text) {
+            expHtml += `<div class="doatap-exp-text">${e.text}</div>`;
+          } else if (e.type === 'link' && e.text) {
+            expHtml += `<div class="doatap-exp-link"><a href="${e.text}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Πηγή / Βιβλιογραφία</a></div>`;
+          } else if (e.type === 'image' && e.src) {
+            expHtml += `<div class="doatap-exp-image"><img src="${e.src}" alt="${e.id || 'Εικόνα'}" loading="lazy"></div>`;
+          }
+        });
+        expHtml += '</div>';
+      }
+
+      const retryBtn = `<button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> ${answerState.isCorrect ? 'Επαναφορά Επιλογής' : 'Δοκιμή Ξανά'}</button>`;
+
       if (answerState.isCorrect) {
         feedbackBox.className = 'feedback-box correct';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         feedbackTitle.textContent = 'Σωστή Απάντηση! Μπράβο!';
-        feedbackText.innerHTML = `Μπράβο, επιλέξατε τη σωστή απάντηση <strong>(${correctLetter})</strong>${answerSnippet}.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Επαναφορά Επιλογής</button>`;
+        feedbackText.innerHTML = `Μπράβο, επιλέξατε τη σωστή απάντηση <strong>(${correctLetter})</strong>${answerSnippet}.<br>${retryBtn}${expHtml}`;
       } else {
         feedbackBox.className = 'feedback-box incorrect';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
         feedbackTitle.textContent = 'Λανθασμένη Επιλογή';
-        feedbackText.innerHTML = `Η σωστή απάντηση είναι η <strong>(${correctLetter})</strong>${answerSnippet}.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
+        feedbackText.innerHTML = `Η σωστή απάντηση είναι η <strong>(${correctLetter})</strong>${answerSnippet}.<br>${retryBtn}${expHtml}`;
       }
     } else {
       feedbackBox.className = 'feedback-box';

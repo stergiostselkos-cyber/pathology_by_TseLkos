@@ -1125,6 +1125,7 @@
     <script src="questions_bank_1.js?v=20261112"></script>
     <script src="LARNAKA/larnaka.js?v=20261112.part13v2"></script>
     <script src="SURGERY/surgery_questions.js?v=20261112"></script>
+    <script src="SURGERY/xeirourgiki_doatap.js?v=20261113"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
@@ -1472,6 +1473,37 @@
                         correctIndices: correctIndices,
                         appUrl: 'LARNAKA/index.html?qId=' + (q.id || (idx + 1)),
                         type: 'mcq'
+                    });
+                });
+            }
+
+            
+            // 1e. Surgery DOATAP Questions (xeirourgikiDoatap)
+            const doatapSource = (typeof xeirourgikiDoatap !== 'undefined' && Array.isArray(xeirourgikiDoatap)) ? xeirourgikiDoatap :
+                                 (typeof window !== 'undefined' && Array.isArray(window.xeirourgikiDoatap)) ? window.xeirourgikiDoatap : null;
+            if (doatapSource) {
+                doatapSource.forEach((q, idx) => {
+                    const qId = q.id || q.number || (idx + 1);
+                    let expText = '';
+                    if (Array.isArray(q.explanation)) {
+                        expText = q.explanation.map(e => e.text || (e.src ? `<img src="SURGERY/${e.src}" style="max-width:100%">` : '')).join('<br>');
+                    }
+                    allIndex.push({
+                        id: 'surgery-doatap-' + qId,
+                        source: 'surgery',
+                        sourceLabel: 'Χειρουργική ΔΟΑΤΑΠ',
+                        badgeClass: 'badge-surgery',
+                        chapter: q.chapterTitle || ('Κεφάλαιο ' + (q.chapterId || 1)),
+                        originalIndex: qId,
+                        displayId: 'ΔΟΑΤΑΠ #' + qId,
+                        question: q.question || '',
+                        options: q.options || [],
+                        correctAnswer: (typeof q.correctAnswer === 'number' && q.options && q.options[q.correctAnswer]) 
+                                        ? q.options[q.correctAnswer] 
+                                        : (q.correctLetter || ''),
+                        explanation: expText,
+                        appUrl: 'SURGERY/index.html?bank=bank_doatap&qId=' + qId,
+                        searchText: ((q.question || '') + ' ' + (q.options ? q.options.join(' ') : '') + ' ' + (q.chapterTitle || '')).toLowerCase()
                     });
                 });
             }
