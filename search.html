@@ -1126,6 +1126,7 @@
     <script src="LARNAKA/larnaka.js?v=20261112.part13v2"></script>
     <script src="SURGERY/surgery_questions.js?v=20261112"></script>
     <script src="SURGERY/xeirourgiki_doatap.js?v=20261113"></script>
+    <script src="pathologia_doatap.js?v=20261113"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
@@ -1478,6 +1479,34 @@
             }
 
             
+            // 1f. Pathology DOATAP Questions (pathologiaDoatap)
+            const pathoDoatapSource = (typeof pathologiaDoatap !== 'undefined' && Array.isArray(pathologiaDoatap)) ? pathologiaDoatap :
+                                     (typeof window !== 'undefined' && Array.isArray(window.pathologiaDoatap)) ? window.pathologiaDoatap : null;
+            if (pathoDoatapSource) {
+                pathoDoatapSource.forEach((q, idx) => {
+                    const qId = q.id || q.number || (idx + 1);
+                    let expText = '';
+                    if (Array.isArray(q.explanation)) {
+                        expText = q.explanation.map(item => (typeof item === 'object' ? (item.text || '') : String(item))).join(' ');
+                    } else if (typeof q.explanation === 'string') {
+                        expText = q.explanation;
+                    }
+                    allIndexItems.push({
+                        id: 'patho-doatap-' + qId,
+                        type: 'mcq',
+                        sourceBank: 'Παθολογία ΔΟΑΤΑΠ',
+                        title: 'Ερώτηση #' + qId + ' (ΔΟΑΤΑΠ)',
+                        chapter: q.chapterTitle || q.chapter || 'Παθολογία ΔΟΑΤΑΠ',
+                        question: q.question || '',
+                        options: Array.isArray(q.options) ? q.options : [],
+                        explanation: expText,
+                        keywords: extractKeywords((q.question || '') + ' ' + (Array.isArray(q.options) ? q.options.join(' ') : '')),
+                        appUrl: 'quiz.html?bank=doatap&qId=' + qId,
+                        raw: q
+                    });
+                });
+            }
+
             // 1e. Surgery DOATAP Questions (xeirourgikiDoatap)
             const doatapSource = (typeof xeirourgikiDoatap !== 'undefined' && Array.isArray(xeirourgikiDoatap)) ? xeirourgikiDoatap :
                                  (typeof window !== 'undefined' && Array.isArray(window.xeirourgikiDoatap)) ? window.xeirourgikiDoatap : null;

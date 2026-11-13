@@ -119,6 +119,8 @@
       return q.category || q.chapter || 'Γενικά';
     } else if (currentBank === 'larnaka') {
       return q.part ? ('Μέρος / ' + q.part) : (q.subcategory || q.chapter || 'Γενικά');
+    } else if (currentBank === 'doatap') {
+      return q.chapterTitle || q.chapter || q.category || 'Γενικά';
     } else {
       return q.chapter || q.category || 'Γενικά';
     }
@@ -188,6 +190,8 @@
         currentBank = 'bank_1';
       } else if (bankParam.startsWith('larnaka')) {
         currentBank = 'larnaka';
+      } else if (['doatap', 'bank_doatap', 'pathologia_doatap'].includes(bankParam)) {
+        currentBank = 'doatap';
       }
     }
     if (bankSelect) {
@@ -223,6 +227,9 @@
     } else if (currentBank === 'larnaka') {
       allQuestions = (typeof window !== 'undefined' && Array.isArray(window.larnakaAllQuestions)) ? window.larnakaAllQuestions :
                      (typeof larnakaAllQuestions !== 'undefined' && Array.isArray(larnakaAllQuestions)) ? larnakaAllQuestions : [];
+    } else if (currentBank === 'doatap') {
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.pathologiaDoatap)) ? window.pathologiaDoatap :
+                     (typeof pathologiaDoatap !== 'undefined' && Array.isArray(pathologiaDoatap)) ? pathologiaDoatap : [];
     }
 
     // Assign guaranteed unique identifiers & global sequential indices
@@ -236,6 +243,36 @@
     }
   }
 
+  // Helper to format explanation content whether string or structured array (e.g. DOATAP)
+  function formatExplanationContent(exp) {
+    if (!exp) return '<p>Δεν υπάρχει διαθέσιμη αιτιολόγηση για αυτή την ερώτηση.</p>';
+    if (typeof exp === 'string') return exp;
+    if (Array.isArray(exp)) {
+      if (exp.length === 0) return '<p>Δεν υπάρχει διαθέσιμη αιτιολόγηση για αυτή την ερώτηση.</p>';
+      let html = '<div class="doatap-explanation-container">';
+      exp.forEach(item => {
+        if (typeof item === 'string') {
+          html += `<div class="doatap-exp-text">${item}</div>`;
+        } else if (item && typeof item === 'object') {
+          if (item.type === 'note') {
+            html += `<div class="doatap-exp-note"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Σημείωση:</strong> ${item.text || ''}</div>`;
+          } else if (item.type === 'text') {
+            html += `<div class="doatap-exp-text">${item.text || ''}</div>`;
+          } else if (item.type === 'link') {
+            html += `<div class="doatap-exp-link"><a href="${item.url}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${item.title || item.url}</a></div>`;
+          } else if (item.type === 'image') {
+            html += `<div class="doatap-exp-image"><img src="${item.url}" alt="Επεξηγηματική εικόνα"></div>`;
+          } else if (item.text) {
+            html += `<div class="doatap-exp-text">${item.text}</div>`;
+          }
+        }
+      });
+      html += '</div>';
+      return html;
+    }
+    return String(exp);
+  }
+
   // Populate Chapters Dropdown
   function populateChapters() {
     chapterSelect.innerHTML = '<option value="all">Όλα τα Κεφάλαια</option>';
@@ -246,7 +283,15 @@
       chapterMap.set(chName, (chapterMap.get(chName) || 0) + 1);
     });
 
-    chapterMap.forEach((count, chName) => {
+    const sortedEntries = Array.from(chapterMap.entries()).sort((a, b) => {
+      const getNum = (s) => {
+        const m = String(s).match(/(?:ΚΕΦΑΛΑΙΟ\s*)?(\d+)/i);
+        return m ? parseInt(m[1], 10) : 9999;
+      };
+      return getNum(a[0]) - getNum(b[0]) || a[0].localeCompare(b[0], 'el');
+    });
+
+    sortedEntries.forEach(([chName, count]) => {
       const opt = document.createElement('option');
       opt.value = chName;
       opt.textContent = `${chName} (${count} ερωτήσεις)`;
@@ -351,7 +396,7 @@
         if (filteredQuestions.length === 0) return;
         const q = filteredQuestions[currentIndex];
         if (showExplanationForced) {
-          let expHtml = q.explanation || '<p>Δεν υπάρχει διαθέσιμη αιτιολόγηση για αυτή την ερώτηση.</p>';
+          let expHtml = formatExplanationContent(q.explanation);
           if (currentBank === 'larnaka') {
             expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
           }
@@ -527,7 +572,8 @@
     const bankLabels = {
       'old_book': 'Θέματα 2013-2023',
       'bank_1': 'Τράπεζα 1',
-      'larnaka': 'Τράπεζα ΛΑΡΝΑΚΑ'
+      'larnaka': 'Τράπεζα ΛΑΡΝΑΚΑ',
+      'doatap': 'Παθολογία ΔΟΑΤΑΠ'
     };
     qBankBadge.textContent = bankLabels[currentBank] || 'Παθολογία';
 
@@ -553,6 +599,23 @@
     const correctIndices = getCorrectIndices(q);
     const isMultiChoice = correctIndices.length > 1;
 
+    // Uncertain Flag (DOATAP)
+    let uncertainEl = document.getElementById('uncertainBadge');
+    if (q.uncertain) {
+      if (!uncertainEl) {
+        uncertainEl = document.createElement('span');
+        uncertainEl.id = 'uncertainBadge';
+        uncertainEl.className = 'uncertain-badge';
+        uncertainEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Προς Έλεγχο';
+        uncertainEl.title = 'Η ορθή επιλογή επισημάνθηκε από τον συντάκτη ως πιθανώς αβέβαιη ή προς επανέλεγχο';
+        const badgeBox = document.querySelector('.question-badge-box');
+        if (badgeBox) badgeBox.appendChild(uncertainEl);
+      } else {
+        uncertainEl.style.display = 'inline-flex';
+      }
+    } else if (uncertainEl) {
+      uncertainEl.style.display = 'none';
+    }
     // Badges
     qTypeBadge.textContent = isMultiChoice ? `Πολλαπλών Επιλογών (${correctIndices.length} σωστές)` : 'Μονής Επιλογής';
     qTypeBadge.className = isMultiChoice ? 'q-type-badge multi' : 'q-type-badge';
@@ -681,8 +744,9 @@
     }
 
     // Explanation Panel (Displays analysis whenever question is answered OR forced)
-    if (q.explanation && (hasAnswered || showExplanationForced || (answerState.selected && answerState.selected.length > 0))) {
-      let expHtml = q.explanation;
+    const hasExp = (Array.isArray(q.explanation) ? q.explanation.length > 0 : Boolean(q.explanation));
+    if ((hasExp || showExplanationForced) && (hasAnswered || showExplanationForced || (answerState.selected && answerState.selected.length > 0))) {
+      let expHtml = formatExplanationContent(q.explanation);
       if (currentBank === 'larnaka') {
         expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
       }

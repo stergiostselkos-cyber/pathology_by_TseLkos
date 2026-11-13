@@ -1721,3 +1721,66 @@ summary.quotes-toggle-hint {
 .explanation-body b[style*="color: #ef4444"] {
   color: #dc2626 !important;
 }
+
+
+/* DOATAP Specific Styles: Uncertain Badge & Explanations */
+.uncertain-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.doatap-explanation-container {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}
+.doatap-exp-note {
+  background: #f0fdfa;
+  border-left: 4px solid #0f766e;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+.doatap-exp-text {
+  margin-bottom: 10px;
+  color: #334155;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+.doatap-exp-link {
+  margin-bottom: 10px;
+}
+.doatap-exp-link a {
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.doatap-exp-image {
+  margin: 12px 0;
+  text-align: center;
+}
+.doatap-exp-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
