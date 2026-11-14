@@ -1,0 +1,417 @@
+/* Chapter 7 exact Word/LibreOffice rendering support.
+   The JS strings are self-contained and also inline all paragraph/heading defaults. */
+.word-export { font-family:"Times New Roman","Liberation Serif",serif; font-size:12pt; direction:ltr; max-width:100%; }
+.word-export p { widows:2; orphans:2; }
+.word-export ul, .word-export ol,
+.word-question ul, .explanation-box ul, #quiz-view .explanation-content ul,
+.word-question ol, .explanation-box ol, #quiz-view .explanation-content ol {
+    margin: 8px 0 14px 0 !important;
+    padding-left: 2.2rem !important;
+    list-style-position: outside !important;
+}
+.word-question ul, .explanation-box ul, #quiz-view .explanation-content ul {
+    list-style-type: disc !important;
+}
+.word-question ol, .explanation-box ol, #quiz-view .explanation-content ol {
+    list-style-type: decimal !important;
+}
+.word-question ul ul, .explanation-box ul ul, #quiz-view .explanation-content ul ul {
+    padding-left: 1.8rem !important;
+    margin: 4px 0 8px 0 !important;
+    list-style-type: circle !important;
+}
+.word-question ul ul ul, .explanation-box ul ul ul, #quiz-view .explanation-content ul ul ul {
+    padding-left: 1.8rem !important;
+    list-style-type: square !important;
+}
+.word-question ol ol, .explanation-box ol ol, #quiz-view .explanation-content ol ol {
+    padding-left: 1.8rem !important;
+    margin: 4px 0 8px 0 !important;
+    list-style-type: lower-greek !important;
+}
+.word-question ol ol ol, .explanation-box ol ol ol, #quiz-view .explanation-content ol ol ol {
+    padding-left: 1.8rem !important;
+    list-style-type: lower-roman !important;
+}
+.word-export li, .word-question li, .explanation-box li, #quiz-view .explanation-content li {
+    margin: 6px 0 !important;
+    padding-left: 4px !important;
+    line-height: 1.68 !important;
+    text-align: left !important;
+    list-style: inherit !important;
+    list-style-position: outside !important;
+}
+.word-export table { border-collapse:collapse; max-width:100%; }
+.word-export img { max-width:100%; height:auto; }
+.word-export .diagram-source-html { display:none !important; }
+
+
+/* ENLARGED APPS & WIDE CRISP WHITE EXPLANATION CARDS (Larnaka Standard 1200px) */
+.app-container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+#quiz-view.view-panel {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+#quiz-view .explanation-panel {
+    background: #ffffff !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 18px !important;
+    padding: 24px 36px !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05) !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+#quiz-view .explanation-content {
+    background: #ffffff !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.word-question, 
+.explanation-box,
+#quiz-view .word-question,
+#quiz-view .explanation-box {
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 6px 12px !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 1.04rem !important;
+    line-height: 1.76 !important;
+    color: #1e293b !important;
+}
+
+.word-question p, 
+.explanation-content p, 
+.explanation-box p {
+    max-width: 100% !important;
+    width: 100% !important;
+    line-height: 1.76 !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    margin-bottom: 12px !important;
+    color: #1e293b !important;
+}
+
+/* ==============================================================================
+   3-TIER HIERARCHY SYSTEM - LARNAKA MCQ EXPLANATIONS
+   1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4)
+   2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5)
+   3ο Επίπεδο: Πολύ-πολύ Απαλό Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ)
+   ============================================================================== */
+
+/* 1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4) */
+.stage-banner,
+div.stage-banner,
+p.stage-banner,
+h4.stage-banner,
+h5.stage-banner,
+.word-question h4,
+.word-question h5.stage-banner,
+.word-question .stage-banner,
+.explanation-box h4,
+.explanation-box h5.stage-banner,
+.explanation-box .stage-banner,
+.explanation-content h4,
+.explanation-content h5.stage-banner,
+.explanation-content .stage-banner {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 12pt !important;
+    font-weight: 800 !important;
+    color: #0369a1 !important;
+    background: #e0f2fe !important;
+    border: 1.5px solid #bae6fd !important;
+    border-left: 6px solid #0284c7 !important;
+    border-radius: 8px !important;
+    padding: 11px 20px !important;
+    margin: 24px 0 14px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12) !important;
+    box-sizing: border-box !important;
+}
+
+.stage-banner *,
+.word-question h4 *,
+.word-question h5.stage-banner *,
+.word-question .stage-banner *,
+.explanation-box h4 *,
+.explanation-box h5.stage-banner *,
+.explanation-box .stage-banner *,
+.explanation-content h4 *,
+.explanation-content h5.stage-banner *,
+.explanation-content .stage-banner * {
+    color: #0369a1 !important;
+}
+
+/* 2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & H5) */
+.thematic-banner,
+div.thematic-banner,
+p.thematic-banner,
+.thematic-unit-banner,
+h5.thematic-banner,
+h6.thematic-banner,
+.word-question h5:not(.stage-banner),
+.word-question h6.thematic-banner,
+.word-question .thematic-banner,
+.explanation-box h5:not(.stage-banner),
+.explanation-box h6.thematic-banner,
+.explanation-box .thematic-banner,
+.explanation-content h5:not(.stage-banner),
+.explanation-content h6.thematic-banner,
+.explanation-content .thematic-banner {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 11pt !important;
+    font-weight: 750 !important;
+    color: #9d174d !important;
+    background: #fdf2f8 !important;
+    border: 1px solid #fce7f3 !important;
+    border-left: 5.5px solid #ec4899 !important;
+    border-radius: 8px !important;
+    padding: 9px 18px !important;
+    margin: 20px 0 10px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
+    box-sizing: border-box !important;
+}
+
+.thematic-banner *,
+.thematic-unit-banner *,
+.word-question h5:not(.stage-banner) *,
+.word-question h6.thematic-banner *,
+.word-question .thematic-banner *,
+.explanation-box h5:not(.stage-banner) *,
+.explanation-box h6.thematic-banner *,
+.explanation-box .thematic-banner *,
+.explanation-content h5:not(.stage-banner) *,
+.explanation-content h6.thematic-banner *,
+.explanation-content .thematic-banner * {
+    color: #9d174d !important;
+}
+
+/* 3ο Επίπεδο: Πορτοκαλί Πλαίσιο */
+.subsection-banner,
+div.subsection-banner,
+p.subsection-banner,
+h6.subsection-banner,
+.substage-banner,
+.larnaka-level3-banner,
+.word-question h6.subsection-banner,
+.word-question .subsection-banner,
+.explanation-box h6.subsection-banner,
+.explanation-box .subsection-banner,
+.explanation-content h6.subsection-banner,
+.explanation-content .subsection-banner {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #9a3412 !important;
+    background: #fff7ed !important;
+    border: 1px solid #ffedd5 !important;
+    border-left: 5px solid #f97316 !important;
+    border-radius: 8px !important;
+    padding: 7px 16px !important;
+    margin: 16px 0 8px 0 !important;
+    text-align: left !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.subsection-banner *,
+.substage-banner *,
+.larnaka-level3-banner *,
+.word-question h6.subsection-banner *,
+.word-question .subsection-banner *,
+.explanation-box h6.subsection-banner *,
+.explanation-box .subsection-banner *,
+.explanation-content h6.subsection-banner *,
+.explanation-content .subsection-banner * {
+    color: #9a3412 !important;
+}
+
+/* Subheadings & Option Justifications (H6) */
+.word-question h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-box h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner),
+.explanation-content h6:not(.subsection-banner):not(.thematic-banner):not(.stage-banner) {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 16px 0 6px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+}
+
+/* Responsive Medical Tables */
+.table-responsive-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+    margin: 18px 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+}
+
+.table-responsive-wrapper table.zoomable-table,
+.word-table,
+.explanation-content table,
+.explanation-box table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #cbd5e1 !important;
+    cursor: zoom-in !important;
+    margin: 14px 0 !important;
+}
+
+.table-responsive-wrapper table th,
+.word-table th,
+.explanation-content th,
+.explanation-box th {
+    background-color: #EBF2F7 !important;
+    color: #102C57 !important;
+    font-weight: 800 !important;
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table-responsive-wrapper table td,
+.word-table td,
+.explanation-content td,
+.explanation-box td {
+    padding: 10px 14px !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+    vertical-align: top !important;
+    background-color: #ffffff !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-align: left !important;
+}
+
+.table-responsive-wrapper table tbody tr:nth-child(even) td,
+.word-table tbody tr:nth-child(even) td,
+.explanation-content tbody tr:nth-child(even) td,
+.explanation-box tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+}
+
+.table-responsive-wrapper table tbody tr:hover td,
+.word-table tbody tr:hover td,
+.explanation-content tbody tr:hover td,
+.explanation-box tbody tr:hover td {
+    background-color: #f1f5f9 !important;
+}
+
+/* Diagrams & Flowcharts (Zoomable) */
+.fig-img,
+.theory-diagram-img,
+.zoomable-image {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 14px auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08) !important;
+    cursor: zoom-in !important;
+}
+.fig-img-wrap {
+    text-align: center !important;
+    margin: 16px 0 !important;
+}
+
+.table-responsive-wrapper, 
+.word-table, 
+.fig-img-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+
+
+/* PERFECT MOBILE RESPONSIVE OPTIMIZATION */
+@media (max-width: 768px) {
+    body {
+        padding: 8px 6px !important;
+    }
+    
+    .app-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 14px !important;
+    }
+    
+    #quiz-view.view-panel {
+        padding: 14px 10px !important;
+        border-radius: 14px !important;
+    }
+    
+    #quiz-view .question-container {
+        padding: 14px 12px !important;
+        margin: 12px 0 !important;
+        font-size: 1.02rem !important;
+    }
+    
+    #quiz-view .option-btn {
+        padding: 10px 12px !important;
+        font-size: 0.95rem !important;
+    }
+    
+    #quiz-view .explanation-panel {
+        padding: 14px 10px !important;
+        border-radius: 12px !important;
+        margin-top: 16px !important;
+    }
+    
+    .word-question, 
+    .explanation-box,
+    #quiz-view .word-question,
+    #quiz-view .explanation-box {
+        padding: 2px 4px !important;
+        font-size: 0.98rem !important;
+        line-height: 1.65 !important;
+    }
+    
+    .word-question p, 
+    .explanation-content p, 
+    .explanation-box p {
+        margin-bottom: 10px !important;
+        line-height: 1.65 !important;
+        text-align: left !important;
+        text-justify: normal !important;
+    }
+    
+    .table-responsive-wrapper {
+        margin: 10px 0 !important;
+    }
+}
+
