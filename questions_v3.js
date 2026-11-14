@@ -1,9 +1,9 @@
 // ==========================================================================
 // ΠΑΘΟΛΟΓΙΑ – Θέματα Εξετάσεων 2013-2023 (Πλήρης Τράπεζα 12 Κεφαλαίων)
-// Σύνολο Ερωτήσεων: 1402 (Μέρος 1: 742 ερωτήσεις + Μέρος 2: 660 ερωτήσεις)
+// Σύνολο Ερωτήσεων: 1402 (12 Θεματικά Κεφάλαια)
 // ==========================================================================
 
-const questionsData = [
+var questionsData = [
   {
     "id": 1,
     "category": "ΚΕΦΑΛΑΙΟ 2ο, ΔΙΑΤΑΡΑΧΕΣ ΤΟΥ ΑΝΟΣΙΚΟΥ ΣΥΣΤΗΜΑΤΟΣ - ΑΛΛΕΡΓΙΚΑ ΝΟΣΗΜΑΤΑ",
@@ -27313,8 +27313,12 @@ const questionsData = [
   }
 ];
 
+if (typeof window !== 'undefined') {
+  window.questionsData = questionsData;
+}
+
 // Ερωτήσεις χωρίς δυνατή απάντηση (ελλιπείς στο PDF) – αρχειοθετημένες
-const questionsDataNoAnswer = [
+var questionsDataNoAnswer = [
   {
     "id": 9001,
     "category": "ΚΕΦΑΛΑΙΟ 9ο, ΠΑΘΗΣΕΙΣ ΤΟΥ ΑΙΜΑΤΟΣ",
@@ -27395,3 +27399,11 @@ const questionsDataNoAnswer = [
     "answerNote": "και οι δύο επιλογές είναι λάθος (υπάρχουν ασυμπτωματικά μεσοδιαστήματα· προσβάλλει κυρίως παιδιά/νέους)"
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.questionsDataNoAnswer = questionsDataNoAnswer;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { questionsData, questionsDataNoAnswer };
+}

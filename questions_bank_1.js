@@ -54030,7 +54030,7 @@ var questionsBank1Data = [
 
 if (typeof window !== 'undefined') {
   window.questionsBank1Data = questionsBank1Data;
-  if (!window.questionsData) {
-    window.questionsData = questionsBank1Data;
-  }
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { questionsBank1Data };
 }

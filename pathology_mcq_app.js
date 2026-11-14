@@ -223,8 +223,8 @@
     showExplanationForced = false;
 
     if (currentBank === 'old_book') {
-      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.questionsData)) ? window.questionsData :
-                     (typeof questionsData !== 'undefined' && Array.isArray(questionsData)) ? questionsData : [];
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.questionsData) && window.questionsData !== window.questionsBank1Data) ? window.questionsData :
+                     (typeof questionsData !== 'undefined' && Array.isArray(questionsData) && questionsData !== window.questionsBank1Data) ? questionsData : [];
     } else if (currentBank === 'bank_1') {
       allQuestions = (typeof window !== 'undefined' && Array.isArray(window.questionsBank1Data)) ? window.questionsBank1Data :
                      (typeof questionsBank1Data !== 'undefined' && Array.isArray(questionsBank1Data)) ? questionsBank1Data : [];
