@@ -1129,6 +1129,7 @@
     <script src="SURGERY/anatomia_doatap.js?v=20261114"></script>
     <script src="pathologia_doatap.js?v=20261113"></script>
     <script src="farmakologia_doatap.js?v=20261113"></script>
+    <script src="fysiologia_doatap.js?v=20261114"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
@@ -1558,6 +1559,42 @@
                         originalItem: q,
                         correctIndices: correctIndices,
                         appUrl: 'quiz.html?bank=farmakologia&qId=' + qId,
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 1i. Physiology DOATAP Questions (fysiologia)
+            const physioSource = (typeof fysiologia !== 'undefined' && Array.isArray(fysiologia)) ? fysiologia :
+                                 (typeof window !== 'undefined' && Array.isArray(window.fysiologia)) ? window.fysiologia : null;
+            if (physioSource) {
+                physioSource.forEach((q, idx) => {
+                    const qId = q.id || q.number || (idx + 1);
+                    let expText = '';
+                    if (Array.isArray(q.explanation)) {
+                        expText = q.explanation.map(item => (typeof item === 'object' ? (item.text || '') : String(item))).join(' ');
+                    } else if (typeof q.explanation === 'string') {
+                        expText = q.explanation;
+                    }
+                    let optionsText = Array.isArray(q.options) ? q.options.join(' ') : '';
+                    let fullText = [q.chapterTitle || q.chapter || '', q.question || '', optionsText, expText].join(' ');
+                    let correctIndices = [];
+                    if (typeof q.correctAnswer === 'number') {
+                        correctIndices = [q.correctAnswer];
+                    }
+                    index.push({
+                        id: 'physio-doatap-' + qId,
+                        source: 'mcq',
+                        sourceLabel: 'Φυσιολογία ΔΟΑΤΑΠ',
+                        badgeClass: 'badge-mcq',
+                        badgeIcon: '🔬',
+                        chapter: q.chapterTitle || q.chapter || 'Φυσιολογία ΔΟΑΤΑΠ',
+                        title: q.question || 'Ερώτηση',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'quiz.html?bank=fysiologia&qId=' + qId,
                         type: 'mcq'
                     });
                 });

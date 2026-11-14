@@ -119,7 +119,7 @@
       return q.category || q.chapter || 'Γενικά';
     } else if (currentBank === 'larnaka') {
       return q.part ? ('Μέρος / ' + q.part) : (q.subcategory || q.chapter || 'Γενικά');
-    } else if (currentBank === 'doatap' || currentBank === 'farmakologia') {
+    } else if (currentBank === 'doatap' || currentBank === 'farmakologia' || currentBank === 'fysiologia') {
       return q.chapterTitle || q.chapter || q.category || 'Γενικά';
     } else {
       return q.chapter || q.category || 'Γενικά';
@@ -194,6 +194,8 @@
         currentBank = 'doatap';
       } else if (['farmakologia', 'pharma', 'farmaka', 'farmakologia_doatap'].includes(bankParam)) {
         currentBank = 'farmakologia';
+      } else if (['fysiologia', 'physio', 'physiology', 'fysiologia_doatap'].includes(bankParam)) {
+        currentBank = 'fysiologia';
       }
     }
     if (bankSelect) {
@@ -235,6 +237,9 @@
     } else if (currentBank === 'farmakologia') {
       allQuestions = (typeof window !== 'undefined' && Array.isArray(window.farmakologia)) ? window.farmakologia :
                      (typeof farmakologia !== 'undefined' && Array.isArray(farmakologia)) ? farmakologia : [];
+    } else if (currentBank === 'fysiologia') {
+      allQuestions = (typeof window !== 'undefined' && Array.isArray(window.fysiologia)) ? window.fysiologia :
+                     (typeof fysiologia !== 'undefined' && Array.isArray(fysiologia)) ? fysiologia : [];
     }
 
     // Assign guaranteed unique identifiers & global sequential indices
@@ -579,7 +584,8 @@
       'bank_1': 'Τράπεζα 1',
       'larnaka': 'Τράπεζα ΛΑΡΝΑΚΑ',
       'doatap': 'Παθολογία ΔΟΑΤΑΠ',
-      'farmakologia': 'Φαρμακολογία ΔΟΑΤΑΠ'
+      'farmakologia': 'Φαρμακολογία ΔΟΑΤΑΠ',
+      'fysiologia': 'Φυσιολογία ΔΟΑΤΑΠ'
     };
     qBankBadge.textContent = bankLabels[currentBank] || 'Παθολογία';
 
