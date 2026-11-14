@@ -875,9 +875,9 @@
   }
 
   function jumpToQuestionId(qid) {
-    let targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid));
+    let targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid || q.part2Id === qid));
     if (targetIdx === -1) {
-      const targetQ = allQuestions.find(q => (q.id === qid || q._globalIndex === qid));
+      const targetQ = allQuestions.find(q => (q.id === qid || q._globalIndex === qid || q.part2Id === qid));
       if (targetQ) {
         currentChapter = 'all';
         chapterSelect.value = 'all';
@@ -886,7 +886,7 @@
         searchTerm = '';
         searchInput.value = '';
         applyFilters();
-        targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid));
+        targetIdx = filteredQuestions.findIndex(q => (q.id === qid || q._globalIndex === qid || q.part2Id === qid));
       } else {
         alert(`Η ερώτηση #${qid} δεν βρέθηκε στη συγκεκριμένη τράπεζα.`);
         return;
