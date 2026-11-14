@@ -119,7 +119,10 @@
     if (currentBank === 'bank_1') {
       return q.category || q.chapter || 'Γενικά';
     } else if (currentBank === 'larnaka') {
-      return q.part ? ('Μέρος / ' + q.part) : (q.subcategory || q.chapter || 'Γενικά');
+      if (q.chapter && !q.chapter.includes('🏛️ Τράπεζα')) {
+        return q.chapter;
+      }
+      return q.chapterTitle || (q.part ? ('Μέρος / ' + q.part) : (q.subcategory || q.chapter || 'Γενικά'));
     } else if (currentBank === 'doatap' || currentBank === 'farmakologia' || currentBank === 'fysiologia') {
       return q.chapterTitle || q.chapter || q.category || 'Γενικά';
     } else {
