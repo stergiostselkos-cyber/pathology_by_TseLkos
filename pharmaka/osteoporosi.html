@@ -1,0 +1,626 @@
+<!DOCTYPE html><html lang="el"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GSSKTV6FKE');
+</script>
+<script src="../auth-guard.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Φάρμακα Οστεοπόρωσης - Κλινικός Οδηγός & Σκευάσματα Γαληνού</title>
+<style>
+:root{--bg:#ffffff;--ink:#1d1d1f;--muted:#6e6e73;--line:#e3e3e8;--accent:#1f5fa8;--head:#f4f5f7;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17181b;--ink:#ececef;--muted:#a1a1a8;--line:#33343a;--accent:#7fb0ef;--head:#222328;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17181b;--ink:#ececef;--muted:#a1a1a8;--line:#33343a;--accent:#7fb0ef;--head:#222328;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+main{max-width:920px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px} .sub{color:var(--muted);margin:0 0 24px}
+.toc{columns:2 300px;padding-left:20px;margin:0 0 40px} .toc li{margin:3px 0}
+a{color:var(--accent)}
+section{margin-top:36px;padding:22px 22px 14px;border-radius:14px}
+.tint{--c:hsl(var(--h) 78% 92%);--c2:hsl(var(--h) 55% 85%);--c3:hsl(var(--h) 28% 40%);--c4:hsl(var(--h) 75% 97.5%);--cb:hsl(var(--h) 32% 81%);--c5:hsl(var(--h) 40% 30%);background:var(--c)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tint{--c:hsl(var(--h) 22% 17%);--c2:hsl(var(--h) 20% 24%);--c3:hsl(var(--h) 35% 76%);--c4:hsl(var(--h) 18% 13%);--cb:hsl(var(--h) 18% 30%);--c5:hsl(var(--h) 45% 84%)}}
+:root[data-theme="dark"] .tint{--c:hsl(var(--h) 22% 17%);--c2:hsl(var(--h) 20% 24%);--c3:hsl(var(--h) 35% 76%);--c4:hsl(var(--h) 18% 13%);--cb:hsl(var(--h) 18% 30%);--c5:hsl(var(--h) 45% 84%)}
+section.tint h2{color:var(--c5);font-weight:700}
+section.tint table{background:var(--c4)} section.tint th{background:var(--c2);color:var(--c5);font-weight:650} section.tint td,section.tint th{border-color:var(--cb)}
+section.tint details{background:var(--c4);border-color:var(--cb)} section.tint .abbr{background:var(--c4)} section.tint h3{color:var(--c3);font-weight:600}
+h2{font-size:24px;margin:0 0 14px} h3{font-size:18px;margin:22px 0 6px} h4{font-size:16px;margin:14px 0 4px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{text-align:left;background:var(--head);padding:8px 10px;border:1px solid var(--line)}
+td{padding:10px;border:1px solid var(--line);vertical-align:top}
+td:first-child{width:42%}
+.inn{color:var(--muted);font-style:italic;font-size:15px}
+.note{color:var(--muted);font-size:14px;margin-top:4px}
+.muted{color:var(--muted);font-size:14px}
+.g{display:inline-block;font-size:12px;font-weight:700;text-decoration:none;color:#fff;background:var(--accent);border-radius:4px;padding:0 5px;line-height:18px;margin-left:4px;vertical-align:1px}
+ul{margin:4px 0;padding-left:22px} li{margin:3px 0}
+.top{font-size:14px;margin-top:16px}
+ul.brands{margin:0;padding-left:18px} ul.brands li{margin:4px 0;line-height:1.45} ul.brands li::marker{color:var(--c3)}
+.tag{font-size:11px;color:var(--muted);margin-left:4px;letter-spacing:.02em;white-space:nowrap;background:rgba(0,0,0,0.05);padding:1px 6px;border-radius:4px}
+:root[data-theme="dark"] .tag{background:rgba(255,255,255,0.08)}
+.home{font-size:14px;margin:0 0 18px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin:0 0 40px}
+.cat{display:flex;gap:10px;align-items:baseline;padding:10px 12px;border:1px solid var(--cb);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--c);font-weight:600}
+.cat:hover{border-color:var(--c3)} .cat span{color:var(--c3);font-weight:700;min-width:22px}
+.abbr{margin-top:18px;background:var(--head);border-radius:8px;padding:6px 14px 10px} .abbr h3{margin:6px 0 4px;font-size:15px} .abbr ul{font-size:15px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.tabs button{font:inherit;font-size:15px;font-weight:600;padding:8px 14px;border-radius:10px;border:1px solid var(--cb);background:var(--c4);color:var(--c5);cursor:pointer;transition:all 0.15s ease}
+.tabs button[aria-expanded="true"]{background:var(--c2);border-color:var(--c3)}
+.tabs button:focus-visible{outline:2px solid var(--c3);outline-offset:2px}
+.panel{margin-top:10px;background:var(--c4);border:1px solid var(--cb);border-radius:10px;padding:12px 18px}
+.panel ul{margin:6px 0;padding-left:20px}
+.panel li{margin:6px 0}
+.choice table td:first-child{width:45%}
+#brands table td.bi-c{font-weight:600;width:25%}
+#brands table td.bi-b{font-size:14.5px}
+</style>
+<link rel="stylesheet" href="../image_zoom_viewer.css">
+</head><body><main id="top">
+<p class="home"><a href="../index.html">← Αρχική σελίδα PathologiaQuiz</a> &bull; <a href="../search.html">🔍 Σύνθετη Αναζήτηση Φαρμάκων</a></p>
+<h1>🦴 Φάρμακα Οστεοπόρωσης</h1>
+<p class="sub">Πλήρης κλινικός οδηγός οστεοπόρωσης: δραστικές ουσίες, εμπορικά σκευάσματα Γαληνού, μηχανισμοί δράσης, ενδείξεις, αντενδείξεις, ανεπιθύμητες ενέργειες, διαδοχική θεραπεία &amp; πρακτικές οδηγίες. Το <span class="g">G</span> ανοίγει την αντίστοιχη καταχώριση στον Γαληνό.</p>
+<h2>Κατηγορίες</h2><nav class="cats">
+<a class="cat tint" style="--h:190" href="#s1"><span>1</span>Βασική θεραπεία: Ca &amp; Vit D</a>
+<a class="cat tint" style="--h:320" href="#s2"><span>2</span>Θεραπεία ορμονικής υποκατάστασης (ΘΟΥ)</a>
+<a class="cat tint" style="--h:280" href="#s3"><span>3</span>Εκλεκτικοί τροποποιητές (SERMs)</a>
+<a class="cat tint" style="--h:210" href="#s4"><span>4</span>Διφωσφονικά</a>
+<a class="cat tint" style="--h:140" href="#s5"><span>5</span>Αναστολείς RANKL (Δενοσουμάμπη)</a>
+<a class="cat tint" style="--h:40" href="#s6"><span>6</span>Αναβολικά: ανάλογα PTH / PTHrP</a>
+<a class="cat tint" style="--h:10" href="#s7"><span>7</span>Διπλής δράσης: Ρομοσοζουμάμπη</a>
+<a class="cat tint" style="--h:250" href="#s8"><span>8</span>Φάρμακα που αποσύρθηκαν</a>
+<a class="cat tint" style="--h:100" href="#choice"><span>★</span>Θεραπευτική στρατηγική</a>
+<a class="cat tint" style="--h:50" href="#practice"><span>!</span>Πρακτικές οδηγίες &amp; προσοχή</a>
+<a class="cat tint" style="--h:200" href="#brands"><span>🔎</span>Ευρετήριο σκευασμάτων</a>
+</nav>
+<section class="tint" style="--h:190" id="s1">
+<h2>1. Βασική θεραπεία: ασβέστιο και βιταμίνη D</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Ανθρακικό ασβέστιο (σε συνδυασμό με βιταμίνη D3)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcium" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Calcium carbonate + Colecalciferol</div><div class="note">Τα περισσότερα σκευάσματα του εμπορίου είναι σταθεροί συνδυασμοί ανθρακικού ασβεστίου και χοληκαλσιφερόλης (π.χ. 600 mg Ca + 400–1000 IU D3 ή 1000–1200 mg Ca + 800–880 IU D3).</div></td><td><ul class="brands"><li>CALCIORAL D3 <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>CALCIFORM D3 <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">1000 mg Ca + 880 IU D3</span></li><li>MEGACALCIUM-D <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">αναβράζοντα δισκία</span></li><li>CADELIUS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">διασπειρόμενα στο στόμα</span></li><li>CALDE-VIT <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">μασώμενα</span></li><li>NATECAL D3 <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>IDEOS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>ORBICAL D3 <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>CALVIDIN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Χοληκαλσιφερόλη (βιταμίνη D3)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Colecalciferol</div><div class="note">Συνήθης δόση συντήρησης 800–1000 IU ημερησίως ή ισοδύναμη εβδομαδιαία ή μηνιαία δόση. Σε ανεπάρκεια χρησιμοποιούνται υψηλότερες δόσεις εφόδου.</div></td><td><ul class="brands"><li>DEFILL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">10.000 και 20.000 IU</span></li><li>LECALCIF <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5.600, 12.500 και 25.000 IU</span></li><li>FOSAVANCE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με αλενδρονάτη</span></li><li>ADROVANCE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με αλενδρονάτη</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s1-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s1-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s1-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s1-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s1-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s1-mech" hidden><ul>
+<li>Ανεπαρκές ασβέστιο ή βιταμίνη D → ↓ εντερική απορρόφηση Ca²⁺ → ↓ ασβέστιο ορού → ↑ PTH (παραθορμόνη, δευτεροπαθής υπερπαραθυρεοειδισμός) → ↑ οστεοκλαστική απορρόφηση → απώλεια οστικής μάζας.</li>
+<li>Χοληκαλσιφερόλη (D3) → 25-υδροξυλίωση στο ήπαρ → 1α-υδροξυλίωση στον νεφρό → καλσιτριόλη → ↑ απορρόφηση Ca²⁺ και φωσφόρου από το έντερο → επαρκές υλικό για την επιμετάλλωση του οστεοειδούς.</li>
+<li>Το ασβέστιο και η βιταμίνη D δεν είναι αντιοστεοπορωτικά φάρμακα από μόνα τους. Είναι το υπόβαθρο πάνω στο οποίο δρουν όλα τα υπόλοιπα.</li>
+</ul></div>
+<div class="panel" id="s1-ind" hidden><ul>
+<li>«Θεραπεία: Βήμα 1ο» για κάθε ασθενή με οστεοπόρωση ή υψηλό κίνδυνο κατάγματος.</li>
+<li>Υποχρεωτική συγχορήγηση με κάθε αντιοστεοπορωτικό φάρμακο όταν η πρόσληψη από τη διατροφή δεν επαρκεί.</li>
+<li>Διόρθωση της ανεπάρκειας βιταμίνης D πριν από παρεντερική αντιαπορροφητική αγωγή (ζολεδρονικό οξύ, δενοσουμάμπη), ώστε να μην προκληθεί υπασβεστιαιμία.</li>
+</ul></div>
+<div class="panel" id="s1-ci" hidden><ul>
+<li>Υπερασβεστιαιμία και υπερασβεστιουρία οποιασδήποτε αιτίας.</li>
+<li>Νεφρολιθίαση από ασβέστιο: προσοχή.</li>
+<li>Σαρκοείδωση και άλλα κοκκιώματα (έκτοπη παραγωγή καλσιτριόλης → υπερασβεστιαιμία): προσοχή στη βιταμίνη D.</li>
+</ul></div>
+<div class="panel" id="s1-ae" hidden><ul>
+<li>Δυσκοιλιότητα, μετεωρισμός, δυσπεψία (κυρίως το ανθρακικό ασβέστιο).</li>
+<li>Υπερασβεστιαιμία και υπερασβεστιουρία σε υπερδοσολογία.</li>
+<li>Αρτηριακή αποτιτάνωση σε ασθενείς με χρόνια νεφρική νόσο.</li>
+</ul></div>
+<div class="panel" id="s1-pearl" hidden><ul>
+<li>Γενικά μέτρα του «Βήματος 1»: επαρκής πρόσληψη πρωτεΐνης (όχι κατάχρηση), διακοπή καπνίσματος, αποφυγή κατάχρησης αλκοόλ και καφέ, άσκηση.</li>
+<li>Προτιμάται το ασβέστιο από τη διατροφή. Το συμπλήρωμα καλύπτει μόνο τη διαφορά.</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>PTH</b>: παραθορμόνη</li>
+<li><b>IU</b>: διεθνείς μονάδες</li>
+<li><b>ΧΝΝ</b>: χρόνια νεφρική νόσος</li>
+<li><b>25(OH)D</b>: 25-υδροξυβιταμίνη D</li>
+<li><b>1,25(OH)₂D</b>: καλσιτριόλη (1,25-διυδροξυβιταμίνη D)</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:320" id="s2">
+<h2>2. Θεραπεία ορμονικής υποκατάστασης (ΘΟΥ)</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Οιστραδιόλη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Estradiol</div><div class="note">Στη διαφάνεια του μαθήματος τίθεται το ερώτημα «Tab ή TTS?»: δισκίο ή διαδερμικό έμπλαστρο. Η διαδερμική οδός παρακάμπτει το ήπαρ.</div></td><td><ul class="brands"><li>ESTRADOT <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">διαδερμικό έμπλαστρο 25–100 μg/24 h</span></li><li>OESTROGEL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">διαδερμική γέλη</span></li><li>DERMESTRIL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">έμπλαστρο, μέσω ΙΦΕΤ</span></li><li>ESTRAMON <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">μέσω ΙΦΕΤ</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s2-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s2-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s2-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s2-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s2-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s2-mech" hidden><ul>
+<li>Εμμηνόπαυση → απότομη ↓ οιστρογόνων → ↑ έκφραση RANKL και κυτταροκινών (IL-6) → ↑ στρατολόγηση, διαφοροποίηση και επιβίωση οστεοκλαστών → ταχεία οστική απώλεια (κυρίως σπογγώδες οστό, σπόνδυλοι).</li>
+<li>Χορήγηση οιστρογόνων → αναστολή της μεταγραφής του RANKL και της IL-6 → ↓ οστεοκλαστογένεση + ↑ απόπτωση οστεοκλαστών + ↓ απόπτωση οστεοβλαστών και οστεοκυττάρων → ↓ οστική απορρόφηση.</li>
+</ul></div>
+<div class="panel" id="s2-ind" hidden><ul>
+<li>Πρόληψη της μετεμμηνοπαυσιακής οστεοπόρωσης σε γυναίκες με υψηλό κίνδυνο κατάγματος, ιδίως όταν συνυπάρχουν συμπτώματα εμμηνόπαυσης (εξάψεις, ξηρότητα κόλπου).</li>
+<li>Δεν αποτελεί θεραπεία πρώτης γραμμής για την οστεοπόρωση μόνη της.</li>
+</ul></div>
+<div class="panel" id="s2-ci" hidden><ul>
+<li>Καρκίνος μαστού ή άλλος οιστρογονοεξαρτώμενος όγκος (γνωστός ή ύποπτος).</li>
+<li>Ιστορικό φλεβικής θρομβοεμβολής ή θρομβοφιλία. Πρόσφατο αρτηριακό θρομβοεμβολικό επεισόδιο (έμφραγμα, ΑΕΕ).</li>
+<li>Αδιάγνωστη κολπική αιμορραγία. Ενεργός ηπατοπάθεια.</li>
+</ul></div>
+<div class="panel" id="s2-ae" hidden><ul>
+<li>Κολπική αιμόρροια, μαστοδυνία (συχνή αιτία διακοπής).</li>
+<li>Φλεβική θρομβοεμβολή: τα από του στόματος οιστρογόνα → φαινόμενο πρώτης διόδου → ↑ ηπατική σύνθεση παραγόντων πήξης.</li>
+<li>Καρκίνος μαστού (μακροχρόνια) και ΑΕΕ. Καρκίνος ενδομητρίου, αν χορηγηθεί οιστρογόνο χωρίς προγεσταγόνο σε γυναίκα με μήτρα.</li>
+</ul></div>
+<div class="panel" id="s2-pearl" hidden><ul>
+<li>Η μελέτη WHI (2002) έδειξε ότι ο κίνδυνος καρκίνου του μαστού και ΑΕΕ υπερτερεί του οστικού οφέλους στις μεγαλύτερες γυναίκες → η ΘΟΥ έπαψε να είναι η κύρια θεραπεία της οστεοπόρωσης.</li>
+<li>Σε γυναίκα με μήτρα το οιστρογόνο συνδυάζεται πάντα με προγεσταγόνο (προστασία ενδομητρίου).</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>ΘΟΥ</b>: θεραπεία ορμονικής υποκατάστασης</li>
+<li><b>TTS</b>: διαδερμικό θεραπευτικό σύστημα (έμπλαστρο)</li>
+<li><b>RANKL</b>: συνδέτης του ενεργοποιητή του υποδοχέα του πυρηνικού παράγοντα κΒ</li>
+<li><b>IL-6</b>: ιντερλευκίνη 6</li>
+<li><b>WHI</b>: Women&#x27;s Health Initiative</li>
+<li><b>ΙΦΕΤ</b>: Ινστιτούτο Φαρμακευτικής Έρευνας και Τεχνολογίας</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:280" id="s3">
+<h2>3. Εκλεκτικοί τροποποιητές των οιστρογονικών υποδοχέων (SERMs)</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Ραλοξιφαίνη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Raloxifene</div><div class="note">60 mg μία φορά την ημέρα από το στόμα, οποιαδήποτε ώρα, ανεξάρτητα από τα γεύματα.</div></td><td><ul class="brands"><li>EVISTA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RAZYLAN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>OSTIRAL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RATNAL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RALOXIFENE/TEVA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Βαζεδοξιφένη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/bazedoxifene" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Bazedoxifene</div><div class="note">20 mg μία φορά την ημέρα. Δεύτερος εκπρόσωπος των SERMs στη διαφάνεια του μαθήματος.</div></td><td><ul class="brands"><li>CONBRIZA <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/conbriza" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>Κυκλοφορεί μόνο 1 σκεύασμα <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/bazedoxifene" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/conbriza" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s3-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s3-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s3-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s3-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s3-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s3-mech" hidden><ul>
+<li>SERM → σύνδεση με τον οιστρογονικό υποδοχέα (ER) → το σύμπλοκο SERM-ER αλλάζει διαμόρφωση → προσλαμβάνει διαφορετικούς συνενεργοποιητές ή συγκαταστολείς σε κάθε ιστό → αγωνιστική δράση σε κάποιους ιστούς, ανταγωνιστική σε άλλους.</li>
+<li>Οστό: αγωνιστής → ↓ οστική απορρόφηση. Λιπίδια: αγωνιστής → ↓ ολική και LDL χοληστερόλη. Μαστός και ενδομήτριο: ανταγωνιστής → ↓ καρκίνος μαστού, χωρίς διέγερση του ενδομητρίου.</li>
+<li>Ήπαρ (πήξη): αγωνιστής → ↑ παράγοντες πήξης → φλεβική θρομβοεμβολή, όπως με τα οιστρογόνα.</li>
+</ul></div>
+<div class="panel" id="s3-ind" hidden><ul>
+<li>Μετεμμηνοπαυσιακή οστεοπόρωση με κίνδυνο κυρίως σπονδυλικών καταγμάτων, ιδίως σε νεότερες μετεμμηνοπαυσιακές γυναίκες.</li>
+<li>Ιδιαίτερα χρήσιμα σε γυναίκες με αυξημένο κίνδυνο καρκίνου του μαστού (ραλοξιφαίνη).</li>
+</ul></div>
+<div class="panel" id="s3-ci" hidden><ul>
+<li>Ιστορικό ή ενεργός φλεβική θρομβοεμβολή (εν τω βάθει φλεβοθρόμβωση, πνευμονική εμβολή, θρόμβωση φλεβών αμφιβληστροειδούς).</li>
+<li>Γυναίκες σε αναπαραγωγική ηλικία. Ηπατική ανεπάρκεια, σοβαρή νεφρική ανεπάρκεια, αδιάγνωστη αιμορραγία από τη μήτρα, καρκίνος ενδομητρίου.</li>
+</ul></div>
+<div class="panel" id="s3-ae" hidden><ul>
+<li>Φλεβική θρομβοεμβολή (η σημαντικότερη ανεπιθύμητη ενέργεια).</li>
+<li>Εξάψεις, κράμπες στα κάτω άκρα, περιφερικό οίδημα, γριππώδης συνδρομή.</li>
+</ul></div>
+<div class="panel" id="s3-pearl" hidden><ul>
+<li>Δεν αποδείχθηκε μείωση των καταγμάτων του ισχίου → δεν είναι επαρκής επιλογή όταν ο κίνδυνος μη σπονδυλικού ή ισχιακού κατάγματος είναι υψηλός.</li>
+<li>Δεν μειώνουν τις εξάψεις, αντίθετα μπορεί να τις επιδεινώσουν.</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>SERMs</b>: εκλεκτικοί τροποποιητές των οιστρογονικών υποδοχέων</li>
+<li><b>ER</b>: οιστρογονικός υποδοχέας</li>
+<li><b>LDL</b>: λιποπρωτεΐνη χαμηλής πυκνότητας</li>
+<li><b>VTE</b>: φλεβική θρομβοεμβολή</li>
+<li><b>ΑΕΕ</b>: αγγειακό εγκεφαλικό επεισόδιο</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:210" id="s4">
+<h2>4. Διφωσφονικά</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Αλενδρονικό οξύ (αλενδρονάτη)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Alendronic acid</div><div class="note">70 mg μία φορά την εβδομάδα (ή 10 mg ημερησίως) από το στόμα. Ο πιο φθηνός και ο πιο μελετημένος εκπρόσωπος, συνήθως η πρώτη επιλογή.</div></td><td><ul class="brands"><li>FOSAMAX <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>FOSALEN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RIDON <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>ALEFOS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>LOZOSTUN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>ZULGAR <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>BINOSTO <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">αναβράζον δισκίο</span></li><li>BONASOL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">πόσιμο διάλυμα</span></li><li>FOSAVANCE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με βιταμίνη D3</span></li><li>ADROVANCE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με βιταμίνη D3</span></li><li>COVED <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με βιταμίνη D3</span></li><li>DIFOCIDOL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με βιταμίνη D3</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Ρισεδρονικό οξύ (ρισεδρονάτη)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Risedronic acid</div><div class="note">35 mg μία φορά την εβδομάδα, ή 75 mg δύο συνεχόμενες ημέρες τον μήνα, ή 5 mg ημερησίως. Στη νόσο Paget 30 mg ημερησίως για 2 μήνες.</div></td><td><ul class="brands"><li>ACTONEL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5 mg και 30 mg</span></li><li>MOTIVUS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>BONMATE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>CLADRONATE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>ACTORID <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>OSTORIS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RISELIB <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>RISEDRONATE+CALCIUM CARBONATE+VIT D3 <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">σε συνδυασμό με ασβέστιο και βιταμίνη D3</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Ιβανδρονικό οξύ (ιβανδρονάτη)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Ibandronic acid</div><div class="note">Για την οστεοπόρωση: 150 mg μία φορά τον μήνα από το στόμα ή 3 mg ενδοφλεβίως κάθε 3 μήνες. Τα 50 mg (δισκία) και τα 6 mg (έγχυση) είναι ογκολογικές μορφές.</div></td><td><ul class="brands"><li>BONVIVA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">150 mg/μήνα δισκίο, 3 mg ενδοφλεβίως</span></li><li>AXIBAL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>IBANATE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>SEDROPOR <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>VOLIRAN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>OZILEN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>NUCODRAN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>BONDRONAT <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">50 mg και 6 mg, ογκολογική χρήση</span></li><li>IASIBON <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ογκολογική χρήση</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Ζολεδρονικό οξύ (ζολεδρονάτη)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Zoledronic acid</div><div class="note">Για την οστεοπόρωση: 5 mg/100 ml ενδοφλεβίως μία φορά τον χρόνο (ACLASTA, νοσοκομειακή χρήση). Το πιο ισχυρό διφωσφονικό. Τα 4 mg (ZOMETA κ.ά.) είναι ογκολογική μορφή κάθε 3–4 εβδομάδες.</div></td><td><ul class="brands"><li>ACLASTA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5 mg/100 ml ετησίως, νοσοκομειακή χρήση</span></li><li>ZOLMESTAT <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5 mg/100 ml και 4 mg</span></li><li>ZOLEDRONIC ACID/TEVA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5 mg/100 ml</span></li><li>ZOLEDRONIC ACID/HOSPIRA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">5 mg και 4 mg/100 ml</span></li><li>ZOMETA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">4 mg, ογκολογική χρήση</span></li><li>ZOXALON <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">4 mg, ογκολογική χρήση</span></li><li>NORDELOZ <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">4 mg, ογκολογική χρήση</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Παμιδρονικό οξύ (παμιδρονάτη)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Pamidronic acid</div><div class="note">Μόνο ενδοφλέβια. Στη διαφάνεια του μαθήματος αναφέρεται μαζί με τα υπόλοιπα διφωσφονικά, αλλά δεν έχει ένδειξη για την οστεοπόρωση.</div></td><td><ul class="brands"><li>PAMIDRONATE/HOSPIRA <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>PAMERIT <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>Κυκλοφορούν μόνο 2 σκευάσματα <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s4-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s4-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s4-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s4-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s4-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s4-mech" hidden><ul>
+<li>Ανάλογα του πυροφωσφορικού: ο υδρολύσιμος δεσμός P-O-P αντικαθίσταται από μη υδρολύσιμο P-C-P → δεν διασπώνται από ένζυμα → μεγάλη συγγένεια για τον υδροξυαπατίτη → ενσωματώνονται στο οστό, κυρίως στις επιφάνειες ενεργού ανασχηματισμού.</li>
+<li>Ο οστεοκλάστης απορροφά οστό → το όξινο περιβάλλον κάτω από αυτόν απελευθερώνει το διφωσφονικό → προσλαμβάνεται από τον ίδιο τον οστεοκλάστη.</li>
+<li>Αζωτούχα (αλενδρονάτη, ρισεδρονάτη, ιβανδρονάτη, παμιδρονάτη, ζολεδρονάτη): αναστολή της συνθάσης του FPP στην οδό του μεβαλονικού → ↓ πρενυλίωση μικρών GTPασών → οι πρωτεΐνες δεν αγκυροβολούνται στη μεμβράνη → ο οστεοκλάστης δεν προσκολλάται στο οστό και χάνει τη λειτουργία της H⁺-ATPάσης → απόπτωση.</li>
+<li>Μη αζωτούχα (1ης γενιάς, π.χ. ετιδρονάτη, κλοδρονάτη): ενσωματώνονται σε μη υδρολύσιμα ανάλογα ATP → συσσώρευση στον οστεοκλάστη → απόπτωση. Λιγότερο ισχυρά.</li>
+<li>Παραμονή στον σκελετό για μήνες ή χρόνια → η δράση συνεχίζεται και μετά τη διακοπή (βάση της «φαρμακευτικής διακοπής»).</li>
+</ul></div>
+<div class="panel" id="s4-ind" hidden><ul>
+<li>Οστεοπόρωση μετεμμηνοπαυσιακή, ανδρική και από γλυκοκορτικοειδή: πρωτογενής πρόληψη καταγμάτων και δευτερογενής πρόληψη μετά από κάταγμα.</li>
+<li>Νόσος Paget των οστών.</li>
+<li>Κακοήθης νόσος των οστών (υπερασβεστιαιμία κακοήθειας, οστικές μεταστάσεις, πολλαπλό μυέλωμα): ενδοφλέβια, σε πολύ μεγαλύτερες δόσεις (ζολεδρονάτη 4 mg, παμιδρονάτη, ιβανδρονάτη 6 mg, κλοδρονάτη).</li>
+</ul></div>
+<div class="panel" id="s4-ci" hidden><ul>
+<li>Υπασβεστιαιμία (πρέπει να διορθωθεί πριν από την έναρξη).</li>
+<li>Σοβαρή νεφρική ανεπάρκεια: δεν συνιστώνται με CrCl &lt; 30–35 ml/min (αποβάλλονται αμετάβλητα από τον νεφρό).</li>
+<li>Από του στόματος: ανωμαλίες του οισοφάγου που καθυστερούν την κένωσή του (στένωση, αχαλασία) και αδυναμία παραμονής σε όρθια ή καθιστή θέση για 30–60 λεπτά.</li>
+<li>Κύηση και γαλουχία.</li>
+</ul></div>
+<div class="panel" id="s4-ae" hidden><ul>
+<li>Από του στόματος: οισοφαγίτιδα, διαβρώσεις και έλκη οισοφάγου, δυσπεψία, κοιλιακό άλγος, ναυτία.</li>
+<li>Ενδοφλέβια: αντίδραση οξείας φάσης (πυρετός, μυαλγίες, γριππώδης συνδρομή), κυρίως μετά την πρώτη έγχυση. Υπασβεστιαιμία. Νεφροτοξικότητα με ταχεία έγχυση.</li>
+<li>Μυοσκελετικός πόνος (οστά, αρθρώσεις, μύες).</li>
+<li>Σπάνιες αλλά σοβαρές: οστεονέκρωση της γνάθου (ONJ/MRONJ) και άτυπα κατάγματα του μηριαίου (AFF). Επίσης οστεονέκρωση του έξω ακουστικού πόρου και φλεγμονή του οφθαλμού (ραγοειδίτιδα, σκληρίτιδα).</li>
+</ul></div>
+<div class="panel" id="s4-pearl" hidden><ul>
+<li>Οδοντιατρικός έλεγχος και αποκατάσταση πριν από την έναρξη, καλή στοματική υγιεινή κατά τη θεραπεία. Οι επεμβατικές οδοντιατρικές πράξεις είναι ο κύριος παράγοντας κινδύνου για ONJ.</li>
+<li>Ο κίνδυνος ONJ είναι πολύ μικρός στις δόσεις της οστεοπόρωσης. Οι ογκολογικές δόσεις είναι περίπου 9–10 φορές μεγαλύτερες.</li>
+<li>Πόνος στον μηρό ή στη βουβωνική χώρα υπό χρόνια θεραπεία → απεικόνιση και των δύο μηριαίων (τα άτυπα κατάγματα είναι συχνά αμφοτερόπλευρα).</li>
+<li>Η μακροχρόνια καταστολή του ανασχηματισμού μπορεί να εμποδίσει την επιδιόρθωση των μικρορωγμών → πιθανή βάση των άτυπων καταγμάτων.</li>
+<li>Επανεκτίμηση μετά από 5 χρόνια από του στόματος ή 3 χρόνια ενδοφλέβιας θεραπείας: πιθανή «φαρμακευτική διακοπή» μόνο σε ασθενείς χαμηλότερου κινδύνου.</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>ONJ/MRONJ</b>: οστεονέκρωση της γνάθου (σχετιζόμενη με φάρμακα)</li>
+<li><b>AFF</b>: άτυπο κάταγμα του μηριαίου</li>
+<li><b>BMD</b>: οστική πυκνότητα</li>
+<li><b>eGFR</b>: εκτιμώμενος ρυθμός σπειραματικής διήθησης</li>
+<li><b>CrCl</b>: κάθαρση κρεατινίνης</li>
+<li><b>FPP</b>: φαρνεσυλοπυροφωσφορικό</li>
+<li><b>GTPάσες</b>: υδρολάσες τριφωσφορικής γουανοσίνης</li>
+<li><b>ATP</b>: τριφωσφορική αδενοσίνη</li>
+<li><b>PTHrP</b>: πεπτίδιο σχετιζόμενο με την παραθορμόνη</li>
+<li><b>ΣΜΣΚ</b>: σκελετικά συμβάματα</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:140" id="s5">
+<h2>5. Αναστολείς του RANKL (δενοσουμάμπη)</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Δενοσουμάμπη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Denosumab</div><div class="note">60 mg υποδορίως κάθε 6 μήνες (μηρός, κοιλιά ή άνω βραχίονας). Κυκλοφορούν πολλά βιοομοειδή του PROLIA. Τα σκευάσματα των 120 mg είναι μόνο για ογκολογική χρήση.</div></td><td><ul class="brands"><li>PROLIA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, πρωτότυπο</span></li><li>JUBBONTI <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>STOBOCLO <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>OSVYRTI <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>PONLIMSI <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>EVFRAXY <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>KEFDENSIS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>OBODENCE <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">60 mg, βιοομοειδές</span></li><li>XGEVA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">120 mg, ογκολογική χρήση</span></li><li>WYOST <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">120 mg, ογκολογική χρήση</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s5-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s5-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s5-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s5-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s5-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s5-mech" hidden><ul>
+<li>Οστεοβλάστες και οστεοκύτταρα εκφράζουν RANKL → σύνδεση με τον υποδοχέα RANK στους πρόδρομους οστεοκλάστες → διαφοροποίηση, ενεργοποίηση και επιβίωση οστεοκλαστών. Φυσικός ανταγωνιστής: η οστεοπροτεγερίνη (OPG).</li>
+<li>Δενοσουμάμπη = πλήρως ανθρώπινο μονοκλωνικό αντίσωμα IgG2 που «μιμείται» την OPG → δεσμεύει τον RANKL → εμποδίζει τη σύνδεση RANKL-RANK → ↓ σχηματισμός, λειτουργία και επιβίωση οστεοκλαστών → ταχεία και ισχυρή ↓ οστικής απορρόφησης σε σπογγώδες και φλοιώδες οστό.</li>
+<li>Διαφορά από τα διφωσφονικά: δεν ενσωματώνεται στο οστό → η δράση είναι πλήρως αναστρέψιμη και χάνεται 6 μήνες μετά την τελευταία δόση.</li>
+</ul></div>
+<div class="panel" id="s5-ind" hidden><ul>
+<li>Οστεοπόρωση σε μετεμμηνοπαυσιακές γυναίκες και σε άνδρες με αυξημένο κίνδυνο καταγμάτων: μειώνει σπονδυλικά, μη σπονδυλικά και ισχιακά κατάγματα.</li>
+<li>Οστική απώλεια από ορμονικό αποκλεισμό σε καρκίνο του προστάτη και από αναστολείς της αρωματάσης. Οστεοπόρωση από γλυκοκορτικοειδή.</li>
+<li>Ογκολογική μορφή (120 mg κάθε 4 εβδομάδες): πρόληψη σκελετικών συμβαμάτων σε οστικές μεταστάσεις, γιγαντοκυτταρικός όγκος των οστών.</li>
+</ul></div>
+<div class="panel" id="s5-ci" hidden><ul>
+<li>Υπασβεστιαιμία (διορθώνεται πριν από την έναρξη).</li>
+<li>Υπερευαισθησία (και στο λάτεξ ορισμένων συριγγών).</li>
+</ul></div>
+<div class="panel" id="s5-ae" hidden><ul>
+<li>Υπασβεστιαιμία, κυρίως σε σοβαρή νεφρική νόσο (CrCl &lt; 30 ml/min) και σε αιμοκάθαρση. Υποφωσφαταιμία.</li>
+<li>Μυοσκελετικός πόνος και πόνος στα άκρα (οι πιο συχνές).</li>
+<li>Λοιμώξεις: κυτταρίτιδα, λοίμωξη ουροποιητικού και αναπνευστικού, ωτίτιδα. Εξάνθημα, έκζεμα.</li>
+<li>Σπάνια: ONJ, άτυπα κατάγματα του μηριαίου, οστεονέκρωση του έξω ακουστικού πόρου.</li>
+<li>Μετά τη διακοπή: απότομη αύξηση της οστικής απορρόφησης με πολλαπλά σπονδυλικά κατάγματα (rebound).</li>
+</ul></div>
+<div class="panel" id="s5-pearl" hidden><ul>
+<li>ΠΟΤΕ απότομη διακοπή χωρίς σχέδιο. Η στρατηγική εξόδου αποφασίζεται πριν από την έναρξη.</li>
+<li>Δεν αποβάλλεται από τον νεφρό → μπορεί να δοθεί σε νεφρική ανεπάρκεια όπου τα διφωσφονικά αντενδείκνυνται, αλλά με στενή παρακολούθηση του ασβεστίου.</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>RANKL</b>: συνδέτης του ενεργοποιητή του υποδοχέα του πυρηνικού παράγοντα κΒ</li>
+<li><b>RANK</b>: ενεργοποιητής του υποδοχέα του πυρηνικού παράγοντα κΒ</li>
+<li><b>OPG</b>: οστεοπροτεγερίνη</li>
+<li><b>ONJ/MRONJ</b>: οστεονέκρωση της γνάθου (σχετιζόμενη με φάρμακα)</li>
+<li><b>AFF</b>: άτυπο κάταγμα του μηριαίου</li>
+<li><b>BMD</b>: οστική πυκνότητα</li>
+<li><b>eGFR</b>: εκτιμώμενος ρυθμός σπειραματικής διήθησης</li>
+<li><b>CrCl</b>: κάθαρση κρεατινίνης</li>
+<li><b>ΧΝΝ</b>: χρόνια νεφρική νόσος</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:40" id="s6">
+<h2>6. Αναβολικά: ανάλογα της παραθορμόνης (PTH) και του PTHrP</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Τεριπαρατίδη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Teriparatide</div><div class="note">20 μg υποδορίως μία φορά την ημέρα (μηρός ή κοιλιά) με προγεμισμένη πένα 28 δόσεων. Μέγιστη διάρκεια 24 μήνες σε όλη τη ζωή του ασθενούς.</div></td><td><ul class="brands"><li>FORSTEO <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">πρωτότυπο</span></li><li>MOVYMIA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>SONDELBAY <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>TETRIDAR <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>OSTEOREL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>BONAMENS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>TERIPARATIDE/TEVA <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Αμπαλοπαρατίδη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/abaloparatide" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Abaloparatide</div><div class="note">80 μg υποδορίως μία φορά την ημέρα. Μέγιστη διάρκεια 18 μήνες. Αναφέρεται στη διαφάνεια του μαθήματος ως ABL.</div></td><td><ul class="brands"><li>ELADYNOS <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/abaloparatide" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>Κυκλοφορεί μόνο 1 σκεύασμα <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/abaloparatide" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/abaloparatide" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s6-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s6-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s6-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s6-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s6-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s6-mech" hidden><ul>
+<li>Το «παράδοξο» της PTH: συνεχής έκθεση (υπερπαραθυρεοειδισμός) → ↑ RANKL → απορρόφηση &gt; σχηματισμός → καταβολισμός. Διαλείπουσα έκθεση (μία ένεση την ημέρα) → σχηματισμός &gt; απορρόφηση → αναβολισμός.</li>
+<li>Ένεση → σύντομη αιχμή → σύνδεση με τον PTH1R (υποδοχέας συζευγμένος με πρωτεΐνη G) των οστεοβλαστών → αδενυλική κυκλάση και φωσφολιπάσες → ↑ cAMP και ↑ ενδοκυττάριο Ca²⁺ → ↑ διαφοροποίηση και δραστηριότητα οστεοβλαστών, ↓ απόπτωση οστεοβλαστών, ενεργοποίηση των επενδυτικών κυττάρων του οστού → νέο οστό σε σπογγώδεις και φλοιώδεις επιφάνειες.</li>
+<li>Ο σχηματισμός αυξάνει πρώτος και η απορρόφηση ακολουθεί αργότερα → «αναβολικό παράθυρο». Με τον χρόνο αυξάνει και η απορρόφηση → ένας λόγος για το χρονικό όριο της θεραπείας.</li>
+</ul></div>
+<div class="panel" id="s6-ind" hidden><ul>
+<li>Σοβαρή οστεοπόρωση και ασθενείς πολύ υψηλού κινδύνου: πρόσφατο σοβαρό κάταγμα, πολλαπλά σπονδυλικά κατάγματα, πολύ χαμηλή BMD, κάταγμα παρά την αντιαπορροφητική θεραπεία.</li>
+<li>Οστεοπόρωση από γλυκοκορτικοειδή (τεριπαρατίδη).</li>
+</ul></div>
+<div class="panel" id="s6-ci" hidden><ul>
+<li>Προϋπάρχουσα υπερασβεστιαιμία, υπερπαραθυρεοειδισμός.</li>
+<li>Ανεξήγητη αύξηση της αλκαλικής φωσφατάσης, νόσος Paget, προηγούμενη ακτινοθεραπεία του σκελετού, πρωτοπαθείς όγκοι ή μεταστάσεις των οστών (↑ βασικός κίνδυνος οστεοσαρκώματος).</li>
+<li>Σοβαρή νεφρική ανεπάρκεια. Κύηση, γαλουχία, ανοικτές επιφύσεις.</li>
+</ul></div>
+<div class="panel" id="s6-ae" hidden><ul>
+<li>Ναυτία, κεφαλαλγία, ζάλη, κράμπες κάτω άκρων, πόνος στα άκρα.</li>
+<li>Παροδική ορθοστατική υπόταση τις πρώτες ώρες μετά την ένεση.</li>
+<li>Παροδική ήπια υπερασβεστιαιμία, υπερασβεστιουρία, αύξηση ουρικού οξέος.</li>
+<li>Οστεοσάρκωμα σε επίμυες με υψηλές δόσεις. Στον άνθρωπο δεν έχει αποδειχθεί αυξημένος κίνδυνος.</li>
+</ul></div>
+<div class="panel" id="s6-pearl" hidden><ul>
+<li>Μετά το τέλος της αναβολικής θεραπείας ακολουθεί ΥΠΟΧΡΕΩΤΙΚΑ αντιαπορροφητικό φάρμακο (διφωσφονικό ή δενοσουμάμπη): αλλιώς το νέο οστό χάνεται γρήγορα.</li>
+<li>Η σειρά «πρώτα αναβολικό, μετά αντιαπορροφητικό» δίνει μεγαλύτερο κέρδος BMD από την αντίστροφη.</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>PTH</b>: παραθορμόνη</li>
+<li><b>PTHrP</b>: πεπτίδιο σχετιζόμενο με την παραθορμόνη</li>
+<li><b>PTH1R</b>: υποδοχέας τύπου 1 της παραθορμόνης</li>
+<li><b>cAMP</b>: κυκλική μονοφωσφορική αδενοσίνη</li>
+<li><b>ALP</b>: αλκαλική φωσφατάση</li>
+<li><b>VERO</b>: μελέτη σύγκρισης τεριπαρατίδης και ρισεδρονάτης</li>
+<li><b>ONJ/MRONJ</b>: οστεονέκρωση της γνάθου (σχετιζόμενη με φάρμακα)</li>
+<li><b>AFF</b>: άτυπο κάταγμα του μηριαίου</li>
+<li><b>BMD</b>: οστική πυκνότητα</li>
+<li><b>eGFR</b>: εκτιμώμενος ρυθμός σπειραματικής διήθησης</li>
+<li><b>CrCl</b>: κάθαρση κρεατινίνης</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:10" id="s7">
+<h2>7. Φάρμακα διπλής δράσης: αναστολέας της σκληροστίνης (ρομοσοζουμάμπη)</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Ρομοσοζουμάμπη</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/romosozumab" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Romosozumab</div><div class="note">210 mg υποδορίως μία φορά τον μήνα (δύο ενέσεις των 105 mg τη μία μετά την άλλη) για 12 μήνες. Στην Ελλάδα: νοσοκομειακή χρήση.</div></td><td><ul class="brands"><li>EVENITY <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/evenity" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">νοσοκομειακή χρήση</span></li><li>Κυκλοφορεί μόνο 1 σκεύασμα <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/romosozumab" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/evenity" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s7-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s7-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s7-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s7-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s7-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s7-mech" hidden><ul>
+<li>Οστεοκύτταρα → παράγουν σκληροστίνη → η σκληροστίνη δεσμεύει τους συνυποδοχείς LRP5/6 → αναστολή της οδού Wnt → η GSK-3β φωσφορυλιώνει τη β-κατενίνη → πρωτεασωμική αποδόμηση → ↓ σχηματισμός οστού.</li>
+<li>Ρομοσοζουμάμπη → δεσμεύει τη σκληροστίνη → η Wnt δρα ελεύθερα → η β-κατενίνη σταθεροποιείται και περνά στον πυρήνα → μεταγραφή γονιδίων-στόχων → ↑ σχηματισμός οστού (ενεργοποίηση επενδυτικών κυττάρων, ↑ παραγωγή θεμέλιας ουσίας από οστεοβλάστες).</li>
+<li>Ταυτόχρονα: ↑ OPG και ↓ RANKL → ↓ οστική απορρόφηση. Άρα διπλή δράση: αναβολική και αντιαπορροφητική.</li>
+</ul></div>
+<div class="panel" id="s7-ind" hidden><ul>
+<li>Σοβαρή οστεοπόρωση σε μετεμμηνοπαυσιακές γυναίκες με υψηλό κίνδυνο κατάγματος.</li>
+</ul></div>
+<div class="panel" id="s7-ci" hidden><ul>
+<li>Ιστορικό εμφράγματος του μυοκαρδίου ή αγγειακού εγκεφαλικού επεισοδίου.</li>
+<li>Υπασβεστιαιμία. Υπερευαισθησία.</li>
+</ul></div>
+<div class="panel" id="s7-ae" hidden><ul>
+<li>Αύξηση σοβαρών καρδιαγγειακών συμβαμάτων (έμφραγμα, ΑΕΕ) σε σύγκριση με την αλενδρονάτη (μελέτη ARCH).</li>
+<li>Αρθραλγία, ρινοφαρυγγίτιδα, κεφαλαλγία, αντιδράσεις στο σημείο της ένεσης, υπασβεστιαιμία.</li>
+<li>Σπάνια ONJ και άτυπα κατάγματα του μηριαίου.</li>
+</ul></div>
+<div class="panel" id="s7-pearl" hidden><ul>
+<li>Περιορισμένη διάρκεια: 12 μήνες (12 μηνιαίες δόσεις) και μετά υποχρεωτικά αντιαπορροφητικό φάρμακο.</li>
+<li>Το αναβολικό αποτέλεσμα μειώνεται μετά από περίπου 6–12 μήνες, γιατί αυξάνονται αντιρροπιστικά άλλοι αναστολείς της Wnt (π.χ. DKK-1).</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>Wnt</b>: οδός σηματοδότησης Wnt</li>
+<li><b>LRP5/6</b>: πρωτεΐνες 5 και 6 σχετιζόμενες με τον υποδοχέα LDL</li>
+<li><b>GSK-3β</b>: κινάση 3β της συνθάσης του γλυκογόνου</li>
+<li><b>DKK-1</b>: Dickkopf-1</li>
+<li><b>ARCH</b>: μελέτη σύγκρισης ρομοσοζουμάμπης και αλενδρονάτης</li>
+<li><b>ONJ/MRONJ</b>: οστεονέκρωση της γνάθου (σχετιζόμενη με φάρμακα)</li>
+<li><b>AFF</b>: άτυπο κάταγμα του μηριαίου</li>
+<li><b>BMD</b>: οστική πυκνότητα</li>
+<li><b>eGFR</b>: εκτιμώμενος ρυθμός σπειραματικής διήθησης</li>
+<li><b>CrCl</b>: κάθαρση κρεατινίνης</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:250" id="s8">
+<h2>8. Φάρμακα που αποσύρθηκαν την τελευταία 10ετία</h2>
+<div class="scroll"><table><thead><tr><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα Γαληνού</th></tr></thead><tbody>
+<tr><td><b>Καλσιτονίνη (σολομού)</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Calcitonin (salmon synthetic)</div><div class="note">Η καλσιτονίνη του σολομού έχει μεγαλύτερη συγγένεια για τον ανθρώπινο υποδοχέα και μεγαλύτερο χρόνο ημίσειας ζωής από την ανθρώπινη. Ενέσιμη (υποδόρια, ενδομυϊκή, ενδοφλέβια) και ρινικό εκνέφωμα.</div></td><td><ul class="brands"><li>MIACALCIC <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ενέσιμο και ρινικό εκνέφωμα</span></li><li>MIADENIL <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>CALCIPHAR <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ρινικό εκνέφωμα</span></li><li>LIXOCAM <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ρινικό εκνέφωμα</span></li><li>CALTEC <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ρινικό εκνέφωμα</span></li><li>IAMACALCIN <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">ρινικό εκνέφωμα</span></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin/marketing" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+<tr><td><b>Ρανελικό στρόντιο</b> <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/strontium" target="_blank" rel="noopener" title="Η ουσία στον Γαληνό">G</a><div class="inn">Strontium ranelate</div><div class="note">2 g ημερησίως από το στόμα (φακελίσκος). Η κυκλοφορία του PROTELOS σταμάτησε στην Ευρώπη το 2017. Ο Γαληνός διατηρεί την καταχώριση.</div></td><td><ul class="brands"><li>PROTELOS <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/protelos" target="_blank" rel="noopener" title="Γαληνός">G</a> <span class="tag">αποσύρθηκε</span></li><li>Υπήρχε μόνο 1 σκεύασμα <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/strontium" target="_blank" rel="noopener" title="Γαληνός">G</a></li><li>όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/drugs/protelos" target="_blank" rel="noopener" title="Γαληνός">G</a></li></ul></td></tr>
+</tbody></table></div>
+<div class="tabs">
+<button type="button" aria-expanded="false" aria-controls="s8-mech">Μηχανισμός δράσης</button>
+<button type="button" aria-expanded="false" aria-controls="s8-ind">Ενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s8-ci">Αντενδείξεις</button>
+<button type="button" aria-expanded="false" aria-controls="s8-ae">Ανεπιθύμητες ενέργειες</button>
+<button type="button" aria-expanded="false" aria-controls="s8-pearl">Ιδιαιτερότητες</button>
+</div>
+<div class="panel" id="s8-mech" hidden><ul>
+<li>Καλσιτονίνη: ορμόνη των παραθυλακιωδών C κυττάρων του θυρεοειδούς → υποδοχέας συζευγμένος με πρωτεΐνη G στους οστεοκλάστες → συστολή των οστεοκλαστών, ↓ κινητικότητα → ↓ οστική απορρόφηση. Στον νεφρό: ↓ επαναρρόφηση ασβεστίου και φωσφόρου.</li>
+<li>Ρανελικό στρόντιο: το στρόντιο μοιάζει με το ασβέστιο → ενεργοποίηση του CaSR → διαφοροποίηση πρόδρομων οστεοβλαστών σε οστεοβλάστες και ↑ OPG → ↑ σχηματισμός και ↓ απορρόφηση οστού (ασθενής διπλή δράση).</li>
+</ul></div>
+<div class="panel" id="s8-ind" hidden><ul>
+<li>Δεν αποτελούν πλέον θεραπεία της οστεοπόρωσης. Η καλσιτονίνη διατηρεί βραχυχρόνιες ενδείξεις εκτός οστεοπόρωσης.</li>
+</ul></div>
+<div class="panel" id="s8-ci" hidden><ul>
+<li>Καλσιτονίνη: υπερευαισθησία, υπασβεστιαιμία.</li>
+<li>Ρανελικό στρόντιο: φλεβική θρομβοεμβολή, ισχαιμική καρδιοπάθεια, περιφερική αρτηριοπάθεια, εγκεφαλαγγειακή νόσος, μη ρυθμισμένη υπέρταση, φαινυλκετονουρία.</li>
+</ul></div>
+<div class="panel" id="s8-ae" hidden><ul>
+<li>Καλσιτονίνη: ναυτία, έμετος, εξάψεις, δυσάρεστη γεύση, μυρμηκίαση στα χέρια, ρινικός ερεθισμός (εκνέφωμα), τοπική φλεγμονή (ένεση). Μικρή αύξηση του κινδύνου κακοήθειας στη μακροχρόνια χρήση.</li>
+<li>Ρανελικό στρόντιο: έμφραγμα του μυοκαρδίου, φλεβική θρομβοεμβολή, σοβαρές δερματικές αντιδράσεις (DRESS), ναυτία, διάρροια.</li>
+</ul></div>
+<div class="panel" id="s8-pearl" hidden><ul>
+<li>Ερώτηση εξετάσεων: ποια αντιοστεοπορωτικά αποσύρθηκαν; Η καλσιτονίνη (κακοήθειες, χαμηλή αποτελεσματικότητα) και το ρανελικό στρόντιο (καρδιαγγειακός κίνδυνος).</li>
+</ul></div>
+<div class="abbr"><h3>Συντομογραφίες</h3><ul>
+<li><b>CaSR</b>: υποδοχέας ανίχνευσης ασβεστίου</li>
+<li><b>OPG</b>: οστεοπροτεγερίνη</li>
+<li><b>DRESS</b>: φαρμακευτικό εξάνθημα με ηωσινοφιλία και συστηματικά συμπτώματα</li>
+<li><b>ΕΜΑ</b>: Ευρωπαϊκός Οργανισμός Φαρμάκων</li>
+<li><b>IU</b>: διεθνείς μονάδες</li>
+<li><b>BMD</b>: οστική πυκνότητα</li>
+</ul></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint choice" style="--h:100" id="choice">
+<h2>Θεραπευτική στρατηγική στην οστεοπόρωση</h2>
+<h3>Επιδημιολογία και κλινική εικόνα</h3>
+<ul>
+<li>Χρόνια πάθηση που απαιτεί μακροχρόνια θεραπεία.</li>
+<li>Περίπου 200 εκατομμύρια γυναίκες πάσχουν παγκοσμίως.</li>
+<li>Ένα κάταγμα κάθε 30 δευτερόλεπτα.</li>
+<li>1 στους 8 πολίτες της Ευρωπαϊκής Ένωσης άνω των 50 ετών θα υποστεί σπονδυλικό κάταγμα.</li>
+<li>Το 20% των ασθενών με κάταγμα ισχίου πεθαίνει τον πρώτο χρόνο από επιπλοκές.</li>
+<li>Περίπου 1 στις 2 γυναίκες και 1 στους 5 άνδρες θα πάθουν κάταγμα ευθραυστότητας.</li>
+<li>Κλινικά: απουσία προειδοποιητικών συμπτωμάτων και πόνου, απώλεια ύψους, κύφωση, περιοριστική πνευμονική νόσος.</li>
+<li>Συνηθέστερα σημεία καταγμάτων: σπόνδυλοι, ισχίο, κάταγμα Colles (περιφερικό άκρο κερκίδας).</li>
+<li>Ο κίνδυνος κατάγματος 10ετίας υπολογίζεται με το εργαλείο FRAX του Παγκόσμιου Οργανισμού Υγείας.</li>
+</ul>
+<h3>Παθογένεια και φαρμακευτικοί στόχοι</h3>
+<ul>
+<li>Η ισορροπία οστεοβλαστών (σχηματισμός) και οστεοκλαστών (απορρόφηση) διαταράσσεται υπέρ της απορρόφησης.</li>
+<li>Τα φάρμακα χωρίζονται σε δύο ομάδες.</li>
+<li>Αναστολή της οστικής απορρόφησης: ΘΟΥ (θεραπεία ορμονικής υποκατάστασης), SERMs, διφωσφονικά, δενοσουμάμπη.</li>
+<li>Διέγερση της οστικής σύνθεσης: παραθορμόνη (τεριπαρατίδη), αμπαλοπαρατίδη, ρομοσοζουμάμπη (η τελευταία με διπλή δράση).</li>
+<li>Τα γλυκοκορτικοειδή αναστέλλουν τη διαφοροποίηση των οστεοβλαστών, ενώ η καλσιτριόλη και η PTH διεγείρουν τη στρατολόγηση των οστεοκλαστών.</li>
+</ul>
+<h3>Θεραπεία: Βήμα 1ο</h3>
+<ul>
+<li>Αναπλήρωση ασβεστίου και βιταμίνης D.</li>
+<li>Επαρκής πρόσληψη πρωτεΐνης, όχι όμως κατάχρηση.</li>
+<li>Διακοπή του καπνίσματος.</li>
+<li>Αποφυγή κατάχρησης αλκοόλ και καφέ.</li>
+<li>Άσκηση.</li>
+<li>Η ανεπάρκεια βιταμίνης D πρέπει να έχει διορθωθεί πριν από ζολεδρονικό οξύ ή δενοσουμάμπη, ώστε να μην προκληθεί υπασβεστιαιμία.</li>
+</ul>
+<h3>Θεραπεία: Βήμα 2ο, ανάλογα με τον κίνδυνο</h3>
+<ul>
+<li>Υψηλός κίνδυνος (οι περισσότεροι ασθενείς): πρώτη γραμμή τα από του στόματος διφωσφονικά (αλενδρονάτη, ρισεδρονάτη), λόγω αποτελεσματικότητας, χαμηλού κόστους και μακράς εμπειρίας.</li>
+<li>Αν δεν είναι ανεκτά ή αντενδείκνυνται: ζολεδρονικό οξύ ή δενοσουμάμπη.</li>
+<li>Πολύ υψηλός κίνδυνος (πρόσφατο σοβαρό κάταγμα, πολλαπλά σπονδυλικά κατάγματα, πολύ χαμηλή BMD): σύμφωνα με τις οδηγίες NOGG 2024 (National Osteoporosis Guideline Group) έναρξη με αναβολικό φάρμακο (τεριπαρατίδη, αμπαλοπαρατίδη ή ρομοσοζουμάμπη).</li>
+<li>Η μελέτη VERO έδειξε ανωτερότητα της τεριπαρατίδης έναντι της ρισεδρονάτης.</li>
+<li>Νεότερες μετεμμηνοπαυσιακές γυναίκες με κυρίως σπονδυλικό κίνδυνο ή αυξημένο κίνδυνο καρκίνου του μαστού: SERM (ραλοξιφαίνη).</li>
+</ul>
+<h3>Διαδοχική θεραπεία</h3>
+<ul>
+<li>Μετά από τεριπαρατίδη (24 μήνες), αμπαλοπαρατίδη (18 μήνες) ή ρομοσοζουμάμπη (12 μήνες) ακολουθεί υποχρεωτικά αντιαπορροφητικό φάρμακο, ώστε να «κλειδωθεί» το κέρδος.</li>
+<li>Η σειρά «αναβολικό → αντιαπορροφητικό» δίνει μεγαλύτερο κέρδος από την αντίστροφη.</li>
+<li>Η δενοσουμάμπη δεν διακόπτεται ποτέ χωρίς μετάβαση σε διφωσφονικό (συνήθως ζολεδρονικό οξύ περίπου 6 μήνες μετά την τελευταία ένεση).</li>
+</ul>
+<h3>Οστεοπόρωση από γλυκοκορτικοειδή</h3>
+<ul>
+<li>Η πιο συχνή αιτία δευτεροπαθούς οστεοπόρωσης.</li>
+<li>Τα γλυκοκορτικοειδή αναστέλλουν κυρίως τη διαφοροποίηση και τη λειτουργία των οστεοβλαστών και αυξάνουν την απόπτωσή τους.</li>
+<li>Τεριπαρατίδη: ανώτερη της αλενδρονάτης στην αύξηση της BMD και στη μείωση των σπονδυλικών καταγμάτων.</li>
+<li>Δενοσουμάμπη: ανώτερη των διφωσφονικών στην αύξηση της BMD.</li>
+<li>Αλενδρονάτη, ρισεδρονάτη και ζολεδρονικό οξύ έχουν όλα ένδειξη για πρόληψη και θεραπεία.</li>
+<li>Σε πολύ υψηλό κίνδυνο προτιμάται συχνά η τεριπαρατίδη ως πρώτη γραμμή, ώστε να αποκατασταθεί γρήγορα το οστό που χάθηκε.</li>
+</ul>
+<h3>Διάρκεια θεραπείας και «φαρμακευτική διακοπή»</h3>
+<ul>
+<li>Τα διφωσφονικά παραμένουν στον σκελετό για χρόνια.</li>
+<li>Μετά από 5 χρόνια από του στόματος ή 3 χρόνια ενδοφλέβιας θεραπείας γίνεται επανεκτίμηση.</li>
+<li>Σε ασθενείς χαμηλότερου κινδύνου μπορεί να γίνει διακοπή για 1–3 χρόνια.</li>
+<li>Σε όσους παραμένουν σε υψηλό κίνδυνο η θεραπεία συνεχίζεται (στη μελέτη FLEX, όσοι σταμάτησαν την αλενδρονάτη μετά από 5 χρόνια είχαν περισσότερα κλινικά σπονδυλικά κατάγματα).</li>
+<li>Η δενοσουμάμπη, η ΘΟΥ και τα SERMs δεν έχουν παρατεταμένη δράση: η διακοπή τους χρειάζεται άλλο φάρμακο.</li>
+</ul>
+<h3>Συγκεντρωτικός πίνακας επανάληψης</h3>
+<ul>
+<li>Διφωσφονικά: αναστολή οστεοκλαστών, από το στόμα εβδομαδιαία ή ενδοφλέβια ετήσια.</li>
+<li>Κρίσιμο: ONJ και AFF, αυστηροί κανόνες λήψης από το στόμα.</li>
+<li>Δενοσουμάμπη: αναστολή του RANKL, υποδόρια κάθε 6 μήνες.</li>
+<li>Κρίσιμο: πολλαπλά κατάγματα με τη διακοπή, ONJ/AFF, υπασβεστιαιμία.</li>
+<li>Ραλοξιφαίνη: αγωνιστής στο οστό, ανταγωνιστής σε μαστό και μήτρα, ημερησίως από το στόμα.</li>
+<li>Κρίσιμο: φλεβική θρομβοεμβολή.</li>
+<li>Τεριπαρατίδη: αναβολική, υποδόρια ημερησίως.</li>
+<li>Κρίσιμο: μέγιστη διάρκεια 24 μήνες και μετά αντιαπορροφητικό.</li>
+<li>Ρομοσοζουμάμπη: διπλή δράση (αναστολή σκληροστίνης), υποδόρια μηνιαίως.</li>
+<li>Κρίσιμο: μέγιστη διάρκεια 12 μήνες, καρδιαγγειακός κίνδυνος, μετά αντιαπορροφητικό.</li>
+</ul>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section class="tint" style="--h:50" id="practice">
+<h2>Τι πρέπει να ξέρει ο γιατρός: πρακτικές οδηγίες και προσοχή</h2>
+<h3>Πριν από την έναρξη κάθε θεραπείας</h3>
+<ul>
+<li>Μέτρηση ασβεστίου, κρεατινίνης (eGFR), 25-υδροξυβιταμίνης D και αλκαλικής φωσφατάσης.</li>
+<li>Διόρθωση υπασβεστιαιμίας και ανεπάρκειας βιταμίνης D.</li>
+<li>Οδοντιατρικός έλεγχος και ολοκλήρωση των απαραίτητων οδοντιατρικών εργασιών πριν από διφωσφονικά, δενοσουμάμπη και ρομοσοζουμάμπη.</li>
+<li>Αναζήτηση δευτεροπαθών αιτίων (γλυκοκορτικοειδή, υπερπαραθυρεοειδισμός, υπογοναδισμός, δυσαπορρόφηση, πολλαπλό μυέλωμα).</li>
+</ul>
+<h3>Σωστή λήψη των διφωσφονικών από το στόμα</h3>
+<ul>
+<li>Το πρωί μόλις ξυπνήσει, με άδειο στομάχι, μόνο με ένα γεμάτο ποτήρι νερό βρύσης (όχι γάλα, καφέ, χυμό ή μεταλλικό νερό).</li>
+<li>Ο ασθενής μένει όρθιος ή καθιστός και δεν τρώει, δεν πίνει και δεν παίρνει άλλο φάρμακο για 30 λεπτά (αλενδρονάτη, ρισεδρονάτη) ή 60 λεπτά (ιβανδρονάτη).</li>
+<li>Το δισκίο καταπίνεται ολόκληρο.</li>
+<li>Το ασβέστιο, ο σίδηρος και τα αντιόξινα λαμβάνονται αργότερα μέσα στην ημέρα.</li>
+<li>Νέα δυσφαγία, πόνος στην κατάποση ή καύσος οδηγούν σε διακοπή.</li>
+</ul>
+<h3>Παραλειφθείσες δόσεις</h3>
+<ul>
+<li>Αλενδρονάτη 70 mg: το επόμενο πρωί που το θυμηθεί ο ασθενής, και μετά επιστροφή στην ίδια ημέρα της εβδομάδας.</li>
+<li>Ποτέ δύο δισκία την ίδια ημέρα.</li>
+<li>Δενοσουμάμπη: η ένεση γίνεται το συντομότερο δυνατό και μετά κάθε 6 μήνες από τη νέα ημερομηνία.</li>
+<li>Η καθυστέρηση είναι επικίνδυνη (rebound απορρόφηση).</li>
+</ul>
+<h3>Νεφρική λειτουργία</h3>
+<ul>
+<li>Διφωσφονικά: δεν συνιστώνται με CrCl &lt; 30–35 ml/min.</li>
+<li>Για το ζολεδρονικό οξύ απαιτούνται ενυδάτωση, έγχυση σε τουλάχιστον 15 λεπτά και κρεατινίνη πριν από κάθε έγχυση.</li>
+<li>Δενοσουμάμπη: δεν χρειάζεται προσαρμογή δόσης, αλλά σε CrCl &lt; 30 ml/min ή αιμοκάθαρση ο κίνδυνος υπασβεστιαιμίας είναι μεγάλος → μέτρηση ασβεστίου πριν και 1–2 εβδομάδες μετά την ένεση.</li>
+<li>Τεριπαρατίδη και αμπαλοπαρατίδη: αντένδειξη στη σοβαρή νεφρική ανεπάρκεια.</li>
+</ul>
+<h3>Σημεία συναγερμού κατά τη θεραπεία</h3>
+<ul>
+<li>Πόνος στον μηρό ή στη βουβωνική χώρα → απεικόνιση και των δύο μηριαίων (άτυπο κάταγμα).</li>
+<li>Πόνος, οίδημα, κινητό δόντι ή εκτεθειμένο οστό στη γνάθο → οστεονέκρωση της γνάθου.</li>
+<li>Ωτικά συμπτώματα ή χρόνια ωτίτιδα υπό δενοσουμάμπη ή διφωσφονικό → οστεονέκρωση του έξω ακουστικού πόρου.</li>
+<li>Πόνος ή ερυθρότητα του οφθαλμού μετά από ζολεδρονικό → ραγοειδίτιδα.</li>
+<li>Πόνος στο θώρακα ή νευρολογικά συμπτώματα υπό ρομοσοζουμάμπη → διακοπή.</li>
+<li>Οίδημα ή πόνος στη γαστροκνημία ή δύσπνοια υπό SERM ή ΘΟΥ → φλεβική θρομβοεμβολή.</li>
+</ul>
+<h3>Ενέσιμα και ενδοφλέβια</h3>
+<ul>
+<li>Ζολεδρονικό οξύ: η γριππώδης αντίδραση τις πρώτες 3 ημέρες μετά την πρώτη έγχυση είναι συχνή και υποχωρεί με παρακεταμόλη.</li>
+<li>Τεριπαρατίδη: οι πρώτες ενέσεις με τον ασθενή καθιστό ή ξαπλωμένο (ορθοστατική υπόταση), το ασβέστιο ορού μετριέται τουλάχιστον 16 ώρες μετά την ένεση, και η πένα φυλάσσεται στο ψυγείο.</li>
+<li>Δενοσουμάμπη: κάρτα υπενθύμισης ασθενούς, η ημερομηνία της επόμενης δόσης γράφεται πάντα.</li>
+<li>Ρομοσοζουμάμπη: δύο ενέσεις των 105 mg διαδοχικά, κάθε μήνα, για 12 μήνες.</li>
+</ul>
+<h3>Αλληλεπιδράσεις που πρέπει να θυμόμαστε</h3>
+<ul>
+<li>Ασβέστιο, σίδηρος, μαγνήσιο και αντιόξινα → δεσμεύουν τα διφωσφονικά και το στρόντιο.</li>
+<li>Αλενδρονάτη μαζί με τεριπαρατίδη → μικρότερο αναβολικό αποτέλεσμα.</li>
+<li>Μη στεροειδή αντιφλεγμονώδη και ασπιρίνη → περισσότερος ερεθισμός του ανώτερου πεπτικού με τα διφωσφονικά από το στόμα.</li>
+<li>Τεριπαρατίδη και διγοξίνη → κίνδυνος τοξικότητας από δακτυλίτιδα λόγω υπερασβεστιαιμίας.</li>
+<li>Καλσιτονίνη και λίθιο → μείωση της λιθιαιμίας.</li>
+<li>Δενοσουμάμπη και XGEVA (ή άλλο σκεύασμα με δενοσουμάμπη) → ποτέ μαζί.</li>
+<li>ACLASTA και ZOMETA → ίδια ουσία, ποτέ μαζί.</li>
+</ul>
+<h3>Χειρουργείο, ακινητοποίηση, κάταγμα</h3>
+<ul>
+<li>SERM και ΘΟΥ: διακοπή πριν από παρατεταμένη ακινητοποίηση (θρομβοεμβολικός κίνδυνος).</li>
+<li>Μετά από κάταγμα ισχίου: το ζολεδρονικό οξύ δίνεται τουλάχιστον 2 εβδομάδες μετά τη χειρουργική αποκατάσταση.</li>
+<li>Τα αντιοστεοπορωτικά δεν καθυστερούν σημαντικά την πώρωση των καταγμάτων και δεν διακόπτονται χωρίς λόγο μετά από κάταγμα.</li>
+</ul>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+<section id="brands" style="border-top:2px solid var(--line);margin-top:40px;padding-top:16px">
+<h2>Ευρετήριο εμπορικών σκευασμάτων</h2>
+<div class="scroll"><table><thead><tr><th>Κατηγορία</th><th>Δραστική ουσία</th><th>Εμπορικά σκευάσματα</th></tr></thead><tbody>
+<tr><td class="bi-c"><a href="#s1">1. Βασική θεραπεία: ασβέστιο και βιταμίνη D</a></td><td><b>Ανθρακικό ασβέστιο (σε συνδυασμό με βιταμίνη D3)</b><div class="inn">Calcium carbonate + Colecalciferol</div></td><td class="bi-b">CALCIORAL D3, CALCIFORM D3, MEGACALCIUM-D, CADELIUS, CALDE-VIT, NATECAL D3, IDEOS, ORBICAL D3, CALVIDIN, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcium" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s1">1. Βασική θεραπεία: ασβέστιο και βιταμίνη D</a></td><td><b>Χοληκαλσιφερόλη (βιταμίνη D3)</b><div class="inn">Colecalciferol</div></td><td class="bi-b">DEFILL, LECALCIF, FOSAVANCE, ADROVANCE, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/vitamin-d3" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s2">2. Θεραπεία ορμονικής υποκατάστασης (ΘΟΥ)</a></td><td><b>Οιστραδιόλη</b><div class="inn">Estradiol</div></td><td class="bi-b">ESTRADOT, OESTROGEL, DERMESTRIL, ESTRAMON, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/estradiol" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s3">3. Εκλεκτικοί τροποποιητές των οιστρογονικών υποδοχέων (SERMs)</a></td><td><b>Ραλοξιφαίνη</b><div class="inn">Raloxifene</div></td><td class="bi-b">EVISTA, RAZYLAN, OSTIRAL, RATNAL, RALOXIFENE/TEVA, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/raloxifene" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s3">3. Εκλεκτικοί τροποποιητές των οιστρογονικών υποδοχέων (SERMs)</a></td><td><b>Βαζεδοξιφένη</b><div class="inn">Bazedoxifene</div></td><td class="bi-b">CONBRIZA, Κυκλοφορεί μόνο 1 σκεύασμα, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/bazedoxifene" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s4">4. Διφωσφονικά</a></td><td><b>Αλενδρονικό οξύ (αλενδρονάτη)</b><div class="inn">Alendronic acid</div></td><td class="bi-b">FOSAMAX, FOSALEN, RIDON, ALEFOS, LOZOSTUN, ZULGAR, BINOSTO, BONASOL, FOSAVANCE, ADROVANCE, COVED, DIFOCIDOL, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/alendronic" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s4">4. Διφωσφονικά</a></td><td><b>Ρισεδρονικό οξύ (ρισεδρονάτη)</b><div class="inn">Risedronic acid</div></td><td class="bi-b">ACTONEL, MOTIVUS, BONMATE, CLADRONATE, ACTORID, OSTORIS, RISELIB, RISEDRONATE+CALCIUM CARBONATE+VIT D3, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/risedronic" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s4">4. Διφωσφονικά</a></td><td><b>Ιβανδρονικό οξύ (ιβανδρονάτη)</b><div class="inn">Ibandronic acid</div></td><td class="bi-b">BONVIVA, AXIBAL, IBANATE, SEDROPOR, VOLIRAN, OZILEN, NUCODRAN, BONDRONAT, IASIBON, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/ibandronic" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s4">4. Διφωσφονικά</a></td><td><b>Ζολεδρονικό οξύ (ζολεδρονάτη)</b><div class="inn">Zoledronic acid</div></td><td class="bi-b">ACLASTA, ZOLMESTAT, ZOLEDRONIC ACID/TEVA, ZOLEDRONIC ACID/HOSPIRA, ZOMETA, ZOXALON, NORDELOZ, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/zolendronic-acid" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s4">4. Διφωσφονικά</a></td><td><b>Παμιδρονικό οξύ (παμιδρονάτη)</b><div class="inn">Pamidronic acid</div></td><td class="bi-b">PAMIDRONATE/HOSPIRA, PAMERIT, Κυκλοφορούν μόνο 2 σκευάσματα, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/atccodes/M05BA03" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s5">5. Αναστολείς του RANKL (δενοσουμάμπη)</a></td><td><b>Δενοσουμάμπη</b><div class="inn">Denosumab</div></td><td class="bi-b">PROLIA, JUBBONTI, STOBOCLO, OSVYRTI, PONLIMSI, EVFRAXY, KEFDENSIS, OBODENCE, XGEVA, WYOST, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/denosumab" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s6">6. Αναβολικά: ανάλογα της παραθορμόνης (PTH) και του PTHrP</a></td><td><b>Τεριπαρατίδη</b><div class="inn">Teriparatide</div></td><td class="bi-b">FORSTEO, MOVYMIA, SONDELBAY, TETRIDAR, OSTEOREL, BONAMENS, TERIPARATIDE/TEVA, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/teriparatide" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s6">6. Αναβολικά: ανάλογα της παραθορμόνης (PTH) και του PTHrP</a></td><td><b>Αμπαλοπαρατίδη</b><div class="inn">Abaloparatide</div></td><td class="bi-b">ELADYNOS, Κυκλοφορεί μόνο 1 σκεύασμα, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/abaloparatide" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s7">7. Φάρμακα διπλής δράσης: αναστολέας της σκληροστίνης (ρομοσοζουμάμπη)</a></td><td><b>Ρομοσοζουμάμπη</b><div class="inn">Romosozumab</div></td><td class="bi-b">EVENITY, Κυκλοφορεί μόνο 1 σκεύασμα, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/romosozumab" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s8">8. Φάρμακα που αποσύρθηκαν την τελευταία 10ετία</a></td><td><b>Καλσιτονίνη (σολομού)</b><div class="inn">Calcitonin (salmon synthetic)</div></td><td class="bi-b">MIACALCIC, MIADENIL, CALCIPHAR, LIXOCAM, CALTEC, IAMACALCIN, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/calcitonin" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+<tr><td class="bi-c"><a href="#s8">8. Φάρμακα που αποσύρθηκαν την τελευταία 10ετία</a></td><td><b>Ρανελικό στρόντιο</b><div class="inn">Strontium ranelate</div></td><td class="bi-b">PROTELOS, Υπήρχε μόνο 1 σκεύασμα, όλα τα σκευάσματα στον Γαληνό <a class="g" href="https://www.galinos.gr/web/drugs/main/substances/strontium" target="_blank" rel="noopener" title="Γαληνός">G</a></td></tr>
+</tbody></table></div>
+<p class="top"><a href="#top">Επιστροφή στις κατηγορίες ↑</a></p></section>
+</main>
+<script>
+document.querySelectorAll('.tabs').forEach(t=>t.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const sec=b.closest('section');const open=b.getAttribute('aria-expanded')!=='true';
+sec.querySelectorAll('.tabs button').forEach(x=>{x.setAttribute('aria-expanded','false');document.getElementById(x.getAttribute('aria-controls')).hidden=true});
+if(open){b.setAttribute('aria-expanded','true');document.getElementById(b.getAttribute('aria-controls')).hidden=false}}));
+</script>
+<script src="../image_zoom_viewer.js"></script>
+</body></html>
