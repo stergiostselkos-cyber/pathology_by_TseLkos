@@ -32,6 +32,7 @@
   // Local Storage State
   let userAnswers = {};
   let starredSet = new Set();
+  let pendingSelections = new Set();
 
   function getStorageKeys() {
     return {
@@ -150,6 +151,10 @@
 
   const questionStem = document.getElementById('questionStem');
   const optionsList = document.getElementById('optionsList');
+
+  const submitActionBar = document.getElementById('submitActionBar');
+  const checkAnswerBtn = document.getElementById('checkAnswerBtn');
+  const clearSelectionBtn = document.getElementById('clearSelectionBtn');
 
   const feedbackBox = document.getElementById('feedbackBox');
   const feedbackIcon = document.getElementById('feedbackIcon');
@@ -347,6 +352,8 @@
       currentChapter = 'all';
       if (chapterSelect) chapterSelect.value = 'all';
       currentIndex = 0;
+      pendingSelections.clear();
+      showExplanationForced = false;
       loadBankData();
       populateChapters();
       applyFilters();
@@ -355,6 +362,8 @@
     // 2. Chapter Change
     chapterSelect.addEventListener('change', (e) => {
       currentChapter = e.target.value;
+      pendingSelections.clear();
+      showExplanationForced = false;
       applyFilters();
     });
 
@@ -364,7 +373,9 @@
       const foundIdx = filteredQuestions.findIndex(q => (q._uid === val || String(q.id) === val));
       if (foundIdx !== -1) {
         currentIndex = foundIdx;
-        renderQuestion();
+        pendingSelections.clear();
+        showExplanationForced = false;
+        renderCurrentQuestion();
       }
     });
 
@@ -484,6 +495,21 @@
 
     starBtn.addEventListener('click', toggleCurrentStarred);
 
+    // Submit Answer & Clear Buttons
+    if (checkAnswerBtn) {
+      checkAnswerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        submitCurrentAnswer();
+      });
+    }
+    if (clearSelectionBtn) {
+      clearSelectionBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pendingSelections.clear();
+        updatePendingUi();
+      });
+    }
+
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -493,18 +519,30 @@
       } else if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
         navigate(1);
+      } else if (e.key === 'Enter') {
+        if (filteredQuestions.length > 0) {
+          const q = filteredQuestions[currentIndex];
+          const ansKey = q ? q.id : null;
+          const answerState = ansKey && (userAnswers[ansKey] || (q._uid && userAnswers[q._uid]));
+          if (!answerState || !answerState.completed) {
+            if (pendingSelections.size > 0) {
+              e.preventDefault();
+              submitCurrentAnswer();
+            }
+          }
+        }
       } else if (e.key.toLowerCase() === 's') {
         toggleCurrentStarred();
       } else if (e.key.toLowerCase() === 'e') {
         if (toggleExpBtn) toggleExpBtn.click();
       } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
         const optIdx = parseInt(e.key, 10) - 1;
-        selectOption(optIdx);
+        toggleOptionSelection(optIdx);
       } else {
         const char = e.key.toUpperCase();
         const letterMap = { 'A': 0, 'Α': 0, 'B': 1, 'Β': 1, 'C': 2, 'Γ': 2, 'D': 3, 'Δ': 3, 'E': 4, 'Ε': 4 };
         if (char in letterMap) {
-          selectOption(letterMap[char]);
+          toggleOptionSelection(letterMap[char]);
         }
       }
     });
@@ -514,6 +552,7 @@
     const bankName = (bankSelect.options[bankSelect.selectedIndex] || {}).textContent || '';
     if (confirm(`Θέλετε να μηδενίσετε το σκορ και τις απαντήσεις σας στην τράπεζα:\n«${bankName}»;`)) {
       userAnswers = {};
+      pendingSelections.clear();
       saveAnswers();
       renderCurrentQuestion();
       updateStats();
@@ -572,6 +611,7 @@
     });
 
     currentIndex = 0;
+    pendingSelections.clear();
     renderCurrentQuestion();
     populateQuestionSelect();
     updateStats();
@@ -596,6 +636,8 @@
       qChapterBadge.textContent = 'Δεν βρέθηκαν ερωτήσεις';
       questionStem.textContent = 'Δεν υπάρχει ερώτηση με τα επιλεγμένα κριτήρια ή φίλτρα.';
       optionsList.innerHTML = '';
+      if (submitActionBar) submitActionBar.style.display = 'none';
+      pendingSelections.clear();
       feedbackBox.className = 'feedback-box';
       explanationPanel.className = 'patho-explanation-panel';
       prevBtn.disabled = true;
@@ -663,6 +705,15 @@
     const hasAnswered = answerState.completed;
     const optLetters = ['Α', 'Β', 'Γ', 'Δ', 'Ε'];
 
+    // Submit Action Bar visibility & Check Button state
+    if (hasAnswered) {
+      pendingSelections.clear();
+      if (submitActionBar) submitActionBar.style.display = 'none';
+    } else {
+      if (submitActionBar) submitActionBar.style.display = 'flex';
+      updateCheckButtonUi();
+    }
+
     const GREEK_UPPER_MAP = {
       'α': 'Α', 'ά': 'Ά', 'β': 'Β', 'γ': 'Γ', 'δ': 'Δ', 'ε': 'Ε', 'έ': 'Έ',
       'ζ': 'Ζ', 'η': 'Η', 'ή': 'Ή', 'θ': 'Θ', 'ι': 'Ι', 'ί': 'Ί', 'ϊ': 'Ϊ', 'ΐ': 'Ϊ',
@@ -706,24 +757,27 @@
       iconBox.className = 'option-status-icon';
 
       // Status marking
-      const isSelected = answerState.selected.includes(idx);
-      const isActuallyCorrect = correctIndices.includes(idx);
-
       if (hasAnswered) {
+        const isSelected = answerState.selected.includes(idx);
+        const isActuallyCorrect = correctIndices.includes(idx);
+
         if (isActuallyCorrect) {
-          btn.classList.add('correct');
-          iconBox.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+          if (isSelected) {
+            btn.classList.add('correct');
+            iconBox.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+          } else {
+            btn.classList.add('missed-correct');
+            iconBox.innerHTML = '<i class="fa-regular fa-circle-check" title="Σωστή πρόταση (δεν επιλέχθηκε)"></i>';
+          }
         } else if (isSelected) {
           btn.classList.add('incorrect');
           iconBox.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
         }
-      } else if (isSelected) {
-        if (isActuallyCorrect) {
-          btn.classList.add('correct');
-          iconBox.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-        } else {
-          btn.classList.add('incorrect');
-          iconBox.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+      } else {
+        // Pending state before check (neutral blue selection, zero spoilers)
+        if (pendingSelections.has(idx)) {
+          btn.classList.add('selected');
+          iconBox.innerHTML = '<i class="fa-solid fa-check"></i>';
         }
       }
 
@@ -732,7 +786,9 @@
       btn.appendChild(iconBox);
 
       btn.addEventListener('click', () => {
-        selectOption(idx);
+        if (!hasAnswered) {
+          toggleOptionSelection(idx);
+        }
       });
 
       optionsList.appendChild(btn);
@@ -745,20 +801,16 @@
         feedbackBox.className = 'feedback-box correct';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         feedbackTitle.textContent = 'Σωστή Απάντηση! Συγχαρητήρια!';
-        feedbackText.innerHTML = (isMultiChoice ? `ΟΚ! Εντοπίστηκαν επιτυχώς όλες οι ορθές προτάσεις <strong>(${correctLettersStr})</strong>.` : `ΟΚ! Η ορθή επιλογή είναι η <strong>(${correctLettersStr})</strong>.`) + '<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>';
+        feedbackText.innerHTML = (correctIndices.length > 1 ? `ΟΚ! Εντοπίστηκαν επιτυχώς όλες οι ορθές προτάσεις <strong>(${correctLettersStr})</strong>.` : `ΟΚ! Η ορθή επιλογή είναι η <strong>(${correctLettersStr})</strong>.`) + '<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>';
       } else {
         feedbackBox.className = 'feedback-box incorrect';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
-        feedbackTitle.textContent = 'Λανθασμένη Επιλογή';
-        feedbackText.innerHTML = `Η σωστή απάντηση είναι η επιλογή <strong>(${correctLettersStr})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
+        feedbackTitle.textContent = 'Λανθασμένη Απάντηση';
+        feedbackText.innerHTML = `Ορθές επιλογές ήταν: <strong>(${correctLettersStr})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
       }
-    } else if (answerState.selected && answerState.selected.length > 0) {
-      feedbackBox.className = 'feedback-box in-progress';
-      feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-      feedbackTitle.textContent = 'Σωστή επιλογή!';
-      feedbackText.innerHTML = 'Η πρόταση είναι ορθή. Υπάρχει και άλλη σωστή απάντηση σε αυτή την ερώτηση — συνεχίστε με την επόμενη!';
     } else {
       feedbackBox.className = 'feedback-box';
+      feedbackText.innerHTML = '';
     }
 
     // Explanation Panel (Displays analysis whenever question is answered OR forced)
@@ -796,56 +848,87 @@
     document.querySelectorAll('#lastBtn, #lastBtnBottom, .btn-nav-last').forEach(b => b.disabled = isLast);
   }
 
-  // Handle Option Click
-  function selectOption(selectedIndex) {
+  // Toggle selection on option click (before submitting)
+  function toggleOptionSelection(idx) {
     if (filteredQuestions.length === 0) return;
     const q = filteredQuestions[currentIndex];
-    const correctIndices = getCorrectIndices(q);
-    const isMultiChoice = correctIndices.length > 1;
-
     const ansKey = q.id;
-    let ans = userAnswers[ansKey] || (q._uid && userAnswers[q._uid]) || { selected: [], completed: false, isCorrect: false, timestamp: Date.now() };
+    const answerState = userAnswers[ansKey] || (q._uid && userAnswers[q._uid]) || { completed: false };
+    if (answerState.completed) return;
 
-    // If already finished/completed, do not allow further clicks unless retried
-    if (ans.completed) return;
-
-    // If already selected in this in-progress attempt, ignore
-    if (ans.selected.includes(selectedIndex)) return;
-
-    ans.selected.push(selectedIndex);
-
-    if (!isMultiChoice) {
-      // Single Choice: complete immediately
-      ans.completed = true;
-      ans.isCorrect = (selectedIndex === correctIndices[0]);
+    if (pendingSelections.has(idx)) {
+      pendingSelections.delete(idx);
     } else {
-      // Multi Choice:
-      const clickedIsIncorrect = !correctIndices.includes(selectedIndex);
-      if (clickedIsIncorrect) {
-        // User clicked an incorrect option -> fails immediately and reveals answers
-        ans.completed = true;
-        ans.isCorrect = false;
-      } else {
-        // User clicked a correct option: check if ALL correct options have now been answered
-        const hasAllCorrect = correctIndices.every(i => ans.selected.includes(i));
-        if (hasAllCorrect) {
-          ans.completed = true;
-          ans.isCorrect = true;
-        } else {
-          ans.completed = false;
-          ans.isCorrect = false;
-        }
-      }
+      pendingSelections.add(idx);
     }
+    updatePendingUi();
+  }
 
-    ans.timestamp = Date.now();
+  function updatePendingUi() {
+    const buttons = optionsList.querySelectorAll('.option-btn');
+    buttons.forEach((btn, idx) => {
+      const iconBox = btn.querySelector('.option-status-icon');
+      if (pendingSelections.has(idx)) {
+        btn.classList.add('selected');
+        if (iconBox) iconBox.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else {
+        btn.classList.remove('selected');
+        if (iconBox) iconBox.innerHTML = '';
+      }
+    });
+    updateCheckButtonUi();
+  }
+
+  function updateCheckButtonUi() {
+    if (!checkAnswerBtn) return;
+    if (pendingSelections.size > 0) {
+      checkAnswerBtn.disabled = false;
+      const countText = pendingSelections.size > 1 ? ` (${pendingSelections.size})` : '';
+      checkAnswerBtn.innerHTML = `<i class="fa-solid fa-clipboard-check"></i> <span>Έλεγχος Απάντησης${countText}</span>`;
+      if (clearSelectionBtn) clearSelectionBtn.style.display = 'inline-flex';
+    } else {
+      checkAnswerBtn.disabled = true;
+      checkAnswerBtn.innerHTML = '<i class="fa-solid fa-clipboard-check"></i> <span>Έλεγχος Απάντησης</span>';
+      if (clearSelectionBtn) clearSelectionBtn.style.display = 'none';
+    }
+  }
+
+  function submitCurrentAnswer() {
+    if (filteredQuestions.length === 0) return;
+    if (pendingSelections.size === 0) return;
+
+    const q = filteredQuestions[currentIndex];
+    const ansKey = q.id;
+    const answerState = userAnswers[ansKey] || (q._uid && userAnswers[q._uid]) || { completed: false };
+    if (answerState.completed) return;
+
+    const correctIndices = getCorrectIndices(q);
+    const selected = Array.from(pendingSelections).sort((a, b) => a - b);
+
+    // Correct if all correct options are selected AND no incorrect options are selected
+    const allCorrectChosen = correctIndices.every(i => selected.includes(i));
+    const noWrongChosen = selected.every(i => correctIndices.includes(i));
+    const isFullyCorrect = allCorrectChosen && noWrongChosen;
+
+    const ans = {
+      selected: selected,
+      completed: true,
+      isCorrect: isFullyCorrect,
+      timestamp: Date.now()
+    };
+
     userAnswers[ansKey] = ans;
     if (q._uid && q._uid !== q.id) {
       userAnswers[q._uid] = ans;
     }
+    pendingSelections.clear();
     saveAnswers();
     renderCurrentQuestion();
     updateStats();
+  }
+
+  function selectOption(idx) {
+    toggleOptionSelection(idx);
   }
 
   // Retry Current Question
@@ -862,12 +945,13 @@
       delete userAnswers[q._uid];
       didDelete = true;
     }
+    pendingSelections.clear();
     if (didDelete) {
       saveAnswers();
-      showExplanationForced = false;
-      renderCurrentQuestion();
-      updateStats();
     }
+    showExplanationForced = false;
+    renderCurrentQuestion();
+    updateStats();
   };
 
   // Navigation (With smooth return to question top)
@@ -875,6 +959,7 @@
     const nextIdx = currentIndex + delta;
     if (nextIdx >= 0 && nextIdx < filteredQuestions.length) {
       currentIndex = nextIdx;
+      pendingSelections.clear();
       showExplanationForced = false;
       renderCurrentQuestion();
       window.scrollToQuestionTop();
@@ -885,6 +970,7 @@
     if (filteredQuestions.length === 0) return;
     if (targetIdx >= 0 && targetIdx < filteredQuestions.length) {
       currentIndex = targetIdx;
+      pendingSelections.clear();
       showExplanationForced = false;
       renderCurrentQuestion();
       window.scrollToQuestionTop();
@@ -898,6 +984,7 @@
       rand = (currentIndex + 1) % filteredQuestions.length;
     }
     currentIndex = rand;
+    pendingSelections.clear();
     showExplanationForced = false;
     renderCurrentQuestion();
     window.scrollToQuestionTop();
@@ -924,6 +1011,7 @@
 
     if (targetIdx !== -1) {
       currentIndex = targetIdx;
+      pendingSelections.clear();
       showExplanationForced = false;
       renderCurrentQuestion();
     }

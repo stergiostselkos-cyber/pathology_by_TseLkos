@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pathology_mcq.css?v=20261114.nomulti">
+  <link rel="stylesheet" href="pathology_mcq.css?v=20261114.btncheck">
   <link rel="stylesheet" href="image_zoom_viewer.css?v=20261112.fix4">
   <!-- MathJax for LaTeX Rendering -->
   <script>
@@ -177,6 +177,18 @@
         <!-- Dynamically rendered -->
       </div>
 
+      <!-- Submit Action Bar (Check Answer & Clear) -->
+      <div class="submit-action-bar" id="submitActionBar">
+        <button type="button" class="btn-check-answer" id="checkAnswerBtn" disabled>
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>Έλεγχος Απάντησης</span>
+        </button>
+        <button type="button" class="btn-clear-selection" id="clearSelectionBtn" style="display: none;">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Καθαρισμός</span>
+        </button>
+      </div>
+
       <!-- Instant Feedback Box -->
       <div class="feedback-box" id="feedbackBox">
         <div class="feedback-icon" id="feedbackIcon">
@@ -325,7 +337,7 @@
   <script src="farmakologia_doatap.js?v=20261113"></script>
   <script src="fysiologia_doatap.js?v=20261114"></script>
   <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261114.nomulti"></script>
+  <script src="pathology_mcq_app.js?v=20261114.btncheck"></script>
   <script src="image_zoom_viewer.js"></script>
 </body>
 </html>
