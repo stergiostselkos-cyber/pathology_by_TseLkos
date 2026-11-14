@@ -680,7 +680,7 @@ function setupEventListeners() {
     // Back to menu buttons
     document.querySelectorAll('.back-to-menu-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = '../index.html#pedia';
         });
     });
 
