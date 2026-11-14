@@ -807,6 +807,107 @@
             font-weight: 500;
         }
 
+        
+        /* PATHOLOGY HERO STYLES */
+        .pathology-banner {
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.75), rgba(219, 234, 254, 0.75));
+            border: 2px solid rgba(2, 132, 199, 0.3);
+            border-radius: 20px;
+            padding: 24px 30px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .pathology-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .pathology-banner-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+        }
+        .pathology-banner-info h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #0369a1;
+            margin-bottom: 4px;
+        }
+        .pathology-banner-info p {
+            font-size: 0.95rem;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+        .pathology-banner-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .patho-badge {
+            background: rgba(2, 132, 199, 0.12);
+            color: #0284c7;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* TOOLS HERO STYLES */
+        .tools-banner {
+            background: linear-gradient(135deg, rgba(243, 232, 255, 0.75), rgba(237, 233, 254, 0.75));
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 24px 30px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .tools-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .tools-banner-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+        }
+        .tools-banner-info h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #5b21b6;
+            margin-bottom: 4px;
+        }
+        .tools-banner-info p {
+            font-size: 0.95rem;
+            color: #4c1d95;
+            font-weight: 500;
+        }
+
         /* FOOTER */
         footer {
             text-align: center;
@@ -952,6 +1053,24 @@
         <!-- PANEL 1: ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS -->
         <!-- ============================================================ -->
         <div id="panel-patho" class="tab-panel active" role="tabpanel">
+            
+            <div class="pathology-banner">
+                <div class="pathology-banner-left">
+                    <div class="pathology-banner-icon">
+                        <i class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <div class="pathology-banner-info">
+                        <h2>Παθολογία Quiz By TseLkos</h2>
+                        <p>Η κορυφαία ενότητα Παθολογίας με Θέματα Ανάπτυξης, 6 Τράπεζες MCQ και το Νέο Βιβλίο 2026.</p>
+                    </div>
+                </div>
+                <div class="pathology-banner-badges">
+                    <span class="patho-badge"><i class="fa-solid fa-pen-nib"></i> 609 Ανάπτυξη</span>
+                    <span class="patho-badge"><i class="fa-solid fa-list-check"></i> 8.139+ MCQs</span>
+                    <span class="patho-badge"><i class="fa-solid fa-book-medical"></i> Flashcards 2026</span>
+                </div>
+            </div>
+
             <div class="grid">
                 
                 <!-- 1. Θέματα Ανάπτυξης -->
@@ -1081,6 +1200,19 @@
         <!-- PANEL 4: ΚΛΙΝΙΚΑ ΕΡΓΑΛΕΙΑ & ΒΙΒΛΙΟΘΗΚΗ (Φάρμακα με Επιλογή) -->
         <!-- ============================================================ -->
         <div id="panel-tools" class="tab-panel" role="tabpanel">
+            
+            <div class="tools-banner">
+                <div class="tools-banner-left">
+                    <div class="tools-banner-icon">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                    </div>
+                    <div class="tools-banner-info">
+                        <h2>Κλινικά Εργαλεία &amp; Βιβλιοθήκη By TseLkos</h2>
+                        <p>Οδηγοί κλινικής φαρμακολογίας, πραγματικά κλινικά σενάρια, ιατρική βιβλιοθήκη PDF και διεθνείς πηγές.</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid">
                 
                 <!-- 1. Φάρμακα & Ουσίες (ΜΕ ΠΛΗΡΗ ΕΠΙΛΟΓΗ ΚΑΤΗΓΟΡΙΑΣ) -->
