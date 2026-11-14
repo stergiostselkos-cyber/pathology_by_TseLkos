@@ -628,9 +628,10 @@
     } else if (uncertainEl) {
       uncertainEl.style.display = 'none';
     }
-    // Badges
-    qTypeBadge.textContent = isMultiChoice ? `Πολλαπλών Επιλογών (${correctIndices.length} σωστές)` : 'Μονής Επιλογής';
-    qTypeBadge.className = isMultiChoice ? 'q-type-badge multi' : 'q-type-badge';
+    // Badges (qTypeBadge hidden so it doesn't give away how many options are correct)
+    if (qTypeBadge) {
+      qTypeBadge.style.display = 'none';
+    }
     const displayId = (currentBank === 'larnaka') ? `${q._globalIndex} / ${allQuestions.length}` : `#${q.id || q._globalIndex}`;
     qNumberBadge.textContent = `Ερώτηση ${displayId} (α/α: ${currentIndex + 1} / ${totalInFilter})`;
     qChapterBadge.textContent = getQuestionChapter(q);
@@ -657,8 +658,8 @@
 
     // Render options
     optionsList.innerHTML = '';
-    const ansKey = q._uid || q.id;
-    const answerState = userAnswers[ansKey] || { selected: [], completed: false, isCorrect: false };
+    const ansKey = q.id;
+    const answerState = userAnswers[ansKey] || (q._uid && userAnswers[q._uid]) || { selected: [], completed: false, isCorrect: false };
     const hasAnswered = answerState.completed;
     const optLetters = ['Α', 'Β', 'Γ', 'Δ', 'Ε'];
 
@@ -744,20 +745,25 @@
         feedbackBox.className = 'feedback-box correct';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         feedbackTitle.textContent = 'Σωστή Απάντηση! Συγχαρητήρια!';
-        feedbackText.innerHTML = `Η ορθή επιλογή είναι η <strong>(${correctLettersStr})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
+        feedbackText.innerHTML = (isMultiChoice ? `ΟΚ! Εντοπίστηκαν επιτυχώς όλες οι ορθές προτάσεις <strong>(${correctLettersStr})</strong>.` : `ΟΚ! Η ορθή επιλογή είναι η <strong>(${correctLettersStr})</strong>.`) + '<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>';
       } else {
         feedbackBox.className = 'feedback-box incorrect';
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
         feedbackTitle.textContent = 'Λανθασμένη Επιλογή';
         feedbackText.innerHTML = `Η σωστή απάντηση είναι η επιλογή <strong>(${correctLettersStr})</strong>.<br><button type="button" class="retry-q-btn" onclick="window.retryCurrentQuestion()"><i class="fa-solid fa-rotate-left"></i> Δοκιμή Ξανά</button>`;
       }
+    } else if (answerState.selected && answerState.selected.length > 0) {
+      feedbackBox.className = 'feedback-box in-progress';
+      feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+      feedbackTitle.textContent = 'Σωστή επιλογή!';
+      feedbackText.innerHTML = 'Η πρόταση είναι ορθή. Υπάρχει και άλλη σωστή απάντηση σε αυτή την ερώτηση — συνεχίστε με την επόμενη!';
     } else {
       feedbackBox.className = 'feedback-box';
     }
 
     // Explanation Panel (Displays analysis whenever question is answered OR forced)
     const hasExp = (Array.isArray(q.explanation) ? q.explanation.length > 0 : Boolean(q.explanation));
-    if ((hasExp || showExplanationForced) && (hasAnswered || showExplanationForced || (answerState.selected && answerState.selected.length > 0))) {
+    if ((hasExp || showExplanationForced) && (hasAnswered || showExplanationForced)) {
       let expHtml = formatExplanationContent(q.explanation);
       if (currentBank === 'larnaka') {
         expHtml = expHtml.replace(/src="images\//g, 'src="LARNAKA/images/');
@@ -797,33 +803,46 @@
     const correctIndices = getCorrectIndices(q);
     const isMultiChoice = correctIndices.length > 1;
 
-    const ansKey = q._uid || q.id;
-    let ans = userAnswers[ansKey] || { selected: [], completed: false, isCorrect: false, timestamp: Date.now() };
+    const ansKey = q.id;
+    let ans = userAnswers[ansKey] || (q._uid && userAnswers[q._uid]) || { selected: [], completed: false, isCorrect: false, timestamp: Date.now() };
 
-    if (!ans.selected.includes(selectedIndex)) {
-      ans.selected.push(selectedIndex);
-    }
+    // If already finished/completed, do not allow further clicks unless retried
+    if (ans.completed) return;
+
+    // If already selected in this in-progress attempt, ignore
+    if (ans.selected.includes(selectedIndex)) return;
+
+    ans.selected.push(selectedIndex);
 
     if (!isMultiChoice) {
       // Single Choice: complete immediately
       ans.completed = true;
       ans.isCorrect = (selectedIndex === correctIndices[0]);
     } else {
-      // Multi Choice: complete if either clicked an incorrect option OR selected all correct ones
-      const hasIncorrect = ans.selected.some(i => !correctIndices.includes(i));
-      const hasAllCorrect = correctIndices.every(i => ans.selected.includes(i));
-
-      if (hasIncorrect) {
+      // Multi Choice:
+      const clickedIsIncorrect = !correctIndices.includes(selectedIndex);
+      if (clickedIsIncorrect) {
+        // User clicked an incorrect option -> fails immediately and reveals answers
         ans.completed = true;
         ans.isCorrect = false;
-      } else if (hasAllCorrect) {
-        ans.completed = true;
-        ans.isCorrect = true;
+      } else {
+        // User clicked a correct option: check if ALL correct options have now been answered
+        const hasAllCorrect = correctIndices.every(i => ans.selected.includes(i));
+        if (hasAllCorrect) {
+          ans.completed = true;
+          ans.isCorrect = true;
+        } else {
+          ans.completed = false;
+          ans.isCorrect = false;
+        }
       }
     }
 
     ans.timestamp = Date.now();
     userAnswers[ansKey] = ans;
+    if (q._uid && q._uid !== q.id) {
+      userAnswers[q._uid] = ans;
+    }
     saveAnswers();
     renderCurrentQuestion();
     updateStats();
@@ -833,9 +852,19 @@
   window.retryCurrentQuestion = function() {
     if (filteredQuestions.length === 0) return;
     const q = filteredQuestions[currentIndex];
-    if (userAnswers[q.id]) {
-      delete userAnswers[q.id];
+    const ansKey = q.id;
+    let didDelete = false;
+    if (userAnswers[ansKey]) {
+      delete userAnswers[ansKey];
+      didDelete = true;
+    }
+    if (q._uid && userAnswers[q._uid]) {
+      delete userAnswers[q._uid];
+      didDelete = true;
+    }
+    if (didDelete) {
       saveAnswers();
+      showExplanationForced = false;
       renderCurrentQuestion();
       updateStats();
     }

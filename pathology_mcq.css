@@ -469,19 +469,11 @@ body::after {
 }
 
 .q-type-badge {
-  background: #f1f5f9;
-  color: #475569;
-  font-weight: 700;
-  font-size: 0.78rem;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  display: none !important;
 }
 
 .q-type-badge.multi {
-  background: #fef3c7;
-  color: #92400e;
-  border-color: #fde68a;
+  display: none !important;
 }
 
 .q-number-badge {
@@ -692,6 +684,17 @@ body::after {
   background: var(--patho-correct-bg);
   border: 1px solid var(--patho-correct-border);
   color: var(--patho-correct-text);
+}
+
+.feedback-box.in-progress {
+  display: flex;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.feedback-box.in-progress .feedback-icon {
+  color: #16a34a;
 }
 
 .feedback-box.incorrect {
