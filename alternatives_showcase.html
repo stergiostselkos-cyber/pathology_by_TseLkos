@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>3 Εναλλακτικές Προτάσεις Αρχικής Σελίδας - By TseLkos</title>
+
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* CSS RESET */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-main: 'Poppins', -apple-system, sans-serif;
+      --font-inter: 'Inter', -apple-system, sans-serif;
+      
+      --color-patho: #0284c7;
+      --color-patho-dark: #0369a1;
+      --color-patho-bg: #e0f2fe;
+
+      --color-surg: #10b981;
+      --color-surg-dark: #047857;
+      --color-surg-bg: #d1fae5;
+
+      --color-pedia: #f59e0b;
+      --color-pedia-berry: #ec4899;
+      --color-pedia-dark: #d97706;
+      --color-pedia-bg: #fef3c7;
+
+      --bg-page: #f8fafc;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP CONCEPT SWITCHER TOOLBAR */
+    .concept-switcher-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(16px);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .concept-bar-brand {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .concept-bar-brand span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .concept-nav-pills {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px;
+      border-radius: 12px;
+      gap: 4px;
+    }
+
+    .concept-btn {
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-family: var(--font-inter);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 9px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .concept-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .concept-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+
+    /* MESH BACKGROUND */
+    .shape {
+      position: absolute;
+      filter: blur(95px);
+      z-index: -1;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .shape-1 { width: 500px; height: 500px; background: rgba(56, 189, 248, 0.35); top: 5%; left: -5%; }
+    .shape-2 { width: 550px; height: 550px; background: rgba(16, 185, 129, 0.22); bottom: 5%; right: -5%; }
+    .shape-3 { width: 420px; height: 420px; background: rgba(245, 158, 11, 0.22); top: 40%; left: 45%; }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .glow-name {
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+    }
+
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* GLOBAL SEARCH BAR */
+    .search-box-btn {
+      max-width: 780px;
+      margin: 0 auto 30px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s;
+    }
+    .search-box-btn:hover {
+      border-color: #0284c7;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+    }
+    .search-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+    .search-left i {
+      color: #0284c7;
+      font-size: 1.15rem;
+    }
+    .search-right-badge {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* CONCEPT CONTAINER */
+    .concept-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    .concept-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .concept-banner-desc {
+      background: #ffffff;
+      border-left: 5px solid #0284c7;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+      font-size: 0.95rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* ================================================================ */
+    /* CONCEPT 1: HERO DUAL-LAYER CARDS WITH INSTANT ACCORDION DRAWERS  */
+    /* ================================================================ */
+    .c1-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .c1-card {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .c1-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 5px;
+    }
+
+    .c1-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Theme colors */
+    .c1-patho::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    .c1-patho:hover { border-color: #38bdf8; }
+
+    .c1-surg::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .c1-surg:hover { border-color: #34d399; }
+
+    .c1-pedia::before { background: linear-gradient(90deg, #f59e0b, #ec4899); }
+    .c1-pedia:hover { border-color: #f59e0b; }
+
+    .c1-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .c1-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .c1-patho .c1-icon { background: #e0f2fe; color: #0284c7; }
+    .c1-surg .c1-icon { background: #d1fae5; color: #059669; }
+    .c1-pedia .c1-icon { background: linear-gradient(135deg, #fef3c7, #fce7f3); color: #d97706; }
+
+    .c1-badge {
+      font-family: var(--font-inter);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .c1-patho .c1-badge { background: #e0f2fe; color: #0369a1; }
+    .c1-surg .c1-badge { background: #d1fae5; color: #065f46; }
+    .c1-pedia .c1-badge { background: #fef3c7; color: #b45309; }
+
+    .c1-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .c1-desc {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* Sub-links inside C1 */
+    .c1-sub-apps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .c1-sub-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .c1-sub-btn:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateX(4px);
+    }
+    .c1-sub-btn i {
+      color: #0284c7;
+      font-size: 0.85rem;
+    }
+
+    /* Master Direct Launch Button */
+    .c1-launch-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.2s;
+    }
+    .c1-patho .c1-launch-btn { background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3); }
+    .c1-surg .c1-launch-btn { background: linear-gradient(135deg, #10b981, #047857); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); }
+    .c1-pedia .c1-launch-btn { background: linear-gradient(135deg, #f59e0b, #ec4899); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); }
+
+    /* ================================================================ */
+    /* CONCEPT 2: TABBED COMMAND CENTER (ZERO SCROLL, DIRECT ACCESS)    */
+    /* ================================================================ */
+    .c2-dashboard {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    .c2-tabs-header {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1.5px solid #e2e8f0;
+      overflow-x: auto;
+    }
+
+    .c2-tab-item {
+      flex: 1;
+      padding: 18px 24px;
+      background: transparent;
+      border: none;
+      font-family: var(--font-inter);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.25s;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+
+    .c2-tab-item:hover {
+      background: rgba(255, 255, 255, 0.6);
+      color: #0f172a;
+    }
+
+    .c2-tab-item.tab-patho.active {
+      background: #ffffff;
+      color: #0284c7;
+      border-bottom-color: #0284c7;
+    }
+    .c2-tab-item.tab-surg.active {
+      background: #ffffff;
+      color: #059669;
+      border-bottom-color: #10b981;
+    }
+    .c2-tab-item.tab-pedia.active {
+      background: #ffffff;
+      color: #d97706;
+      border-bottom-color: #f59e0b;
+    }
+
+    .c2-content-pane {
+      padding: 36px 32px;
+      display: none;
+    }
+    .c2-content-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .c2-pane-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .c2-pane-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .c2-sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .c2-app-card {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .c2-app-card:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    .c2-app-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .c2-app-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .c2-app-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .c2-app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0284c7;
+      margin-top: auto;
+    }
+
+    /* ================================================================ */
+    /* CONCEPT 3: MODERN LUXURY BENTO TILES                             */
+    /* ================================================================ */
+    .c3-bento-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+
+    .c3-tile {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1.5px solid #e2e8f0;
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .c3-tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Bento 1: Pathology (Large Hero Tile) */
+    .c3-tile-patho {
+      background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 60%);
+      border-color: #bae6fd;
+    }
+    .c3-tile-surg {
+      background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 60%);
+      border-color: #a7f3d0;
+    }
+    .c3-tile-pedia {
+      background: linear-gradient(135deg, #fffbeb 0%, #fdf2f8 100%);
+      border-color: #fde68a;
+    }
+
+    .c3-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .c3-tile-patho .c3-badge-pill { background: #0284c7; color: #ffffff; }
+    .c3-tile-surg .c3-badge-pill { background: #059669; color: #ffffff; }
+    .c3-tile-pedia .c3-badge-pill { background: #d97706; color: #ffffff; }
+
+    .c3-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .c3-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .c3-pills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .c3-pill-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+    }
+    .c3-pill-action:hover {
+      border-color: #0284c7;
+      background: #f0f9ff;
+      transform: translateX(4px);
+    }
+    .c3-pill-action span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* DIRECT SINGLE ACTION FOR SURGERY */
+    .c3-single-action-box {
+      margin-top: auto;
+    }
+    .c3-big-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.2s;
+    }
+    .btn-green-surg {
+      background: linear-gradient(135deg, #10b981, #047857);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+    .btn-green-surg:hover {
+      background: linear-gradient(135deg, #059669, #064e3b);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+    }
+
+    /* ================================================================ */
+    /* SHARED ROW: TOOLS & UTILITIES (CLEAN, NO SELECT DROPDOWNS)       */
+    /* ================================================================ */
+    .section-divider-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tools-horizontal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .tool-tile {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    }
+    .tool-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      border-color: #cbd5e1;
+    }
+
+    .tool-tile-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+    .tool-tile:hover .tool-tile-icon {
+      transform: scale(1.1);
+    }
+
+    .icon-pharma { background: #fdf2f8; color: #db2777; }
+    .icon-cases { background: #f0fdf4; color: #16a34a; }
+    .icon-books { background: #eff6ff; color: #2563eb; }
+    .icon-links { background: #f5f3ff; color: #7c3aed; }
+
+    .tool-tile-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .tool-tile-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .tool-tile-action {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 26px 20px;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .c1-grid, .c3-bento-grid, .tools-horizontal-grid {
+        grid-template-columns: 1fr;
+      }
+      .c2-tab-item {
+        font-size: 0.92rem;
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP CONCEPT SWITCHER TOOLBAR -->
+  <div class="concept-switcher-bar">
+    <div class="concept-bar-brand">
+      <i class="fa-solid fa-palette"></i> <span>Επιλογέας Προσχεδίων (Concept Switcher)</span>
+    </div>
+    <div class="concept-nav-pills">
+      <button type="button" class="concept-btn active" id="btnC1" onclick="switchConcept(1)">
+        <i class="fa-solid fa-layer-group"></i> Πρόταση 1: Direct Master Cards
+      </button>
+      <button type="button" class="concept-btn" id="btnC2" onclick="switchConcept(2)">
+        <i class="fa-solid fa-table-columns"></i> Πρόταση 2: Command Center Tabs
+      </button>
+      <button type="button" class="concept-btn" id="btnC3" onclick="switchConcept(3)">
+        <i class="fa-solid fa-shapes"></i> Πρόταση 3: Modern Bento Grid
+      </button>
+    </div>
+  </div>
+
+  <!-- Background Animated Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="hero-title">
+      Medical Portals Quiz <span class="glow-name">By TseLkos</span>
+    </h1>
+    <p class="hero-sub">
+      Η ενιαία πύλη ιατρικής μελέτης &amp; εξάσκησης για όλες τις ειδικότητες
+    </p>
+
+    <!-- Global Search -->
+    <div class="search-box-btn" onclick="openGlobalSearch()" title="Άνοιγμα Ενιαίας Αναζήτησης σε Νέο Παράθυρο (Ctrl + K)">
+      <div class="search-left">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Αναζήτηση σε MCQ, Ανάπτυξης, Βιβλία, Κλινικά &amp; Φάρμακα...</span>
+      </div>
+      <div class="search-right-badge">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================================================================ -->
+  <!-- ΠΡΟΤΑΣΗ 1: DIRECT MASTER CARDS                                  -->
+  <!-- ================================================================ */ -->
+  <div class="concept-panel active" id="panelC1">
+    <div class="concept-banner-desc">
+      <div>
+        <strong>Πρόταση 1: Direct Master Cards</strong> — 3 καθαρές μεγάλες κάρτες ειδικοτήτων. Η Χειρουργική ανοίγει <strong>κατευθείαν με 1 κλικ</strong> την ενιαία εφαρμογή. Στην Παθολογία &amp; Παιδιατρική βλέπετε άμεσα τα συγκεκριμένα υπο-τμήματα.
+      </div>
+      <span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; white-space: nowrap;">
+        CONCEPT 1
+      </span>
+    </div>
+
+    <!-- 3 Core Specialties -->
+    <div class="c1-grid">
+
+      <!-- 1. ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS (BLUE) -->
+      <div class="c1-card c1-patho">
+        <div class="c1-top-row">
+          <div class="c1-icon"><i class="fa-solid fa-user-doctor"></i></div>
+          <span class="c1-badge">3 Εφαρμογές • 8.748+ Θέματα</span>
+        </div>
+        <h3 class="c1-title">ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS</h3>
+        <p class="c1-desc">
+          Πλήρης τράπεζα Παθολογίας: Θέματα Ανάπτυξης, Ερωτήσεις Πολλαπλής Επιλογής &amp; Νέο Βιβλίο σε Flashcards.
+        </p>
+        <div class="c1-sub-apps">
+          <a href="study.html" class="c1-sub-btn">
+            <span><i class="fa-solid fa-pen-nib" style="margin-right: 8px;"></i> Θέματα Ανάπτυξης (609 Θέματα)</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="quiz.html" class="c1-sub-btn">
+            <span><i class="fa-solid fa-list-check" style="margin-right: 8px;"></i> Ερωτήσεις Πολλαπλής (8.139 MCQ)</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="study_new_book.html" class="c1-sub-btn">
+            <span><i class="fa-solid fa-book-medical" style="margin-right: 8px;"></i> Νέο Βιβλίο Παθολογίας (Flashcards)</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <a href="quiz.html" class="c1-launch-btn">
+          <i class="fa-solid fa-rocket"></i> Άμεση Εκκίνηση Quiz Παθολογίας
+        </a>
+      </div>
+
+      <!-- 2. ΧΕΙΡΟΥΡΓΙΚΗ QUIZ BY TSELKOS (GREEN) - SINGLE UNIFIED APP -->
+      <div class="c1-card c1-surg">
+        <div class="c1-top-row">
+          <div class="c1-icon"><i class="fa-solid fa-hospital-user"></i></div>
+          <span class="c1-badge">Ενιαία Εφαρμογή • 6.583 Θέματα</span>
+        </div>
+        <h3 class="c1-title">ΧΕΙΡΟΥΡΓΙΚΗ QUIZ BY TSELKOS</h3>
+        <p class="c1-desc">
+          Όλες οι ερωτήσεις Χειρουργικής συγκεντρωμένες σε <strong>μία ενιαία εφαρμογή</strong>: Τράπεζα 4004, Χειρουργική ΔΟΑΤΑΠ και Ανατομία ΔΟΑΤΑΠ με εναλλαγή τραπεζών μέσα στην εφαρμογή.
+        </p>
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+          <div style="font-size: 0.82rem; font-weight: 700; color: #166534; margin-bottom: 6px;">
+            <i class="fa-solid fa-check-double"></i> Περιλαμβάνει στο ίδιο περιβάλλον:
+          </div>
+          <div style="font-size: 0.8rem; color: #15803d; line-height: 1.4;">
+            • Τράπεζα 4004 Θεμάτων Χειρουργικής<br>
+            • Χειρουργική ΔΟΑΤΑΠ ανά σύστημα<br>
+            • 1.540 Ερωτήσεις Ανατομίας ΔΟΑΤΑΠ
+          </div>
+        </div>
+        <a href="SURGERY/index.html" class="c1-launch-btn">
+          <i class="fa-solid fa-door-open"></i> Είσοδος στη Χειρουργική
+        </a>
+      </div>
+
+      <!-- 3. ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS (CHEERFUL AMBER / BERRY) -->
+      <div class="c1-card c1-pedia">
+        <div class="c1-top-row">
+          <div class="c1-icon"><i class="fa-solid fa-baby"></i></div>
+          <span class="c1-badge">Νέα Πύλη • Ανάπτυξης &amp; MCQ</span>
+        </div>
+        <h3 class="c1-title">ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS</h3>
+        <p class="c1-desc">
+          Εξειδικευμένη παιδιατρική πλατφόρμα μελέτης με κλινικά θέματα ανάπτυξης και τράπεζα πολλαπλής επιλογής.
+        </p>
+        <div class="c1-sub-apps">
+          <a href="PEDIATRICS/study.html" class="c1-sub-btn">
+            <span><i class="fa-solid fa-pen-nib" style="margin-right: 8px; color: #d97706;"></i> Θέματα Ανάπτυξης Παιδιατρικής</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="PEDIATRICS/quiz.html" class="c1-sub-btn">
+            <span><i class="fa-solid fa-puzzle-piece" style="margin-right: 8px; color: #ec4899;"></i> Ερωτήσεις Πολλαπλής Παιδιατρικής</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <a href="PEDIATRICS/quiz.html" class="c1-launch-btn">
+          <i class="fa-solid fa-star"></i> Εκκίνηση Παιδιατρικής
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Horizontal Tools (No Select dropdowns!) -->
+    <div class="section-divider-title">
+      <i class="fa-solid fa-toolbox" style="color: #0284c7;"></i> Κλινικά Εργαλεία &amp; Πηγές
+    </div>
+    <div class="tools-horizontal-grid">
+      <!-- Direct Pharma (No dropdown) -->
+      <a href="pharmaka/antimikrobiaka.html" class="tool-tile">
+        <div class="tool-tile-icon icon-pharma"><i class="fa-solid fa-capsules"></i></div>
+        <div class="tool-tile-title">Φάρμακα &amp; Ουσίες</div>
+        <div class="tool-tile-desc">Άμεση είσοδος στον οδηγό κλινικής φαρμακολογίας.</div>
+        <div class="tool-tile-action"><span>Είσοδος</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="cases.html" class="tool-tile">
+        <div class="tool-tile-icon icon-cases"><i class="fa-solid fa-stethoscope"></i></div>
+        <div class="tool-tile-title">Κλινικά Σενάρια</div>
+        <div class="tool-tile-desc">Πραγματικά περιστατικά και διαφοροδιάγνωση.</div>
+        <div class="tool-tile-action"><span>Προβολή</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="books.html" class="tool-tile">
+        <div class="tool-tile-icon icon-books"><i class="fa-solid fa-book-bookmark"></i></div>
+        <div class="tool-tile-title">Χρήσιμα Βιβλία</div>
+        <div class="tool-tile-desc">Ηλεκτρονική ιατρική βιβλιοθήκη συγγραμμάτων.</div>
+        <div class="tool-tile-action"><span>Ανάγνωση</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="links.html" class="tool-tile">
+        <div class="tool-tile-icon icon-links"><i class="fa-solid fa-globe"></i></div>
+        <div class="tool-tile-title">Links &amp; Υλικό</div>
+        <div class="tool-tile-desc">Κατευθυντήριες οδηγίες και διεθνείς πηγές.</div>
+        <div class="tool-tile-action"><span>Μετάβαση</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ================================================================ -->
+  <!-- ΠΡΟΤΑΣΗ 2: TABBED COMMAND CENTER (ZERO SCROLL, DIRECT ACCESS)    -->
+  <!-- ================================================================ */ -->
+  <div class="concept-panel" id="panelC2">
+    <div class="concept-banner-desc">
+      <div>
+        <strong>Πρόταση 2: Tabbed Command Dashboard</strong> — Σύγχρονος πίνακας ελέγχου. Επιλέγετε ειδικότητα από την επάνω μπάρα και βλέπετε άμεσα το περιβάλλον της χωρίς περιττό scroll.
+      </div>
+      <span style="background: #d1fae5; color: #047857; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; white-space: nowrap;">
+        CONCEPT 2
+      </span>
+    </div>
+
+    <div class="c2-dashboard">
+      <div class="c2-tabs-header">
+        <button type="button" class="c2-tab-item tab-patho active" onclick="switchC2Tab('patho')">
+          <i class="fa-solid fa-user-doctor"></i> Παθολογία
+        </button>
+        <button type="button" class="c2-tab-item tab-surg" onclick="switchC2Tab('surg')">
+          <i class="fa-solid fa-hospital-user"></i> Χειρουργική
+        </button>
+        <button type="button" class="c2-tab-item tab-pedia" onclick="switchC2Tab('pedia')">
+          <i class="fa-solid fa-baby"></i> Παιδιατρική
+        </button>
+        <button type="button" class="c2-tab-item" onclick="switchC2Tab('tools')">
+          <i class="fa-solid fa-toolbox"></i> Εργαλεία &amp; Πηγές
+        </button>
+      </div>
+
+      <!-- Tab 1: Παθολογία -->
+      <div class="c2-content-pane active" id="c2-pane-patho">
+        <div class="c2-pane-header">
+          <div class="c2-pane-title" style="color: #0284c7;">
+            <i class="fa-solid fa-stethoscope"></i> ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS
+          </div>
+          <span style="font-size: 0.88rem; font-weight: 700; color: #64748b;">
+            3 Αυτόνομες Εφαρμογές Μελέτης
+          </span>
+        </div>
+        <div class="c2-sub-grid">
+          <a href="study.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #e0f2fe; color: #0284c7;">
+              <i class="fa-solid fa-pen-nib"></i>
+            </div>
+            <div class="c2-app-title">Θέματα Ανάπτυξης</div>
+            <div class="c2-app-desc">609 αναλυτικά θέματα εξετάσεων με διαγράμματα ροής, atlases και σύνοψη.</div>
+            <div class="c2-app-btn" style="background: #0284c7;">Άνοιγμα Θεμάτων <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+          <a href="quiz.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #e0f2fe; color: #0284c7;">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="c2-app-title">Ερωτήσεις Πολλαπλής Επιλογής</div>
+            <div class="c2-app-desc">8.139 ερωτήσεις (2013-2023, Τράπεζα 1, ΔΟΑΤΑΠ, Φάρμακα, Φυσιολογία).</div>
+            <div class="c2-app-btn" style="background: #0284c7;">Εκκίνηση Quiz <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+          <a href="study_new_book.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #e0f2fe; color: #0284c7;">
+              <i class="fa-solid fa-book-medical"></i>
+            </div>
+            <div class="c2-app-title">Νέο Βιβλίο Παθολογίας</div>
+            <div class="c2-app-desc">Έκδοση 2026 με τη μορφή flashcards για γρήγορη απομνημόνευση.</div>
+            <div class="c2-app-btn" style="background: #0284c7;">Προβολή Flashcards <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tab 2: Χειρουργική (Single Direct Entry) -->
+      <div class="c2-content-pane" id="c2-pane-surg">
+        <div class="c2-pane-header">
+          <div class="c2-pane-title" style="color: #059669;">
+            <i class="fa-solid fa-hospital-user"></i> ΧΕΙΡΟΥΡΓΙΚΗ QUIZ BY TSELKOS
+          </div>
+          <span style="font-size: 0.88rem; font-weight: 700; color: #64748b;">
+            Ενιαία Εφαρμογή Χειρουργικής
+          </span>
+        </div>
+        <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+          <div style="max-width: 650px;">
+            <h4 style="font-size: 1.35rem; font-weight: 800; color: #065f46; margin-bottom: 8px;">
+              6.583+ Ερωτήσεις Χειρουργικής &amp; Ανατομίας
+            </h4>
+            <p style="font-size: 0.95rem; color: #166534; line-height: 1.5; margin-bottom: 12px;">
+              Όλες οι τράπεζες χειρουργικής βρίσκονται ενσωματωμένες σε <strong>μία ενιαία εφαρμογή</strong>: Τράπεζα 4004, Χειρουργική ΔΟΑΤΑΠ και 1.540 ερωτήσεις Ανατομίας ΔΟΑΤΑΠ κατανεμημένες ανά σύστημα, με δυνατότητα εναλλαγής τράπεζας από το μενού.
+            </p>
+          </div>
+          <a href="SURGERY/index.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; background: #10b981; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 1.1rem; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);">
+            <i class="fa-solid fa-door-open"></i> Άνοιγμα Χειρουργικής
+          </a>
+        </div>
+      </div>
+
+      <!-- Tab 3: Παιδιατρική -->
+      <div class="c2-content-pane" id="c2-pane-pedia">
+        <div class="c2-pane-header">
+          <div class="c2-pane-title" style="color: #d97706;">
+            <i class="fa-solid fa-baby"></i> ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS
+          </div>
+          <span style="font-size: 0.88rem; font-weight: 700; color: #64748b;">
+            2 Εξειδικευμένες Ενότητες
+          </span>
+        </div>
+        <div class="c2-sub-grid">
+          <a href="PEDIATRICS/study.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #fef3c7; color: #d97706;">
+              <i class="fa-solid fa-pen-nib"></i>
+            </div>
+            <div class="c2-app-title">Θέματα Ανάπτυξης Παιδιατρικής</div>
+            <div class="c2-app-desc">Κλινικά θέματα εξετάσεων με διαγνωστικούς αλγορίθμους και ανάλυση.</div>
+            <div class="c2-app-btn" style="background: #d97706;">Άνοιγμα Θεμάτων <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+          <a href="PEDIATRICS/quiz.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #fce7f3; color: #db2777;">
+              <i class="fa-solid fa-puzzle-piece"></i>
+            </div>
+            <div class="c2-app-title">Ερωτήσεις Πολλαπλής Επιλογής</div>
+            <div class="c2-app-desc">Τράπεζα MCQ παιδιατρικής με άμεση επιβεβαίωση και αιτιολόγηση.</div>
+            <div class="c2-app-btn" style="background: #db2777;">Εκκίνηση Quiz <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tab 4: Εργαλεία -->
+      <div class="c2-content-pane" id="c2-pane-tools">
+        <div class="c2-pane-header">
+          <div class="c2-pane-title" style="color: #475569;">
+            <i class="fa-solid fa-toolbox"></i> Κλινικά Εργαλεία &amp; Πηγές
+          </div>
+        </div>
+        <div class="c2-sub-grid">
+          <a href="pharmaka/antimikrobiaka.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #fdf2f8; color: #db2777;"><i class="fa-solid fa-capsules"></i></div>
+            <div class="c2-app-title">Φάρμακα &amp; Ουσίες</div>
+            <div class="c2-app-desc">Οδηγοί κλινικής φαρμακολογίας &amp; θεραπευτικά πρωτόκολλα.</div>
+            <div class="c2-app-btn" style="background: #db2777;">Είσοδος</div>
+          </a>
+          <a href="cases.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fa-solid fa-stethoscope"></i></div>
+            <div class="c2-app-title">Κλινικά Σενάρια</div>
+            <div class="c2-app-desc">Πραγματικά περιστατικά και διαφορική διάγνωση.</div>
+            <div class="c2-app-btn" style="background: #16a34a;">Προβολή</div>
+          </a>
+          <a href="books.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #eff6ff; color: #2563eb;"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="c2-app-title">Χρήσιμα Βιβλία</div>
+            <div class="c2-app-desc">Ολόκληρα ιατρικά συγγράμματα και οδηγοί σε PDF.</div>
+            <div class="c2-app-btn" style="background: #2563eb;">Ανάγνωση</div>
+          </a>
+          <a href="links.html" class="c2-app-card">
+            <div class="c2-app-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fa-solid fa-globe"></i></div>
+            <div class="c2-app-title">Links &amp; Υλικό</div>
+            <div class="c2-app-desc">Κατευθυντήριες οδηγίες και διεθνείς ιστότοποι.</div>
+            <div class="c2-app-btn" style="background: #7c3aed;">Προβολή</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================ -->
+  <!-- ΠΡΟΤΑΣΗ 3: MODERN LUXURY BENTO GRID                             -->
+  <!-- ================================================================ */ -->
+  <div class="concept-panel" id="panelC3">
+    <div class="concept-banner-desc">
+      <div>
+        <strong>Πρόταση 3: Modern Luxury Bento Grid</strong> — Υψηλής αισθητικής διάταξη Bento. Η Παθολογία έχει περίοπτη θέση (Hero Tile), η Χειρουργική είναι ενιαία δυναμική πύλη και η Παιδιατρική έχει ζεστό, χαρούμενο σχεδιασμό.
+      </div>
+      <span style="background: #fef3c7; color: #b45309; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; white-space: nowrap;">
+        CONCEPT 3
+      </span>
+    </div>
+
+    <!-- Bento Top Row -->
+    <div class="c3-bento-grid">
+
+      <!-- Bento 1: Pathology Hero (Wide) -->
+      <div class="c3-tile c3-tile-patho">
+        <span class="c3-badge-pill"><i class="fa-solid fa-star"></i> Κεντρικός Κόμβος • 8.748+ Θέματα</span>
+        <h3 class="c3-title">ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS</h3>
+        <p class="c3-desc">
+          Η απόλυτη πλατφόρμα Παθολογίας: επιλέξτε άμεσα την εφαρμογή που επιθυμείτε να εκκινήσετε:
+        </p>
+        <div class="c3-pills-container">
+          <a href="study.html" class="c3-pill-action">
+            <span><i class="fa-solid fa-pen-nib" style="color: #0284c7;"></i> Θέματα Ανάπτυξης (609 Θέματα Λάρνακα)</span>
+            <i class="fa-solid fa-arrow-right" style="color: #0284c7;"></i>
+          </a>
+          <a href="quiz.html" class="c3-pill-action">
+            <span><i class="fa-solid fa-list-check" style="color: #0284c7;"></i> Ερωτήσεις Πολλαπλής (8.139 MCQ)</span>
+            <i class="fa-solid fa-arrow-right" style="color: #0284c7;"></i>
+          </a>
+          <a href="study_new_book.html" class="c3-pill-action">
+            <span><i class="fa-solid fa-book-medical" style="color: #0284c7;"></i> Νέο Βιβλίο Παθολογίας (Flashcards 2026)</span>
+            <i class="fa-solid fa-arrow-right" style="color: #0284c7;"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bento 2: Surgery (Direct 1-Click Launch) -->
+      <div class="c3-tile c3-tile-surg">
+        <span class="c3-badge-pill" style="background: #10b981;"><i class="fa-solid fa-hospital-user"></i> Ενιαία Εφαρμογή</span>
+        <h3 class="c3-title">ΧΕΙΡΟΥΡΓΙΚΗ QUIZ BY TSELKOS</h3>
+        <p class="c3-desc">
+          Ολοκληρωμένη τράπεζα Χειρουργικής &amp; Ανατομίας (4004, ΔΟΑΤΑΠ Χειρουργικής, 1.540 Ανατομίας) σε μία ενιαία πλατφόρμα.
+        </p>
+        <div class="c3-single-action-box">
+          <a href="SURGERY/index.html" class="c3-big-btn btn-green-surg">
+            <i class="fa-solid fa-door-open"></i> Είσοδος στη Χειρουργική
+          </a>
+        </div>
+      </div>
+
+      <!-- Bento 3: Pediatrics (Playful & Cheerful) -->
+      <div class="c3-tile c3-tile-pedia">
+        <span class="c3-badge-pill" style="background: #d97706;"><i class="fa-solid fa-baby"></i> Παιδιατρική Πύλη</span>
+        <h3 class="c3-title">ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS</h3>
+        <p class="c3-desc">
+          Εξειδικευμένο περιβάλλον παιδιατρικής μελέτης με αναλυτικά θέματα ανάπτυξης και τράπεζα πολλαπλής επιλογής.
+        </p>
+        <div class="c3-pills-container">
+          <a href="PEDIATRICS/study.html" class="c3-pill-action" style="border-color: #fde68a;">
+            <span><i class="fa-solid fa-pen-nib" style="color: #d97706;"></i> Θέματα Ανάπτυξης</span>
+            <i class="fa-solid fa-arrow-right" style="color: #d97706;"></i>
+          </a>
+          <a href="PEDIATRICS/quiz.html" class="c3-pill-action" style="border-color: #fbcfe8;">
+            <span><i class="fa-solid fa-puzzle-piece" style="color: #db2777;"></i> Ερωτήσεις Πολλαπλής</span>
+            <i class="fa-solid fa-arrow-right" style="color: #db2777;"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Horizontal Tools -->
+    <div class="section-divider-title">
+      <i class="fa-solid fa-toolbox" style="color: #0284c7;"></i> Κλινικά Εργαλεία &amp; Πηγές
+    </div>
+    <div class="tools-horizontal-grid">
+      <a href="pharmaka/antimikrobiaka.html" class="tool-tile">
+        <div class="tool-tile-icon icon-pharma"><i class="fa-solid fa-capsules"></i></div>
+        <div class="tool-tile-title">Φάρμακα &amp; Ουσίες</div>
+        <div class="tool-tile-desc">Άμεση είσοδος χωρίς select μενού.</div>
+        <div class="tool-tile-action"><span>Είσοδος</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="cases.html" class="tool-tile">
+        <div class="tool-tile-icon icon-cases"><i class="fa-solid fa-stethoscope"></i></div>
+        <div class="tool-tile-title">Κλινικά Σενάρια</div>
+        <div class="tool-tile-desc">Διαγνωστικά περιστατικά.</div>
+        <div class="tool-tile-action"><span>Προβολή</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="books.html" class="tool-tile">
+        <div class="tool-tile-icon icon-books"><i class="fa-solid fa-book-bookmark"></i></div>
+        <div class="tool-tile-title">Χρήσιμα Βιβλία</div>
+        <div class="tool-tile-desc">Ιατρικά PDFs &amp; συγγράμματα.</div>
+        <div class="tool-tile-action"><span>Ανάγνωση</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+      <a href="links.html" class="tool-tile">
+        <div class="tool-tile-icon icon-links"><i class="fa-solid fa-globe"></i></div>
+        <div class="tool-tile-title">Links &amp; Υλικό</div>
+        <div class="tool-tile-desc">Κατευθυντήριες οδηγίες &amp; πηγές.</div>
+        <div class="tool-tile-action"><span>Προβολή</span> <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Σχεδιασμένο με 🎨 δημιουργικότητα &amp; αγάπη! | Επιμέλεια &amp; Ανάπτυξη: <strong>Stergios Tselkos</strong> | 
+      <a href="mailto:stergiostselkos@gmail.com" style="color: #0284c7; text-decoration: none;">stergiostselkos@gmail.com</a>
+    </p>
+  </footer>
+
+  <script>
+    // Concept Switcher logic
+    function switchConcept(num) {
+      document.querySelectorAll('.concept-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.concept-panel').forEach(p => p.classList.remove('active'));
+
+      document.getElementById('btnC' + num).classList.add('active');
+      document.getElementById('panelC' + num).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Concept 2 Dashboard Tabs
+    function switchC2Tab(tabKey) {
+      document.querySelectorAll('.c2-tab-item').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.c2-content-pane').forEach(p => p.classList.remove('active'));
+
+      const activeBtn = document.querySelector(`.c2-tab-item.tab-${tabKey}`) || event.currentTarget;
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const targetPane = document.getElementById(`c2-pane-${tabKey}`);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    // Global Search Pop-up
+    function openGlobalSearch() {
+      const w = 1100, h = 800;
+      const left = (screen.width - w) / 2;
+      const top = (screen.height - h) / 2;
+      window.open('search.html', 'GlobalSearchWindow', `width=${w},height=${h},top=${top},left=${left},resizable=yes,scrollbars=yes`);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openGlobalSearch();
+      }
+    });
+  </script>
+</body>
+</html>
