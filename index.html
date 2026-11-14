@@ -17,15 +17,25 @@
     <meta http-equiv="Expires" content="0">
     <script src="auth-guard.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathologia Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <title>Pathologia Quiz By TseLkos | Ιατρικές Πύλες Μελέτης</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS RESET & BASE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --primary-blue: #0284c7;
+            --primary-blue-dark: #0369a1;
+            --surg-green: #059669;
+            --surg-green-dark: #047857;
+            --pedia-coral: #ea580c;
+            --pedia-warm: #f59e0b;
+            --tools-purple: #7c3aed;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #fdfbfb;
+            background: #f8fafc;
             min-height: 100vh;
             color: #1e293b;
             overflow-x: hidden;
@@ -34,78 +44,443 @@
             position: relative;
         }
 
-        /* PREMIUM MESH BACKGROUND */
+        /* PREMIUM ANIMATED MESH BACKGROUND (Authentic TseLkos Style) */
         .shape {
             position: absolute;
-            filter: blur(90px);
+            filter: blur(100px);
             z-index: -1;
             border-radius: 50%;
-            animation: float 20s infinite ease-in-out alternate;
-            opacity: 0.5;
+            animation: float 22s infinite ease-in-out alternate;
+            opacity: 0.55;
+            pointer-events: none;
         }
-        .shape-1 { width: 500px; height: 500px; background: rgba(56, 189, 248, 0.3); top: -10%; left: -5%; }
-        .shape-2 { width: 600px; height: 600px; background: rgba(129, 140, 248, 0.25); bottom: -15%; right: -5%; animation-delay: -5s; }
-        .shape-3 { width: 450px; height: 450px; background: rgba(52, 211, 153, 0.2); top: 35%; left: 45%; animation-delay: -2s; }
+        .shape-1 { width: 550px; height: 550px; background: rgba(56, 189, 248, 0.35); top: -10%; left: -5%; }
+        .shape-2 { width: 620px; height: 620px; background: rgba(129, 140, 248, 0.3); bottom: -15%; right: -5%; animation-delay: -5s; }
+        .shape-3 { width: 480px; height: 480px; background: rgba(52, 211, 153, 0.25); top: 35%; left: 45%; animation-delay: -2s; }
+        .shape-4 { width: 400px; height: 400px; background: rgba(251, 146, 60, 0.22); bottom: 20%; left: 10%; animation-delay: -7s; }
 
         @keyframes float {
             0% { transform: translate(0px, 0px) scale(1); }
-            50% { transform: translate(40px, -60px) scale(1.05); }
-            100% { transform: translate(-40px, 40px) scale(0.95); }
+            50% { transform: translate(45px, -65px) scale(1.06); }
+            100% { transform: translate(-45px, 45px) scale(0.94); }
         }
 
         /* HEADER */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 45px 20px 25px;
+            position: relative;
+            z-index: 10;
         }
-        
 
-
-        /* Responsive design to prevent letters overlapping on mobile */
-        @media (max-width: 768px) {
-            
-            .glow-name {
-                font-size: 1.3rem !important;
-                display: block !important;
-                margin-left: 0 !important;
-                margin-top: 10px !important;
-            }
+        .main-title {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        
+
+        .main-title .quiz {
+            color: #0284c7;
+            position: relative;
+        }
+
+        .glow-name {
+            background: linear-gradient(135deg, #2563eb, #06b6d4, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+            font-weight: 900;
+            text-shadow: 0 0 25px rgba(37, 99, 235, 0.25);
+            display: inline-block;
+        }
+
         .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            color: #64748b;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
         }
 
-        /* MAIN CONTENT - CARDS GRID */
+        /* SEARCH HERO CARD (Popup Window / Ctrl + K) */
+        .search-hero-wrapper {
+            max-width: 860px;
+            margin: 0 auto 30px;
+            padding: 0 10px;
+        }
+        .search-hero-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(56, 189, 248, 0.35);
+            border-radius: 18px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            cursor: pointer;
+            box-shadow: 0 12px 35px rgba(2, 132, 199, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .search-hero-card:hover {
+            transform: translateY(-3px);
+            border-color: #0284c7;
+            box-shadow: 0 18px 45px rgba(2, 132, 199, 0.22);
+        }
+        .search-hero-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+        .search-hero-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+            flex-shrink: 0;
+        }
+        .search-hero-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .search-hero-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-hero-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .search-hero-count-badge {
+            background: rgba(2, 132, 199, 0.12);
+            color: #0284c7;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .search-hero-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .search-hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .search-hero-launch-btn {
+            background: #0284c7;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 9px 18px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+        }
+        .search-hero-launch-btn:hover {
+            background: #0369a1;
+        }
+        .search-hero-window-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .search-hero-kbd kbd {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: #334155;
+        }
+
+        /* ============================================================ */
+        /* 🔥 BOLD, VIBRANT, PROMINENT SPECIALTY COMMAND TAB BAR 🔥 */
+        /* ============================================================ */
+        .specialty-tab-wrapper {
+            max-width: 1240px;
+            margin: 0 auto 35px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 20;
+        }
+        .specialty-tab-header-label {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .specialty-tab-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid #e2e8f0;
+            border-radius: 22px;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            outline: none;
+            user-select: none;
+        }
+
+        .tab-btn .tab-top-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-btn .tab-icon {
+            font-size: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .tab-btn .tab-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #334155;
+            transition: color 0.3s;
+        }
+        .tab-btn .tab-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.4px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        /* SPECIFIC TAB THEMES & HOVER / ACTIVE STATES */
+        /* 1. Παθολογία (Blue) */
+        .tab-btn.tab-patho .tab-icon {
+            background: rgba(2, 132, 199, 0.12);
+            color: #0284c7;
+        }
+        .tab-btn.tab-patho .tab-badge {
+            background: rgba(2, 132, 199, 0.1);
+            color: #0284c7;
+        }
+        .tab-btn.tab-patho:hover {
+            background: rgba(2, 132, 199, 0.05);
+            border-color: rgba(2, 132, 199, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.tab-patho.active {
+            background: linear-gradient(135deg, #0284c7, #1d4ed8);
+            border-color: #0284c7;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.38);
+            transform: translateY(-3px);
+        }
+        .tab-btn.tab-patho.active .tab-icon {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+        .tab-btn.tab-patho.active .tab-title {
+            color: #ffffff;
+        }
+        .tab-btn.tab-patho.active .tab-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* 2. Χειρουργική (Emerald Green) */
+        .tab-btn.tab-surg .tab-icon {
+            background: rgba(5, 150, 105, 0.12);
+            color: #059669;
+        }
+        .tab-btn.tab-surg .tab-badge {
+            background: rgba(5, 150, 105, 0.1);
+            color: #059669;
+        }
+        .tab-btn.tab-surg:hover {
+            background: rgba(5, 150, 105, 0.05);
+            border-color: rgba(5, 150, 105, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.tab-surg.active {
+            background: linear-gradient(135deg, #059669, #047857);
+            border-color: #059669;
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.38);
+            transform: translateY(-3px);
+        }
+        .tab-btn.tab-surg.active .tab-icon {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+        .tab-btn.tab-surg.active .tab-title {
+            color: #ffffff;
+        }
+        .tab-btn.tab-surg.active .tab-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* 3. Παιδιατρική (Joyful Warm Amber / Coral) */
+        .tab-btn.tab-pedia .tab-icon {
+            background: rgba(234, 88, 12, 0.12);
+            color: #ea580c;
+        }
+        .tab-btn.tab-pedia .tab-badge {
+            background: rgba(234, 88, 12, 0.1);
+            color: #ea580c;
+        }
+        .tab-btn.tab-pedia:hover {
+            background: rgba(234, 88, 12, 0.05);
+            border-color: rgba(234, 88, 12, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.tab-pedia.active {
+            background: linear-gradient(135deg, #ea580c, #f59e0b);
+            border-color: #ea580c;
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.38);
+            transform: translateY(-3px);
+        }
+        .tab-btn.tab-pedia.active .tab-icon {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+        .tab-btn.tab-pedia.active .tab-title {
+            color: #ffffff;
+        }
+        .tab-btn.tab-pedia.active .tab-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* 4. Εργαλεία & Βιβλιοθήκη (Purple / Indigo) */
+        .tab-btn.tab-tools .tab-icon {
+            background: rgba(124, 58, 237, 0.12);
+            color: #7c3aed;
+        }
+        .tab-btn.tab-tools .tab-badge {
+            background: rgba(124, 58, 237, 0.1);
+            color: #7c3aed;
+        }
+        .tab-btn.tab-tools:hover {
+            background: rgba(124, 58, 237, 0.05);
+            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.tab-tools.active {
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            border-color: #7c3aed;
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.38);
+            transform: translateY(-3px);
+        }
+        .tab-btn.tab-tools.active .tab-icon {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+        .tab-btn.tab-tools.active .tab-title {
+            color: #ffffff;
+        }
+        .tab-btn.tab-tools.active .tab-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* MAIN CONTENT & PANELS */
         main {
             flex: 1;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 0 20px 60px;
             position: relative;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+
+        .tab-panel {
+            display: none;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1240px;
+            animation: fadeInTab 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .tab-panel.active {
+            display: block;
         }
 
-        /* THE CARDS */
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+            width: 100%;
+        }
+
+        /* CLASSIC TSE-LKOS GLASS CARDS */
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 35px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 22px;
+            padding: 34px 28px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 0 0 1px rgba(255,255,255,0.5);
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
@@ -116,68 +491,68 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
+            top: 0; left: 0; width: 100%; height: 5px;
             background: var(--card-color);
-            opacity: 0.7;
+            opacity: 0.85;
             transition: all 0.4s ease;
         }
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 10px 20px rgba(var(--card-rgb), 0.15);
-            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-8px);
+            box-shadow: 0 22px 45px rgba(15, 23, 42, 0.09), 0 12px 25px rgba(var(--card-rgb), 0.18);
+            background: rgba(255, 255, 255, 0.97);
         }
         .card:hover::before {
-            height: 6px;
+            height: 7px;
             opacity: 1;
-            box-shadow: 0 0 15px var(--card-color);
+            box-shadow: 0 0 18px var(--card-color);
         }
 
         .card-icon {
             font-size: 2.2rem;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 70px;
-            height: 70px;
-            border-radius: 18px;
-            background: rgba(var(--card-rgb), 0.1);
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: rgba(var(--card-rgb), 0.12);
             color: var(--card-color);
             transition: all 0.4s ease;
             margin-left: auto;
             margin-right: auto;
         }
         .card:hover .card-icon {
-            transform: scale(1.1) translateY(-5px);
+            transform: scale(1.1) translateY(-4px);
             background: var(--card-color);
             color: #fff;
-            box-shadow: 0 10px 20px rgba(var(--card-rgb), 0.3);
+            box-shadow: 0 10px 22px rgba(var(--card-rgb), 0.35);
         }
 
         .card h2 {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: #1e293b;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            letter-spacing: -0.4px;
         }
         .card .version-tag {
             display: inline-block;
-            background: rgba(var(--card-rgb), 0.1);
+            background: rgba(var(--card-rgb), 0.12);
             color: var(--card-color);
             padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
         }
         .card p {
-            font-size: 0.95rem;
+            font-size: 0.94rem;
             color: #475569;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.65;
+            margin-bottom: 26px;
             flex-grow: 1;
             font-weight: 500;
         }
@@ -187,601 +562,307 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 9px;
             text-decoration: none;
             color: #fff;
             background: var(--card-color);
-            padding: 14px 24px;
+            padding: 13px 22px;
             border-radius: 12px;
             font-size: 0.95rem;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(var(--card-rgb), 0.3);
+            box-shadow: 0 4px 16px rgba(var(--card-rgb), 0.32);
             border: none;
             cursor: pointer;
             width: 100%;
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(var(--card-rgb), 0.4);
-            filter: brightness(1.05);
+            box-shadow: 0 8px 24px rgba(var(--card-rgb), 0.45);
+            filter: brightness(1.06);
+            color: #fff;
         }
 
-        /* Specific Card Colors and RGB Variables for Transparency */
+        /* Specific Card Colors and RGB Variables */
         .card.essay { --card-color: #10b981; --card-rgb: 16, 185, 129; }
-        .card.surgery { --card-color: #0f766e; --card-rgb: 15, 118, 110; }
         .card.mcq { --card-color: #0ea5e9; --card-rgb: 14, 165, 233; }
-        .card.pharma { --card-color: #06b6d4; --card-rgb: 6, 182, 212; }
         .card.new-book { --card-color: #f59e0b; --card-rgb: 245, 158, 11; }
+        .card.surgery { --card-color: #059669; --card-rgb: 5, 150, 105; }
+        .card.pedia-essay { --card-color: #f59e0b; --card-rgb: 245, 158, 11; }
+        .card.pedia-mcq { --card-color: #ea580c; --card-rgb: 234, 88, 12; }
+        .card.pharma { --card-color: #06b6d4; --card-rgb: 6, 182, 212; }
         .card.scenarios { --card-color: #ef4444; --card-rgb: 239, 68, 68; }
         .card.books { --card-color: #8b5cf6; --card-rgb: 139, 92, 246; }
         .card.links { --card-color: #eab308; --card-rgb: 234, 179, 8; }
 
-        /* FOOTER */
-        footer { text-align: center; padding: 20px; color: #334155; font-weight: 600;
-            font-size: 0.9rem;
-        }
-        footer a { color: #0284c7; font-weight: 700; text-decoration: none; }
-        
-        /* Select Dropdown inside MCQ */
-        select.fancy-select {
+        /* FANCY SELECTOR & CATEGORY BUTTONS FOR PHARMA */
+        .fancy-select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 12px 14px;
             border-radius: 10px;
-            border: 2px solid #4ECDC4;
-            font-family: 'Poppins', sans-serif;
+            border: 2px solid #e2e8f0;
+            background: #ffffff;
+            color: #1e293b;
+            font-family: inherit;
+            font-size: 0.92rem;
             font-weight: 600;
-            color: #2D3748;
             outline: none;
+            margin-bottom: 12px;
+            transition: all 0.25s;
+            cursor: pointer;
         }
-    
-        @keyframes rainbowGlow {
-            0% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,0,0.6); }
-
-        
-
-        
-            50% { background-position: 100% 50%; text-shadow: 0 0 30px rgba(0,255,255,0.8); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 15px rgba(255,0,255,0.6); }
-        }
-        
-        
-
-
-
-
-
-
-.glow-name {
-    font-size: 2.2rem !important;
-    font-weight: 900 !important;
-    margin-left: 10px !important;
-    display: inline-block !important;
-    vertical-align: middle;
-    
-    background: linear-gradient(to right, #FF0000 0%, #FF7F00 8.33%, #FFFF00 16.66%, #00FF00 25%, #0000FF 33.33%, #8B00FF 41.66%, #FF0000 50%, #FF7F00 58.33%, #FFFF00 66.66%, #00FF00 75%, #0000FF 83.33%, #8B00FF 91.66%, #FF0000 100%) !important;
-    background-size: 200vw auto !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-    
-    /* Thin outline for By TseLkos too */
-    -webkit-text-stroke: 1.5px #001f3f !important;
-    
-    animation: flowWaterAnim 4s linear infinite, authorPulseIndex 2s ease-in-out infinite alternate !important;
-}
-
-@keyframes smoothRainbow {
-    to { background-position: 200% center; }
-}
-
-@keyframes authorPulseIndex {
-    0% { transform: scale(1); filter: drop-shadow(0 0 15px #ff0040) drop-shadow(0 0 25px #aa00ff); }
-    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00ffaa) drop-shadow(0 0 35px #ffea00); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 15px #00aaff) drop-shadow(0 0 25px #ff0040); }
-}
-
-@media (max-width: 768px) {
-    .glow-name { display: block !important; margin-left: 0 !important; font-size: 1.4rem !important; margin-top: 5px !important; }
-}
-
-        
-        /* Responsive design to prevent letters overlapping on mobile */
-        @media (max-width: 768px) {
-            
-            .glow-name {
-                font-size: 1.3rem !important;
-                display: block !important;
-                margin-left: 0 !important;
-                margin-top: 10px !important;
-            }
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            letter-spacing: 1px;
+        .fancy-select:focus {
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
         }
 
-        /* MAIN CONTENT - CARDS GRID */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 20px 60px;
-            position: relative;
-        }
-        .grid {
+        .pharma-quick-pills {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 14px;
             width: 100%;
-            max-width: 1200px;
+        }
+        .pharma-pill-link {
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 9px 10px;
+            border-radius: 8px;
+            background: rgba(6, 182, 212, 0.08);
+            color: #0891b2;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .pharma-pill-link:hover {
+            background: #0891b2;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(8, 145, 178, 0.25);
         }
 
-        /* THE CARDS */
-        .card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+        /* SURGICAL MASTER CARD FULL WIDTH */
+        .surgical-hero-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(25px);
             border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
+            border: 2px solid rgba(5, 150, 105, 0.35);
+            box-shadow: 0 16px 45px rgba(5, 150, 105, 0.12);
+            padding: 40px 35px;
+            text-align: left;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
-        .card::before {
+        .surgical-hero-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 6px;
-            background: var(--card-color);
+            background: linear-gradient(90deg, #059669, #10b981, #34d399);
         }
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            background: rgba(255, 255, 255, 0.9);
+        .surgical-hero-top {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
         }
-
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .card h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #2D3748;
-            margin-bottom: 10px;
-        }
-        .card .version-tag {
-            display: inline-block;
-            background: var(--card-color);
+        .surgical-hero-icon {
+            width: 82px;
+            height: 82px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #059669, #047857);
             color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 2.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 28px rgba(5, 150, 105, 0.35);
+            flex-shrink: 0;
         }
-        .card p {
+        .surgical-hero-info h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        .surgical-badges-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .surg-badge {
+            background: rgba(5, 150, 105, 0.12);
+            color: #059669;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .surgical-hero-desc {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: #475569;
+            font-weight: 500;
+        }
+        .surg-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .surg-feature-box {
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .surg-feature-box i {
+            font-size: 1.4rem;
+            color: #059669;
+        }
+        .surg-feature-box div strong {
+            display: block;
             font-size: 0.95rem;
-            color: #4A5568;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        .surg-feature-box div span {
+            font-size: 0.82rem;
+            color: #64748b;
+        }
+        .btn-surg-hero {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #fff;
+            padding: 18px 30px;
+            border-radius: 16px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 30px rgba(5, 150, 105, 0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-surg-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(5, 150, 105, 0.55);
+            color: #fff;
+        }
+
+        /* PEDIATRIC HERO STYLES */
+        .pediatric-banner {
+            background: linear-gradient(135deg, rgba(254, 243, 199, 0.7), rgba(255, 237, 213, 0.7));
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            padding: 24px 30px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .pediatric-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .pediatric-banner-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ea580c, #f59e0b);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.35);
+        }
+        .pediatric-banner-info h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #9a3412;
+            margin-bottom: 4px;
+        }
+        .pediatric-banner-info p {
+            font-size: 0.95rem;
+            color: #78350f;
             font-weight: 500;
         }
 
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            text-decoration: none;
-            color: #fff;
-            background: var(--card-color);
-            padding: 14px 24px;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: all 0.3s;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
-        }
-
-        /* Specific Card Colors */
-        .card.essay { --card-color: #2ECC71; }
-        .card.surgery { --card-color: #0f766e; }
-        .card.mcq { --card-color: #0EA5E9; }
-        .card.pharma { --card-color: #06B6D4; }
-        .card.new-book { --card-color: #F39C12; }
-        .card.scenarios { --card-color: #E74C3C; }
-        .card.books { --card-color: #9B59B6; }
-        .card.links { --card-color: #F1C40F; }
-
         /* FOOTER */
-        footer { text-align: center; padding: 20px; color: #334155; font-weight: 600;
+        footer {
+            text-align: center;
+            padding: 30px 20px;
             font-size: 0.9rem;
-        }
-        footer a { color: #0284c7; font-weight: 700; text-decoration: none; }
-        
-        /* Select Dropdown inside MCQ */
-        select.fancy-select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 2px solid #4ECDC4;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #2D3748;
-            outline: none;
-        }
-        /* Chic Elegant Title Styles */
-        .main-title {
-            font-size: 4.8rem !important;
-            font-weight: 900 !important;
-            margin-bottom: 15px !important;
-            letter-spacing: -1.5px !important;
-            color: #1a202c !important; /* Deep elegant navy/black */
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.1) !important;
+            color: #64748b;
             position: relative;
             z-index: 10;
-            background: none !important;
-            -webkit-text-fill-color: #1a202c !important;
-            -webkit-text-stroke: 0 !important;
+        }
+        footer a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
 
-        .main-title span.quiz {
-            background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-            -webkit-text-stroke: 0 !important;
-            /* Chic neon glow */
-            filter: drop-shadow(0px 0px 12px rgba(0, 198, 255, 0.5)) drop-shadow(0px 0px 30px rgba(0, 114, 255, 0.3)) !important;
-            animation: chicNeonPulse 3s ease-in-out infinite alternate !important;
-        }
-
-        @keyframes chicNeonPulse {
-            0% { filter: drop-shadow(0px 0px 8px rgba(0, 198, 255, 0.4)) drop-shadow(0px 0px 20px rgba(0, 114, 255, 0.2)) !important; }
-            100% { filter: drop-shadow(0px 0px 15px rgba(0, 198, 255, 0.8)) drop-shadow(0px 0px 40px rgba(0, 114, 255, 0.6)) !important; }
-        }
-
-        .glow-name {
-            font-size: 1.8rem !important;
-            font-weight: 700 !important;
-            font-style: italic !important;
-            margin-left: 15px !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
-            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-            -webkit-text-stroke: 0 !important;
-            filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.15)) !important;
-            position: relative;
-            animation: roseGoldGlow 4s ease-in-out infinite alternate !important;
-        }
-        
-        .glow-name::before {
-            content: '';
-            display: inline-block;
-            width: 30px;
-            height: 3px;
-            background: #FF9A9E;
-            vertical-align: middle;
-            margin-right: 10px;
-            border-radius: 2px;
-            box-shadow: 0 0 8px rgba(255, 154, 158, 0.8);
-        }
-
-        @keyframes roseGoldGlow {
-            0% { filter: drop-shadow(0px 0px 5px rgba(255, 154, 158, 0.4)) !important; }
-            100% { filter: drop-shadow(0px 0px 15px rgba(255, 154, 158, 0.8)) !important; }
-        }
-
-        @media (max-width: 768px) {
-            .main-title { 
-                font-size: 3.2rem !important; 
-                line-height: 1.2 !important;
-                word-wrap: break-word !important;
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .specialty-tab-bar {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .glow-name { 
-                display: block !important; 
-                margin-left: 0 !important; 
-                margin-top: 15px !important; 
-                font-size: 1.5rem !important; 
-            }
-            .glow-name::before { display: none !important; }
         }
-
-
-                /* ==========================================================================
-   BOUTIQUE GLASSMORPHIC SEARCH HERO (DEDICATED POPUP WORKSPACE)
-   ========================================================================== */
-.subtitle {
-    font-size: 1.15rem;
-    color: #475569 !important;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin-top: 6px;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
-}
-
-.search-hero-wrapper {
-    max-width: 960px;
-    margin: 28px auto 20px auto;
-    padding: 0 20px;
-    width: 100%;
-}
-
-.search-hero-card {
-    position: relative;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1.5px solid rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
-    padding: 18px 26px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 22px;
-    cursor: pointer;
-    text-align: left;
-    box-shadow: 
-        0 14px 35px -6px rgba(14, 165, 233, 0.12),
-        0 4px 12px rgba(0, 0, 0, 0.03),
-        inset 0 1px 2px rgba(255, 255, 255, 1);
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Subtle rainbow-spectrum top accent line matching the cards */
-.search-hero-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 3.5px;
-    background: linear-gradient(90deg, #10b981 0%, #0ea5e9 25%, #8b5cf6 50%, #f59e0b 75%, #ef4444 100%);
-    opacity: 0.85;
-    transition: height 0.3s ease, opacity 0.3s ease;
-}
-
-.search-hero-card:hover {
-    transform: translateY(-4px) scale(1.008);
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(14, 165, 233, 0.4);
-    box-shadow: 
-        0 22px 50px -10px rgba(14, 165, 233, 0.22),
-        0 8px 20px rgba(0, 0, 0, 0.05),
-        inset 0 1px 2px rgba(255, 255, 255, 1);
-}
-
-.search-hero-card:hover::before {
-    height: 5px;
-    opacity: 1;
-}
-
-/* Left Group */
-.search-hero-left {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex: 1;
-    min-width: 0;
-}
-
-.search-hero-icon-box {
-    width: 54px;
-    height: 54px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 1.35rem;
-    flex-shrink: 0;
-    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.35);
-    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.search-hero-card:hover .search-hero-icon-box {
-    transform: scale(1.1) rotate(4deg);
-    box-shadow: 0 12px 26px rgba(14, 165, 233, 0.5);
-}
-
-.search-hero-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-}
-
-.search-hero-title-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.search-hero-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: -0.3px;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.search-hero-count-badge {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(2, 132, 199, 0.18) 100%);
-    color: #0284c7;
-    border: 1px solid rgba(14, 165, 233, 0.3);
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.search-hero-count-badge i {
-    font-size: 0.68rem;
-    color: #0ea5e9;
-}
-
-.search-hero-desc {
-    font-size: 0.86rem;
-    color: #475569;
-    font-weight: 500;
-    line-height: 1.45;
-    white-space: normal;
-}
-
-/* Right Group */
-.search-hero-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-}
-
-.search-hero-launch-btn {
-    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-    color: #ffffff;
-    font-size: 0.88rem;
-    font-weight: 700;
-    padding: 10px 20px;
-    border-radius: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.32);
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.search-hero-card:hover .search-hero-launch-btn {
-    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-    transform: translateX(3px);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45);
-}
-
-.search-hero-window-hint {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-}
-
-.search-hero-window-tag {
-    font-size: 0.72rem;
-    color: #64748b;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.search-hero-window-tag i {
-    color: #0ea5e9;
-    font-size: 0.75rem;
-}
-
-.search-hero-kbd {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-}
-
-.search-hero-kbd kbd {
-    background: rgba(241, 245, 249, 0.85);
-    border: 1px solid #cbd5e1;
-    color: #64748b;
-    padding: 2px 7px;
-    border-radius: 6px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    font-family: inherit;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
-
-@media (max-width: 820px) {
-    .search-hero-wrapper {
-        margin: 20px auto 10px auto;
-        padding: 0 15px;
-    }
-    .search-hero-card {
-        padding: 14px 18px;
-        border-radius: 20px;
-    }
-    .search-hero-desc {
-        display: none;
-    }
-    .search-hero-window-hint {
-        display: none;
-    }
-    .search-hero-title {
-        font-size: 1.08rem;
-    }
-    .search-hero-icon-box {
-        width: 44px;
-        height: 44px;
-        font-size: 1.15rem;
-        border-radius: 14px;
-    }
-    .search-hero-launch-btn {
-        padding: 8px 14px;
-        font-size: 0.82rem;
-    }
-}
-    
-</style>
-    <link rel="stylesheet" href="WORD_BASE_STYLE.css?v=20261015">
+        @media (max-width: 640px) {
+            .specialty-tab-bar {
+                grid-template-columns: 1fr;
+            }
+            .search-hero-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .search-hero-left {
+                flex-direction: column;
+                text-align: center;
+            }
+            .search-hero-right {
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
-
-    <!-- Animated Shapes -->
+    <!-- MESH BACKGROUND SHAPES (Classic TseLkos Aura) -->
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
     <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
 
     <header>
-        <h1 class="main-title">Pathologia<span class="quiz">Quiz</span> <span class="glow-name">By TseLkos</span> </h1>
-        <p class="subtitle">Η απόλυτη πλατφόρμα μελέτης και εξάσκησης</p>
-                            <!-- Sophisticated Unified Search Bar (Dedicated Popup Window) -->
+        <h1 class="main-title">Pathologia<span class="quiz">Quiz</span> <span class="glow-name">By TseLkos</span></h1>
+        <p class="subtitle">Η απόλυτη πλατφόρμα μελέτης &amp; εξάσκησης για τις Ιατρικές Εξετάσεις</p>
+
+        <!-- Sophisticated Unified Search Bar (Dedicated Popup Window / Ctrl + K) -->
         <div class="search-hero-wrapper">
             <div class="search-hero-card" onclick="openGlobalSearch()" role="button" tabindex="0" title="Άνοιγμα Ενιαίας Αναζήτησης σε Νέο Παράθυρο (Ctrl + K)">
                 <div class="search-hero-left">
@@ -792,11 +873,11 @@
                         <div class="search-hero-title-row">
                             <span class="search-hero-title">Ενιαία Μηχανή Αναζήτησης</span>
                             <span class="search-hero-count-badge">
-                                <i class="fa-solid fa-layer-group"></i> 4.631+ ΘΕΜΑΤΑ
+                                <i class="fa-solid fa-layer-group"></i> 15.000+ ΘΕΜΑΤΑ
                             </span>
                         </div>
                         <div class="search-hero-desc">
-                            Άμεση αναζήτηση &amp; μελέτη σε MCQ, Νέο Βιβλίο 2026, Θέματα Ανάπτυξης, Κλινικά &amp; Βιβλιοθήκη
+                            Άμεση αναζήτηση &amp; μελέτη σε Παθολογία, Χειρουργική, Παιδιατρική, MCQ, Flashcards &amp; Βιβλιοθήκη
                         </div>
                     </div>
                 </div>
@@ -806,118 +887,285 @@
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </div>
                     <div class="search-hero-window-hint">
-                        <span class="search-hero-window-tag">
-                            <i class="fa-regular fa-window-restore"></i> Νέο Παράθυρο
-                        </span>
                         <span class="search-hero-kbd">
                             <kbd>Ctrl</kbd> <kbd>K</kbd>
                         </span>
+                        <span>Νέο Παράθυρο</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- ============================================================ -->
+        <!-- 🔥 BOLD, PROMINENT SPECIALTY COMMAND TAB BAR 🔥 -->
+        <!-- ============================================================ -->
+        <div class="specialty-tab-wrapper">
+            <div class="specialty-tab-header-label">
+                <i class="fa-solid fa-compass"></i> Επιλεξτε Πυλη Ειδικοτητας &amp; Εργαλειων
+            </div>
+            <div class="specialty-tab-bar" role="tablist">
+                
+                <!-- TAB 1: ΠΑΘΟΛΟΓΙΑ -->
+                <button class="tab-btn tab-patho active" onclick="switchSpecialtyTab('patho')" id="btn-tab-patho" role="tab" aria-selected="true">
+                    <div class="tab-top-row">
+                        <div class="tab-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                        <div class="tab-title">ΠΑΘΟΛΟΓΙΑ</div>
+                    </div>
+                    <div class="tab-badge">609 Ανάπτυξη • 8.139 MCQs</div>
+                </button>
+
+                <!-- TAB 2: ΧΕΙΡΟΥΡΓΙΚΗ -->
+                <button class="tab-btn tab-surg" onclick="switchSpecialtyTab('surg')" id="btn-tab-surg" role="tab" aria-selected="false">
+                    <div class="tab-top-row">
+                        <div class="tab-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                        <div class="tab-title">ΧΕΙΡΟΥΡΓΙΚΗ</div>
+                    </div>
+                    <div class="tab-badge">Ενιαία Εφαρμογή • 6.583 Θέματα</div>
+                </button>
+
+                <!-- TAB 3: ΠΑΙΔΙΑΤΡΙΚΗ -->
+                <button class="tab-btn tab-pedia" onclick="switchSpecialtyTab('pedia')" id="btn-tab-pedia" role="tab" aria-selected="false">
+                    <div class="tab-top-row">
+                        <div class="tab-icon"><i class="fa-solid fa-baby"></i></div>
+                        <div class="tab-title">ΠΑΙΔΙΑΤΡΙΚΗ</div>
+                    </div>
+                    <div class="tab-badge">Ανάπτυξη &amp; MCQs By TseLkos</div>
+                </button>
+
+                <!-- TAB 4: ΕΡΓΑΛΕΙΑ & ΒΙΒΛΙΟΘΗΚΗ -->
+                <button class="tab-btn tab-tools" onclick="switchSpecialtyTab('tools')" id="btn-tab-tools" role="tab" aria-selected="false">
+                    <div class="tab-top-row">
+                        <div class="tab-icon"><i class="fa-solid fa-briefcase-medical"></i></div>
+                        <div class="tab-title">ΕΡΓΑΛΕΙΑ &amp; LINKS</div>
+                    </div>
+                    <div class="tab-badge">Φάρμακα, Σενάρια, Βιβλία</div>
+                </button>
+
+            </div>
+        </div>
+
     </header>
 
     <main>
-        <div class="grid">
-            
-            <!-- 1. Ερωτήσεις Ανάπτυξης -->
-            <div class="card essay">
-                <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                <h2>Θέματα Ανάπτυξης</h2>
-                <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (609 ΘΕΜΑΤΑ)</span></div>
-                <p>Πλήρης επιστημονική &amp; κλινική ανάλυση όλων των 609 θεμάτων εξετάσεων με διαγράμματα ροής, πίνακες, σύνοψη και εκτενές κείμενο.</p>
-                <a href="study.html" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Ανάπτυξης</a>
-            </div>
 
-            <!-- 2. Ερωτήσεις Επιλογής -->
-            <div class="card mcq">
-                <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
-                <h2>Τράπεζες Ερωτήσεων Πολλαπλής Επιλογής</h2>
-                <div><span class="version-tag">8.139+ ΕΡΩΤΗΣΕΙΣ (6 ΤΡΑΠΕΖΕΣ, 1.402 ΘΕΜΑΤΑ 2013-2023, ΔΟΑΤΑΠ, ΦΑΡΜΑΚΑ &amp; ΦΥΣΙΟΛΟΓΙΑ)</span></div>
-                <p>Ολοκληρωμένη πλατφόρμα μελέτης &amp; εξάσκησης στην Παθολογία με 6 επίσημες τράπεζες θεμάτων (1.402 θέματα 2013-2023 σε 12 κεφάλαια, Τράπεζα 1, Λάρνακα, 1160 ερωτήσεις Παθολογίας ΔΟΑΤΑΠ, 1066 ερωτήσεις Φαρμακολογίας ΔΟΑΤΑΠ &amp; 793 ερωτήσεις Φυσιολογίας ΔΟΑΤΑΠ ανά σύστημα), οργάνωση ανά θεματικά κεφάλαια, άμεση επαλήθευση και πλήρη αιτιολόγηση.</p>
-                <a href="quiz.html" class="btn"><i class="fa-solid fa-rocket"></i> Άνοιγμα Ερωτήσεων Παθολογίας</a>
-            </div>
+        <!-- ============================================================ -->
+        <!-- PANEL 1: ΠΑΘΟΛΟΓΙΑ QUIZ BY TSELKOS -->
+        <!-- ============================================================ -->
+        <div id="panel-patho" class="tab-panel active" role="tabpanel">
+            <div class="grid">
+                
+                <!-- 1. Θέματα Ανάπτυξης -->
+                <div class="card essay">
+                    <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h2>Θέματα Ανάπτυξης Παθολογίας</h2>
+                    <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (609 ΘΕΜΑΤΑ ΛΑΡΝΑΚΑ)</span></div>
+                    <p>Πλήρης επιστημονική &amp; κλινική ανάλυση όλων των 609 θεμάτων εξετάσεων με διαγράμματα ροής, συγκριτικούς πίνακες, διαγνωστικούς αλγορίθμους και εκτενές κείμενο.</p>
+                    <a href="study.html" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Ανάπτυξης</a>
+                </div>
 
-            <!-- Χειρουργική - Ερωτήσεις Πολλαπλής Επιλογής -->
-            <div class="card surgery">
-                <div class="card-icon"><i class="fa-solid fa-hospital-user"></i></div>
-                <h2>Χειρουργική - Ερωτήσεις Πολλαπλής Επιλογής</h2>
-                <div><span class="version-tag">6.583+ ΕΡΩΤΗΣΕΙΣ (4004, ΔΟΑΤΑΠ &amp; ΑΝΑΤΟΜΙΑ)</span></div>
-                <p>Ολοκληρωμένη πλατφόρμα μελέτης &amp; εξάσκησης στη Χειρουργική με επίσημες τράπεζες θεμάτων πολλαπλής επιλογής (4004, 1039 ερωτήσεις Χειρουργικής ΔΟΑΤΑΠ &amp; 1540 ερωτήσεις Ανατομίας ΔΟΑΤΑΠ ανά σύστημα), οργάνωση ανά θεματικά κεφάλαια και άμεση επαλήθευση σωστής απάντησης.</p>
-                <a href="SURGERY/index.html" class="btn"><i class="fa-solid fa-hospital-user"></i> Άνοιγμα Ερωτήσεων Χειρουργικής</a>
-            </div>
+                <!-- 2. Ερωτήσεις Πολλαπλής Επιλογής -->
+                <div class="card mcq">
+                    <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <h2>Τράπεζες Ερωτήσεων Πολλαπλής Επιλογής</h2>
+                    <div><span class="version-tag">8.139+ ΕΡΩΤΗΣΕΙΣ (6 ΤΡΑΠΕΖΕΣ, 1.402 ΘΕΜΑΤΑ 2013-2023, ΔΟΑΤΑΠ, ΦΑΡΜΑΚΑ &amp; ΦΥΣΙΟΛΟΓΙΑ)</span></div>
+                    <p>Ολοκληρωμένη πλατφόρμα μελέτης &amp; εξάσκησης στην Παθολογία με 6 επίσημες τράπεζες θεμάτων (1.402 θέματα 2013-2023 σε 12 κεφάλαια, Τράπεζα 1, Λάρνακα, 1160 ερωτήσεις Παθολογίας ΔΟΑΤΑΠ, 1066 ερωτήσεις Φαρμακολογίας ΔΟΑΤΑΠ &amp; 793 ερωτήσεις Φυσιολογίας ΔΟΑΤΑΠ ανά σύστημα), οργάνωση ανά θεματικά κεφάλαια, άμεση επαλήθευση και πλήρη αιτιολόγηση.</p>
+                    <a href="quiz.html" class="btn"><i class="fa-solid fa-rocket"></i> Άνοιγμα Ερωτήσεων Παθολογίας</a>
+                </div>
 
-            <!-- 3. Νέο Βιβλίο -->
-            <div class="card new-book">
-                <div class="card-icon"><i class="fa-solid fa-book-medical"></i></div>
-                <h2>Νέο Βιβλίο Παθολογίας</h2>
-                <div><span class="version-tag">ΕΚΔΟΣΗ 2026</span></div>
-                <p>Το ολοκαίνουργιο βιβλίο Παθολογίας με τη μορφή flashcards. Φρέσκια γνώση, σύγχρονες προσεγγίσεις και νέα δεδομένα.</p>
-                <a href="study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards</a>
-            </div>
+                <!-- 3. Νέο Βιβλίο Παθολογίας -->
+                <div class="card new-book">
+                    <div class="card-icon"><i class="fa-solid fa-book-medical"></i></div>
+                    <h2>Νέο Βιβλίο Παθολογίας</h2>
+                    <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (FLASHCARDS)</span></div>
+                    <p>Το ολοκαίνουργιο βιβλίο Παθολογίας με τη μορφή διαδραστικών flashcards. Φρέσκια γνώση, σύγχρονες κατευθυντήριες οδηγίες και νέα δεδομένα.</p>
+                    <a href="study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards</a>
+                </div>
 
-            <!-- 4. Φάρμακα & Ουσίες -->
-            <div class="card pharma">
-                <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
-                <h2>Φάρμακα &amp; Ουσίες</h2>
-                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
-                <p>Οδηγοί κλινικής φαρμακολογίας, δραστικές ουσίες, εμπορικά σκευάσματα, φάσμα δράσης, ενδείξεις και θεραπευτικά πρωτόκολλα.</p>
-                <form onsubmit="startPharma(event)" style="width: 100%;">
-                    <select id="pharma-selector" class="fancy-select" required>
-                        <option value="" disabled selected>Επίλεξε Κατηγορία Φαρμάκων...</option>
-                        <option value="pharmaka/antimikrobiaka.html">Αντιμικροβιακά Φάρμακα</option>
-                        <option value="pharmaka/antiypertasika.html">Αντιυπερτασικά Φάρμακα</option>
-                        <option value="pharmaka/antidiabetika.html">Αντιδιαβητικά Φάρμακα</option>
-                        <option value="pharmaka/antipiktika.html">Αντιαιμοπεταλιακά, Αντιπηκτικά & Θρομβολυτικά</option>
-                    </select>
-                    <button type="submit" class="btn"><i class="fa-solid fa-capsules"></i> Άνοιγμα Οδηγού</button>
-                </form>
             </div>
-
-            <!-- 5. Κλινικά Σενάρια -->
-            <div class="card scenarios">
-                <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
-                <h2>Κλινικά Σενάρια</h2>
-                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
-                <p>Εκπαιδεύσου πάνω σε πραγματικά περιστατικά. Εξάσκησε την κλινική σου σκέψη και τη διαγνωστική σου ικανότητα στην πράξη.</p>
-                <a href="cases.html" class="btn"><i class="fa-solid fa-microscope"></i> Προβολή Περιστατικών</a>
-            </div>
-
-            <!-- 6. Χρήσιμα Βιβλία -->
-            <div class="card books">
-                <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
-                <h2>Χρήσιμα Βιβλία</h2>
-                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
-                <p>Βιβλιοθήκη με ολόκληρα τα βιβλία, τις κατευθυντήριες οδηγίες και όλες τις παραγράφους, έτοιμα για άμεση ανάγνωση (PDF).</p>
-                <a href="books.html?v=1790289906,23765" class="btn"><i class="fa-solid fa-folder-open"></i> Άνοιγμα Βιβλιοθήκης</a>
-            </div>
-
-            <!-- 7. Links & Υλικό -->
-            <div class="card links">
-                <div class="card-icon"><i class="fa-solid fa-link"></i></div>
-                <h2>Links & Υλικό</h2>
-                <div><span class="version-tag" style="background: transparent; color: transparent; box-shadow: none;">&nbsp;</span></div>
-                <p>Πρόσβαση σε εξωτερικές πηγές, κατευθυντήριες οδηγίες διεθνών οργανισμών και επιπλέον υποστηρικτικό υλικό.</p>
-                <a href="links.html" class="btn"><i class="fa-solid fa-globe"></i> Δείτε το Υλικό</a>
-            </div>
-
         </div>
+
+        <!-- ============================================================ -->
+        <!-- PANEL 2: ΧΕΙΡΟΥΡΓΙΚΗ QUIZ BY TSELKOS (Ενιαία Εφαρμογή) -->
+        <!-- ============================================================ -->
+        <div id="panel-surg" class="tab-panel" role="tabpanel">
+            <div class="surgical-hero-card">
+                <div class="surgical-hero-top">
+                    <div class="surgical-hero-icon">
+                        <i class="fa-solid fa-hospital-user"></i>
+                    </div>
+                    <div class="surgical-hero-info">
+                        <h2>Χειρουργική Quiz By TseLkos</h2>
+                        <div class="surgical-badges-row">
+                            <span class="surg-badge"><i class="fa-solid fa-circle-check"></i> Ενιαία Εφαρμογή</span>
+                            <span class="surg-badge"><i class="fa-solid fa-database"></i> 6.583+ Ερωτήσεις</span>
+                            <span class="surg-badge"><i class="fa-solid fa-bone"></i> Ανατομία &amp; ΔΟΑΤΑΠ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="surgical-hero-desc">
+                    Η επίσημη, ενιαία πλατφόρμα μελέτης &amp; εξάσκησης στη Χειρουργική. Όλες οι τράπεζες (Τράπεζα 4004, 1.039 ερωτήσεις Χειρουργικής ΔΟΑΤΑΠ και 1.540 ερωτήσεις Ανατομίας ΔΟΑΤΑΠ ανά σύστημα) βρίσκονται συγκεντρωμένες σε <strong>μία ενιαία εφαρμογή</strong> με άμεση εναλλαγή τραπεζών, ταξινόμηση ανά κεφάλαιο και πλήρη αιτιολόγηση απαντήσεων.
+                </div>
+
+                <div class="surg-features-grid">
+                    <div class="surg-feature-box">
+                        <i class="fa-solid fa-book-medical"></i>
+                        <div>
+                            <strong>Τράπεζα 4004 Θεμάτων</strong>
+                            <span>Πλήρες αρχείο ερωτήσεων Χειρουργικής</span>
+                        </div>
+                    </div>
+                    <div class="surg-feature-box">
+                        <i class="fa-solid fa-file-shield"></i>
+                        <div>
+                            <strong>ΔΟΑΤΑΠ Χειρουργική</strong>
+                            <span>1.039 Επίσημες ερωτήσεις εξετάσεων</span>
+                        </div>
+                    </div>
+                    <div class="surg-feature-box">
+                        <i class="fa-solid fa-bone"></i>
+                        <div>
+                            <strong>Ανατομία Χειρουργικής</strong>
+                            <span>1.540 Ερωτήσεις ταξινομημένες ανά σύστημα</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="SURGERY/index.html" class="btn-surg-hero">
+                    <i class="fa-solid fa-rocket"></i> Άνοιγμα Ενιαίας Εφαρμογής Χειρουργικής
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PANEL 3: ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS (Χαρούμενο Θέμα) -->
+        <!-- ============================================================ -->
+        <div id="panel-pedia" class="tab-panel" role="tabpanel">
+            
+            <div class="pediatric-banner">
+                <div class="pediatric-banner-left">
+                    <div class="pediatric-banner-icon">
+                        <i class="fa-solid fa-baby"></i>
+                    </div>
+                    <div class="pediatric-banner-info">
+                        <h2>Παιδιατρική Quiz By TseLkos</h2>
+                        <p>Ολοκληρωμένη πλατφόρμα εξάσκησης στην Παιδιατρική με θέματα ανάπτυξης και ερωτήσεις πολλαπλής επιλογής.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                
+                <!-- 1. Θέματα Ανάπτυξης Παιδιατρικής -->
+                <div class="card pedia-essay">
+                    <div class="card-icon"><i class="fa-solid fa-baby-carriage"></i></div>
+                    <h2>Θέματα Ανάπτυξης Παιδιατρικής</h2>
+                    <div><span class="version-tag">ΠΑΙΔΙΑΤΡΙΚΗ ΜΕΛΕΤΗ</span></div>
+                    <p>Αναλυτικά θέματα ανάπτυξης Παιδιατρικής με διαγράμματα, κλινικά στάδια ανάπτυξης του παιδιού, παιδιατρικές παθήσεις και θεραπευτική διαχείριση.</p>
+                    <a href="PEDIATRICS/study.html" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Παιδιατρικής</a>
+                </div>
+
+                <!-- 2. Ερωτήσεις Πολλαπλής Παιδιατρικής -->
+                <div class="card pedia-mcq">
+                    <div class="card-icon"><i class="fa-solid fa-shapes"></i></div>
+                    <h2>Τράπεζα Ερωτήσεων Πολλαπλής Παιδιατρικής</h2>
+                    <div><span class="version-tag">MCQ QUIZ ΠΑΙΔΙΑΤΡΙΚΗΣ</span></div>
+                    <p>Εξασκηθείτε στις ερωτήσεις πολλαπλής επιλογής της Παιδιατρικής με άμεση επαλήθευση, επεξήγηση και κατηγοριοποίηση ανά θεματική ενότητα.</p>
+                    <a href="PEDIATRICS/quiz.html" class="btn"><i class="fa-solid fa-puzzle-piece"></i> Άνοιγμα Ερωτήσεων Παιδιατρικής</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PANEL 4: ΚΛΙΝΙΚΑ ΕΡΓΑΛΕΙΑ & ΒΙΒΛΙΟΘΗΚΗ (Φάρμακα με Επιλογή) -->
+        <!-- ============================================================ -->
+        <div id="panel-tools" class="tab-panel" role="tabpanel">
+            <div class="grid">
+                
+                <!-- 1. Φάρμακα & Ουσίες (ΜΕ ΠΛΗΡΗ ΕΠΙΛΟΓΗ ΚΑΤΗΓΟΡΙΑΣ) -->
+                <div class="card pharma">
+                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                    <h2>Φάρμακα &amp; Ουσίες</h2>
+                    <div><span class="version-tag">ΚΛΙΝΙΚΗ ΦΑΡΜΑΚΟΛΟΓΙΑ</span></div>
+                    <p>Οδηγοί κλινικής φαρμακολογίας, δραστικές ουσίες, εμπορικά σκευάσματα, φάσμα δράσης, ενδείξεις και θεραπευτικά πρωτόκολλα.</p>
+                    
+                    <!-- Επιλογή Κατηγορίας Φαρμάκων μέσω Dropdown -->
+                    <form onsubmit="startPharma(event)" style="width: 100%;">
+                        <select id="pharma-selector" class="fancy-select" required>
+                            <option value="" disabled selected>Επίλεξε Κατηγορία Φαρμάκων...</option>
+                            <option value="pharmaka/antimikrobiaka.html">🦠 Αντιμικροβιακά Φάρμακα</option>
+                            <option value="pharmaka/antiypertasika.html">🫀 Αντιυπερτασικά Φάρμακα</option>
+                            <option value="pharmaka/antidiabetika.html">🩸 Αντιδιαβητικά Φάρμακα</option>
+                            <option value="pharmaka/antipiktika.html">💉 Αντιαιμοπεταλιακά, Αντιπηκτικά &amp; Θρομβολυτικά</option>
+                        </select>
+                        <button type="submit" class="btn"><i class="fa-solid fa-capsules"></i> Άνοιγμα Οδηγού</button>
+                    </form>
+
+                    <!-- Άμεσα Clickable Pills για κάθε Κατηγορία Φαρμάκων -->
+                    <div class="pharma-quick-pills">
+                        <a href="pharmaka/antimikrobiaka.html" class="pharma-pill-link">
+                            <i class="fa-solid fa-bacterium"></i> Αντιμικροβιακά
+                        </a>
+                        <a href="pharmaka/antiypertasika.html" class="pharma-pill-link">
+                            <i class="fa-solid fa-heart-pulse"></i> Αντιυπερτασικά
+                        </a>
+                        <a href="pharmaka/antidiabetika.html" class="pharma-pill-link">
+                            <i class="fa-solid fa-droplet"></i> Αντιδιαβητικά
+                        </a>
+                        <a href="pharmaka/antipiktika.html" class="pharma-pill-link">
+                            <i class="fa-solid fa-syringe"></i> Αντιπηκτικά
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Κλινικά Σενάρια -->
+                <div class="card scenarios">
+                    <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h2>Κλινικά Σενάρια</h2>
+                    <div><span class="version-tag">ΔΙΑΓΝΩΣΤΙΚΗ ΣΚΕΨΗ</span></div>
+                    <p>Εκπαιδεύσου πάνω σε πραγματικά περιστατικά. Εξάσκησε την κλινική σου σκέψη και τη διαγνωστική σου ικανότητα στην πράξη.</p>
+                    <a href="cases.html" class="btn"><i class="fa-solid fa-microscope"></i> Προβολή Περιστατικών</a>
+                </div>
+
+                <!-- 3. Χρήσιμα Βιβλία -->
+                <div class="card books">
+                    <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h2>Χρήσιμα Βιβλία</h2>
+                    <div><span class="version-tag">ΒΙΒΛΙΟΘΗΚΗ PDF</span></div>
+                    <p>Βιβλιοθήκη με ολόκληρα τα βιβλία, τις κατευθυντήριες οδηγίες και όλες τις παραγράφους, έτοιμα για άμεση ανάγνωση (PDF).</p>
+                    <a href="books.html?v=1790289906,23765" class="btn"><i class="fa-solid fa-folder-open"></i> Άνοιγμα Βιβλιοθήκης</a>
+                </div>
+
+                <!-- 4. Links & Υλικό -->
+                <div class="card links">
+                    <div class="card-icon"><i class="fa-solid fa-link"></i></div>
+                    <h2>Links &amp; Υλικό</h2>
+                    <div><span class="version-tag">ΕΞΩΤΕΡΙΚΕΣ ΠΗΓΕΣ</span></div>
+                    <p>Πρόσβαση σε εξωτερικές πηγές, κατευθυντήριες οδηγίες διεθνών οργανισμών και επιπλέον υποστηρικτικό υλικό.</p>
+                    <a href="links.html" class="btn"><i class="fa-solid fa-globe"></i> Δείτε το Υλικό</a>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
     <footer>
-        <p>Σχεδιασμένο με 🎨 δημιουργικότητα & αγάπη! | Επικοινωνία: <a href="mailto:stergiostselkos@gmail.com">stergiostselkos@gmail.com</a>
+        <p>Σχεδιασμένο με 🎨 δημιουργικότητα &amp; αγάπη! | Επικοινωνία: <a href="mailto:stergiostselkos@gmail.com">stergiostselkos@gmail.com</a>
            <span style="opacity: 0.35; margin-left: 14px; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=0.35" onclick="lockPlatform()" title="Κλείδωμα Πλατφόρμας"><i class="fa-solid fa-lock"></i></span>
         </p>
     </footer>
 
     <script>
+        // LOCK PLATFORM FUNCTION
         function lockPlatform() {
             localStorage.removeItem('pathologia_access_granted');
             window.location.href = 'crash.html';
         }
         
-                function openGlobalSearch() {
+        // UNIFIED SEARCH POPUP
+        function openGlobalSearch() {
             if (window.innerWidth < 768) {
                 window.location.href = 'search.html';
             } else {
@@ -930,92 +1178,61 @@
                 openGlobalSearch();
             }
         });
-    
-                function startEssay(e) {
-            if (e) e.preventDefault();
-            window.location.href = 'study.html?v=' + new Date().getTime();
-        }
 
+        // PHARMA SELECTOR LAUNCHER
         function startPharma(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
             const selector = document.getElementById('pharma-selector');
-            const page = selector.value;
+            const page = selector ? selector.value : '';
             if(page) {
                 window.location.href = page;
             }
         }
- 
-        window.startMCQ = function(e) {
-            if (e && e.preventDefault) e.preventDefault();
-            const selector = document.getElementById('mcq-selector');
-            if (!selector || !selector.value) {
-                alert('Παρακαλώ επιλέξτε μία τράπεζα ερωτήσεων.');
-                return;
-            }
-            const book = selector.value;
-            if (book === 'surgery') {
-                window.location.href = 'SURGERY/index.html';
-                return;
-            } else if (book === 'larnaka' || book.startsWith('larnaka')) {
-                window.location.href = 'LARNAKA/index.html';
-            } else {
-                window.location.href = 'quiz.html?bank=' + encodeURIComponent(book) + '&v=' + new Date().getTime();
-            }
-        };
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var form = document.getElementById('mcq-form');
-            if (form) form.addEventListener('submit', window.startMCQ);
-            var btn = document.getElementById('mcq-submit-btn');
-            if (btn) btn.addEventListener('click', window.startMCQ);
+        // ============================================================
+        // 🔄 SPECIALTY TAB SWITCHER SCRIPT
+        // ============================================================
+        function switchSpecialtyTab(tabKey) {
+            const tabs = ['patho', 'surg', 'pedia', 'tools'];
+            if (!tabs.includes(tabKey)) tabKey = 'patho';
+
+            tabs.forEach(t => {
+                const btn = document.getElementById('btn-tab-' + t);
+                const panel = document.getElementById('panel-' + t);
+                if (t === tabKey) {
+                    if (btn) {
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-selected', 'true');
+                    }
+                    if (panel) {
+                        panel.classList.add('active');
+                    }
+                } else {
+                    if (btn) {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    }
+                    if (panel) {
+                        panel.classList.remove('active');
+                    }
+                }
+            });
+
+            // Save active tab in session storage
+            sessionStorage.setItem('activeSpecialtyTab', tabKey);
+            history.replaceState(null, null, '#' + tabKey);
+        }
+
+        // Restore tab from URL hash or sessionStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            const saved = sessionStorage.getItem('activeSpecialtyTab');
+            if (['patho', 'surg', 'pedia', 'tools'].includes(hash)) {
+                switchSpecialtyTab(hash);
+            } else if (['patho', 'surg', 'pedia', 'tools'].includes(saved)) {
+                switchSpecialtyTab(saved);
+            }
         });
     </script>
-
-
-
-
-
-
-
-<!-- MathJax for LaTeX Rendering -->
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    },
-    startup: {
-      pageReady: function () {
-        return MathJax.startup.defaultPageReady().then(function () {
-          const observer = new MutationObserver(function (mutations) {
-            let shouldTypeset = false;
-            for (let mutation of mutations) {
-              if (mutation.addedNodes.length > 0 || mutation.type === 'characterData') {
-                shouldTypeset = true;
-                break;
-              }
-            }
-            if (shouldTypeset) {
-              if (!window.mathJaxTimeout) {
-                window.mathJaxTimeout = setTimeout(function () {
-                  MathJax.typesetPromise().catch(function (err) { console.log('MathJax error:', err.message); });
-                  window.mathJaxTimeout = null;
-                }, 100);
-              }
-            }
-          });
-          observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-        });
-      }
-    }
-  };
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 </body>
 </html>
