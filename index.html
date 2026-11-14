@@ -808,6 +808,24 @@
         }
 
         
+        
+        .pediatric-banner-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .pedia-badge {
+            background: rgba(234, 88, 12, 0.12);
+            color: #ea580c;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         /* PATHOLOGY HERO STYLES */
         .pathology-banner {
             background: linear-gradient(135deg, rgba(224, 242, 254, 0.75), rgba(219, 234, 254, 0.75));
@@ -1030,7 +1048,7 @@
                         <div class="tab-icon"><i class="fa-solid fa-baby"></i></div>
                         <div class="tab-title">ΠΑΙΔΙΑΤΡΙΚΗ</div>
                     </div>
-                    <div class="tab-badge">Ανάπτυξη &amp; MCQs By TseLkos</div>
+                    <div class="tab-badge">375 Ανάπτυξη • 609 MCQs • Βιβλίο</div>
                 </button>
 
                 <!-- TAB 4: ΕΡΓΑΛΕΙΑ & ΒΙΒΛΙΟΘΗΚΗ -->
@@ -1157,6 +1175,7 @@
         </div>
 
         <!-- ============================================================ -->
+                <!-- ============================================================ -->
         <!-- PANEL 3: ΠΑΙΔΙΑΤΡΙΚΗ QUIZ BY TSELKOS (Χαρούμενο Θέμα) -->
         <!-- ============================================================ -->
         <div id="panel-pedia" class="tab-panel" role="tabpanel">
@@ -1168,8 +1187,13 @@
                     </div>
                     <div class="pediatric-banner-info">
                         <h2>Παιδιατρική Quiz By TseLkos</h2>
-                        <p>Ολοκληρωμένη πλατφόρμα εξάσκησης στην Παιδιατρική με θέματα ανάπτυξης και ερωτήσεις πολλαπλής επιλογής.</p>
+                        <p>Ολοκληρωμένη επιστημονική πλατφόρμα Παιδιατρικής με Θέματα Ανάπτυξης, Τράπεζα MCQs και το Νέο Βιβλίο 2026.</p>
                     </div>
+                </div>
+                <div class="pediatric-banner-badges">
+                    <span class="pedia-badge"><i class="fa-solid fa-pen-nib"></i> 375 Ανάπτυξη</span>
+                    <span class="pedia-badge"><i class="fa-solid fa-list-check"></i> 609+ MCQs</span>
+                    <span class="pedia-badge"><i class="fa-solid fa-book-medical"></i> Flashcards 2026</span>
                 </div>
             </div>
 
@@ -1179,8 +1203,8 @@
                 <div class="card pedia-essay">
                     <div class="card-icon"><i class="fa-solid fa-baby-carriage"></i></div>
                     <h2>Θέματα Ανάπτυξης Παιδιατρικής</h2>
-                    <div><span class="version-tag">ΠΑΙΔΙΑΤΡΙΚΗ ΜΕΛΕΤΗ</span></div>
-                    <p>Αναλυτικά θέματα ανάπτυξης Παιδιατρικής με διαγράμματα, κλινικά στάδια ανάπτυξης του παιδιού, παιδιατρικές παθήσεις και θεραπευτική διαχείριση.</p>
+                    <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (375 ΘΕΜΑΤΑ &amp; FLASHCARDS)</span></div>
+                    <p>Πλήρης κλινική μελέτη με flashcards γρήγορης ανάκλησης (σύντομες &amp; αναλυτικές απαντήσεις), κλινικά στάδια ανάπτυξης του παιδιού, παιδιατρικές παθήσεις, θεραπευτική διαχείριση και διαγνωστικά σημεία SOS.</p>
                     <a href="PEDIATRICS/study.html#quick-recall" class="btn"><i class="fa-solid fa-book-open"></i> Άνοιγμα Θεμάτων Παιδιατρικής</a>
                 </div>
 
@@ -1188,9 +1212,18 @@
                 <div class="card pedia-mcq">
                     <div class="card-icon"><i class="fa-solid fa-shapes"></i></div>
                     <h2>Τράπεζα Ερωτήσεων Πολλαπλής Παιδιατρικής</h2>
-                    <div><span class="version-tag">MCQ QUIZ ΠΑΙΔΙΑΤΡΙΚΗΣ</span></div>
-                    <p>Εξασκηθείτε στις ερωτήσεις πολλαπλής επιλογής της Παιδιατρικής με άμεση επαλήθευση, επεξήγηση και κατηγοριοποίηση ανά θεματική ενότητα.</p>
+                    <div><span class="version-tag">609+ ΕΡΩΤΗΣΕΙΣ (TRY-UNTIL-CORRECT &amp; ΑΙΤΙΟΛΟΓΗΣΗ)</span></div>
+                    <p>Ολοκληρωμένη πλατφόρμα εξάσκησης με 609 ερωτήσεις πολλαπλής επιλογής σε όλες τις βασικές παιδιατρικές ενότητες (Γενετική, Λοιμώξεις, Νεογνολογία, Καρδιολογία κ.α.) με διαδραστική επαλήθευση και επιστημονική αιτιολόγηση.</p>
                     <a href="PEDIATRICS/quiz.html" class="btn"><i class="fa-solid fa-puzzle-piece"></i> Άνοιγμα Ερωτήσεων Παιδιατρικής</a>
+                </div>
+
+                <!-- 3. Νέο Βιβλίο Παιδιατρικής -->
+                <div class="card new-book" style="--card-color: #ea580c; --card-rgb: 234, 88, 12;">
+                    <div class="card-icon"><i class="fa-solid fa-book-medical"></i></div>
+                    <h2>Νέο Βιβλίο Παιδιατρικής</h2>
+                    <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (70 FLASHCARDS &amp; ΜΕΘΟΔΟΛΟΓΙΑ)</span></div>
+                    <p>Το νέο υλικό Παιδιατρικής σε μορφή διαδραστικών flashcards. Σύγχρονες παιδιατρικές κατευθυντήριες οδηγίες, διαφοροδιαγνωστικοί αλγόριθμοι, κλινικά σενάρια και νέα βιβλιογραφικά δεδομένα.</p>
+                    <a href="PEDIATRICS/study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards Παιδιατρικής</a>
                 </div>
 
             </div>
