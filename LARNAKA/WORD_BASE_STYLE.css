@@ -415,3 +415,169 @@ h6.subsection-banner,
     }
 }
 
+
+
+/* ==========================================================================
+   UNIVERSAL MEDICAL IMAGE DISPLAY STANDARD (RESPONSIVE & HIGH DEFINITION)
+   ========================================================================== */
+
+/* Target all question and explanation images across all portals & views */
+.question-card img,
+.question-text img,
+#question-text img,
+.question img,
+.explanation-box img,
+.explanation-content img,
+.explanation-body img,
+.explanation-clean-content img,
+.doatap-exp-image img,
+.fig-img,
+.fig-img-wrap img,
+.theory-diagram-img,
+.zoomable-image,
+.embedded-med-image,
+.embedded-image-container img,
+.case-fig img,
+.case-image,
+.notebook-img-container img,
+.word-question img,
+.content-body img,
+.correct-answer-box img,
+#quick-correct-answer-text img,
+#quick-recall-explanation-content img,
+#quick-revealed-block img,
+.study-container img,
+.quiz-container img,
+.main-card img,
+.card-body img,
+.medical-image-wrap img,
+div[id*="explanation"] img,
+div[class*="explanation"] img,
+.explanation-container img,
+.question-container img,
+.mcq-strict-answer img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 950px !important;
+  height: auto !important;
+  margin: 18px auto !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09) !important;
+  background: #ffffff !important;
+  cursor: zoom-in !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Hover effect with subtle elevation & medical blue glow */
+.question-card img:hover,
+.explanation-box img:hover,
+.explanation-content img:hover,
+.doatap-exp-image img:hover,
+.fig-img:hover,
+.fig-img-wrap img:hover,
+.theory-diagram-img:hover,
+.zoomable-image:hover,
+.embedded-med-image:hover,
+.embedded-image-container img:hover,
+.case-fig img:hover,
+.case-image:hover,
+.correct-answer-box img:hover {
+  transform: translateY(-2px) scale(1.008) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 12px 32px rgba(2, 132, 199, 0.22) !important;
+}
+
+/* Dark mode compatibility */
+body.dark-theme .question-card img,
+body.dark-theme .explanation-box img,
+body.dark-theme .explanation-content img,
+body.dark-theme .doatap-exp-image img,
+body.dark-theme .fig-img,
+body.dark-theme .theory-diagram-img,
+body.dark-theme .zoomable-image,
+body.dark-theme .embedded-med-image,
+body.dark-theme .case-fig img,
+body.dark-theme .case-image,
+body.dark-theme .correct-answer-box img,
+body.dark-mode .question-card img,
+body.dark-mode .explanation-box img,
+body.dark-mode .fig-img,
+.dark-theme .question-card img,
+.dark-theme .explanation-box img {
+  border-color: #334155 !important;
+  background: #1e293b !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Figure wrappers & image captions */
+.fig-img-wrap,
+.embedded-image-container,
+.notebook-img-container {
+  text-align: center !important;
+  margin: 18px 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.image-caption,
+figcaption {
+  display: block !important;
+  text-align: center !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  margin-top: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+body.dark-theme .image-caption,
+body.dark-theme figcaption {
+  color: #94a3b8 !important;
+}
+
+/* Table images exception */
+table:not(.med-zoomable) img {
+  max-width: 100% !important;
+  width: auto !important;
+  margin: 4px auto !important;
+}
+
+/* Protect UI icons, logos, avatars, buttons, and zoom modal itself from being blown up */
+.avatar-img,
+.user-avatar,
+.brand-logo,
+.navbar-brand img,
+.badge-img,
+.icon-img,
+.table-viewer-overlay img,
+#mzv-img,
+.med-zoom-modal img,
+.med-zoom-img,
+.modal-content img {
+  width: auto !important;
+  max-width: initial !important;
+  margin: initial !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: initial !important;
+  background: transparent !important;
+  cursor: default !important;
+  transform: none !important;
+}
+
+/* Ensure the HD Zoom Modal image displays properly at full scale */
+#mzv-img.med-zoom-img {
+  display: block !important;
+  max-width: 95vw !important;
+  max-height: 82vh !important;
+  object-fit: contain !important;
+  border-radius: 6px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7) !important;
+}
+

@@ -580,6 +580,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener("click", function (e) {
     var im = e.target.closest(".case-fig img, .case-image");
     if (!im || !im.getAttribute("src")) return;
+    if (window.openMedZoom) {
+      e.preventDefault();
+      var fig = im.closest(".case-fig");
+      var cap = fig ? (fig.querySelector("figcaption") ? fig.querySelector("figcaption").textContent.trim() : (im.alt || "")) : (im.alt || "");
+      window.openMedZoom(im, cap, "ΚΛΙΝΙΚΟ ΠΕΡΙΣΤΑΤΙΚΟ");
+      return;
+    }
     var fig = im.closest("figure, .case-fig");
     var c = fig && fig.querySelector("figcaption");
     open(im.getAttribute("src"), c ? c.textContent.trim() : (im.alt || ""));

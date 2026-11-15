@@ -375,7 +375,25 @@
 
     // Direct Image Element
     if (target.tagName === 'IMG') {
-      openImageZoom(target.src, title || target.alt, badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ');
+      let smartTitle = title || target.getAttribute('data-title') || target.title;
+      if (!smartTitle) {
+        const fig = target.closest('figure, .case-fig, .embedded-image-container, .fig-img-wrap');
+        if (fig) {
+          const cap = fig.querySelector('figcaption, .image-caption');
+          if (cap && cap.textContent.trim()) smartTitle = cap.textContent.trim();
+        }
+      }
+      if (!smartTitle && target.alt && target.alt.toLowerCase() !== 'image' && target.alt.toLowerCase() !== 'medical diagram') {
+        smartTitle = target.alt;
+      }
+      if (!smartTitle) {
+        const qCard = target.closest('.question-card, .card, .case-container, .q-item, .study-card, .mcq-card');
+        if (qCard) {
+          const qHeader = qCard.querySelector('.question-title, .q-title, h2, h3, .card-title, .case-title');
+          if (qHeader && qHeader.textContent.trim()) smartTitle = qHeader.textContent.trim();
+        }
+      }
+      openImageZoom(target.src, smartTitle || 'Ιατρική Εικόνα / Διάγραμμα', badge || 'ΙΑΤΡΙΚΟ ΔΙΑΓΡΑΜΜΑ');
       return;
     }
 
@@ -510,10 +528,11 @@
       return;
     }
 
-    const clickedImg = e.target.closest('.fig-img, .fig-img-wrap img, .embedded-med-image, .image-wrapper img, .photo-card img, .embedded-image-container img, .case-fig img, .case-image');
-    if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img') {
+    const clickedImg = e.target.closest('img');
+    if (clickedImg && clickedImg.id !== 'mzv-img' && clickedImg.id !== 'lightbox-img' && !clickedImg.closest('#med-zoom-modal')) {
       e.preventDefault();
       window.openMedZoom(clickedImg);
+      return;
     }
   });
 

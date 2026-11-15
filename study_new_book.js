@@ -987,6 +987,10 @@ function revealQuickAnswer() {
                 img.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const lightboxImg = document.getElementById('lightbox-img');
+                    if (window.openMedZoom) {
+                        window.openMedZoom(this);
+                        return;
+                    }
                     lightboxImg.src = this.src;
                     lightbox.style.display = 'flex';
                     document.body.style.overflow = 'hidden';
