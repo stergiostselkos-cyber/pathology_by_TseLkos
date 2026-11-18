@@ -509,6 +509,7 @@
         .badge-mcq { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
         .badge-larnaka { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
         .badge-surgery { background: #ccfbf1; color: #0f766e; border: 1px solid #99f6e4; }
+        .badge-pediatrics { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
         .badge-newbook { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
         .badge-essay { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
         .badge-case { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
@@ -963,7 +964,7 @@
     <div id="loading-overlay">
         <div class="spinner"></div>
         <div style="font-weight: 700; font-size: 1.1rem; color: #0f172a; margin-bottom: 6px;">Φόρτωση Ιατρικών Βάσεων Δεδομένων...</div>
-        <div id="loading-details" style="font-size: 0.88rem; color: #64748b;">Πολλαπλής Επιλογής (1.402), Νέο Βιβλίο (2.717), Ανάπτυξη (624), Σενάρια (171), Βιβλιοθήκη</div>
+        <div id="loading-details" style="font-size: 0.88rem; color: #64748b;">Παθολογία, Χειρουργική, Παιδιατρική, Τράπεζα Λάρνακα, Νέο Βιβλίο, Ανάπτυξη, Σενάρια, Φάρμακα &amp; Βιβλιοθήκη</div>
     </div>
 
     <!-- Top Navigation -->
@@ -983,7 +984,7 @@
         
         <div class="search-header">
             <h2><i class="fa-solid fa-magnifying-glass"></i> Σύνθετη Αναζήτηση</h2>
-            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της Παθολογίας: <strong>Ερωτήσεις Πολλαπλής Επιλογής (MCQ)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong> & <strong>Βιβλιοθήκη</strong> & <strong>Φάρμακα &amp; Ουσίες</strong>.</p>
+            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της πλατφόρμας: <strong>Παθολογία (MCQ, Λάρνακα, ΔΟΑΤΑΠ)</strong>, <strong>Χειρουργική &amp; Ανατομία</strong>, <strong>Παιδιατρική (MCQs, Ανάπτυξη, Νέο Βιβλίο &amp; Πίνακες)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong>, <strong>Βιβλιοθήκη</strong> &amp; <strong>Φάρμακα &amp; Ουσίες</strong>.</p>
             <div class="status-badge-container">
                 <span class="status-pill" id="index-status">
                     <span class="dot"></span>
@@ -1067,6 +1068,10 @@
                 <span>🏥 Χειρουργική (4004)</span>
                 <span class="pill-count" id="count-surgery">0</span>
             </div>
+            <div class="filter-pill" data-source="pediatrics" onclick="filterBySource('pediatrics')">
+                <span>🧸 Παιδιατρική</span>
+                <span class="pill-count" id="count-pediatrics">0</span>
+            </div>
             <div class="filter-pill" data-source="new_book" onclick="filterBySource('new_book')">
                 <span>📘 Νέο Βιβλίο 2026</span>
                 <span class="pill-count" id="count-new_book">0</span>
@@ -1122,10 +1127,11 @@
     </div>
 
     <!-- Scripts: Load All Databases -->
+    <script src="marked.min.js"></script>
     <script src="data/questions_v3.js?v=20261114.v6"></script>
     <script src="data/questions_bank_1.js?v=20261114.v6"></script>
     <script src="LARNAKA/larnaka_1.js?v=20261116.part14"></script>
-<script src="LARNAKA/larnaka_2.js?v=20261116.part14"></script>
+    <script src="LARNAKA/larnaka_2.js?v=20261116.part14"></script>
     <script src="SURGERY/surgery_questions.js?v=20261112"></script>
     <script src="SURGERY/xeirourgiki_doatap.js?v=20261113"></script>
     <script src="SURGERY/anatomia_doatap.js?v=20261114"></script>
@@ -1134,9 +1140,13 @@
     <script src="data/fysiologia_doatap.js?v=20261114"></script>
     <script src="data/new_book_questions.js?v=20261021"></script>
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
+    <script src="PEDIATRICS/questions.js?v=20261119"></script>
+    <script src="PEDIATRICS/data/flashcard_questions.js?v=20261119"></script>
+    <script src="PEDIATRICS/data/new_book_questions.js?v=20261119"></script>
+    <script src="PEDIATRICS/data/table_analyses.js?v=20261119"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
     <script src="data/cases_em_70.js?v=20261021"></script>
-    <script src="books.js?v=20261115.surgery"></script>
+    <script src="books.js?v=20261119"></script>
     <script src="data/pharma_database.js?v=20261115.amk2"></script>
 
     <!-- Master Unified Search Logic -->
@@ -1887,6 +1897,124 @@
                 });
             }
 
+            // 7a. Pediatrics MCQ Questions (window.pediatricsQuestionsData)
+            const pediaMcqSource = (typeof window !== 'undefined' && Array.isArray(window.pediatricsQuestionsData)) ? window.pediatricsQuestionsData : null;
+            if (pediaMcqSource) {
+                pediaMcqSource.forEach((q, idx) => {
+                    const qId = q.id || (idx + 1);
+                    let optionsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Παιδιατρική", q.chapter || "", q.category || "", q.question || "", optionsText, cleanExp].join(" ");
+
+                    let correctIndices = [];
+                    if (Array.isArray(q.correctAnswerIndices)) {
+                        correctIndices = q.correctAnswerIndices.map(x => parseInt(x, 10));
+                    } else if (q.correctAnswerIndex !== undefined && q.correctAnswerIndex !== null) {
+                        correctIndices = [parseInt(q.correctAnswerIndex, 10)];
+                    } else if (q.correct !== undefined && q.correct !== null) {
+                        correctIndices = [parseInt(q.correct, 10) - 1];
+                    }
+
+                    index.push({
+                        id: 'pedia-mcq-' + qId,
+                        source: 'pediatrics',
+                        sourceLabel: 'Παιδιατρική MCQ',
+                        badgeClass: 'badge-pediatrics',
+                        badgeIcon: '🧸',
+                        chapter: q.chapter || q.category || 'Παιδιατρική',
+                        title: q.question || 'Ερώτηση Παιδιατρικής',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: correctIndices,
+                        appUrl: 'PEDIATRICS/quiz.html?qId=' + qId,
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            // 7b. Pediatrics Essay / Flashcard Questions (window.pediatricsFlashcardQuestionsData)
+            const pediaFcSource = (typeof window !== 'undefined' && Array.isArray(window.pediatricsFlashcardQuestionsData)) ? window.pediatricsFlashcardQuestionsData : null;
+            if (pediaFcSource) {
+                pediaFcSource.forEach((q, idx) => {
+                    const qId = q.id || (idx + 1);
+                    let cleanAns = (q.correctAnswer || q.answer || "").replace(/<[^>]*>?/gm, ' ');
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Παιδιατρική", q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp].join(" ");
+
+                    index.push({
+                        id: 'pedia-fc-' + qId,
+                        source: 'pediatrics',
+                        sourceLabel: 'Παιδιατρική Ανάπτυξη',
+                        badgeClass: 'badge-pediatrics',
+                        badgeIcon: '🧸',
+                        chapter: q.chapter || q.category || 'Θέματα Παιδιατρικής',
+                        title: q.question || 'Θέμα Παιδιατρικής',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        appUrl: 'PEDIATRICS/study.html?qId=' + qId + '#quick-recall',
+                        type: 'pedia_essay'
+                    });
+                });
+            }
+
+            // 7c. Pediatrics New Book Flashcards (window.pediatricsNewBookQuestionsData)
+            const pediaNbSource = (typeof window !== 'undefined' && Array.isArray(window.pediatricsNewBookQuestionsData)) ? window.pediatricsNewBookQuestionsData : null;
+            if (pediaNbSource) {
+                pediaNbSource.forEach((q, idx) => {
+                    const qId = q.id || (idx + 1);
+                    let cleanAns = (q.correctAnswer || q.answer || q.content || "").replace(/<[^>]*>?/gm, ' ');
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Παιδιατρική Νέο Βιβλίο", q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp].join(" ");
+
+                    index.push({
+                        id: 'pedia-nb-' + qId,
+                        source: 'pediatrics',
+                        sourceLabel: 'Παιδιατρική Νέο Βιβλίο',
+                        badgeClass: 'badge-pediatrics',
+                        badgeIcon: '🧸',
+                        chapter: q.chapter || q.category || 'Νέο Βιβλίο Παιδιατρικής',
+                        title: q.question || 'Flashcard Παιδιατρικής',
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        appUrl: 'PEDIATRICS/study_new_book.html?qId=' + qId,
+                        type: 'pedia_essay'
+                    });
+                });
+            }
+
+            // 7d. Pediatrics Interactive Table Analyses (window.pediatricsTableAnalysesData)
+            const pediaTbSource = (typeof window !== 'undefined' && Array.isArray(window.pediatricsTableAnalysesData)) ? window.pediatricsTableAnalysesData : null;
+            if (pediaTbSource) {
+                pediaTbSource.forEach((t, idx) => {
+                    const tId = t.tableId || (idx + 1);
+                    let rowsText = "";
+                    if (Array.isArray(t.rows)) {
+                        rowsText = t.rows.map(r => Array.isArray(r) ? r.map(c => (typeof c === 'object' ? ((c.text || "") + " " + (c.hoverText || "")) : String(c))).join(" ") : "").join(" ");
+                    }
+                    let headersText = Array.isArray(t.headers) ? t.headers.join(" ") : "";
+                    let cleanAnalysis = (t.detailedAnalysis || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Παιδιατρική Πίνακας", t.chapter || "", t.title || "", headersText, rowsText, cleanAnalysis].join(" ");
+
+                    index.push({
+                        id: 'pedia-table-' + tId,
+                        source: 'pediatrics',
+                        sourceLabel: 'Παιδιατρική Πίνακας',
+                        badgeClass: 'badge-pediatrics',
+                        badgeIcon: '📊',
+                        chapter: t.chapter || 'Πίνακες Παιδιατρικής',
+                        title: t.title || ('Πίνακας ' + tId),
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: t,
+                        appUrl: 'PEDIATRICS/study.html#table-analysis',
+                        type: 'pedia_table'
+                    });
+                });
+            }
+
             return index;
         }
 
@@ -1981,7 +2109,7 @@
 
         // Update Counts for Filter Pills
         function updateCountsPills(matches) {
-            const counts = { ALL: matches.length, mcq: 0, larnaka: 0, surgery: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
+            const counts = { ALL: matches.length, mcq: 0, larnaka: 0, surgery: 0, pediatrics: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
             matches.forEach(m => {
                 if (counts[m.source] !== undefined) counts[m.source]++;
             });
@@ -2097,6 +2225,10 @@
                 btnText = 'Άνοιγμα στη Χειρουργική';
                 actionIcon = 'fa-hospital-user';
                 btnClass = 'btn-surgery-viewer';
+            } else if (item.source === 'pediatrics') {
+                btnText = 'Άνοιγμα στην Παιδιατρική';
+                actionIcon = 'fa-baby';
+                btnClass = 'btn-pediatrics-viewer';
             } else if (item.source === 'mcq' || item.type === 'mcq') {
                 btnText = 'Άνοιγμα στην Εφαρμογή MCQ';
                 actionIcon = 'fa-circle-dot';
@@ -2188,10 +2320,57 @@
                         let expContent = q.explanation;
                         if (item.source === 'larnaka') {
                             expContent = expContent.replace(/src="images\//g, 'src="LARNAKA/images/');
+                        } else if (item.source === 'pediatrics') {
+                            expContent = expContent.replace(/src="images\//g, 'src="PEDIATRICS/images/');
+                            if (typeof marked !== 'undefined' && !/<[a-z][\s\S]*>/i.test(expContent)) {
+                                expContent = marked.parse(expContent);
+                            }
                         }
                         out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${expContent}</div>`;
                     }
                 } 
+                else if (item.type === 'pedia_essay') {
+                    const fmtMd = (txt) => {
+                        if (!txt) return '';
+                        let res = txt.replace(/!\[(.*?)\]\((images\/.*?)\)/g, '![$1](PEDIATRICS/$2)')
+                                     .replace(/src="images\//g, 'src="PEDIATRICS/images/');
+                        if (typeof marked !== 'undefined' && !/<div\s/i.test(res)) {
+                            return marked.parse(res);
+                        }
+                        return res.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                    };
+                    out += `<div class="full-question-box"><strong>Θέμα Παιδιατρικής:</strong> ${q.question || ''}</div>`;
+                    if (q.mnemonic && q.mnemonic.trim()) {
+                        out += `<div style="background:#fefce8; border:1px solid #fef08a; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:600; color:#854d0e;">💡 Μνημονικός Κανόνας: ${fmtMd(q.mnemonic)}</div>`;
+                    }
+                    const rawAns = (q.correctAnswer || q.answer || q.content || '').trim();
+                    const rawExp = (q.explanation || '').trim();
+                    if (rawAns) {
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-baby" style="color:#ea580c;"></i> Απάντηση & Βασικά Σημεία</h4>${fmtMd(rawAns)}</div>`;
+                    }
+                    if (rawExp && rawExp !== rawAns) {
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-book-medical" style="color:#0284c7;"></i> Πλήρης Κλινική Ανάλυση & Θεωρία</h4>${fmtMd(rawExp)}</div>`;
+                    }
+                }
+                else if (item.type === 'pedia_table') {
+                    out += `<div class="full-question-box"><strong>${item.chapter}</strong><br>${item.title}</div>`;
+                    if (Array.isArray(q.headers) && Array.isArray(q.rows)) {
+                        out += `<div class="full-answer-box" style="overflow-x:auto;"><table><thead><tr>${q.headers.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+                        q.rows.forEach(r => {
+                            out += `<tr>${(Array.isArray(r) ? r : []).map(c => {
+                                if (typeof c === 'object' && c !== null) {
+                                    return `<td><strong>${c.text || ''}</strong>${c.hoverText ? `<div style="font-size:0.82rem; color:#475569; margin-top:4px;">${c.hoverText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>` : ''}</td>`;
+                                }
+                                return `<td>${c}</td>`;
+                            }).join('')}</tr>`;
+                        });
+                        out += `</tbody></table></div>`;
+                    }
+                    if (q.detailedAnalysis) {
+                        let anHtml = (typeof marked !== 'undefined') ? marked.parse(q.detailedAnalysis) : q.detailedAnalysis;
+                        out += `<div class="full-answer-box"><h4><i class="fa-solid fa-table-list" style="color:#0d9488;"></i> Ανάλυση & Μεθοδολογία Πίνακα</h4>${anHtml}</div>`;
+                    }
+                }
                 else if (item.type === 'flashcard') {
                     out += `<div class="full-question-box"><strong>Ερώτηση Flashcard:</strong> ${q.question || ''}</div>`;
                     if (q.content) {

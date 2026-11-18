@@ -81,6 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
         showView('table-analysis');
     } else {
         showView('quick-recall');
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetQId = urlParams.get('qId') || urlParams.get('id');
+        if (targetQId && flashcardQuestions.length > 0) {
+            const foundIdx = flashcardQuestions.findIndex(q => String(q.id) === String(targetQId));
+            if (foundIdx !== -1) {
+                currentQuickIndex = foundIdx;
+                loadQuickRecallQuestion(foundIdx);
+            }
+        }
     }
 });
 

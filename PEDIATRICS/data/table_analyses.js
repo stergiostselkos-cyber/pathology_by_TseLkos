@@ -1,4 +1,4 @@
-﻿const tableAnalysesData = [
+window.pediatricsTableAnalysesData = [
     {
         "rows":  [
                      [
@@ -293,3 +293,4 @@
                     ]
     }
 ];
+if (typeof tableAnalysesData === 'undefined') { var tableAnalysesData = window.pediatricsTableAnalysesData; }

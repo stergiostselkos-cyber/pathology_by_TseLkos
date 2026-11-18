@@ -243,6 +243,15 @@ function loadQuestions() {
         populateChaptersOverlay();
         
         startQuiz();
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetQId = urlParams.get('qId') || urlParams.get('id');
+        if (targetQId && filteredQuestions.length > 0) {
+            const foundIdx = filteredQuestions.findIndex(q => String(q.id) === String(targetQId));
+            if (foundIdx !== -1) {
+                currentQuestionIndex = foundIdx;
+                showQuestion(foundIdx);
+            }
+        }
     } catch (error) {
         console.error("Σφάλμα κατά τη φόρτωση των ερωτήσεων:", error);
         questionText.textContent = "Αποτυχία φόρτωσης των ερωτήσεων. Βεβαιωθείτε ότι το αρχείο questions.js υπάρχει.";

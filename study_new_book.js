@@ -222,6 +222,22 @@ function loadQuestions() {
     renderThematicUnitFilters();
     populateQuickTopicSelector();
     loadFirstMatchingQuickQuestion();
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetQId = urlParams.get('qId') || urlParams.get('id');
+    const targetIdx = urlParams.get('index');
+    if (targetQId && flashcardQuestions.length > 0) {
+        const foundIdx = flashcardQuestions.findIndex(q => String(q.id) === String(targetQId));
+        if (foundIdx !== -1) {
+            currentQuickIndex = foundIdx;
+            loadQuickRecallQuestion(foundIdx);
+        }
+    } else if (targetIdx !== null && !isNaN(parseInt(targetIdx, 10))) {
+        const idxNum = parseInt(targetIdx, 10);
+        if (idxNum >= 0 && idxNum < flashcardQuestions.length) {
+            currentQuickIndex = idxNum;
+            loadQuickRecallQuestion(idxNum);
+        }
+    }
 }
 
 /**

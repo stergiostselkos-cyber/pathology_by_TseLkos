@@ -1,4 +1,4 @@
-const newBookQuestionsData = [
+window.pediatricsNewBookQuestionsData = [
     {
         "id": 1,
         "chapter": "ΚΕΦΑΛΑΙΟ 1: ΒΑΣΙΚΕΣ ΑΡΧΕΣ ΠΑΘΟΛΟΓΙΑΣ ΚΑΙ ΕΙΔΙΚΕΣ ΚΑΤΑΣΤΑΣΕΙΣ",
@@ -700,3 +700,4 @@ const newBookQuestionsData = [
         "steps": []
     }
 ];
+if (typeof newBookQuestionsData === 'undefined') { var newBookQuestionsData = window.pediatricsNewBookQuestionsData; }

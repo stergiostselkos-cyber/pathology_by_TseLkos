@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 "title": "ΚΕΦΑΛΑΙΟ 3 ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ",
-                "file": "books_pdf/ΚΕΦΑΛΑΙΟ 3 ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ.pdf"
+                "file": "books_pdf/ΚΕΦΑΛΑΙΟ 3  ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ.pdf"
             },
             {
                 "title": "ΚΕΦΑΛΑΙΟ 4 ΠΑΘΗΣΕΙΣ ΤΟΥ ΑΝΑΠΝΕΥΣΤΙΚΟΥ ΣΥΣΤΗΜΑΤΟΣ",

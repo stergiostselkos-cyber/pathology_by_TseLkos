@@ -13,7 +13,7 @@ def update_mcq():
         with open(json_path, 'r', encoding='utf-8-sig') as f:
             data = json.load(f)
         
-        js_content = f"const questionsData = {json.dumps(data, ensure_ascii=False, indent=4)};\n"
+        js_content = f"window.pediatricsQuestionsData = {json.dumps(data, ensure_ascii=False, indent=4)};\nif (typeof questionsData === 'undefined') {{ var questionsData = window.pediatricsQuestionsData; }}\n"
         with open(js_path, 'w', encoding='utf-8') as f:
             f.write(js_content)
         print(f"Επιτυχής ενημέρωση του {js_path} από το {json_path} ({len(data)} ερωτήσεις).")
@@ -32,7 +32,7 @@ def update_flashcards():
         with open(json_path, 'r', encoding='utf-8-sig') as f:
             data = json.load(f)
         
-        js_content = f"const flashcardQuestionsData = {json.dumps(data, ensure_ascii=False, indent=4)};\n"
+        js_content = f"window.pediatricsFlashcardQuestionsData = {json.dumps(data, ensure_ascii=False, indent=4)};\nif (typeof flashcardQuestionsData === 'undefined') {{ var flashcardQuestionsData = window.pediatricsFlashcardQuestionsData; }}\n"
         with open(js_path, 'w', encoding='utf-8') as f:
             f.write(js_content)
         print(f"Επιτυχής ενημέρωση του {js_path} από το {json_path} ({len(data)} flashcards).")
