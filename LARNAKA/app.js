@@ -101,7 +101,7 @@ function getCorrectAnswerIndices(question) {
  * Helper to determine which chapter/category a question belongs to.
  */
 function getQuestionChapter(q) {
-    return q.category || "Γενικά";
+    return q.chapter || q.chapterTitle || q.category || "Γενικά";
 }
 
 function isChapterMatch(questionCh, activeCh) {
@@ -382,7 +382,7 @@ function showQuestion(index) {
     if (typeof question.isFirstAttempt === 'undefined') question.isFirstAttempt = true;
     
     // Set UI elements (showing clean question on the card without inline choices)
-    categoryBadge.textContent = question.category || "Παθολογική Ανατομική";
+    categoryBadge.textContent = question.chapter || question.chapterTitle || question.category || "Παθολογία";
     questionText.textContent = getCleanQuestionTitle(question.question);
     
     // Navigation state (sync both bottom and top navigation bars)
