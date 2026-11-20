@@ -1,5 +1,5 @@
 // Master Larnaka Question Bank - Part 1/2 (Questions 1-409)
-var larnakaAllQuestions = [
+var larnakaPart1Questions = [
   {
     "id": 45,
     "sequence": 1,
@@ -11401,4 +11401,8 @@ var larnakaAllQuestions = [
     "chapterTitle": "ΚΕΦΑΛΑΙΟ 3ο, ΛΟΙΜΩΔΗ ΝΟΣΗΜΑΤΑ"
   }
 ];
-if (typeof window !== "undefined") { window.larnakaAllQuestions = larnakaAllQuestions; }
+if (typeof window !== "undefined") {
+    window.larnakaPart1Questions = larnakaPart1Questions;
+    window.larnakaAllQuestions = larnakaPart1Questions.slice();
+}
+var larnakaAllQuestions = (typeof window !== "undefined") ? window.larnakaAllQuestions : larnakaPart1Questions;

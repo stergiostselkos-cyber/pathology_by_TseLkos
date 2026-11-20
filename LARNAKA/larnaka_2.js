@@ -1,5 +1,4 @@
 // Master Larnaka Question Bank - Part 2/2 (Questions 410-818)
-if (typeof larnakaAllQuestions === "undefined") { var larnakaAllQuestions = []; }
 var larnakaPart2Questions = [
   {
     "id": 391,
@@ -13778,5 +13777,13 @@ var larnakaPart2Questions = [
     "chapterTitle": "ΚΕΦΑΛΑΙΟ 12ο, ΒΑΣΙΚΕΣ ΑΡΧΕΣ ΟΓΚΟΛΟΓΙΑΣ"
   }
 ];
-for (var i = 0; i < larnakaPart2Questions.length; i++) { larnakaAllQuestions.push(larnakaPart2Questions[i]); }
-if (typeof window !== "undefined") { window.larnakaAllQuestions = larnakaAllQuestions; }
+if (typeof window !== "undefined") {
+    window.larnakaPart2Questions = larnakaPart2Questions;
+    if (!window.larnakaAllQuestions || !Array.isArray(window.larnakaAllQuestions)) {
+        window.larnakaAllQuestions = [];
+    }
+    for (var i = 0; i < larnakaPart2Questions.length; i++) {
+        window.larnakaAllQuestions.push(larnakaPart2Questions[i]);
+    }
+}
+var larnakaAllQuestions = (typeof window !== "undefined") ? window.larnakaAllQuestions : larnakaPart2Questions;
