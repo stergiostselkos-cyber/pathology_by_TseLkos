@@ -111,31 +111,15 @@
   }
 
   function initTheme() {
-    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME);
-    if (savedTheme === 'light') {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      if (dom.themeToggleBtn) dom.themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    } else {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      if (dom.themeToggleBtn) dom.themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    }
+    document.body.classList.remove('dark-theme');
+    document.body.classList.remove('light-theme');
+    try {
+      localStorage.removeItem(STORAGE_KEY_THEME);
+    } catch (e) {}
   }
 
   function toggleTheme() {
-    const isLight = document.body.classList.contains('light-theme');
-    if (isLight) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      localStorage.setItem(STORAGE_KEY_THEME, 'dark');
-      dom.themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    } else {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      localStorage.setItem(STORAGE_KEY_THEME, 'light');
-      dom.themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    }
+    // Permanent bright light theme
   }
 
   function populateChapters() {

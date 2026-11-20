@@ -121,39 +121,19 @@
   }
 
   function initTheme() {
-    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || 'dark-theme';
-    if (savedTheme === 'light-theme') {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      updateThemeIcon(true);
-    } else {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      updateThemeIcon(false);
-    }
+    document.body.classList.remove('dark-theme');
+    document.body.classList.remove('light-theme');
+    try {
+      localStorage.removeItem(STORAGE_KEY_THEME);
+    } catch (e) {}
   }
 
   function updateThemeIcon(isLight) {
     if (!dom.themeToggleBtn) return;
-    dom.themeToggleBtn.innerHTML = isLight
-      ? '<i class="fa-solid fa-moon"></i>'
-      : '<i class="fa-solid fa-sun"></i>';
-    dom.themeToggleBtn.setAttribute('title', isLight ? 'Εναλλαγή σε Σκούρο θέμα' : 'Εναλλαγή σε Φωτεινό θέμα');
   }
 
   function toggleTheme() {
-    const isLight = document.body.classList.contains('light-theme');
-    if (isLight) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      localStorage.setItem(STORAGE_KEY_THEME, 'dark-theme');
-      updateThemeIcon(false);
-    } else {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      localStorage.setItem(STORAGE_KEY_THEME, 'light-theme');
-      updateThemeIcon(true);
-    }
+    // Permanent light theme
   }
 
   function loadStorage() {
