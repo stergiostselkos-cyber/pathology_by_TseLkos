@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Τράπεζα Θεμάτων ΔΟΑΤΑΠ Παιδιατρικής (1.199 Ερωτήσεις) • TseLkos</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Zoom Inspector & App Styles -->
+  <link rel="stylesheet" href="image_zoom_viewer.css?v=20261120.closefix">
+  <link rel="stylesheet" href="daotap_quiz.css?v=20261120.1">
+</head>
+<body class="dark-theme">
+
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-info">
+          <h1>Pediatric <span class="highlight">ΔΟΑΤΑΠ</span> Quiz</h1>
+          <p>
+            <span class="brand-badge">Τράπεζα Θεμάτων</span>
+            <span>1.199 Ερωτήσεις • By TseLkos</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="../index.html#pedia" class="header-btn" title="Επιστροφή στο κεντρικό Portal">
+          <i class="fa-solid fa-house"></i>
+          <span>Portal</span>
+        </a>
+        <a href="quiz.html" class="header-btn" title="Μετάβαση στην άλλη Τράπεζα 609 MCQs">
+          <i class="fa-solid fa-list-check"></i>
+          <span>MCQs (609)</span>
+        </a>
+        <a href="study.html" class="header-btn" title="Μετάβαση στα Θέματα Ανάπτυξης">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Ανάπτυξη</span>
+        </a>
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Εναλλαγή θέματος">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Controls Hub -->
+    <section class="control-hub">
+      <div class="search-and-jump-row">
+        
+        <!-- Live Search -->
+        <div class="search-box-wrapper">
+          <i class="fa-solid fa-search"></i>
+          <input type="text" id="search-input" class="search-input" placeholder="Αναζήτηση σε 1.199 ερωτήσεις, επιλογές & αιτιολογήσεις (π.χ. Fallot, μηνιγγίτιδα, Down)...">
+        </div>
+
+        <!-- Batch Range Dropdown -->
+        <select id="batch-select" class="batch-select" aria-label="Επιλογή ομάδας ερωτήσεων">
+          <option value="all">Όλες οι ερωτήσεις (1 - 1199)</option>
+        </select>
+
+        <!-- Direct Question Jump -->
+        <div class="jump-group">
+          <input type="number" id="jump-input" class="jump-input" min="1" max="1199" placeholder="Αρ.">
+          <button id="jump-btn" class="btn-primary-action" title="Μετάβαση στον συγκεκριμένο αριθμό ερώτησης">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Random Question -->
+        <button id="random-btn" class="btn-icon-action" title="Τυχαία ερώτηση">
+          <i class="fa-solid fa-shuffle"></i>
+          <span>Τυχαία</span>
+        </button>
+
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="filter-pills-row">
+        <button class="filter-pill active" data-filter="all">
+          <i class="fa-solid fa-border-all"></i>
+          <span>Όλες</span>
+          <span class="pill-count" id="count-all">1199</span>
+        </button>
+
+        <button class="filter-pill" data-filter="image">
+          <i class="fa-solid fa-image"></i>
+          <span>Με Εικόνα</span>
+          <span class="pill-count" id="count-image">41</span>
+        </button>
+
+        <button class="filter-pill" data-filter="explanation">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span>Με Αιτιολόγηση</span>
+          <span class="pill-count" id="count-explanation">337</span>
+        </button>
+
+        <button class="filter-pill" data-filter="starred">
+          <i class="fa-solid fa-star"></i>
+          <span>Αγαπημένα</span>
+          <span class="pill-count" id="count-starred">0</span>
+        </button>
+
+        <button class="filter-pill" data-filter="mistakes">
+          <i class="fa-solid fa-circle-xmark"></i>
+          <span>Λάθη</span>
+          <span class="pill-count" id="count-mistakes">0</span>
+        </button>
+
+        <button class="filter-pill" data-filter="notes">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Σημειώσεις Κλειδιών</span>
+          <span class="pill-count" id="count-notes">0</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Progress & Live Stats Tracker -->
+    <section class="status-tracker-card">
+      <div class="progress-header">
+        <span id="progress-counter" class="progress-counter">Ερώτηση 1 από 1.199</span>
+        <span id="progress-percent" class="progress-percent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-chip stat-correct">
+          <span class="stat-chip-label"><i class="fa-solid fa-check"></i> Σωστά (1η προσπ.):</span>
+          <span id="stat-correct" class="stat-chip-val">0</span>
+        </div>
+        <div class="stat-chip stat-wrong">
+          <span class="stat-chip-label"><i class="fa-solid fa-xmark"></i> Λάθη:</span>
+          <span id="stat-wrong" class="stat-chip-val">0</span>
+        </div>
+        <div class="stat-chip stat-rate">
+          <span class="stat-chip-label"><i class="fa-solid fa-chart-pie"></i> Επιτυχία:</span>
+          <span id="stat-rate" class="stat-chip-val">0%</span>
+        </div>
+        <div class="stat-chip stat-bookmarked">
+          <span class="stat-chip-label"><i class="fa-solid fa-star"></i> Σημειωμένες:</span>
+          <span id="stat-bookmarked" class="stat-chip-val">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Question Card -->
+    <main class="quiz-main-card">
+      
+      <div class="question-card-top">
+        <div class="question-meta-tags">
+          <span id="q-badge-id" class="q-badge q-badge-id"># 1</span>
+          <span id="q-badge-chapter" class="q-badge q-badge-chapter">ΠΑΙΔΙΑΤΡΙΚΗ ΔΟΑΤΑΠ</span>
+          <div id="q-badge-features" style="display:inline-flex;gap:6px;"></div>
+        </div>
+
+        <button id="btn-star" class="btn-star-question" title="Σημείωση / Αγαπημένο (πλήκτρο S)">
+          <i class="fa-regular fa-star"></i>
+        </button>
+      </div>
+
+      <div class="question-body">
+        <div id="question-text" class="question-text">
+          Φόρτωση ερώτησης...
+        </div>
+      </div>
+
+      <!-- Multiple Choice Options -->
+      <div id="options-container" class="options-list">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Bottom Action Footer -->
+      <div class="quiz-actions-footer">
+        <div style="display:flex;gap:10px;">
+          <button id="btn-reveal" class="btn-nav" title="Εμφάνιση της σωστής απάντησης">
+            <i class="fa-solid fa-eye"></i>
+            <span>Εμφάνιση Απάντησης</span>
+          </button>
+          <button id="btn-clear" class="btn-nav" title="Εκκαθάριση απάντησης ερώτησης">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Επαναφορά</span>
+          </button>
+        </div>
+
+        <div class="footer-nav-group">
+          <button id="btn-prev" class="btn-nav" title="Προηγούμενη ερώτηση (Αριστερό βέλος)">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Προηγούμενη</span>
+          </button>
+          <button id="btn-next" class="btn-nav btn-nav-primary" title="Επόμενη ερώτηση (Δεξί βέλος)">
+            <span>Επόμενη</span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Explanation & Media Panel -->
+      <section id="explanation-card" class="explanation-card">
+        <div class="explanation-header">
+          <h3>
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Επιστημονική Τεκμηρίωση &amp; Αιτιολόγηση</span>
+          </h3>
+        </div>
+        <div id="explanation-answer-pill" style="margin-bottom:12px;color:var(--success-color);font-size:0.95rem;"></div>
+        <div id="explanation-body" class="explanation-content"></div>
+        <div id="explanation-notes-box" style="display:none;"></div>
+      </section>
+
+    </main>
+
+    <!-- Keyboard Shortcuts Drawer -->
+    <footer class="keyboard-hints">
+      <span><span class="kbd-badge">1 - 5</span> Επιλογή Απάντησης</span>
+      <span><span class="kbd-badge">&larr;</span> / <span class="kbd-badge">&rarr;</span> Πλοήγηση</span>
+      <span><span class="kbd-badge">Space</span> Εμφάνιση Απάντησης</span>
+      <span><span class="kbd-badge">S</span> Αγαπημένο</span>
+      <span><span class="kbd-badge">F</span> Αναζήτηση</span>
+    </footer>
+
+  </div>
+
+  <!-- End / Completion Modal -->
+  <div id="results-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-score-circle">
+        <div id="modal-score-val" class="modal-score-val">0%</div>
+        <div class="modal-score-lbl">Επιτυχία</div>
+      </div>
+      <h2>Ολοκλήρωση Ενοτήτων!</h2>
+      <p id="modal-score-desc">Συγχαρητήρια για την ολοκλήρωση της μελέτης σας.</p>
+      <div class="modal-actions">
+        <button id="modal-review-mistakes-btn" class="btn-primary-action">
+          <i class="fa-solid fa-rotate"></i>
+          <span>Επανάληψη Λαθών</span>
+        </button>
+        <button id="modal-close-btn" class="btn-icon-action">
+          <span>Κλείσιμο</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data/paidiatriki_questions_daotap.js"></script>
+  <script src="image_zoom_viewer.js"></script>
+  <script src="daotap_quiz.js"></script>
+</body>
+</html>

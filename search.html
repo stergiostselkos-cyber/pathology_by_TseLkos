@@ -984,7 +984,7 @@
         
         <div class="search-header">
             <h2><i class="fa-solid fa-magnifying-glass"></i> Σύνθετη Αναζήτηση</h2>
-            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της πλατφόρμας: <strong>Παθολογία (MCQ, Λάρνακα, ΔΟΑΤΑΠ)</strong>, <strong>Χειρουργική &amp; Ανατομία</strong>, <strong>Παιδιατρική (MCQs, Ανάπτυξη, Νέο Βιβλίο &amp; Πίνακες)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong>, <strong>Βιβλιοθήκη</strong> &amp; <strong>Φάρμακα &amp; Ουσίες</strong>.</p>
+            <p>Αναζητήστε ταυτόχρονα σε όλες τις εφαρμογές της πλατφόρμας: <strong>Παθολογία (MCQ, Λάρνακα, ΔΟΑΤΑΠ)</strong>, <strong>Χειρουργική &amp; Ανατομία</strong>, <strong>Παιδιατρική (MCQs, Ανάπτυξη, ΔΟΑΤΑΠ &amp; Πίνακες)</strong>, <strong>Νέο Βιβλίο 2026 (Flashcards)</strong>, <strong>Θέματα Ανάπτυξης</strong>, <strong>Κλινικά Σενάρια</strong>, <strong>Βιβλιοθήκη</strong> &amp; <strong>Φάρμακα &amp; Ουσίες</strong>.</p>
             <div class="status-badge-container">
                 <span class="status-pill" id="index-status">
                     <span class="dot"></span>
@@ -1142,7 +1142,7 @@
     <script src="data/anaptyxi_2026.js?v=20261021"></script>
     <script src="PEDIATRICS/questions.js?v=20261119"></script>
     <script src="PEDIATRICS/data/flashcard_questions.js?v=20261119"></script>
-    <script src="PEDIATRICS/data/new_book_questions.js?v=20261119"></script>
+    <script src="PEDIATRICS/data/paidiatriki_questions_daotap.js"></script>
     <script src="PEDIATRICS/data/table_analyses.js?v=20261119"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
     <script src="data/cases_em_70.js?v=20261021"></script>
@@ -1959,28 +1959,29 @@
                 });
             }
 
-            // 7c. Pediatrics New Book Flashcards (window.pediatricsNewBookQuestionsData)
-            const pediaNbSource = (typeof window !== 'undefined' && Array.isArray(window.pediatricsNewBookQuestionsData)) ? window.pediatricsNewBookQuestionsData : null;
-            if (pediaNbSource) {
-                pediaNbSource.forEach((q, idx) => {
-                    const qId = q.id || (idx + 1);
-                    let cleanAns = (q.correctAnswer || q.answer || q.content || "").replace(/<[^>]*>?/gm, ' ');
+            // 7c. Pediatrics DAOTAP MCQs (window.paidiatrikiQuestions - 1,199 questions)
+            const pediaDaotapSource = (typeof window !== 'undefined' && Array.isArray(window.paidiatrikiQuestions)) ? window.paidiatrikiQuestions : null;
+            if (pediaDaotapSource) {
+                pediaDaotapSource.forEach((q, idx) => {
+                    const qId = q.sequence || q.id || (idx + 1);
+                    let optsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanAns = (q.correctAnswer || "").replace(/<[^>]*>?/gm, ' ');
                     let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
-                    let fullText = ["Παιδιατρική Νέο Βιβλίο", q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp].join(" ");
+                    let fullText = ["Παιδιατρική ΔΟΑΤΑΠ MCQ", q.chapter || "", q.category || "", q.question || "", optsText, cleanAns, cleanExp].join(" ");
 
                     index.push({
-                        id: 'pedia-nb-' + qId,
+                        id: 'pedia-daotap-' + qId,
                         source: 'pediatrics',
-                        sourceLabel: 'Παιδιατρική Νέο Βιβλίο',
+                        sourceLabel: 'Παιδιατρική ΔΟΑΤΑΠ MCQ',
                         badgeClass: 'badge-pediatrics',
-                        badgeIcon: '🧸',
-                        chapter: q.chapter || q.category || 'Νέο Βιβλίο Παιδιατρικής',
-                        title: q.question || 'Flashcard Παιδιατρικής',
+                        badgeIcon: '🎓',
+                        chapter: q.bookChapter ? ('Κεφ. ' + q.bookChapter) : 'ΠΑΙΔΙΑΤΡΙΚΗ ΔΟΑΤΑΠ',
+                        title: q.question || 'Ερώτηση ΔΟΑΤΑΠ',
                         cleanText: fullText,
                         normText: removeAccents(fullText),
                         originalItem: q,
-                        appUrl: 'PEDIATRICS/study_new_book.html?qId=' + qId,
-                        type: 'pedia_essay'
+                        appUrl: 'PEDIATRICS/daotap_quiz.html?q=' + qId,
+                        type: 'mcq'
                     });
                 });
             }

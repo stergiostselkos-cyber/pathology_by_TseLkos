@@ -1187,13 +1187,13 @@
                     </div>
                     <div class="pediatric-banner-info">
                         <h2>Παιδιατρική Quiz By TseLkos</h2>
-                        <p>Ολοκληρωμένη επιστημονική πλατφόρμα Παιδιατρικής με Θέματα Ανάπτυξης, Τράπεζα MCQs και το Νέο Βιβλίο 2026.</p>
+                        <p>Ολοκληρωμένη επιστημονική πλατφόρμα Παιδιατρικής με Θέματα Ανάπτυξης, Τράπεζα MCQs και Τράπεζα Θεμάτων ΔΟΑΤΑΠ.</p>
                     </div>
                 </div>
                 <div class="pediatric-banner-badges">
                     <span class="pedia-badge"><i class="fa-solid fa-pen-nib"></i> 375 Ανάπτυξη</span>
-                    <span class="pedia-badge"><i class="fa-solid fa-list-check"></i> 609+ MCQs</span>
-                    <span class="pedia-badge"><i class="fa-solid fa-book-medical"></i> Flashcards 2026</span>
+                    <span class="pedia-badge"><i class="fa-solid fa-list-check"></i> 609 MCQs</span>
+                    <span class="pedia-badge"><i class="fa-solid fa-graduation-cap"></i> 1.199 MCQs ΔΟΑΤΑΠ</span>
                 </div>
             </div>
 
@@ -1217,13 +1217,13 @@
                     <a href="PEDIATRICS/quiz.html" class="btn"><i class="fa-solid fa-puzzle-piece"></i> Άνοιγμα Ερωτήσεων Παιδιατρικής</a>
                 </div>
 
-                <!-- 3. Νέο Βιβλίο Παιδιατρικής -->
-                <div class="card new-book" style="--card-color: #ea580c; --card-rgb: 234, 88, 12;">
-                    <div class="card-icon"><i class="fa-solid fa-book-medical"></i></div>
-                    <h2>Νέο Βιβλίο Παιδιατρικής</h2>
-                    <div><span class="version-tag">ΕΚΔΟΣΗ 2026 (70 FLASHCARDS &amp; ΜΕΘΟΔΟΛΟΓΙΑ)</span></div>
-                    <p>Το νέο υλικό Παιδιατρικής σε μορφή διαδραστικών flashcards. Σύγχρονες παιδιατρικές κατευθυντήριες οδηγίες, διαφοροδιαγνωστικοί αλγόριθμοι, κλινικά σενάρια και νέα βιβλιογραφικά δεδομένα.</p>
-                    <a href="PEDIATRICS/study_new_book.html" class="btn"><i class="fa-solid fa-layer-group"></i> Άνοιγμα Flashcards Παιδιατρικής</a>
+                <!-- 3. Τράπεζα Θεμάτων ΔΟΑΤΑΠ Παιδιατρικής -->
+                <div class="card pedia-daotap" style="--card-color: #ea580c; --card-rgb: 234, 88, 12;">
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h2>Τράπεζα Θεμάτων ΔΟΑΤΑΠ Παιδιατρικής</h2>
+                    <div><span class="version-tag">1.199 ΕΡΩΤΗΣΕΙΣ (MCQ • ΕΙΚΟΝΕΣ • ΑΙΤΙΟΛΟΓΗΣΗ)</span></div>
+                    <p>Η επίσημη τράπεζα 1.199 ερωτήσεων πολλαπλής επιλογής ΔΟΑΤΑΠ Παιδιατρικής με διαδραστική επίλυση, πλήρη επιστημονική τεκμηρίωση, κλινικά αποσπάσματα και διαδραστικές εικόνες υψηλής ανάλυσης.</p>
+                    <a href="PEDIATRICS/daotap_quiz.html" class="btn"><i class="fa-solid fa-graduation-cap"></i> Άνοιγμα Τράπεζας ΔΟΑΤΑΠ</a>
                 </div>
 
             </div>
@@ -1422,13 +1422,26 @@
         }
 
         // Restore tab from URL hash or sessionStorage
-        document.addEventListener('DOMContentLoaded', () => {
+        function initTabOnLoad() {
             const hash = window.location.hash.replace('#', '');
             const saved = sessionStorage.getItem('activeSpecialtyTab');
             if (['patho', 'surg', 'pedia', 'tools'].includes(hash)) {
                 switchSpecialtyTab(hash);
             } else if (['patho', 'surg', 'pedia', 'tools'].includes(saved)) {
                 switchSpecialtyTab(saved);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTabOnLoad);
+        } else {
+            initTabOnLoad();
+        }
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (['patho', 'surg', 'pedia', 'tools'].includes(hash)) {
+                switchSpecialtyTab(hash);
             }
         });
     </script>
