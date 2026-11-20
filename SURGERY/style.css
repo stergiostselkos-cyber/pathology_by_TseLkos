@@ -991,7 +991,7 @@ table:not(.med-zoomable) img {
   margin: 4px auto !important;
 }
 
-/* Protect UI icons, logos, avatars, buttons, and zoom modal itself from being blown up */
+/* Protect UI icons, logos, avatars, buttons from being blown up */
 .avatar-img,
 .user-avatar,
 .brand-logo,
@@ -999,10 +999,7 @@ table:not(.med-zoomable) img {
 .badge-img,
 .icon-img,
 .table-viewer-overlay img,
-#mzv-img,
-.med-zoom-modal img,
-.med-zoom-img,
-.modal-content img {
+.modal-content img:not(.med-zoom-img):not(#mzv-img) {
   width: auto !important;
   max-width: initial !important;
   margin: initial !important;

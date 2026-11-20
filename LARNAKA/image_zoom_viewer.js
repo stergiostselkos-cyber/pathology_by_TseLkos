@@ -222,7 +222,7 @@
   function applyTransform() {
     const activeEl = (activeType === 'image') ? imgEl : customEl;
     if (activeEl) {
-      activeEl.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      activeEl.style.setProperty('transform', `translate(${tx}px, ${ty}px) scale(${scale})`, 'important');
     }
     if (zoomIndEl) {
       zoomIndEl.textContent = `${Math.round(scale * 100)}%`;

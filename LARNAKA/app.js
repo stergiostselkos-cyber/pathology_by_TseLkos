@@ -790,7 +790,7 @@ function restartQuiz() {
   }
 
   function apply() {
-    img.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+    img.style.setProperty("transform", "translate(" + tx + "px," + ty + "px) scale(" + scale + ")", "important");
     img.style.cursor = scale > 1.01 ? "grab" : "zoom-in";
     zoomLabel.textContent = Math.round(scale * 100) + "%";
   }
@@ -813,6 +813,7 @@ function restartQuiz() {
   }
 
     document.addEventListener("click", function (e) {
+    if (typeof window.openMedZoom === "function") return; // Let Unified HD Zoom Inspector handle it cleanly
     var im = e.target.closest(".case-fig img, .case-image, .embedded-med-image, .word-export img, .explanation-content img, .explanation-box img, .mcq-strict-answer img, .embedded-image-container img");
     if (!im || !im.getAttribute("src")) return;
     var fig = im.closest("figure, .case-fig, .embedded-image-container");
