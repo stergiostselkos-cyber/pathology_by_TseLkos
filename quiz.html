@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="pathology_mcq.css?v=20261114.btncheck">
-  <link rel="stylesheet" href="image_zoom_viewer.css?v=20261120.zoomfix">
+  <link rel="stylesheet" href="image_zoom_viewer.css">
   <!-- MathJax for LaTeX Rendering -->
   <script>
     window.MathJax = {
@@ -330,15 +330,24 @@
   </footer>
 
   <!-- Question Data Scripts (All with explicit window exports) -->
-  <script src="data/questions_v3.js?v=20261114.v6"></script>
-  <script src="data/questions_bank_1.js?v=20261114.v6"></script>
-  <script src="LARNAKA/larnaka_1.js?v=20261120.part14full"></script>
-  <script src="LARNAKA/larnaka_2.js?v=20261120.part14full"></script>
-  <script src="data/pathologia_doatap.js?v=20261113"></script>
-  <script src="data/farmakologia_doatap.js?v=20261113"></script>
-  <script src="data/fysiologia_doatap.js?v=20261114"></script>
-  <!-- Application Logic -->
-  <script src="pathology_mcq_app.js?v=20261114.btncheck"></script>
-  <script src="image_zoom_viewer.js?v=20261120.zoomfix"></script>
+  <script>
+      (function() {
+        var cb = (window.location.protocol === 'file:') ? '' : ('?v=' + Date.now());
+        var scripts = [
+          'data/questions_v3.js',
+          'data/questions_bank_1.js',
+          'LARNAKA/larnaka_1.js',
+          'LARNAKA/larnaka_2.js',
+          'data/pathologia_doatap.js',
+          'data/farmakologia_doatap.js',
+          'data/fysiologia_doatap.js',
+          'pathology_mcq_app.js',
+          'image_zoom_viewer.js'
+        ];
+        scripts.forEach(function(src) {
+          document.write('<script src="' + src + cb + '"><\/script>');
+        });
+      })();
+    </script>
 </body>
 </html>

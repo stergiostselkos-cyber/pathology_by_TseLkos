@@ -776,7 +776,7 @@ body.dark-theme .substage-banner * {
     }
 
   </style>    <link rel="stylesheet" href="WORD_BASE_STYLE.css">
-<link rel="stylesheet" href="image_zoom_viewer.css?v=20261120.zoomfix">
+<link rel="stylesheet" href="image_zoom_viewer.css">
 </head>
 <body class="light-theme">
 <div class="app-container">
@@ -1028,6 +1028,9 @@ body.dark-theme .substage-banner * {
             return loadScriptAsync('larnaka_2.js' + cacheBuster);
         })
         .then(function() {
+            return loadScriptAsync('image_zoom_viewer.js' + cacheBuster);
+        })
+        .then(function() {
             if (loadingSub) loadingSub.textContent = 'Εκκίνηση εφαρμογής...';
             return loadScriptAsync('app.js' + cacheBuster);
         })
@@ -1117,8 +1120,6 @@ body.dark-theme .substage-banner * {
 <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 </svg>
 </button>
-
-<script src="image_zoom_viewer.js?v=20261120.zoomfix"></script>
 <script>
 function switchLarnakaPart(sel) {
   var v = sel.value;
