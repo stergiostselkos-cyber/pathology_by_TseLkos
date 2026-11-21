@@ -1133,7 +1133,7 @@
 
         .pharma-hz-pills-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
             gap: 10px;
             width: 100%;
         }
@@ -1167,6 +1167,25 @@
             }
         }
 
+    
+        /* SPECIAL YELLOW PILL FOR KITRINI KARTA */
+        .pharma-pill-link.pharma-pill-yellow {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%) !important;
+            color: #713f12 !important;
+            border: 2px solid #eab308 !important;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 14px rgba(234, 179, 8, 0.35) !important;
+        }
+        .pharma-pill-link.pharma-pill-yellow:hover {
+            background: linear-gradient(135deg, #fde047 0%, #eab308 100%) !important;
+            color: #422006 !important;
+            transform: translateY(-3px) scale(1.03) !important;
+            box-shadow: 0 8px 22px rgba(234, 179, 8, 0.5) !important;
+        }
+        .pharma-pill-link.pharma-pill-yellow i {
+            color: #854d0e !important;
+        }
+    
     </style>
 </head>
 <body>
@@ -1471,6 +1490,7 @@
                     <form onsubmit="startPharma(event)" class="pharma-hz-form">
                         <select id="pharma-selector" class="fancy-select pharma-hz-select" required>
                             <option value="" disabled selected>Επίλεξε Κατηγορία Φαρμάκων...</option>
+                            <option value="https://kitrinikarta.gr/" style="font-weight: 800; background: #fef08a; color: #713f12;">⚠️ Κίτρινη Κάρτα (ΕΟΦ - Ανεπιθύμητες Ενέργειες)</option>
                             <option value="pharmaka/antimikrobiaka.html">🦠 Αντιμικροβιακά Φάρμακα</option>
                             <option value="pharmaka/antiypertasika.html">🫀 Αντιυπερτασικά Φάρμακα</option>
                             <option value="pharmaka/antidiabetika.html">🩸 Αντιδιαβητικά Φάρμακα</option>
@@ -1495,6 +1515,9 @@
                         <i class="fa-solid fa-layer-group"></i> Άμεση Επιλογή ανά Κατηγορία:
                     </div>
                     <div class="pharma-hz-pills-grid">
+                        <a href="https://kitrinikarta.gr/" target="_blank" rel="noopener" class="pharma-pill-link pharma-pill-yellow">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Κίτρινη Κάρτα (ΕΟΦ)
+                        </a>
                         <a href="pharmaka/antimikrobiaka.html" class="pharma-pill-link">
                             <i class="fa-solid fa-bacterium"></i> Αντιμικροβιακά
                         </a>
@@ -1606,7 +1629,11 @@
             const selector = document.getElementById('pharma-selector');
             const page = selector ? selector.value : '';
             if(page) {
-                window.location.href = page;
+                if (page.startsWith('http')) {
+                    window.open(page, '_blank');
+                } else {
+                    window.location.href = page;
+                }
             }
         }
 

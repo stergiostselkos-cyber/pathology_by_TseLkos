@@ -522,6 +522,30 @@
             text-decoration: none;
             font-weight: 600;
         }
+    
+        /* SPECIAL YELLOW HIGHLIGHT CARD (KITRINI KARTA) */
+        .link-card.card-featured-yellow {
+            background: linear-gradient(145deg, #fffbeb 0%, #fef9c3 35%, #ffffff 85%) !important;
+            border: 2.5px solid #eab308 !important;
+            box-shadow: 0 12px 35px rgba(234, 179, 8, 0.25), inset 0 0 0 1px rgba(250, 204, 21, 0.5) !important;
+        }
+        .link-card.card-featured-yellow:hover {
+            transform: translateY(-8px) scale(1.015) !important;
+            border-color: #ca8a04 !important;
+            box-shadow: 0 22px 50px rgba(234, 179, 8, 0.4) !important;
+        }
+        .link-card.card-featured-yellow .card-icon-box {
+            background: linear-gradient(135deg, #fde047 0%, #eab308 100%) !important;
+            color: #713f12 !important;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.45) !important;
+        }
+        .link-card.card-featured-yellow .card-badge {
+            background: #eab308 !important;
+            color: #713f12 !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.6px !important;
+        }
+    
     </style>
 </head>
 <body>
@@ -948,6 +972,19 @@
 
             // 6. PHARMACOLOGY
             {
+                id: 'kitrini-karta',
+                title: 'Κίτρινη Κάρτα (ΕΟΦ - Φαρμακοεπαγρύπνηση)',
+                desc: 'Επίσημο ηλεκτρονικό σύστημα του ΕΟΦ για την άμεση αναφορά ανεπιθύμητων ενεργειών φαρμάκων & εμβολίων από ιατρούς, φαρμακοποιούς και πολίτες (Κίτρινη Κάρτα Φαρμακοεπαγρύπνησης).',
+                url: 'https://kitrinikarta.gr/',
+                host: 'kitrinikarta.gr',
+                category: 'pharma',
+                badge: '⚠️ ΕΟΦ - ΚΙΤΡΙΝΗ ΚΑΡΤΑ',
+                themeColor: '#eab308',
+                themeBg: 'rgba(234, 179, 8, 0.25)',
+                icon: 'fa-solid fa-triangle-exclamation',
+                tags: ['Κίτρινη Κάρτα', 'Ανεπιθύμητες', 'ΕΟΦ', 'Φαρμακοεπαγρύπνηση', 'Φάρμακα']
+            },
+            {
                 id: 'drugs-interactions',
                 title: 'Drugs.com Interaction Checker',
                 desc: 'Το κορυφαίο online εργαλείο ελέγχου φαρμακευτικών αλληλεπιδράσεων (Drug-Drug & Drug-Food interactions) με ανάλυση κλινικής σοβαρότητας (Major / Moderate).',
@@ -961,17 +998,17 @@
                 tags: ['Αλληλεπιδράσεις', 'Φαρμακολογία', 'Ασφάλεια']
             },
             {
-                id: 'sanford-guide',
-                title: 'The Sanford Guide (Αντιμικροβιακή Θεραπεία)',
-                desc: 'Ο διεθνής χρυσός κανόνας στην αντιμικροβιακή θεραπεία: Επιλογή αντιβιοτικών, δοσολογίες σε νεφρική ανεπάρκεια, ανθεκτικότητα μικροβίων και εμπειρική αγωγή.',
-                url: 'https://www.sanfordguide.com/',
-                host: 'sanfordguide.com',
+                id: 'galinos-guide',
+                title: 'Γαληνός Οδηγός Φαρμάκων',
+                desc: 'Ο εγκυρότερος ελληνικός οδηγός φαρμάκων: Αναζήτηση δραστικών ουσιών, εμπορικών ονομασιών, περιλήψεων SPC, ενδείξεων, αντενδείξεων και δοσολογιών.',
+                url: 'https://www.galinos.gr/',
+                host: 'galinos.gr',
                 category: 'pharma',
-                badge: 'ΑΝΤΙΒΙΟΤΙΚΑ',
+                badge: 'ΕΛΛΗΝΙΚΟΣ ΟΔΗΓΟΣ',
                 themeColor: '#0891b2',
                 themeBg: 'rgba(8, 145, 178, 0.12)',
-                icon: 'fa-solid fa-bacterium',
-                tags: ['Αντιβιοτικά', 'Sanford', 'Λοιμώξεις']
+                icon: 'fa-solid fa-book-medical',
+                tags: ['Γαληνός', 'Φάρμακα', 'Δραστικές', 'Ελλάδα', 'SPC']
             },
             {
                 id: 'eof-portal',
@@ -1119,7 +1156,7 @@
             container.innerHTML = filtered.map(link => {
                 const isStarred = starredIds.includes(link.id);
                 return `
-                <div class="link-card" style="--theme-color: ${link.themeColor}; --theme-bg: ${link.themeBg};" id="card-${link.id}">
+                <div class="link-card ${link.id === 'kitrini-karta' ? 'card-featured-yellow' : ''}" style="--theme-color: ${link.themeColor}; --theme-bg: ${link.themeBg};" id="card-${link.id}">
                     <div class="card-top-row">
                         <div class="card-icon-title-group">
                             <div class="card-icon-box">
