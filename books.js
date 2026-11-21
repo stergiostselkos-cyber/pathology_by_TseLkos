@@ -1779,6 +1779,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bookSelect = document.getElementById('book-select');
     const partSelect = document.getElementById('part-select');
+    const sectionWrapper = document.getElementById('section-wrapper');
+    const sectionSelect = document.getElementById('section-select');
     const subpartSection = document.getElementById('subpart-section');
     const subpartSelect = document.getElementById('subpart-select');
     const pdfContainer = document.getElementById('pdf-container');
@@ -1795,7 +1797,8 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         bookSelect.appendChild(option);
     }
 
-    let currentSelectedBook = null;
+let currentSelectedBook = null;
+    let currentSelectedPart = null;
 
     function resetPdfViewer() {
         pdfContainer.style.display = 'none';
@@ -1823,11 +1826,14 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
 
     function selectBook(selectedBookId) {
         currentSelectedBook = booksDatabase[selectedBookId];
+        currentSelectedPart = null;
         bookSelect.value = selectedBookId || "";
         
         partSelect.innerHTML = '<option value="">-- Επιλέξτε Κεφάλαιο --</option>';
-        if (subpartSelect) subpartSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>';
+        if (sectionWrapper) sectionWrapper.style.display = 'none';
+        if (sectionSelect) sectionSelect.innerHTML = '<option value="">-- Επιλέξτε Ενότητα --</option>';
         if (subpartSection) subpartSection.style.display = 'none';
+        if (subpartSelect) subpartSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>';
         resetPdfViewer();
 
         if (currentSelectedBook) {
@@ -1861,9 +1867,28 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         const selectedPart = currentSelectedBook.parts[index];
         if (!selectedPart) return false;
 
+        currentSelectedPart = selectedPart;
         partSelect.value = 'part_' + index;
+        
+        if (sectionWrapper) sectionWrapper.style.display = 'none';
+        if (sectionSelect) sectionSelect.innerHTML = '<option value="">-- Επιλέξτε Ενότητα --</option>';
         if (subpartSection) subpartSection.style.display = 'none';
-        displayPdf(selectedPart.file);
+        if (subpartSelect) subpartSelect.innerHTML = '<option value="">-- Επιλέξτε Ασθένεια / Θέμα --</option>';
+
+        if (selectedPart.sections && Object.keys(selectedPart.sections).length > 0) {
+            if (sectionSelect) {
+                for (const sectionName in selectedPart.sections) {
+                    const option = document.createElement('option');
+                    option.value = sectionName;
+                    option.textContent = sectionName;
+                    sectionSelect.appendChild(option);
+                }
+            }
+            if (sectionWrapper) sectionWrapper.style.display = 'block';
+            resetPdfViewer();
+        } else {
+            displayPdf(selectedPart.file);
+        }
         return true;
     }
 
@@ -1904,6 +1929,7 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         resetPdfViewer();
         
         if (!selectedVal) {
+            if (sectionWrapper) sectionWrapper.style.display = 'none';
             if (subpartSection) subpartSection.style.display = 'none';
             return;
         }
@@ -1917,15 +1943,44 @@ const externalPdfBtn = document.getElementById('external-pdf-btn');
         }
     });
 
+    if (sectionSelect) {
+        sectionSelect.addEventListener('change', (e) => {
+            const sectionName = e.target.value;
+            resetPdfViewer();
+            if (subpartSection) subpartSection.style.display = 'none';
+            if (subpartSelect) subpartSelect.innerHTML = '<option value="">-- Επιλέξτε Ασθένεια / Θέμα --</option>';
+
+            if (!sectionName || !currentSelectedPart || !currentSelectedPart.sections || !currentSelectedPart.sections[sectionName]) {
+                return;
+            }
+
+            const items = currentSelectedPart.sections[sectionName];
+            if (items && items.length > 0) {
+                items.forEach((item, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = item.file;
+                    opt.textContent = item.title;
+                    subpartSelect.appendChild(opt);
+                });
+                if (subpartSection) subpartSection.style.display = 'block';
+            }
+        });
+    }
+
     if (subpartSelect) {
         subpartSelect.addEventListener('change', (e) => {
-            const subpartIndex = e.target.value;
-            if (subpartIndex !== "") {
+            const val = e.target.value;
+            if (!val) {
+                resetPdfViewer();
+                return;
+            }
+
+            if (currentSelectedBook && currentSelectedBook.parts) {
+                displayPdf(val);
+            } else if (currentSelectedBook && currentSelectedBook.chapters) {
                 const chapterVal = partSelect.value;
                 const chapterName = chapterVal.substring(8);
-                selectChapter(chapterName, subpartIndex);
-            } else {
-                resetPdfViewer();
+                selectChapter(chapterName, val);
             }
         });
     }

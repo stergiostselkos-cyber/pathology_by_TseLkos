@@ -109,28 +109,44 @@
 <main class="view-panel" style="padding: 24px; border: 1px solid rgba(217, 70, 239, 0.2);">
     <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 1.05rem;">Επιλέξτε βιβλίο και κεφάλαιο/κομμάτι για να εμφανιστεί το αντίστοιχο αρχείο PDF.</p>
     
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-        <!-- Book Selector Dropdown -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ -->
         <div class="dropdown-section">
-            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">1. Διάλεξε Βιβλίο</span>
+            <span style="font-size: 0.88rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.8px;">
+                <i class="fa-solid fa-book-bookmark"></i> 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ
+            </span>
             <select id="book-select" class="dropdown-select">
                 <option value="">-- Επιλέξτε Βιβλίο --</option>
             </select>
         </div>
 
-        <!-- Part/Chapter Selector Dropdown -->
+        <!-- 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ -->
         <div class="dropdown-section">
-            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">2. Διάλεξε Κεφάλαιο</span>
+            <span style="font-size: 0.88rem; font-weight: 800; color: #d946ef; text-transform: uppercase; letter-spacing: 0.8px;">
+                <i class="fa-solid fa-folder-open"></i> 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ
+            </span>
             <select id="part-select" class="dropdown-select" disabled>
                 <option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>
             </select>
         </div>
 
-        <!-- Subpart Selector Dropdown (Hidden by default) -->
+        <!-- 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ (Κάθετα κάτω από το Κεφάλαιο) -->
+        <div class="dropdown-section" id="section-wrapper" style="display: none;">
+            <span style="font-size: 0.88rem; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.8px;">
+                <i class="fa-solid fa-layer-group"></i> 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ
+            </span>
+            <select id="section-select" class="dropdown-select" style="border-color: rgba(5, 150, 105, 0.4); color: #059669 !important;">
+                <option value="">-- Επιλέξτε Ενότητα --</option>
+            </select>
+        </div>
+
+        <!-- 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (Κάθετα κάτω από την Ενότητα) -->
         <div class="dropdown-section" id="subpart-section" style="display: none;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: #d946ef; text-transform: uppercase; letter-spacing: 0.5px;">3. Διάλεξε Υποκεφάλαιο</span>
-            <select id="subpart-select" class="dropdown-select">
-                <option value="">-- Πρώτα επιλέξτε Κεφάλαιο --</option>
+            <span style="font-size: 0.88rem; font-weight: 800; color: #ea580c; text-transform: uppercase; letter-spacing: 0.8px;">
+                <i class="fa-solid fa-file-medical"></i> 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (ΑΥΤΟΝΟΜΟ ΑΡΧΕΙΟ)
+            </span>
+            <select id="subpart-select" class="dropdown-select" style="border-color: rgba(234, 88, 12, 0.4); color: #ea580c !important;">
+                <option value="">-- Επιλέξτε Ασθένεια --</option>
             </select>
         </div>
     </div>
