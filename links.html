@@ -756,6 +756,32 @@
             
             // 2. CALCULATORS & DECISION TOOLS
             {
+                id: 'doctools-portal',
+                title: 'DocTools.gr (Ελληνικοί Κλινικοί Υπολογιστές & Scores)',
+                desc: 'Ελληνική πύλη ιατρικών εργαλείων & κλινικών δεικτών: Υπολογισμός eGFR (CKD-EPI), CHA2DS2-VASc, BMI, επιφάνειας σώματος (BSA), ισοδυναμιών κορτικοειδών και scores κινδύνου στα ελληνικά.',
+                url: 'https://www.doctools.gr/tools/',
+                host: 'doctools.gr',
+                category: 'calculators',
+                badge: 'ΕΛΛΗΝΙΚΑ SCORES',
+                themeColor: '#0284c7',
+                themeBg: 'rgba(2, 132, 199, 0.12)',
+                icon: 'fa-solid fa-calculator',
+                tags: ['DocTools', 'Ελλάδα', 'Scores', 'GFR', 'CHA2DS2-VASc', 'Υπολογιστές']
+            },
+            {
+                id: 'medscape-calculators',
+                title: 'Medscape Medical Calculators & Clinical Tools',
+                desc: 'Ολοκληρωμένη συλλογή 120+ διεθνών κλινικών υπολογιστών και κανόνων απόφασης από το Medscape: Καρδιολογία, Νεφρολογία, Εντατική, Ηλεκτρολύτες και δοσολογικοί αλγόριθμοι.',
+                url: 'https://reference.medscape.com/guide/medical-calculators',
+                host: 'medscape.com',
+                category: 'calculators',
+                badge: 'MEDSCAPE TOOLS',
+                themeColor: '#0284c7',
+                themeBg: 'rgba(2, 132, 199, 0.12)',
+                icon: 'fa-solid fa-square-root-variable',
+                tags: ['Medscape', 'Calculators', 'Scores', 'Κλινικά Εργαλεία']
+            },
+            {
                 id: 'mdcalc-portal',
                 title: 'MDCalc (Ο No1 Κλινικός Υπολογιστής)',
                 desc: 'Το κορυφαίο παγκόσμιο εργαλείο κλινικών σκορ: CHA2DS2-VASc, Wells DVT/PE, CURB-65, MELD score, Child-Pugh, GFR CKD-EPI, Glasgow Coma Scale & NIHSS.',
@@ -810,6 +836,19 @@
 
             // 3. SURGERY & ANATOMY
             {
+                id: 'teachmesurgery',
+                title: 'TeachMeSurgery (Ολοκληρωμένος Οδηγός Χειρουργικής)',
+                desc: 'Πλήρως ανοικτή και εικονογραφημένη πλατφόρμα Χειρουργικής: Περιεγχειρητική φροντίδα, οξεία κοιλία, χειρουργικές παθήσεις, επιπλοκές και βήματα επεμβάσεων.',
+                url: 'https://teachmesurgery.com/',
+                host: 'teachmesurgery.com',
+                category: 'surgery',
+                badge: 'ΧΕΙΡΟΥΡΓΙΚΟΣ ΟΔΗΓΟΣ',
+                themeColor: '#16a34a',
+                themeBg: 'rgba(22, 163, 74, 0.12)',
+                icon: 'fa-solid fa-syringe',
+                tags: ['Χειρουργική', 'TeachMeSurgery', 'Επεμβάσεις', 'Οξεία Κοιλία']
+            },
+            {
                 id: 'websurg-ircad',
                 title: 'WebSurg (IRCAD Εικονικό Πανεπιστήμιο)',
                 desc: 'Το κορυφαίο διεθνές portal χειρουργικής εκπαίδευσης: Βίντεο επεμβάσεων υψηλής ανάλυσης, λαπαροσκοπική & ρομποτική τεχνική και τεχνικές λεπτομέρειες.',
@@ -835,20 +874,7 @@
                 icon: 'fa-solid fa-bone',
                 tags: ['Ανατομία', 'Χειρουργική', 'Μύες', 'Νεύρα']
             },
-            {
-                id: 'acs-education',
-                title: 'American College of Surgeons (ACS Education)',
-                desc: 'Επίσημες πηγές, εκπαιδευτικό υλικό, κατευθυντήριες οδηγίες οξείας κοιλίας, τραύματος (ATLS) και περιεγχειρητικής ασφάλειας ασθενών.',
-                url: 'https://www.facs.org/for-medical-professionals/education/',
-                host: 'facs.org',
-                category: 'surgery',
-                badge: 'ΧΕΙΡΟΥΡΓΙΚΗ ΕΚΠΑΙΔΕΥΣΗ',
-                themeColor: '#059669',
-                themeBg: 'rgba(5, 150, 105, 0.12)',
-                icon: 'fa-solid fa-scalpel',
-                tags: ['ACS', 'Τραύμα', 'ATLS', 'Οξεία Κοιλία']
-            },
-            {
+                        {
                 id: 'open-anesthesia',
                 title: 'OpenAnesthesia & Critical Care',
                 desc: 'Εκπαιδευτική πλατφόρμα αναισθησιολογίας, διαχείρισης αεραγωγού, μηχανικού αερισμού, αναλγησίας και περιεγχειρητικής φυσιολογίας.',
@@ -889,18 +915,18 @@
                 icon: 'fa-solid fa-syringe',
                 tags: ['Εμβόλια', 'Παιδιατρική', 'CDC', 'Πρόληψη']
             },
-            {
-                id: 'aap-pediatrics-portal',
-                title: 'American Academy of Pediatrics (AAP Policy)',
-                desc: 'Επίσημες θέσεις και κλινικές κατευθυντήριες οδηγίες της Αμερικανικής Ακαδημίας Παιδιατρικής: Νεογνολογία, ίκτερος νεογνού, αναπτυξιακά ορόσημα.',
-                url: 'https://www.aap.org/',
-                host: 'aap.org',
+                        {
+                id: 'nice-pediatrics',
+                title: 'NICE Guidelines (Παιδιατρική & Έφηβοι)',
+                desc: 'Επίσημες, 100% δωρεάν και ανοικτές κλινικές κατευθυντήριες οδηγίες του βρετανικού NICE για όλα τα παιδιατρικά νοσήματα, πυρετό, λοίμωξη και άσθμα.',
+                url: 'https://www.nice.org.uk/guidance/population-groups/children-and-young-people',
+                host: 'nice.org.uk',
                 category: 'pediatrics',
-                badge: 'AAP GUIDELINES',
-                themeColor: '#ea580c',
-                themeBg: 'rgba(234, 88, 12, 0.12)',
-                icon: 'fa-solid fa-baby-carriage',
-                tags: ['Νεογνά', 'Ίκτερος', 'Ανάπτυξη', 'AAP']
+                badge: 'NICE GUIDELINES',
+                themeColor: '#9333ea',
+                themeBg: 'rgba(147, 51, 234, 0.12)',
+                icon: 'fa-solid fa-children',
+                tags: ['Παιδιατρική', 'NICE', 'Οδηγίες', 'Παιδιά', 'Πυρετός']
             },
             {
                 id: 'dont-forget-bubbles',
@@ -1022,7 +1048,20 @@
                 themeBg: 'rgba(8, 145, 178, 0.12)',
                 icon: 'fa-solid fa-file-medical',
                 tags: ['ΕΟΦ', 'Ελλάδα', 'SPC', 'Σκευάσματα']
-            }
+            },
+{
+                id: 'farmako-net',
+                title: 'Farmako.net (Ελληνικός Οδηγός Φαρμάκων & Τιμών)',
+                desc: 'Ελληνική βάση δεδομένων φαρμάκων: Αναζήτηση σκευασμάτων, δραστικών ουσιών (ATC), επίσημων τιμών λιανικής, ενδείξεων και φύλλων οδηγιών χρήσης στην Ελλάδα.',
+                url: 'https://farmako.net/',
+                host: 'farmako.net',
+                category: 'pharma',
+                badge: 'ΕΛΛΗΝΙΚΑ ΦΑΡΜΑΚΑ',
+                themeColor: '#0891b2',
+                themeBg: 'rgba(8, 145, 178, 0.12)',
+                icon: 'fa-solid fa-capsules',
+                tags: ['Farmako.net', 'Φάρμακα', 'Τιμές', 'Σκευάσματα', 'Ελλάδα']
+            },
         ];
 
         // LOCAL STORAGE FOR FAVORITES
