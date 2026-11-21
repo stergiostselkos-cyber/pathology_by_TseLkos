@@ -11,165 +11,629 @@
   gtag('config', 'G-GSSKTV6FKE');
 </script>
 
-    <script src="auth-guard.js"></script>
+<script src="auth-guard.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pathologia Quiz</title>
+<title>Pathologia Books | TseLkos</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- CSS Stylesheet -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<!-- CSS Stylesheets -->
 <link href="style.css?v=1790548093" rel="stylesheet"/>
+<link rel="stylesheet" href="modern-theme.css?v=1790550446" />
+
 <style>
+/* ========================================================
+   CHEERFUL & VIBRANT BOOKS ENVIRONMENT (TseLkos Palette)
+   Colors: Violet (#7c3aed), Fuchsia (#ec4899), Emerald (#10b981), Coral (#f97316)
+======================================================== */
+
+:root {
+    --col-violet: #7c3aed;
+    --col-violet-light: #8b5cf6;
+    --col-violet-bg: #ede9fe;
+    
+    --col-fuchsia: #d946ef;
+    --col-fuchsia-light: #ec4899;
+    --col-fuchsia-bg: #fdf2f8;
+    
+    --col-emerald: #059669;
+    --col-emerald-light: #10b981;
+    --col-emerald-bg: #ecfdf5;
+    
+    --col-coral: #ea580c;
+    --col-coral-light: #f97316;
+    --col-coral-bg: #fff7ed;
+}
+
+/* Cheerful Animated Ambient Flow */
+body {
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 30%, #06b6d4 65%, #10b981 85%, #f97316 100%) !important;
+    background-size: 300% 300% !important;
+    animation: cheerfulFlow 16s ease infinite alternate !important;
+    font-family: 'Poppins', 'Inter', sans-serif !important;
+    color: #1e293b !important;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes cheerfulFlow {
+    0% { background-position: 0% 20%; }
+    50% { background-position: 100% 80%; }
+    100% { background-position: 50% 0%; }
+}
+
+/* Floating Radiant Blobs */
+.modern-shape-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.75) 0%, rgba(217, 70, 239, 0) 70%);
+    top: -5%;
+    left: -5%;
+}
+.modern-shape-2 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.7) 0%, rgba(5, 150, 105, 0) 70%);
+    bottom: -5%;
+    right: -5%;
+}
+.modern-shape-3 {
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.65) 0%, rgba(234, 88, 12, 0) 70%);
+    top: 35%;
+    left: 45%;
+}
+.modern-shape-4 {
+    position: fixed;
+    filter: blur(80px);
+    z-index: -1;
+    border-radius: 50%;
+    animation: floatBlob 12s infinite ease-in-out alternate;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7) 0%, rgba(124, 58, 237, 0) 70%);
+    bottom: 25%;
+    left: 10%;
+}
+
+/* Cheerful Glassmorphic Main Card */
+.app-container {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    border: 2px solid rgba(255, 255, 255, 0.95) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 25px 70px rgba(124, 58, 237, 0.2), 0 10px 30px rgba(236, 72, 153, 0.15) !important;
+    padding: 32px 36px !important;
+    max-width: 1080px !important;
+    margin: 24px auto !important;
+    transition: all 0.3s ease;
+}
+
+/* Cheerful Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed rgba(217, 70, 239, 0.2) !important;
+    padding-bottom: 22px !important;
+    margin-bottom: 24px !important;
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-logo {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%) !important;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.app-logo:hover {
+    transform: rotate(8deg) scale(1.08);
+}
+
+.app-header h1 {
+    font-size: 2.1rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.5px;
+    margin: 0 !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 40%, #ea580c 80%, #059669 100%) !important;
+    background-size: 250% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: textColorsMove 6s linear infinite !important;
+}
+
+.app-header h1 span.author-tag {
+    font-size: 1.05rem !important;
+    background: linear-gradient(135deg, #ec4899, #7c3aed) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+    border: 1px solid rgba(236, 72, 153, 0.25);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-top: 4px;
+}
+
+.btn-cheerful-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 14px;
+    background: #ffffff !important;
+    color: #7c3aed !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem;
+    border: 2px solid rgba(124, 58, 237, 0.2) !important;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1) !important;
+    text-decoration: none;
+    transition: all 0.25s ease !important;
+}
+.btn-cheerful-back:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: #7c3aed !important;
+    background: linear-gradient(135deg, #7c3aed, #9333ea) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3) !important;
+}
+
+/* View Panel */
+.view-panel {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 22px !important;
+    padding: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Cheerful Dropdown Section Cards */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dropdown-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px 18px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    position: relative;
+    border: 2px solid transparent;
+}
+.dropdown-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* Step 1: Violet */
+.card-step-1 {
+    border-color: rgba(124, 58, 237, 0.25);
+    background: linear-gradient(to right, #faf5ff 0%, #ffffff 40%);
+}
+.card-step-1:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.18);
+}
+.badge-step-1 {
+    background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+    color: #ffffff;
+}
+.select-step-1 {
+    color: #5b21b6 !important;
+    border: 2px solid #ddd6fe !important;
+    background: #ffffff !important;
+}
+.select-step-1:hover:not(:disabled) {
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 16px rgba(124, 58, 237, 0.2) !important;
+}
+.select-step-1:focus {
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2) !important;
+}
+
+/* Step 2: Fuchsia */
+.card-step-2 {
+    border-color: rgba(217, 70, 239, 0.25);
+    background: linear-gradient(to right, #fdf2f8 0%, #ffffff 40%);
+}
+.card-step-2:hover {
+    border-color: #d946ef;
+    box-shadow: 0 8px 25px rgba(217, 70, 239, 0.18);
+}
+.badge-step-2 {
+    background: linear-gradient(135deg, #d946ef 0%, #ec4899 100%);
+    color: #ffffff;
+}
+.select-step-2 {
+    color: #9d174d !important;
+    border: 2px solid #fbcfe8 !important;
+    background: #ffffff !important;
+}
+.select-step-2:hover:not(:disabled) {
+    border-color: #ec4899 !important;
+    box-shadow: 0 0 16px rgba(236, 72, 153, 0.2) !important;
+}
+.select-step-2:focus {
+    border-color: #d946ef !important;
+    box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.2) !important;
+}
+
+/* Step 3: Emerald */
+.card-step-3 {
+    border-color: rgba(5, 150, 105, 0.25);
+    background: linear-gradient(to right, #ecfdf5 0%, #ffffff 40%);
+}
+.card-step-3:hover {
+    border-color: #059669;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.18);
+}
+.badge-step-3 {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: #ffffff;
+}
+.select-step-3 {
+    color: #065f46 !important;
+    border: 2px solid #a7f3d0 !important;
+    background: #ffffff !important;
+}
+.select-step-3:hover:not(:disabled) {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.2) !important;
+}
+.select-step-3:focus {
+    border-color: #059669 !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Step 4: Coral */
+.card-step-4 {
+    border-color: rgba(234, 88, 12, 0.25);
+    background: linear-gradient(to right, #fff7ed 0%, #ffffff 40%);
+}
+.card-step-4:hover {
+    border-color: #ea580c;
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.18);
+}
+.badge-step-4 {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    color: #ffffff;
+}
+.select-step-4 {
+    color: #9a3412 !important;
+    border: 2px solid #fed7aa !important;
+    background: #ffffff !important;
+}
+.select-step-4:hover:not(:disabled) {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.25) !important;
+}
+.select-step-4:focus {
+    border-color: #ea580c !important;
+    box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.2) !important;
+}
+
+/* Step Header Pills */
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+.step-badge i {
+    font-size: 0.95rem;
+}
+
+/* Dropdown Select Common */
+.dropdown-select {
+    padding: 13px 16px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+.dropdown-select option {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    padding: 8px;
+}
+.dropdown-select:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+    color: #94a3b8 !important;
+    box-shadow: none !important;
+}
+
+/* Cheerful PDF Placeholder */
+.cheerful-placeholder {
+    margin-top: 24px;
+    padding: 48px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(253, 244, 255, 0.9) 0%, rgba(240, 253, 244, 0.9) 50%, rgba(255, 247, 237, 0.9) 100%);
+    border: 2px dashed rgba(217, 70, 239, 0.35);
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+.cheerful-placeholder:hover {
+    border-color: #d946ef;
+    transform: scale(1.005);
+}
+.placeholder-icon-wrap {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 2rem;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.35);
+    animation: iconBounce 3s ease-in-out infinite alternate;
+}
+@keyframes iconBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+.placeholder-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+.placeholder-desc {
+    color: #64748b;
+    font-size: 0.98rem;
+    max-width: 550px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+}
+.placeholder-chips {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.p-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.p-chip-patho {
+    background: #faf5ff;
+    border: 1.5px solid #d8b4fe;
+    color: #6d28d9;
+}
+.p-chip-surg {
+    background: #fff7ed;
+    border: 1.5px solid #fed7aa;
+    color: #c2410c;
+}
+
 /* PDF Viewer Container */
 .pdf-viewer-container {
-    margin-top: 20px;
+    margin-top: 24px;
     width: 100%;
-    height: 75vh;
-    border-radius: var(--border-radius);
+    height: 78vh;
+    border-radius: 22px;
     overflow: hidden;
-    border: 2px solid rgba(217, 70, 239, 0.3);
-    box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15);
-    background: var(--card-bg);
+    border: 3px solid rgba(217, 70, 239, 0.4);
+    box-shadow: 0 18px 50px rgba(124, 58, 237, 0.2), 0 6px 20px rgba(236, 72, 153, 0.15);
+    background: #ffffff;
+    transition: all 0.3s ease;
 }
 .pdf-viewer-container iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
-.dropdown-section {
-    display: flex;
-    flex-direction: column;
+
+.mobile-pdf-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #ec4899 0%, #7c3aed 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45) !important;
+    border-radius: 12px !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    flex: 1;
+    transition: all 0.25s ease !important;
 }
-.dropdown-select {
-    padding: 14px 16px;
-    border-radius: 12px;
-    background: rgba(217, 70, 239, 0.05);
-    color: #d946ef !important;
-    border: 2px solid rgba(217, 70, 239, 0.2);
-    font-size: 1rem;
-    font-weight:  800;
-    outline: none;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-.dropdown-select option { background-color: #ffffff !important; color: #000000 !important; font-weight: bold !important; }
-.dropdown-select:hover:not(:disabled) {
-    border-color: rgba(217, 70, 239, 0.5);
-    background: rgba(217, 70, 239, 0.1);
-}
-.dropdown-select:focus {
-    border-color: #d946ef;
-    box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
-}
-.dropdown-select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: var(--option-bg);
-    border-color: var(--card-border);
+.mobile-pdf-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.6) !important;
 }
 </style>
-<link rel="stylesheet" href="modern-theme.css?v=1790550446" />
 </head>
-<body class="dark-theme" style="--c1: #7e22ce; --c2: #d946ef; --c3: #a855f7; --c4: #f472b6;">
+
+<body>
 <div class="modern-shape modern-shape-1"></div>
 <div class="modern-shape modern-shape-2"></div>
 <div class="modern-shape modern-shape-3"></div>
+<div class="modern-shape modern-shape-4"></div>
 
-<div class="app-container" style="max-width: 1000px">
-<!-- Header Section -->
-<header class="app-header">
-    <div class="header-main">
-        <div class="app-logo">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+<div class="app-container">
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="header-main">
+            <div class="app-logo">
+                <i class="fa-solid fa-book-open-reader" style="font-size: 1.5rem;"></i>
+            </div>
+            <div>
+                <h1>Pathologia<span>Books</span> <span class="author-tag">By TseLkos</span></h1>
+                <div class="header-badge">
+                    <i class="fa-solid fa-sparkles"></i> Ψηφιακή Βιβλιοθήκη & Αυτόνομα Κεφάλαια
+                </div>
+            </div>
         </div>
-        <h1>Pathologia<span>Books</span> <span class="author-tag">By TseLkos</span></h1>
-    </div>
-    <div class="header-controls">
-        <a href="index.html" class="btn btn-secondary btn-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Πίσω</span>
-        </a>
-    </div>
-</header>
+        <div class="header-controls">
+            <a href="index.html" class="btn-cheerful-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Πίσω στην Αρχική</span>
+            </a>
+        </div>
+    </header>
 
+    <!-- Main Content Panel -->
+    <main class="view-panel">
+        <p style="color: #475569; margin-bottom: 18px; font-size: 1.02rem; font-weight: 600;">
+            ✨ Επιλέξτε βιβλίο και κεφάλαιο/ενότητα για να εμφανιστεί αυτόματα το αντίστοιχο αρχείο PDF:
+        </p>
+        
+        <div class="steps-container">
+            <!-- 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ -->
+            <div class="dropdown-card card-step-1">
+                <div class="step-header">
+                    <span class="step-badge badge-step-1">
+                        <i class="fa-solid fa-book-bookmark"></i> 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ
+                    </span>
+                </div>
+                <select id="book-select" class="dropdown-select select-step-1">
+                    <option value="">-- Επιλέξτε Βιβλίο --</option>
+                </select>
+            </div>
 
+            <!-- 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ -->
+            <div class="dropdown-card card-step-2">
+                <div class="step-header">
+                    <span class="step-badge badge-step-2">
+                        <i class="fa-solid fa-folder-open"></i> 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ
+                    </span>
+                </div>
+                <select id="part-select" class="dropdown-select select-step-2" disabled>
+                    <option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>
+                </select>
+            </div>
 
-<main class="view-panel" style="padding: 24px; border: 1px solid rgba(217, 70, 239, 0.2);">
-    <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 1.05rem;">Επιλέξτε βιβλίο και κεφάλαιο/κομμάτι για να εμφανιστεί το αντίστοιχο αρχείο PDF.</p>
-    
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ -->
-        <div class="dropdown-section">
-            <span style="font-size: 0.88rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.8px;">
-                <i class="fa-solid fa-book-bookmark"></i> 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ
-            </span>
-            <select id="book-select" class="dropdown-select">
-                <option value="">-- Επιλέξτε Βιβλίο --</option>
-            </select>
+            <!-- 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ (Κάθετα κάτω από το Κεφάλαιο) -->
+            <div class="dropdown-card card-step-3" id="section-wrapper" style="display: none;">
+                <div class="step-header">
+                    <span class="step-badge badge-step-3">
+                        <i class="fa-solid fa-layer-group"></i> 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ
+                    </span>
+                </div>
+                <select id="section-select" class="dropdown-select select-step-3">
+                    <option value="">-- Επιλέξτε Ενότητα --</option>
+                </select>
+            </div>
+
+            <!-- 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (Κάθετα κάτω από την Ενότητα) -->
+            <div class="dropdown-card card-step-4" id="subpart-section" style="display: none;">
+                <div class="step-header">
+                    <span class="step-badge badge-step-4">
+                        <i class="fa-solid fa-file-medical"></i> 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (ΑΥΤΟΝΟΜΟ ΑΡΧΕΙΟ)
+                    </span>
+                </div>
+                <select id="subpart-select" class="dropdown-select select-step-4">
+                    <option value="">-- Επιλέξτε Ασθένεια --</option>
+                </select>
+            </div>
         </div>
 
-        <!-- 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ -->
-        <div class="dropdown-section">
-            <span style="font-size: 0.88rem; font-weight: 800; color: #d946ef; text-transform: uppercase; letter-spacing: 0.8px;">
-                <i class="fa-solid fa-folder-open"></i> 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ
-            </span>
-            <select id="part-select" class="dropdown-select" disabled>
-                <option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>
-            </select>
+        <!-- Cheerful Welcome / Placeholder -->
+        <div id="pdf-placeholder" class="cheerful-placeholder">
+            <div class="placeholder-icon-wrap">
+                <i class="fa-solid fa-book-medical"></i>
+            </div>
+            <div class="placeholder-title">🌟 Έτοιμοι για Μελέτη!</div>
+            <div class="placeholder-desc">
+                Επιλέξτε Βιβλίο και Κεφάλαιο από τα παραπάνω βήματα για να φορτώσει άμεσα το ψηφιακό αρχείο PDF με αυτόνομες σελίδες & απαντήσεις.
+            </div>
+            <div class="placeholder-chips">
+                <div class="p-chip p-chip-patho">
+                    <i class="fa-solid fa-heart-pulse"></i> Παθολογία 2026 (10 Κεφάλαια)
+                </div>
+                <div class="p-chip p-chip-surg">
+                    <i class="fa-solid fa-stethoscope"></i> Χειρουργική ΑΠΘ (41 Κεφάλαια)
+                </div>
+            </div>
         </div>
 
-        <!-- 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ (Κάθετα κάτω από το Κεφάλαιο) -->
-        <div class="dropdown-section" id="section-wrapper" style="display: none;">
-            <span style="font-size: 0.88rem; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.8px;">
-                <i class="fa-solid fa-layer-group"></i> 3. ΔΙΑΛΕΞΕ ΕΝΟΤΗΤΑ
-            </span>
-            <select id="section-select" class="dropdown-select" style="border-color: rgba(5, 150, 105, 0.4); color: #059669 !important;">
-                <option value="">-- Επιλέξτε Ενότητα --</option>
-            </select>
+        <!-- PDF Viewer Container -->
+        <div class="pdf-viewer-container" id="pdf-container" style="display: none; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: linear-gradient(to right, #faf5ff, #fdf2f8); border-bottom: 2px solid rgba(217, 70, 239, 0.25);">
+                <div style="font-size: 0.9rem; font-weight: 700; color: #7c3aed; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-file-pdf" style="color: #ec4899; font-size: 1.1rem;"></i>
+                    <span>Προβολή Εγγράφου</span>
+                </div>
+                <a id="external-pdf-btn" href="#" target="_blank" class="mobile-pdf-btn" style="position: static;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Άνοιγμα σε νέα καρτέλα / Κινητό</span>
+                </a>
+            </div>
+            <iframe id="pdf-iframe" src="" style="width: 100%; flex: 1; min-height: 72vh; border: none;"></iframe>
         </div>
-
-        <!-- 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (Κάθετα κάτω από την Ενότητα) -->
-        <div class="dropdown-section" id="subpart-section" style="display: none;">
-            <span style="font-size: 0.88rem; font-weight: 800; color: #ea580c; text-transform: uppercase; letter-spacing: 0.8px;">
-                <i class="fa-solid fa-file-medical"></i> 4. ΔΙΑΛΕΞΕ ΑΣΘΕΝΕΙΑ / ΘΕΜΑ (ΑΥΤΟΝΟΜΟ ΑΡΧΕΙΟ)
-            </span>
-            <select id="subpart-select" class="dropdown-select" style="border-color: rgba(234, 88, 12, 0.4); color: #ea580c !important;">
-                <option value="">-- Επιλέξτε Ασθένεια --</option>
-            </select>
-        </div>
-    </div>
-
-    
-    <!-- PDF Viewer -->
-    <div class="pdf-viewer-container" id="pdf-container" style="display: none; position: relative;">
-        <a id="external-pdf-btn" href="#" target="_blank" class="btn btn-primary" style="position: absolute; top: 15px; right: 15px; z-index: 10; font-size: 0.9rem; padding: 10px 18px; background: rgba(217, 70, 239, 0.9); box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-radius: 8px; backdrop-filter: blur(5px);">
-            Άνοιγμα PDF (για Κινητά)
-        </a>
-        <iframe id="pdf-iframe" src=""></iframe>
-    </div>
-
-    
-    <div id="pdf-placeholder" style="margin-top: 20px; padding: 60px 20px; text-align: center; border: 2px dashed var(--card-border); border-radius: 16px; color: var(--text-secondary);">
-        <svg fill="none" height="48" viewBox="0 0 24 24" width="48" style="margin-bottom: 16px; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg><br>
-        Επιλέξτε ένα κομμάτι βιβλίου για να εμφανιστεί εδώ το PDF.
-    </div>
-</main>
+    </main>
 </div>
+
 <script>
     document.write('<script charset="UTF-8" src="books.js?v=1795235281' + new Date().getTime() + '"><\/script>');
 </script>
