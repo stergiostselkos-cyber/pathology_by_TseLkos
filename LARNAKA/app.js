@@ -524,6 +524,42 @@ function handleRevealAnswer() {
 /**
  * Reveal explanation panel and parse markdown
  */
+
+/**
+ * Applies 3-tier hierarchy to explanation content:
+ * Tier 1 (Blue): .stage-banner
+ * Tier 2 (Pink): .thematic-banner, .excerpt-title-badge, .diagram-title-badge
+ * Tier 3 (Very Soft Orange): .larnaka-level3-banner for numbered points, roman numerals, or subheadings
+ */
+function applyLarnaka3TierHierarchy(container) {
+    if (!container) return;
+    try {
+        const paras = container.querySelectorAll('p, div.word-question p');
+        paras.forEach(p => {
+            if (p.classList.contains('stage-banner') || p.classList.contains('thematic-banner') || p.classList.contains('larnaka-level3-banner') || p.classList.contains('subsection-banner') || p.classList.contains('correct-answer-banner') || p.classList.contains('diagram-title-badge')) return;
+            
+            const text = p.textContent.trim();
+            if (!text || text.length < 3) return;
+            
+            // 1) Numbered sub-items like "1. ", "2. ", "i) ", "ii) ", "iii) ", "α) ", "β) ", "1) ", "2) "
+            const isNumbered = /^(?:[iI][vVxX]?|[α-ωΑ-Ω]|\d+)[\.\)]\s+/.test(text);
+            
+            // 2) Bullet with key medical section titles
+            const isKeySection = /^[•◦▪]\s*(?:Μηχανισμός|Παθογένεια|Κλινική|Διαφορική|Θεραπευτική|Διάγνωση|Εργαστηριακός|Αξιολόγηση|Ανατομική|Επιδημιολογία|Συσχέτιση|Συμπέρασμα|Σημείωση|Προσοχή)/i.test(text);
+            
+            // 3) Short bold heading ending with colon (e.g. "Αξιολόγηση Ορθότητας:")
+            const hasBoldStart = p.querySelector('strong, b, span[style*="bold"]');
+            const isShortHeader = hasBoldStart && text.length < 90 && text.endsWith(':') && !text.includes('\n');
+            
+            if (isNumbered || isKeySection || isShortHeader) {
+                p.classList.add('larnaka-level3-banner');
+            }
+        });
+    } catch (e) {
+        console.error('Error applying 3-tier hierarchy:', e);
+    }
+}
+
 function revealExplanation(explanationText) {
     if (!explanationText || !explanationText.trim()) {
         explanationPanel.classList.remove('expanded');
@@ -532,6 +568,7 @@ function revealExplanation(explanationText) {
     
     // Render the explanation text directly without any interference or extra wrappers
     explanationContent.innerHTML = explanationText;
+    applyLarnaka3TierHierarchy(explanationContent);
     
     // Graceful error fallback for any missing infographic or diagram
     explanationContent.querySelectorAll('img').forEach(function(img) {

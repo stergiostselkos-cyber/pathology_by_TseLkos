@@ -999,6 +999,197 @@ body.dark-theme .substage-banner * {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* ==============================================================================
+   3-TIER HIERARCHY SYSTEM - LARNAKA MCQ EXPLANATIONS
+   1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ)
+   2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ & EXCERPTS)
+   3ο Επίπεδο: Πολύ-πολύ Απαλό Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ / ΑΡΙΘΜΗΜΕΝΑ ΣΗΜΕΙΑ)
+   Ορθή Απάντηση: Πράσινο Πλαίσιο
+   Διαγράμματα & Πίνακες: Badges
+   ============================================================================== */
+
+/* 1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ) */
+.stage-banner,
+div.stage-banner,
+p.stage-banner {
+    font-size: 12pt !important;
+    font-weight: 800 !important;
+    color: #0369a1 !important;
+    background: #e0f2fe !important;
+    border: 1.5px solid #bae6fd !important;
+    border-left: 6px solid #0284c7 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    margin: 24px 0 12px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12) !important;
+    box-sizing: border-box !important;
+}
+
+.stage-banner * {
+    color: #0369a1 !important;
+}
+
+/* 2ο Επίπεδο: Ροζ Πλαίσιο (ΘΕΜΑΤΙΚΕΣ ΕΝΟΤΗΤΕΣ, ΠΑΡΑΘΕΣΕΙΣ, ΕΠΙΛΟΓΕΣ) */
+.thematic-banner,
+div.thematic-banner,
+p.thematic-banner,
+.thematic-unit-banner {
+    font-size: 11.5pt !important;
+    font-weight: 750 !important;
+    color: #9d174d !important;
+    background: #fdf2f8 !important;
+    border: 1px solid #fce7f3 !important;
+    border-left: 5.5px solid #ec4899 !important;
+    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    margin: 20px 0 10px 0 !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
+    box-sizing: border-box !important;
+}
+
+.thematic-banner *,
+.thematic-unit-banner * {
+    color: #9d174d !important;
+}
+
+/* 3ο Επίπεδο: Πολύ-πολύ Απαλό Πορτοκαλί Πλαίσιο (ΥΠΟΕΝΟΤΗΤΕΣ / ΥΠΟΣΤΑΔΙΑ / ΑΡΙΘΜΗΜΕΝΑ ΣΗΜΕΙΑ) */
+.substage-banner,
+.larnaka-level3-banner,
+.subthematic-banner,
+.subsection-banner,
+p.larnaka-level3-banner,
+p.subsection-banner,
+div.subsection-banner {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #9a3412 !important;
+    background: #fff7ed !important;
+    border: 1px solid #ffedd5 !important;
+    border-left: 5px solid #f97316 !important;
+    border-radius: 7px !important;
+    padding: 7px 16px !important;
+    margin: 16px 0 8px 0 !important;
+    text-align: left !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(249, 115, 22, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.larnaka-level3-banner *,
+.substage-banner *,
+.subthematic-banner *,
+.subsection-banner * {
+    color: #9a3412 !important;
+}
+
+/* Ορθή Απάντηση: Πράσινο Πλαίσιο */
+.correct-answer-banner,
+div.correct-answer-banner,
+p.correct-answer-banner {
+    font-size: 10.5pt !important;
+    font-weight: 750 !important;
+    color: #15803d !important;
+    background: #f0fdf4 !important;
+    border: 1px solid #dcfce7 !important;
+    border-left: 5px solid #16a34a !important;
+    border-radius: 8px !important;
+    padding: 9px 18px !important;
+    margin: 16px 0 10px 0 !important;
+    text-align: left !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.correct-answer-banner * {
+    color: #15803d !important;
+}
+
+/* Διαγράμματα & Πίνακες: Badges */
+.diagram-title-badge,
+.excerpt-title-badge {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #0369a1 !important;
+    background: #f0f9ff !important;
+    border: 1px solid #bae6fd !important;
+    border-left: 4px solid #0284c7 !important;
+    border-radius: 6px !important;
+    padding: 5px 14px !important;
+    display: inline-block !important;
+    margin: 14px 0 6px 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Dark Theme Hierarchies for Larnaka */
+body.dark-theme .stage-banner,
+body.dark-theme div.stage-banner {
+    background: #0f172a !important;
+    border-color: #0369a1 !important;
+    border-left-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+}
+body.dark-theme .stage-banner * {
+    color: #38bdf8 !important;
+}
+
+body.dark-theme .thematic-banner,
+body.dark-theme div.thematic-banner,
+body.dark-theme .thematic-unit-banner {
+    background: #2b111e !important;
+    border-color: #831843 !important;
+    border-left-color: #f472b6 !important;
+    color: #fbcfe8 !important;
+}
+body.dark-theme .thematic-banner *,
+body.dark-theme .thematic-unit-banner * {
+    color: #fbcfe8 !important;
+}
+
+body.dark-theme .substage-banner,
+body.dark-theme .larnaka-level3-banner,
+body.dark-theme .subthematic-banner,
+body.dark-theme .subsection-banner,
+body.dark-theme div.subsection-banner {
+    background: #2a150b !important;
+    border-color: #7c2d12 !important;
+    border-left-color: #fb923c !important;
+    color: #ffedd5 !important;
+}
+body.dark-theme .larnaka-level3-banner *,
+body.dark-theme .substage-banner *,
+body.dark-theme .subsection-banner * {
+    color: #ffedd5 !important;
+}
+
+body.dark-theme .correct-answer-banner,
+body.dark-theme div.correct-answer-banner {
+    background: #052e16 !important;
+    border-color: #166534 !important;
+    border-left-color: #4ade80 !important;
+    color: #bbf7d0 !important;
+}
+body.dark-theme .correct-answer-banner * {
+    color: #bbf7d0 !important;
+}
+
+body.dark-theme .diagram-title-badge,
+body.dark-theme .excerpt-title-badge {
+    background: #082f49 !important;
+    border-color: #0369a1 !important;
+    border-left-color: #38bdf8 !important;
+    color: #bae6fd !important;
+}
+
 </style>
 
 <!-- App Logic Scripts -->
