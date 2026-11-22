@@ -2,8 +2,13 @@
 <html lang="el">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE"></script>
 <script>
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE";
+    document.head.appendChild(s);
+  }
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -1138,15 +1143,15 @@
     <script src="data/pathologia_doatap.js?v=20261113"></script>
     <script src="data/farmakologia_doatap.js?v=20261113"></script>
     <script src="data/fysiologia_doatap.js?v=20261114"></script>
-    <script src="data/new_book_questions.js?v=20261021"></script>
-    <script src="data/anaptyxi_2026.js?v=20261021"></script>
+    <script src="data/new_book_questions.js?v=20261122.fix1"></script>
+    <script src="data/anaptyxi_2026.js?v=20261122.fix1"></script>
     <script src="PEDIATRICS/questions.js?v=20261119"></script>
-    <script src="PEDIATRICS/data/flashcard_questions.js?v=20261119"></script>
+    <script src="PEDIATRICS/data/flashcard_questions.js?v=20261122.fix1"></script>
     <script src="PEDIATRICS/data/paidiatriki_questions_daotap.js"></script>
     <script src="PEDIATRICS/data/table_analyses.js?v=20261119"></script>
     <script src="data/cases_klinika_100.js?v=20261021"></script>
     <script src="data/cases_em_70.js?v=20261021"></script>
-    <script src="books.js?v=20261119"></script>
+    <script src="books.js?v=20261122.fix1"></script>
     <script src="data/pharma_database.js?v=20261115.amk2"></script>
 
     <!-- Master Unified Search Logic -->
@@ -1728,7 +1733,9 @@
             if (typeof questions !== 'undefined' && Array.isArray(questions)) {
                 questions.forEach((q, idx) => {
                     let cleanCont = (q.content || "").replace(/<[^>]*>?/gm, ' ');
-                    let fullText = [q.chapter || "", q.category || "", q.question || "", cleanCont].join(" ");
+                    let cleanAns = (q.answer || q.correctAnswer || "").replace(/<[^>]*>?/gm, ' ');
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = [q.chapter || "", q.category || "", q.question || "", cleanCont, cleanAns, cleanExp].join(" ");
                     index.push({
                         id: 'nb-' + (q.id || (idx + 1)),
                         source: 'new_book',
@@ -1750,7 +1757,10 @@
             if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData)) {
                 flashcardQuestionsData.forEach((q, idx) => {
                     let cleanAns = (q.correctAnswer || "").replace(/<[^>]*>?/gm, ' ');
-                    let fullText = [q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns].join(" ");
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let cleanSteps = Array.isArray(q.steps) ? q.steps.map(s => typeof s === 'string' ? s : JSON.stringify(s)).join(" ") : (q.steps || "");
+                    cleanSteps = cleanSteps.replace(/<[^>]*>?/gm, ' ');
+                    let fullText = [q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp, cleanSteps].join(" ");
                     index.push({
                         id: 'essay-' + (q.id || (idx + 1)),
                         source: 'essay',
@@ -1799,29 +1809,60 @@
                 });
             }
 
-            // 5. Books (booksDatabase)
-            if (typeof booksDatabase !== 'undefined' && typeof booksDatabase === 'object') {
-                for (let bKey in booksDatabase) {
-                    let b = booksDatabase[bKey];
+            // 5. Books & Subchapters (booksDatabase)
+            const booksSource = (typeof window !== 'undefined' && window.booksDatabase) ? window.booksDatabase : (typeof booksDatabase !== 'undefined' ? booksDatabase : null);
+            if (booksSource && typeof booksSource === 'object') {
+                for (let bKey in booksSource) {
+                    let b = booksSource[bKey];
                     let bTitle = b.title || 'Βιβλίο';
                     if (Array.isArray(b.parts)) {
                         b.parts.forEach((p, idx) => {
-                            let fullText = bTitle + " " + (p.title || "");
-                            let bookUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&part=' + idx + '&file=' + encodeURIComponent(p.file);
-                            index.push({
-                                id: 'book-' + bKey + '-' + idx,
-                                source: 'book',
-                                sourceLabel: 'Βιβλίο / Οδηγία',
-                                badgeClass: 'badge-book',
-                                badgeIcon: '📚',
-                                chapter: bTitle,
-                                title: p.title || 'Κεφάλαιο',
-                                cleanText: fullText,
-                                normText: removeAccents(fullText),
-                                originalItem: p,
-                                appUrl: bookUrl,
-                                type: 'book'
-                            });
+                            // 5a. Main Part / Chapter PDF
+                            if (p.file) {
+                                let fullText = bTitle + " " + (p.title || "");
+                                let bookUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&part=' + idx + '&file=' + encodeURIComponent(p.file);
+                                index.push({
+                                    id: 'book-' + bKey + '-part-' + idx,
+                                    source: 'book',
+                                    sourceLabel: 'Βιβλίο / Κεφάλαιο',
+                                    badgeClass: 'badge-book',
+                                    badgeIcon: '📚',
+                                    chapter: bTitle,
+                                    title: p.title || 'Κεφάλαιο',
+                                    cleanText: fullText,
+                                    normText: removeAccents(fullText),
+                                    originalItem: p,
+                                    appUrl: bookUrl,
+                                    type: 'book'
+                                });
+                            }
+
+                            // 5b. Sub-sections / Diseases / Subchapters (sections)
+                            if (p.sections && typeof p.sections === 'object') {
+                                for (let secName in p.sections) {
+                                    let subItems = p.sections[secName];
+                                    if (Array.isArray(subItems)) {
+                                        subItems.forEach((sub, subIdx) => {
+                                            let fullSubText = [bTitle, p.title || "", secName, sub.title || ""].join(" ");
+                                            let subUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&part=' + idx + '&file=' + encodeURIComponent(sub.file);
+                                            index.push({
+                                                id: 'book-' + bKey + '-p' + idx + '-s' + subIdx + '-' + encodeURIComponent(sub.title || ('sub-' + subIdx)),
+                                                source: 'book',
+                                                sourceLabel: 'Βιβλίο / Υποκεφάλαιο',
+                                                badgeClass: 'badge-book',
+                                                badgeIcon: '📖',
+                                                chapter: bTitle + ' — ' + (p.title || '') + (secName ? ' — ' + secName : ''),
+                                                title: sub.title || 'Αυτόνομο Θέμα',
+                                                cleanText: fullSubText,
+                                                normText: removeAccents(fullSubText),
+                                                originalItem: sub,
+                                                appUrl: subUrl,
+                                                type: 'book'
+                                            });
+                                        });
+                                    }
+                                }
+                            }
                         });
                     }
                     if (b.chapters && typeof b.chapters === 'object') {
@@ -1832,7 +1873,7 @@
                                     let fullText = bTitle + " " + ch + " " + (p.title || "");
                                     let bookUrl = 'books.html?book=' + encodeURIComponent(bKey) + '&chapter=' + encodeURIComponent(ch) + '&subpart=' + idx + '&file=' + encodeURIComponent(p.file);
                                     index.push({
-                                        id: 'book-' + bKey + '-' + ch + '-' + idx,
+                                        id: 'book-' + bKey + '-' + encodeURIComponent(ch) + '-' + idx,
                                         source: 'book',
                                         sourceLabel: 'Βιβλίο / Οδηγία',
                                         badgeClass: 'badge-book',
@@ -1940,7 +1981,9 @@
                     const qId = q.id || (idx + 1);
                     let cleanAns = (q.correctAnswer || q.answer || "").replace(/<[^>]*>?/gm, ' ');
                     let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
-                    let fullText = ["Παιδιατρική", q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp].join(" ");
+                    let cleanSteps = Array.isArray(q.steps) ? q.steps.map(s => typeof s === 'string' ? s : JSON.stringify(s)).join(" ") : (q.steps || "");
+                    cleanSteps = cleanSteps.replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Παιδιατρική", q.chapter || "", q.category || "", q.question || "", q.mnemonic || "", cleanAns, cleanExp, cleanSteps].join(" ");
 
                     index.push({
                         id: 'pedia-fc-' + qId,

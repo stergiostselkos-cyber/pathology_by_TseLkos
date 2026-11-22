@@ -126,7 +126,9 @@ function loadQuestions() {
     if (typeof socraticQuestionsData !== 'undefined') {
         socraticQuestions = Array.isArray(socraticQuestionsData) ? socraticQuestionsData : [socraticQuestionsData];
     }
-    if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
+    if (typeof window.pediatricsFlashcardQuestionsData !== 'undefined' && Array.isArray(window.pediatricsFlashcardQuestionsData) && window.pediatricsFlashcardQuestionsData.length > 0) {
+        flashcardQuestions = window.pediatricsFlashcardQuestionsData;
+    } else if (typeof flashcardQuestionsData !== 'undefined' && Array.isArray(flashcardQuestionsData) && flashcardQuestionsData.length > 0) {
         flashcardQuestions = flashcardQuestionsData;
     } else if (typeof newBookQuestionsData !== 'undefined' && Array.isArray(newBookQuestionsData) && newBookQuestionsData.length > 0) {
         flashcardQuestions = newBookQuestionsData;

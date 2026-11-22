@@ -4715,15 +4715,30 @@ let currentSelectedBook = null;
                     if (f === cleanTarget || f.endsWith(cleanTarget) || cleanTarget.endsWith(f)) {
                         return { bookId: bId, type: 'part', partIndex: i, item: book.parts[i] };
                     }
+                    if (book.parts[i].sections && typeof book.parts[i].sections === 'object') {
+                        for (const secName in book.parts[i].sections) {
+                            const subList = book.parts[i].sections[secName];
+                            if (Array.isArray(subList)) {
+                                for (let k = 0; k < subList.length; k++) {
+                                    let sf = normalizePath(subList[k].file);
+                                    if (sf === cleanTarget || sf.endsWith(cleanTarget) || cleanTarget.endsWith(sf)) {
+                                        return { bookId: bId, type: 'section_subpart', partIndex: i, sectionName: secName, subpartIndex: k, item: subList[k] };
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             if (book.chapters) {
                 for (const chName in book.chapters) {
                     const subList = book.chapters[chName];
-                    for (let j = 0; j < subList.length; j++) {
-                        let f = normalizePath(subList[j].file);
-                        if (f === cleanTarget || f.endsWith(cleanTarget) || cleanTarget.endsWith(f)) {
-                            return { bookId: bId, type: 'chapter', chapterName: chName, subpartIndex: j, item: subList[j] };
+                    if (Array.isArray(subList)) {
+                        for (let j = 0; j < subList.length; j++) {
+                            let f = normalizePath(subList[j].file);
+                            if (f === cleanTarget || f.endsWith(cleanTarget) || cleanTarget.endsWith(f)) {
+                                return { bookId: bId, type: 'chapter', chapterName: chName, subpartIndex: j, item: subList[j] };
+                            }
                         }
                     }
                 }
@@ -4741,19 +4756,7 @@ let currentSelectedBook = null;
         const reqPart = urlParams.get('part');
         const reqFile = urlParams.get('file');
 
-        // Priority 1: Direct parameters (book + part / chapter)
-        if (reqBook && booksDatabase[reqBook]) {
-            selectBook(reqBook);
-            if (reqPart !== null && reqPart !== undefined && reqPart !== "") {
-                selectPart(parseInt(reqPart, 10));
-                return;
-            } else if (reqChapter) {
-                selectChapter(reqChapter, (reqSubpart !== null && reqSubpart !== undefined && reqSubpart !== "") ? reqSubpart : 0);
-                return;
-            }
-        }
-
-        // Priority 2: Match by File (either standalone or fallback)
+        // Priority 1: Match by File (covers exact subchapter / section / part / chapter file)
         if (reqFile) {
             const match = findItemByFile(reqFile);
             if (match) {
@@ -4762,7 +4765,35 @@ let currentSelectedBook = null;
                     selectPart(match.partIndex);
                 } else if (match.type === 'chapter') {
                     selectChapter(match.chapterName, match.subpartIndex);
+                } else if (match.type === 'section_subpart') {
+                    selectPart(match.partIndex);
+                    if (sectionSelect) {
+                        sectionSelect.value = match.sectionName;
+                        sectionSelect.dispatchEvent(new Event('change'));
+                        if (subpartSelect) {
+                            subpartSelect.value = match.item.file;
+                        }
+                    }
+                    displayPdf(match.item.file);
                 }
+                return;
+            } else {
+                if (reqBook && booksDatabase[reqBook]) {
+                    selectBook(reqBook);
+                }
+                displayPdf(reqFile);
+                return;
+            }
+        }
+
+        // Priority 2: Direct parameters (book + part / chapter)
+        if (reqBook && booksDatabase[reqBook]) {
+            selectBook(reqBook);
+            if (reqPart !== null && reqPart !== undefined && reqPart !== "") {
+                selectPart(parseInt(reqPart, 10));
+                return;
+            } else if (reqChapter) {
+                selectChapter(reqChapter, (reqSubpart !== null && reqSubpart !== undefined && reqSubpart !== "") ? reqSubpart : 0);
                 return;
             }
         }
