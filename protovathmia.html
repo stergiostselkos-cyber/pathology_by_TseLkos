@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ΠΡΩΤΟΒΑΘΜΙΑ ΦΡΟΝΤΙΔΑ ΥΓΕΙΑΣ - Ερωτήσεις Πολλαπλής Επιλογής - By TseLkos</title>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-GSSKTV6FKE";
+      document.head.appendChild(s);
+    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GSSKTV6FKE');
+  </script>
+  <script src="auth-guard.js"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="PROTOVATHMIA/protovathmia_mcq.css?v=20261123.v1">
+  <link rel="stylesheet" href="image_zoom_viewer.css">
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="patho-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-icon" style="background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%);">
+          <i class="fa-solid fa-house-chimney-medical"></i>
+        </div>
+        <div class="header-title-box">
+          <h1 style="background: linear-gradient(135deg, #db2777 0%, #9333ea 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ΠΡΩΤΟΒΑΘΜΙΑ ΦΡΟΝΤΙΔΑ - Ερωτήσεις Πολλαπλής Επιλογής</h1>
+          <div class="subtitle">
+            <span>Κλινικά Σενάρια Γενικής Οικογενειακής Ιατρικής &amp; Εξετάσεις</span>
+            <span class="author-pill" style="background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%); color: #86198f; border-color: #f0abfc;">By Stergios Tselkos</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="search.html" class="nav-home-btn" title="Σύνθετη Αναζήτηση">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Αναζήτηση</span>
+        </a>
+        <a href="index.html" class="nav-home-btn">
+          <i class="fa-solid fa-house"></i>
+          <span>Αρχική Πύλη</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="patho-main">
+    
+    <!-- Controls Panel -->
+    <section class="patho-controls">
+      <!-- 1. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΤΡΑΠΕΖΑΣ ΘΕΜΑΤΩΝ -->
+      <div class="nav-selector-row bank-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-database" style="color: #9333ea;"></i>
+          <span>Ενότητα Θεμάτων:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="bankSelect" class="styled-select bank-select">
+            <option value="mcq" selected>🎯 Πολλαπλής Επιλογής (325 Ερωτήσεις)</option>
+            <option value="open">✍️ Θέματα Ανάπτυξης &amp; Σύντομης (32 Ερωτήσεις)</option>
+            <option value="all">📚 Όλα τα Θέματα Πρωτοβάθμιας (357 Ερωτήσεις)</option>
+          </select>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-pill" id="scoreStat">
+            <i class="fa-solid fa-circle-check" style="color: #16a34a;"></i>
+            <span>Σκορ: <strong id="scoreVal">0 / 0</strong> (<strong id="scorePct">0%</strong>)</span>
+          </div>
+          <div class="stat-pill" id="totalStat">
+            <i class="fa-solid fa-list-ol" style="color: #9333ea;"></i>
+            <span>Ερωτήσεις: <strong id="totalCountVal">0</strong></span>
+          </div>
+          <button type="button" class="stat-btn-results" id="openResultsBtn" title="Προβολή αναλυτικών αποτελεσμάτων" style="background: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 100%); border-color: #d8b4fe; color: #7e22ce;">
+            <i class="fa-solid fa-chart-pie" style="color: #9333ea;"></i>
+            <span>Αποτελέσματα</span>
+          </button>
+          <button type="button" class="stat-reset-btn" id="resetScoreBtn" title="Μηδενισμός σκορ &amp; απαντήσεων">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Επαναφορά</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΚΕΦΑΛΑΙΟΥ -->
+      <div class="nav-selector-row chapter-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-book-medical" style="color: #ec4899;"></i>
+          <span>Κλινικό Σενάριο / Κεφάλαιο:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="chapterSelect" class="styled-select chapter-select">
+            <option value="all">Όλα τα Κλινικά Σενάρια</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3. ΜΠΑΡΑ ΕΠΙΛΟΓΗΣ ΕΡΩΤΗΣΗΣ -->
+      <div class="nav-selector-row question-row">
+        <div class="selector-label">
+          <i class="fa-solid fa-list-ol" style="color: #2563eb;"></i>
+          <span>Επιλογή Ερώτησης:</span>
+        </div>
+        <div class="selector-input-wrapper">
+          <select id="questionSelect" class="styled-select question-select">
+          </select>
+        </div>
+      </div>
+
+      <!-- Filter and Search Row -->
+      <div class="controls-row-bottom">
+        <div class="filter-btn-group">
+          <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> Όλες</button>
+          <button class="filter-btn" data-filter="unanswered"><i class="fa-regular fa-circle"></i> Αναπάντητες</button>
+          <button class="filter-btn" data-filter="wrong"><i class="fa-solid fa-circle-xmark"></i> Λάθη</button>
+          <button class="filter-btn" data-filter="starred"><i class="fa-solid fa-star"></i> Αγαπημένα</button>
+        </div>
+        <div class="search-input-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Αναζήτηση στην ερώτηση, κωδικό ή λέξεις-κλειδιά...">
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-fill" id="progressFill" style="background: linear-gradient(90deg, #ec4899 0%, #a855f7 50%, #3b82f6 100%);"></div>
+      </div>
+    </section>
+
+    <!-- Question Card -->
+    <article class="question-card" id="questionCard">
+      <div class="question-meta-bar">
+        <div class="question-badge-box">
+          <span class="q-bank-badge" id="qBankBadge" style="background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 100%); color: #9333ea; border-color: #d8b4fe;">Πρωτοβάθμια Φροντίδα</span>
+          <span class="q-code-badge" id="qCodeBadge" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 700; border-radius: 6px; padding: 3px 8px; font-size: 0.85rem;"></span>
+          <span class="q-type-badge" id="qTypeBadge" style="display: none; background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; font-weight: 600; border-radius: 6px; padding: 3px 8px; font-size: 0.85rem;"></span>
+          <span class="q-number-badge" id="qNumberBadge">Ερώτηση 1</span>
+          <span class="q-chapter-badge" id="qChapterBadge">Κλινικό Σενάριο</span>
+        </div>
+        <div class="question-meta-right">
+          <button type="button" class="toggle-exp-btn" id="toggleExpBtn" title="Εμφάνιση ή απόκρυψη ανάλυσης" style="background: #fdf4ff; border-color: #f0abfc; color: #a21caf;">
+            <i class="fa-solid fa-lightbulb" style="color: #d946ef;"></i>
+            <span>Ανάλυση / Επεξήγηση</span>
+          </button>
+          <button class="star-btn" id="starBtn" title="Προσθήκη στα Αγαπημένα">
+            <i class="fa-regular fa-star"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="question-stem" id="questionStem">
+        Φόρτωση ερώτησης...
+      </div>
+
+      <div class="options-list" id="optionsList">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Submit Action Bar (Check Answer & Clear) -->
+      <div class="submit-action-bar" id="submitActionBar">
+        <button type="button" class="btn-check-answer" id="checkAnswerBtn" disabled style="background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%); border: none; box-shadow: 0 4px 16px rgba(147, 51, 234, 0.3);">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>Έλεγχος Απάντησης</span>
+        </button>
+        <button type="button" class="btn-clear-selection" id="clearSelectionBtn" style="display: none;">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Καθαρισμός</span>
+        </button>
+      </div>
+
+      <!-- Instant Feedback Box -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="feedback-content">
+          <h4 id="feedbackTitle">Σωστή Απάντηση!</h4>
+          <p id="feedbackText">Επιλέξατε τη σωστή απάντηση.</p>
+        </div>
+      </div>
+
+      <!-- Navigation Toolbar (TOP) -->
+      <div class="card-nav-bar nav-top">
+        <button class="nav-btn btn-nav-first" id="firstBtn" title="Μετάβαση στην 1η ερώτηση">
+          <i class="fa-solid fa-backward-step"></i>
+          <span>Αρχή</span>
+        </button>
+
+        <button class="nav-btn btn-nav-prev" id="prevBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Προηγούμενη</span>
+        </button>
+
+        <div class="nav-center-group">
+          <button class="nav-btn btn-nav-random" id="randomBtn" title="Μετάβαση σε τυχαία ερώτηση">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Τυχαία</span>
+          </button>
+          <div class="jump-input-box">
+            <span>Μετάβαση:</span>
+            <input type="number" id="jumpInput" class="jump-input" min="1" placeholder="#">
+          </div>
+        </div>
+
+        <button class="nav-btn btn-nav-next" id="nextBtn">
+          <span>Επόμενη</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button class="nav-btn btn-nav-last" id="lastBtn" title="Μετάβαση στην τελευταία ερώτηση">
+          <span>Τέλος</span>
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
+
+      <!-- Full Rich Explanation Panel -->
+      <div class="patho-explanation-panel" id="explanationPanel">
+        <div class="explanation-header" style="background: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 100%); border-bottom: 1px solid #f0abfc;">
+          <i class="fa-solid fa-circle-info" style="color: #9333ea;"></i>
+          <span style="color: #701a75;">Αιτιολόγηση, Βασικά Σημεία &amp; Κλινική Επεξήγηση</span>
+        </div>
+        <div class="explanation-body" id="explanationBody">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Navigation Toolbar (BOTTOM) -->
+      <div class="card-nav-bar nav-bottom" id="bottomNavBar">
+        <button class="nav-btn btn-nav-first" id="firstBtnBottom" title="Μετάβαση στην 1η ερώτηση">
+          <i class="fa-solid fa-backward-step"></i>
+          <span>Αρχή</span>
+        </button>
+
+        <button class="nav-btn btn-nav-prev" id="prevBtnBottom">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Προηγούμενη</span>
+        </button>
+
+        <div class="nav-center-group">
+          <button class="nav-btn btn-nav-random" id="randomBtnBottom" title="Μετάβαση σε τυχαία ερώτηση">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Τυχαία</span>
+          </button>
+          <button class="nav-btn btn-nav-top-scroll" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή της ερώτησης">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Κορυφή</span>
+          </button>
+        </div>
+
+        <button class="nav-btn btn-nav-next" id="nextBtnBottom">
+          <span>Επόμενη</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button class="nav-btn btn-nav-last" id="lastBtnBottom" title="Μετάβαση στην τελευταία ερώτηση">
+          <span>Τέλος</span>
+          <i class="fa-solid fa-forward-step"></i>
+        </button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Floating Back to Top Button -->
+  <button id="floating-back-to-top" class="floating-back-to-top hidden" onclick="window.scrollToQuestionTop()" title="Επιστροφή στην κορυφή" aria-label="Επιστροφή στην κορυφή">
+    <svg fill="none" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+    </svg>
+  </button>
+
+  <!-- Results Modal -->
+  <div class="modal-overlay" id="resultsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-chart-pie" style="color:#9333ea"></i> Συγκεντρωτικά Αποτελέσματα Πρωτοβάθμιας</h3>
+        <button type="button" class="modal-close-btn" id="closeResultsModalBtn">&times;</button>
+      </div>
+      <div class="results-grid">
+        <div class="res-stat-card">
+          <div class="res-val" id="modalTotalQuestions">0</div>
+          <div class="res-lbl">Σύνολο Ερωτήσεων</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-val" id="modalAnswered" style="color:#2563eb">0</div>
+          <div class="res-lbl">Απαντήθηκαν</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-val" id="modalCorrect" style="color:#16a34a">0</div>
+          <div class="res-lbl">Σωστές</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="res-val" id="modalWrong" style="color:#e11d48">0</div>
+          <div class="res-lbl">Λανθασμένες</div>
+        </div>
+      </div>
+      <div class="res-pct-box">
+        <div class="res-pct-title">Ποσοστό Επιτυχίας</div>
+        <div class="res-pct-val" id="modalSuccessRate" style="color:#9333ea">0%</div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="modal-btn modal-btn-outline" id="modalViewWrongBtn"><i class="fa-solid fa-circle-xmark" style="color:#e11d48"></i> Προβολή Λαθών</button>
+        <button type="button" class="modal-btn modal-btn-outline" id="modalViewUnansweredBtn"><i class="fa-regular fa-circle" style="color:#2563eb"></i> Αναπάντητες</button>
+        <button type="button" class="modal-btn modal-btn-danger" id="modalResetBtn"><i class="fa-solid fa-rotate-left"></i> Επαναφορά</button>
+        <button type="button" class="modal-btn modal-btn-primary" id="modalCloseBtn" style="background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%);">Κλείσιμο</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="patho-footer">
+    <p>«ΠΡΩΤΟΒΑΘΜΙΑ ΦΡΟΝΤΙΔΑ ΥΓΕΙΑΣ - Ερωτήσεις Πολλαπλής Επιλογής» • 357 Θέματα (325 Πολλαπλής + 32 Ανάπτυξης)</p>
+    <p style="margin-top: 4px;">Επιμέλεια &amp; Ανάπτυξη Εφαρμογής: <a href="mailto:stergiostselkos@gmail.com">Stergios Tselkos</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function() {
+      var cb = (window.location.protocol === 'file:') ? '' : ('?v=' + Date.now());
+      var scripts = [
+        'PROTOVATHMIA/data/themata_protovathmias.js',
+        'PROTOVATHMIA/protovathmia_app.js',
+        'image_zoom_viewer.js'
+      ];
+      scripts.forEach(function(src) {
+        document.write('<script src="' + src + cb + '"><\/script>');
+      });
+    })();
+  </script>
+</body>
+</html>

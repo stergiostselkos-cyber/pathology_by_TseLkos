@@ -960,6 +960,22 @@
             .source-filters { gap: 6px; }
             .filter-pill { font-size: 0.8rem; padding: 6px 12px; }
         }
+
+        .badge-primarycare {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(147, 51, 234, 0.15) 50%, rgba(37, 99, 235, 0.15) 100%);
+            color: #9333ea;
+            border: 1px solid rgba(236, 72, 153, 0.35);
+        }
+        .btn-primarycare-viewer {
+            background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%) !important;
+            border: none !important;
+            color: #fff !important;
+            box-shadow: 0 4px 14px rgba(147, 51, 234, 0.3) !important;
+        }
+        .btn-primarycare-viewer:hover {
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45) !important;
+            transform: translateY(-2px);
+        }
     </style>
   <link rel="stylesheet" href="image_zoom_viewer.css?v=20261120.zoomfix">
 </head>
@@ -1097,6 +1113,10 @@
                 <span>💊 Φάρμακα &amp; Ουσίες</span>
                 <span class="pill-count" id="count-pharma">0</span>
             </div>
+            <div class="filter-pill" data-source="primary_care" onclick="filterBySource('primary_care')">
+                <span>🩺 Πρωτοβάθμια Φροντίδα</span>
+                <span class="pill-count" id="count-primary_care">0</span>
+            </div>
         </div>
 
         <!-- Results Toolbar -->
@@ -1153,6 +1173,7 @@
     <script src="data/cases_em_70.js?v=20261021"></script>
     <script src="books.js?v=20261122.fix1"></script>
     <script src="data/pharma_database.js?v=20261115.amk2"></script>
+    <script src="PROTOVATHMIA/data/themata_protovathmias.js?v=20261123.v1"></script>
 
     <!-- Master Unified Search Logic -->
     <script>
@@ -2059,6 +2080,65 @@
                 });
             }
 
+            // 8. Primary Health Care Questions (protovathmiaQuestions & protovathmiaOpenQuestions)
+            const protoMcqSource = (typeof window !== 'undefined' && Array.isArray(window.protovathmiaQuestions)) ? window.protovathmiaQuestions :
+                                   (typeof protovathmiaQuestions !== 'undefined' && Array.isArray(protovathmiaQuestions)) ? protovathmiaQuestions : [];
+
+            const protoOpenSource = (typeof window !== 'undefined' && Array.isArray(window.protovathmiaOpenQuestions)) ? window.protovathmiaOpenQuestions :
+                                    (typeof protovathmiaOpenQuestions !== 'undefined' && Array.isArray(protovathmiaOpenQuestions)) ? protovathmiaOpenQuestions : [];
+
+            if (protoMcqSource.length > 0) {
+                protoMcqSource.forEach((q, idx) => {
+                    const qSeq = q.sequence || q.id || (idx + 1);
+                    const qCode = q.code || ('PF_Q' + String(qSeq).padStart(3, '0'));
+                    let optsText = Array.isArray(q.options) ? q.options.join(" ") : "";
+                    let cleanAns = (q.correctAnswer || "").replace(/<[^>]*>?/gm, ' ');
+                    let cleanExp = (q.explanation || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Πρωτοβάθμια Φροντίδα Υγείας", qCode, q.chapter || "", q.subcategory || "", q.bookChapter || "", q.source || "", q.question || "", optsText, cleanAns, cleanExp].join(" ");
+
+                    index.push({
+                        id: 'proto-mcq-' + qSeq,
+                        source: 'primary_care',
+                        sourceLabel: 'Πρωτοβάθμια MCQ',
+                        badgeClass: 'badge-primarycare',
+                        badgeIcon: '🩺',
+                        chapter: q.chapter || 'Πρωτοβάθμια Φροντίδα',
+                        title: (q.code ? '[' + q.code + '] ' : '') + (q.question || 'Ερώτηση Πρωτοβάθμιας'),
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        correctIndices: Array.isArray(q.correctAnswerIndices) ? q.correctAnswerIndices : [0],
+                        appUrl: 'PROTOVATHMIA/index.html?bank=mcq&qId=' + qSeq,
+                        type: 'mcq'
+                    });
+                });
+            }
+
+            if (protoOpenSource.length > 0) {
+                protoOpenSource.forEach((q, idx) => {
+                    const qSeq = q.sequence || q.id || (idx + 1);
+                    const qCode = q.code || ('PF_Q' + String(qSeq).padStart(3, '0'));
+                    let itemsText = Array.isArray(q.items) ? q.items.join(" ") : "";
+                    let cleanAns = (q.answerHtml || "").replace(/<[^>]*>?/gm, ' ');
+                    let fullText = ["Πρωτοβάθμια Φροντίδα Υγείας Ανάπτυξη", qCode, q.chapter || "", q.subcategory || "", q.bookChapter || "", q.source || "", q.type || "", q.question || "", itemsText, cleanAns].join(" ");
+
+                    index.push({
+                        id: 'proto-open-' + qSeq,
+                        source: 'primary_care',
+                        sourceLabel: 'Πρωτοβάθμια Ανάπτυξη',
+                        badgeClass: 'badge-primarycare',
+                        badgeIcon: '✍️',
+                        chapter: q.chapter || 'Πρωτοβάθμια Φροντίδα',
+                        title: (q.code ? '[' + q.code + '] ' : '') + (q.question || 'Θέμα Πρωτοβάθμιας'),
+                        cleanText: fullText,
+                        normText: removeAccents(fullText),
+                        originalItem: q,
+                        appUrl: 'PROTOVATHMIA/index.html?bank=open&qId=' + qSeq,
+                        type: 'essay'
+                    });
+                });
+            }
+
             return index;
         }
 
@@ -2153,7 +2233,7 @@
 
         // Update Counts for Filter Pills
         function updateCountsPills(matches) {
-            const counts = { ALL: matches.length, mcq: 0, larnaka: 0, surgery: 0, pediatrics: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0 };
+            const counts = { ALL: matches.length, mcq: 0, larnaka: 0, surgery: 0, pediatrics: 0, new_book: 0, essay: 0, case: 0, book: 0, pharma: 0, primary_care: 0 };
             matches.forEach(m => {
                 if (counts[m.source] !== undefined) counts[m.source]++;
             });
@@ -2269,6 +2349,10 @@
                 btnText = 'Άνοιγμα στη Χειρουργική';
                 actionIcon = 'fa-hospital-user';
                 btnClass = 'btn-surgery-viewer';
+            } else if (item.source === 'primary_care') {
+                btnText = 'Άνοιγμα στην Πρωτοβάθμια Φροντίδα';
+                actionIcon = 'fa-house-chimney-medical';
+                btnClass = 'btn-primarycare-viewer';
             } else if (item.source === 'pediatrics') {
                 btnText = 'Άνοιγμα στην Παιδιατρική';
                 actionIcon = 'fa-baby';
@@ -2349,6 +2433,20 @@
 
                 if (item.type === 'mcq') {
                     out += `<div class="full-question-box"><strong>Ερώτηση:</strong> ${q.question || ''}</div>`;
+                    if (q.questionImages || q.images) {
+                        const imgs = q.questionImages || q.images || [];
+                        if (Array.isArray(imgs) && imgs.length > 0) {
+                            out += '<div style="display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;">';
+                            imgs.forEach(im => {
+                                const f = (typeof im === 'string') ? im : (im.file || '');
+                                if (f) {
+                                    const cleanFile = f.startsWith("images/") ? f.substring(7) : f;
+                                    out += `<img src="PROTOVATHMIA/images/${cleanFile}" style="max-width:280px; border-radius:8px; border:1px solid #cbd5e1; cursor:pointer;" onclick="window.openHDZoomModal ? window.openHDZoomModal(this.src) : window.open(this.src)">`;
+                                }
+                            });
+                            out += '</div>';
+                        }
+                    }
                     if (Array.isArray(q.options) && q.options.length > 0) {
                         out += '<div class="mcq-preview-list">';
                         const correctIndices = item.correctIndices || [];
@@ -2369,6 +2467,8 @@
                             if (typeof marked !== 'undefined' && !/<[a-z][\s\S]*>/i.test(expContent)) {
                                 expContent = marked.parse(expContent);
                             }
+                        } else if (item.source === 'primary_care') {
+                            expContent = expContent.replace(/src="images\//g, 'src="PROTOVATHMIA/images/');
                         }
                         out += `<div class="full-answer-box"><h4><i class="fa-solid fa-circle-info" style="color:#0284c7;"></i> Αιτιολόγηση & Επεξήγηση</h4>${expContent}</div>`;
                     }
