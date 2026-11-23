@@ -177,17 +177,17 @@ h6.thematic-banner,
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 11pt !important;
     font-weight: 750 !important;
-    color: #9d174d !important;
-    background: #fdf2f8 !important;
-    border: 1px solid #fce7f3 !important;
-    border-left: 5.5px solid #ec4899 !important;
+    color: #312e81 !important;
+    background: #ede9fe !important;
+    border: 1px solid #ddd6fe !important;
+    border-left: 6px solid #6366f1 !important;
     border-radius: 8px !important;
     padding: 9px 18px !important;
     margin: 20px 0 10px 0 !important;
     text-align: left !important;
     line-height: 1.5 !important;
     display: block !important;
-    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1) !important;
     box-sizing: border-box !important;
 }
 
