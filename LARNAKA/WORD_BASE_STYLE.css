@@ -148,12 +148,17 @@
     font-size: 10pt !important;
 }
 
-/* Soft Pink Option Banner (Stage 2 Option Analysis) */
+/* Soft Pink Banner (Stage 3 Sub-units & Stage 2 Option Analysis) */
 .option-banner,
 div.option-banner,
+.pink-banner,
+div.pink-banner,
 .word-question .option-banner,
+.word-question .pink-banner,
 .explanation-box .option-banner,
-.explanation-content .option-banner {
+.explanation-box .pink-banner,
+.explanation-content .option-banner,
+.explanation-content .pink-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
     font-size: 10.5pt !important;
     font-weight: 750 !important;
