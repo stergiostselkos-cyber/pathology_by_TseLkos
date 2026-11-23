@@ -89,7 +89,7 @@
     width: 100% !important;
     box-shadow: none !important;
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    font-size: 1.04rem !important;
+    font-size: 10.5pt !important;
     line-height: 1.76 !important;
     color: #1e293b !important;
 }
@@ -160,7 +160,7 @@ div.pink-banner,
 .explanation-content .option-banner,
 .explanation-content .pink-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    font-size: 10.5pt !important;
+    font-size: 11.5pt !important;
     font-weight: 750 !important;
     color: #9d174d !important;
     background: #fdf2f8 !important;
@@ -221,7 +221,7 @@ h5.stage-banner,
 .explanation-content h5.stage-banner,
 .explanation-content .stage-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    font-size: 12pt !important;
+    font-size: 14pt !important;
     font-weight: 800 !important;
     color: #0369a1 !important;
     background: #e0f2fe !important;
@@ -267,7 +267,7 @@ h6.thematic-banner,
 .explanation-content h6.thematic-banner,
 .explanation-content .thematic-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    font-size: 11pt !important;
+    font-size: 12.5pt !important;
     font-weight: 750 !important;
     color: #312e81 !important;
     background: #ede9fe !important;
@@ -311,7 +311,7 @@ h6.subsection-banner,
 .explanation-content h6.subsection-banner,
 .explanation-content .subsection-banner {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    font-size: 10.5pt !important;
+    font-size: 11.5pt !important;
     font-weight: 700 !important;
     color: #9a3412 !important;
     background: #fff7ed !important;
@@ -489,7 +489,7 @@ h6.subsection-banner,
     #quiz-view .word-question,
     #quiz-view .explanation-box {
         padding: 2px 4px !important;
-        font-size: 0.98rem !important;
+        font-size: 10.5pt !important;
         line-height: 1.65 !important;
     }
     
@@ -670,3 +670,10 @@ table:not(.med-zoomable) img {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7) !important;
 }
 
+
+.bullet-l1 {
+    font-size: 7.5pt !important;
+    vertical-align: 1px !important;
+    color: #0f172a !important;
+    line-height: 1 !important;
+}
