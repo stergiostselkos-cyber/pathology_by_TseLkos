@@ -106,6 +106,51 @@
     color: #1e293b !important;
 }
 
+.word-question p.list-item-l1,
+.explanation-content p.list-item-l1,
+.explanation-box p.list-item-l1 {
+    margin: 4px 0 6px 18px !important;
+    padding-left: 22px !important;
+    text-indent: -18px !important;
+    line-height: 1.68 !important;
+    color: #1e293b !important;
+    font-size: 11pt !important;
+}
+
+.word-question p.list-item-l2,
+.explanation-content p.list-item-l2,
+.explanation-box p.list-item-l2 {
+    margin: 3px 0 6px 36px !important;
+    padding-left: 20px !important;
+    text-indent: -18px !important;
+    line-height: 1.62 !important;
+    color: #334155 !important;
+    font-size: 10.5pt !important;
+}
+
+.word-question p.list-item-l2 .bullet-sym,
+.explanation-content p.list-item-l2 .bullet-sym,
+.explanation-box p.list-item-l2 .bullet-sym {
+    display: inline-block !important;
+    min-width: 16px !important;
+    text-indent: 0 !important;
+    color: #64748b !important;
+    font-weight: bold !important;
+}
+
+.word-question p.citation-quote,
+.explanation-content p.citation-quote,
+.explanation-box p.citation-quote {
+    margin: 6px 0 10px 28px !important;
+    padding: 8px 14px !important;
+    background: #f8fafc !important;
+    border-left: 3.5px solid #94a3b8 !important;
+    border-radius: 4px !important;
+    font-style: italic !important;
+    color: #334155 !important;
+    line-height: 1.6 !important;
+}
+
 /* ==============================================================================
    3-TIER HIERARCHY SYSTEM - LARNAKA MCQ EXPLANATIONS
    1ο Επίπεδο: Μπλε Πλαίσιο (ΣΤΑΔΙΑ & H4)
