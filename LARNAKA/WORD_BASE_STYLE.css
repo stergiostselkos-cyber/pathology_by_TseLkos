@@ -672,6 +672,35 @@ table:not(.med-zoomable) img {
 
 
 .bullet-l1 {
+    display: inline-block !important;
+    min-width: 14px !important;
+    text-indent: 0 !important;
+    color: #0f172a !important;
+    font-size: 7.5pt !important;
+    vertical-align: 1px !important;
+    line-height: 1 !important;
+}
+
+.bullet-l2-white,
+.bullet-l2,
+span.bullet-l2 {
+    display: inline-block !important;
+    min-width: 14px !important;
+    text-indent: 0 !important;
+    color: #475569 !important;
+    font-size: 6.5pt !important;
+    vertical-align: 1.5px !important;
+    line-height: 1 !important;
+}
+
+/* Ensure any white circle bullet is small, never a giant monster */
+.word-question p span[style*="min-width"],
+.explanation-box p span[style*="min-width"],
+.explanation-content p span[style*="min-width"] {
+    font-size: 7pt !important;
+    vertical-align: 1px !important;
+    color: #334155 !important;
+}
     font-size: 7.5pt !important;
     vertical-align: 1px !important;
     color: #0f172a !important;

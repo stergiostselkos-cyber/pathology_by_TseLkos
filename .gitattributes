@@ -1,0 +1,5 @@
+# Prevent GitHub Desktop and git from freezing when calculating diffs on massive data banks
+LARNAKA/*.js -diff
+PROTOVATHMIA/data/*.js -diff
+data/*.js -diff
+*.min.js -diff

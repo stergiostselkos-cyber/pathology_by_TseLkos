@@ -1188,8 +1188,12 @@ body.dark-theme .substage-banner * {
     const cacheBuster = (window.location.protocol === 'file:') ? '' : ('?v=' + Date.now());
     loadScriptAsync('larnaka_1.js' + cacheBuster)
         .then(function() {
-            if (loadingSub) loadingSub.textContent = 'Φόρτωση Τράπεζας (Μέρος 2/2)...';
+            if (loadingSub) loadingSub.textContent = 'Φόρτωση Τράπεζας (Μέρος 2/3)...';
             return loadScriptAsync('larnaka_2.js' + cacheBuster);
+        })
+        .then(function() {
+            if (loadingSub) loadingSub.textContent = 'Φόρτωση Τράπεζας (Μέρος 3/3)...';
+            return loadScriptAsync('larnaka_3.js' + cacheBuster);
         })
         .then(function() {
             return loadScriptAsync('image_zoom_viewer.js' + cacheBuster);
