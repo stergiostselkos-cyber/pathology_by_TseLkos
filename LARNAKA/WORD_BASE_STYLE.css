@@ -188,9 +188,6 @@ div.pink-banner,
 .word-question p.citation-quote,
 .explanation-content p.citation-quote,
 .explanation-box p.citation-quote {
-    box-sizing: border-box !important;
-    max-width: calc(100% - 28px) !important;
-    overflow-wrap: break-word !important;
     margin: 6px 0 10px 28px !important;
     padding: 8px 14px !important;
     background: #f8fafc !important;
