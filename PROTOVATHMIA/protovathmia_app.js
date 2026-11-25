@@ -562,12 +562,22 @@
 
     let contentHtml = '';
 
-    // If specific correct answer text exists, show top summary banner
+    // Premium Top Header for Correct Answer
     if (q.correctAnswer) {
       contentHtml += `
-        <div class="thematic-banner">
-          <i class="fa-solid fa-circle-check" style="color: #10b981; margin-right: 8px;"></i>
-          <strong>Σωστή Επιλογή:</strong> ${escapeHtml(q.correctAnswer)}
+        <div class="protovathmia-answer-header" style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:6px solid #10b981; border-radius:12px; padding:16px 22px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 2px 8px rgba(16,185,129,0.08);">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="background:#10b981; color:#ffffff; font-weight:900; font-size:1.15rem; width:36px; height:36px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(16,185,129,0.25);">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; color:#047857; text-transform:uppercase; letter-spacing:0.8px;">Σωστή Επιλογή</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#064e3b; line-height:1.4;">${escapeHtml(q.correctAnswer)}</div>
+            </div>
+          </div>
+          <div style="background:#dcfce7; color:#15803d; font-size:0.82rem; font-weight:700; padding:5px 14px; border-radius:20px; border:1px solid #bbf7d0; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-stethoscope"></i> Κλινική Τεκμηρίωση
+          </div>
         </div>
       `;
     }
