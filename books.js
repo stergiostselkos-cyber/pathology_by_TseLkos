@@ -4522,9 +4522,8 @@ let currentSelectedBook = null;
         if (!filePath) return;
         const absPdfUrl = new URL(filePath, window.location.href).href;
         const studioUrl = 'pdf_studio.html?file=' + encodeURIComponent(absPdfUrl);
-        let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
-        pdfIframe.src = isLocalDesktop ? filePath : studioUrl;
-        if (externalPdfBtn) externalPdfBtn.href = isLocalDesktop ? filePath : studioUrl;
+        pdfIframe.src = studioUrl;
+        if (externalPdfBtn) externalPdfBtn.href = studioUrl;
         pdfPlaceholder.style.display = 'none';
         pdfContainer.style.display = 'flex';
 
