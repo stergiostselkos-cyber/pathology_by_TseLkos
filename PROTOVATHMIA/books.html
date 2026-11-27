@@ -14,75 +14,125 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="protovathmia_mcq.css?v=20261127.v3">
   <style>
-    .lib-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 18px;
     }
-    .lib-card {
+    .dropdown-card {
       background: #ffffff;
-      border: 1.5px solid #e9d5ff;
       border-radius: 16px;
-      padding: 18px 20px;
+      padding: 16px 18px;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
       display: flex;
       flex-direction: column;
       gap: 10px;
-      box-shadow: 0 4px 16px rgba(147, 51, 234, 0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .lib-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(147, 51, 234, 0.16);
+    .card-step-1 {
+      border-color: rgba(236, 72, 153, 0.35);
+      background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%);
     }
-    .lib-card-title {
-      font-weight: 800;
-      font-size: 1.02rem;
-      color: #1e293b;
-      line-height: 1.4;
+    .card-step-2 {
+      border-color: rgba(147, 51, 234, 0.35);
+      background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
     }
-    .lib-card-meta {
-      font-size: 0.84rem;
-      color: #64748b;
-      font-weight: 600;
-    }
-    .lib-actions {
-      display: flex;
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      margin-top: auto;
+      font-size: 0.84rem;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+    .badge-step-1 {
+      background: rgba(236, 72, 153, 0.12);
+      color: #be185d;
+    }
+    .badge-step-2 {
+      background: rgba(147, 51, 234, 0.12);
+      color: #6b21a8;
+    }
+    .dropdown-select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #1e293b;
+      font-family: inherit;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .dropdown-select:focus {
+      border-color: #9333ea;
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
+    }
+    .dropdown-select:disabled {
+      background: #f1f5f9;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+    .cheerful-placeholder {
+      background: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 100%);
+      border: 1.5px dashed #d8b4fe;
+      border-radius: 20px;
+      padding: 36px 22px;
+      text-align: center;
+    }
+    .placeholder-icon-wrap {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 14px;
+      background: linear-gradient(135deg, #ec4899, #9333ea, #2563eb);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.85rem;
+      box-shadow: 0 10px 25px rgba(147, 51, 234, 0.28);
+    }
+    .placeholder-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .placeholder-desc {
+      color: #64748b;
+      font-size: 0.95rem;
+      max-width: 560px;
+      margin: 0 auto 16px;
+      line-height: 1.55;
+    }
+    .placeholder-chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
       flex-wrap: wrap;
     }
-    .lib-btn-view {
-      flex: 1;
-      background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-weight: 800;
-      font-size: 0.88rem;
-      cursor: pointer;
+    .p-chip {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      text-decoration: none;
-    }
-    .lib-btn-ext {
-      background: #fdf4ff;
-      color: #7e22ce;
-      border: 1.5px solid #d8b4fe;
-      border-radius: 10px;
-      padding: 10px 12px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
       font-weight: 700;
-      font-size: 0.88rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
+      background: #ffffff;
+      border: 1.5px solid #d8b4fe;
+      color: #6b21a8;
+      cursor: pointer;
     }
     .pdf-viewer-container {
-      margin-top: 22px;
+      margin-top: 18px;
       width: 100%;
       height: 78vh;
       border-radius: 20px;
@@ -93,18 +143,29 @@
       display: none;
       flex-direction: column;
     }
-    .lib-empty {
+    .lib-btn-ext {
       background: #fdf4ff;
-      border: 1.5px dashed #d8b4fe;
-      border-radius: 18px;
-      padding: 36px 24px;
-      text-align: center;
-      margin-top: 14px;
+      color: #7e22ce;
+      border: 1.5px solid #d8b4fe;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
     }
     @media (max-width: 768px) {
-      .lib-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .dropdown-card {
+        padding: 12px;
+      }
+      .dropdown-select {
+        font-size: 0.9rem;
+        padding: 10px 12px;
       }
       .pdf-viewer-container {
         height: 68vh;
@@ -123,51 +184,79 @@
           </div>
           <h1>
             Pathologia<span class="logo-highlight">Books</span>
-            <span class="author-tag" id="libCountTag">📚 Βιβλιοθήκη Πρωτοβάθμιας (0 Αρχεία)</span>
+            <span class="author-tag" id="libCountTag">📚 Βιβλιοθήκη Πρωτοβάθμιας (56 Αρχεία)</span>
           </h1>
         </div>
 
         <div class="header-controls">
-          <a href="../index.html#proto" class="header-btn" title="Επιστροφή στην Αρχική Πύλη">
+          <a href="../index.html#proto" class="header-btn" title="Επιστροφή στην Κεντρική Πύλη">
             <i class="fa-solid fa-house"></i>
             <span>Αρχική</span>
+          </a>
+          <a href="index.html?bank=mcq" class="header-btn" title="Μετάβαση στο Κουίζ MCQ">
+            <i class="fa-solid fa-circle-dot" style="color: #ec4899;"></i>
+            <span>MCQ (325)</span>
+          </a>
+          <a href="index.html?bank=open" class="header-btn" title="Ερωτήσεις Ανάπτυξης">
+            <i class="fa-solid fa-pen-fancy" style="color: #9333ea;"></i>
+            <span>Ανάπτυξης</span>
           </a>
         </div>
       </div>
     </header>
 
-    <main class="view-panel" style="padding: 24px;">
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:10px;">
-        <div>
-          <h2 style="margin:0; font-size:1.3rem; font-weight:900; color:#1e293b;">
-            📚 Ψηφιακή Βιβλιοθήκη &amp; Αρχεία Μελέτης — Πρωτοβάθμια Φροντίδα Υγείας
-          </h2>
-          <p style="margin:4px 0 0 0; color:#64748b; font-size:0.95rem;">
-            Επιλέξτε έκδοση (<strong>ΕΟΦ 2018</strong> ή <strong>Λοιμώξεις 2025</strong>) και αρχείο για άμεση ανάγνωση.
-          </p>
+    <main class="view-panel">
+      <p style="color: #475569; margin: 0 0 14px 0; font-size: 0.98rem; font-weight: 600;">
+        ✨ Επιλέξτε βιβλίο και κεφάλαιο για να εμφανιστεί αυτόματα το αντίστοιχο αρχείο PDF:
+      </p>
+
+      <div class="steps-container">
+        <div class="dropdown-card card-step-1">
+          <div>
+            <span class="step-badge badge-step-1">
+              <i class="fa-solid fa-book-bookmark"></i> 1. ΔΙΑΛΕΞΕ ΒΙΒΛΙΟ
+            </span>
+          </div>
+          <select id="book-select" class="dropdown-select">
+            <option value="">-- Επιλέξτε Βιβλίο --</option>
+          </select>
+        </div>
+
+        <div class="dropdown-card card-step-2">
+          <div>
+            <span class="step-badge badge-step-2">
+              <i class="fa-solid fa-folder-open"></i> 2. ΔΙΑΛΕΞΕ ΚΕΦΑΛΑΙΟ
+            </span>
+          </div>
+          <select id="chapter-select" class="dropdown-select" disabled>
+            <option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>
+          </select>
         </div>
       </div>
 
-      <div id="libToolbar" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin:12px 0 6px 0;">
-        <div id="editionFilters" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
-        <input type="text" id="libSearchInput" placeholder="Αναζήτηση κεφαλαίου..." style="padding:9px 14px; border-radius:10px; border:1.5px solid #d8b4fe; font-family:inherit; font-size:0.9rem; min-width:220px; flex:1 1 220px; max-width:340px; outline:none;">
+      <div id="pdf-placeholder" class="cheerful-placeholder">
+        <div class="placeholder-icon-wrap">
+          <i class="fa-solid fa-book-medical"></i>
+        </div>
+        <div class="placeholder-title">🌟 Έτοιμοι για Μελέτη!</div>
+        <div class="placeholder-desc">
+          Επιλέξτε Βιβλίο και Κεφάλαιο από τις παραπάνω μπάρες για να ανοίξει άμεσα το PDF.
+        </div>
+        <div class="placeholder-chips" id="quickChips"></div>
       </div>
 
-      <div id="libContent"></div>
-
       <div class="pdf-viewer-container" id="pdfContainer">
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 16px; background:linear-gradient(to right, #faf5ff, #fdf2f8); border-bottom:2px solid rgba(217, 70, 239, 0.25);">
-          <div style="font-size:0.92rem; font-weight:800; color:#7c3aed; display:flex; align-items:center; gap:8px;">
-            <i class="fa-solid fa-file-pdf" style="color:#ec4899; font-size:1.1rem;"></i>
-            <span id="viewerTitle">Προβολή Εγγράφου</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:10px 14px; background:linear-gradient(to right, #faf5ff, #fdf2f8); border-bottom:2px solid rgba(217, 70, 239, 0.25);">
+          <div style="font-size:0.9rem; font-weight:800; color:#7c3aed; display:flex; align-items:center; gap:8px; min-width:0;">
+            <i class="fa-solid fa-file-pdf" style="color:#ec4899; font-size:1.1rem; flex-shrink:0;"></i>
+            <span id="viewerTitle" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Προβολή Εγγράφου</span>
           </div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <a id="externalPdfBtn" href="#" target="_blank" class="lib-btn-ext" style="padding:7px 14px; font-size:0.84rem;">
-              <i class="fa-solid fa-arrow-up-right-from-square" style="margin-right:6px;"></i> Άνοιγμα σε νέα καρτέλα / Κινητό
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button type="button" id="prevChapterBtn" class="lib-btn-ext"><i class="fa-solid fa-arrow-left"></i> Προηγούμενο</button>
+            <button type="button" id="nextChapterBtn" class="lib-btn-ext">Επόμενο <i class="fa-solid fa-arrow-right"></i></button>
+            <a id="externalPdfBtn" href="#" target="_blank" class="lib-btn-ext" style="background:linear-gradient(135deg,#ec4899,#9333ea); color:#fff; border-color:transparent;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Νέα Καρτέλα / Κινητό
             </a>
-            <button type="button" id="closeViewerBtn" class="lib-btn-ext" style="padding:7px 12px; font-size:0.84rem; cursor:pointer;">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
           </div>
         </div>
         <iframe id="pdfIframe" src="" style="width:100%; flex:1; border:none;"></iframe>
@@ -180,129 +269,109 @@
     (function () {
       const books = Array.isArray(window.protovathmiaBooks) ? window.protovathmiaBooks : [];
       const libCountTag = document.getElementById('libCountTag');
-      const libContent = document.getElementById('libContent');
-      const editionFilters = document.getElementById('editionFilters');
-      const libSearchInput = document.getElementById('libSearchInput');
+      const bookSelect = document.getElementById('book-select');
+      const chapterSelect = document.getElementById('chapter-select');
+      const placeholder = document.getElementById('pdf-placeholder');
+      const quickChips = document.getElementById('quickChips');
       const pdfContainer = document.getElementById('pdfContainer');
       const pdfIframe = document.getElementById('pdfIframe');
       const viewerTitle = document.getElementById('viewerTitle');
       const externalPdfBtn = document.getElementById('externalPdfBtn');
-      const closeViewerBtn = document.getElementById('closeViewerBtn');
+      const prevBtn = document.getElementById('prevChapterBtn');
+      const nextBtn = document.getElementById('nextChapterBtn');
 
       if (libCountTag) {
         libCountTag.textContent = `📚 Βιβλιοθήκη Πρωτοβάθμιας (${books.length} Αρχεία)`;
       }
 
-      if (closeViewerBtn) {
-        closeViewerBtn.addEventListener('click', () => {
+      const grouped = [
+        {
+          id: '2018',
+          label: '📘 ΕΟΦ 2018 — Λοιμώξεις στην ΠΦΥ (17 Κεφάλαια)',
+          items: books.filter(b => b.edition === '2018')
+        },
+        {
+          id: '2025',
+          label: '📗 Βιβλίο Λοιμώξεων 2025 — Ελληνική Εταιρεία Λοιμώξεων (39 Κεφάλαια)',
+          items: books.filter(b => b.edition === '2025')
+        }
+      ].filter(g => g.items.length > 0);
+
+      grouped.forEach(g => {
+        const opt = document.createElement('option');
+        opt.value = g.id;
+        opt.textContent = g.label;
+        bookSelect.appendChild(opt);
+      });
+
+      if (quickChips) {
+        quickChips.innerHTML = grouped.map(g =>
+          `<button type="button" class="p-chip" data-book="${g.id}">${g.label}</button>`
+        ).join('');
+        quickChips.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            bookSelect.value = btn.dataset.book;
+            bookSelect.dispatchEvent(new Event('change'));
+          });
+        });
+      }
+
+      let currentItems = [];
+
+      function openChapter(idx) {
+        if (idx < 0 || idx >= currentItems.length) return;
+        const item = currentItems[idx];
+        const fileUrl = item.url || ('books/' + encodeURIComponent(item.file));
+        viewerTitle.textContent = item.title || item.file;
+        externalPdfBtn.href = fileUrl;
+        pdfIframe.src = fileUrl;
+        placeholder.style.display = 'none';
+        pdfContainer.style.display = 'flex';
+        chapterSelect.value = String(idx);
+        prevBtn.disabled = idx <= 0;
+        nextBtn.disabled = idx >= currentItems.length - 1;
+      }
+
+      bookSelect.addEventListener('change', () => {
+        const grp = grouped.find(g => g.id === bookSelect.value);
+        chapterSelect.innerHTML = '';
+        if (!grp) {
+          currentItems = [];
+          chapterSelect.disabled = true;
+          chapterSelect.innerHTML = '<option value="">-- Πρώτα επιλέξτε Βιβλίο --</option>';
           pdfContainer.style.display = 'none';
           pdfIframe.src = '';
-        });
-      }
-
-      if (books.length === 0) {
-        libContent.innerHTML = `
-          <div class="lib-empty">
-            <i class="fa-solid fa-folder-open" style="font-size:2.4rem; color:#9333ea; margin-bottom:10px; display:block;"></i>
-            <div style="font-size:1.15rem; font-weight:800; color:#6b21a8; margin-bottom:6px;">
-              Η Βιβλιοθήκη Πρωτοβάθμιας είναι έτοιμη!
-            </div>
-            <p style="margin:0; color:#64748b; font-size:0.95rem;">
-              Δεν έχουν προστεθεί ακόμη αρχεία για διάβασμα. Μόλις ανεβάσουμε τα αρχεία (PDF / σημειώσεις), θα εμφανιστούν εδώ.
-            </p>
-          </div>
-        `;
-        return;
-      }
-
-      let activeEdition = 'all';
-      const count2018 = books.filter(b => b.edition === '2018').length;
-      const count2025 = books.filter(b => b.edition === '2025').length;
-
-      function renderFilters() {
-        if (!editionFilters) return;
-        const defs = [
-          { id: 'all', label: `Όλα (${books.length})` },
-          { id: '2018', label: `📘 ΕΟΦ 2018 (${count2018})` },
-          { id: '2025', label: `📗 Λοιμώξεις 2025 (${count2025})` }
-        ];
-        editionFilters.innerHTML = defs.map(d => {
-          const active = activeEdition === d.id;
-          return `<button type="button" data-ed="${d.id}" style="padding:8px 14px; border-radius:10px; font-weight:800; font-size:0.86rem; cursor:pointer; font-family:inherit; border:1.5px solid ${active ? '#9333ea' : '#d8b4fe'}; background:${active ? 'linear-gradient(135deg,#9333ea,#2563eb)' : '#fdf4ff'}; color:${active ? '#fff' : '#6b21a8'};">${d.label}</button>`;
-        }).join('');
-        editionFilters.querySelectorAll('button').forEach(btn => {
-          btn.addEventListener('click', () => {
-            activeEdition = btn.dataset.ed;
-            renderFilters();
-            renderList();
-          });
-        });
-      }
-
-      function renderList() {
-        const q = (libSearchInput ? libSearchInput.value : '').trim().toLowerCase();
-        const filtered = books.filter(b => {
-          if (activeEdition !== 'all' && b.edition !== activeEdition) return false;
-          if (!q) return true;
-          return ((b.title || '') + ' ' + (b.category || '') + ' ' + (b.description || '')).toLowerCase().includes(q);
-        });
-
-        libContent.innerHTML = '';
-        if (filtered.length === 0) {
-          libContent.innerHTML = '<div class="lib-empty" style="padding:24px;">Δεν βρέθηκαν αρχεία για αυτή την αναζήτηση.</div>';
+          placeholder.style.display = 'block';
           return;
         }
-
-        const grid = document.createElement('div');
-        grid.className = 'lib-grid';
-
-        filtered.forEach((b) => {
-          const card = document.createElement('div');
-          card.className = 'lib-card';
-          const safeTitle = b.title || b.file || 'Αρχείο';
-          const safeCategory = b.category || 'Πρωτοβάθμια Φροντίδα';
-          const fileUrl = b.url || ('books/' + encodeURIComponent(b.file));
-          const badgeBg = b.edition === '2018' ? '#dbeafe' : '#dcfce7';
-          const badgeCol = b.edition === '2018' ? '#1d4ed8' : '#15803d';
-          const iconBg = b.edition === '2018' ? 'linear-gradient(135deg,#2563eb,#0284c7)' : 'linear-gradient(135deg,#ec4899,#9333ea)';
-          card.innerHTML = `
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="width:40px; height:40px; border-radius:10px; background:${iconBg}; color:#fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">
-                <i class="fa-solid fa-file-pdf"></i>
-              </span>
-              <div style="min-width:0;">
-                <div class="lib-card-title">${safeTitle}</div>
-                <div class="lib-card-meta">
-                  <span style="display:inline-block; background:${badgeBg}; color:${badgeCol}; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:800; margin-right:6px;">${b.edition || ''}</span>
-                  ${safeCategory}
-                </div>
-              </div>
-            </div>
-            ${b.description ? `<p style="margin:0; font-size:0.88rem; color:#475569; line-height:1.5;">${b.description}</p>` : ''}
-            <div class="lib-actions">
-              <button type="button" class="lib-btn-view"><i class="fa-solid fa-book-open"></i> Ανάγνωση</button>
-              <a href="${fileUrl}" target="_blank" class="lib-btn-ext" title="Άνοιγμα σε νέα καρτέλα"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
-          `;
-          card.querySelector('.lib-btn-view').addEventListener('click', () => {
-            viewerTitle.textContent = safeTitle;
-            externalPdfBtn.href = fileUrl;
-            pdfIframe.src = fileUrl;
-            pdfContainer.style.display = 'flex';
-            pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-          grid.appendChild(card);
+        currentItems = grp.items;
+        chapterSelect.disabled = false;
+        const defOpt = document.createElement('option');
+        defOpt.value = '';
+        defOpt.textContent = `-- Επιλέξτε Κεφάλαιο (${currentItems.length}) --`;
+        chapterSelect.appendChild(defOpt);
+        currentItems.forEach((item, idx) => {
+          const opt = document.createElement('option');
+          opt.value = String(idx);
+          opt.textContent = item.title;
+          chapterSelect.appendChild(opt);
         });
+      });
 
-        libContent.appendChild(grid);
-      }
+      chapterSelect.addEventListener('change', () => {
+        if (chapterSelect.value === '') return;
+        openChapter(parseInt(chapterSelect.value, 10));
+      });
 
-      if (libSearchInput) {
-        libSearchInput.addEventListener('input', renderList);
-      }
+      prevBtn.addEventListener('click', () => {
+        const idx = parseInt(chapterSelect.value, 10);
+        if (!isNaN(idx) && idx > 0) openChapter(idx - 1);
+      });
 
-      renderFilters();
-      renderList();
+      nextBtn.addEventListener('click', () => {
+        const idx = parseInt(chapterSelect.value, 10);
+        if (!isNaN(idx) && idx < currentItems.length - 1) openChapter(idx + 1);
+      });
     })();
   </script>
 </body>
