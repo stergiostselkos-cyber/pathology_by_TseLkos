@@ -6,7 +6,6 @@
   <title>TseLkos PDF Study Studio | Πλήρης Διαχείριση &amp; Υπογραμμίσεις</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="pdfjs/web/pdf_viewer.css">
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <style>
     * { box-sizing: border-box; }
@@ -184,8 +183,19 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      opacity: 0.25;
+      overflow: hidden;
       line-height: 1;
+      user-select: text;
+    }
+    .textLayer span {
+      position: absolute;
+      white-space: pre;
+      color: transparent;
+      cursor: text;
+      transform-origin: 0% 0%;
+    }
+    .textLayer ::selection {
+      background: rgba(147, 51, 234, 0.28);
     }
     .annot-layer {
       position: absolute;
@@ -527,12 +537,18 @@
         textDiv.style.width = vp.width + 'px';
         textDiv.style.height = vp.height + 'px';
         const textContent = await page.getTextContent();
-        const textLayer = new pdfjsLib.TextLayer({
-          textContentSource: textContent,
-          container: textDiv,
-          viewport: vp
+        textContent.items.forEach(item => {
+          if (!item.str) return;
+          const tx = pdfjsLib.Util.transform(vp.transform, item.transform);
+          const fontHeight = Math.hypot(tx[2], tx[3]) || 12;
+          const span = document.createElement('span');
+          span.textContent = item.str;
+          span.style.left = tx[4] + 'px';
+          span.style.top = (tx[5] - fontHeight) + 'px';
+          span.style.fontSize = fontHeight + 'px';
+          span.style.fontFamily = 'sans-serif';
+          textDiv.appendChild(span);
         });
-        await textLayer.render();
 
         const annotCanvas = document.createElement('canvas');
         annotCanvas.className = 'annot-layer' + ((currentTool === 'pen' || currentTool === 'note') ? ' interactive' : '');
