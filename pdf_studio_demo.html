@@ -362,6 +362,7 @@
       <button class="t-btn" onclick="setMode('sepia')" title="Sepia Ξεκούραστο">📜</button>
       <button class="t-btn" onclick="setMode('dark')" title="Νυχτερινό">🌙</button>
       <button class="t-btn" onclick="toggleNotes()" title="Σημειωματάριο Κεφαλαίου"><i class="fa-solid fa-book"></i> Σημειώσεις</button>
+      <button class="t-btn" id="saveFileBtn" onclick="manualSave()" title="Αποθήκευση υπογραμμίσεων &amp; σημειώσεων μόνο για αυτό το αρχείο" style="border-color:#10b981; color:#047857; background:#ecfdf5;"><i class="fa-solid fa-floppy-disk"></i> Αποθήκευση</button>
       <button class="t-btn" onclick="openStandaloneWindow()" title="Άνοιγμα σε ξεχωριστό παράθυρο (μόνο το PDF Studio)"><i class="fa-solid fa-up-right-from-square"></i> Νέο Παράθυρο</button>
       <button class="btn-export" onclick="exportAnnotatedPdf()"><i class="fa-solid fa-download"></i> Λήψη PDF</button>
     </div>
@@ -387,7 +388,20 @@
     const params = new URLSearchParams(window.location.search);
     const PDF_URL = params.get('file') || './PROTOVATHMIA/books/%CE%95%CE%9F%CE%A6_2018_03_%CE%9B%CE%BF%CE%B9%CE%BC%CF%8E%CE%BE%CE%B5%CE%B9%CF%82_%CE%9A%CE%B1%CF%84%CF%89%CF%84%CE%AD%CF%81%CE%BF%CF%85_%CE%91%CE%BD%CE%B1%CF%80%CE%BD%CE%B5%CF%85%CF%83%CF%84%CE%B9%CE%BA%CE%BF%CF%8D.pdf';
     if (params.get('title')) document.title = params.get('title') + ' | TseLkos PDF Studio';
-    const STORAGE_KEY = 'tselkos_studio_' + btoa(unescape(encodeURIComponent(PDF_URL))).replace(/[^a-zA-Z0-9]/g, '').slice(0, 28);
+
+    function hashUrl(str) {
+      let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+      for (let i = 0; i < str.length; i++) {
+        const ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+    }
+    const cleanFileName = decodeURIComponent(PDF_URL.split('/').pop().split('?')[0] || 'doc');
+    const STORAGE_KEY = 'tselkos_studio_v2_' + hashUrl(PDF_URL) + '_' + cleanFileName.slice(-40);
 
     let pdfDoc = null;
     let scale = 1.25;
@@ -408,6 +422,16 @@
       const msg = document.getElementById('saveMsg');
       if (msg) msg.textContent = 'Αποθηκεύτηκε αυτόματα ✓';
     }
+
+    window.manualSave = () => {
+      saveState();
+      const btn = document.getElementById('saveFileBtn');
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Αποθηκεύτηκε!';
+        setTimeout(() => { btn.innerHTML = orig; }, 1600);
+      }
+    };
 
     window.setTool = (t, btn) => {
       currentTool = t;
