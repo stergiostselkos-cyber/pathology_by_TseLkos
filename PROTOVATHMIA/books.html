@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Πρωτοβάθμια Φροντίδα Υγείας — Βιβλιοθήκη &amp; Αρχεία Μελέτης | By TseLkos</title>
+  <script src="auth-guard.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="protovathmia_mcq.css?v=20261123.v2">
+  <style>
+    .lib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .lib-card {
+      background: #ffffff;
+      border: 1.5px solid #e9d5ff;
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(147, 51, 234, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .lib-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(147, 51, 234, 0.16);
+    }
+    .lib-card-title {
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: #1e293b;
+      line-height: 1.4;
+    }
+    .lib-card-meta {
+      font-size: 0.84rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .lib-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .lib-btn-view {
+      flex: 1;
+      background: linear-gradient(135deg, #ec4899 0%, #9333ea 50%, #2563eb 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .lib-btn-ext {
+      background: #fdf4ff;
+      color: #7e22ce;
+      border: 1.5px solid #d8b4fe;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .pdf-viewer-container {
+      margin-top: 22px;
+      width: 100%;
+      height: 78vh;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2.5px solid rgba(147, 51, 234, 0.35);
+      box-shadow: 0 16px 45px rgba(147, 51, 234, 0.16);
+      background: #ffffff;
+      display: none;
+      flex-direction: column;
+    }
+    .lib-empty {
+      background: #fdf4ff;
+      border: 1.5px dashed #d8b4fe;
+      border-radius: 18px;
+      padding: 36px 24px;
+      text-align: center;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-main">
+        <div class="app-logo">
+          <div class="app-logo-icon">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <h1>
+            Pathologia<span class="logo-highlight">Books</span>
+            <span class="author-tag" id="libCountTag">📚 Βιβλιοθήκη Πρωτοβάθμιας (0 Αρχεία)</span>
+          </h1>
+        </div>
+
+        <div class="header-controls">
+          <a href="../index.html#proto" class="header-btn" title="Επιστροφή στην Αρχική Πύλη">
+            <i class="fa-solid fa-house"></i>
+            <span>Αρχική</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="view-panel" style="padding: 24px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:10px;">
+        <div>
+          <h2 style="margin:0; font-size:1.3rem; font-weight:900; color:#1e293b;">
+            📚 Ψηφιακή Βιβλιοθήκη &amp; Αρχεία Μελέτης — Πρωτοβάθμια Φροντίδα Υγείας
+          </h2>
+          <p style="margin:4px 0 0 0; color:#64748b; font-size:0.95rem;">
+            Επιλέξτε αρχείο για άμεση ανάγνωση εντός της σελίδας ή άνοιγμα σε νέα καρτέλα.
+          </p>
+        </div>
+      </div>
+
+      <div id="libContent"></div>
+
+      <div class="pdf-viewer-container" id="pdfContainer">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 16px; background:linear-gradient(to right, #faf5ff, #fdf2f8); border-bottom:2px solid rgba(217, 70, 239, 0.25);">
+          <div style="font-size:0.92rem; font-weight:800; color:#7c3aed; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-file-pdf" style="color:#ec4899; font-size:1.1rem;"></i>
+            <span id="viewerTitle">Προβολή Εγγράφου</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <a id="externalPdfBtn" href="#" target="_blank" class="lib-btn-ext" style="padding:7px 14px; font-size:0.84rem;">
+              <i class="fa-solid fa-arrow-up-right-from-square" style="margin-right:6px;"></i> Άνοιγμα σε νέα καρτέλα / Κινητό
+            </a>
+            <button type="button" id="closeViewerBtn" class="lib-btn-ext" style="padding:7px 12px; font-size:0.84rem; cursor:pointer;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+        <iframe id="pdfIframe" src="" style="width:100%; flex:1; border:none;"></iframe>
+      </div>
+    </main>
+  </div>
+
+  <script src="books_manifest.js?v=20261127.v1"></script>
+  <script>
+    (function () {
+      const books = Array.isArray(window.protovathmiaBooks) ? window.protovathmiaBooks : [];
+      const libCountTag = document.getElementById('libCountTag');
+      const libContent = document.getElementById('libContent');
+      const pdfContainer = document.getElementById('pdfContainer');
+      const pdfIframe = document.getElementById('pdfIframe');
+      const viewerTitle = document.getElementById('viewerTitle');
+      const externalPdfBtn = document.getElementById('externalPdfBtn');
+      const closeViewerBtn = document.getElementById('closeViewerBtn');
+
+      if (libCountTag) {
+        libCountTag.textContent = `📚 Βιβλιοθήκη Πρωτοβάθμιας (${books.length} Αρχεία)`;
+      }
+
+      if (closeViewerBtn) {
+        closeViewerBtn.addEventListener('click', () => {
+          pdfContainer.style.display = 'none';
+          pdfIframe.src = '';
+        });
+      }
+
+      if (books.length === 0) {
+        libContent.innerHTML = `
+          <div class="lib-empty">
+            <i class="fa-solid fa-folder-open" style="font-size:2.4rem; color:#9333ea; margin-bottom:10px; display:block;"></i>
+            <div style="font-size:1.15rem; font-weight:800; color:#6b21a8; margin-bottom:6px;">
+              Η Βιβλιοθήκη Πρωτοβάθμιας είναι έτοιμη!
+            </div>
+            <p style="margin:0; color:#64748b; font-size:0.95rem;">
+              Δεν έχουν προστεθεί ακόμη αρχεία για διάβασμα. Μόλις ανεβάσουμε τα αρχεία (PDF / σημειώσεις), θα εμφανιστούν εδώ.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'lib-grid';
+
+      books.forEach((b) => {
+        const card = document.createElement('div');
+        card.className = 'lib-card';
+        const safeTitle = b.title || b.file || 'Αρχείο';
+        const safeCategory = b.category || 'Πρωτοβάθμια Φροντίδα';
+        const fileUrl = b.url || ('books/' + encodeURIComponent(b.file));
+        card.innerHTML = `
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#ec4899,#9333ea); color:#fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fa-solid fa-file-pdf"></i>
+            </span>
+            <div>
+              <div class="lib-card-title">${safeTitle}</div>
+              <div class="lib-card-meta">${safeCategory}</div>
+            </div>
+          </div>
+          ${b.description ? `<p style="margin:0; font-size:0.88rem; color:#475569; line-height:1.5;">${b.description}</p>` : ''}
+          <div class="lib-actions">
+            <button type="button" class="lib-btn-view"><i class="fa-solid fa-book-open"></i> Ανάγνωση</button>
+            <a href="${fileUrl}" target="_blank" class="lib-btn-ext" title="Άνοιγμα σε νέα καρτέλα"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        `;
+        card.querySelector('.lib-btn-view').addEventListener('click', () => {
+          viewerTitle.textContent = safeTitle;
+          externalPdfBtn.href = fileUrl;
+          pdfIframe.src = fileUrl;
+          pdfContainer.style.display = 'flex';
+          pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        grid.appendChild(card);
+      });
+
+      libContent.appendChild(grid);
+    })();
+  </script>
+</body>
+</html>

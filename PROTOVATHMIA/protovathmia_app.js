@@ -15,7 +15,8 @@
   let allMasterQuestions = [];
   let bankQuestions = [];
   let filteredQuestions = [];
-  let currentBank = 'mcq'; // 'mcq', 'open', 'all'
+  const urlBankParam = new URLSearchParams(window.location.search).get('bank');
+  let currentBank = urlBankParam === 'open' ? 'open' : 'mcq';
   let activeChapter = 'Όλα';
   let currentIndex = 0;
   let score = 0;
@@ -130,9 +131,19 @@
 
     allMasterQuestions = {
       mcq: mcqList,
-      open: openList,
-      all: [...mcqList, ...openList]
+      open: openList
     };
+
+    if (bankSelect) {
+      const mcqOpt = bankSelect.querySelector('option[value="mcq"]');
+      const openOpt = bankSelect.querySelector('option[value="open"]');
+      if (mcqOpt) mcqOpt.textContent = `🎯 Πολλαπλής Επιλογής (${mcqList.length} Θέματα)`;
+      if (openOpt) openOpt.textContent = `✍️ Ερωτήσεις Ανάπτυξης (${openList.length} Θέματα)`;
+    }
+    const bankBtnMcq = document.getElementById('bankBtnMcq');
+    const bankBtnOpen = document.getElementById('bankBtnOpen');
+    if (bankBtnMcq) bankBtnMcq.textContent = `🎯 Πολλαπλής Επιλογής (${mcqList.length})`;
+    if (bankBtnOpen) bankBtnOpen.textContent = `✍️ Ερωτήσεις Ανάπτυξης (${openList.length})`;
   }
 
   /**
@@ -150,12 +161,17 @@
       revealAnswerBtn.addEventListener('click', handleRevealAnswer);
     }
 
-    // Bank Selector
+    // Bank Selector & Visible Tab Buttons
     if (bankSelect) {
       bankSelect.addEventListener('change', (e) => {
         setBank(e.target.value);
       });
     }
+    document.querySelectorAll('.bank-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setBank(btn.dataset.bank);
+      });
+    });
 
     // Jump Input
     if (jumpInput) {
@@ -213,8 +229,14 @@
    * Set Bank (MCQ / Open / All)
    */
   function setBank(bankKey) {
-    currentBank = bankKey || 'mcq';
+    currentBank = bankKey === 'open' ? 'open' : 'mcq';
     bankQuestions = allMasterQuestions[currentBank] || allMasterQuestions.mcq;
+    const authorTag = document.querySelector('.author-tag');
+    if (authorTag) {
+      authorTag.textContent = currentBank === 'open'
+        ? `✍️ Πρωτοβάθμια Φροντίδα Υγείας — Ερωτήσεις Ανάπτυξης (${bankQuestions.length} Θέματα)`
+        : `🏛️ Πρωτοβάθμια Φροντίδα Υγείας — Πολλαπλής Επιλογής (${bankQuestions.length} Θέματα)`;
+    }
     activeChapter = 'Όλα';
     buildChaptersList();
     applyFilters();
@@ -310,8 +332,18 @@
    */
   function renderQuestion(index) {
     if (filteredQuestions.length === 0) {
-      if (questionText) questionText.textContent = "Δεν βρέθηκαν ερωτήσεις για τη συγκεκριμένη επιλογή.";
+      if (questionText) questionText.textContent = currentBank === 'open'
+        ? "Δεν υπάρχουν ακόμη ερωτήσεις ανάπτυξης. Προσθέστε τις ερωτήσεις και τις απαντήσεις τους."
+        : "Δεν βρέθηκαν ερωτήσεις για τη συγκεκριμένη επιλογή.";
       if (optionsList) optionsList.innerHTML = "";
+      if (categoryBadge) categoryBadge.textContent = currentBank === 'open' ? 'Ερωτήσεις Ανάπτυξης' : '';
+      if (questionCodeBadge) questionCodeBadge.textContent = '';
+      if (questionTypeBadge) questionTypeBadge.style.display = 'none';
+      if (quickQuestionsValue) quickQuestionsValue.textContent = '0 ερωτήσεις';
+      collapseExplanation();
+      if (revealAnswerBtn) revealAnswerBtn.style.display = 'none';
+      updateNavButtons();
+      updateProgressBar();
       return;
     }
 
@@ -357,9 +389,13 @@
     // Insert Clinical Images if any
     if (Array.isArray(q.images) && q.images.length > 0) {
       questionHtml += '<div class="fig-img-wrap">';
-      q.images.forEach(imgName => {
-        const cleanName = imgName.replace(/^images\//, '');
-        questionHtml += `<img src="images/${cleanName}" alt="Κλινική Εικόνα" class="fig-img zoomable" title="Κάντε κλικ για μεγέθυνση">`;
+      q.images.forEach(imgItem => {
+        const rawName = typeof imgItem === 'string'
+          ? imgItem
+          : (imgItem && (imgItem.file || imgItem.src || imgItem.name || ''));
+        if (!rawName) return;
+        const cleanName = String(rawName).replace(/^images\//, '');
+        questionHtml += `<img src="images/${escapeHtml(cleanName)}" alt="Κλινική Εικόνα" class="fig-img zoomable" title="Κάντε κλικ για μεγέθυνση">`;
       });
       questionHtml += '</div>';
     }
@@ -411,9 +447,9 @@
       openCard.style.cssText = 'background: #fdf4ff; border: 1.5px dashed #d8b4fe; border-radius: 14px; padding: 20px; text-align: center; color: #7e22ce; font-weight: 700; font-size: 1.05rem;';
       openCard.innerHTML = `
         <i class="fa-solid fa-feather-pointed" style="font-size: 1.8rem; margin-bottom: 8px; display: block; color: #9333ea;"></i>
-        <span>Ερώτηση Κλινικής Ανάπτυξης / Σύντομης Απάντησης</span>
+        <span>Ερώτηση Ανάπτυξης — Ερώτηση &amp; Αναλυτική Απάντηση</span>
         <p style="font-size: 0.92rem; font-weight: 500; color: #64748b; margin-top: 6px;">
-          Σκεφτείτε την απάντησή σας ή σημειώστε τα κλινικά σημεία και πατήστε «Εμφάνιση Απάντησης» για να δείτε την πλήρη υποδειγματική ανάλυση και διαφορική διάγνωση.
+          Πατήστε «Εμφάνιση Απάντησης &amp; Ανάλυσης» παρακάτω για να δείτε την πλήρη απάντηση.
         </p>
       `;
       optionsList.appendChild(openCard);
