@@ -602,14 +602,14 @@
           return { x, y, w: Math.max(0, right - x), h: Math.max(0, bottom - y) };
         })
         .filter(r => r.w > 0.002 && r.h > 0.002);
-      // Merge rects on the same line ONLY if horizontally close (normal word gap, never across columns)
+      // Merge rects on the same line ONLY if horizontally close (normal word gap <= 1.8%)
       const rects = [];
       rawRects.sort((a, b) => a.y - b.y || a.x - b.x);
       rawRects.forEach(r => {
         const prev = rects.find(p =>
-          Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.55 &&
-          r.x <= (p.x + p.w) + 0.035 &&
-          (r.x + r.w) >= p.x - 0.035
+          Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.5 &&
+          r.x <= (p.x + p.w) + 0.018 &&
+          (r.x + r.w) >= p.x - 0.018
         );
         if (prev) {
           const minX = Math.min(prev.x, r.x);
@@ -621,7 +621,12 @@
           prev.w = maxX - minX;
           prev.h = maxY - minY;
         } else {
-          rects.push({ ...r });
+          rects.push({
+            x: r.x,
+            y: r.y + r.h * 0.08,
+            w: r.w,
+            h: r.h * 0.84
+          });
         }
       });
       if (rects.length) {

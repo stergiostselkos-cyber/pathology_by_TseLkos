@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TseLkos PDF Study Studio | Πλήρης Διαχείριση &amp; Υπογραμμίσεις</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --accent: #9333ea;
+      --stage: #cbd5e1;
+    }
+    body.mode-sepia {
+      --bg: #f5efe6;
+      --surface: #fbf7f0;
+      --border: #e6dcc8;
+      --stage: #d6cbb5;
+    }
+    body.mode-dark {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --border: #334155;
+      --text: #f1f5f9;
+      --stage: #020617;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Top Studio Header */
+    .studio-header {
+      background: var(--surface);
+      border-bottom: 1.5px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      z-index: 30;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 0.98rem;
+    }
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ec4899, #9333ea, #2563eb);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(148, 163, 184, 0.12);
+      padding: 4px;
+      border-radius: 11px;
+      flex-wrap: wrap;
+    }
+    .t-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+    .t-btn:hover { background: rgba(147, 51, 234, 0.12); color: #9333ea; }
+    .t-btn.active {
+      background: linear-gradient(135deg, #ec4899, #9333ea);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(147, 51, 234, 0.28);
+    }
+    .color-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1.5px #94a3b8;
+      cursor: pointer;
+      padding: 0;
+    }
+    .color-dot.active { box-shadow: 0 0 0 2.5px #9333ea; transform: scale(1.15); }
+    .btn-export {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 7px 13px;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* Main Workspace */
+    .workspace {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      position: relative;
+    }
+    .sidebar {
+      width: 210px;
+      background: var(--surface);
+      border-right: 1.5px solid var(--border);
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .sidebar.hidden { display: none; }
+    .thumb-card {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      cursor: pointer;
+      text-align: center;
+      background: #fff;
+      transition: border-color 0.15s;
+    }
+    .thumb-card.active { border-color: #9333ea; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2); }
+    .thumb-card canvas { width: 100%; height: auto; display: block; border-radius: 4px; }
+    .thumb-label { font-size: 0.74rem; font-weight: 700; color: #475569; margin-top: 4px; }
+
+    .stage {
+      flex: 1;
+      overflow: auto;
+      background: var(--stage);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .page-box {
+      position: relative;
+      flex-shrink: 0;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.22);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    body.mode-dark .page-box canvas.pdf-canvas {
+      filter: invert(0.9) hue-rotate(180deg);
+    }
+    body.mode-sepia .page-box canvas.pdf-canvas {
+      filter: sepia(0.24) brightness(0.98);
+    }
+    .textLayer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      line-height: 1;
+      user-select: text;
+    }
+    .textLayer span {
+      position: absolute;
+      white-space: pre;
+      color: transparent;
+      cursor: text;
+      transform-origin: 0% 0%;
+    }
+    .textLayer ::selection {
+      background: rgba(147, 51, 234, 0.28);
+    }
+    .annot-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+    .annot-layer.interactive {
+      pointer-events: auto;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .sticky-pin-wrap {
+      position: absolute;
+      z-index: 6;
+      transform: translate(-50%, -50%);
+    }
+    .sticky-pin-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #eab308;
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 0.15s;
+    }
+    .sticky-pin-btn:hover { transform: scale(1.15); }
+    .sticky-pin-btn.has-text {
+      background: #facc15;
+      border-color: #ca8a04;
+    }
+    .sticky-popup {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      z-index: 10;
+      background: #fef08a;
+      border: 1.5px solid #eab308;
+      border-radius: 10px;
+      padding: 8px 10px;
+      width: 210px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+      font-size: 0.78rem;
+      color: #422006;
+    }
+    .sticky-popup textarea {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 6px;
+      padding: 5px 6px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: #422006;
+      resize: vertical;
+      outline: none;
+      min-height: 58px;
+    }
+    .hl-rect {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      border-radius: 2px;
+    }
+    .hl-underline {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      border-bottom: 1.5px solid;
+    }
+    .notes-drawer {
+      width: 290px;
+      background: var(--surface);
+      border-left: 1.5px solid var(--border);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .notes-drawer.hidden { display: none; }
+    .notes-drawer textarea {
+      flex: 1;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+      resize: none;
+    }
+    @media (max-width: 900px) {
+      .sidebar, .notes-drawer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 25;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      }
+      .sidebar { left: 0; }
+      .notes-drawer { right: 0; }
+      .stage { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="studio-header">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-highlighter"></i></div>
+      <span>TseLkos PDF Studio</span>
+      <span id="pageIndicator" style="font-size:0.8rem; color:#64748b; font-weight:700;">Σελ. —</span>
+    </div>
+
+    <!-- Main Study Tools -->
+    <div class="toolbar-group">
+      <button class="t-btn active" id="toolSelect" onclick="setTool('select', this)" title="Επιλογή Κειμένου"><i class="fa-solid fa-i-cursor"></i> Κείμενο</button>
+      <button class="t-btn" id="toolHighlight" onclick="setTool('highlight', this)" title="Υπογράμμιση Κειμένου (Επιλέξτε κείμενο!)"><i class="fa-solid fa-highlighter"></i> Υπογράμμιση</button>
+      <button class="t-btn" id="toolUnderline" onclick="setTool('underline', this)" title="Υπογράμμιση Γραμμής"><i class="fa-solid fa-underline"></i> Γραμμή</button>
+      <button class="t-btn" id="toolPen" onclick="setTool('pen', this)" title="Ελεύθερο Στυλό"><i class="fa-solid fa-pen"></i> Στυλό</button>
+      <button class="t-btn" id="toolNote" onclick="setTool('note', this)" title="Κλικ στη σελίδα για Σημείωση"><i class="fa-solid fa-note-sticky"></i> Σημείωση</button>
+    </div>
+
+    <!-- Colors, Custom Picker, Opacity & Undo -->
+    <div class="toolbar-group" style="flex-direction:column; align-items:stretch; gap:4px; padding:5px 8px;">
+      <div style="display:flex; align-items:center; gap:5px;">
+        <button class="color-dot active" style="background:#fde047;" onclick="setColor('#fde047', this)" title="Κίτρινο"></button>
+        <button class="color-dot" style="background:#4ade80;" onclick="setColor('#4ade80', this)" title="Πράσινο"></button>
+        <button class="color-dot" style="background:#f472b6;" onclick="setColor('#f472b6', this)" title="Ροζ"></button>
+        <button class="color-dot" style="background:#60a5fa;" onclick="setColor('#60a5fa', this)" title="Μπλε"></button>
+        <button class="color-dot" style="background:#000000;" onclick="setColor('#000000', this)" title="Μαύρο"></button>
+        <label title="Φτιάξτε το δικό σας χρώμα" style="display:inline-flex; align-items:center; gap:3px; cursor:pointer; font-size:0.74rem; font-weight:700; padding:2px 5px; border-radius:6px; border:1px solid #cbd5e1; background:#fff; color:#1e293b;">
+          <i class="fa-solid fa-palette" style="color:#9333ea;"></i>
+          <input type="color" id="customColorPicker" value="#fde047" oninput="setCustomColor(this.value)" style="width:18px; height:18px; border:none; padding:0; background:none; cursor:pointer;">
+        </label>
+        <button class="t-btn" onclick="undoLast()" title="Αναίρεση"><i class="fa-solid fa-rotate-left"></i></button>
+        <button class="t-btn" onclick="clearAllMarks()" title="Καθαρισμός Όλων"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:0.72rem; font-weight:700; color:var(--text);">
+        <span>Διαφάνεια:</span>
+        <input type="range" id="opacitySlider" min="10" max="100" value="40" oninput="setOpacity(this.value)" style="flex:1; min-width:90px; accent-color:#9333ea; cursor:pointer;">
+        <span id="opacityVal" style="min-width:32px; text-align:right;">40%</span>
+      </div>
+    </div>
+
+    <!-- View, Reading Mode, Standalone Window & Export -->
+    <div class="toolbar-group">
+      <button class="t-btn" onclick="toggleSidebar()" title="Μικρογραφίες"><i class="fa-solid fa-table-cells-large"></i></button>
+      <button class="t-btn" onclick="changeZoom(-0.15)" title="Σμίκρυνση"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+      <span id="zoomLabel" style="font-size:0.78rem; font-weight:800; padding:0 4px;">125%</span>
+      <button class="t-btn" onclick="changeZoom(0.15)" title="Μεγέθυνση"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+      <button class="t-btn" onclick="setMode('light')" title="Φωτεινό">☀️</button>
+      <button class="t-btn" onclick="setMode('sepia')" title="Sepia Ξεκούραστο">📜</button>
+      <button class="t-btn" onclick="setMode('dark')" title="Νυχτερινό">🌙</button>
+      <button class="t-btn" onclick="toggleNotes()" title="Σημειωματάριο Κεφαλαίου"><i class="fa-solid fa-book"></i> Σημειώσεις</button>
+      <button class="t-btn" onclick="openStandaloneWindow()" title="Άνοιγμα σε ξεχωριστό παράθυρο (μόνο το PDF Studio)"><i class="fa-solid fa-up-right-from-square"></i> Νέο Παράθυρο</button>
+      <button class="btn-export" onclick="exportAnnotatedPdf()"><i class="fa-solid fa-download"></i> Λήψη PDF</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="stage" id="stage">Φόρτωση εγγράφου...</main>
+    <aside class="notes-drawer hidden" id="notesDrawer">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong style="color:#9333ea;"><i class="fa-solid fa-note-sticky"></i> Σημειώσεις Μελέτης</strong>
+        <button class="t-btn" onclick="toggleNotes()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <textarea id="chapterNotes" placeholder="Σημειώστε εδώ βασικά σημεία, δόσεις, κριτήρια..."></textarea>
+      <span id="saveMsg" style="font-size:0.76rem; color:#059669; font-weight:700;">Αυτόματη αποθήκευση ενεργή ✓</span>
+    </aside>
+  </div>
+
+  <script type="module">
+    import * as pdfjsLib from './pdfjs/build/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.mjs';
+
+    const params = new URLSearchParams(window.location.search);
+    const PDF_URL = params.get('file') || './PROTOVATHMIA/books/%CE%95%CE%9F%CE%A6_2018_03_%CE%9B%CE%BF%CE%B9%CE%BC%CF%8E%CE%BE%CE%B5%CE%B9%CF%82_%CE%9A%CE%B1%CF%84%CF%89%CF%84%CE%AD%CF%81%CE%BF%CF%85_%CE%91%CE%BD%CE%B1%CF%80%CE%BD%CE%B5%CF%85%CF%83%CF%84%CE%B9%CE%BA%CE%BF%CF%8D.pdf';
+    if (params.get('title')) document.title = params.get('title') + ' | TseLkos PDF Studio';
+    const STORAGE_KEY = 'tselkos_studio_' + btoa(unescape(encodeURIComponent(PDF_URL))).replace(/[^a-zA-Z0-9]/g, '').slice(0, 28);
+
+    let pdfDoc = null;
+    let scale = 1.25;
+    let currentTool = 'select';
+    let currentColor = '#fde047';
+    let currentOpacity = 0.40;
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"highlights":[],"strokes":[],"notes":[],"summary":""}');
+    if (!state.highlights) state.highlights = [];
+    if (!state.strokes) state.strokes = [];
+    if (!state.notes) state.notes = [];
+
+    function saveState() {
+      const clean = {
+        ...state,
+        notes: state.notes.map(({ _open, ...rest }) => rest)
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
+      const msg = document.getElementById('saveMsg');
+      if (msg) msg.textContent = 'Αποθηκεύτηκε αυτόματα ✓';
+    }
+
+    window.setTool = (t, btn) => {
+      currentTool = t;
+      document.querySelectorAll('.studio-header .toolbar-group:first-of-type .t-btn, #toolSelect, #toolHighlight, #toolUnderline, #toolPen, #toolNote').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.annot-layer').forEach(c => {
+        c.classList.toggle('interactive', t === 'pen' || t === 'note');
+      });
+    };
+
+    window.setColor = (c, dot) => {
+      currentColor = c;
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      if (dot) dot.classList.add('active');
+      const picker = document.getElementById('customColorPicker');
+      if (picker) picker.value = c;
+    };
+
+    window.setCustomColor = (c) => {
+      currentColor = c;
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    };
+
+    window.setOpacity = (val) => {
+      currentOpacity = Math.max(0.1, Math.min(1, parseInt(val, 10) / 100));
+      const lbl = document.getElementById('opacityVal');
+      if (lbl) lbl.textContent = val + '%';
+    };
+
+    window.openStandaloneWindow = () => {
+      const targetUrl = window.location.pathname + '?file=' + encodeURIComponent(PDF_URL) + (params.get('title') ? '&title=' + encodeURIComponent(params.get('title')) : '');
+      window.open(targetUrl, '_blank', 'width=1280,height=900,resizable=yes,scrollbars=yes');
+    };
+
+    window.setMode = (m) => {
+      document.body.classList.remove('mode-sepia', 'mode-dark');
+      if (m === 'sepia') document.body.classList.add('mode-sepia');
+      if (m === 'dark') document.body.classList.add('mode-dark');
+    };
+
+    window.toggleSidebar = () => document.getElementById('sidebar').classList.toggle('hidden');
+    window.toggleNotes = () => document.getElementById('notesDrawer').classList.toggle('hidden');
+
+    window.changeZoom = (d) => {
+      scale = Math.max(0.7, Math.min(2.2, +(scale + d).toFixed(2)));
+      document.getElementById('zoomLabel').textContent = Math.round(scale * 100) + '%';
+      renderAllPages();
+    };
+
+    window.undoLast = () => {
+      if (state.highlights.length) state.highlights.pop();
+      else if (state.strokes.length) state.strokes.pop();
+      else if (state.notes.length) state.notes.pop();
+      saveState();
+      redrawOverlays();
+    };
+
+    window.clearAllMarks = () => {
+      if (!confirm('Να διαγραφούν όλες οι υπογραμμίσεις και σημειώσεις;')) return;
+      state.highlights = [];
+      state.strokes = [];
+      state.notes = [];
+      saveState();
+      redrawOverlays();
+    };
+
+    function hexToRgba(hex, alpha) {
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    function redrawOverlays() {
+      document.querySelectorAll('.page-box').forEach(box => {
+        const p = parseInt(box.dataset.page, 10);
+        const w = box.clientWidth;
+        const h = box.clientHeight;
+        box.querySelectorAll('.hl-rect, .hl-underline, .sticky-pin-wrap').forEach(el => el.remove());
+
+        // Draw highlights & underlines (stored in normalized 0..1 coords!)
+        state.highlights.filter(hl => hl.page === p).forEach(hl => {
+          hl.rects.forEach(rc => {
+            const div = document.createElement('div');
+            div.className = hl.kind === 'underline' ? 'hl-underline' : 'hl-rect';
+            div.style.left = (rc.x * 100) + '%';
+            div.style.top = (rc.y * 100) + '%';
+            div.style.width = (rc.w * 100) + '%';
+            div.style.height = (rc.h * 100) + '%';
+            if (hl.kind === 'underline') div.style.borderColor = hexToRgba(hl.color, hl.opacity ?? 0.85);
+            else div.style.background = hexToRgba(hl.color, hl.opacity ?? 0.36);
+            box.appendChild(div);
+          });
+        });
+
+        // Draw pen strokes
+        const canvas = box.querySelector('.annot-layer');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        state.strokes.filter(s => s.page === p).forEach(s => {
+          if (!s.pts.length) return;
+          ctx.strokeStyle = hexToRgba(s.color, s.opacity ?? 0.65);
+          ctx.lineWidth = s.width || 1.8;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.beginPath();
+          ctx.moveTo(s.pts[0].x * canvas.width, s.pts[0].y * canvas.height);
+          for (let i = 1; i < s.pts.length; i++) {
+            ctx.lineTo(s.pts[i].x * canvas.width, s.pts[i].y * canvas.height);
+          }
+          ctx.stroke();
+        });
+
+        // Draw sticky notes (only pushpin visible; click pin to open/close yellow card)
+        state.notes.filter(n => n.page === p).forEach((n) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'sticky-pin-wrap';
+          wrap.style.left = (n.x * 100) + '%';
+          wrap.style.top = (n.y * 100) + '%';
+
+          const pinBtn = document.createElement('button');
+          pinBtn.type = 'button';
+          pinBtn.className = 'sticky-pin-btn' + (n.text && n.text.trim() ? ' has-text' : '');
+          pinBtn.title = n.text ? n.text : 'Κλικ για προβολή/επεξεργασία σημείωσης';
+          pinBtn.textContent = '📌';
+          wrap.appendChild(pinBtn);
+
+          const popup = document.createElement('div');
+          popup.className = 'sticky-popup';
+          popup.style.display = n._open ? 'block' : 'none';
+          popup.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; font-weight:800;">
+              <span>📌 Σημείωση</span>
+              <span style="display:flex; gap:6px;">
+                <button type="button" class="note-min-btn" title="Ελαχιστοποίηση σε πινέζα" style="border:none;background:none;cursor:pointer;color:#854d0e;font-weight:800;">—</button>
+                <button type="button" class="note-del-btn" title="Διαγραφή σημείωσης" style="border:none;background:none;cursor:pointer;color:#dc2626;font-weight:800;">×</button>
+              </span>
+            </div>
+            <textarea placeholder="Γράψτε σημείωση..."></textarea>
+          `;
+          const ta = popup.querySelector('textarea');
+          ta.value = n.text || '';
+          ta.addEventListener('input', () => {
+            n.text = ta.value;
+            pinBtn.className = 'sticky-pin-btn' + (n.text.trim() ? ' has-text' : '');
+            pinBtn.title = n.text || 'Κλικ για σημείωση';
+            saveState();
+          });
+          pinBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            n._open = !n._open;
+            popup.style.display = n._open ? 'block' : 'none';
+            if (n._open) ta.focus();
+          });
+          popup.querySelector('.note-min-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            n._open = false;
+            popup.style.display = 'none';
+          });
+          popup.querySelector('.note-del-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const gi = state.notes.indexOf(n);
+            if (gi !== -1) state.notes.splice(gi, 1);
+            saveState();
+            redrawOverlays();
+          });
+          wrap.appendChild(popup);
+          box.appendChild(wrap);
+        });
+      });
+    }
+
+    // Real text selection highlighting!
+    document.addEventListener('mouseup', () => {
+      if (currentTool !== 'highlight' && currentTool !== 'underline') return;
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed) return;
+      const range = sel.getRangeAt(0);
+      const tl = range.commonAncestorContainer.nodeType === 1
+        ? range.commonAncestorContainer.closest('.textLayer')
+        : range.commonAncestorContainer.parentElement?.closest('.textLayer');
+      if (!tl) return;
+      const box = tl.closest('.page-box');
+      const boxRect = box.getBoundingClientRect();
+      const rawRects = Array.from(range.getClientRects())
+        .filter(r => r.width > 2 && r.height > 2 && r.height < boxRect.height * 0.12)
+        .map(r => {
+          const x = Math.max(0, Math.min(1, (r.left - boxRect.left) / boxRect.width));
+          const y = Math.max(0, Math.min(1, (r.top - boxRect.top) / boxRect.height));
+          const right = Math.max(0, Math.min(1, (r.right - boxRect.left) / boxRect.width));
+          const bottom = Math.max(0, Math.min(1, (r.bottom - boxRect.top) / boxRect.height));
+          return { x, y, w: Math.max(0, right - x), h: Math.max(0, bottom - y) };
+        })
+        .filter(r => r.w > 0.002 && r.h > 0.002);
+      // Merge rects on the same line ONLY if horizontally close (normal word gap <= 1.8%)
+      const rects = [];
+      rawRects.sort((a, b) => a.y - b.y || a.x - b.x);
+      rawRects.forEach(r => {
+        const prev = rects.find(p =>
+          Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.5 &&
+          r.x <= (p.x + p.w) + 0.018 &&
+          (r.x + r.w) >= p.x - 0.018
+        );
+        if (prev) {
+          const minX = Math.min(prev.x, r.x);
+          const maxX = Math.max(prev.x + prev.w, r.x + r.w);
+          const minY = Math.min(prev.y, r.y);
+          const maxY = Math.max(prev.y + prev.h, r.y + r.h);
+          prev.x = minX;
+          prev.y = minY;
+          prev.w = maxX - minX;
+          prev.h = maxY - minY;
+        } else {
+          rects.push({
+            x: r.x,
+            y: r.y + r.h * 0.08,
+            w: r.w,
+            h: r.h * 0.84
+          });
+        }
+      });
+      if (rects.length) {
+        state.highlights.push({
+          page: parseInt(box.dataset.page, 10),
+          kind: currentTool,
+          color: currentColor,
+          opacity: currentOpacity,
+          rects
+        });
+        saveState();
+        redrawOverlays();
+      }
+      sel.removeAllRanges();
+    });
+
+    async function renderAllPages() {
+      const stage = document.getElementById('stage');
+      stage.innerHTML = '';
+      for (let p = 1; p <= pdfDoc.numPages; p++) {
+        const page = await pdfDoc.getPage(p);
+        const vp = page.getViewport({ scale });
+
+        const box = document.createElement('div');
+        box.className = 'page-box';
+        box.dataset.page = String(p);
+        box.style.width = vp.width + 'px';
+        box.style.height = vp.height + 'px';
+
+        const pdfCanvas = document.createElement('canvas');
+        pdfCanvas.className = 'pdf-canvas';
+        pdfCanvas.width = vp.width;
+        pdfCanvas.height = vp.height;
+        await page.render({ canvasContext: pdfCanvas.getContext('2d'), viewport: vp }).promise;
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'textLayer';
+        textDiv.style.width = vp.width + 'px';
+        textDiv.style.height = vp.height + 'px';
+        const textContent = await page.getTextContent();
+        textContent.items.forEach(item => {
+          if (!item.str || !item.str.trim()) return;
+          const tx = pdfjsLib.Util.transform(vp.transform, item.transform);
+          const fontHeight = Math.hypot(tx[2], tx[3]) || 12;
+          const span = document.createElement('span');
+          span.textContent = item.str;
+          span.style.left = tx[4] + 'px';
+          span.style.top = (tx[5] - fontHeight * 0.88) + 'px';
+          span.style.fontSize = fontHeight + 'px';
+          span.style.fontFamily = 'sans-serif';
+          textDiv.appendChild(span);
+          const targetW = (item.width || 0) * vp.scale;
+          const actualW = span.getBoundingClientRect().width;
+          if (targetW > 0 && actualW > 0) {
+            span.style.transform = `scaleX(${targetW / actualW})`;
+          }
+        });
+
+        const annotCanvas = document.createElement('canvas');
+        annotCanvas.className = 'annot-layer' + ((currentTool === 'pen' || currentTool === 'note') ? ' interactive' : '');
+        annotCanvas.width = vp.width;
+        annotCanvas.height = vp.height;
+
+        let activeStroke = null;
+        annotCanvas.addEventListener('pointerdown', (e) => {
+          const r = annotCanvas.getBoundingClientRect();
+          const nx = (e.clientX - r.left) / r.width;
+          const ny = (e.clientY - r.top) / r.height;
+          if (currentTool === 'note') {
+            state.notes.push({ page: p, x: Math.min(0.92, Math.max(0.04, nx)), y: Math.min(0.92, Math.max(0.04, ny)), text: '', _open: true });
+            saveState();
+            redrawOverlays();
+            return;
+          }
+          if (currentTool === 'pen') {
+            activeStroke = { page: p, color: currentColor, opacity: currentOpacity, width: 1.8, pts: [{ x: nx, y: ny }] };
+            state.strokes.push(activeStroke);
+          }
+        });
+        annotCanvas.addEventListener('pointermove', (e) => {
+          if (!activeStroke) return;
+          const r = annotCanvas.getBoundingClientRect();
+          activeStroke.pts.push({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
+          redrawOverlays();
+        });
+        const endStroke = () => {
+          if (activeStroke) { activeStroke = null; saveState(); }
+        };
+        annotCanvas.addEventListener('pointerup', endStroke);
+        annotCanvas.addEventListener('pointerleave', endStroke);
+
+        box.appendChild(pdfCanvas);
+        box.appendChild(textDiv);
+        box.appendChild(annotCanvas);
+        stage.appendChild(box);
+      }
+      redrawOverlays();
+    }
+
+    async function buildThumbnails() {
+      const sb = document.getElementById('sidebar');
+      sb.innerHTML = '';
+      for (let p = 1; p <= pdfDoc.numPages; p++) {
+        const page = await pdfDoc.getPage(p);
+        const vp = page.getViewport({ scale: 0.25 });
+        const card = document.createElement('div');
+        card.className = 'thumb-card' + (p === 1 ? ' active' : '');
+        const c = document.createElement('canvas');
+        c.width = vp.width; c.height = vp.height;
+        await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+        card.appendChild(c);
+        const lbl = document.createElement('div');
+        lbl.className = 'thumb-label';
+        lbl.textContent = 'Σελίδα ' + p;
+        card.appendChild(lbl);
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.thumb-card').forEach(x => x.classList.remove('active'));
+          card.classList.add('active');
+          const target = document.querySelector(`.page-box[data-page="${p}"]`);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        sb.appendChild(card);
+      }
+    }
+
+    window.exportAnnotatedPdf = async () => {
+      const bytes = await fetch(PDF_URL).then(r => r.arrayBuffer());
+      const outPdf = await PDFLib.PDFDocument.load(bytes);
+      const pages = outPdf.getPages();
+      const hexRgb = (hex) => PDFLib.rgb(
+        parseInt(hex.slice(1,3),16)/255,
+        parseInt(hex.slice(3,5),16)/255,
+        parseInt(hex.slice(5,7),16)/255
+      );
+      state.highlights.forEach(hl => {
+        const pg = pages[hl.page - 1];
+        if (!pg) return;
+        const { width, height } = pg.getSize();
+        hl.rects.forEach(rc => {
+          pg.drawRectangle({
+            x: rc.x * width,
+            y: height - (rc.y + rc.h) * height,
+            width: rc.w * width,
+            height: hl.kind === 'underline' ? 2 : rc.h * height,
+            color: hexRgb(hl.color),
+            opacity: hl.kind === 'underline' ? 0.9 : 0.35
+          });
+        });
+      });
+      const outBytes = await outPdf.save();
+      const blob = new Blob([outBytes], { type: 'application/pdf' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ΕΟΦ_2018_Σημειώσεις.pdf';
+      a.click();
+    };
+
+    const notesEl = document.getElementById('chapterNotes');
+    notesEl.value = state.summary || '';
+    notesEl.addEventListener('input', () => { state.summary = notesEl.value; saveState(); });
+
+    pdfDoc = await pdfjsLib.getDocument(PDF_URL).promise;
+    document.getElementById('pageIndicator').textContent = `${pdfDoc.numPages} σελίδες`;
+    await renderAllPages();
+    buildThumbnails();
+  </script>
+</body>
+</html>

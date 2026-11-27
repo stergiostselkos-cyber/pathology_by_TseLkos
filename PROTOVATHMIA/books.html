@@ -322,9 +322,11 @@
         if (idx < 0 || idx >= currentItems.length) return;
         const item = currentItems[idx];
         const fileUrl = item.url || ('books/' + encodeURIComponent(item.file));
+        const absPdfUrl = new URL(fileUrl, window.location.href).href;
+        const studioUrl = '../pdf_studio.html?file=' + encodeURIComponent(absPdfUrl) + '&title=' + encodeURIComponent(item.title || item.file);
         viewerTitle.textContent = item.title || item.file;
-        externalPdfBtn.href = fileUrl;
-        pdfIframe.src = fileUrl;
+        externalPdfBtn.href = studioUrl;
+        pdfIframe.src = studioUrl;
         placeholder.style.display = 'none';
         pdfContainer.style.display = 'flex';
         chapterSelect.value = String(idx);
