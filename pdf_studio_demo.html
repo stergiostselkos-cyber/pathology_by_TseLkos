@@ -494,7 +494,7 @@
       if (!tl) return;
       const box = tl.closest('.page-box');
       const boxRect = box.getBoundingClientRect();
-      const rects = Array.from(range.getClientRects())
+      const rawRects = Array.from(range.getClientRects())
         .filter(r => r.width > 2 && r.height > 2)
         .map(r => ({
           x: (r.left - boxRect.left) / boxRect.width,
@@ -502,6 +502,24 @@
           w: r.width / boxRect.width,
           h: r.height / boxRect.height
         }));
+      // Merge rects on the same line into one continuous highlight/underline without word gaps
+      const rects = [];
+      rawRects.sort((a, b) => a.y - b.y || a.x - b.x);
+      rawRects.forEach(r => {
+        const prev = rects.find(p => Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.6);
+        if (prev) {
+          const minX = Math.min(prev.x, r.x);
+          const maxX = Math.max(prev.x + prev.w, r.x + r.w);
+          const minY = Math.min(prev.y, r.y);
+          const maxY = Math.max(prev.y + prev.h, r.y + r.h);
+          prev.x = minX;
+          prev.y = minY;
+          prev.w = maxX - minX;
+          prev.h = maxY - minY;
+        } else {
+          rects.push({ ...r });
+        }
+      });
       if (rects.length) {
         state.highlights.push({
           page: parseInt(box.dataset.page, 10),
