@@ -1291,6 +1291,24 @@
             </div>
         </div>
 
+        <!-- 📚 ΒΙΒΛΙΟΓΡΑΦΙΑ BUTTON BAR -->
+        <div style="width:100%; max-width:1240px; margin:0 auto 18px auto; padding:0 4px;">
+            <button type="button" onclick="openBibliographyModal()" id="openBibBtn" style="width:100%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:14px 22px; border-radius:16px; border:1.5px solid rgba(147, 51, 234, 0.28); background:linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,245,255,0.95) 100%); box-shadow:0 6px 20px rgba(147,51,234,0.08); cursor:pointer; font-family:inherit; text-align:left; transition:all 0.25s ease;">
+                <span style="display:flex; align-items:center; gap:12px; min-width:0;">
+                    <span style="width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg, #ec4899, #9333ea, #2563eb); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:1.15rem; flex-shrink:0;">
+                        <i class="fa-solid fa-book-medical"></i>
+                    </span>
+                    <span>
+                        <strong style="display:block; font-size:1.05rem; color:#1e293b; font-weight:800;">Βιβλιογραφία &amp; Επιστημονικές Πηγές</strong>
+                        <span style="display:block; font-size:0.86rem; color:#64748b; font-weight:500;">Πλήρης κατάλογος συγγραμμάτων, κατευθυντήριων οδηγιών &amp; συγγραφέων (14 θεματικές ενότητες)</span>
+                    </span>
+                </span>
+                <span style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, #9333ea, #2563eb); color:#fff; padding:9px 18px; border-radius:11px; font-weight:700; font-size:0.9rem; white-space:nowrap;">
+                    <i class="fa-solid fa-book-open"></i> <span>Προβολή Βιβλιογραφίας</span>
+                </span>
+            </button>
+        </div>
+
         <!-- ============================================================ -->
         <!-- 🔥 BOLD, PROMINENT SPECIALTY COMMAND TAB BAR 🔥 -->
         <!-- ============================================================ -->
@@ -1840,9 +1858,250 @@
 
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.replace('#', '');
-            if (['patho', 'surg', 'pedia', 'tools'].includes(hash)) {
+            if (['patho', 'surg', 'pedia', 'proto', 'tools'].includes(hash)) {
                 switchSpecialtyTab(hash);
             }
+        });
+    </script>
+
+    <!-- 📚 ΒΙΒΛΙΟΓΡΑΦΙΑ MODAL -->
+    <div id="bibliographyModal" onclick="if(event.target===this) closeBibliographyModal()" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(15,23,42,0.68); backdrop-filter:blur(6px); padding:16px; align-items:center; justify-content:center;">
+        <div style="background:#ffffff; width:100%; max-width:980px; max-height:90vh; border-radius:20px; box-shadow:0 24px 60px rgba(15,23,42,0.32); display:flex; flex-direction:column; overflow:hidden; border:1.5px solid #e2e8f0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 22px; background:linear-gradient(135deg, #fdf4ff 0%, #eff6ff 100%); border-bottom:1.5px solid #e2e8f0;">
+                <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+                    <span style="width:40px; height:40px; border-radius:11px; background:linear-gradient(135deg,#ec4899,#9333ea,#2563eb); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">
+                        <i class="fa-solid fa-book-medical"></i>
+                    </span>
+                    <div style="min-width:0;">
+                        <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:#1e293b;">Βιβλιογραφία</h3>
+                        <div style="font-size:0.82rem; color:#64748b; font-weight:500;">Τίτλοι και συγγραφείς / επιστημονικοί υπεύθυνοι (14 κατηγορίες)</div>
+                    </div>
+                </div>
+                <button type="button" onclick="closeBibliographyModal()" aria-label="Κλείσιμο" style="width:38px; height:38px; border-radius:10px; border:1.5px solid #cbd5e1; background:#fff; color:#334155; font-size:1.1rem; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div style="padding:12px 22px; border-bottom:1px solid #e2e8f0; background:#f8fafc;">
+                <input type="text" id="bibSearchInput" oninput="filterBibliography()" placeholder="Αναζήτηση βιβλίου, συγγραφέα ή ενότητας..." style="width:100%; padding:10px 14px; border-radius:10px; border:1.5px solid #cbd5e1; font-family:inherit; font-size:0.94rem; outline:none; box-sizing:border-box;">
+            </div>
+            <div id="bibListContainer" style="padding:18px 22px; overflow-y:auto; line-height:1.65; color:#1e293b; font-size:0.94rem;"></div>
+        </div>
+    </div>
+
+    <script>
+        const BIBLIOGRAPHY_DATA = [
+            {
+                cat: "1. Γενική Ιατρική & Πρωτοβάθμια Φροντίδα Υγείας (Family Medicine & Primary Care)",
+                items: [
+                    "Family Medicine: Principles and Practice — Robert B. Taylor",
+                    "Graber and Wilbur’s Family Medicine Examination & Board Review — Mark A. Graber, Jason K. Wilbur",
+                    "Murtagh’s General Practice (Collection Reference Guide) — John Murtagh, Jill Rosenblatt",
+                    "GP Diary: Clinical Treatment Guide — GP Diary Editorial Board",
+                    "Family Medicine Guide: The Handbook — Hans B. Kersten",
+                    "101 Model Prescriptions for Family Medicine — B. M. Shah",
+                    "Family Medicine OSCE & Clinical Review / First Aid Objective Structured — Imran Lari",
+                    "Family Medicine High Yield Review Notes — High Yield Medical Editorial",
+                    "DNB Family Medicine Question Bank and Review — National Board of Examinations",
+                    "The European Definition of General Practice / Family Medicine (WONCA Europe) — WONCA Europe (Ελληνική απόδοση: Νικόλαος Νικητίδης)",
+                    "EURACT Educational Requirements for Undergraduate Family Medicine Curriculum — EURACT / WONCA Europe",
+                    "Resident Physician Clinical History Approach — Resident Clinical Medical Series",
+                    "Οδηγός Επιβίωσης σε Εποχιακό Πολυιατρείο (aka Τουριστοιατρείο) και άλλες Χρήσιμες Συμβουλές μετά την Αποφοίτηση — Ομάδα Νέων Ιατρών ΠΦΥ"
+                ]
+            },
+            {
+                cat: "2. Εσωτερική Παθολογία (Internal Medicine) & Ελληνικά Πανεπιστημιακά Συγγράμματα",
+                items: [
+                    "Παθολογία (Κεφάλαια: Κυκλοφορικό, Ενδοκρινικό, Λοιμώδη, Αλλεργιολογία, Υπέρταση, Νεφρά & Οξεοβασική Ισορροπία, Πεπτικό, Αιματολογία, Βασικές Αρχές) — Πανεπιστημιακό Σύγγραμμα Παθολογίας με Σημειώσεις",
+                    "General Medicine Book (Κεφάλαια: Λοιμώδη Νοσήματα, Ανοσοποιητικό & Αλλεργικά, Αναπνευστικό, Καρδιά & Αγγεία, Ηλεκτρολύτες & Νεφροί, Πεπτικό, Αίμα, Ενδοκρινείς) — General Medicine Editorial Group",
+                    "Oxford Textbook of Medicine — David A. Warrell, Timothy M. Cox, John D. Firth, Alastair M. Turnbull",
+                    "Oxford Handbook for Medical School — Kapil Sugand, Miriam Berry, Imran Mannan",
+                    "Oxford Clinical Guidelines for the Newly Qualified Doctor — David Fisher, Liora Wittner, Deborah Gill",
+                    "Mayo Clinic Internal Medicine Board Review — Robert D. Ficalora",
+                    "RCSI Handbook of Clinical Medicine — Royal College of Surgeons in Ireland",
+                    "Mastering Differential Diagnosis: A Practical Guide in Internal Medicine — Franklyn Salazar",
+                    "Clinical Consultation Skills in Medicine (MRCP PACES) — Tarun Sen Gupta, Oliver O'Flynn",
+                    "EBR-1000: Internal Medicine Board Review Series — EBR Medical Editorial Team",
+                    "Περιστατικά και Απαντήσεις Παθολογίας — Ελληνική Πανεπιστημιακή Ομάδα Παθολογίας"
+                ]
+            },
+            {
+                cat: "3. Πνευμονολογία & Επείγοντα Αναπνευστικού",
+                items: [
+                    "100 Cases in Pulmonary Medicine — Mohan K. Manu, Parvaiz A. Koul",
+                    "Pulmonary Disease Notes — SEU Clinical Pulmonary Notes",
+                    "Pulmonary Function Mastery & Blueprint (Σπιρομέτρηση, Αέρια Αίματος, Αναπνευστική Οξέωση/Αλκάλωση, Πνευμονίτιδα Υπερευαισθησίας) — Pulmonary & Critical Care Education Series",
+                    "AAFP Guideline on Pharmacologic Management of COPD Exacerbations — American Academy of Family Physicians (AAFP)"
+                ]
+            },
+            {
+                cat: "4. Καρδιολογία & Κυκλοφορικό Σύστημα",
+                items: [
+                    "Oxford Handbook of Cardiology — Punit Ramrakha, Kevin Hill, Jonathan Hill",
+                    "Oxford Textbook of Heart Failure — Roy S. Gardner, Andrew L. Clark, Theresa A. McDonagh",
+                    "Medmastery: Cardiac CT Essentials Handbook — Medmastery Team"
+                ]
+            },
+            {
+                cat: "5. Γαστρεντερολογία, Ηπατολογία & Χειρουργική",
+                items: [
+                    "Oxford Handbook of Gastroenterology and Hepatology — Stuart Bloom, George Webster, Daniel Marks",
+                    "Blumgart’s Surgery of the Liver, Biliary Tract and Pancreas — William R. Jarnagin, Peter J. Allen, Ronald P. DeMatteo",
+                    "Cameron’s Current Surgical Therapy — Andrew M. Cameron, John L. Cameron",
+                    "Επείγουσα Χειρουργική — Πανεπιστημιακή Χειρουργική Ομάδα",
+                    "Μεσεντέριος Ισχαιμία — Χειρουργική & Αγγειοχειρουργική Ομάδα"
+                ]
+            },
+            {
+                cat: "6. Ενδοκρινολογία, Διαβήτης & Μεταβολισμός",
+                items: [
+                    "Greenspan’s Basic & Clinical Endocrinology — David G. Gardner, Dolores Shoback",
+                    "The Diabetes Textbook: Clinical Principles and Patient Management — Joel Rodriguez-Saldana",
+                    "Κατευθυντήριες Οδηγίες για τον Σακχαρώδη Διαβήτη — Ελληνική Διαβητολογική Εταιρεία (ΕΔΕ)",
+                    "Υπεργλυκαιμικά Διαβητικά Κώματα — Διαβητολογική Ομάδα",
+                    "ACC / AHA / Acentra Guidance on Diabetes, Hypertension, and Diabetic Nephropathy — American College of Cardiology & American Heart Association",
+                    "Overweight and Obesity in Adults: Health Consequences — UpToDate Endocrinology Group"
+                ]
+            },
+            {
+                cat: "7. Λοιμώξεις, Αντιμικροβιακά & Εμβολιασμοί",
+                items: [
+                    "The Washington Manual of Infectious Diseases Subspecialty Consult — Nigar Kirmani, Michael J. Durkin, Stephen Liang",
+                    "The Antibiotic Mastery Workbook for Clinicians — Antibiotic Mastery Clinical Reference Group",
+                    "Βιβλίο Λοιμώξεων (Loimoxeis Book) — Ελληνική Ομάδα Λοιμωξιολόγων",
+                    "Whisper Microbiology — Medical Microbiology Group",
+                    "Κατευθυντήριες Οδηγίες για τη Διάγνωση και Εμπειρική Θεραπεία των Λοιμώξεων στην ΠΦΥ — Εθνικός Οργανισμός Φαρμάκων (ΕΟΦ) & Ελληνική Εταιρεία Λοιμώξεων",
+                    "Εθνικό Πρόγραμμα Εμβολιασμών Ενηλίκων — Εθνική Επιτροπή Εμβολιασμών, Υπουργείο Υγείας",
+                    "Κατευθυντήρια Οδηγία Νο 75: Ανοσοποίηση κατά την Κύηση — Ελληνική Μαιευτική και Γυναικολογική Εταιρεία"
+                ]
+            },
+            {
+                cat: "8. Νεφρολογία & Ουρολογία",
+                items: [
+                    "Pocket Guide to Urology — Jeff A. Wieder",
+                    "Σημειώσεις Ουρολογίας — Α' Ουρολογική Κλινική ΕΚΠΑ",
+                    "Fundamentals of Urine and Body Fluid Analysis — Nancy A. Brunzel",
+                    "Primary and Secondary Glomerular Diseases — Interdisciplinary Nephrology Series",
+                    "Renal Pathology & Renal Tumors — Nephropathology Study Group",
+                    "KDIGO Clinical Practice Guideline on Anemia in Chronic Kidney Disease — Kidney Disease: Improving Global Outcomes (KDIGO)",
+                    "NHS Guidelines: Management of Chronic Kidney Disease in Adults — National Health Service (NHS)",
+                    "UpToDate Clinical Nephrology Reviews (CKD-MBD, Management of CKD in Adults, Nephrotic Syndrome & Proteinuria, Hypertension in CKD) — UpToDate Nephrology Group"
+                ]
+            },
+            {
+                cat: "9. Ρευματολογία & Ανοσολογία",
+                items: [
+                    "Interdisciplinary Rheumatology: Rheumatology and Nephrology — Torralba et al.",
+                    "Interdisciplinary Rheumatology: Rheumatology and Gastroenterology — Rheumatology-Gastroenterology Collaborative Group",
+                    "Rheumatology SCE Exam Tricks and Guidelines — Specialty Certificate Examination Group",
+                    "Rheumatoid Arthritis Clinical Guidelines — Rheumatology Consensus Team",
+                    "Top USMLE Concepts in Immunology — Medical Immunology Handout Series",
+                    "Practice Exams in Immunology — Clinical Immunology Review"
+                ]
+            },
+            {
+                cat: "10. Αιματολογία",
+                items: [
+                    "Clinical Hematology and Fundamentals of Hemostasis — Denise M. Harmening",
+                    "Harmening’s Fundamental Hematology — Denise M. Harmening",
+                    "Cases in Haematology — Haematology Clinical Review Group",
+                    "UpToDate Clinical Hematology Reviews (Αιτίες Ερυθροκυττάρωσης/Πολυκυτταραιμίας, Ταξινόμηση Μυελοειδών Νεοπλασμάτων και Οξείας Λευχαιμίας κατά ΠΟΥ, Τοξικότητες Πολλαπλού Μυελώματος, What's New in Hematology) — UpToDate Hematology Group"
+                ]
+            },
+            {
+                cat: "11. Παιδιατρική & Μαιευτική / Γυναικολογία",
+                items: [
+                    "Nelson Textbook of Pediatrics — Robert M. Kliegman, Joseph W. St. Geme III, Nathan J. Blum",
+                    "OSCEs in Obstetrics and Maternal-Fetal Medicine: An Evidence-Based Approach — Amira El-Messidi, Alan D. Cameron",
+                    "Urinary Disorders During Pregnancy — Maternal-Fetal Medicine Series",
+                    "Διαχείριση της Επιληψίας κατά την Προγεννητική Περίοδο & Κύηση — UpToDate Obstetrics & Neurology Group"
+                ]
+            },
+            {
+                cat: "12. Φαρμακολογία, Φυσιολογία, Βιοχημεία & Παθολογική Ανατομική",
+                items: [
+                    "Principles of Pharmacology: The Pathophysiologic Basis of Drug Therapy — David E. Golan, Ehrin J. Armstrong, April W. Armstrong",
+                    "Pharmacotherapy: Principles and Practice — Marie A. Chisholm-Burns, Terry L. Schwinghammer, Barbara G. Wells, Joseph T. DiPiro",
+                    "Pharmacology in Nursing — Gayle McKenzie, Terri Downer",
+                    "Pathophysiology and Pharmacology for Nursing Students — Simon Ashelford, Ray Higgins",
+                    "Prehospital Emergency Pharmacology — Bryan E. Bledsoe, Dwayne E. Clayden",
+                    "Guyton and Hall Textbook of Medical Physiology — John E. Hall, Michael E. Hall",
+                    "Robbins & Cotran Pathologic Basis of Disease — Vinay Kumar, Abul K. Abbas, Jon C. Aster",
+                    "Competency Based Pathology — Harsh Mohan",
+                    "General Pathology Exam Compilation — Academic Pathology Group",
+                    "Applied Pathophysiology: A Conceptual Approach — Judy Craft, Christopher Gordon",
+                    "Pathophysiology: A Practical Approach — Lachel Story",
+                    "Vasudevan’s Textbook of Biochemistry for Medical Students — D. M. Vasudevan, Sreekumari S., Kannan Vaidyanathan",
+                    "Textbook of Biochemistry — Harbans Lal, Ashuma Sachdeva",
+                    "Tietz Fundamentals of Clinical Chemistry and Molecular Diagnostics — Nader Rifai, Carl T. Wittwer",
+                    "Principles of Cell Biology — George Plopper, Diana Bebek Ivankovic"
+                ]
+            },
+            {
+                cat: "13. Επείγουσα Ιατρική, Ορθοπαιδική, Ακτινολογία & Νευροεπιστήμες",
+                items: [
+                    "Κολοκυθάς: Επείγουσα Ιατρική — Γεώργιος Κολοκυθάς",
+                    "1000 Questions to Help You Pass the Emergency Medicine Boards — Amer Z. Aldeen, David H. Rosenbaum",
+                    "European Resuscitation Council (ERC) Guidelines — European Resuscitation Council",
+                    "Operative Orthopaedics — CRC Press Editorial Board",
+                    "Essentials of Radiology: Common Indications and Interpretation — Fred A. Mettler Jr.",
+                    "MRI: From Picture to Proton — Donald W. McRobbie, Elizabeth A. Moore, Martin J. Graves, Martin R. Prince",
+                    "Oral Medicine and Radiology — Dental-Medical Clinical Group",
+                    "The Oxford Handbook of Neurolinguistics — Greig I. de Zubicaray, Niels O. Schiller",
+                    "UpToDate Clinical Neurology & Geriatrics (Συγκοπή σε Ενήλικες: Εκτίμηση Κινδύνου & Διαχείριση, Λειτουργικές Κρίσεις, Πτώσεις σε Μεγάλες Ηλικίες) — UpToDate Clinical Series"
+                ]
+            },
+            {
+                cat: "14. Εργαλεία Συμβουλευτικής, Κινητοποιός Συνέντευξη & Κοινωνική Ιατρική",
+                items: [
+                    "Κινητοποιός Συνέντευξη (Motivational Interviewing) στην Πρωτοβάθμια Φροντίδα: Ενίσχυση Κινήτρου σε Παχυσαρκία και Διακοπή Καπνίσματος (Εκπαιδευτικά Φυλλάδια, Assessment Forms, Slides & Κάρτες Στόχων) — Εκπαιδευτική Ομάδα ΠΦΥ",
+                    "Κοινωνικοί Προσδιοριστές Υγείας (e-Learning 6ου Έτους) — Ιατρική Σχολή"
+                ]
+            }
+        ];
+
+        function renderBibliography(query) {
+            const container = document.getElementById('bibListContainer');
+            if (!container) return;
+            const q = (query || '').trim().toLowerCase();
+            let html = '';
+            BIBLIOGRAPHY_DATA.forEach(section => {
+                const catMatch = section.cat.toLowerCase().includes(q);
+                const filtered = q ? section.items.filter(it => catMatch || it.toLowerCase().includes(q)) : section.items;
+                if (!filtered.length) return;
+                html += `<div style="margin-bottom:18px; background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #9333ea; border-radius:12px; padding:14px 16px;">
+                    <div style="font-weight:800; color:#581c87; font-size:1rem; margin-bottom:8px;">${section.cat}</div>
+                    <ul style="margin:0; padding-left:20px;">
+                        ${filtered.map(item => `<li style="margin-bottom:5px; color:#1e293b;">${item}</li>`).join('')}
+                    </ul>
+                </div>`;
+            });
+            container.innerHTML = html || '<div style="text-align:center; padding:24px; color:#64748b;">Δεν βρέθηκαν αποτελέσματα.</div>';
+        }
+
+        function filterBibliography() {
+            const input = document.getElementById('bibSearchInput');
+            renderBibliography(input ? input.value : '');
+        }
+
+        function openBibliographyModal() {
+            const modal = document.getElementById('bibliographyModal');
+            if (!modal) return;
+            renderBibliography('');
+            const input = document.getElementById('bibSearchInput');
+            if (input) input.value = '';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBibliographyModal() {
+            const modal = document.getElementById('bibliographyModal');
+            if (!modal) return;
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBibliographyModal();
         });
     </script>
 </body>
