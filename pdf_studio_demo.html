@@ -602,11 +602,15 @@
           return { x, y, w: Math.max(0, right - x), h: Math.max(0, bottom - y) };
         })
         .filter(r => r.w > 0.002 && r.h > 0.002);
-      // Merge rects on the same line into one continuous highlight/underline without word gaps
+      // Merge rects on the same line ONLY if horizontally close (normal word gap, never across columns)
       const rects = [];
       rawRects.sort((a, b) => a.y - b.y || a.x - b.x);
       rawRects.forEach(r => {
-        const prev = rects.find(p => Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.6);
+        const prev = rects.find(p =>
+          Math.abs(p.y - r.y) < Math.max(p.h, r.h) * 0.55 &&
+          r.x <= (p.x + p.w) + 0.035 &&
+          (r.x + r.w) >= p.x - 0.035
+        );
         if (prev) {
           const minX = Math.min(prev.x, r.x);
           const maxX = Math.max(prev.x + prev.w, r.x + r.w);
@@ -659,19 +663,20 @@
         textDiv.style.height = vp.height + 'px';
         const textContent = await page.getTextContent();
         textContent.items.forEach(item => {
-          if (!item.str) return;
+          if (!item.str || !item.str.trim()) return;
           const tx = pdfjsLib.Util.transform(vp.transform, item.transform);
           const fontHeight = Math.hypot(tx[2], tx[3]) || 12;
           const span = document.createElement('span');
           span.textContent = item.str;
           span.style.left = tx[4] + 'px';
-          span.style.top = (tx[5] - fontHeight) + 'px';
+          span.style.top = (tx[5] - fontHeight * 0.88) + 'px';
           span.style.fontSize = fontHeight + 'px';
           span.style.fontFamily = 'sans-serif';
           textDiv.appendChild(span);
           const targetW = (item.width || 0) * vp.scale;
-          if (targetW > 0 && span.offsetWidth > 0) {
-            span.style.transform = `scaleX(${targetW / span.offsetWidth})`;
+          const actualW = span.getBoundingClientRect().width;
+          if (targetW > 0 && actualW > 0) {
+            span.style.transform = `scaleX(${targetW / actualW})`;
           }
         });
 
