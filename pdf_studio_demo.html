@@ -203,6 +203,7 @@
       inset: 0;
       z-index: 3;
       pointer-events: none;
+      mix-blend-mode: multiply;
     }
     .annot-layer.interactive {
       pointer-events: auto;
@@ -244,7 +245,7 @@
       position: absolute;
       z-index: 1;
       pointer-events: none;
-      border-bottom: 3px solid;
+      border-bottom: 1.5px solid;
     }
     .notes-drawer {
       width: 290px;
@@ -431,7 +432,7 @@
             div.style.width = (rc.w * 100) + '%';
             div.style.height = (rc.h * 100) + '%';
             if (hl.kind === 'underline') div.style.borderColor = hl.color;
-            else div.style.background = hexToRgba(hl.color, 0.45);
+            else div.style.background = hexToRgba(hl.color, 0.36);
             box.appendChild(div);
           });
         });
@@ -442,8 +443,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         state.strokes.filter(s => s.page === p).forEach(s => {
           if (!s.pts.length) return;
-          ctx.strokeStyle = hexToRgba(s.color, 0.72);
-          ctx.lineWidth = 4;
+          ctx.strokeStyle = hexToRgba(s.color, 0.65);
+          ctx.lineWidth = s.width || 1.8;
           ctx.lineCap = 'round';
           ctx.lineJoin = 'round';
           ctx.beginPath();
@@ -568,7 +569,7 @@
             return;
           }
           if (currentTool === 'pen') {
-            activeStroke = { page: p, color: currentColor, pts: [{ x: nx, y: ny }] };
+            activeStroke = { page: p, color: currentColor, width: 1.8, pts: [{ x: nx, y: ny }] };
             state.strokes.push(activeStroke);
           }
         });
