@@ -143,9 +143,14 @@
             📚 Ψηφιακή Βιβλιοθήκη &amp; Αρχεία Μελέτης — Πρωτοβάθμια Φροντίδα Υγείας
           </h2>
           <p style="margin:4px 0 0 0; color:#64748b; font-size:0.95rem;">
-            Επιλέξτε αρχείο για άμεση ανάγνωση εντός της σελίδας ή άνοιγμα σε νέα καρτέλα.
+            Επιλέξτε έκδοση (<strong>ΕΟΦ 2018</strong> ή <strong>Λοιμώξεις 2025</strong>) και αρχείο για άμεση ανάγνωση.
           </p>
         </div>
+      </div>
+
+      <div id="libToolbar" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin:12px 0 6px 0;">
+        <div id="editionFilters" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+        <input type="text" id="libSearchInput" placeholder="Αναζήτηση κεφαλαίου..." style="padding:9px 14px; border-radius:10px; border:1.5px solid #d8b4fe; font-family:inherit; font-size:0.9rem; min-width:220px; flex:1 1 220px; max-width:340px; outline:none;">
       </div>
 
       <div id="libContent"></div>
@@ -170,12 +175,14 @@
     </main>
   </div>
 
-  <script src="books_manifest.js?v=20261127.v1"></script>
+  <script src="books_manifest.js?v=20261127.v2"></script>
   <script>
     (function () {
       const books = Array.isArray(window.protovathmiaBooks) ? window.protovathmiaBooks : [];
       const libCountTag = document.getElementById('libCountTag');
       const libContent = document.getElementById('libContent');
+      const editionFilters = document.getElementById('editionFilters');
+      const libSearchInput = document.getElementById('libSearchInput');
       const pdfContainer = document.getElementById('pdfContainer');
       const pdfIframe = document.getElementById('pdfIframe');
       const viewerTitle = document.getElementById('viewerTitle');
@@ -208,42 +215,94 @@
         return;
       }
 
-      const grid = document.createElement('div');
-      grid.className = 'lib-grid';
+      let activeEdition = 'all';
+      const count2018 = books.filter(b => b.edition === '2018').length;
+      const count2025 = books.filter(b => b.edition === '2025').length;
 
-      books.forEach((b) => {
-        const card = document.createElement('div');
-        card.className = 'lib-card';
-        const safeTitle = b.title || b.file || 'Αρχείο';
-        const safeCategory = b.category || 'Πρωτοβάθμια Φροντίδα';
-        const fileUrl = b.url || ('books/' + encodeURIComponent(b.file));
-        card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px;">
-            <span style="width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#ec4899,#9333ea); color:#fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <i class="fa-solid fa-file-pdf"></i>
-            </span>
-            <div>
-              <div class="lib-card-title">${safeTitle}</div>
-              <div class="lib-card-meta">${safeCategory}</div>
-            </div>
-          </div>
-          ${b.description ? `<p style="margin:0; font-size:0.88rem; color:#475569; line-height:1.5;">${b.description}</p>` : ''}
-          <div class="lib-actions">
-            <button type="button" class="lib-btn-view"><i class="fa-solid fa-book-open"></i> Ανάγνωση</button>
-            <a href="${fileUrl}" target="_blank" class="lib-btn-ext" title="Άνοιγμα σε νέα καρτέλα"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        `;
-        card.querySelector('.lib-btn-view').addEventListener('click', () => {
-          viewerTitle.textContent = safeTitle;
-          externalPdfBtn.href = fileUrl;
-          pdfIframe.src = fileUrl;
-          pdfContainer.style.display = 'flex';
-          pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      function renderFilters() {
+        if (!editionFilters) return;
+        const defs = [
+          { id: 'all', label: `Όλα (${books.length})` },
+          { id: '2018', label: `📘 ΕΟΦ 2018 (${count2018})` },
+          { id: '2025', label: `📗 Λοιμώξεις 2025 (${count2025})` }
+        ];
+        editionFilters.innerHTML = defs.map(d => {
+          const active = activeEdition === d.id;
+          return `<button type="button" data-ed="${d.id}" style="padding:8px 14px; border-radius:10px; font-weight:800; font-size:0.86rem; cursor:pointer; font-family:inherit; border:1.5px solid ${active ? '#9333ea' : '#d8b4fe'}; background:${active ? 'linear-gradient(135deg,#9333ea,#2563eb)' : '#fdf4ff'}; color:${active ? '#fff' : '#6b21a8'};">${d.label}</button>`;
+        }).join('');
+        editionFilters.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeEdition = btn.dataset.ed;
+            renderFilters();
+            renderList();
+          });
         });
-        grid.appendChild(card);
-      });
+      }
 
-      libContent.appendChild(grid);
+      function renderList() {
+        const q = (libSearchInput ? libSearchInput.value : '').trim().toLowerCase();
+        const filtered = books.filter(b => {
+          if (activeEdition !== 'all' && b.edition !== activeEdition) return false;
+          if (!q) return true;
+          return ((b.title || '') + ' ' + (b.category || '') + ' ' + (b.description || '')).toLowerCase().includes(q);
+        });
+
+        libContent.innerHTML = '';
+        if (filtered.length === 0) {
+          libContent.innerHTML = '<div class="lib-empty" style="padding:24px;">Δεν βρέθηκαν αρχεία για αυτή την αναζήτηση.</div>';
+          return;
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'lib-grid';
+
+        filtered.forEach((b) => {
+          const card = document.createElement('div');
+          card.className = 'lib-card';
+          const safeTitle = b.title || b.file || 'Αρχείο';
+          const safeCategory = b.category || 'Πρωτοβάθμια Φροντίδα';
+          const fileUrl = b.url || ('books/' + encodeURIComponent(b.file));
+          const badgeBg = b.edition === '2018' ? '#dbeafe' : '#dcfce7';
+          const badgeCol = b.edition === '2018' ? '#1d4ed8' : '#15803d';
+          const iconBg = b.edition === '2018' ? 'linear-gradient(135deg,#2563eb,#0284c7)' : 'linear-gradient(135deg,#ec4899,#9333ea)';
+          card.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="width:40px; height:40px; border-radius:10px; background:${iconBg}; color:#fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i class="fa-solid fa-file-pdf"></i>
+              </span>
+              <div style="min-width:0;">
+                <div class="lib-card-title">${safeTitle}</div>
+                <div class="lib-card-meta">
+                  <span style="display:inline-block; background:${badgeBg}; color:${badgeCol}; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:800; margin-right:6px;">${b.edition || ''}</span>
+                  ${safeCategory}
+                </div>
+              </div>
+            </div>
+            ${b.description ? `<p style="margin:0; font-size:0.88rem; color:#475569; line-height:1.5;">${b.description}</p>` : ''}
+            <div class="lib-actions">
+              <button type="button" class="lib-btn-view"><i class="fa-solid fa-book-open"></i> Ανάγνωση</button>
+              <a href="${fileUrl}" target="_blank" class="lib-btn-ext" title="Άνοιγμα σε νέα καρτέλα"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          `;
+          card.querySelector('.lib-btn-view').addEventListener('click', () => {
+            viewerTitle.textContent = safeTitle;
+            externalPdfBtn.href = fileUrl;
+            pdfIframe.src = fileUrl;
+            pdfContainer.style.display = 'flex';
+            pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          grid.appendChild(card);
+        });
+
+        libContent.appendChild(grid);
+      }
+
+      if (libSearchInput) {
+        libSearchInput.addEventListener('input', renderList);
+      }
+
+      renderFilters();
+      renderList();
     })();
   </script>
 </body>
