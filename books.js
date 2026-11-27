@@ -4520,16 +4520,13 @@ let currentSelectedBook = null;
 
     function displayPdf(filePath) {
         if (!filePath) return;
+        const absPdfUrl = new URL(filePath, window.location.href).href;
+        const studioUrl = 'pdf_studio.html?file=' + encodeURIComponent(absPdfUrl);
         let isLocalDesktop = (window.location.protocol === 'file:') && !(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
-        const studioUrl = 'pdf_studio.html?file=' + encodeURIComponent(filePath);
-        if (isLocalDesktop) {
-            pdfIframe.src = filePath;
-        } else {
-            pdfIframe.src = studioUrl;
-        }
+        pdfIframe.src = isLocalDesktop ? filePath : studioUrl;
         if (externalPdfBtn) externalPdfBtn.href = isLocalDesktop ? filePath : studioUrl;
         pdfPlaceholder.style.display = 'none';
-        pdfContainer.style.display = 'block';
+        pdfContainer.style.display = 'flex';
 
         setTimeout(() => {
             pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
