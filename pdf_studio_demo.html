@@ -210,29 +210,57 @@
       cursor: crosshair;
       touch-action: none;
     }
-    .sticky-pin {
+    .sticky-pin-wrap {
       position: absolute;
-      z-index: 5;
+      z-index: 6;
+      transform: translate(-50%, -50%);
+    }
+    .sticky-pin-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #eab308;
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 0.15s;
+    }
+    .sticky-pin-btn:hover { transform: scale(1.15); }
+    .sticky-pin-btn.has-text {
+      background: #facc15;
+      border-color: #ca8a04;
+    }
+    .sticky-popup {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      z-index: 10;
       background: #fef08a;
       border: 1.5px solid #eab308;
       border-radius: 10px;
-      padding: 6px 8px;
-      min-width: 150px;
-      max-width: 220px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+      padding: 8px 10px;
+      width: 210px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
       font-size: 0.78rem;
       color: #422006;
     }
-    .sticky-pin textarea {
+    .sticky-popup textarea {
       width: 100%;
       border: none;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 6px;
+      padding: 5px 6px;
       font-family: inherit;
       font-size: 0.78rem;
       color: #422006;
       resize: vertical;
       outline: none;
-      min-height: 44px;
+      min-height: 58px;
     }
     .hl-rect {
       position: absolute;
@@ -372,7 +400,11 @@
     if (!state.notes) state.notes = [];
 
     function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      const clean = {
+        ...state,
+        notes: state.notes.map(({ _open, ...rest }) => rest)
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
       const msg = document.getElementById('saveMsg');
       if (msg) msg.textContent = 'Αποθηκεύτηκε αυτόματα ✓';
     }
@@ -454,7 +486,7 @@
         const p = parseInt(box.dataset.page, 10);
         const w = box.clientWidth;
         const h = box.clientHeight;
-        box.querySelectorAll('.hl-rect, .hl-underline, .sticky-pin').forEach(el => el.remove());
+        box.querySelectorAll('.hl-rect, .hl-underline, .sticky-pin-wrap').forEach(el => el.remove());
 
         // Draw highlights & underlines (stored in normalized 0..1 coords!)
         state.highlights.filter(hl => hl.page === p).forEach(hl => {
@@ -489,29 +521,61 @@
           ctx.stroke();
         });
 
-        // Draw sticky notes
-        state.notes.filter(n => n.page === p).forEach((n, idx) => {
-          const pin = document.createElement('div');
-          pin.className = 'sticky-pin';
-          pin.style.left = (n.x * 100) + '%';
-          pin.style.top = (n.y * 100) + '%';
-          pin.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; font-weight:800;">
+        // Draw sticky notes (only pushpin visible; click pin to open/close yellow card)
+        state.notes.filter(n => n.page === p).forEach((n) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'sticky-pin-wrap';
+          wrap.style.left = (n.x * 100) + '%';
+          wrap.style.top = (n.y * 100) + '%';
+
+          const pinBtn = document.createElement('button');
+          pinBtn.type = 'button';
+          pinBtn.className = 'sticky-pin-btn' + (n.text && n.text.trim() ? ' has-text' : '');
+          pinBtn.title = n.text ? n.text : 'Κλικ για προβολή/επεξεργασία σημείωσης';
+          pinBtn.textContent = '📌';
+          wrap.appendChild(pinBtn);
+
+          const popup = document.createElement('div');
+          popup.className = 'sticky-popup';
+          popup.style.display = n._open ? 'block' : 'none';
+          popup.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; font-weight:800;">
               <span>📌 Σημείωση</span>
-              <button type="button" style="border:none;background:none;cursor:pointer;color:#92400e;font-weight:800;">×</button>
+              <span style="display:flex; gap:6px;">
+                <button type="button" class="note-min-btn" title="Ελαχιστοποίηση σε πινέζα" style="border:none;background:none;cursor:pointer;color:#854d0e;font-weight:800;">—</button>
+                <button type="button" class="note-del-btn" title="Διαγραφή σημείωσης" style="border:none;background:none;cursor:pointer;color:#dc2626;font-weight:800;">×</button>
+              </span>
             </div>
             <textarea placeholder="Γράψτε σημείωση..."></textarea>
           `;
-          const ta = pin.querySelector('textarea');
+          const ta = popup.querySelector('textarea');
           ta.value = n.text || '';
-          ta.addEventListener('input', () => { n.text = ta.value; saveState(); });
-          pin.querySelector('button').addEventListener('click', () => {
+          ta.addEventListener('input', () => {
+            n.text = ta.value;
+            pinBtn.className = 'sticky-pin-btn' + (n.text.trim() ? ' has-text' : '');
+            pinBtn.title = n.text || 'Κλικ για σημείωση';
+            saveState();
+          });
+          pinBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            n._open = !n._open;
+            popup.style.display = n._open ? 'block' : 'none';
+            if (n._open) ta.focus();
+          });
+          popup.querySelector('.note-min-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            n._open = false;
+            popup.style.display = 'none';
+          });
+          popup.querySelector('.note-del-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
             const gi = state.notes.indexOf(n);
             if (gi !== -1) state.notes.splice(gi, 1);
             saveState();
             redrawOverlays();
           });
-          box.appendChild(pin);
+          wrap.appendChild(popup);
+          box.appendChild(wrap);
         });
       });
     }
@@ -529,13 +593,15 @@
       const box = tl.closest('.page-box');
       const boxRect = box.getBoundingClientRect();
       const rawRects = Array.from(range.getClientRects())
-        .filter(r => r.width > 2 && r.height > 2)
-        .map(r => ({
-          x: (r.left - boxRect.left) / boxRect.width,
-          y: (r.top - boxRect.top) / boxRect.height,
-          w: r.width / boxRect.width,
-          h: r.height / boxRect.height
-        }));
+        .filter(r => r.width > 2 && r.height > 2 && r.height < boxRect.height * 0.12)
+        .map(r => {
+          const x = Math.max(0, Math.min(1, (r.left - boxRect.left) / boxRect.width));
+          const y = Math.max(0, Math.min(1, (r.top - boxRect.top) / boxRect.height));
+          const right = Math.max(0, Math.min(1, (r.right - boxRect.left) / boxRect.width));
+          const bottom = Math.max(0, Math.min(1, (r.bottom - boxRect.top) / boxRect.height));
+          return { x, y, w: Math.max(0, right - x), h: Math.max(0, bottom - y) };
+        })
+        .filter(r => r.w > 0.002 && r.h > 0.002);
       // Merge rects on the same line into one continuous highlight/underline without word gaps
       const rects = [];
       rawRects.sort((a, b) => a.y - b.y || a.x - b.x);
@@ -603,6 +669,10 @@
           span.style.fontSize = fontHeight + 'px';
           span.style.fontFamily = 'sans-serif';
           textDiv.appendChild(span);
+          const targetW = (item.width || 0) * vp.scale;
+          if (targetW > 0 && span.offsetWidth > 0) {
+            span.style.transform = `scaleX(${targetW / span.offsetWidth})`;
+          }
         });
 
         const annotCanvas = document.createElement('canvas');
@@ -616,7 +686,7 @@
           const nx = (e.clientX - r.left) / r.width;
           const ny = (e.clientY - r.top) / r.height;
           if (currentTool === 'note') {
-            state.notes.push({ page: p, x: Math.min(0.75, nx), y: Math.min(0.85, ny), text: '' });
+            state.notes.push({ page: p, x: Math.min(0.92, Math.max(0.04, nx)), y: Math.min(0.92, Math.max(0.04, ny)), text: '', _open: true });
             saveState();
             redrawOverlays();
             return;
