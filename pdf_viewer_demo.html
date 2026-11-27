@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Δοκιμή 3 PDF Viewers &amp; Υπογραμμίσεων | TseLkos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #f3e8ff 100%);
+      color: #1e293b;
+      padding: 14px;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .topbar {
+      background: #ffffff;
+      border: 1.5px solid #e9d5ff;
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.08);
+    }
+    .topbar h1 { margin: 0; font-size: 1.15rem; font-weight: 800; color: #581c87; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tab-btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #d8b4fe;
+      background: #faf5ff;
+      color: #6b21a8;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #ec4899, #9333ea, #2563eb);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(147, 51, 234, 0.3);
+    }
+    .panel {
+      display: none;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+    .panel.active { display: block; }
+    .desc-box {
+      background: #f8fafc;
+      border-left: 4px solid #9333ea;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    iframe.viewer-frame {
+      width: 100%;
+      height: 76vh;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    /* Custom Study Reader (Example 2) */
+    .study-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 12px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .tool-btn {
+      padding: 7px 12px;
+      border-radius: 9px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tool-btn.active {
+      border-color: #9333ea;
+      background: #faf5ff;
+      color: #6b21a8;
+      box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+    }
+    .canvas-stage {
+      height: 70vh;
+      overflow: auto;
+      background: #334155;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .page-wrap {
+      position: relative;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .draw-layer {
+      position: absolute;
+      inset: 0;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    /* Split Study Mode (Example 3) */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 14px;
+    }
+    .notes-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .notes-box textarea {
+      width: 100%;
+      flex: 1;
+      min-height: 360px;
+      border: 1.5px solid #fcd34d;
+      border-radius: 10px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+    @media (max-width: 860px) {
+      .split-grid { grid-template-columns: 1fr; }
+      iframe.viewer-frame { height: 62vh; }
+      .canvas-stage { height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <h1>📄 Δοκιμή 3 Προβολέων PDF &amp; Υπογραμμίσεων (Επιλέξτε ποιον προτιμάτε)</h1>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab(1, this)"><i class="fa-solid fa-highlighter"></i> 1. Mozilla PDF.js Pro</button>
+        <button class="tab-btn" onclick="showTab(2, this)"><i class="fa-solid fa-pen-nib"></i> 2. Custom Μαρκαδόρος + Auto-Save</button>
+        <button class="tab-btn" onclick="showTab(3, this)"><i class="fa-solid fa-columns"></i> 3. Split-Screen + Σημειώσεις</button>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 1: Mozilla PDF.js Pro -->
+    <div id="panel-1" class="panel active">
+      <div class="desc-box">
+        <strong>1. Mozilla PDF.js Pro (Ενσωματωμένο στο site — Προτεινόμενο):</strong> Πλήρης επαγγελματικός viewer με έτοιμο <strong>Μαρκαδόρο Υπογράμμισης</strong> (πολλά χρώματα), <strong>Σημειώσεις Κειμένου</strong>, <strong>Ελεύθερη Σχεδίαση</strong>, αναζήτηση λέξεων, thumbnails και <strong>Αποθήκευση / Λήψη του PDF</strong> με τις υπογραμμίσεις σας ενσωματωμένες!
+      </div>
+      <iframe class="viewer-frame" src="pdfjs/web/viewer.html?file=../PROTOVATHMIA/books/%CE%95%CE%9F%CE%A6_2018_03_%CE%9B%CE%BF%CE%B9%CE%BC%CF%8E%CE%BE%CE%B5%CE%B9%CF%82_%CE%9A%CE%B1%CF%84%CF%89%CF%84%CE%AD%CF%81%CE%BF%CF%85_%CE%91%CE%BD%CE%B1%CF%80%CE%BD%CE%B5%CF%85%CF%83%CF%84%CE%B9%CE%BA%CE%BF%CF%8D.pdf"></iframe>
+    </div>
+
+    <!-- EXAMPLE 2: Custom Study Highlighter -->
+    <div id="panel-2" class="panel">
+      <div class="desc-box">
+        <strong>2. Custom Study Reader (Μαρκαδόρος Μελέτης + Αυτόματη Αποθήκευση):</strong> Ελαφρύς, απλοποιημένος viewer με 4 χρώματα μαρκαδόρου (κλικ &amp; σύρσιμο πάνω στη σελίδα), Zoom, Νυχτερινή λειτουργία και <strong>αυτόματη αποθήκευση</strong> στον browser (`localStorage`) ώστε οι υπογραμμίσεις να μένουν κάθε φορά που ανοίγετε το κεφάλαιο!
+      </div>
+      <div class="study-toolbar">
+        <button class="tool-btn active" onclick="setPen('rgba(250, 204, 21, 0.42)', 18, this)">🟡 Κίτρινο</button>
+        <button class="tool-btn" onclick="setPen('rgba(74, 222, 128, 0.40)', 18, this)">🟢 Πράσινο</button>
+        <button class="tool-btn" onclick="setPen('rgba(244, 114, 182, 0.38)', 18, this)">🩷 Ροζ</button>
+        <button class="tool-btn" onclick="setPen('rgba(96, 165, 250, 0.38)', 18, this)">🔵 Μπλε</button>
+        <button class="tool-btn" onclick="clearMarks()"><i class="fa-solid fa-eraser"></i> Καθαρισμός</button>
+        <button class="tool-btn" onclick="changeZoom(0.2)"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom +</button>
+        <button class="tool-btn" onclick="changeZoom(-0.2)"><i class="fa-solid fa-magnifying-glass-minus"></i> Zoom -</button>
+        <span id="saveStatus" style="margin-left:auto; font-size:0.8rem; font-weight:700; color:#059669;"></span>
+      </div>
+      <div class="canvas-stage" id="canvasStage">Φόρτωση σελίδων PDF...</div>
+    </div>
+
+    <!-- EXAMPLE 3: Split-Screen + Study Notes -->
+    <div id="panel-3" class="panel">
+      <div class="desc-box">
+        <strong>3. Split-Screen Study Mode (PDF Αριστερά + Σημειωματάριο Κεφαλαίου Δεξιά):</strong> Κρατάει τη μέγιστη ταχύτητα του browser αριστερά και προσφέρει δεξιά μόνιμο μπλοκ σημειώσεων με αυτόματη αποθήκευση ανά κεφάλαιο.
+      </div>
+      <div class="split-grid">
+        <iframe class="viewer-frame" src="PROTOVATHMIA/books/%CE%95%CE%9F%CE%A6_2018_03_%CE%9B%CE%BF%CE%B9%CE%BC%CF%8E%CE%BE%CE%B5%CE%B9%CF%82_%CE%9A%CE%B1%CF%84%CF%89%CF%84%CE%AD%CF%81%CE%BF%CF%85_%CE%91%CE%BD%CE%B1%CF%80%CE%BD%CE%B5%CF%85%CF%83%CF%84%CE%B9%CE%BA%CE%BF%CF%8D.pdf"></iframe>
+        <div class="notes-box">
+          <div style="font-weight:800; color:#92400e;"><i class="fa-solid fa-note-sticky"></i> Σημειώσεις Κεφαλαίου (Auto-Save)</div>
+          <textarea id="chapterNotes" placeholder="Γράψτε εδώ High-Yield σημεία, δόσεις, κριτήρια CURB-65 κ.λπ..."></textarea>
+          <div id="notesSaved" style="font-size:0.8rem; font-weight:700; color:#059669;">Αποθηκεύεται αυτόματα τοπικά.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as pdfjsLib from './pdfjs/build/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.mjs';
+
+    const DEMO_PDF = './PROTOVATHMIA/books/%CE%95%CE%9F%CE%A6_2018_03_%CE%9B%CE%BF%CE%B9%CE%BC%CF%8E%CE%BE%CE%B5%CE%B9%CF%82_%CE%9A%CE%B1%CF%84%CF%89%CF%84%CE%AD%CF%81%CE%BF%CF%85_%CE%91%CE%BD%CE%B1%CF%80%CE%BD%CE%B5%CF%85%CF%83%CF%84%CE%B9%CE%BA%CE%BF%CF%8D.pdf';
+    let penColor = 'rgba(250, 204, 21, 0.42)';
+    let penWidth = 18;
+    let scale = 1.25;
+    let pdfLoaded = false;
+
+    window.showTab = function (n, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + n).classList.add('active');
+      if (n === 2 && !pdfLoaded) {
+        pdfLoaded = true;
+        renderDemoPdf();
+      }
+    };
+
+    window.setPen = function (col, w, btn) {
+      penColor = col; penWidth = w;
+      document.querySelectorAll('.study-toolbar .tool-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+
+    window.changeZoom = function (delta) {
+      scale = Math.max(0.7, Math.min(2.2, scale + delta));
+      renderDemoPdf();
+    };
+
+    window.clearMarks = function () {
+      localStorage.removeItem('demo_pdf_marks_eof3');
+      renderDemoPdf();
+    };
+
+    async function renderDemoPdf() {
+      const stage = document.getElementById('canvasStage');
+      stage.innerHTML = 'Φόρτωση...';
+      const doc = await pdfjsLib.getDocument(DEMO_PDF).promise;
+      stage.innerHTML = '';
+      const saved = JSON.parse(localStorage.getItem('demo_pdf_marks_eof3') || '{}');
+
+      for (let p = 1; p <= Math.min(doc.numPages, 3); p++) {
+        const page = await doc.getPage(p);
+        const vp = page.getViewport({ scale });
+        const wrap = document.createElement('div');
+        wrap.className = 'page-wrap';
+        wrap.style.width = vp.width + 'px';
+        wrap.style.height = vp.height + 'px';
+
+        const pdfCanvas = document.createElement('canvas');
+        pdfCanvas.width = vp.width; pdfCanvas.height = vp.height;
+        await page.render({ canvasContext: pdfCanvas.getContext('2d'), viewport: vp }).promise;
+
+        const drawCanvas = document.createElement('canvas');
+        drawCanvas.className = 'draw-layer';
+        drawCanvas.width = vp.width; drawCanvas.height = vp.height;
+        const dctx = drawCanvas.getContext('2d');
+
+        if (saved[p]) {
+          const img = new Image();
+          img.onload = () => dctx.drawImage(img, 0, 0, drawCanvas.width, drawCanvas.height);
+          img.src = saved[p];
+        }
+
+        let drawing = false;
+        const pos = (e) => {
+          const r = drawCanvas.getBoundingClientRect();
+          return { x: (e.clientX - r.left), y: (e.clientY - r.top) };
+        };
+        drawCanvas.addEventListener('pointerdown', (e) => {
+          drawing = true;
+          const pt = pos(e);
+          dctx.strokeStyle = penColor;
+          dctx.lineWidth = penWidth;
+          dctx.lineCap = 'round';
+          dctx.lineJoin = 'round';
+          dctx.beginPath();
+          dctx.moveTo(pt.x, pt.y);
+        });
+        drawCanvas.addEventListener('pointermove', (e) => {
+          if (!drawing) return;
+          const pt = pos(e);
+          dctx.lineTo(pt.x, pt.y);
+          dctx.stroke();
+        });
+        const finish = () => {
+          if (!drawing) return;
+          drawing = false;
+          const cur = JSON.parse(localStorage.getItem('demo_pdf_marks_eof3') || '{}');
+          cur[p] = drawCanvas.toDataURL();
+          localStorage.setItem('demo_pdf_marks_eof3', JSON.stringify(cur));
+          document.getElementById('saveStatus').textContent = '✓ Αποθηκεύτηκε';
+        };
+        drawCanvas.addEventListener('pointerup', finish);
+        drawCanvas.addEventListener('pointerleave', finish);
+
+        wrap.appendChild(pdfCanvas);
+        wrap.appendChild(drawCanvas);
+        stage.appendChild(wrap);
+      }
+    }
+
+    const notesEl = document.getElementById('chapterNotes');
+    notesEl.value = localStorage.getItem('demo_notes_eof3') || '';
+    notesEl.addEventListener('input', () => {
+      localStorage.setItem('demo_notes_eof3', notesEl.value);
+      document.getElementById('notesSaved').textContent = '✓ Αποθηκεύτηκε αυτόματα';
+    });
+  </script>
+</body>
+</html>
